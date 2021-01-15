@@ -20,6 +20,7 @@
                 <Image Source="item.png" Style="{StaticResource ImageMediumStyle}"/>
                 <Label Text="Binary Boomers" Style="{StaticResource HeaderStyle}" HorizontalOptions="Center"  HorizontalTextAlignment="Center" />
                 <Label Text="Tate Brasel" Style="{StaticResource MessageStyle}" HorizontalOptions="Center"  HorizontalTextAlignment="Center" />
+                <Label Text="Jack Witt" Style="{StaticResource MessageStyle}" HorizontalOptions="Center"  HorizontalTextAlignment="Center" />
                 <Label x:Name="CurrentDateTime" Style="{StaticResource MessageStyle}" HorizontalOptions="Center"  HorizontalTextAlignment="Center" />
             </StackLayout>
 
