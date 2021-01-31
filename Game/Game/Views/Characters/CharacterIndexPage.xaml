@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource OuterBoxStack}">
 
-            <Label Text="Items List Page" Style="{StaticResource HeaderStyle}"/>
+            <Label Text="Characters List Page" Style="{StaticResource HeaderStyle}"/>
 
             <ListView x:Name="ItemsListView" 
                     ItemsSource="{Binding Dataset}"
