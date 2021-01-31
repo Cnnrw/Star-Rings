@@ -65,4 +65,9 @@
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Characters\" />
+    <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
 </Project>
