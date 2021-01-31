@@ -1,4 +1,6 @@
-﻿using Game.GameRules;
+using System.Collections.Generic;
+
+using Game.GameRules;
 
 namespace Game.Models
 {
@@ -9,6 +11,9 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
+        // The character's attribute buffs in different locations
+        public Dictionary<string, LocationBuffsModel> LocationBuffs;
+
         /// <summary>
         /// Default character
         /// 
@@ -26,7 +31,9 @@ namespace Game.Models
             ExperienceRemaining = LevelTableHelper.LevelDetailsList[Level + 1].Experience - 1;
 
             // Default to unknown, which is no special job
-            Job = CharacterJobEnum.Unknown; 
+            Job = CharacterJobEnum.Unknown;
+
+            LocationBuffs = new Dictionary<string, LocationBuffsModel>();
         }
 
         /// <summary>
@@ -79,6 +86,8 @@ namespace Game.Models
 
             // Update the Job
             Job = newData.Job;
+
+            LocationBuffs = newData.LocationBuffs;
 
             return true;
         }
