@@ -18,7 +18,7 @@ namespace Game.Views
     public partial class CharacterIndexPage : ContentPage
     {
         // The view model, used for data binding
-        readonly ItemIndexViewModel ViewModel = ItemIndexViewModel.Instance;
+        readonly CharacterIndexViewModel ViewModel = CharacterIndexViewModel.Instance;
 
         // Empty Constructor for UTs
         public CharacterIndexPage(bool UnitTest) { }
