@@ -18,7 +18,6 @@
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     CachingStrategy="RecycleElement"
-                    ItemSelected="OnItemSelected"
                     HasUnevenRows="true"
                     Margin="5,0,5,0"
                     RowHeight="80"
