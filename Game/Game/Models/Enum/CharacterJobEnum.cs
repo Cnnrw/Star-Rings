@@ -10,22 +10,22 @@ namespace Game.Models
         Unknown = 0,
 
         // Luke is ...
-        Luke = 1,
+        Jedi = 1,
 
         // Leia is ...
-        Leia = 2,
+        Princess = 2,
 
         // Han is ...
-        Han = 3,
+        Smuggler = 3,
 
         // Chewbacca is ...
-        Chewbacca = 4,
+        Wookie = 4,
 
         // C3PO is ...
-        C3PO = 5,
+        ProtocolDroid = 5,
 
         // R2D2 is ...
-        R2D2 = 6,
+        AstroDroid = 6,
 
         // Fighters hit hard and have fight abilities
         Fighter = 10,
@@ -51,28 +51,28 @@ namespace Game.Models
 
             switch (value)
             {
-                case CharacterJobEnum.Luke:
-                    Message = "Luke Skywalker";
+                case CharacterJobEnum.Jedi:
+                    Message = "Jedi";
                     break;
 
-                case CharacterJobEnum.Leia:
-                    Message = "Leia Organa";
+                case CharacterJobEnum.Princess:
+                    Message = "Princess";
                     break;
 
-                case CharacterJobEnum.Han:
-                    Message = "Han Solo";
+                case CharacterJobEnum.Smuggler:
+                    Message = "Smuggler";
                     break;
 
-                case CharacterJobEnum.Chewbacca:
-                    Message = "Chewbacca";
+                case CharacterJobEnum.Wookie:
+                    Message = "Wookie";
                     break;
 
-                case CharacterJobEnum.C3PO:
-                    Message = "C3PO";
+                case CharacterJobEnum.ProtocolDroid:
+                    Message = "Protocol Droid";
                     break;
 
-                case CharacterJobEnum.R2D2:
-                    Message = "R2D2";
+                case CharacterJobEnum.AstroDroid:
+                    Message = "Astro Droid";
                     break;
 
                 case CharacterJobEnum.Fighter:
