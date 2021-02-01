@@ -11,6 +11,7 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
+        // The role of the character (jedi, princess, etc.)
         public string BattleType { get; set; }
 
         // The character's attribute buffs in different locations
