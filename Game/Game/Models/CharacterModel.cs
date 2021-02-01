@@ -12,7 +12,7 @@ namespace Game.Models
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
         // The character's attribute buffs in different locations
-        public Dictionary<string, LocationBuffsModel> LocationBuffs;
+        public Dictionary<BattleLocationEnum, LocationBuffsModel> LocationBuffs;
 
         /// <summary>
         /// Default character
@@ -33,7 +33,7 @@ namespace Game.Models
             // Default to unknown, which is no special job
             Job = CharacterJobEnum.Unknown;
 
-            LocationBuffs = new Dictionary<string, LocationBuffsModel>();
+            LocationBuffs = new Dictionary<BattleLocationEnum, LocationBuffsModel>();
         }
 
         /// <summary>
