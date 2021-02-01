@@ -108,6 +108,26 @@ namespace Game.Models
         }
 
         /// <summary>
+        /// Gets the defense buff value for this character in a battle location
+        /// </summary>
+        /// <param name="battleLocation">The location of the battle</param>
+        /// <returns>Defense buff value</returns>
+        public int GetBattleLocationDefenseBuff(BattleLocationEnum battleLocation)
+        {
+            return BattleLocationBuffs[battleLocation].DefenseBuffValue;
+        }
+
+        /// <summary>
+        /// Gets the speed buff value for this character in a battle location
+        /// </summary>
+        /// <param name="battleLocation">The location of the battle</param>
+        /// <returns>Speed buff value</returns>
+        public int GetBattleLocationSpeedBuff(BattleLocationEnum battleLocation)
+        {
+            return BattleLocationBuffs[battleLocation].SpeedBuffValue;
+        }
+
+        /// <summary>
         /// Helper to combine the attributes into a single line, to make it easier to display the item as a string
         /// </summary>
         /// <returns></returns>
