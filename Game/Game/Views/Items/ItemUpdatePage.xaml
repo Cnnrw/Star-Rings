@@ -37,29 +37,34 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0"
-                        Text="Name" 
+                        Text="Name"
                         Style="{StaticResource LabelStyle}"/>
 
                     <Entry Grid.Row="0" Grid.Column="1"
-                        Text="{Binding Data.Name}" 
+                        Text="{Binding Data.Name}"
                         Style="{StaticResource EntryStyle}"/>
 
                     <Label Grid.Row="1" Grid.Column="0"
-                        Text="Description" 
+                        Text="Description"
                         Style="{StaticResource LabelStyle}"/>
 
                     <Entry Grid.Row="1" Grid.Column="1"
-                        Text="{Binding Data.Description}" 
+                        Text="{Binding Data.Description}"
                         Style="{StaticResource EntryStyle}"/>
 
                     <Label Grid.Row="2" Grid.Column="0"
-                        Text="Location" 
+                        Text="Location"
                         Style="{StaticResource LabelStyle}"/>
 
                     <Picker Grid.Row="2" Grid.Column="1"
@@ -68,7 +73,7 @@
                         x:Name="LocationPicker"/>
 
                     <Label Grid.Row="3" Grid.Column="0"
-                        Text="Attribute" 
+                        Text="Attribute"
                         Style="{StaticResource LabelStyle}"/>
 
                     <Picker Grid.Row="3" Grid.Column="1"
@@ -77,17 +82,17 @@
                         x:Name="AttributePicker"/>
 
                     <Label Grid.Row="4" Grid.Column="0"
-                        Text="Image" 
+                        Text="Image"
                         Style="{StaticResource LabelStyle}"/>
 
                     <StackLayout Grid.Row="4" Grid.Column="1" Style="{StaticResource HorizontalStack}" HorizontalOptions="FillAndExpand">
 
-                        <Image 
+                        <Image
                             Source="{Binding Data.ImageURI}"
                             Style="{StaticResource ImageSmallStyle}"/>
 
-                        <Entry 
-                            Text="{Binding Data.ImageURI}" 
+                        <Entry
+                            Text="{Binding Data.ImageURI}"
                             Style="{StaticResource EntryStyle}"/>
 
                     </StackLayout>
@@ -95,61 +100,61 @@
 
                 <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="FillAndExpand">
 
-                    <Label 
-                        Text="Range" 
+                    <Label
+                        Text="Range"
                         Style="{StaticResource LabelStyle}"/>
 
                     <StackLayout Style="{StaticResource HorizontalStack}" Padding="10,0,10,0">
 
-                        <Label 
-                            Text="{Binding Data.Range}" 
+                        <Label
+                            Text="{Binding Data.Range}"
                             x:Name="RangeValue"
                             Style="{StaticResource ValueStyle}"
                             Padding="0,0,10,0"
                             HorizontalOptions="End"
                             HorizontalTextAlignment="End"/>
 
-                        <Stepper 
+                        <Stepper
                             Value="{Binding Data.Range, Mode=TwoWay}"
                             ValueChanged="Range_OnStepperValueChanged"/>
 
                     </StackLayout>
 
-                    <Label 
+                    <Label
                         Text="Value"
                         Style="{StaticResource LabelStyle}"/>
 
                     <StackLayout Style="{StaticResource HorizontalStack}" Padding="10,0,10,0">
 
-                        <Label 
-                            Text="{Binding Data.Value}" 
+                        <Label
+                            Text="{Binding Data.Value}"
                             x:Name="ValueValue"
                             Style="{StaticResource ValueStyle}"
                             Padding="0,0,10,0"
                             HorizontalOptions="End"
                             HorizontalTextAlignment="End"/>
 
-                        <Stepper 
+                        <Stepper
                             Value="{Binding Data.Value, Mode=TwoWay}"
                             ValueChanged="Value_OnStepperValueChanged"/>
 
                     </StackLayout>
 
-                    <Label 
-                        Text="Damage" 
+                    <Label
+                        Text="Damage"
                         Style="{StaticResource LabelStyle}"/>
 
                     <StackLayout Style="{StaticResource HorizontalStack}" Padding="10,0,10,0">
 
-                        <Label 
-                            Text="{Binding Data.Damage}" 
+                        <Label
+                            Text="{Binding Data.Damage}"
                             x:Name="DamageValue"
                             Style="{StaticResource ValueStyle}"
                             Padding="0,0,10,0"
                             HorizontalOptions="End"
                             HorizontalTextAlignment="End"/>
 
-                        <Stepper 
+                        <Stepper
                             Value="{Binding Data.Damage, Mode=TwoWay}"
                             ValueChanged="Damage_OnStepperValueChanged"/>
 
