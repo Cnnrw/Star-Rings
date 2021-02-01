@@ -11,7 +11,7 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
-        public string BattleType;
+        public string BattleType { get; set; }
 
         // The character's attribute buffs in different locations
         public Dictionary<BattleLocationEnum, LocationBuffsModel> BattleLocationBuffs;
