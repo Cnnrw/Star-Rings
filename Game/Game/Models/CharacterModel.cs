@@ -92,6 +92,8 @@ namespace Game.Models
             return true;
         }
 
+        private void InitBattleLocationBuffs() { }
+
         /// <summary>
         /// Helper to combine the attributes into a single line, to make it easier to display the item as a string
         /// </summary>
