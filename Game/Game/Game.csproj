@@ -43,6 +43,9 @@
     <Compile Update="Views\Battle\AutoBattlePage.xaml.cs">
       <DependentUpon>AutoBattlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
+      <DependentUpon>CharacterReadPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Village\VillagePage.xaml.cs">
       <DependentUpon>VillagePage.xaml</DependentUpon>
     </Compile>
@@ -67,7 +70,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Characters\" />
     <Folder Include="Views\NewFolder\" />
   </ItemGroup>
 </Project>
