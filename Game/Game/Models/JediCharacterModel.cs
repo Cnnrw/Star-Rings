@@ -102,26 +102,5 @@ namespace Game.Models
 
             return true;
         }
-
-        /// <summary>
-        /// Helper to combine the attributes into a single line, to make it easier to display the item as a string
-        /// </summary>
-        /// <returns></returns>
-        public override string FormatOutput()
-        {
-            var myReturn = string.Empty;
-            myReturn += Name;
-            myReturn += " , " + Description;
-            myReturn += " , a " + Job.ToMessage();
-            myReturn += " , Level : " + Level.ToString();
-            myReturn += " , Total Experience : " + ExperienceTotal;
-            myReturn += " , Attack :" + GetAttackTotal;
-            myReturn += " , Defense :" + GetDefenseTotal;
-            myReturn += " , Speed :" + GetSpeedTotal;
-            myReturn += " , Items : " + ItemSlotsFormatOutput();
-            myReturn += " , Damage : " + GetDamageTotalString;
-
-            return myReturn;
-        }
     }
 }
