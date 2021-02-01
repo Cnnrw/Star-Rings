@@ -11,6 +11,8 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
+        public string BattleType;
+
         // The character's attribute buffs in different locations
         public Dictionary<BattleLocationEnum, LocationBuffsModel> BattleLocationBuffs;
 
@@ -25,6 +27,7 @@ namespace Game.Models
             Guid = Id;
             Name = "Elf";
             Description = "Happy Elf";
+            BattleType = "Elf";
             Level = 1;
             ImageURI = "item.png";
             ExperienceTotal = 0;
@@ -61,6 +64,7 @@ namespace Game.Models
             Guid = newData.Guid;
             Name = newData.Name;
             Description = newData.Description;
+            BattleType = newData.BattleType;
             Level = newData.Level;
             ImageURI = newData.ImageURI;
 
@@ -137,6 +141,7 @@ namespace Game.Models
             myReturn += Name;
             myReturn += " , " + Description;
             myReturn += " , a " + Job.ToMessage();
+            myReturn += " , a " + BattleType;
             myReturn += " , Level : " + Level.ToString();
             myReturn += " , Total Experience : " + ExperienceTotal;
             myReturn += " , Attack :" + GetAttackTotal;
