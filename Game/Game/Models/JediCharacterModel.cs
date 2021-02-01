@@ -22,6 +22,7 @@ namespace Game.Models
             Guid = Id;
             Name = "Luke Skywalker";
             Description = "A Jedi Master and leader in the Rebel Alliance";
+            BattleType = "Jedi";
             Level = 1;
             ImageURI = "item.png";
             ExperienceTotal = 0;
@@ -70,6 +71,7 @@ namespace Game.Models
             Guid = newData.Guid;
             Name = newData.Name;
             Description = newData.Description;
+            BattleType = newData.BattleType;
             Level = newData.Level;
             ImageURI = newData.ImageURI;
 
