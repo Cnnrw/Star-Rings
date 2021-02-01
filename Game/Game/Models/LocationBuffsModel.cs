@@ -6,8 +6,8 @@ namespace Game.Models
 {
     public class LocationBuffsModel
     {
-        public int AttackBuffValue; 
-        public int DefenseBuffValue;
-        public int SpeedBuffValue;
+        public int AttackBuffValue { get; set; } 
+        public int DefenseBuffValue { get; set; }
+        public int SpeedBuffValue { get; set; }
     }
 }
