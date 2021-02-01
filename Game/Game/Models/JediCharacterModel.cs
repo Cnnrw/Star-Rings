@@ -29,6 +29,8 @@ namespace Game.Models
 
             // Default to Jedi job
             Job = CharacterJobEnum.Jedi;
+
+            InitBattleLocationBuffs();
         }
 
         /// <summary>
