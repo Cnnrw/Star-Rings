@@ -92,7 +92,20 @@ namespace Game.Models
             return true;
         }
 
+        /// <summary>
+        /// Initializes the character's battle location buffs table
+        /// </summary>
         protected virtual void InitBattleLocationBuffs() { }
+
+        /// <summary>
+        /// Gets the attack buff value for this character in a battle location
+        /// </summary>
+        /// <param name="battleLocation">The location of the battle</param>
+        /// <returns>Attack buff value</returns>
+        public int GetBattleLocationAttackBuff(BattleLocationEnum battleLocation)
+        {
+            return BattleLocationBuffs[battleLocation].AttackBuffValue;
+        }
 
         /// <summary>
         /// Helper to combine the attributes into a single line, to make it easier to display the item as a string
