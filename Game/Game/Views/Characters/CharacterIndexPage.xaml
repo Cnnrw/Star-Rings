@@ -13,7 +13,7 @@
 
             <Label Text="Characters List Page" Style="{StaticResource HeaderStyle}"/>
 
-            <ListView x:Name="ItemsListView" 
+            <ListView x:Name="CharactersListView" 
                     ItemsSource="{Binding Dataset}"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     RefreshCommand="{Binding LoadItemsCommand}"
