@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Game.Models;
 using Game.ViewModels;
@@ -137,95 +137,7 @@ namespace Game.GameRules
 
         var datalist = new List<CharacterModel>()
             {
-                new CharacterModel {
-                    Name = "Luke Skywalker",
-                    Description = "A young Jedi Master",
-                    Level = 1,
-                    MaxHealth = 5,
-                    ImageURI = "item.png",
-                    Head = HeadString,
-                    Necklass = NecklassString,
-                    PrimaryHand = PrimaryHandString,
-                    OffHand = OffHandString,
-                    Feet = FeetString,
-                    RightFinger = RightFingerString,
-                    LeftFinger = LeftFingerString,
-                },
-
-                new CharacterModel {
-                    Name = "Leia Organa",
-                    Description = "Leader of the Rebel Alliance",
-                    Level = 1,
-                    MaxHealth = 4,
-                    ImageURI = "item.png",
-                    Head = HeadString,
-                    Necklass = NecklassString,
-                    PrimaryHand = PrimaryHandString,
-                    OffHand = OffHandString,
-                    Feet = FeetString,
-                    RightFinger = RightFingerString,
-                    LeftFinger = LeftFingerString,
-                },
-
-                new CharacterModel {
-                    Name = "Han Solo",
-                    Description = "Co-pilot of the Millenium Falcon",
-                    Level = 1,
-                    MaxHealth = 5,
-                    ImageURI = "item.png",
-                    Head = HeadString,
-                    Necklass = NecklassString,
-                    PrimaryHand = PrimaryHandString,
-                    OffHand = OffHandString,
-                    Feet = FeetString,
-                    RightFinger = RightFingerString,
-                    LeftFinger = LeftFingerString,
-                },
-
-                new CharacterModel {
-                    Name = "Chewbacca",
-                    Description = "Wookie co-pilot of the Millenium Falcon",
-                    Level = 1,
-                    MaxHealth = 6,
-                    ImageURI = "item.png",
-                    Head = HeadString,
-                    Necklass = NecklassString,
-                    PrimaryHand = PrimaryHandString,
-                    OffHand = OffHandString,
-                    Feet = FeetString,
-                    RightFinger = RightFingerString,
-                    LeftFinger = LeftFingerString,
-                },
-
-                new CharacterModel {
-                    Name = "C3PO",
-                    Description = "A humanoid robot fluent in over 6 million languages",
-                    Level = 1,
-                    MaxHealth = 3,
-                    ImageURI = "item.png",
-                    Head = HeadString,
-                    Necklass = NecklassString,
-                    PrimaryHand = PrimaryHandString,
-                    OffHand = OffHandString,
-                    Feet = FeetString, 
-                    RightFinger = RightFingerString,
-                    LeftFinger = LeftFingerString,
-                },
-
-                new CharacterModel {
-                    Name = "R2D2",
-                    Description = "An astromech droid manufactured by Industrial Automation",
-                    Level = 1,
-                    MaxHealth = 4,
-                    ImageURI = "item.png",
-                    Head = HeadString,
-                    Necklass = NecklassString,
-                    PrimaryHand = PrimaryHandString,
-                    OffHand = OffHandString,
-                    Feet = FeetString,
-                    RightFinger = RightFingerString,
-                    LeftFinger = LeftFingerString,
-                },
+                new JediCharacterModel()
             };
 
         return datalist;
