@@ -87,7 +87,7 @@ namespace Game.Models
             // Update the Job
             Job = newData.Job;
 
-            LocationBuffs = newData.LocationBuffs;
+            BattleLocationBuffs = newData.BattleLocationBuffs;
 
             return true;
         }

@@ -30,7 +30,7 @@ namespace Game.Models
             // Default to Jedi job
             Job = CharacterJobEnum.Jedi;
 
-            LocationBuffs = new Dictionary<string, LocationBuffsModel>();
+            BattleLocationBuffs = new Dictionary<BattleLocationEnum, LocationBuffsModel>();
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Game.Models
             // Update the Job
             Job = newData.Job;
 
-            LocationBuffs = newData.LocationBuffs;
+            BattleLocationBuffs = newData.BattleLocationBuffs;
 
             return true;
         }
