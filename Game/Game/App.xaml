@@ -64,7 +64,7 @@
             </Style>
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="Padding" Value="10,10,10,10" />
             </Style>
 
@@ -89,7 +89,7 @@
             <Style TargetType="Label"
                 x:Key="LabelBaseStyle"
                 BaseResourceKey="LayoutFontSize">
-                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontAttributes" Value="None" />
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="LineBreakMode" Value="NoWrap" />
