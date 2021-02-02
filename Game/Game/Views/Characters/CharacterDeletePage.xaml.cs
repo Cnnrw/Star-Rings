@@ -22,25 +22,25 @@ namespace Game.Views.Characters
 
             BindingContext = this.viewModel = viewModel;
         }
-        
+
         /* <summary>
-         * Cancel the Delete page
+         * Cancel the Delete action for this character
          * </summary
          * <param name="sender"></param>
          * <param name="e"></param>
          */
-        public async void CancelItem_Clicked(object sender, EventArgs e)
+        public async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
 
         /* <summary>
-        * Open the Delete page for this character
+        * Delete this character
         * </summary
         * <param name="sender"></param>
         * <param name="e"></param>
         */
-        public async void DeleteItem_Clicked(object sender, EventArgs e)
+        public async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteItem", viewModel.Character);
 
