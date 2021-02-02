@@ -23,17 +23,15 @@ namespace Game.Views
         public CharacterUpdatePage(bool unitTest) { }
 
         /// <summary>
-        ///     Constructor for Create makes a new model
+        /// Constructor that takes and existing data item
         /// </summary>
-        public CharacterUpdatePage()
+        public CharacterUpdatePage(GenericViewModel<CharacterModel> data)
         {
             InitializeComponent();
 
-            ViewModel.Data = new CharacterModel();
+            BindingContext = this.ViewModel = data;
 
-            BindingContext = ViewModel;
-
-            ViewModel.Title = "Create";
+            this.ViewModel.Title = "Update " + data.Title;
         }
 
         /// <summary>
