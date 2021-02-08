@@ -61,6 +61,9 @@
 		<Compile Update="Views\Village\VillagePage.xaml.cs">
       <DependentUpon>VillagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Monsters\MonstersIndexPage.xaml.cs">
+        <DependentUpon>MonsterIndexPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
