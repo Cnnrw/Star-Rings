@@ -29,58 +29,64 @@
       <DependentUpon>RoundOverPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Battle\NewRoundPage.xaml.cs">
-      <DependentUpon>NewRoundPage.xaml</DependentUpon>
+        <DependentUpon>NewRoundPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Battle\ScorePage.xaml.cs">
-      <DependentUpon>ScorePage.xaml</DependentUpon>
+        <DependentUpon>ScorePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Battle\PickCharactersPage.xaml.cs">
-      <DependentUpon>PickCharactersPage.xaml</DependentUpon>
+        <DependentUpon>PickCharactersPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Battle\BattlePage.xaml.cs">
-      <DependentUpon>BattlePage.xaml</DependentUpon>
+        <DependentUpon>BattlePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Battle\AutoBattlePage.xaml.cs">
-      <DependentUpon>AutoBattlePage.xaml</DependentUpon>
+        <DependentUpon>AutoBattlePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Characters\CharacterCreatePage.xaml.cs">
-      <DependentUpon>CharacterCreatePage.xaml</DependentUpon>
+        <DependentUpon>CharacterCreatePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Characters\CharacterDeletePage.xaml.cs">
-      <DependentUpon>CharacterDeletePage.xaml</DependentUpon>
+        <DependentUpon>CharacterDeletePage.xaml</DependentUpon>
     </Compile>
-		<Compile Update="Views\Characters\CharacterIndexPage.xaml.cs">
-			<DependentUpon>CharacterIndexPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
-			<DependentUpon>CharacterReadPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
-			<DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Village\VillagePage.xaml.cs">
-      <DependentUpon>VillagePage.xaml</DependentUpon>
+    <Compile Update="Views\Characters\CharacterIndexPage.xaml.cs">
+        <DependentUpon>CharacterIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
+        <DependentUpon>CharacterReadPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
+        <DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Monsters\MonstersIndexPage.xaml.cs">
+        <DependentUpon>MonsterIndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Monsters\MonstersIndexPage.xaml.cs">
         <DependentUpon>MonsterIndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Home\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
+        <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Monsters\MonsterDeletePage.xaml.cs">
+      <DependentUpon>MonsterDeletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Village\VillagePage.xaml.cs">
+        <DependentUpon>VillagePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
-      <DependentUpon>ScoreCreatePage.xaml</DependentUpon>
+        <DependentUpon>ScoreCreatePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Score\ScoreDeletePage.xaml.cs">
-      <DependentUpon>ScoreDeletePage.xaml</DependentUpon>
+        <DependentUpon>ScoreDeletePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Score\ScoreIndexPage.xaml.cs">
-      <DependentUpon>ScoreIndexPage.xaml</DependentUpon>
+        <DependentUpon>ScoreIndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Score\ScoreReadPage.xaml.cs">
-      <DependentUpon>ScoreReadPage.xaml</DependentUpon>
+        <DependentUpon>ScoreReadPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Score\ScoreUpdatePage.xaml.cs">
-      <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
+        <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
