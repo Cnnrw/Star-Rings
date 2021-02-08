@@ -171,16 +171,16 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="Padding" Value="3" />
-            </Style>-->
+            </Style>
 
-            <!--<Style TargetType="Label"
+            <Style TargetType="Label"
                 x:Key="GridValueStyle"
                 BasedOn="{StaticResource ValueStyle}">
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="Padding" Value="3" />
-            </Style>-->
+            </Style>
 
             <Style TargetType="Label"
                 x:Key="PopupItemTextStyle"
