@@ -74,7 +74,7 @@
                                            Style="{StaticResource GridLabelStyle}"/>
                                     <Label Grid.Column="1" Grid.Row="0"
                                            Text="Base Value"
-                                           Style="StaticResource GridLabelStyle}"/>
+                                           Style="{StaticResource GridLabelStyle}"/>
                                     <Label Grid.Column="3" Grid.Row="0"
                                            Text="Item Bonus"
                                            Style="{StaticResource GridLabelStyle}"/>
