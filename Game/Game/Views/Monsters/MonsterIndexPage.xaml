@@ -10,7 +10,7 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png"/>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -49,21 +49,15 @@
 
                                 <Label Grid.Column="1" Grid.Row="0"
                                        Text="{Binding Name}"
-                                       VerticalOptions="CenterAndExpand" />
+                                       Style="{StaticResource ListStyle}" />
 
-                                <StackLayout Grid.Column="1" Grid.Row="1"
-                                             Orientation="Horizontal">
-
-                                    <Label Text="{Binding Path=Level, StringFormat='Level {0:G}'}"
-                                           Style="{StaticResource ListStyle}" />
-                                    <Label Text="{Binding Path=MaxHealth, StringFormat='{0:G} hp'}"
-                                           Style="{StaticResource ListStyle}" />
-                                </StackLayout>
+                                <Label Grid.Column="1" Grid.Row="1"
+                                       Text="{Binding Description}"
+                                       Style="{StaticResource ListStyle}" />
 
                                 <Label Grid.Column="1" Grid.Row="2"
-                                       Text="{Binding Description}"
-                                       Style="{StaticResource ListStyle}"
-                                       FontSize="Small" />
+                                       Text="{Binding Difficulty}"
+                                       Style="{StaticResource ListStyle}" />
 
                             </Grid>
                         </ViewCell>
