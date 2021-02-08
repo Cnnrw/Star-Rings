@@ -17,7 +17,7 @@ namespace Game.Views
     {
 
         // Monster ViewModel
-        private readonly GenericViewModel<CharacterModel> _viewModel;
+        private readonly GenericViewModel<MonsterModel> _viewModel;
 
         // UnitTest Constructor
         public MonsterReadPage(bool unitTest) { }
@@ -27,7 +27,7 @@ namespace Game.Views
         ///     This is the primary method for opening the page
         ///     The _viewModel is the data that should be displayed
         /// </summary>
-        public MonsterReadPage(GenericViewModel<CharacterModel> data)
+        public MonsterReadPage(GenericViewModel<MonsterModel> data)
         {
             InitializeComponent();
 
@@ -58,7 +58,7 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new CharacterDeletePage(_viewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(_viewModel)));
             await Navigation.PopAsync();
         }
 
