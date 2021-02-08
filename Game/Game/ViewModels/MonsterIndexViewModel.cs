@@ -15,63 +15,41 @@ namespace Game.ViewModels
     /// </summary>
     public class MonsterIndexViewModel : BaseViewModel<CharacterModel>
     {
-        #region Singleton
-
-        // Must be singleton, holds all data records in memory
-        private static volatile MonsterIndexViewModel instance;
-        private static readonly object                syncRoot = new object();
-
-        public static MonsterIndexViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new MonsterIndexViewModel();
-                            instance.Initialize();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
 
         public MonsterIndexViewModel()
         {
             Title = "Monsters";
 
-            // // Register the Create Message
-            // MessagingCenter.Subscribe<MonsterCreatePage, MonsterModel>(this, "Create", async (obj, data) =>
-            // {
-            //     await CreateAsync(data as MonsterModel);
-            // });
-            //
-            // // Register the Delete Message
-            // MessagingCenter.Subscribe<MonsterDeletePage, MonsterModel>(this, "Delete", async (obj, data) =>
-            // {
-            //     await DeleteAsync(data as MonsterModel);
-            // });
+            // Register the Create Message
+            MessagingCenter.Subscribe<MonsterCreatePage, CharacterModel>(this,
+                                                                         "Create",
+                                                                         async (obj, data) =>
+                                                                             await CreateAsync(data));
+
+            // Register the Update Message
+            MessagingCenter.Subscribe<MonsterUpdatePage, CharacterModel>(this,
+                                                                         "Update",
+                                                                         async (obj, data) =>
+                                                                             data.Update(data));
+
+            // Register the Delete Message
+            MessagingCenter.Subscribe<MonsterDeletePage, CharacterModel>(this,
+                                                                         "Delete",
+                                                                         async (obj, data) =>
+                                                                             await DeleteAsync(data));
 
             // Register the Wipe Data List Message
-            MessagingCenter.Subscribe<AboutPage, bool>(this, "WipeDataList", async (obj, data) =>
-            {
-                await WipeDataListAsync();
-            });
+            MessagingCenter.Subscribe<AboutPage, bool>(this,
+                                                       "WipeDataList",
+                                                       async (obj, data) =>
+                                                           await WipeDataListAsync());
         }
 
         /// <summary>
         ///     Loads the default data
         /// </summary>
         /// <returns></returns>
-        public override List<CharacterModel> GetDefaultData() =>
-            DefaultData.LoadData(new CharacterModel());
+        public override List<CharacterModel> GetDefaultData() => DefaultData.LoadData(new CharacterModel());
 
         /// <summary>
         ///     The Sort Order for the CharacterModel
@@ -99,6 +77,32 @@ namespace Game.ViewModels
             return myList;
         }
 
+        #region Singleton
 
+        // Must be singleton, holds all data records in memory
+        private static volatile MonsterIndexViewModel instance;
+        private static readonly object                syncRoot = new object();
+
+        public static MonsterIndexViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new MonsterIndexViewModel();
+                            instance.Initialize();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        #endregion Singleton
     }
 }
