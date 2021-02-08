@@ -47,7 +47,7 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            CharacterModel data = e.SelectedItem as CharacterModel;
+            MonsterModel data = e.SelectedItem as MonsterModel;
 
             if (data == null)
             {
@@ -55,7 +55,7 @@ namespace Game.Views
             }
 
             // Open the Read Page
-            await Navigation.PushAsync(new CharacterReadPage(new GenericViewModel<CharacterModel>(data)));
+            await Navigation.PushAsync(new MonsterReadPage(new GenericViewModel<MonsterModel>(data)));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;
