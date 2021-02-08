@@ -73,31 +73,24 @@ namespace Game.Views
                 ItemBox.Children.Remove(data);
             }
 
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Head));
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Necklass));
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.PrimaryHand));
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.OffHand));
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.RightFinger));
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.LeftFinger));
-            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Feet));
+            ItemBox.Children.Add(GetItemToDisplay());
         }
 
         /// <summary>
         ///     Look up the Item to Display
         /// </summary>
-        /// <param name="location"></param>
         /// <returns></returns>
-        private StackLayout GetItemToDisplay(ItemLocationEnum location)
+        private StackLayout GetItemToDisplay()
         {
             // Default Image is for the Plus
-            var ImageSource = "icon_cancel.png";
+            const string ImageSource = "icon_cancel.png";
             var ClickableButton = true;
 
-            var data = _viewModel.Data.GetItemByLocation(location);
+            var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem);
             if (data == null)
             {
                 // show the default icon for the location
-                data = new ItemModel {Location = location, ImageURI = ImageSource};
+                data = new ItemModel {Location = ItemLocationEnum.Unknown, ImageURI = ImageSource};
 
                 // Turn off click action
                 ClickableButton = false;
@@ -118,7 +111,7 @@ namespace Game.Views
             // Add the Display text for the item
             var ItemLabel = new Label
             {
-                Text = location.ToMessage(),
+                Text = "Unique Drop",
                 Style = (Style)Application.Current.Resources["ValueStyleMicro"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center
