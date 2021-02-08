@@ -67,9 +67,14 @@
     <Compile Update="Views\Monsters\MonsterUpdatePage.xaml.cs">
       <DependentUpon>MonsterUpdatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Village\VillagePage.xaml.cs">
+		<Compile Update="Views\Monsters\MonstersIndexPage.xaml.cs">
+			<DependentUpon>MonsterIndexPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Monsters\MonsterReadPage.xaml.cs">
+			<DependentUpon>MonsterReadPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Village\VillagePage.xaml.cs">
       <DependentUpon>VillagePage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
       <DependentUpon>ScoreCreatePage.xaml</DependentUpon>
     </Compile>

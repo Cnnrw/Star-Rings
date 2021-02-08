@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Game.Views.MonsterReadPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Update" Clicked="Update_Clicked" IconImageSource="icon_update.png" />
+        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" IconImageSource="icon_delete.png" />
+    </ContentPage.ToolbarItems>
+
+    <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+        <StackLayout Style="{StaticResource VerticalStack}"
+                     AbsoluteLayout.LayoutBounds="1,1,1,1"
+                     AbsoluteLayout.LayoutFlags="All">
+            <ScrollView x:Name="ScrollView">
+                <StackLayout Style="{StaticResource OuterBoxStack}">
+                    <StackLayout Style="{StaticResource VerticalStack}">
+                        <Label Text="Read Page" Style="{StaticResource HeaderStyle}" />
+                        <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <Label Text="Name: "
+                                   Style="{StaticResource LabelStyle}" />
+                            <Label Text="{Binding Data.Name}"
+                                   Style="{StaticResource ValueStyle}" />
+                        </StackLayout>
+
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <Label Text="Description: "
+                                   Style="{StaticResource LabelStyle}" />
+                            <Label Text="{Binding Data.Description}"
+                                   Style="{StaticResource ValueStyle}" />
+                        </StackLayout>
+
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <Label Text="Level: "
+                                   Style="{StaticResource LabelStyle}" />
+                            <Label Text="{Binding Data.Level}"
+                                   Style="{StaticResource ValueStyle}" />
+                        </StackLayout>
+
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <Frame BorderColor="Black" Padding="1">
+                                <Grid ColumnSpacing="1"
+                                      RowSpacing="1"
+                                      BackgroundColor="Black">
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0"
+                                           Text="Attribute"
+                                           Style="{StaticResource GridLabelStyle}"/>
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="Base Value"
+                                           Style="StaticResource GridLabelStyle}"/>
+                                    <Label Grid.Column="3" Grid.Row="0"
+                                           Text="Item Bonus"
+                                           Style="{StaticResource GridLabelStyle}"/>
+                                    <Label Grid.Column="4" Grid.Row="0"
+                                           Text="Total Value"
+                                           Style="{StaticResource GridLabelStyle}"/>
+
+                                    <Label Grid.Column="0" Grid.Row="1"
+                                           Text="Attack"
+                                           Style="{StaticResource GridLabelStyle}"/>
+                                    <Label Grid.Column="1" Grid.Row="1"
+                                           Text="{Binding Data.Attack}"
+                                           Style="{StaticResource GridValueStyle}"/>
+                                    <Label Grid.Column="2" Grid.Row="1"
+                                           Text="{Binding Data.GetAttackLevelBonus}"
+                                           Style="{StaticResource GridValueStyle}"/>
+                                    <Label Grid.Column="3" Grid.Row="1"
+                                           Text="{Binding Data.GetAttackItemBonus}"
+                                           Style="{StaticResource GridValueStyle}"/>
+                                    <Label Grid.Column="4" Grid.Row="1"
+                                           Text="{Binding Data.GetAttackTotal}"
+                                           Style="{StaticResource GridValueStyle}"/>
+
+                                    <Label Grid.Column="0" Grid.Row="2"
+                                           Text="Defense"
+                                           Style="{StaticResource GridLabelStyle}"/>
+                                    <Label Grid.Column="1" Grid.Row="2"
+                                           Text="{Binding Data.Defense}"
+                                           Style="{StaticResource GridValueStyle}"/>
+                                    <Label Grid.Column="2" Grid.Row="2"
+                                           Text="{Binding Data.GetDefenseLevelBonus}"
+                                           Style="{StaticResource GridValueStyle}"/>
+                                    <Label Grid.Column="3" Grid.Row="2"
+                                           Text="{Binding Data.GetDefenseItemBonus}"
+                                           Style="{StaticResource GridValueStyle}"/>
+                                    <Label Grid.Column="4" Grid.Row="2"
+                                           Text="{Binding Data.GetDefenseTotal}"
+                                           Style="{StaticResource GridValueStyle}"/>
+
+                                    <Label Grid.Column="0" Grid.Row="3"
+                                        Text="Speed"
+                                        Style="{StaticResource GridLabelStyle}"/>
+                                     <Label Grid.Column="1" Grid.Row="3"
+                                        Text="{Binding Data.Speed}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="2" Grid.Row="3"
+                                        Text="{Binding Data.GetSpeedLevelBonus}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="3" Grid.Row="3"
+                                        Text="{Binding Data.GetSpeedItemBonus}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="4" Grid.Row="3"
+                                        Text="{Binding Data.GetSpeedTotal}"
+                                        Style="{StaticResource GridValueStyle}"/>
+
+                                     <Label Grid.Column="0" Grid.Row="4"
+                                        Text="Max Health"
+                                        Style="{StaticResource GridLabelStyle}"/>
+                                     <Label Grid.Column="1" Grid.Row="4"
+                                        Text="{Binding Data.MaxHealth}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="2" Grid.Row="4"
+                                        Text="{Binding Data.GetMaxHealthLevelBonus}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="3" Grid.Row="4"
+                                        Text="{Binding Data.GetMaxHealthItemBonus}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="4" Grid.Row="4"
+                                        Text="{Binding Data.GetMaxHealthTotal}"
+                                        Style="{StaticResource GridValueStyle}"/>
+
+                                     <Label Grid.Column="0" Grid.Row="5"
+                                        Text="Damage"
+                                        Style="{StaticResource GridLabelStyle}"/>
+                                     <Label Grid.Column="1" Grid.Row="5"
+                                        Text="-"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="2" Grid.Row="5"
+                                        Text="{Binding Data.GetDamageLevelBonus}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="3" Grid.Row="5"
+                                        Text="{Binding Data.GetDamageItemBonusString}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                     <Label Grid.Column="4" Grid.Row="5"
+                                        Text="{Binding Data.GetDamageTotalString}"
+                                        Style="{StaticResource GridValueStyle}"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <FlexLayout Padding="5"
+                                Wrap="Wrap"
+                                JustifyContent="SpaceAround"
+                                AlignContent="SpaceAround"
+                                x:Name="ItemBox" />
+
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+
+        <!-- Item Popup -->
+        <StackLayout x:Name="PopupLoadingView"
+                     BackgroundColor="{StaticResource PageBackgroundColor}"
+                     IsVisible="False"
+                     AbsoluteLayout.LayoutBounds=".5, .5, .5, .5"
+                     AbsoluteLayout.LayoutFlags="All">
+
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand"
+                         WidthRequest="300"
+                         HeightRequest="300">
+
+                <Frame BorderColor="{StaticResource TriciaryTextColor}" Padding="1">
+                    <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="CenterAndExpand" Padding="2">
+                        <Image x:Name="PopupItemImage" Style="{StaticResource ImageLargeStyle}" />
+
+                        <Label x:Name="PopupItemName"
+                               Style="{StaticResource PopupItemTextStyle}"
+                               MaxLines="2"
+                               LineBreakMode="WordWrap" />
+                        <Label x:Name="PopupItemDescription"
+                               Style="{StaticResource PopupItemTextStyle}"
+                               MaxLines="2"
+                               LineBreakMode="WordWrap" />
+
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <Label Text="Location: "
+                                   Style="{StaticResource LabelStyle}" />
+                            <Label x:Name="PopupItemLocation"
+                                   Style="{StaticResource ValueStyle}" />
+                        </StackLayout>
+
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <Label x:Name="PopupItemAttribute"
+                                   Style="{StaticResource LabelStyle}" />
+                            <Label x:Name="PopupItemValue"
+                                   Style="{StaticResource ValueStyle}" />
+                        </StackLayout>
+
+                        <Button x:Name="PopupCloseButton"
+                                Clicked="ClosePopup_Clicked"
+                                Text="Close" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>
