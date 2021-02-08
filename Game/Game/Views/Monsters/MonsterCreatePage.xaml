@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localHelpers="clr-namespace:Game.Helpers"
+             xmlns:models="clr-namespace:Game.Models;assembly=Game"
+             mc:Ignorable="d"
+             x:Name="Create"
+             x:Class="Game.Views.MonsterCreatePage"
+             Title="Monster Create">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{StaticResource OuterBoxStack}"
+                         Spacing="10">
+
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" HorizontalOptions="CenterAndExpand" />
+
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelStyle}" />
+                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
+
+                        <Label Text="Description" Style="{StaticResource LabelStyle}" />
+                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Label Text="Attack" Style="{StaticResource LabelStyle}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="AttackValueLabel"
+                                   Text="{Binding Data.Attack}" />
+                            <Stepper x:Name="AttackStepper"
+                                     Value="{Binding Data.Attack, Mode=TwoWay}"
+                                     ValueChanged="OnAttackStepperValueChanged"
+                                     Minimum="1"
+                                     Maximum="10"
+                                     Increment="1" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Defense" Style="{StaticResource LabelStyle}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="DefenseValueLabel"
+                                   Text="{Binding Data.Defense}" />
+                            <Stepper x:Name="DefenseStepper"
+                                     Value="{Binding Data.Defense, Mode=TwoWay}"
+                                     ValueChanged="OnDefenseStepperValueChanged"
+                                     Minimum="1"
+                                     Maximum="10"
+                                     Increment="1" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Speed" Style="{StaticResource LabelStyle}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="SpeedValueLabel"
+                                   Text="{Binding Data.Speed}" />
+                            <Stepper x:Name="SpeedStepper"
+                                     Value="{Binding Data.Speed, Mode=TwoWay}"
+                                     ValueChanged="OnSpeedStepperValueChanged"
+                                     Minimum="1"
+                                     Maximum="10"
+                                     Increment="1" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel" Clicked="Cancel_Clicked" />
+                    <Button Text="Save" Clicked="Save_Clicked" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
