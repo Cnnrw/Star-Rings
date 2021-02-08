@@ -38,7 +38,7 @@ namespace Game.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void AddItem_Clicked(object sender, EventArgs e) =>
-            await Navigation.PushModalAsync(new NavigationPage(new CharacterCreatePage()));
+            await Navigation.PushModalAsync(new NavigationPage(new MonsterCreatePage()));
 
         /// <summary>
         ///     The row selected from the list
