@@ -4,8 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:localHelpers="clr-namespace:Game.Helpers"
-             xmlns:models="clr-namespace:Game.Models;assembly=Game"
              mc:Ignorable="d"
              x:Name="Create"
              x:Class="Game.Views.MonsterCreatePage"
@@ -23,7 +21,9 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" HorizontalOptions="CenterAndExpand" />
+                        <Image Source="{Binding Data.ImageURI}"
+                               Style="{StaticResource ImageLargeStyle}"
+                               HorizontalOptions="CenterAndExpand" />
 
                     </StackLayout>
                     <StackLayout>
@@ -37,7 +37,8 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Label Text="Attack" Style="{StaticResource LabelStyle}" />
+                        <Label Text="Attack"
+                               Style="{StaticResource LabelStyle}" />
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="AttackValueLabel"
                                    Text="{Binding Data.Attack}" />
@@ -82,6 +83,9 @@
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Cancel" Clicked="Cancel_Clicked" />
                     <Button Text="Save" Clicked="Save_Clicked" />
+                    <Button x:Name="Randomize"
+                            Text="Random"
+                            Clicked="RandomButton_Clicked" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>
