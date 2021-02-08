@@ -39,9 +39,9 @@
                         </StackLayout>
 
                         <StackLayout Style="{StaticResource HorizontalStack}">
-                            <Label Text="Level: "
+                            <Label Text="Difficulty: "
                                    Style="{StaticResource LabelStyle}" />
-                            <Label Text="{Binding Data.Level}"
+                            <Label Text="{Binding Data.Difficulty}"
                                    Style="{StaticResource ValueStyle}" />
                         </StackLayout>
 
