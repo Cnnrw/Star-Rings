@@ -36,20 +36,20 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
-            // Show the Character's Items
+            // Show the Monsters Items
             AddItemsToDisplay();
         }
 
-        /// <summary>
-        ///     Save calls to Update
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void Update_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
-            await Navigation.PopAsync();
-        }
+        // /// <summary>
+        // ///     Save calls to Update
+        // /// </summary>
+        // /// <param name="sender"></param>
+        // /// <param name="e"></param>
+        // private async void Update_Clicked(object sender, EventArgs e)
+        // {
+        //     await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
+        //     await Navigation.PopAsync();
+        // }
 
         /// <summary>
         ///     Calls MonsterDeletePage
