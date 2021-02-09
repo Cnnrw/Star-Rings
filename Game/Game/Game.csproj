@@ -43,16 +43,22 @@
     <Compile Update="Views\Battle\AutoBattlePage.xaml.cs">
       <DependentUpon>AutoBattlePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
-      <DependentUpon>CharacterReadPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Characters\CharacterCreatePage.xaml.cs">
       <DependentUpon>CharacterCreatePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Characters\CharacterDeletePage.xaml.cs">
       <DependentUpon>CharacterDeletePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Village\VillagePage.xaml.cs">
+		<Compile Update="Views\Characters\CharacterIndexPage.xaml.cs">
+			<DependentUpon>CharacterIndexPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
+			<DependentUpon>CharacterReadPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
+			<DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Village\VillagePage.xaml.cs">
       <DependentUpon>VillagePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Home\HomePage.xaml.cs">
@@ -76,9 +82,5 @@
     <Compile Update="Views\Characters\MyPage.xaml.cs">
       <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\NewFolder\" />
   </ItemGroup>
 </Project>
