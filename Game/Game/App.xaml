@@ -56,7 +56,7 @@
             <Color x:Key="BattleMapLevelColor">skyblue</Color>
 
             <!-- <Thickness x:Key="PageMargin">0</Thickness> -->
-            
+
             <!-- Pages -->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource ViewBackgroundColor}" />
@@ -109,8 +109,6 @@
             <Style TargetType="Label"
                 x:Key="HeaderStyle"
                 BasedOn="{StaticResource LabelBaseStyle}">
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="FontSize" Value="Small" />
             </Style>
 
             <Style TargetType="Label"
@@ -128,7 +126,6 @@
             <Style TargetType="Label"
                 x:Key="ValueStyleMicro"
                 BasedOn="{StaticResource ValueStyle}">
-                <Setter Property="FontSize" Value="Micro" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
@@ -139,7 +136,7 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="LineBreakMode" Value="NoWrap" />
             </Style>
-            
+
             <Style TargetType="Label"
                 x:Key="MessageStyle"
                 BasedOn="{StaticResource HeaderStyle}">
@@ -150,8 +147,8 @@
                 x:Key="MessageLargeStyle"
                 BasedOn="{StaticResource MessageStyle}">
                 <Setter Property="FontSize" Value="Large" />
-            </Style>-->            
-            
+            </Style>-->
+
             <Style TargetType="Label"
                 x:Key="CenterMessageStyle"
                 BasedOn="{StaticResource HeaderStyle}">
@@ -164,23 +161,23 @@
                 BasedOn="{StaticResource CenterMessageStyle}">
                 <Setter Property="FontSize" Value="Large" />
             </Style>
-            
-            <!--<Style TargetType="Label"
+
+            <Style TargetType="Label"
                 x:Key="GridLabelStyle"
                 BasedOn="{StaticResource LabelStyle}">
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="Padding" Value="3" />
-            </Style>-->
+            </Style>
 
-            <!--<Style TargetType="Label"
+            <Style TargetType="Label"
                 x:Key="GridValueStyle"
                 BasedOn="{StaticResource ValueStyle}">
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="Padding" Value="3" />
-            </Style>-->
+            </Style>
 
             <Style TargetType="Label"
                 x:Key="PopupItemTextStyle"
@@ -188,7 +185,7 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
-            
+
             <!-- Image -->
             <Style TargetType="Image"
                 x:Key="ImageLargeStyle">
@@ -439,7 +436,7 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="BorderColor" Value="{StaticResource SecondaryBackgroundColor}" />
             </Style>
-            
+
             <!-- Grid -->
             <Style TargetType="Grid">
                 <Setter Property="ColumnSpacing" Value="0" />
@@ -447,13 +444,13 @@
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
             </Style>
-            
+
             <Style TargetType="Grid"
                 x:Key="MapGridStyle">
                 <Setter Property="VerticalOptions" Value="Fill" />
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
             </Style>
-            
+
             <!-- Entry -->
             <Style TargetType="Entry"
                 x:Key="EntryStyle">

@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
 
@@ -49,21 +49,36 @@
     <Compile Update="Views\Characters\CharacterDeletePage.xaml.cs">
       <DependentUpon>CharacterDeletePage.xaml</DependentUpon>
     </Compile>
-		<Compile Update="Views\Characters\CharacterIndexPage.xaml.cs">
-			<DependentUpon>CharacterIndexPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
-			<DependentUpon>CharacterReadPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
-			<DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Village\VillagePage.xaml.cs">
-      <DependentUpon>VillagePage.xaml</DependentUpon>
+    <Compile Update="Views\Characters\CharacterIndexPage.xaml.cs">
+      <DependentUpon>CharacterIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
+      <DependentUpon>CharacterReadPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
+      <DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+		<Compile Update="Views\Monsters\MonsterCreatePage.xaml.cs">
+			<DependentUpon>MonsterCreatePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Monsters\MonsterDeletePage.xaml.cs">
+      <DependentUpon>MonsterDeletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Monsters\MonsterUpdatePage.xaml.cs">
+      <DependentUpon>MonsterUpdatePage.xaml</DependentUpon>
+    </Compile>
+		<Compile Update="Views\Monsters\MonstersIndexPage.xaml.cs">
+			<DependentUpon>MonsterIndexPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Monsters\MonsterReadPage.xaml.cs">
+			<DependentUpon>MonsterReadPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Village\VillagePage.xaml.cs">
+      <DependentUpon>VillagePage.xaml</DependentUpon>
+		</Compile>
     <Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
       <DependentUpon>ScoreCreatePage.xaml</DependentUpon>
     </Compile>
@@ -78,9 +93,6 @@
     </Compile>
     <Compile Update="Views\Score\ScoreUpdatePage.xaml.cs">
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Characters\MyPage.xaml.cs">
-      <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

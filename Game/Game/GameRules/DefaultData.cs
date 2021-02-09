@@ -153,44 +153,20 @@ namespace Game.GameRules
         var datalist = new List<MonsterModel>()
             {
                 new MonsterModel {
-                    Name = "M1",
-                    Description = "M1",
+                    Name = "Bogbi",
+                    Description = "Hates Hobbits",
                     ImageURI = "item.png",
                 },
 
                 new MonsterModel {
-                    Name = "M2",
-                    Description = "M2",
+                    Name = "Srauguc",
+                    Description = "One evil monster",
                     ImageURI = "item.png",
                 },
 
                 new MonsterModel {
-                    Name = "M3",
-                    Description = "M3",
-                    ImageURI = "item.png",
-                },
-
-                new MonsterModel {
-                    Name = "M4",
-                    Description = "M4",
-                    ImageURI = "item.png",
-                },
-
-                new MonsterModel {
-                    Name = "M5",
-                    Description = "M5",
-                    ImageURI = "item.png",
-                },
-
-                new MonsterModel {
-                    Name = "M6",
-                    Description = "M6",
-                    ImageURI = "item.png",
-                },
-
-                new MonsterModel {
-                    Name = "M7",
-                    Description = "M7",
+                    Name = "Shelob",
+                    Description = "Hides in shadows",
                     ImageURI = "item.png",
                 },
             };

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Game.Views.MonsterDeletePage"
+             Title="Monster Delete">
+
+    <ScrollView>
+        <StackLayout Style="{StaticResource OuterBoxStack}"
+                     Spacing="10">
+
+            <Image Source="{Binding Data.ImageURI}"
+                   Style="{StaticResource ImageLargeStyle}"/>
+
+            <StackLayout HorizontalOptions="Center"
+                         Padding="20">
+                
+                <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
+                       Style="{StaticResource MessageStyle}"/>
+
+                <Button Text="Yes"
+                        Clicked="Delete_Clicked"
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        BorderWidth="1"
+                        BorderColor="black"/>
+
+                <Button Text="No"
+                        Clicked="Cancel_Clicked"
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        BorderWidth="1"
+                        BorderColor="black"/>
+                
+            </StackLayout>
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
