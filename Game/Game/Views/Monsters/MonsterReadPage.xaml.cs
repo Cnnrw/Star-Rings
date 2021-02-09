@@ -40,16 +40,16 @@ namespace Game.Views
             AddItemsToDisplay();
         }
 
-        // /// <summary>
-        // ///     Save calls to Update
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        // private async void Update_Clicked(object sender, EventArgs e)
-        // {
-        //     await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
-        //     await Navigation.PopAsync();
-        // }
+        /// <summary>
+        ///     Save calls to Update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Update_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
+            await Navigation.PopAsync();
+        }
 
         /// <summary>
         ///     Calls MonsterDeletePage
