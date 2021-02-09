@@ -13,7 +13,7 @@ namespace Game.ViewModels
     ///     Monster Index ViewModel
     ///     Manages list of data records
     /// </summary>
-    public class MonsterIndexViewModel : BaseViewModel<CharacterModel>
+    public class MonsterIndexViewModel : BaseViewModel<MonsterModel>
     {
 
         public MonsterIndexViewModel()
@@ -21,19 +21,19 @@ namespace Game.ViewModels
             Title = "Monsters";
 
             // Register the Create Message
-            MessagingCenter.Subscribe<MonsterCreatePage, CharacterModel>(this,
+            MessagingCenter.Subscribe<MonsterCreatePage, MonsterModel>(this,
                                                                          "Create",
                                                                          async (obj, data) =>
                                                                              await CreateAsync(data));
 
-            // Register the Update Message
-            MessagingCenter.Subscribe<MonsterUpdatePage, CharacterModel>(this,
-                                                                         "Update",
-                                                                         async (obj, data) =>
-                                                                             data.Update(data));
+            // // Register the Update Message
+            // MessagingCenter.Subscribe<MonsterUpdatePage, MonsterModel>(this,
+            //                                                              "Update",
+            //                                                              async (obj, data) =>
+            //                                                                  data.Update(data));
 
             // Register the Delete Message
-            MessagingCenter.Subscribe<MonsterDeletePage, CharacterModel>(this,
+            MessagingCenter.Subscribe<MonsterDeletePage, MonsterModel>(this,
                                                                          "Delete",
                                                                          async (obj, data) =>
                                                                              await DeleteAsync(data));
@@ -49,19 +49,19 @@ namespace Game.ViewModels
         ///     Loads the default data
         /// </summary>
         /// <returns></returns>
-        public override List<CharacterModel> GetDefaultData() => DefaultData.LoadData(new CharacterModel());
+        public override List<MonsterModel> GetDefaultData() => DefaultData.LoadData(new MonsterModel());
 
         /// <summary>
         ///     The Sort Order for the CharacterModel
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<CharacterModel> SortDataset(List<CharacterModel> dataset) =>
+        public override List<MonsterModel> SortDataset(List<MonsterModel> dataset) =>
             dataset.OrderBy(a => a.Name)
                    .ThenBy(a => a.Description)
                    .ToList();
 
-        public override CharacterModel CheckIfExists(CharacterModel data)
+        public override MonsterModel CheckIfExists(MonsterModel data)
         {
             if (data == null)
             {
