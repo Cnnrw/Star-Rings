@@ -95,4 +95,9 @@
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\*.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\*.ttf" />
+  </ItemGroup>
 </Project>
