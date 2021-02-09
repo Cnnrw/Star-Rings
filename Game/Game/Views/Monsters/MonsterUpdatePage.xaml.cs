@@ -5,7 +5,6 @@ using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
@@ -22,44 +21,28 @@ namespace Game.Views
         public MonsterUpdatePage(bool unitTest) { }
 
         /// <summary>
-        /// Constructor that takes and existing data item
+        ///     Constructor that takes and existing data item
         /// </summary>
         public MonsterUpdatePage(GenericViewModel<MonsterModel> data)
         {
             InitializeComponent();
 
-            BindingContext = this.ViewModel = data;
+            BindingContext = ViewModel = data;
 
-            JobPicker.SelectedItem = ViewModel.Data.Job.ToMessage();
+            // DifficultyPicker.SelectedItem = ViewModel.Data.Difficulty.ToMessage();
         }
 
-        void OnLevelStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            LevelValueLabel.Text = String.Format("{0}", e.NewValue);
-        }
+        private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            SpeedValueLabel.Text = string.Format("{0}", e.NewValue);
 
-        void OnMaxHealthStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            MaxHealthValueLabel.Text = String.Format("{0}", e.NewValue);
-        }
+        private void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            DefenseValueLabel.Text = string.Format("{0}", e.NewValue);
 
-        void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            AttackValueLabel.Text = String.Format("{0}", e.NewValue);
-        }
-
-        void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            DefenseValueLabel.Text = String.Format("{0}", e.NewValue);
-        }
-
-        void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            SpeedValueLabel.Text = String.Format("{0}", e.NewValue);
-        }
+        private void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            AttackValueLabel.Text = string.Format("{0}", e.NewValue);
 
         /// <summary>
-        /// Save by calling for Update
+        ///     Save by calling for Update
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -70,7 +53,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Cancel the Update
+        ///     Cancel the Update
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
