@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local_helpers="clr-namespace:Game.Helpers"
-             xmlns:local="using:Game.Models"
+             xmlns:localHelpers="clr-namespace:Game.Helpers"
+             xmlns:local="clr-namespace:Game.Models;assembly=Game"
              x:Class="Game.Views.ItemUpdatePage"
              Title="{Binding Title}">
 
@@ -16,7 +16,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local_helpers:StringEnumConverter x:Key="StringEnum"/>
+            <localHelpers:StringEnumConverter x:Key="StringEnum"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -68,8 +68,8 @@
                         Style="{StaticResource LabelStyle}"/>
 
                     <Picker Grid.Row="2" Grid.Column="1"
-                        ItemsSource="{x:Static local:ItemLocationEnumHelper.GetListCharacter}" 
-                        SelectedItem="{Binding Data.Location, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
+                        ItemsSource="{x:Static local:ItemLocationEnumHelper.GetListCharacter}"
+                        SelectedItem="{Binding Data.Location, Converter={StaticResource StringEnum}, Mode=TwoWay}"
                         x:Name="LocationPicker"/>
 
                     <Label Grid.Row="3" Grid.Column="0"
@@ -77,8 +77,8 @@
                         Style="{StaticResource LabelStyle}"/>
 
                     <Picker Grid.Row="3" Grid.Column="1"
-                        ItemsSource="{x:Static local:AttributeEnumHelper.GetListCharacter}" 
-                        SelectedItem="{Binding Data.Attribute, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
+                        ItemsSource="{x:Static local:AttributeEnumHelper.GetListCharacter}"
+                        SelectedItem="{Binding Data.Attribute, Converter={StaticResource StringEnum}, Mode=TwoWay}"
                         x:Name="AttributePicker"/>
 
                     <Label Grid.Row="4" Grid.Column="0"
