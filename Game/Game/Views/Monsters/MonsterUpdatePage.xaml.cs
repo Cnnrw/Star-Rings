@@ -30,12 +30,22 @@ namespace Game.Views
 
             BindingContext = this.ViewModel = data;
 
-            // DifficultyPicker.SelectedItem = ViewModel.Data.Difficulty.ToMessage();
+            JobPicker.SelectedItem = ViewModel.Data.Job.ToMessage();
         }
 
-        void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e)
+        void OnLevelStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            SpeedValueLabel.Text = String.Format("{0}", e.NewValue);
+            LevelValueLabel.Text = String.Format("{0}", e.NewValue);
+        }
+
+        void OnMaxHealthStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            MaxHealthValueLabel.Text = String.Format("{0}", e.NewValue);
+        }
+
+        void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            AttackValueLabel.Text = String.Format("{0}", e.NewValue);
         }
 
         void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e)
@@ -43,9 +53,9 @@ namespace Game.Views
             DefenseValueLabel.Text = String.Format("{0}", e.NewValue);
         }
 
-        void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e)
+        void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            AttackValueLabel.Text = String.Format("{0}", e.NewValue);
+            SpeedValueLabel.Text = String.Format("{0}", e.NewValue);
         }
 
         /// <summary>
