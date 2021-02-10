@@ -33,6 +33,21 @@
 
                     <Entry Text="{Binding Data.Description}"
                            Style="{StaticResource EntryStyle}"/>
+
+                    <StackLayout>
+                        <Label Text="Level"
+                               Style="{StaticResource LabelStyle}"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="LevelValueLabel"
+                                   Text="{Binding Data.Level}"/>
+                            <Stepper x:Name="LevelStepper"
+                                     Value="{Binding Data.Level, Mode=TwoWay}"
+                                     ValueChanged="OnLevelStepperValueChanged"
+                                     Minimum="1"
+                                     Maximum="10"
+                                     Increment="1"/>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">

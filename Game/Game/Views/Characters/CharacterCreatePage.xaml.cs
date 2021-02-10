@@ -37,6 +37,14 @@ namespace Game.Views
         }
 
         /// <summary>
+        ///     Changes Level attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLevelStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            LevelValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
         ///     Changes Max Health attribute of a Character
         /// </summary>
         /// <param name="sender"></param>
