@@ -21,35 +21,19 @@
 
                 <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" HorizontalOptions="CenterAndExpand"/>
 
-                <Grid
-                    RowSpacing="1"
-                    ColumnSpacing="2"
-                    VerticalOptions="Center">
+                <StackLayout>
+                    <Label Text="Name"
+                           Style="{StaticResource LabelStyle}"/>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
+                    <Entry Text="{Binding Data.Name}"
+                           Style="{StaticResource EntryStyle}"/>
 
-                    <Label Grid.Row="0" Grid.Column="0"
-                        Text="Name" 
-                        Style="{StaticResource LabelStyle}"/>
+                    <Label Text="Description"
+                           Style="{StaticResource LabelStyle}"/>
 
-                    <Entry Grid.Row="0" Grid.Column="1"
-                        Text="{Binding Data.Name}" 
-                        Style="{StaticResource EntryStyle}"/>
-
-                    <Label Grid.Row="1" Grid.Column="0"
-                        Text="Description" 
-                        Style="{StaticResource LabelStyle}"/>
-
-                    <Entry Grid.Row="1" Grid.Column="1"
-                        Text="{Binding Data.Description}" 
-                        Style="{StaticResource EntryStyle}"/>
-
-                </Grid>
+                    <Entry Text="{Binding Data.Description}"
+                           Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
