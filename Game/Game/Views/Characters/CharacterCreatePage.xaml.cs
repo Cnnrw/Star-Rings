@@ -37,12 +37,20 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Changes Attack attribute of a Monster
+        ///     Changes Attack attribute of a Character
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) =>
             AttackValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Defense attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            DefenseValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Save by calling for Create
