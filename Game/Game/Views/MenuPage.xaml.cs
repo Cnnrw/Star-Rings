@@ -1,7 +1,7 @@
-﻿using Game.Models;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+
+using Game.Models;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,39 +9,34 @@ using Xamarin.Forms.Xaml;
 namespace Game.Views
 {
     /// <summary>
-    /// Menu Page
+    ///     Menu Page
     /// </summary>
     [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPage : ContentPage
     {
-        public MainPage RootPage { get => Application.Current.MainPage as MainPage; }
-
-        // List of Menu Items
-        readonly List<HomeMenuItemModel> menuItems;
 
         /// <summary>
-        /// Constructor
-        /// Load the Menu Items
-        /// Setup Item Selected call
+        ///     Constructor
+        ///     Load the Menu Items
+        ///     Setup Item Selected call
         /// </summary>
         public MenuPage()
         {
             InitializeComponent();
 
-            // Establish the Menu List
-            menuItems = new List<HomeMenuItemModel>
+            var _menuItems = new List<HomeMenuItemModel>
             {
-                new HomeMenuItemModel {Id = MenuItemEnum.Game, Title="Game" },
-                new HomeMenuItemModel {Id = MenuItemEnum.About, Title="About" },
-                new HomeMenuItemModel {Id = MenuItemEnum.Village, Title="Village" },
-                new HomeMenuItemModel {Id = MenuItemEnum.Battle, Title="Battle" }
+                new HomeMenuItemModel {Id = MenuItemEnum.Game, Title = "Game"},
+                new HomeMenuItemModel {Id = MenuItemEnum.About, Title = "About"},
+                new HomeMenuItemModel {Id = MenuItemEnum.Village, Title = "Village"},
+                new HomeMenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"}
             };
 
             // Register the ListView for the Menu and the Item Selected call back
-            ListViewMenu.ItemsSource = menuItems;
+            ListViewMenu.ItemsSource = _menuItems;
 
-            ListViewMenu.SelectedItem = menuItems[0];
+            ListViewMenu.SelectedItem = _menuItems[0];
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 // Menu choice was selected, evaluate it
@@ -54,5 +49,7 @@ namespace Game.Views
                 await RootPage.NavigateFromMenu(id);
             };
         }
+
+        public MainPage RootPage => Application.Current.MainPage as MainPage;
     }
 }
