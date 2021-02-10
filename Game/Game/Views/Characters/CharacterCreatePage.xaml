@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Name="Create"
              x:Class="Game.Views.CharacterCreatePage"
-             Title="Create">
+             Title="Character Create">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" IconImageSource="icon_cancel.png" />
