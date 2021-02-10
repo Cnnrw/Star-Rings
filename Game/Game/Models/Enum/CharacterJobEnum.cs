@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Game.Models
 {
     /// <summary>
@@ -90,5 +94,35 @@ namespace Game.Models
 
             return Message;
         }
+    }
+
+    /// <summary>
+    /// Helper for Character Jobs
+    /// </summary>
+    public static class CharacterJobEnumHelper
+    {
+        /// <summary>
+        /// Gets the list of Character Jobs that Characters can have.
+        /// Does not include the Unknown Job.
+        /// </summary>
+        public static List<string> GetListCharacterJobs {
+            get {
+                var myList = Enum.GetNames(typeof(CharacterJobEnum)).ToList();
+                var myReturn = myList.Where(a =>
+                        a.ToString() != CharacterJobEnum.Unknown.ToString()
+                    )
+                    .OrderBy(a => a)
+                    .ToList();
+                return myReturn;
+            }
+        }
+
+        /// <summary>
+        /// Given the string for an enum, return its value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static CharacterJobEnum ConvertStringToEnum(string value) =>
+            (CharacterJobEnum)Enum.Parse(typeof(CharacterJobEnum), value);
     }
 }
