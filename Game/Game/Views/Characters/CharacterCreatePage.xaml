@@ -54,7 +54,7 @@
                                    Text="{Binding Data.Level}"/>
                             <Stepper x:Name="LevelStepper"
                                      Value="{Binding Data.Level, Mode=TwoWay}"
-                                     ValueChanged="OnLevelStepperValueChanged"
+                                     ValueChanged="OnLevelStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1"/>
@@ -71,7 +71,7 @@
                                    Text="{Binding Data.MaxHealth}"/>
                             <Stepper x:Name="MaxHealthStepper"
                                      Value="{Binding Data.MaxHealth, Mode=TwoWay}"
-                                     ValueChanged="OnMaxHealthStepperValueChanged"
+                                     ValueChanged="OnMaxHealthStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1"/>
@@ -86,7 +86,7 @@
                                    Text="{Binding Data.Attack}"/>
                             <Stepper x:Name="AttackStepper"
                                      Value="{Binding Data.Attack, Mode=TwoWay}"
-                                     ValueChanged="OnAttackStepperValueChanged"
+                                     ValueChanged="OnAttackStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1"/>
@@ -101,7 +101,7 @@
                                    Text="{Binding Data.Defense}"/>
                             <Stepper x:Name="DefenseStepper"
                                      Value="{Binding Data.Defense, Mode=TwoWay}"
-                                     ValueChanged="OnDefenseStepperValueChanged"
+                                     ValueChanged="OnDefenseStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1"/>
@@ -115,7 +115,7 @@
                                    Text="{Binding Data.Speed}"/>
                             <Stepper x:Name="SpeedStepper"
                                      Value="{Binding Data.Speed, Mode=TwoWay}"
-                                     ValueChanged="OnSpeedStepperValueChanged"
+                                     ValueChanged="OnSpeedStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1"/>

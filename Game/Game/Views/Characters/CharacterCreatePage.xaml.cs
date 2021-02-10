@@ -43,7 +43,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLevelStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+        private void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
             LevelValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMaxHealthStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+        private void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
             MaxHealthValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+        private void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) =>
             AttackValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+        private void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) =>
             DefenseValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+        private void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) =>
             SpeedValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
