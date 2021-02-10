@@ -17,6 +17,11 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<Folder Include="Resources\Fonts\" />
+<!--		<Folder Include="Views\Monsters\" />-->
+	</ItemGroup>
 
   <ItemGroup>
     <Compile Update="Views\Battle\PickItemsPage.xaml.cs">
@@ -99,5 +104,5 @@
   <ItemGroup>
     <None Remove="Resources\Fonts\*.ttf" />
     <EmbeddedResource Include="Resources\Fonts\*.ttf" />
-  </ItemGroup>
+	</ItemGroup>
 </Project>
