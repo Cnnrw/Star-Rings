@@ -37,6 +37,21 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
+                        <Label Text="Max Health"
+                               Style="{StaticResource LabelStyle}"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="MaxHealthValueLabel"
+                                   Text="{Binding Data.MaxHealth}"/>
+                            <Stepper x:Name="MaxHealthStepper"
+                                     Value="{Binding Data.MaxHealth, Mode=TwoWay}"
+                                     ValueChanged="OnMaxHealthStepperValueChanged"
+                                     Minimum="1"
+                                     Maximum="10"
+                                     Increment="1"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout>
                         <Label Text="Attack"
                                Style="{StaticResource LabelStyle}"/>
                         <StackLayout Orientation="Horizontal">

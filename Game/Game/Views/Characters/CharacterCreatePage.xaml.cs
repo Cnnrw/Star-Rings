@@ -37,6 +37,14 @@ namespace Game.Views
         }
 
         /// <summary>
+        ///     Changes Max Health attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxHealthStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            MaxHealthValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
         ///     Changes Attack attribute of a Character
         /// </summary>
         /// <param name="sender"></param>
