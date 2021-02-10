@@ -99,7 +99,8 @@ namespace Game.Views
             // Hookup the Image Button to show the Item picture
             var ItemButton = new ImageButton
             {
-                Style = (Style)Application.Current.Resources["ImageMediumStyle"], Source = data.ImageURI
+                Source = data.ImageURI,
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out var iMS) ? (Style)iMS : null
             };
 
             if (ClickableButton)
@@ -112,7 +113,7 @@ namespace Game.Views
             var ItemLabel = new Label
             {
                 Text = "Unique Drop",
-                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var vSM) ? (Style)vSM : null,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center
             };
@@ -121,7 +122,7 @@ namespace Game.Views
             var ItemStack = new StackLayout
             {
                 Padding = 3,
-                Style = (Style)Application.Current.Resources["ItemImageBox"],
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out var iIB) ? (Style)iIB : null,
                 HorizontalOptions = LayoutOptions.Center,
                 Children = {ItemButton, ItemLabel}
             };
