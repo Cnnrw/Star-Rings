@@ -21,7 +21,6 @@
             <ScrollView x:Name="ScrollView">
                 <StackLayout Style="{StaticResource OuterBoxStack}">
                     <StackLayout Style="{StaticResource VerticalStack}">
-                        <Label Text="Read Page" Style="{StaticResource HeaderStyle}" />
                         <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
 
                         <StackLayout Style="{StaticResource HorizontalStack}">
