@@ -53,6 +53,14 @@ namespace Game.Views
             DefenseValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
+        ///     Changes Speed attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            SpeedValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
         ///     Save by calling for Create
         /// </summary>
         /// <param name="sender"></param>
