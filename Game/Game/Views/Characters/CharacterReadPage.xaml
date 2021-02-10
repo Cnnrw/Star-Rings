@@ -39,15 +39,6 @@
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label 
-                    Text="BattleType: " 
-                    Style="{StaticResource LabelStyle}"/>
-                <Label 
-                    Text="{Binding Data.BattleType}" 
-                    Style="{StaticResource ValueStyle}"/>
-            </StackLayout>
-
         </StackLayout>
     </ScrollView>
 </ContentPage>
