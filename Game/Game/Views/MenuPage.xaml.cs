@@ -25,12 +25,12 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            var _menuItems = new List<HomeMenuItemModel>
+            var _menuItems = new List<MenuItemModel>
             {
-                new HomeMenuItemModel {Id = MenuItemEnum.Game, Title = "Game"},
-                new HomeMenuItemModel {Id = MenuItemEnum.About, Title = "About"},
-                new HomeMenuItemModel {Id = MenuItemEnum.Village, Title = "Village"},
-                new HomeMenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"}
+                new MenuItemModel {Id = MenuItemEnum.Home, Title = "Home"},
+                new MenuItemModel {Id = MenuItemEnum.About, Title = "About"},
+                new MenuItemModel {Id = MenuItemEnum.Village, Title = "Village"},
+                new MenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"}
             };
 
             // Register the ListView for the Menu and the Item Selected call back
@@ -45,7 +45,7 @@ namespace Game.Views
                     return;
                 }
 
-                var id = (int)((HomeMenuItemModel)e.SelectedItem).Id;
+                var id = (int)((MenuItemModel)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
         }
