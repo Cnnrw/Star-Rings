@@ -39,6 +39,14 @@
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label 
+                    Text="Job: " 
+                    Style="{StaticResource LabelStyle}"/>
+                <Label 
+                    Text="{Binding Data.Job}" 
+                    Style="{StaticResource ValueStyle}"/>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
