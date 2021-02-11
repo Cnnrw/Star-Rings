@@ -51,28 +51,28 @@
                     <Label Text="Max Health:"
                            Style="{StaticResource LabelStyle}"/>
                     <Label Text="{Binding Data.MaxHealth}"
-                           Style="{StaticResource LabelStyle}"/>
+                           Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Attack:"
                            Style="{StaticResource LabelStyle}"/>
                     <Label Text="{Binding Data.Attack}"
-                           Style="{StaticResource LabelStyle}"/>
+                           Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Defense:"
                            Style="{StaticResource LabelStyle}"/>
                     <Label Text="{Binding Data.Defense}"
-                           Style="{StaticResource LabelStyle}"/>
+                           Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Speed:"
                            Style="{StaticResource LabelStyle}"/>
                     <Label Text="{Binding Data.Speed}"
-                           Style="{StaticResource LabelStyle}"/>
+                           Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
             </StackLayout>
 
