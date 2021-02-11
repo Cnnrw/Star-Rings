@@ -5,15 +5,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local_helpers="clr-namespace:Game.Helpers"
-             xmlns:local_enum="clr-namespace:Game.Models"
+             xmlns:localHelpers="clr-namespace:Game.Helpers"
+             xmlns:localEnum="clr-namespace:Game.Models"
+             xmlns:model="clr-namespace:Game.Models;assembly=Game"
              x:Name="Create"
              x:Class="Game.Views.CharacterCreatePage"
+             x:DataType="model:CharacterModel"
              Title="Create Character">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local_helpers:StringEnumConverter x:Key="StringToEnum"/>
+            <localHelpers:StringEnumConverter x:Key="StringToEnum"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -24,28 +26,28 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Image Source="{Binding Data.ImageURI}"
+                        <Image Source="{Binding ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand"/>
                         <Label Text="Job"
                                Style="{StaticResource LabelStyle}"/>
                         <Picker x:Name="JobPicker"
-                                ItemsSource="{x:Static local_enum:CharacterJobEnumHelper.GetListCharacterJobs}"
-                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
+                                ItemsSource="{x:Static localEnum:CharacterJobEnumHelper.GetListCharacterJobs}"
+                                SelectedItem="{Binding Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
                     </StackLayout>
 
                     <StackLayout>
                         <StackLayout>
                             <Label Text="Name"
                                    Style="{StaticResource LabelStyle}"/>
-                            <Entry Text="{Binding Data.Name}"
+                            <Entry Text="{Binding Name}"
                                    Style="{StaticResource EntryStyle}"/>
                         </StackLayout>
 
                         <StackLayout>
                             <Label Text="Description"
                                    Style="{StaticResource LabelStyle}"/>
-                            <Entry Text="{Binding Data.Description}"
+                            <Entry Text="{Binding Description}"
                                    Style="{StaticResource EntryStyle}"/>
                         </StackLayout>
 
@@ -54,9 +56,9 @@
                                    Style="{StaticResource LabelStyle}"/>
                             <StackLayout Orientation="Horizontal">
                                 <Label x:Name="LevelValueLabel"
-                                       Text="{Binding Data.Level}"/>
+                                       Text="{Binding Level}"/>
                                 <Stepper x:Name="LevelStepper"
-                                         Value="{Binding Data.Level, Mode=TwoWay}"
+                                         Value="{Binding Level, Mode=TwoWay}"
                                          ValueChanged="OnLevelStepperChanged"
                                          Minimum="1"
                                          Maximum="10"
@@ -72,9 +74,9 @@
                                Style="{StaticResource LabelStyle}"/>
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="MaxHealthValueLabel"
-                                   Text="{Binding Data.MaxHealth}"/>
+                                   Text="{Binding MaxHealth}"/>
                             <Stepper x:Name="MaxHealthStepper"
-                                     Value="{Binding Data.MaxHealth, Mode=TwoWay}"
+                                     Value="{Binding MaxHealth, Mode=TwoWay}"
                                      ValueChanged="OnMaxHealthStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
@@ -87,9 +89,9 @@
                                Style="{StaticResource LabelStyle}"/>
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="AttackValueLabel"
-                                   Text="{Binding Data.Attack}"/>
+                                   Text="{Binding Attack}"/>
                             <Stepper x:Name="AttackStepper"
-                                     Value="{Binding Data.Attack, Mode=TwoWay}"
+                                     Value="{Binding Attack, Mode=TwoWay}"
                                      ValueChanged="OnAttackStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
@@ -102,9 +104,9 @@
                                Style="{StaticResource LabelStyle}"/>
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="DefenseValueLabel"
-                                   Text="{Binding Data.Defense}"/>
+                                   Text="{Binding Defense}"/>
                             <Stepper x:Name="DefenseStepper"
-                                     Value="{Binding Data.Defense, Mode=TwoWay}"
+                                     Value="{Binding Defense, Mode=TwoWay}"
                                      ValueChanged="OnDefenseStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
@@ -116,9 +118,9 @@
                         <Label Text="Speed" Style="{StaticResource LabelStyle}"/>
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="SpeedValueLabel"
-                                   Text="{Binding Data.Speed}"/>
+                                   Text="{Binding Speed}"/>
                             <Stepper x:Name="SpeedStepper"
-                                     Value="{Binding Data.Speed, Mode=TwoWay}"
+                                     Value="{Binding Speed, Mode=TwoWay}"
                                      ValueChanged="OnSpeedStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
@@ -136,5 +138,5 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-    
+
 </ContentPage>
