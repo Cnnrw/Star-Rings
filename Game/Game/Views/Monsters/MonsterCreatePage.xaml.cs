@@ -80,8 +80,15 @@ namespace Game.Views
                 _viewModel.Data.ImageURI = new MonsterModel().ImageURI;
             }
 
-            MessagingCenter.Send(this, "Create", _viewModel.Data);
-            await Navigation.PopModalAsync();
+            if (_viewModel.Data.Name.Length == 0)
+            {
+                await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
+            }
+            else
+            {
+                MessagingCenter.Send(this, "Create", _viewModel.Data);
+                await Navigation.PopModalAsync();
+            }
         }
 
         /// <summary>
