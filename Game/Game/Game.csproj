@@ -3,14 +3,27 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+	
+	<ItemGroup>
+		<None Remove="Common\Fonts\gamefont.ttf" />
+		<None Remove="Common\Fonts\gamefont_bold.ttf" />
+		<None Remove="Common\Fonts\rpgawesome.ttf" />
+	</ItemGroup>
+	
+	<!-- Fonts -->
+	<ItemGroup>
+		<EmbeddedResource Include="Common\Fonts\gamefont.ttf" />
+		<EmbeddedResource Include="Common\Fonts\gamefont_bold.ttf" />
+		<EmbeddedResource Include="Common\Fonts\rpgawesome.ttf" />
+	</ItemGroup>
 
+	<!-- NuGet Packages -->
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
@@ -18,11 +31,6 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
-	
-	<ItemGroup>
-		<Folder Include="Resources\Fonts\" />
-<!--		<Folder Include="Views\Monsters\" />-->
-	</ItemGroup>
 
   <ItemGroup>
     <Compile Update="Views\Battle\PickItemsPage.xaml.cs">
@@ -100,10 +108,14 @@
     <Compile Update="Views\Score\ScoreUpdatePage.xaml.cs">
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Common\Styles\DefaultTheme.xaml.cs">
+      <DependentUpon>DefaultTheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\Fonts\*.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\*.ttf" />
+	
+	<ItemGroup>
+		<SharedImage Include="Common\Assets\starrings_logo.png" BaseSize="200,200" />
 	</ItemGroup>
+	
 </Project>
