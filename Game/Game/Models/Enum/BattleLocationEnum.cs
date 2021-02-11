@@ -30,7 +30,7 @@ namespace Game.Models
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToString(this BattleLocationEnum value)
+        public static string ToMessage(this BattleLocationEnum value)
         {
             // Default String
             var Result = "Battle location";
