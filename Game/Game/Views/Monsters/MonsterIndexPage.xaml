@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Name="BrowseItemsPage"
              x:Class="Game.Views.MonsterIndexPage"
-             Title="{Binding Title}">
+             Title="Monster List">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png" />
