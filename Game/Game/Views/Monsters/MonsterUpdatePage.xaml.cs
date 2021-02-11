@@ -48,8 +48,15 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "Update", ViewModel.Data);
-            await Navigation.PopModalAsync();
+            if (ViewModel.Data.Name.Length == 0)
+            {
+                await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
+            }
+            else
+            {
+                MessagingCenter.Send(this, "Update", ViewModel.Data);
+                await Navigation.PopModalAsync();
+            }
         }
 
         /// <summary>
