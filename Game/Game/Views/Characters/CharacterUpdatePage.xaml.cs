@@ -31,8 +31,50 @@ namespace Game.Views
 
             BindingContext = this.ViewModel = data;
 
+            JobPicker.SelectedItem = ViewModel.Data.Job.ToString();
+
             this.ViewModel.Title = "Update " + data.Title;
         }
+
+        /// <summary>
+        ///     Changes Level attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
+            LevelValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Max Health attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MaxHealthValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Attack attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) =>
+            AttackValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Defense attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) =>
+            DefenseValueLabel.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Speed attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) =>
+            SpeedValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Save by calling for Update
