@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 
+using Game.GameRules;
 using Game.Models;
 using Game.ViewModels;
 
@@ -65,5 +66,20 @@ namespace Game.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+
+        /// <summary>
+        ///     Randomize Monster Values and Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            BindingContext = null;
+
+            ViewModel.Data = RandomPlayerHelper.GetRandomMonster(1);
+            ViewModel.Title = ViewModel.Data.Name;
+
+            BindingContext = ViewModel;
+        }
     }
 }
