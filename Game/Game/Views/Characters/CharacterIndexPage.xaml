@@ -51,7 +51,7 @@
                                     <Label Text="{Binding Name}"
                                            Style="{StaticResource ListStyle}"/>
 
-                                    <Label Text="{Binding Level}"
+                                    <Label Text="{Binding Level, StringFormat='Level {0}'}"
                                            Style="{StaticResource ListStyle}"/>
                                 </StackLayout>
                             </Grid>
