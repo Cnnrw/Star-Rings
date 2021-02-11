@@ -43,7 +43,7 @@
             HorizontalOptions="Center" 
             Padding="20">
 
-                <Label Text="Really delete this?" Style="{StaticResource MessageStyle}"/>
+                <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}" Style="{StaticResource MessageStyle}"/>
 
                 <Button 
                 Text="Yes" 
