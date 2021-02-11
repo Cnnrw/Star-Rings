@@ -29,8 +29,6 @@ namespace Game.Models
 
             // Default to Jedi job
             Job = CharacterJobEnum.Jedi;
-
-            InitBattleLocationBuffs();
         }
 
         /// <summary>
@@ -40,18 +38,6 @@ namespace Game.Models
         public JediCharacterModel(CharacterModel data)
         {
             Update(data);
-        }
-
-        protected override void InitBattleLocationBuffs()
-        {
-            BattleLocationBuffs = new Dictionary<BattleLocationEnum, LocationBuffsModel>()
-            {
-                { BattleLocationEnum.Shire,     new LocationBuffsModel { AttackBuffValue=  0,   DefenseBuffValue=  0,    SpeedBuffValue=  0} },
-                { BattleLocationEnum.ElvenCity, new LocationBuffsModel { AttackBuffValue= 10,   DefenseBuffValue= 10,    SpeedBuffValue= 10} },
-                { BattleLocationEnum.Forest,    new LocationBuffsModel { AttackBuffValue=-10,   DefenseBuffValue= 10,    SpeedBuffValue=-10} },
-                { BattleLocationEnum.Dungeons,  new LocationBuffsModel { AttackBuffValue=-10,   DefenseBuffValue=-20,    SpeedBuffValue=-20} },
-                { BattleLocationEnum.Mordor,    new LocationBuffsModel { AttackBuffValue= 20,   DefenseBuffValue=-10,    SpeedBuffValue=-10} }
-            };
         }
 
         /// <summary>
@@ -95,8 +81,6 @@ namespace Game.Models
 
             // Update the Job
             Job = newData.Job;
-
-            BattleLocationBuffs = newData.BattleLocationBuffs;
 
             return true;
         }

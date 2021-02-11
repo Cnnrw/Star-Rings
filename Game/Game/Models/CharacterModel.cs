@@ -11,9 +11,6 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
-        // The character's attribute buffs in different locations
-        public Dictionary<BattleLocationEnum, LocationBuffsModel> BattleLocationBuffs;
-
         /// <summary>
         /// Default character
         /// 
@@ -36,8 +33,6 @@ namespace Game.Models
 
             // Default to Jedi
             Job = CharacterJobEnum.Jedi;
-
-            BattleLocationBuffs = new Dictionary<BattleLocationEnum, LocationBuffsModel>();
         }
 
         /// <summary>
@@ -91,44 +86,7 @@ namespace Game.Models
             // Update the Job
             Job = newData.Job;
 
-            BattleLocationBuffs = newData.BattleLocationBuffs;
-
             return true;
-        }
-
-        /// <summary>
-        /// Initializes the character's battle location buffs table
-        /// </summary>
-        protected virtual void InitBattleLocationBuffs() { }
-
-        /// <summary>
-        /// Gets the attack buff value for this character in a battle location
-        /// </summary>
-        /// <param name="battleLocation">The location of the battle</param>
-        /// <returns>Attack buff value</returns>
-        public int GetBattleLocationAttackBuff(BattleLocationEnum battleLocation)
-        {
-            return BattleLocationBuffs[battleLocation].AttackBuffValue;
-        }
-
-        /// <summary>
-        /// Gets the defense buff value for this character in a battle location
-        /// </summary>
-        /// <param name="battleLocation">The location of the battle</param>
-        /// <returns>Defense buff value</returns>
-        public int GetBattleLocationDefenseBuff(BattleLocationEnum battleLocation)
-        {
-            return BattleLocationBuffs[battleLocation].DefenseBuffValue;
-        }
-
-        /// <summary>
-        /// Gets the speed buff value for this character in a battle location
-        /// </summary>
-        /// <param name="battleLocation">The location of the battle</param>
-        /// <returns>Speed buff value</returns>
-        public int GetBattleLocationSpeedBuff(BattleLocationEnum battleLocation)
-        {
-            return BattleLocationBuffs[battleLocation].SpeedBuffValue;
         }
 
         /// <summary>
