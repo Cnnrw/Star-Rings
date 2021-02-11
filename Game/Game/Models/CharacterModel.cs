@@ -20,8 +20,8 @@ namespace Game.Models
         {
             PlayerType = PlayerTypeEnum.Character;
             Guid = Id;
-            Name = "Elf";
-            Description = "Happy Elf";
+            Name = "Crewmember";
+            Description = "A crewmember aboard the Millenium Falcon";
             Level = 1;
             MaxHealth = 1;
             Attack = 1;
