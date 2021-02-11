@@ -137,7 +137,39 @@ namespace Game.GameRules
 
         var datalist = new List<CharacterModel>()
             {
-                new JediCharacterModel()
+                new CharacterModel()
+                {
+                    Name = "Luke Skywalker",
+                    Description = "A Jedi master from Tatooine",
+                    Job = CharacterJobEnum.Jedi,
+                    Level = 7,
+                    MaxHealth = 8,
+                    Attack = 5,
+                    Defense = 3,
+                    Speed = 4
+                },
+                new CharacterModel()
+                {
+                    Name = "Chewbacca",
+                    Description = "A Wookie warrior from Kashyyyk",
+                    Job = CharacterJobEnum.Wookie,
+                    Level = 6,
+                    MaxHealth = 7,
+                    Attack = 6,
+                    Defense = 5,
+                    Speed = 4
+                },
+                new CharacterModel()
+                {
+                    Name = "C3PO",
+                    Description = "Fluent in over 6 million forms of communication",
+                    Job = CharacterJobEnum.ProtocolDroid,
+                    Level = 4,
+                    MaxHealth = 2,
+                    Attack = 2,
+                    Defense = 1,
+                    Speed = 1
+                }
             };
 
         return datalist;
