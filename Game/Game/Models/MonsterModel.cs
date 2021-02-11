@@ -1,4 +1,4 @@
-﻿using Game.GameRules;
+using Game.GameRules;
 
 namespace Game.Models
 {
@@ -18,8 +18,8 @@ namespace Game.Models
         {
             PlayerType = PlayerTypeEnum.Monster;
             Guid = Id;
-            Name = "Troll";
-            Description = "Angry Troll";
+            Name = "Goblin";
+            Description = "An evil minion of Sauron";
             Attack = 1;
             Difficulty = DifficultyEnum.Average;
             UniqueItem = null;
