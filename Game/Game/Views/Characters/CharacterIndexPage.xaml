@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Name="BrowseCharactersPage"
              x:Class="Game.Views.CharacterIndexPage"
-             Title="{Binding Title}">
+             Title="Character List">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" IconImageSource="icon_add.png"/>
