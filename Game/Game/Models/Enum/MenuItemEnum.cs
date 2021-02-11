@@ -1,20 +1,13 @@
 ﻿namespace Game.Models
 {
     /// <summary>
-    /// List of items to show in the Menu
+    ///     List of items to show in the Menu
     /// </summary>
     public enum MenuItemEnum
     {
-        // Battle Page
-        Battle = 1,
-
-        // Village
+        Battle  = 1,
         Village = 2,
-
-        // Game
-        Game = 5,
-
-        // About
-        About = 6
+        Home    = 5,
+        About   = 6
     }
 }
