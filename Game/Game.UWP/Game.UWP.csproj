@@ -189,18 +189,21 @@
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Game\Game.csproj">
-      <Project>{0F0BC0CD-CC31-4BE0-8FE4-42C7A3EF8A83}</Project>
-      <Name>Game</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
-    <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Game\Game.csproj">
+			<Project>{0F0BC0CD-CC31-4BE0-8FE4-42C7A3EF8A83}</Project>
+			<Name>Game</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="magic_tree.gif" />
+	</ItemGroup>
+	<PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+		<VisualStudioVersion>14.0</VisualStudioVersion>
+	</PropertyGroup>
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
 </Project>
