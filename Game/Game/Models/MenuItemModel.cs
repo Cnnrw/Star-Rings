@@ -1,9 +1,9 @@
 ﻿namespace Game.Models
 {
     /// <summary>
-    /// Home Menu Item Model
+    ///     Navigation Menu Item Model
     /// </summary>
-    public class HomeMenuItemModel
+    public class MenuItemModel
     {
         // The Current Menu ID
         public MenuItemEnum Id { get; set; }
