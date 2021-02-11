@@ -17,7 +17,7 @@ namespace Game.Views
     {
 
         // Monster ViewModel
-        private readonly GenericViewModel<MonsterModel> _viewModel;
+        private readonly GenericViewModel<MonsterModel> ViewModel;
 
         // UnitTest Constructor
         public MonsterReadPage(bool unitTest) { }
@@ -31,10 +31,10 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            _viewModel = data;
-            _viewModel.Title = data.Data.Name;
+            ViewModel = data;
+            ViewModel.Title = data.Data.Name;
 
-            BindingContext = _viewModel;
+            BindingContext = ViewModel;
 
             // Show the Monsters Items
             AddItemsToDisplay();
@@ -47,7 +47,7 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Update_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(ViewModel)));
             await Navigation.PopAsync();
         }
 
@@ -58,7 +58,7 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Delete_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(_viewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(ViewModel)));
             await Navigation.PopAsync();
         }
 
@@ -86,7 +86,7 @@ namespace Game.Views
             const string ImageSource = "icon_cancel.png";
             var ClickableButton = true;
 
-            var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem);
+            var data = ViewModel.Data.GetItem(ViewModel.Data.UniqueItem);
             if (data == null)
             {
                 // show the default icon for the location
