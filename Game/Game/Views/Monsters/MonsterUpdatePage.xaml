@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Name="Update"
              x:Class="Game.Views.MonsterUpdatePage"
-             Title="Monster Update">
+             Title="{Binding Title}">
 
     <ContentPage.Content>
         <ScrollView>

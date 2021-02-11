@@ -30,6 +30,8 @@ namespace Game.Views
 
             BindingContext = ViewModel = data;
 
+            this.ViewModel.Title = "Update " + data.Title;
+
             // DifficultyPicker.SelectedItem = ViewModel.Data.Difficulty.ToMessage();
         }
 
