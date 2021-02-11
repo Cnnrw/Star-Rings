@@ -1,48 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.HomePage">
 
     <ContentPage.Content>
-        <ScrollView
-            VerticalOptions="CenterAndExpand"
-            HorizontalOptions="CenterAndExpand">
-            
-            <StackLayout
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
 
-                <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="Center">
-                    <Image
-                         Source="item.png"
-                         Style="{StaticResource ImageLargeStyle}"/>
-                
-                </StackLayout>
-                
-                <StackLayout HorizontalOptions="Center" Padding="70,5,70,0"> 
-               
-                    <Label 
-                        Text="Your Game Iformation"
-                        Style="{StaticResource CenterMessageStyle}"
-                        FontSize="Micro"
-                        LineBreakMode="WordWrap"
-                        MaxLines="5"
-                        />
+        <ScrollView Orientation="Vertical"
+                    HorizontalScrollBarVisibility="Never"
+                    VerticalScrollBarVisibility="Never"
+                    Padding="10">
 
-                    <Label 
-                        Text="Help them on their mission."
-                        Style="{StaticResource CenterMessageStyle}"
-                        FontSize="Micro"
-                        LineBreakMode="WordWrap"
-                        MaxLines="5"
-                        />
+            <FlexLayout x:Name="FlexLayout"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceAround"
+                        AlignContent="SpaceAround">
+
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+
+                    <ImageButton Source="item.png"
+                                 Style="{StaticResource ImageLargeStyle}"
+                                 Clicked="VillageButton_Clicked" />
+
+                    <Label Text="Village"
+                           Style="{StaticResource CenterMessageStyle}" />
                 </StackLayout>
 
-                <Button
-                    Text="Enter"
-                    Clicked="GameButton_Clicked"/>
+                <StackLayout Style="{StaticResource CardImageTextBox}">
 
-            </StackLayout>
+                    <ImageButton Source="item.png"
+                                 Style="{StaticResource ImageLargeStyle}"
+                                 Clicked="DungeonButton_Clicked" />
+
+                    <Label Text="Dungeon"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+
+                    <ImageButton Source="item.png"
+                                 Style="{StaticResource ImageLargeStyle}"
+                                 Clicked="AutobattleButton_Clicked" />
+
+                    <Label Text="Auto Battle"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
+            </FlexLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
