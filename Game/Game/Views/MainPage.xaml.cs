@@ -1,8 +1,8 @@
-﻿using Game.Models;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+
+using Game.Models;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Game.Views
 {
     /// <summary>
-    /// Main Page
+    ///     Main Page
     /// </summary>
-    [DesignTimeVisible(false)] 
+    [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : MasterDetailPage
     {
@@ -20,7 +20,7 @@ namespace Game.Views
         public readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
 
         /// <summary>
-        /// Constructor setups the behavior and menu pages
+        ///     Constructor setups the behavior and menu pages
         /// </summary>
         public MainPage()
         {
@@ -30,7 +30,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Process the Menu Selected item
+        ///     Process the Menu Selected item
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -53,8 +53,8 @@ namespace Game.Views
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
 
-                    case (int)MenuItemEnum.Game:
-                        MenuPages.Add(id, new NavigationPage(new GamePage()));
+                    case (int)MenuItemEnum.Home:
+                        MenuPages.Add(id, new NavigationPage(new HomePage()));
                         break;
                 }
             }

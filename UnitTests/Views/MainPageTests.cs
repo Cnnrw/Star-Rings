@@ -1,20 +1,19 @@
-﻿using NUnit.Framework;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Game;
-using Game.Views;
 using Game.Models;
+using Game.Views;
 
-using Xamarin.Forms.Mocks;
+using NUnit.Framework;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class MainPageTests
     {
-        App app;
-        MainPage page;
 
         [SetUp]
         public void Setup()
@@ -34,6 +33,9 @@ namespace UnitTests.Views
         {
             Application.Current = null;
         }
+
+        App      app;
+        MainPage page;
 
         [Test]
         public void MainPage_Constructor_Default_Should_Pass()
@@ -63,13 +65,13 @@ namespace UnitTests.Views
             Assert.IsTrue(true);
         }
 
-       [Test]
+        [Test]
         public async Task MainPage_Navigate_Game_Should_Pass()
         {
             // Arrange
 
             // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+            await page.NavigateFromMenu((int)MenuItemEnum.Home);
 
             // Reset
 
@@ -110,10 +112,10 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+            await page.NavigateFromMenu((int)MenuItemEnum.Home);
 
             // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+            await page.NavigateFromMenu((int)MenuItemEnum.Home);
 
             // Reset
 
@@ -143,16 +145,15 @@ namespace UnitTests.Views
             // Arrange
             MockForms.Init(Device.Android);
 
-            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+            await page.NavigateFromMenu((int)MenuItemEnum.Home);
 
             // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+            await page.NavigateFromMenu((int)MenuItemEnum.Home);
 
             // Reset
 
             // Assert
             Assert.IsTrue(true);
         }
-
     }
 }
