@@ -27,37 +27,46 @@
             <StackLayout Style="{StaticResource OuterBoxStack}"
                 Spacing="10">
 
-                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" HorizontalOptions="CenterAndExpand"/>
-
-                <StackLayout>
-                    <Label Text="Name"
-                           Style="{StaticResource LabelStyle}"/>
-                    <Entry Text="{Binding Data.Name}"
-                           Style="{StaticResource EntryStyle}"/>
-
-                    <Label Text="Description"
-                           Style="{StaticResource LabelStyle}"/>
-                    <Entry Text="{Binding Data.Description}"
-                           Style="{StaticResource EntryStyle}"/>
-
-                    <Label Text="Job"
-                           Style="{StaticResource LabelStyle}"/>
-                    <Picker ItemsSource="{x:Static local_enum:CharacterJobEnumHelper.GetListCharacterJobs}"
-                            SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
-                            x:Name="JobPicker"/>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Image Source="{Binding Data.ImageURI}"
+                               Style="{StaticResource ImageLargeStyle}"
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Job"
+                               Style="{StaticResource LabelStyle}"/>
+                        <Picker x:Name="JobPicker"
+                                ItemsSource="{x:Static local_enum:CharacterJobEnumHelper.GetListCharacterJobs}"
+                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
+                    </StackLayout>
 
                     <StackLayout>
-                        <Label Text="Level"
-                               Style="{StaticResource LabelStyle}"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="LevelValueLabel"
-                                   Text="{Binding Data.Level}"/>
-                            <Stepper x:Name="LevelStepper"
-                                     Value="{Binding Data.Level, Mode=TwoWay}"
-                                     ValueChanged="OnLevelStepperChanged"
-                                     Minimum="1"
-                                     Maximum="10"
-                                     Increment="1"/>
+                        <StackLayout>
+                            <Label Text="Name"
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Entry Text="{Binding Data.Name}"
+                                   Style="{StaticResource EntryStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Description"
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Entry Text="{Binding Data.Description}"
+                                   Style="{StaticResource EntryStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Level"
+                                   Style="{StaticResource LabelStyle}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="LevelValueLabel"
+                                       Text="{Binding Data.Level}"/>
+                                <Stepper x:Name="LevelStepper"
+                                         Value="{Binding Data.Level, Mode=TwoWay}"
+                                         ValueChanged="OnLevelStepperChanged"
+                                         Minimum="1"
+                                         Maximum="10"
+                                         Increment="1"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
@@ -121,6 +130,13 @@
                                      Increment="1"/>
                         </StackLayout>
                     </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel"
+                            Clicked="Cancel_Clicked"/>
+                    <Button Text="Save"
+                            Clicked="Save_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
