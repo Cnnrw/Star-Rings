@@ -9,14 +9,19 @@ namespace Game.Models
         // Not specified
         Unknown = 0,
 
+        // Rolling hills and open fields
         Shire = 1,
 
+        // A magical metropolis
         ElvenCity = 2,
 
+        // A dark, tangled forest
         Forest = 3,
 
+        // Underground chambers and caves
         Dungeons = 4,
 
+        // Desolate, firey wasteland
         Mordor = 5,
     }
 
