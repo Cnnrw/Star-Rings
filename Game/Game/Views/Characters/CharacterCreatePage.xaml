@@ -17,11 +17,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" IconImageSource="icon_cancel.png" />
-        <ToolbarItem Text="Save" Clicked="Save_Clicked" IconImageSource="icon_save.png" />
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{StaticResource OuterBoxStack}"
@@ -130,6 +125,13 @@
                                      Increment="1"/>
                         </StackLayout>
                     </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel"
+                            Clicked="Cancel_Clicked"/>
+                    <Button Text="Save"
+                            Clicked="Save_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
