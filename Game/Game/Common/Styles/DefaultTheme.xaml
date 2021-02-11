@@ -2,9 +2,9 @@
 
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="Game.Styles.DefaultTheme">
+                    x:Class="Common.Styles.DefaultTheme">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Styles/Global.xaml"/>
-        <ResourceDictionary Source="/Styles/Sizes.xaml"/>
+        <ResourceDictionary Source="Global.xaml" />
+        <ResourceDictionary Source="Sizes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
