@@ -5,37 +5,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Game.Views.MonsterDeletePage"
-             Title="Monster Delete">
+             Title="{Binding Title}">
 
     <ScrollView>
         <StackLayout Style="{StaticResource OuterBoxStack}"
                      Spacing="10">
-
-            <Image Source="{Binding Data.ImageURI}"
-                   Style="{StaticResource ImageLargeStyle}"/>
+            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
 
             <StackLayout HorizontalOptions="Center"
                          Padding="20">
-                
                 <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
                        Style="{StaticResource MessageStyle}"/>
 
-                <Button Text="Yes"
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Yes"
                         Clicked="Delete_Clicked"
-                        HorizontalOptions="Center"
-                        FontSize="Medium"
-                        BorderWidth="1"
-                        BorderColor="black"/>
+                        HorizontalOptions="Center"/>
 
-                <Button Text="No"
+                    <Button Text="No"
                         Clicked="Cancel_Clicked"
-                        HorizontalOptions="Center"
-                        FontSize="Medium"
-                        BorderWidth="1"
-                        BorderColor="black"/>
-                
+                        HorizontalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
-            
         </StackLayout>
     </ScrollView>
 </ContentPage>
