@@ -8,11 +8,6 @@
              x:Class="Game.Views.MonsterReadPage"
              Title="{Binding Title}">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Update" Clicked="Update_Clicked" IconImageSource="icon_update.png" />
-        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" IconImageSource="icon_delete.png" />
-    </ContentPage.ToolbarItems>
-
     <AbsoluteLayout HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand">
         <StackLayout Style="{StaticResource VerticalStack}"
@@ -80,6 +75,12 @@
                                 AlignContent="SpaceAround"
                                 x:Name="ItemBox" />
 
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Delete"
+                                Clicked="Delete_Clicked"/>
+                        <Button Text="Update"
+                                Clicked="Update_Clicked"/>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
 
