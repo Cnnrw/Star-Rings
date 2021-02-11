@@ -1,28 +1,21 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
+﻿using Game;
 using Game.Views;
-using Xamarin.Forms.Mocks;
+
+using NUnit.Framework;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class HomePageTests
     {
-        App app;
-        HomePage page;
 
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
@@ -33,10 +26,10 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        App      app;
+        HomePage page;
 
         [Test]
         public void HomePage_Constructor_Default_Should_Pass()
@@ -53,11 +46,37 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void HomePage_GameButton_Clicked_Default_Should_Pass()
+        public void GamePage_DungeonButton_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act
-            page.GameButton_Clicked(null, null);
+            page.DungeonButton_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void GamePage_VillageButton_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+            // Act
+            page.VillageButton_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void GamePage_AutobattleButton_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+            // Act
+            page.AutobattleButton_Clicked(null, null);
 
             // Reset
 
