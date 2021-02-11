@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+Description and <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -36,27 +36,16 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
 
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                        Source="{Binding ImageURI}"
                                        Style="{StaticResource ImageMediumStyle}"
-                                       VerticalOptions="CenterAndExpand" />
+                                       VerticalOptions="CenterAndExpand"/>
 
                                 <Label Grid.Column="1" Grid.Row="0"
                                        Text="{Binding Name}"
-                                       Style="{StaticResource ListStyle}" />
-
-                                <Label Grid.Column="1" Grid.Row="1"
-                                       Text="{Binding Description}"
-                                       Style="{StaticResource ListStyle}" />
-
-                                <Label Grid.Column="1" Grid.Row="2"
-                                       Text="{Binding Difficulty}"
-                                       Style="{StaticResource ListStyle}" />
-
+                                       Style="{StaticResource ListStyle}"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
