@@ -15,6 +15,7 @@
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
 		<None Remove="Common\Assets\StarRingsLogo2.png" />
+		<None Remove="Common\Assets\magic_tree.gif" />
 	</ItemGroup>
 	
 	<!-- Fonts -->
@@ -73,8 +74,8 @@
     <Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
       <DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Home\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
+    <Compile Update="Views\Home\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
 		<Compile Update="Views\Monsters\MonsterCreatePage.xaml.cs">
 			<DependentUpon>MonsterCreatePage.xaml</DependentUpon>
@@ -118,4 +119,5 @@
 	<ItemGroup>
 		<SharedImage Include="Common\Assets\StarRingsLogo2.png" BaseSize="100,100" />
 	</ItemGroup>
+	
 </Project>
