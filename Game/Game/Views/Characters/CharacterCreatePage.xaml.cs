@@ -33,7 +33,7 @@ namespace Game.Views
 
             BindingContext = ViewModel;
 
-            JobPicker.SelectedItem = ViewModel.Data.Job.ToMessage() ;
+            JobPicker.SelectedItem = ViewModel.Data.Job.ToString();
 
             ViewModel.Title = "Create";
         }
