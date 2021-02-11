@@ -1,21 +1,19 @@
-﻿using NUnit.Framework;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 using Game;
-using Game.Views;
 using Game.Models;
+using Game.Views;
 
-using Xamarin.Forms.Mocks;
+using NUnit.Framework;
+
 using Xamarin.Forms;
-using System.Linq;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class MenuPageTests
     {
-        App app;
-        MenuPage page;
 
         [SetUp]
         public void Setup()
@@ -35,6 +33,9 @@ namespace UnitTests.Views
         {
             Application.Current = null;
         }
+
+        App      app;
+        MenuPage page;
 
         [Test]
         public void MenuPage_Constructor_Default_Should_Pass()
@@ -86,7 +87,7 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            var data = new HomeMenuItemModel { Id = MenuItemEnum.Game, Title = "Game" };
+            var data = new MenuItemModel {Id = MenuItemEnum.Home, Title = "Home"};
 
             var content = (StackLayout)page.Content;
             var listview = (ListView)content.Children.FirstOrDefault();
