@@ -47,6 +47,15 @@
                     Text="{Binding Data.Job}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
+
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label 
+                    Text="Level: " 
+                    Style="{StaticResource LabelStyle}"/>
+                <Label 
+                    Text="{Binding Data.Level}" 
+                    Style="{StaticResource ValueStyle}"/>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
