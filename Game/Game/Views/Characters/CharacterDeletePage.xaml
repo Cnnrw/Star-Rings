@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+    
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -6,11 +7,6 @@
              mc:Ignorable="d"
              x:Class="Game.Views.CharacterDeletePage"
              Title="{Binding Title}">
-    
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" IconImageSource="icon_cancel.png"/>
-        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" IconImageSource="icon_delete.png"/>
-    </ContentPage.ToolbarItems>
 
     <ScrollView>
         <StackLayout Style="{StaticResource OuterBoxStack}"
@@ -22,12 +18,15 @@
                 <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
                        Style="{StaticResource MessageStyle}"/>
 
-                <Button Text="Yes"
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Yes"
                         Clicked="Delete_Clicked"
-                        HorizontalOptions="Center"
-                        FontSize="Medium"
-                        BorderWidth="1"
-                        BorderColor="black"/>
+                        HorizontalOptions="Center"/>
+
+                    <Button Text="No"
+                        Clicked="Cancel_Clicked"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ScrollView>
