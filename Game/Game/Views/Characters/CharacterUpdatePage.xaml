@@ -9,7 +9,7 @@
              xmlns:local_enum="clr-namespace:Game.Models"
              x:Name="Update"
              x:Class="Game.Views.CharacterUpdatePage"
-             Title="Update">
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
