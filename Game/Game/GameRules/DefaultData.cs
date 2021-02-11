@@ -176,7 +176,7 @@ namespace Game.GameRules
     }
 
     /// <summary>
-    /// Load Characters
+    /// Load Monsters
     /// </summary>
     /// <param name="temp"></param>
     /// <returns></returns>
