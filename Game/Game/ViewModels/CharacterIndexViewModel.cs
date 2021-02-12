@@ -1,26 +1,114 @@
-using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-using Xamarin.Forms;
-
+using Game.GameRules;
 using Game.Models;
 using Game.Views;
-using Game.GameRules;
+
+using Xamarin.Forms;
 
 namespace Game.ViewModels
 {
     /// <summary>
-    /// Index View Model
-    /// Manages the list of data records
+    ///     Character Index View Model
+    ///     Manages the list of character data records
     /// </summary>
     public class CharacterIndexViewModel : BaseViewModel<CharacterModel>
     {
+
+        #region Constructor
+
+        /// <summary>
+        ///     Constructor
+        ///     The constructor subscribes message listeners for crudi operations
+        /// </summary>
+        public CharacterIndexViewModel()
+        {
+            Title = "Characters";
+
+            #region Messages
+
+            // Register the Create Message
+            MessagingCenter.Subscribe<CharacterCreatePage, CharacterModel>(this, "Create", async (obj, data) =>
+                                                                               await CreateAsync(data));
+
+            // Register the Update Message
+            MessagingCenter.Subscribe<CharacterUpdatePage, CharacterModel>(this, "Update", async (obj, data) =>
+            {
+                // Have the character update itself
+                data.Update(data);
+
+                await UpdateAsync(data);
+            });
+
+            // Register the Delete Message
+            MessagingCenter.Subscribe<CharacterDeletePage, CharacterModel>(this, "Delete", async (obj, data) =>
+                                                                               await DeleteAsync(data));
+
+            // Register the set data source message
+            MessagingCenter.Subscribe<AboutPage, int>(this, "SetDataSource", async (obj, data) =>
+                                                          await SetDataSource(data));
+
+            // Register the wipe data list message
+            MessagingCenter.Subscribe<AboutPage, bool>(this, "WipeDataList", async (obj, data) =>
+                                                           await WipeDataListAsync());
+
+            #endregion Messages
+        }
+
+        #endregion Constructor
+
+        #region DataOperations_CRUDi
+
+        /// <summary>
+        ///     Load the Default Data
+        /// </summary>
+        /// <returns></returns>
+        public override List<CharacterModel> GetDefaultData() => DefaultData.LoadData(new CharacterModel());
+
+        #endregion DataOperations_CRUDi
+
+        #region SortDataSet
+
+        /// <summary>
+        ///     The Sort Order for the ScoreModel
+        /// </summary>
+        /// <param name="dataset"></param>
+        /// <returns></returns>
+        public override List<CharacterModel> SortDataset(List<CharacterModel> dataset) =>
+            dataset.OrderBy(a => a.Name)
+                   .ThenBy(a => a.Description)
+                   .ToList();
+
+        #endregion SortDataSet
+
+        /// <summary>
+        ///     Returns the character passed in
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public override CharacterModel CheckIfExists(CharacterModel data)
+        {
+            if (data == null)
+            {
+                // it's not a match, return false;
+                return null;
+            }
+
+            // This will walk the Scores and find if there is one that is the same.
+            // If so, it returns the Score...
+            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
+                                                     a.Description == data.Description);
+
+            return myList;
+        }
+
         #region Singleton
 
-        // Make this a singleton so it only exist one time because holds all the data records in memory
+        // Make this a singleton so it only exist one time because it holds all
+        // the character data records in memory
         private static volatile CharacterIndexViewModel instance;
-        private static readonly object syncRoot = new Object();
+        private static readonly object                  syncRoot = new object();
 
         public static CharacterIndexViewModel Instance
         {
@@ -43,97 +131,5 @@ namespace Game.ViewModels
         }
 
         #endregion Singleton
-
-        #region Constructor
-
-        /// <summary>
-        /// Constructor
-        /// 
-        /// The constructor subscribes message listeners for crudi operations
-        /// </summary>
-        public CharacterIndexViewModel()
-        {
-            Title = "Characters";
-
-            #region Messages
-
-            // Register the Create Message
-            MessagingCenter.Subscribe<CharacterCreatePage, CharacterModel>(this, "Create", async (obj, data) =>
-            {
-                await CreateAsync(data as CharacterModel);
-            });
-
-            // Register the Update Message
-            MessagingCenter.Subscribe<CharacterUpdatePage, CharacterModel>(this, "Update", async (obj, data) =>
-            {
-                // Have the character update itself
-                data.Update(data);
-
-                await UpdateAsync(data as CharacterModel);
-            });
-
-            // Register the Delete Message
-            MessagingCenter.Subscribe<CharacterDeletePage, CharacterModel>(this, "Delete", async (obj, data) =>
-            {
-                await DeleteAsync(data as CharacterModel);
-            });
-
-            #endregion Messages
-        }
-
-        #endregion Constructor
-        
-        #region DataOperations_CRUDi
-
-        /// <summary>
-        /// Returns the Score passed in
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public CharacterModel CheckIfCharacterExists(CharacterModel data)
-        {
-            // This will walk the Scores and find if there is one that is the same.
-            // If so, it returns the Score...
-
-            var myList = Dataset.Where(a =>
-                                        a.Name == data.Name)
-                                        .FirstOrDefault();
-
-            if (myList == null)
-            {
-                // it's not a match, return false;
-                return null;
-            }
-
-            return myList;
-        }
-
-        /// <summary>
-        /// Load the Default Data
-        /// </summary>
-        /// <returns></returns>
-        public override List<CharacterModel> GetDefaultData() 
-        {
-            return DefaultData.LoadData(new CharacterModel());
-        }
-
-        #endregion DataOperations_CRUDi
-
-        #region SortDataSet
-
-        /// <summary>
-        /// The Sort Order for the ScoreModel
-        /// </summary>
-        /// <param name="dataset"></param>
-        /// <returns></returns>
-        public override List<CharacterModel> SortDataset(List<CharacterModel> dataset)
-        {
-            return dataset
-                    .OrderBy(a => a.Name)
-                    .ThenBy(a => a.Description)
-                    .ToList();
-        }
-
-        #endregion SortDataSet
     }
 }
