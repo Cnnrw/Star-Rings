@@ -1,48 +1,45 @@
 using System;
 using System.ComponentModel;
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 using Game.Models;
 using Game.ViewModels;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
-    /// Index Page
+    ///     Character Index Page
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-    [DesignTimeVisible(false)] 
+    [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterIndexPage : ContentPage
     {
-        // The view model, used for data binding
-        readonly CharacterIndexViewModel ViewModel = CharacterIndexViewModel.Instance;
+        private readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
 
         // Empty Constructor for UTs
         public CharacterIndexPage(bool UnitTest) { }
 
         /// <summary>
-        /// Constructor for Index Page
-        /// 
-        /// Get the CharacterIndexView Model
+        ///     Constructor for Index Page
+        ///     Get the CharacterIndexView Model
         /// </summary>
         public CharacterIndexPage()
         {
             InitializeComponent();
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
 
         /// <summary>
-        /// The row selected from the list
+        ///     The row selected from the list
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            CharacterModel data = args.SelectedItem as CharacterModel;
+            CharacterModel data = (CharacterModel)args.SelectedItem;
             if (data == null)
             {
                 return;
@@ -56,17 +53,15 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Call to Add a new record
+        ///     Call to Add a new record
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void AddCharacter_Clicked(object sender, EventArgs e)
-        {
+        private async void AddCharacter_Clicked(object sender, EventArgs e) =>
             await Navigation.PushModalAsync(new NavigationPage(new CharacterCreatePage()));
-        }
 
         /// <summary>
-        /// Refresh the list on page appearing
+        ///     Refresh the list on page appearing
         /// </summary>
         protected override void OnAppearing()
         {
@@ -75,18 +70,18 @@ namespace Game.Views
             BindingContext = null;
 
             // If no data, then set it for needing refresh
-            if (ViewModel.Dataset.Count == 0)
+            if (_viewModel.Dataset.Count == 0)
             {
-                ViewModel.SetNeedsRefresh(true);
+                _viewModel.SetNeedsRefresh(true);
             }
 
             // If the needs Refresh flag is set update it
-            if (ViewModel.NeedsRefresh())
+            if (_viewModel.NeedsRefresh())
             {
-                ViewModel.LoadDatasetCommand.Execute(null);
+                _viewModel.LoadDatasetCommand.Execute(null);
             }
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
     }
 }
