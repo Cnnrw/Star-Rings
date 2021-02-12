@@ -26,17 +26,22 @@
                     <StackLayout>
                         <Image Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
-                               HorizontalOptions="CenterAndExpand" />
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Icon"
+                               Style="{StaticResource LabelStyle}"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelStyle}"/>
+                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}"/>
+
+                        <Label Text="Description" Style="{StaticResource LabelStyle}"/>
+                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}"/>
+
+                        <Label Text="Battle location"
+                               Style="{StaticResource LabelStyle}"/>
                         <Picker x:Name="BattleLocationPicker"
                                 ItemsSource="{x:Static local_enum:BattleLocationEnumHelper.GetListBattleLocations}"
                                 SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Text="Name" Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
-
-                        <Label Text="Description" Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}" />
                     </StackLayout>
                 </StackLayout>
 
