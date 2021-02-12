@@ -1,27 +1,23 @@
-using System.Collections.Generic;
-
 using Game.GameRules;
 
 namespace Game.Models
 {
     /// <summary>
-    /// Characters
-    /// 
-    /// Derive from BasePlayerModel
+    ///     Characters
+    ///     Derive from BasePlayerModel
     /// </summary>
     public class CharacterModel : BasePlayerModel<CharacterModel>
     {
         /// <summary>
-        /// Default character
-        /// 
-        /// Gets a type, guid, name and description
+        ///     Default character
+        ///     Gets a type, guid, name and description
         /// </summary>
         public CharacterModel()
         {
             PlayerType = PlayerTypeEnum.Character;
             Guid = Id;
             Name = "Crewmember";
-            Description = "A crewmember aboard the Millenium Falcon";
+            Description = "A crewmember aboard the Millennium Falcon";
             Level = 1;
             MaxHealth = 1;
             Attack = 1;
@@ -39,17 +35,14 @@ namespace Game.Models
         /// Create a copy
         /// </summary>
         /// <param name="data"></param>
-        public CharacterModel(CharacterModel data)
-        {
-            Update(data);
-        }
+        public CharacterModel(CharacterModel data) => Update(data);
 
         /// <summary>
-        /// Update
+        ///     Update
         /// </summary>
         /// <param name="newData"></param>
         /// <returns></returns>
-        public override bool Update(CharacterModel newData)
+        public sealed override bool Update(CharacterModel newData)
         {
             if (newData == null)
             {
@@ -90,7 +83,7 @@ namespace Game.Models
         }
 
         /// <summary>
-        /// Helper to combine the attributes into a single line, to make it easier to display the item as a string
+        ///     Helper to combine the attributes into a single line, to make it easier to display the item as a string
         /// </summary>
         /// <returns></returns>
         public override string FormatOutput()
