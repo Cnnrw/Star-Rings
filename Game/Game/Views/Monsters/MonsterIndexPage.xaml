@@ -36,6 +36,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
 
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
@@ -45,6 +47,14 @@
 
                                 <Label Grid.Column="1" Grid.Row="0"
                                        Text="{Binding Name}"
+                                       Style="{StaticResource ListStyle}"/>
+
+                                <Label Grid.Column="1" Grid.Row="1"
+                                       Text="{Binding Description}"
+                                       Style="{StaticResource ListStyle}"/>
+
+                                <Label Grid.Column="1" Grid.Row="2"
+                                       Text="{Binding BattleLocation}"
                                        Style="{StaticResource ListStyle}"/>
                             </Grid>
                         </ViewCell>
