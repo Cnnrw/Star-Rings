@@ -1,4 +1,4 @@
-﻿using Game.Models;
+using Game.Models;
 using Game.ViewModels;
 
 using System;
@@ -53,8 +53,15 @@ namespace Game.Views
                 ViewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
             }
 
-            MessagingCenter.Send(this, "Create", ViewModel.Data);
-            await Navigation.PopModalAsync();
+            if (ViewModel.Data.Name.Length == 0)
+            {
+                await DisplayAlert("Hold up!", "Please give your item a name", "OK");
+            }
+            else
+            {
+                MessagingCenter.Send(this, "Create", ViewModel.Data);
+                await Navigation.PopModalAsync();
+            }
         }
 
         /// <summary>
