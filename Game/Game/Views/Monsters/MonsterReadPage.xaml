@@ -41,6 +41,8 @@
                                 <StackLayout>
                                     <Label Text="Location:"
                                            Style="{StaticResource LabelStyle}"/>
+                                    <Label Text="{Binding Data.BattleLocation}"
+                                           Style="{StaticResource ValueStyle}"/>
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
