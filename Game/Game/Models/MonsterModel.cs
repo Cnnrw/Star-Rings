@@ -9,6 +9,9 @@ namespace Game.Models
     /// </summary>
     public class MonsterModel : BasePlayerModel<MonsterModel>
     {
+        // The location the Monster can appear in
+        public BattleLocationEnum BattleLocation { get; set; } = BattleLocationEnum.Unknown;
+
         /// <summary>
         /// Set Type to Monster
         /// 
