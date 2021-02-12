@@ -42,6 +42,8 @@ namespace Game.Views
             _viewModel.Title = _viewModel.Data.Name;
 
             BindingContext = _viewModel;
+
+            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
         }
 
         /// <summary>

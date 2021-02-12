@@ -5,12 +5,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:local_helpers="clr-namespace:Game.Helpers"
+             xmlns:local_enum="clr-namespace:Game.Models"
              x:Name="Create"
              x:Class="Game.Views.MonsterCreatePage"
              Title="Create Monster">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <local_helpers:StringEnumConverter x:Key="StringToEnum"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -24,7 +27,9 @@
                         <Image Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
-
+                        <Picker x:Name="BattleLocationPicker"
+                                ItemsSource="{x:Static local_enum:BattleLocationEnumHelper.GetListBattleLocations}"
+                                SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Name" Style="{StaticResource LabelStyle}" />

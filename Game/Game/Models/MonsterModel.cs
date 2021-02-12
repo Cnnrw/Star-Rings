@@ -10,7 +10,7 @@ namespace Game.Models
     public class MonsterModel : BasePlayerModel<MonsterModel>
     {
         // The location the Monster can appear in
-        public BattleLocationEnum BattleLocation { get; set; } = BattleLocationEnum.Unknown;
+        public BattleLocationEnum BattleLocation { get; set; } = BattleLocationEnum.Mordor;
 
         /// <summary>
         /// Set Type to Monster
@@ -32,6 +32,8 @@ namespace Game.Models
 
             // Default to unknown, which is no special job
             Job = CharacterJobEnum.Unknown;
+
+            BattleLocation = BattleLocationEnum.Mordor;
         }
 
         /// <summary>
@@ -83,6 +85,7 @@ namespace Game.Models
             UniqueItem = newData.UniqueItem;
 
             Job = newData.Job;
+            BattleLocation = newData.BattleLocation;
 
             return true;
         }

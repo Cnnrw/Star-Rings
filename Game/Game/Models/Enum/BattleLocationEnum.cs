@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Game.Models
 {
     /// <summary>
@@ -65,5 +69,37 @@ namespace Game.Models
 
             return Result;
         }
+    }
+
+    /// <summary>
+    /// Helper for Battle Locations
+    /// </summary>
+    public static class BattleLocationEnumHelper
+    {
+        /// <summary>
+        /// Gets the list of Battle Locations.
+        /// Does not include the Unknown Battle Location.
+        /// </summary>
+        public static List<string> GetListBattleLocations
+        {
+            get
+            {
+                var myList = Enum.GetNames(typeof(BattleLocationEnum)).ToList();
+                var myReturn = myList.Where(a =>
+                        a.ToString() != BattleLocationEnum.Unknown.ToString()
+                    )
+                    .OrderBy(a => a)
+                    .ToList();
+                return myReturn;
+            }
+        }
+
+        /// <summary>
+        /// Given the string for an enum, return its value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static BattleLocationEnum ConvertStringToEnum(string value) =>
+            (BattleLocationEnum)Enum.Parse(typeof(BattleLocationEnum), value);
     }
 }
