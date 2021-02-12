@@ -5,10 +5,18 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:local_helpers="clr-namespace:Game.Helpers"
+             xmlns:local_enum="clr-namespace:Game.Models"
              x:Name="Update"
              x:Class="Game.Views.MonsterUpdatePage"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local_helpers:StringEnumConverter x:Key="StringToEnum"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{StaticResource OuterBoxStack}"
@@ -19,14 +27,21 @@
                         <Image Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
-
+                        <Label Text="Icon"
+                               Style="{StaticResource LabelStyle}"/>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="Name" Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
+                        <Label Text="Name" Style="{StaticResource LabelStyle}"/>
+                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}"/>
 
-                        <Label Text="Description" Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}" />
+                        <Label Text="Description" Style="{StaticResource LabelStyle}"/>
+                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}"/>
+
+                        <Label Text="Battle location"
+                               Style="{StaticResource LabelStyle}"/>
+                        <Picker x:Name="BattleLocationPicker"
+                                ItemsSource="{x:Static local_enum:BattleLocationEnumHelper.GetListBattleLocations}"
+                                SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
                     </StackLayout>
                 </StackLayout>
 

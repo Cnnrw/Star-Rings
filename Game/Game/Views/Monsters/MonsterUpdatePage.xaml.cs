@@ -32,7 +32,7 @@ namespace Game.Views
 
             this.ViewModel.Title = "Update " + data.Title;
 
-            // DifficultyPicker.SelectedItem = ViewModel.Data.Difficulty.ToMessage();
+            BattleLocationPicker.SelectedItem = ViewModel.Data.BattleLocation.ToString();
         }
 
         private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
