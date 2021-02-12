@@ -53,6 +53,24 @@ namespace Game.ViewModels
         }
 
         #endregion PropertyChanges
+
+        #region Constructor
+
+        /// <summary>
+        ///     Initialize the ViewModel
+        ///     Sets the collection Dataset
+        ///     Sets the Load command
+        ///     Sets the default data source
+        /// </summary>
+        public async void Initialize()
+        {
+            Dataset = new ObservableCollection<T>();
+            LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
+
+            await SetDataSource(CurrentDataSource); // Set to Mock to start with
+        }
+
+        #endregion Constructor
         #region Attributes
 
         // The Mock DataStore
@@ -99,24 +117,6 @@ namespace Game.ViewModels
         }
 
         #endregion Attributes
-
-        #region Constructor
-
-        /// <summary>
-        ///     Initialize the ViewModel
-        ///     Sets the collection Dataset
-        ///     Sets the Load command
-        ///     Sets the default data source
-        /// </summary>
-        public async void Initialize()
-        {
-            Dataset = new ObservableCollection<T>();
-            LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
-
-            await SetDataSource(CurrentDataSource); // Set to Mock to start with
-        }
-
-        #endregion Constructor
 
         #region DataSourceManagement
 
@@ -196,7 +196,6 @@ namespace Game.ViewModels
         ///     Command that Loads the Data
         /// </summary>
         /// <returns></returns>
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -266,7 +265,6 @@ namespace Game.ViewModels
             return false;
         }
 
-
         /// <summary>
         ///     Returns the needs refresh value
         /// </summary>
@@ -282,7 +280,6 @@ namespace Game.ViewModels
         /// <summary>
         ///     Force data to refresh
         /// </summary>
-        [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "<Pending>")]
         public void ForceDataRefresh()
         {
             // Reset
@@ -303,7 +300,7 @@ namespace Game.ViewModels
         ///     Then the helper will call to the BaseView to wipe just its data
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> WipeDataListAsync()
+        protected async Task<bool> WipeDataListAsync()
         {
             var result = await DataSetsHelper.WipeDataInSequence();
 
@@ -438,9 +435,8 @@ namespace Game.ViewModels
             // This will walk the items and find if there is one that is the same.
             // If so, it returns the item...
 
-            var myList = Dataset.Where(a =>
-                                           ((BaseModel<T>)(object)a).Name == ((BaseModel<T>)(object)data).Name)
-                                .FirstOrDefault();
+            var myList =
+                Dataset.FirstOrDefault(a => ((BaseModel<T>)(object)a).Name == ((BaseModel<T>)(object)data).Name);
 
             if (myList == null)
             {
