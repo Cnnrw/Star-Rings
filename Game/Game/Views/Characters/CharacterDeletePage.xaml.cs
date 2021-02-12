@@ -1,65 +1,65 @@
 using System;
 using System.ComponentModel;
+
+using Game.Models;
+using Game.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using Game.ViewModels;
-using Game.Models;
 
 namespace Game.Views
 {
     /// <summary>
-    /// The Read Page
+    ///     Character Read Page
+    ///     Shows a detailed view of a character
     /// </summary>
-    [DesignTimeVisible(false)] 
+    [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterDeletePage : ContentPage
     {
-        // View Model for Item
-        readonly GenericViewModel<CharacterModel> viewModel;
+        private readonly GenericViewModel<CharacterModel> _viewModel;
 
         // Empty Constructor for UTs
-        public CharacterDeletePage(bool UnitTest) { }
+        public CharacterDeletePage(bool unitTest) { }
 
-        // Constructor for Delete takes a view model of what to delete
-        public CharacterDeletePage(GenericViewModel<CharacterModel> data)
+        /// <summary>
+        ///     CharacterDeletePage Constructor
+        ///     Receives ViewModel of the character to delete
+        /// </summary>
+        /// <param name="character"></param>
+        public CharacterDeletePage(GenericViewModel<CharacterModel> character)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = data;
+            BindingContext = _viewModel = character;
 
-            this.viewModel.Title = "Delete " + data.Title;
+            _viewModel.Title = "Delete " + character.Title;
         }
 
         /// <summary>
-        /// Save calls to Update
+        ///     Save calls to Update
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Delete_Clicked(object sender, EventArgs e)
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "Delete", viewModel.Data);
+            MessagingCenter.Send(this, "Delete", _viewModel.Data);
             await Navigation.PopModalAsync();
         }
 
         /// <summary>
-        /// Cancel and close this page
+        ///     Cancel and close this page
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
-        /// Trap the Back Button on the Phone
+        ///     Trap the Back Button on the Phone
         /// </summary>
         /// <returns></returns>
-        protected override bool OnBackButtonPressed()
-        {
-            // Add your code here...
-            return true;
-        }
+        protected override bool OnBackButtonPressed() =>
+            // TODO: Add your code here...
+            true;
     }
 }
