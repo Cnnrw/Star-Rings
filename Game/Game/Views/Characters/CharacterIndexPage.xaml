@@ -1,55 +1,61 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage Title="{Binding Title}"
+             x:Name="BrowseItemsPage"
+             x:Class="Game.Views.CharacterIndexPage"
+             mc:Ignorable="d"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Name="BrowseCharactersPage"
-             x:Class="Game.Views.CharacterIndexPage"
-             Title="Character List">
+             xmlns:viewModel="clr-namespace:Game.ViewModels;assembly=Game">
+
+    <ContentPage.BindingContext>
+        <viewModel:CharacterIndexViewModel/>
+    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" IconImageSource="icon_add.png"/>
+        <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" IconImageSource="icon_add.png" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout Style="{StaticResource OuterBoxStack}">
-            <ListView x:Name="CharactersListView" 
-                    ItemsSource="{Binding Dataset}"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    RefreshCommand="{Binding LoadItemsCommand}"
-                    CachingStrategy="RecycleElement"
-                    ItemSelected="OnItemSelected"
-                    HasUnevenRows="true"
-                    Margin="5,0,5,0"
-                    RowHeight="80"
-                    >
-                
+            <ListView x:Name="CharactersListView"
+                      ItemsSource="{Binding Dataset}"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      RefreshCommand="{Binding LoadDatasetCommand}"
+                      CachingStrategy="RecycleElement"
+                      ItemSelected="OnItemSelected"
+                      HasUnevenRows="true"
+                      Margin="5,0,5,0"
+                      RowHeight="80">
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid ColumnSpacing="5" RowSpacing="1">
+                            <Grid ColumnSpacing="5"
+                                  RowSpacing="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
 
                                 <Image Grid.Column="0" Grid.Row="0"
                                        Source="{Binding ImageURI}"
                                        Style="{StaticResource ImageMediumStyle}"
-                                       VerticalOptions="CenterAndExpand"/>
+                                       VerticalOptions="CenterAndExpand" />
 
                                 <StackLayout Grid.Column="1" Grid.Row="0"
                                              Orientation="Vertical">
                                     <Label Text="{Binding Name}"
-                                           Style="{StaticResource ListStyle}"/>
+                                           Style="{StaticResource ListStyle}" />
 
                                     <Label Text="{Binding Level, StringFormat='Level {0}'}"
-                                           Style="{StaticResource ListStyle}"/>
+                                           Style="{StaticResource ListStyle}" />
                                 </StackLayout>
                             </Grid>
                         </ViewCell>
