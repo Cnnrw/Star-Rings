@@ -23,87 +23,182 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Style="{StaticResource OuterBoxStack}"
+        <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+
+            <ScrollView>
+                <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10">
 
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout>
-                        <Image Source="{Binding Data.ImageURI}"
-                               Style="{StaticResource ImageLargeStyle}"
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Image Source="{Binding Data.ImageURI}"
+                               Style="{StaticResource ImageMediumStyle}"
                                HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Icon"
+                            <Label Text="Icon"
                                Style="{StaticResource LabelStyle}"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Text="Name" Style="{StaticResource LabelStyle}"/>
-                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Name" Style="{StaticResource LabelStyle}"/>
+                            <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}"/>
 
-                        <Label Text="Description" Style="{StaticResource LabelStyle}"/>
-                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}"/>
+                            <Label Text="Description" Style="{StaticResource LabelStyle}"/>
+                            <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}"/>
 
-                        <Label Text="Battle location"
+                            <Label Text="Battle location"
                                Style="{StaticResource LabelStyle}"/>
-                        <Picker x:Name="BattleLocationPicker"
+                            <Picker x:Name="BattleLocationPicker"
                                 ItemsSource="{x:Static models:BattleLocationEnumHelper.GetListBattleLocations}"
                                 SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout>
-                        <Label Text="Attack"
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label Text="Attack"
                                Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="AttackValueLabel"
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="AttackValueLabel"
                                    Text="{Binding Data.Attack}" />
-                            <Stepper x:Name="AttackStepper"
+                                <Stepper x:Name="AttackStepper"
                                      Value="{Binding Data.Attack, Mode=TwoWay}"
                                      ValueChanged="OnAttackStepperValueChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="Defense" Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="DefenseValueLabel"
+                        <StackLayout>
+                            <Label Text="Defense" Style="{StaticResource LabelStyle}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="DefenseValueLabel"
                                    Text="{Binding Data.Defense}" />
-                            <Stepper x:Name="DefenseStepper"
+                                <Stepper x:Name="DefenseStepper"
                                      Value="{Binding Data.Defense, Mode=TwoWay}"
                                      ValueChanged="OnDefenseStepperValueChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="Speed" Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="SpeedValueLabel"
+                        <StackLayout>
+                            <Label Text="Speed" Style="{StaticResource LabelStyle}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="SpeedValueLabel"
                                    Text="{Binding Data.Speed}" />
-                            <Stepper x:Name="SpeedStepper"
+                                <Stepper x:Name="SpeedStepper"
                                      Value="{Binding Data.Speed, Mode=TwoWay}"
                                      ValueChanged="OnSpeedStepperValueChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Cancel" Clicked="Cancel_Clicked" />
-                    <Button Text="Save" Clicked="Save_Clicked" />
-                    <Button x:Name="Randomize"
+                    <FlexLayout 
+                        Padding="5"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceAround"
+                        AlignContent="SpaceAround"
+                        x:Name="ItemBox">
+                    </FlexLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Cancel" Clicked="Cancel_Clicked" />
+                        <Button Text="Save" Clicked="Save_Clicked" />
+                        <Button x:Name="Randomize"
                             Text="Random"
                             Clicked="RandomButton_Clicked" />
+                    </StackLayout>
                 </StackLayout>
+            </ScrollView>
+
+            <!--The Item Popup-->
+            <StackLayout x:Name="PopupItemSelector" 
+                 BackgroundColor="{StaticResource PageBackgroundColor}" 
+                 IsVisible="false" 
+                 AbsoluteLayout.LayoutBounds=".5, .5,.5,.5" 
+                 AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout 
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="300"
+                    HeightRequest="300">
+
+                    <Frame
+                        BorderColor="{StaticResource TriciaryTextColor}"
+                        Padding="1">
+
+                        <StackLayout
+                            Style="{StaticResource VerticalStack}"
+                            HorizontalOptions="CenterAndExpand"
+                            Padding="2">
+
+                            <Label x:Name="PopupLocationLabel" Style="{StaticResource PopupItemTextStyle}" />
+                            <Label x:Name="PopupLocationValue" Style="{StaticResource PopupItemTextStyle}" />
+
+                            <ListView x:Name="PopupLocationItemListView" 
+                                CachingStrategy="RecycleElement"
+                                ItemSelected="OnPopupItemSelected"
+                                HasUnevenRows="true"
+                                Margin="5,0,5,0"
+                                RowHeight="80">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid ColumnSpacing="5" RowSpacing="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                    Source="{Binding ImageURI}"
+                                                    Style="{StaticResource ImageSmallStyle}"
+                                                    VerticalOptions="CenterAndExpand"/>
+
+                                                <Label Grid.Column="1" Grid.Row="0"
+                                                    Text="{Binding Name}" 
+                                                    Style="{StaticResource ListStyle}"/>
+
+                                                <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                                    <Label Text="{Binding Attribute}" Style="{StaticResource ListStyle}"/>
+                                                    <Label Text="{Binding Value}" Style="{StaticResource ListStyle}"/>
+                                                </StackLayout>
+
+                                                <Label Grid.Column="1" Grid.Row="2"
+                                                    Text="{Binding Description}" 
+                                                    Style="{StaticResource ListStyle}"
+                                                    FontSize="Micro"/>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <Button x:Name="PopupCloseButton" 
+                                Clicked="ClosePopup_Clicked" 
+                                Text="Close"/>
+                        </StackLayout>
+                    </Frame>
+
+
+
+                </StackLayout>
+
             </StackLayout>
-        </ScrollView>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
 
 
