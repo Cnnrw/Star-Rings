@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
-
+﻿using Game.Helpers;
+using Game.Helpers.Converters;
 using Game.Models;
-using Game.Helpers;
+
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
