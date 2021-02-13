@@ -1,30 +1,37 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage Title="{Binding Title}"
+             x:Class="Game.Views.MonsterDeletePage"
+             mc:Ignorable="d"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Game.Views.MonsterDeletePage"
-             Title="{Binding Title}">
+             xmlns:models="clr-namespace:Game.Models;assembly=Game"
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game">
+
+    <ContentPage.BindingContext>
+        <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel" />
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <StackLayout Style="{StaticResource OuterBoxStack}"
                      Spacing="10">
-            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" />
 
             <StackLayout HorizontalOptions="Center"
                          Padding="20">
                 <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
-                       Style="{StaticResource MessageStyle}"/>
+                       Style="{StaticResource MessageStyle}" />
 
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Yes"
-                        Clicked="Delete_Clicked"
-                        HorizontalOptions="Center"/>
+                            Clicked="Delete_Clicked"
+                            HorizontalOptions="Center" />
 
                     <Button Text="No"
-                        Clicked="Cancel_Clicked"
-                        HorizontalOptions="Center"/>
+                            Clicked="Cancel_Clicked"
+                            HorizontalOptions="Center" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>
