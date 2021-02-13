@@ -16,7 +16,7 @@ namespace Game.Views
     public partial class MonsterUpdatePage : ContentPage
     {
         // The Monster to update
-        private readonly GenericViewModel<MonsterModel> ViewModel = new GenericViewModel<MonsterModel>();
+        private readonly GenericViewModel<MonsterModel> _viewModel;
 
         // Empty Constructor for UTs
         public MonsterUpdatePage(bool unitTest) { }
