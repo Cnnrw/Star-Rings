@@ -4,17 +4,15 @@ namespace Game.Models
 {
     /// <summary>
     /// The Monsters in the Game
-    /// 
+    ///
     /// Derives from BasePlayer Model just like Character
     /// </summary>
     public class MonsterModel : BasePlayerModel<MonsterModel>
     {
-        // The location the Monster can appear in
-        public BattleLocationEnum BattleLocation { get; set; } = BattleLocationEnum.Mordor;
 
         /// <summary>
         /// Set Type to Monster
-        /// 
+        ///
         /// Set Name and Description
         /// </summary>
         public MonsterModel()
@@ -40,17 +38,17 @@ namespace Game.Models
         /// Make a copy
         /// </summary>
         /// <param name="data"></param>
-        public MonsterModel(MonsterModel data)
-        {
-            Update(data);
-        }
+        public MonsterModel(MonsterModel data) => Update(data);
+
+        // The location the Monster can appear in
+        public BattleLocationEnum BattleLocation { get; set; } = BattleLocationEnum.Mordor;
 
         /// <summary>
         /// Update
         /// </summary>
         /// <param name="newData"></param>
         /// <returns></returns>
-        public override bool Update(MonsterModel newData)
+        public sealed override bool Update(MonsterModel newData)
         {
             if (newData == null)
             {
