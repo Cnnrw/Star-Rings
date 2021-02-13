@@ -5,9 +5,12 @@ using Game.ViewModels;
 
 namespace Game.Helpers
 {
-    static public class DataSetsHelper
+    public static class DataSetsHelper
     {
-        static public bool WarmUp()
+
+        private static readonly object WipeLock = new object();
+
+        public static bool WarmUp()
         {
             ScoreIndexViewModel.Instance.GetCurrentDataSource();
             ItemIndexViewModel.Instance.GetCurrentDataSource();
@@ -17,13 +20,11 @@ namespace Game.Helpers
             return true;
         }
 
-        private static readonly object WipeLock = new object();
-
         /// <summary>
         /// Call the Wipe routines in order one by one
         /// </summary>
         /// <returns></returns>
-        static public async Task<bool> WipeDataInSequence()
+        public static async Task<bool> WipeDataInSequence()
         {
             lock (WipeLock)
             {
@@ -33,7 +34,7 @@ namespace Game.Helpers
                     await Task.Delay(100);
                 })).Unwrap();
                 runSyncScore.Wait();
-                
+
 
                 var runSyncItem = Task.Factory.StartNew(new Func<Task>(async () =>
                 {

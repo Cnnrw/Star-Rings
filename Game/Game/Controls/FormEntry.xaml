@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Grid x:Class="Game.Controls.FormEntry"
+      HorizontalOptions="FillAndExpand"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Label x:Name="ControlTitle" FontAttributes="Bold" Grid.Row="0" />
+    <Entry x:Name="ControlEntry" Grid.Row="0" />
+
+</Grid>

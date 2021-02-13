@@ -10,31 +10,22 @@ namespace Game.Helpers
         /// You can control the seed value for Random by passing a value to the constructor
         /// Do that if you want to be able able get the same sequence of Random over and over
         /// </summary>
-        private static Random rnd = new Random();
+        private static readonly Random rnd = new Random();
 
         // Turn on to force Rolls to be non random
-        public static bool ForceRollsToNotRandom = false;
+        public static bool ForceRollsToNotRandom;
 
-        // Holds the random value for the sytem
+        // Holds the random value for the system
         private static int _ForcedRandomValue = 1;
 
         // What number should return for random numbers (1 is good choice...)
-        public static void SetForcedRollValue(int value)
-        {
-            _ForcedRandomValue = value;
-        }
+        public static void SetForcedRollValue(int value) => _ForcedRandomValue = value;
 
         // Turn Random State Off
-        public static void DisableForcedRolls()
-        {
-            ForceRollsToNotRandom = false;
-        }
+        public static void DisableForcedRolls() => ForceRollsToNotRandom = false;
 
         // Turn Random State On
-        public static void EnableForcedRolls()
-        {
-            ForceRollsToNotRandom = true;
-        }
+        public static void EnableForcedRolls() => ForceRollsToNotRandom = true;
 
         /// <summary>
         /// Method to Roll A Random Dice, a Set number of times

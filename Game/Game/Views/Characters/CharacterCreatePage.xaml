@@ -8,8 +8,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:localHelpers="clr-namespace:Game.Helpers"
-             xmlns:styles="clr-namespace:Game.Styles;assembly=Game"
+             xmlns:converters="clr-namespace:Game.Helpers.Converters;assembly=Game"
+             xmlns:controls="clr-namespace:Game.Controls;assembly=Game"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
              xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game" >
 
@@ -19,7 +19,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <localHelpers:StringEnumConverter x:Key="StringToEnum" />
+            <converters:StringEnumConverter x:Key="StringToEnum" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -41,12 +41,15 @@
                     </StackLayout>
 
                     <StackLayout>
-                        <StackLayout>
-                            <Label Text="Name"
-                                   Style="{StaticResource LabelStyle}" />
-                            <Entry Text="{Binding Data.Name}"
-                                   Style="{StaticResource EntryStyle}" />
-                        </StackLayout>
+                        <!-- <StackLayout> -->
+                        <!--     <Label Text="Name" -->
+                        <!--            Style="{StaticResource LabelStyle}" /> -->
+                        <!--     <Entry Text="{Binding Data.Name}" -->
+                        <!--            Style="{StaticResource EntryStyle}" /> -->
+                        <!-- </StackLayout> -->
+
+                        <controls:FormEntry Title="Name"
+                                            Text="{Binding Data.Name}" />
 
                         <StackLayout>
                             <Label Text="Description"
