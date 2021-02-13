@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Title="{Binding Title}"
+             x:Class="Game.Views.MonsterReadPage"
+             x:Name="MonsterRead"
+             mc:Ignorable="d"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Game.Views.MonsterReadPage"
-             Title="{Binding Title}">
+             xmlns:models="clr-namespace:Game.Models;assembly=Game"
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game">
+
+    <ContentPage.BindingContext>
+        <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel" />
+    </ContentPage.BindingContext>
+
 
     <AbsoluteLayout HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand">
         <StackLayout Style="{StaticResource VerticalStack}"
                      AbsoluteLayout.LayoutBounds="1,1,1,1"
                      AbsoluteLayout.LayoutFlags="All">
-            <ScrollView x:Name="ScrollView">
+            <ScrollView>
                 <StackLayout Style="{StaticResource OuterBoxStack}">
+
                     <StackLayout Style="{StaticResource VerticalStack}">
+
                         <StackLayout Orientation="Horizontal">
+
                             <StackLayout>
                                 <Image Source="{Binding Data.ImageURI}"
                                        Style="{StaticResource ImageLargeStyle}"
-                                       HorizontalOptions="CenterAndExpand"/>
+                                       HorizontalOptions="CenterAndExpand" />
                             </StackLayout>
 
                             <StackLayout>
                                 <StackLayout>
                                     <Label Text="Name:"
-                                           Style="{StaticResource LabelStyle}"/>
+                                           Style="{StaticResource LabelStyle}" />
                                     <Label Text="{Binding Data.Name}"
-                                           Style="{StaticResource ValueStyle}"/>
+                                           Style="{StaticResource ValueStyle}" />
                                 </StackLayout>
 
                                 <StackLayout>
                                     <Label Text="Description:"
-                                           Style="{StaticResource LabelStyle}"/>
+                                           Style="{StaticResource LabelStyle}" />
                                     <Label Text="{Binding Data.Description}"
-                                           Style="{StaticResource ValueStyle}"/>
+                                           Style="{StaticResource ValueStyle}" />
                                 </StackLayout>
 
                                 <StackLayout>
                                     <Label Text="Location:"
-                                           Style="{StaticResource LabelStyle}"/>
+                                           Style="{StaticResource LabelStyle}" />
                                     <Label Text="{Binding Data.BattleLocation}"
-                                           Style="{StaticResource ValueStyle}"/>
+                                           Style="{StaticResource ValueStyle}" />
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
@@ -50,23 +61,23 @@
                         <StackLayout Orientation="Horizontal">
                             <StackLayout>
                                 <Label Text="Attack:"
-                                       Style="{StaticResource LabelStyle}"/>
+                                       Style="{StaticResource LabelStyle}" />
                                 <Label Text="{Binding Data.Attack}"
-                                       Style="{StaticResource ValueStyle}"/>
+                                       Style="{StaticResource ValueStyle}" />
                             </StackLayout>
 
                             <StackLayout>
                                 <Label Text="Defense:"
-                                       Style="{StaticResource LabelStyle}"/>
+                                       Style="{StaticResource LabelStyle}" />
                                 <Label Text="{Binding Data.Defense}"
-                                       Style="{StaticResource ValueStyle}"/>
+                                       Style="{StaticResource ValueStyle}" />
                             </StackLayout>
 
                             <StackLayout>
                                 <Label Text="Speed:"
-                                       Style="{StaticResource LabelStyle}"/>
+                                       Style="{StaticResource LabelStyle}" />
                                 <Label Text="{Binding Data.Speed}"
-                                       Style="{StaticResource ValueStyle}"/>
+                                       Style="{StaticResource ValueStyle}" />
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
@@ -79,9 +90,9 @@
 
                     <StackLayout Orientation="Horizontal">
                         <Button Text="Delete"
-                                Clicked="Delete_Clicked"/>
+                                Clicked="Delete_Clicked" />
                         <Button Text="Update"
-                                Clicked="Update_Clicked"/>
+                                Clicked="Update_Clicked" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
