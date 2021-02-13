@@ -4,6 +4,15 @@ namespace Game.ViewModels
 {
     public class GenericViewModel<T> : BaseViewModel<DefaultModel> where T : class
     {
+        #region Ctors
+
+        /// <summary>
+        ///     Empty GenericViewModel constructor
+        /// </summary>
+        public GenericViewModel()
+
+        {
+        }
 
         /// <summary>
         ///     Constructor takes an existing item and sets
@@ -19,15 +28,13 @@ namespace Game.ViewModels
             Data = data;
         }
 
-        // Generic Constructor
-        public GenericViewModel()
-        {
-        }
+        #endregion
+        #region Properties
 
         /// <summary>
-        ///     The Item Model
+        ///     Data being bound to
         /// </summary>
-        T bindingData { get; set; }
+        private T bindingData { get; set; }
 
         public T Data
         {
@@ -39,5 +46,7 @@ namespace Game.ViewModels
                 bindingData = data;
             }
         }
+
+        #endregion
     }
 }
