@@ -14,7 +14,7 @@ namespace Game.Views
     /// </summary>
     [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : MasterDetailPage
+    public partial class MainPage : FlyoutPage
     {
         // Collection of Navigation Pages
         public readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
@@ -26,7 +26,7 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            MasterBehavior = MasterBehavior.Popover;
+            FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
         }
 
         /// <summary>
