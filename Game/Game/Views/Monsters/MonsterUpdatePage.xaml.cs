@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 
 using Game.GameRules;
 using Game.Models;
@@ -18,7 +16,34 @@ namespace Game.Views
     public partial class MonsterUpdatePage : ContentPage
     {
         // The Monster to update
-        private readonly GenericViewModel<MonsterModel> ViewModel;
+        private readonly GenericViewModel<MonsterModel> _viewModel;
+
+        private void UpdatePageBindingContext()
+        {
+            var data = _viewModel.Data;
+
+            // Clear the Binding and reset
+            BindingContext = null;
+            _viewModel.Data = data;
+            _viewModel.Title = "Update " + data.Name;
+
+            BindingContext = _viewModel;
+
+            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
+        }
+
+        /// <summary>
+        ///     Randomize Monster Values and Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
+            UpdatePageBindingContext();
+        }
+
+        #region Ctors
 
         // Empty Constructor for UTs
         public MonsterUpdatePage(bool unitTest) { }
@@ -30,41 +55,12 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            ViewModel = data;
+            _viewModel = data;
 
             UpdatePageBindingContext();
         }
 
-        /// <summary>
-        /// Redo the Binding to cause a refresh
-        /// </summary>
-        /// <returns></returns>
-        private void UpdatePageBindingContext()
-        {
-            var data = ViewModel.Data;
-
-            // Clear the Binding and reset
-            BindingContext = null;
-            ViewModel.Data = data;
-            ViewModel.Title = "Update " + data.Name;
-
-            BindingContext = ViewModel;
-
-            BattleLocationPicker.SelectedItem = ViewModel.Data.BattleLocation.ToString();
-
-            AddItemsToDisplay();
-        }
-
-        /// <summary>
-        ///     Randomize Monster Values and Items
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RandomButton_Clicked(object sender, EventArgs e)
-        {
-            ViewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
-            UpdatePageBindingContext();
-        }
+        #endregion
 
         #region Steppers
 
@@ -88,13 +84,13 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            if (ViewModel.Data.Name.Length == 0)
+            if (_viewModel.Data.Name.Length == 0)
             {
                 await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
                 return;
             }
 
-            MessagingCenter.Send(this, "Update", ViewModel.Data);
+            MessagingCenter.Send(this, "Update", _viewModel.Data);
             await Navigation.PopModalAsync();
         }
 
