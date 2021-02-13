@@ -28,21 +28,50 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            BindingContext = ViewModel = data;
+            _viewModel = data;
 
-            this.ViewModel.Title = "Update " + data.Title;
-
-            BattleLocationPicker.SelectedItem = ViewModel.Data.BattleLocation.ToString();
+            UpdatePageBindingContext();
         }
 
+        private void UpdatePageBindingContext()
+        {
+            var data = _viewModel.Data;
+
+            // Clear the Binding and reset
+            BindingContext = null;
+            _viewModel.Data = data;
+            _viewModel.Title = "Update " + data.Name;
+
+            BindingContext = _viewModel;
+
+            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
+        }
+
+        /// <summary>
+        ///     Randomize Monster Values and Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
+            UpdatePageBindingContext();
+        }
+
+        #region Steppers
+
         private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            SpeedValueLabel.Text = string.Format("{0}", e.NewValue);
+            SpeedValueLabel.Text = $"{e.NewValue}";
 
         private void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            DefenseValueLabel.Text = string.Format("{0}", e.NewValue);
+            DefenseValueLabel.Text = $"{e.NewValue}";
 
         private void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            AttackValueLabel.Text = string.Format("{0}", e.NewValue);
+            AttackValueLabel.Text = $"{e.NewValue}";
+
+        #endregion
+
+        #region DataCRUDi
 
         /// <summary>
         ///     Save by calling for Update
@@ -51,15 +80,14 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            if (ViewModel.Data.Name.Length == 0)
+            if (_viewModel.Data.Name.Length == 0)
             {
                 await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
+                return;
             }
-            else
-            {
-                MessagingCenter.Send(this, "Update", ViewModel.Data);
-                await Navigation.PopModalAsync();
-            }
+
+            MessagingCenter.Send(this, "Update", _viewModel.Data);
+            await Navigation.PopModalAsync();
         }
 
         /// <summary>
@@ -69,19 +97,6 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
-        /// <summary>
-        ///     Randomize Monster Values and Items
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RandomButton_Clicked(object sender, EventArgs e)
-        {
-            BindingContext = null;
-
-            ViewModel.Data = RandomPlayerHelper.GetRandomMonster(1);
-            ViewModel.Title = ViewModel.Data.Name;
-
-            BindingContext = ViewModel;
-        }
+        #endregion
     }
 }
