@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -104,6 +104,23 @@ namespace Game.GameRules
             List<String> StringList = new List<String> { "Hates Hobbits", "The son of Dvelyn", "Hides in shadows", "One evil monster" };
 
             var result = StringList.ElementAt(DiceHelper.RollDice(1, StringList.Count()) - 1);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get Monster Battle Location
+        /// 
+        /// Return a random BattleLocation
+        /// </summary>
+        /// <returns></returns>
+        public static BattleLocationEnum GetMonsterBattleLocation()
+        {
+            var BattleLocationList = BattleLocationEnumHelper.GetListBattleLocations;
+
+            var RandomBattleLocation = BattleLocationList.ElementAt(DiceHelper.RollDice(1, BattleLocationList.Count()) - 1);
+
+            var result = BattleLocationEnumHelper.ConvertStringToEnum(RandomBattleLocation);
 
             return result;
         }
@@ -225,7 +242,7 @@ namespace Game.GameRules
         }
 
         /// <summary>
-        /// Create Random Character for the battle
+        /// Create Random Monster for the battle
         /// </summary>
         /// <param name="MaxLevel"></param>
         /// <returns></returns>
@@ -245,6 +262,8 @@ namespace Game.GameRules
                 Defense = GetAbilityValue(),
 
                 ImageURI = GetMonsterImage(),
+
+                BattleLocation = GetMonsterBattleLocation(),
 
                 Difficulty = GetMonsterDifficultyValue()
             };
@@ -287,7 +306,6 @@ namespace Game.GameRules
             }
 
             return result;
-            return new MonsterModel();
         }
     }
 }

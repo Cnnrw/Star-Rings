@@ -100,6 +100,20 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
+        private void UpdatePageBindingContext()
+        {
+            var data = _viewModel.Data;
+
+            // Clear the Binding and reset
+            BindingContext = null;
+            _viewModel.Data = data;
+            _viewModel.Title = "Create " + data.Name;
+
+            BindingContext = _viewModel;
+
+            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
+        }
+
         /// <summary>
         ///     Randomize Character Values and Items
         /// </summary>
@@ -107,12 +121,8 @@ namespace Game.Views
         /// <param name="e"></param>
         private void RandomButton_Clicked(object sender, EventArgs e)
         {
-            BindingContext = null;
-
             _viewModel.Data = RandomPlayerHelper.GetRandomMonster(1);
-            _viewModel.Title = _viewModel.Data.Name;
-
-            BindingContext = _viewModel;
+            UpdatePageBindingContext();
         }
     }
 }
