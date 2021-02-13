@@ -60,6 +60,11 @@ namespace Game.ViewModels
                    .ThenBy(a => a.Description)
                    .ToList();
 
+        /// <summary>
+        ///     Returns the monster passed in
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public override MonsterModel CheckIfExists(MonsterModel data)
         {
             if (data == null)
@@ -69,11 +74,10 @@ namespace Game.ViewModels
 
             // This will walk the items and find if there is one that is the same.
             // If so, it returns the item
-            var myList = Dataset.FirstOrDefault(a =>
-                                                    a.Name == data.Name &&
-                                                    a.Description == data.Description);
+            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
+                                                     a.Description == data.Description);
 
-            return myList;
+            return myList ?? null;
         }
 
         #region Singleton
