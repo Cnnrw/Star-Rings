@@ -20,10 +20,10 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource OuterBoxStack}">
 
-            <ListView x:Name="ItemsListView"
+            <ListView x:Name="MonstersListView"
                       ItemsSource="{Binding Dataset}"
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                      RefreshCommand="{Binding LoadItemsCommand}"
+                      RefreshCommand="{Binding LoadDatasetCommand}"
                       CachingStrategy="RecycleElement"
                       ItemSelected="OnItemSelected"
                       HasUnevenRows="true"
