@@ -112,7 +112,6 @@
     </Compile>
     <Compile Update="Common\Styles\DefaultTheme.xaml.cs">
       <DependentUpon>DefaultTheme.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 	
