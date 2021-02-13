@@ -1,4 +1,4 @@
-﻿using Game.Services;
+using Game.Services;
 using Game.Helpers;
 
 namespace Game.Models
@@ -25,10 +25,10 @@ namespace Game.Models
         public int Damage { get; set; } = 0;
 
         // Enum of the different attributes that the item modifies, Items can only modify one item
-        public AttributeEnum Attribute { get; set; } = AttributeEnum.Unknown;
+        public AttributeEnum Attribute { get; set; } = AttributeEnum.Attack;
 
         // Where the Item goes on the character.  Head, Foot etc.
-        public ItemLocationEnum Location { get; set; } = ItemLocationEnum.Unknown;
+        public ItemLocationEnum Location { get; set; } = ItemLocationEnum.PrimaryHand;
 
         // The Value item modifies.  So a ring of Health +3, has a Value of 3
         public int Value { get; set; } = 0;
