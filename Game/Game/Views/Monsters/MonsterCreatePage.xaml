@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Title="Binding Title"
+             x:Class="Game.Views.MonsterCreatePage"
+             x:Name="Create"
+             mc:Ignorable="d"
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:local_helpers="clr-namespace:Game.Helpers"
-             xmlns:local_enum="clr-namespace:Game.Models"
-             x:Name="Create"
-             x:Class="Game.Views.MonsterCreatePage"
-             Title="Create Monster">
+             xmlns:models="clr-namespace:Game.Models;assembly=Game"
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
+             xmlns:localHelpers="clr-namespace:Game.Helpers">
+
+    <ContentPage.BindingContext>
+        <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel"/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local_helpers:StringEnumConverter x:Key="StringToEnum"/>
+            <localHelpers:StringEnumConverter x:Key="StringToEnum"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -40,7 +45,7 @@
                         <Label Text="Battle location"
                                Style="{StaticResource LabelStyle}"/>
                         <Picker x:Name="BattleLocationPicker"
-                                ItemsSource="{x:Static local_enum:BattleLocationEnumHelper.GetListBattleLocations}"
+                                ItemsSource="{x:Static models:BattleLocationEnumHelper.GetListBattleLocations}"
                                 SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
                     </StackLayout>
                 </StackLayout>
