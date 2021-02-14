@@ -29,13 +29,10 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
 
-        App      app;
-        MenuPage page;
+        private App      app;
+        private MenuPage page;
 
         [Test]
         public void MenuPage_Constructor_Default_Should_Pass()
@@ -57,7 +54,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page.RootPage;
+            var result = MenuPage.RootPage;
 
             // Reset
 

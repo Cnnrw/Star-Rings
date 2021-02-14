@@ -50,6 +50,6 @@ namespace Game.Views
             };
         }
 
-        public MainPage RootPage => Application.Current.MainPage as MainPage;
+        public static MainPage RootPage => Application.Current.MainPage as MainPage;
     }
 }
