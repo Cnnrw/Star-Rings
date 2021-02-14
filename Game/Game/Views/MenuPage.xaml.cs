@@ -28,9 +28,9 @@ namespace Game.Views
             var _menuItems = new List<MenuItemModel>
             {
                 new MenuItemModel {Id = MenuItemEnum.Home, Title = "Home"},
-                new MenuItemModel {Id = MenuItemEnum.About, Title = "About"},
                 new MenuItemModel {Id = MenuItemEnum.Village, Title = "Village"},
-                new MenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"}
+                new MenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"},
+                new MenuItemModel {Id = MenuItemEnum.About, Title = "About"}
             };
 
             // Register the ListView for the Menu and the Item Selected call back
