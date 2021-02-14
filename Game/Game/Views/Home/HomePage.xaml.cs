@@ -14,7 +14,13 @@ namespace Game.Views
         /// <summary>
         ///     Constructor
         /// </summary>
-        public HomePage() => InitializeComponent();
+        public HomePage()
+        {
+            InitializeComponent();
+
+            // Remove the nav bar on the home page
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
 
         /// <summary>
         ///     Jump to the Dungeon
