@@ -29,6 +29,8 @@ namespace Game.Models
 
             // Default to Jedi
             Job = CharacterJobEnum.Jedi;
+
+            ImageURI = 
         }
 
         /// <summary>
