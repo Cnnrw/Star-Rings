@@ -17,6 +17,9 @@ namespace Game.Views
         public LandingPage()
         {
             InitializeComponent();
+
+            // Remove the nav bar on the home page
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         /// <summary>
