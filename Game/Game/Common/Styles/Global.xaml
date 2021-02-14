@@ -11,21 +11,12 @@
 
     <!-- Pages -->
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="{StaticResource ViewBackgroundColor}" />
         <Setter Property="BarTextColor" Value="{StaticResource SecondaryTextColor}" />
     </Style>
 
     <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="White" />
-        <Setter Property="Padding" Value="10,10,10,10" />
     </Style>
-
-    <!--<Style TargetType="ContentPage"
-                x:Key="BlockingPanel">
-                <Setter Property="BackgroundColor" Value="{StaticResource BlockingColor}" />
-                <Setter Property="HeightRequest" Value="400" />
-                <Setter Property="WidthRequest" Value="400" />
-            </Style>-->
 
     <!--Global Styles for Views-->
 
@@ -60,8 +51,7 @@
 
     <Style TargetType="Label"
            x:Key="HeaderStyle"
-           BasedOn="{StaticResource LabelBaseStyle}">
-    </Style>
+           BasedOn="{StaticResource LabelBaseStyle}" />
 
     <Style TargetType="Label"
            x:Key="LabelStyle"
@@ -200,8 +190,7 @@
 
     <Style TargetType="Image"
            x:Key="BattleMapPlayerSmallStyle"
-           BasedOn="{StaticResource ImageBattleSmallStyle}">
-    </Style>
+           BasedOn="{StaticResource ImageBattleSmallStyle}" />
 
     <!-- ImageButton -->
     <Style TargetType="ImageButton">
@@ -256,8 +245,7 @@
 
     <Style TargetType="StackLayout"
            x:Key="OuterBoxStack"
-           BasedOn="{StaticResource VerticalStack}">
-    </Style>
+           BasedOn="{StaticResource VerticalStack}" />
 
     <Style TargetType="StackLayout"
            x:Key="CardImageTextBox">
@@ -298,8 +286,7 @@
 
     <Style TargetType="StackLayout"
            x:Key="ScoreCharacterInfoBox"
-           BasedOn="{StaticResource PlayerInfoBox}">
-    </Style>
+           BasedOn="{StaticResource PlayerInfoBox}" />
 
     <Style TargetType="StackLayout"
            x:Key="ScoreMonsterInfoBox"
