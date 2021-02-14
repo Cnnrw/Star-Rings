@@ -136,7 +136,7 @@
   </ItemGroup>
 	
 	<ItemGroup>
-		<SharedImage Include="Common\Assets\StarRingsLogo2.png" BaseSize="100,100" />
+		<SharedImage BaseSize="100,100" Include="Common\Assets\StarRingsLogo2.png" />
 		<SharedImage BaseSize="150,100" Include="Common\Assets\start_button_normal.png" />
 		<SharedImage BaseSize="150,100" Include="Common\Assets\start_button_pressed.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\jedi_icon.png" />

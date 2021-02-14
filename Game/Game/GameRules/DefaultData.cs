@@ -98,13 +98,14 @@ namespace Game.GameRules
         var RightFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
         var LeftFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
 
-        var datalist = new List<CharacterModel>()
+            var datalist = new List<CharacterModel>()
             {
                 new CharacterModel()
                 {
                     Name = "Luke Skywalker",
                     Description = "A Jedi master from Tatooine",
                     Job = CharacterJobEnum.Jedi,
+                    ImageURI = "jedi_icon.png",
                     Level = 7,
                     MaxHealth = 8,
                     Attack = 5,
@@ -116,6 +117,7 @@ namespace Game.GameRules
                     Name = "Chewbacca",
                     Description = "A Wookie warrior from Kashyyyk",
                     Job = CharacterJobEnum.Wookie,
+                    ImageURI = "wookie_icon.png",
                     Level = 6,
                     MaxHealth = 7,
                     Attack = 6,
@@ -127,6 +129,7 @@ namespace Game.GameRules
                     Name = "C3PO",
                     Description = "Fluent in over 6 million forms of communication",
                     Job = CharacterJobEnum.ProtocolDroid,
+                    ImageURI = "protocol_droid_icon.png",
                     Level = 4,
                     MaxHealth = 2,
                     Attack = 2,
