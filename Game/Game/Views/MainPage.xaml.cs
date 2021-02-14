@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 
+using Game.Controls;
 using Game.Models;
 
 using Xamarin.Forms;
@@ -17,7 +18,7 @@ namespace Game.Views
     public partial class MainPage : FlyoutPage
     {
         // Collection of Navigation Pages
-        public readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        public readonly Dictionary<int, CustomNavigationPage> MenuPages = new Dictionary<int, CustomNavigationPage>();
 
         /// <summary>
         ///     Constructor setups the behavior and menu pages
@@ -42,19 +43,19 @@ namespace Game.Views
                 switch (id)
                 {
                     case (int)MenuItemEnum.Village:
-                        MenuPages.Add(id, new NavigationPage(new VillagePage()));
+                        MenuPages.Add(id, new CustomNavigationPage(new VillagePage()));
                         break;
 
                     case (int)MenuItemEnum.Battle:
-                        MenuPages.Add(id, new NavigationPage(new PickCharactersPage()));
+                        MenuPages.Add(id, new CustomNavigationPage(new PickCharactersPage()));
                         break;
 
                     case (int)MenuItemEnum.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        MenuPages.Add(id, new CustomNavigationPage(new AboutPage()));
                         break;
 
                     case (int)MenuItemEnum.Home:
-                        MenuPages.Add(id, new NavigationPage(new HomePage()));
+                        MenuPages.Add(id, new CustomNavigationPage(new HomePage()));
                         break;
                 }
             }
