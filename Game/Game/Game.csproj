@@ -9,7 +9,7 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
@@ -17,7 +17,7 @@
 		<None Remove="Common\Assets\StarRingsLogo2.png" />
 		<None Remove="Common\Assets\magic_tree.gif" />
 	</ItemGroup>
-	
+
 	<!-- Fonts -->
 	<ItemGroup>
 		<EmbeddedResource Include="Common\Fonts\gamefont.ttf" />
@@ -26,23 +26,35 @@
 	</ItemGroup>
 
 	<!-- NuGet Packages -->
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="Resizetizer.NT" Version="0.2.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\Battle\PickItemsPage.xaml.cs">
-      <DependentUpon>PickItemsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Battle\BattleSettingsPage.xaml.cs">
-      <DependentUpon>BattleSettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Battle\RoundOverPage.xaml.cs">
-      <DependentUpon>RoundOverPage.xaml</DependentUpon>
+	<ItemGroup>
+		<EmbeddedResource Update="Controls\BasicItemView.xaml">
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Controls\BasicItemView.xaml">
+			<Generator>Compile</Generator>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Views\Battle\PickItemsPage.xaml.cs">
+			<DependentUpon>PickItemsPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Battle\BattleSettingsPage.xaml.cs">
+			<DependentUpon>BattleSettingsPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Battle\RoundOverPage.xaml.cs">
+			<DependentUpon>RoundOverPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Battle\NewRoundPage.xaml.cs">
       <DependentUpon>NewRoundPage.xaml</DependentUpon>
@@ -114,9 +126,9 @@
       <DependentUpon>DefaultTheme.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-	
+
 	<ItemGroup>
 		<SharedImage Include="Common\Assets\StarRingsLogo2.png" BaseSize="100,100" />
 	</ItemGroup>
-	
+
 </Project>
