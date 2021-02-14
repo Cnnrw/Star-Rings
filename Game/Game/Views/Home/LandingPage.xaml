@@ -4,13 +4,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.LandingPage">
 
-    <AbsoluteLayout VerticalOptions="FillAndExpand">
+    <AbsoluteLayout x:Name="ViewLayout">
         <Image Source="magic_tree.gif"
                IsAnimationPlaying="True"
                Aspect="AspectFill"
                AbsoluteLayout.LayoutBounds="0,0,1,1"
                AbsoluteLayout.LayoutFlags="All" />
-        <!--                 <Button Text="Start" -->
-        <!--                         Clicked="StartButton_Clicked"/> -->
+        <AbsoluteLayout x:Name="StartButton"
+                        AbsoluteLayout.LayoutBounds="1,1,1,.25"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Margin="10,10,10,10">
+            <Button Text="Start"
+                    Clicked="StartButton_Clicked"
+                    AbsoluteLayout.LayoutBounds="1,1,1,1"
+                    AbsoluteLayout.LayoutFlags="All"/>
+        </AbsoluteLayout>
     </AbsoluteLayout>
 </ContentPage>
