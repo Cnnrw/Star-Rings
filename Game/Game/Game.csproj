@@ -16,6 +16,8 @@
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
 		<None Remove="Common\Assets\StarRingsLogo2.png" />
 		<None Remove="Common\Assets\magic_tree.gif" />
+		<None Remove="Common\Assets\StartButton_background.png" />
+	
 	</ItemGroup>
 
 	<!-- Fonts -->
@@ -126,9 +128,10 @@
       <DependentUpon>DefaultTheme.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
+	
 	<ItemGroup>
 		<SharedImage Include="Common\Assets\StarRingsLogo2.png" BaseSize="100,100" />
+		<SharedImage BaseSize="100,200" Include="Common\Assets\StartButton_background.png" />
 	</ItemGroup>
 
 </Project>
