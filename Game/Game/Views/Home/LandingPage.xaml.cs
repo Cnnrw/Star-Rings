@@ -28,5 +28,19 @@ namespace Game.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public async void StartButton_Clicked(object sender, EventArgs e) => await Navigation.PushAsync(new HomePage());
+
+        private void StartButton_OnPressed(object sender, EventArgs e)
+        {
+            StartButton.Source = "start_button_pressed.png";
+            StartButton.Scale = .95;
+        }
+
+        private async void StartButton_OnReleased(object sender, EventArgs e)
+        {
+            StartButton.Source = "start_button_normal.png";
+            StartButton.Scale = 1;
+
+            await Navigation.PushAsync(new HomePage());
+        }
     }
 }

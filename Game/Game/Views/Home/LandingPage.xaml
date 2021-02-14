@@ -4,40 +4,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.LandingPage">
 
-    <AbsoluteLayout x:Name="ViewLayout">
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+
         <Image Source="magic_tree.gif"
                IsAnimationPlaying="True"
                Aspect="AspectFill"
                AbsoluteLayout.LayoutBounds="0,0,1,1"
                AbsoluteLayout.LayoutFlags="All" />
-        <AbsoluteLayout x:Name="StartButton"
-                        AbsoluteLayout.LayoutBounds="1,1,1,.25"
-                        AbsoluteLayout.LayoutFlags="All"
-                        Margin="10,10,10,10">
 
-            <ImageButton Source="StartButton_background.png"
-                         Clicked="StartButton_Clicked"
-                         AbsoluteLayout.LayoutBounds="1,1,1,1"
-                         AbsoluteLayout.LayoutFlags="All">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                                        Value="1"/>
-                            </VisualState.Setters>
-                        </VisualState>
-
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                                        Value="0.95"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </ImageButton>
-
-        </AbsoluteLayout>
+        <ImageButton x:Name="StartButton"
+                     Source="start_button_normal.png"
+                     Pressed="StartButton_OnPressed"
+                     Released="StartButton_OnReleased"
+                     AbsoluteLayout.LayoutBounds=".5,1,.5,.25"
+                     AbsoluteLayout.LayoutFlags="All"/>
     </AbsoluteLayout>
 </ContentPage>
