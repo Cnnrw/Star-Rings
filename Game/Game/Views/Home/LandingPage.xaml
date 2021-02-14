@@ -14,10 +14,30 @@
                         AbsoluteLayout.LayoutBounds="1,1,1,.25"
                         AbsoluteLayout.LayoutFlags="All"
                         Margin="10,10,10,10">
-            <Button Text="Start"
-                    Clicked="StartButton_Clicked"
-                    AbsoluteLayout.LayoutBounds="1,1,1,1"
-                    AbsoluteLayout.LayoutFlags="All"/>
+
+            <ImageButton Source="StartButton_background.png"
+                         Clicked="StartButton_Clicked"
+                         AbsoluteLayout.LayoutBounds="1,1,1,1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                                        Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                                        Value="0.95"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
         </AbsoluteLayout>
     </AbsoluteLayout>
 </ContentPage>
