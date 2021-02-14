@@ -12,9 +12,9 @@
             <StackLayout Style="{StaticResource VerticalStack}"
                           HorizontalOptions="CenterAndExpand">
                 <Image Source="magic_tree.gif"
-                   IsAnimationPlaying="true"
-                   WidthRequest="400"
-                   HeightRequest="400"/>
+                       IsAnimationPlaying="true"
+                       WidthRequest="400"
+                       HeightRequest="400"/>
 
                 <Label Text="A long time ago in a galaxy far, far away..."
                        Style="{StaticResource CenterMessageLargeStyle}"/>
@@ -25,8 +25,8 @@
                        FontSize="Micro"
                        LineBreakMode="WordWrap"/>
 
-                <Button Text="Enter"
-                    Clicked="EnterButton_Clicked"/>
+                <Button Text="Start"
+                        Clicked="StartButton_Clicked"/>
             </StackLayout>
 
         </ScrollView>

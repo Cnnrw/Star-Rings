@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,6 +24,6 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void EnterButton_Clicked(object sender, EventArgs e) => await Navigation.PushAsync(new HomePage());
+        public async void StartButton_Clicked(object sender, EventArgs e) => await Navigation.PushAsync(new HomePage());
     }
 }
