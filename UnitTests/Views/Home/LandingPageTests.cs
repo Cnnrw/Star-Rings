@@ -1,17 +1,16 @@
-﻿using NUnit.Framework;
-
-using Game;
+﻿using Game;
 using Game.Views;
-using Xamarin.Forms.Mocks;
+
+using NUnit.Framework;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class LandingPageTests
     {
-        App app;
-        LandingPage page;
 
         [SetUp]
         public void Setup()
@@ -28,6 +27,9 @@ namespace UnitTests.Views
 
         [TearDown]
         public void TearDown() => Application.Current = null;
+
+        App         app;
+        LandingPage page;
 
         [Test]
         public void HomePage_Constructor_Default_Should_Pass()
@@ -48,7 +50,7 @@ namespace UnitTests.Views
         {
             // Arrange
             // Act
-            page.EnterButton_Clicked(null, null);
+            page.StartButton_Clicked(null, null);
 
             // Reset
 
