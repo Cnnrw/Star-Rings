@@ -20,7 +20,7 @@
             <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
         <key>MinimumOSVersion</key>
-        <string>LaunchScreen</string>
+        <string>14.0</string>
         <key>CFBundleDisplayName</key>
         <string>StarRings</string>
         <key>CFBundleIdentifier</key>
