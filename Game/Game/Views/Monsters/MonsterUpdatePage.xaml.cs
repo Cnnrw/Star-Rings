@@ -36,17 +36,6 @@ namespace Game.Views
             AddItemsToDisplay();
         }
 
-        /// <summary>
-        ///     Randomize Monster Values and Items
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RandomButton_Clicked(object sender, EventArgs e)
-        {
-            _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
-            UpdatePageBindingContext();
-        }
-
         #region Ctors
 
         // Empty Constructor for UTs
@@ -105,9 +94,20 @@ namespace Game.Views
         /// <param name="e"></param>
         private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
+        /// <summary>
+        ///     Randomize Monster Values and Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
+            UpdatePageBindingContext();
+        }
+
         #endregion
 
-        #region UniqueItems
+        #region Items Popup
 
         /// <summary>
         /// Show the Items the Character has
