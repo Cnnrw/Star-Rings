@@ -129,20 +129,22 @@ namespace Game.Views
         /// <returns></returns>
         private StackLayout GetItemToDisplay()
         {
-            var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem);
-            if (data == null)
-            {
-                // Show the Default Icon for the Location
-                data = new ItemModel
-                {
-                    Location = ItemLocationEnum.Unknown,
-                    ImageURI = "icon_cancel.png",
-                    Name = "Click to Add"
-                };
-            }
+            var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem) ??
+                       new ItemModel
+                       {
+                           Location = ItemLocationEnum.Unknown,
+                           ImageURI = "icon_cancel.png",
+                           Name = "Click to Add"
+                       };
 
             // Hookup the Image Button to show the Item picture
-            var ItemButton = new ImageButton {Source = data.ImageURI};
+            var ItemButton = new ImageButton
+            {
+                Source = data.ImageURI,
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object buttonStyle)
+                            ? (Style)buttonStyle
+                            : null
+            };
 
             // Add a event so the user can click the item and see more
             ItemButton.Clicked += (sender, args) => ShowPopup(data);
@@ -152,15 +154,21 @@ namespace Game.Views
             {
                 Text = data.Name,
                 HorizontalOptions = LayoutOptions.Center,
-                HorizontalTextAlignment = TextAlignment.Center
+                HorizontalTextAlignment = TextAlignment.Center,
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object labelStyle)
+                            ? (Style)labelStyle
+                            : null
             };
 
             // Put the Image Button and Text inside a layout
             var ItemStack = new StackLayout
             {
                 Padding = 3,
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object stackStyle)
+                            ? (Style)stackStyle
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = {ItemButton, ItemLabel},
+                Children = {ItemButton, ItemLabel}
             };
 
             return ItemStack;
@@ -173,8 +181,7 @@ namespace Game.Views
         /// <param name="args"></param>
         private void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            ItemModel data = args.SelectedItem as ItemModel;
-            if (data == null)
+            if (!(args.SelectedItem is ItemModel data))
             {
                 return;
             }
