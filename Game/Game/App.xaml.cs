@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Game.Views;
 
-using Game.Views;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Game
 {
@@ -21,9 +21,11 @@ namespace Game
             // Add each model here to warm up and load it.
             Helpers.DataSetsHelper.WarmUp();
 
-            // Call the Main Page to open
+            // Call the Landing Page to open
             MainPage = new MainPage();
         }
+
+        public static double ScreenWidth => Device.Info.ScaledScreenSize.Width;
 
         /// <summary>
         /// On Startup code if needed
