@@ -120,10 +120,14 @@
                          AbsoluteLayout.LayoutBounds=".5, .5,.5,.5"
                          AbsoluteLayout.LayoutFlags="All">
 
+                <StackLayout.BindingContext>
+                    <viewModels:GenericViewModel x:TypeArguments="models:ItemModel"/>
+                </StackLayout.BindingContext>
+
                 <StackLayout VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand"
-                    WidthRequest="300"
-                    HeightRequest="300">
+                             HorizontalOptions="CenterAndExpand"
+                             WidthRequest="300"
+                             HeightRequest="300">
 
                     <Frame BorderColor="{StaticResource TriciaryTextColor}"
                            Padding="1">
@@ -157,21 +161,21 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                       Source="{Binding ImageURI}"
+                                                       Source="{Binding Data.ImageURI}"
                                                        Style="{StaticResource ImageSmallStyle}"
                                                        VerticalOptions="CenterAndExpand" />
 
                                                 <Label Grid.Column="1" Grid.Row="0"
-                                                       Text="{Binding Name}"
+                                                       Text="{Binding Data.Name}"
                                                        Style="{StaticResource ListStyle}" />
 
                                                 <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-                                                    <Label Text="{Binding Attribute}" Style="{StaticResource ListStyle}" />
-                                                    <Label Text="{Binding Value}" Style="{StaticResource ListStyle}" />
+                                                    <Label Text="{Binding Data.Attribute}" Style="{StaticResource ListStyle}" />
+                                                    <Label Text="{Binding Data.Value}" Style="{StaticResource ListStyle}" />
                                                 </StackLayout>
 
                                                 <Label Grid.Column="1" Grid.Row="2"
-                                                       Text="{Binding Description}"
+                                                       Text="{Binding Data.Description}"
                                                        Style="{StaticResource ListStyle}"
                                                        FontSize="Micro" />
                                             </Grid>
