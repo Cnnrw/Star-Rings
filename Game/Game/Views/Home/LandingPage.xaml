@@ -5,55 +5,31 @@
              x:Class="Game.Views.LandingPage">
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}"
-                     HorizontalOptions="CenterAndExpand">
-            <Image Source="magic_tree.gif"
-                   IsAnimationPlaying="true"
-                   WidthRequest="600"
-                   HeightRequest="600" />
 
-            <Button Text="Enter"
+        <ScrollView HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+
+            <StackLayout Style="{StaticResource VerticalStack}"
+                          HorizontalOptions="CenterAndExpand">
+                <Image Source="magic_tree.gif"
+                   IsAnimationPlaying="true"
+                   WidthRequest="400"
+                   HeightRequest="400"/>
+
+                <Label Text="A long time ago in a galaxy far, far away..."
+                       Style="{StaticResource CenterMessageLargeStyle}"/>
+
+                <Label Text="The Millennium Falcon has been sucked into a wormhole and warped to Middle Earth! Help the ship's crew battle monsters throughout the land as they search for a portal back home."
+                       HorizontalTextAlignment="Start"
+                       Padding="50, 20, 50, 20"
+                       FontSize="Micro"
+                       LineBreakMode="WordWrap"/>
+
+                <Button Text="Enter"
                     Clicked="EnterButton_Clicked"/>
-        </StackLayout>
-        
-        <!--         <ScrollView VerticalOptions="CenterAndExpand" -->
-        <!--                     HorizontalOptions="CenterAndExpand"> -->
-        <!-- -->
-        <!--             <StackLayout -->
-        <!--                 VerticalOptions="Center" -->
-        <!--                 HorizontalOptions="Center"> -->
-        <!-- -->
-        <!--                 <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="Center"> -->
-        <!-- -->
-        <!--                     <Image Source="shutterstock_183490616.png" -->
-        <!--                            WidthRequest="200" -->
-        <!--                            HeightRequest="200" /> -->
-        <!-- -->
-        <!--                 </StackLayout> -->
-        <!-- -->
-        <!--                 <StackLayout HorizontalOptions="Center" Padding="70,5,70,0"> -->
-        <!-- -->
-        <!--                     <Label -->
-        <!--                         Text="Your Game Iformation" -->
-        <!--                            Style="{StaticResource CenterMessageStyle}" -->
-        <!--                            FontSize="Micro" -->
-        <!--                            LineBreakMode="WordWrap" -->
-        <!--                            MaxLines="5" /> -->
-        <!-- -->
-        <!-- -->
-        <!--                     <Label Text="Help them on their mission." -->
-        <!--                            Style="{StaticResource CenterMessageStyle}" -->
-        <!--                            FontSize="Micro" -->
-        <!--                            LineBreakMode="WordWrap" -->
-        <!--                            MaxLines="5" /> -->
-        <!--                 </StackLayout> -->
-        <!-- -->
-        <!--                 <Button Text="Enter" -->
-        <!--                         Clicked="EnterButton_Clicked" /> -->
-        <!-- -->
-        <!--             </StackLayout> -->
-        <!--          </ScrollView> -->
-        <!--      </ContentPage.Content> -->
-        <!-- </ContentPage> -->
+            </StackLayout>
+
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>
