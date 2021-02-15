@@ -8,7 +8,8 @@
              x:Class="Game.Views.AboutPage"
              Title="About">
 
-    <BoxView VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
         <StackLayout Style="{StaticResource VerticalStack}"
                      Padding="10,10,10,10"
                      HorizontalOptions="CenterAndExpand">
@@ -20,5 +21,5 @@
             <Label Text="Soleil Cababa" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
             <Label x:Name="CurrentDateTime" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
         </StackLayout>
-    </BoxView>
+    </AbsoluteLayout>
 </ContentPage>
