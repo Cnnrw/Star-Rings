@@ -29,7 +29,6 @@
     </Style>
 
     <!-- Label -->
-
     <Style TargetType="Label"
            x:Key="LabelBaseStyle"
            BaseResourceKey="LayoutFontSize">
@@ -47,12 +46,15 @@
     <Style TargetType="Label"
            x:Key="ListStyle"
            BasedOn="{StaticResource LabelBaseStyle}">
-        <Setter Property="FontSize" Value="Micro" />
+        <Setter Property="FontSize" Value="Small" />
     </Style>
 
     <Style TargetType="Label"
            x:Key="HeaderStyle"
-           BasedOn="{StaticResource LabelBaseStyle}" />
+           BasedOn="{StaticResource LabelBaseStyle}">
+        <Setter Property="FontFamily" Value="8bit_bold"/>
+        <!-- <Setter Property="FontSize" Value="60"/> -->
+    </Style>
 
     <Style TargetType="Label"
            x:Key="LabelStyle"
@@ -97,12 +99,6 @@
            BasedOn="{StaticResource HeaderStyle}">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-    </Style>
-
-    <Style TargetType="Label"
-           x:Key="CenterMessageLargeStyle"
-           BasedOn="{StaticResource CenterMessageStyle}">
-        <Setter Property="FontSize" Value="Large" />
     </Style>
 
     <Style TargetType="Label"

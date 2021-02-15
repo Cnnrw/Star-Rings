@@ -14,7 +14,7 @@
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
-		<None Remove="Common\Assets\StarRingsLogo2.png" />
+		<None Remove="Common\Assets\star_rings_logo.png" />
 		<None Remove="Common\Assets\magic_tree.gif" />
 		<None Remove="Common\Assets\start_button_normal.png" />
 		<None Remove="Common\Assets\start_button_pressed.png" />
@@ -140,7 +140,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<SharedImage BaseSize="100,100" Include="Common\Assets\StarRingsLogo2.png" />
+		<SharedImage BaseSize="200,200" Include="Common\Assets\star_rings_logo.png" />
 		<SharedImage BaseSize="150,100" Include="Common\Assets\start_button_normal.png" />
 		<SharedImage BaseSize="150,100" Include="Common\Assets\start_button_pressed.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\jedi_icon.png" />
