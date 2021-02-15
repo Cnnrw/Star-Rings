@@ -1,23 +1,16 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
+﻿using Game;
 using Game.Views;
-using Xamarin.Forms.Mocks;
+
+using NUnit.Framework;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class VillagePageTests
     {
-        App app;
-        VillagePage page;
 
         // Base Constructor
         //public VillagePageTests() : base(true) { }
@@ -32,14 +25,14 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
-            page = new VillagePage();
+            page = new RebelBasePage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        App           app;
+        RebelBasePage page;
 
         [Test]
         public void VillagePage_Constructor_Default_Should_Pass()

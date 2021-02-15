@@ -63,7 +63,7 @@ namespace UnitTests.Views
         {
             // Arrange
             // Act
-            page.VillageButton_Clicked(null, null);
+            page.RebelBaseButton_Clicked(null, null);
 
             // Reset
 
