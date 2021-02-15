@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Game.GameRules;
@@ -115,6 +115,9 @@ namespace Game.Models
 
         // The Job for the Player
         public CharacterJobEnum Job { get; set; } = CharacterJobEnum.Unknown;
+
+        // The small icon image for the Player
+        public string IconImageURI { get; set; } = "item.png";
 
         #endregion PlayerAttributes
 
