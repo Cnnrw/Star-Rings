@@ -15,9 +15,11 @@
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
 		<None Remove="Common\Assets\star_rings_logo.png" />
+		<None Remove="Common\Assets\page_background.png" />
 		<None Remove="Common\Assets\magic_tree.gif" />
-		<None Remove="Common\Assets\start_button_normal.png" />
-		<None Remove="Common\Assets\start_button_pressed.png" />
+		<None Remove="Common\Assets\UIIcons\start_button_normal.png" />
+		<None Remove="Common\Assets\UIIcons\start_button_pressed.png" />
+		<None Remove="Common\Assets\UIIcons\auto_battle.png" />
 		<None Remove="Common\Assets\CharacterIcons\jedi_icon.png" />
 		<None Remove="Common\Assets\CharacterIcons\jedi_princess_icon.png" />
 		<None Remove="Common\Assets\CharacterIcons\smuggler_icon.png" />
@@ -141,14 +143,16 @@
 	
 	<ItemGroup>
 		<SharedImage BaseSize="200,200" Include="Common\Assets\star_rings_logo.png" />
-		<SharedImage BaseSize="150,100" Include="Common\Assets\start_button_normal.png" />
-		<SharedImage BaseSize="150,100" Include="Common\Assets\start_button_pressed.png" />
+		<SharedImage BaseSize="200,200" Include="Common\Assets\page_background.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\jedi_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\jedi_princess_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\smuggler_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\wookie_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\astromech_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\protocol_droid_icon.png" />
+		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
+		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
+		<SharedImage BaseSize="150, 150" Include="Common\Assets\UIIcons\auto_battle.png" />
 	</ItemGroup>
 
 </Project>

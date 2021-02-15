@@ -2,7 +2,9 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.HomePage">
+             x:Class="Game.Views.HomePage"
+             BackgroundColor="Black"
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"
@@ -31,7 +33,7 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="auto_battle.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="AutobattleButton_Clicked" />
                     <Label Text="Auto Battle"
