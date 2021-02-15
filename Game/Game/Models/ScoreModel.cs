@@ -1,4 +1,4 @@
-﻿using SQLite;
+using SQLite;
 using System;
 using System.Collections.Generic;
 
@@ -78,6 +78,7 @@ namespace Game.Models
         {
             GameDate = DateTime.Now;    // Set to be now by default.
             AutoBattle = false;         //assume user battle
+            Name = "New score";
 
             TurnCount = 0;
             RoundCount = 0;
