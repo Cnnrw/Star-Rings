@@ -1,4 +1,4 @@
-﻿using Game.Models;
+using Game.Models;
 using Game.ViewModels;
 
 using System;
@@ -49,8 +49,17 @@ namespace Game.Views
                 ViewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
             }
 
-            MessagingCenter.Send(this, "Create", ViewModel.Data);
-            await Navigation.PopModalAsync();
+            //TODO: Create entry validator to attach to xaml control
+            // Don't allow users to unput an empty name
+            if (ViewModel.Data.Name.Length == 0)
+            {
+                await DisplayAlert("Hold up!", "Please give your score a name", "OK");
+            }
+            else
+            {
+                MessagingCenter.Send(this, "Create", ViewModel.Data);
+                await Navigation.PopModalAsync();
+            }
         }
 
         /// <summary>
