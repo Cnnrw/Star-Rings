@@ -18,7 +18,7 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            // Set to the curent date and time
+            // Set to the current date and time
             CurrentDateTime.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
         }
     }

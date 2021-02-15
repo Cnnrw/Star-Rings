@@ -6,20 +6,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Game.Views.AboutPage"
-             Title="About">
+             BackgroundImageSource="page_background.png">
 
-    <AbsoluteLayout VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
-        <StackLayout Style="{StaticResource VerticalStack}"
-                     Padding="10,10,10,10"
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Style" Value="{StaticResource HeaderStyle}" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               Source="star_rings_logo.png"
+               HeightRequest="300"
+               WidthRequest="300"
+               Style="{StaticResource ImageLargeStyle}" />
+
+        <StackLayout Grid.Row="1"
+                     Orientation="Vertical"
                      HorizontalOptions="CenterAndExpand">
-            <Image Source="item.png" Style="{StaticResource ImageMediumStyle}" />
-            <Label Text="Binary Boomers" Style="{StaticResource HeaderStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-            <Label Text="Tate Brasel" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-            <Label Text="Jack Witt" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-            <Label Text="Connor Wilding" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-            <Label Text="Soleil Cababa" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-            <Label x:Name="CurrentDateTime" Style="{StaticResource MessageStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+            <Label Text="Binary Boomers" FontSize="34"/>
+            <Label Text="Tate Brasel" />
+            <Label Text="Jack Witt" />
+            <Label Text="Connor Wilding" />
+            <Label Text="Soleil Cababa" />
+            <Label x:Name="CurrentDateTime" Style="{StaticResource MessageStyle}" />
+
         </StackLayout>
-    </AbsoluteLayout>
+
+    </Grid>
 </ContentPage>
