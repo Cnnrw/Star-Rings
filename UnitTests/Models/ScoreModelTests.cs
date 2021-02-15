@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Game.Models;
-using System.Collections.Generic;
-using System.Linq;
+using Game.Models.Enums;
+
+using NUnit.Framework;
 
 namespace UnitTests.Models
 {
@@ -19,7 +21,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result);
         }
 
@@ -39,7 +41,7 @@ namespace UnitTests.Models
             dataNew.RoundCount = 400;
             dataNew.MonsterSlainNumber = 500;
             dataNew.ExperienceGainedTotal = 600;
-            dataNew.CharacterAtDeathList ="characters";
+            dataNew.CharacterAtDeathList = "characters";
             dataNew.MonstersKilledList = "monsters";
             dataNew.ItemsDroppedList = "items";
 
@@ -48,7 +50,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreNotEqual("oldID", result.Id);
         }
 
@@ -62,7 +64,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result.BattleNumber);
             Assert.IsNotNull(result.ScoreTotal);
             Assert.IsNotNull(result.GameDate);
@@ -100,25 +102,25 @@ namespace UnitTests.Models
             result.MonstersKilledList = "monsters";
             result.ItemsDroppedList = "items";
 
-            result.ItemModelDropList = new List<ItemModel> { new ItemModel { Name = "Item" } };
-            result.MonsterModelDeathList = new List<PlayerInfoModel> { new PlayerInfoModel(new MonsterModel())};
-            result.CharacterModelDeathList = new List<PlayerInfoModel> { new PlayerInfoModel(new CharacterModel()) };
-            result.ItemModelSelectList = new List<ItemModel> { new ItemModel { Name = "Item" } };
+            result.ItemModelDropList = new List<ItemModel> {new ItemModel {Name = "Item"}};
+            result.MonsterModelDeathList = new List<PlayerInfoModel> {new PlayerInfoModel(new MonsterModel())};
+            result.CharacterModelDeathList = new List<PlayerInfoModel> {new PlayerInfoModel(new CharacterModel())};
+            result.ItemModelSelectList = new List<ItemModel> {new ItemModel {Name = "Item"}};
 
             // Reset
 
-            // Assert 
-            Assert.AreEqual(100,result.BattleNumber);
-            Assert.AreEqual(200,result.ScoreTotal);
-            Assert.AreEqual(System.DateTime.MinValue,result.GameDate);
-            Assert.AreEqual(true,result.AutoBattle);
-            Assert.AreEqual(300,result.TurnCount);
-            Assert.AreEqual(400,result.RoundCount);
-            Assert.AreEqual(500,result.MonsterSlainNumber);
-            Assert.AreEqual(600,result.ExperienceGainedTotal);
-            Assert.AreEqual("characters",result.CharacterAtDeathList);
-            Assert.AreEqual("monsters",result.MonstersKilledList) ;
-            Assert.AreEqual("items",result.ItemsDroppedList);
+            // Assert
+            Assert.AreEqual(100, result.BattleNumber);
+            Assert.AreEqual(200, result.ScoreTotal);
+            Assert.AreEqual(System.DateTime.MinValue, result.GameDate);
+            Assert.AreEqual(true, result.AutoBattle);
+            Assert.AreEqual(300, result.TurnCount);
+            Assert.AreEqual(400, result.RoundCount);
+            Assert.AreEqual(500, result.MonsterSlainNumber);
+            Assert.AreEqual(600, result.ExperienceGainedTotal);
+            Assert.AreEqual("characters", result.CharacterAtDeathList);
+            Assert.AreEqual("monsters", result.MonstersKilledList);
+            Assert.AreEqual("items", result.ItemsDroppedList);
 
             Assert.AreEqual("Item", result.ItemModelDropList.ElementAt(0).Name);
             Assert.AreEqual("Item", result.ItemModelSelectList.ElementAt(0).Name);
@@ -150,7 +152,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(100, dataNew.BattleNumber);
             Assert.AreEqual(200, dataNew.ScoreTotal);
             Assert.AreEqual(System.DateTime.MinValue, dataNew.GameDate);
@@ -176,7 +178,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
             Assert.AreEqual(2, dataOriginal.TurnCount);
         }
@@ -202,7 +204,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
             Assert.AreNotEqual(string.Empty, dataScore.ItemsDroppedList);
         }
@@ -218,7 +220,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
     }

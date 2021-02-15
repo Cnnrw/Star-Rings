@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 using Game.Models;
+using Game.Models.Enums;
 using Game.ViewModels;
-using System.Linq;
-using System.Threading.Tasks;
+
+using NUnit.Framework;
 
 namespace UnitTests.Models
 {
@@ -11,10 +13,7 @@ namespace UnitTests.Models
     public class MonsterModelTests
     {
         [TearDown]
-        public void TearDown()
-        {
-            ItemIndexViewModel.Instance.Dataset.Clear();
-        }
+        public void TearDown() => ItemIndexViewModel.Instance.Dataset.Clear();
 
         [Test]
         public void MonsterModel_Constructor_Default_Should_Pass()
@@ -26,7 +25,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result);
         }
 
@@ -43,7 +42,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreNotEqual("oldID", result.Id);
         }
 
@@ -57,7 +56,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result.Attack);
             Assert.IsNotNull(result.Defense);
             Assert.IsNotNull(result.Speed);
@@ -69,14 +68,16 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = new MonsterModel();
-            result.Attack = 6;
-            result.Defense = 7;
-            result.Speed = 8;
+            var result = new MonsterModel
+            {
+                Attack = 6,
+                Defense = 7,
+                Speed = 8
+            };
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(6, result.Attack);
             Assert.AreEqual(7, result.Defense);
             Assert.AreEqual(8, result.Speed);
@@ -98,7 +99,7 @@ namespace UnitTests.Models
 
             Assert.AreEqual(null, result.Head);
             Assert.AreEqual(null, result.Feet);
-            Assert.AreEqual(null, result.Necklass);
+            Assert.AreEqual(null, result.Necklace);
             Assert.AreEqual(null, result.PrimaryHand);
             Assert.AreEqual(null, result.OffHand);
             Assert.AreEqual(null, result.RightFinger);
@@ -111,18 +112,16 @@ namespace UnitTests.Models
         public void MonsterModel_Update_Default_Should_Pass()
         {
             // Arrange
-            var dataOriginal = new MonsterModel();
-            dataOriginal.Attack = 1;
+            var dataOriginal = new MonsterModel {Attack = 1};
 
-            var dataNew = new MonsterModel();
-            dataNew.Attack = 2;
+            var dataNew = new MonsterModel {Attack = 2};
 
             // Act
             var result = dataOriginal.Update(dataNew);
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(2, dataOriginal.Attack);
         }
 
@@ -130,15 +129,14 @@ namespace UnitTests.Models
         public void MonsterModel_Update_InValid_Null_Should_Fail()
         {
             // Arrange
-            var dataOriginal = new MonsterModel();
-            dataOriginal.Attack = 2;
+            var dataOriginal = new MonsterModel {Attack = 2};
 
             // Act
             var result = dataOriginal.Update(null);
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(2, dataOriginal.Attack);
         }
 
@@ -153,7 +151,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result.Contains("Troll"));
         }
 
@@ -161,30 +159,32 @@ namespace UnitTests.Models
         public void MonsterModel_Set_Get_Default_Should_Pass()
         {
             // Arrange
-            var result = new MonsterModel();
+            var result = new MonsterModel
+            {
+                Id = "bogus",
+                ImageURI = "uri",
+                PlayerType = PlayerTypeEnum.Monster,
+                Alive = false,
+                Order = 100,
+                Guid = "guid",
+                ListOrder = 200,
+                Speed = 300,
+                Level = 400,
+                ExperienceRemaining = 500,
+                CurrentHealth = 600,
+                MaxHealth = 700,
+                ExperienceTotal = 800,
+                Defense = 900,
+                Attack = 123,
+                Head = "head",
+                Feet = "feet"
+            };
 
             // Act
-            result.Id = "bogus";
-            result.ImageURI = "uri";
-            result.PlayerType = PlayerTypeEnum.Monster;
-            result.Alive = false;
-            result.Order = 100;
-            result.Guid = "guid";
-            result.ListOrder = 200;
-            result.Speed = 300;
-            result.Level = 400;
-            result.ExperienceRemaining = 500;
-            result.CurrentHealth = 600;
-            result.MaxHealth = 700;
-            result.ExperienceTotal = 800;
-            result.Defense = 900;
-            result.Attack = 123;
-            result.Head = "head";
-            result.Feet = "feet";
-            result.Necklass = "necklass";
+            result.Necklace = "necklace";
             result.PrimaryHand = "primaryhand";
             result.OffHand = "offhand";
-            result.RightFinger ="rightfinger";
+            result.RightFinger = "rightfinger";
             result.LeftFinger = "leftfinger";
 
             // Reset
@@ -207,7 +207,7 @@ namespace UnitTests.Models
             Assert.AreEqual(123, result.Attack);
             Assert.AreEqual("head", result.Head);
             Assert.AreEqual("feet", result.Feet);
-            Assert.AreEqual("necklass", result.Necklass);
+            Assert.AreEqual("necklace", result.Necklace);
             Assert.AreEqual("primaryhand", result.PrimaryHand);
             Assert.AreEqual("offhand", result.OffHand);
             Assert.AreEqual("rightfinger", result.RightFinger);
@@ -361,7 +361,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual(null,result);
+            Assert.AreEqual(null, result);
         }
 
         [Test]
@@ -401,7 +401,7 @@ namespace UnitTests.Models
             var data = new MonsterModel();
 
             // Act
-            var result = data.GetItemByLocation(ItemLocationEnum.Necklass);
+            var result = data.GetItemByLocation(ItemLocationEnum.Necklace);
 
             // Reset
 
@@ -421,7 +421,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual(null,result);
+            Assert.AreEqual(null, result);
         }
 
         [Test]
@@ -436,7 +436,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual(null,result);
+            Assert.AreEqual(null, result);
         }
 
         [Test]
@@ -475,8 +475,18 @@ namespace UnitTests.Models
             // Arrange
             var data = new MonsterModel();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Id = "necklass" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Id = "necklace"
+            });
 
             // Act
             var result = data.GetItemByLocation(ItemLocationEnum.Unknown);
@@ -490,7 +500,12 @@ namespace UnitTests.Models
         [Test]
         public async Task MonsterModel_DropAllItems_Default_Should_Pass()
         {
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id = "head" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
 
             var item = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
 
@@ -498,7 +513,7 @@ namespace UnitTests.Models
             var data = new MonsterModel
             {
                 Head = item.Id,
-                Necklass = item.Id,
+                Necklace = item.Id,
                 PrimaryHand = item.Id,
                 OffHand = item.Id,
                 RightFinger = item.Id,
@@ -536,8 +551,18 @@ namespace UnitTests.Models
             // Arrange
             var data = new MonsterModel();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Id = "necklass" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Id = "necklace"
+            });
 
             var itemOld = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
 
@@ -558,8 +583,18 @@ namespace UnitTests.Models
             // Arrange
             var data = new MonsterModel();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Id = "necklass" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Id = "necklace"
+            });
 
             var itemOld = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
             var itemNew = ItemIndexViewModel.Instance.Dataset.LastOrDefault();
@@ -585,19 +620,54 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id="head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Id = "necklass" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 300, Id = "PrimaryHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 4000, Id = "OffHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 50000, Id = "RightFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 600000, Id = "LeftFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 7000000, Id = "feet" });
-            
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Id = "necklace"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 300,
+                Id = "PrimaryHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 4000,
+                Id = "OffHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 50000,
+                Id = "RightFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 600000,
+                Id = "LeftFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 7000000,
+                Id = "feet"
+            });
+
             var data = new MonsterModel();
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklass, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -622,19 +692,54 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Id = "necklass" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 300, Id = "PrimaryHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 4000, Id = "OffHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 50000, Id = "RightFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 600000, Id = "LeftFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 7000000, Id = "feet" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Id = "necklace"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 300,
+                Id = "PrimaryHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 4000,
+                Id = "OffHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 50000,
+                Id = "RightFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 600000,
+                Id = "LeftFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 7000000,
+                Id = "feet"
+            });
 
             var data = new MonsterModel();
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklass, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -659,19 +764,54 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 20, Id = "necklass" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 300, Id = "PrimaryHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 4000, Id = "OffHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 50000, Id = "RightFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 600000, Id = "LeftFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Defense, Value = 7000000, Id = "feet" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 20,
+                Id = "necklace"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 300,
+                Id = "PrimaryHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 4000,
+                Id = "OffHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 50000,
+                Id = "RightFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 600000,
+                Id = "LeftFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Defense,
+                Value = 7000000,
+                Id = "feet"
+            });
 
             var data = new MonsterModel();
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklass, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -696,19 +836,54 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 20, Id = "necklass" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 300, Id = "PrimaryHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 4000, Id = "OffHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 50000, Id = "RightFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 600000, Id = "LeftFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Speed, Value = 7000000, Id = "feet" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 20,
+                Id = "necklace"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 300,
+                Id = "PrimaryHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 4000,
+                Id = "OffHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 50000,
+                Id = "RightFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 600000,
+                Id = "LeftFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Speed,
+                Value = 7000000,
+                Id = "feet"
+            });
 
             var data = new MonsterModel();
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklass, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -733,20 +908,54 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Id = "head" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Id = "necklass" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 300, Id = "PrimaryHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 4000, Id = "OffHand" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 50000, Id = "RightFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 600000, Id = "LeftFinger" });
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 7000000, Id = "feet" });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Id = "head"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Id = "necklace"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 300,
+                Id = "PrimaryHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 4000,
+                Id = "OffHand"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 50000,
+                Id = "RightFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 600000,
+                Id = "LeftFinger"
+            });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 7000000,
+                Id = "feet"
+            });
 
-            var data = new MonsterModel();
-            data.Level = 1;
+            var data = new MonsterModel {Level = 1};
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklass, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -763,7 +972,7 @@ namespace UnitTests.Models
 
             // Reset
             Game.Helpers.DiceHelper.DisableForcedRolls();
- 
+
             // Assert
             Assert.AreEqual(2, result);
         }
@@ -775,10 +984,15 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 300, Id = "PrimaryHand" , Damage=1});
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 300,
+                Id = "PrimaryHand",
+                Damage = 1
+            });
 
-            var data = new MonsterModel();
-            data.Level = 1;
+            var data = new MonsterModel {Level = 1};
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
@@ -805,10 +1019,15 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 300, Id = "PrimaryHand", Damage = 1 });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 300,
+                Id = "PrimaryHand",
+                Damage = 1
+            });
 
-            var data = new MonsterModel();
-            data.Level = 1;
+            var data = new MonsterModel {Level = 1};
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
@@ -835,10 +1054,15 @@ namespace UnitTests.Models
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel { Attribute = AttributeEnum.Attack, Value = 300, Id = "PrimaryHand", Damage = 1 });
+            await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 300,
+                Id = "PrimaryHand",
+                Damage = 1
+            });
 
-            var data = new MonsterModel();
-            data.Level = 1;
+            var data = new MonsterModel {Level = 1};
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);

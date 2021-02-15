@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Game.Models.Enums;
 
-using Game.Models;
+using NUnit.Framework;
 
 namespace UnitTests.Models
 {
@@ -41,7 +41,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = ItemLocationEnum.Necklass.ToMessage();
+            var result = ItemLocationEnum.Necklace.ToMessage();
 
             // Reset
 

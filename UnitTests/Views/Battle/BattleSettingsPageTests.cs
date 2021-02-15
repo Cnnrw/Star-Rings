@@ -1,29 +1,20 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
-
-using Game;
-using Game.Views;
-using Game.Models;
+﻿using Game;
+using Game.Models.Enums;
 using Game.ViewModels;
-using Game.Helpers;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class BattleSettingsPageTests
     {
-        App app;
-        BattleSettingsPage page;
 
-       // public BattleSettingsPageTests() : base(true) { }
+        // public BattleSettingsPageTests() : base(true) { }
 
         [SetUp]
         public void Setup()
@@ -43,6 +34,9 @@ namespace UnitTests.Views
         {
             Application.Current = null;
         }
+
+        private App                app;
+        private BattleSettingsPage page;
 
         [Test]
         public void BattleSettingsPage_Constructor_Default_Should_Pass()
@@ -200,7 +194,8 @@ namespace UnitTests.Views
         public void BattleSettingsPage_BattleModePicker_Default_Should_Pass()
         {
             // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.Unknown;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.Unknown;
 
             var control = (Picker)page.FindByName("BattleModePicker");
             var currentIndex = control.SelectedIndex;
@@ -214,14 +209,16 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(BattleModeEnum.SimpleNext, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum);
+            Assert.AreEqual(BattleModeEnum.SimpleNext,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum);
         }
 
         [Test]
         public void BattleSettingsPage_BattleModePicker_InValid_Should_Fail()
         {
             // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.Unknown;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.Unknown;
 
             var control = (Picker)page.FindByName("BattleModePicker");
             var currentIndex = control.SelectedIndex;
@@ -239,14 +236,16 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(BattleModeEnum.SimpleNext, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum);
+            Assert.AreEqual(BattleModeEnum.SimpleNext,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum);
         }
 
         [Test]
         public void BattleSettingsPage_MonsterHitPicker_Valid_Should_Pass()
         {
             // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum =
+                HitStatusEnum.Default;
 
             var control = (Picker)page.FindByName("MonsterHitPicker");
             var currentIndex = control.SelectedIndex;
@@ -261,14 +260,16 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(HitStatusEnum.Default, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum);
+            Assert.AreEqual(HitStatusEnum.Default,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum);
         }
 
         [Test]
         public void BattleSettingsPage_MonsterHitPicker_InValid_Should_Fail()
         {
             // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum =
+                HitStatusEnum.Default;
 
             var control = (Picker)page.FindByName("MonsterHitPicker");
             var currentIndex = control.SelectedIndex;
@@ -286,14 +287,16 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(HitStatusEnum.Default, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum);
+            Assert.AreEqual(HitStatusEnum.Default,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum);
         }
 
         [Test]
         public void BattleSettingsPage_CharacterHitPicker_Valid_Should_Pass()
         {
             // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Default;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum =
+                HitStatusEnum.Default;
 
             var control = (Picker)page.FindByName("CharacterHitPicker");
             var currentIndex = control.SelectedIndex;
@@ -308,14 +311,16 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(HitStatusEnum.Default, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
+            Assert.AreEqual(HitStatusEnum.Default,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
         }
 
         [Test]
         public void BattleSettingsPage_CharacterHitPicker_InValid_Should_Fail()
         {
             // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Default;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum =
+                HitStatusEnum.Default;
 
             var control = (Picker)page.FindByName("CharacterHitPicker");
             var currentIndex = control.SelectedIndex;
@@ -333,7 +338,8 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(HitStatusEnum.Default, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
+            Assert.AreEqual(HitStatusEnum.Default,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
         }
     }
 }

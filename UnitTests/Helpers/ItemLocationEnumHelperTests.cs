@@ -1,10 +1,9 @@
-﻿using NUnit.Framework;
-
-using Game.Services;
-using Game.Models;
-using Game.Helpers;
-using System;
+﻿using System;
 using System.Linq;
+
+using Game.Models.Enums;
+
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
@@ -37,11 +36,11 @@ namespace UnitTests.Helpers
             // Get Expected set
             var myList = Enum.GetNames(typeof(ItemLocationEnum)).ToList();
             var myExpectedList = myList.Where(a =>
-                                          a.ToString() != ItemLocationEnum.Unknown.ToString() &&
-                                           a.ToString() != ItemLocationEnum.Finger.ToString()
-                                            )
-                                            .OrderBy(a => a)
-                                            .ToList();
+                                                  a.ToString() != ItemLocationEnum.Unknown.ToString() &&
+                                                  a.ToString() != ItemLocationEnum.Finger.ToString()
+                                             )
+                                       .OrderBy(a => a)
+                                       .ToList();
 
             // Act
 
@@ -79,7 +78,6 @@ namespace UnitTests.Helpers
                 // Assert
                 Assert.AreEqual(true, found, "expected : " + expected + TestContext.CurrentContext.Test.Name);
             }
-
         }
 
         [Test]
@@ -93,12 +91,12 @@ namespace UnitTests.Helpers
             // Get Expected set
             var myList = Enum.GetNames(typeof(ItemLocationEnum)).ToList();
             var myExpectedList = myList.Where(a =>
-                                            a.ToString() != ItemLocationEnum.Unknown.ToString() &&
-                                            a.ToString() != ItemLocationEnum.LeftFinger.ToString() &&
-                                            a.ToString() != ItemLocationEnum.RightFinger.ToString()
-                                            )
-                                            .OrderBy(a => a)
-                                            .ToList();
+                                                  a.ToString() != ItemLocationEnum.Unknown.ToString() &&
+                                                  a.ToString() != ItemLocationEnum.LeftFinger.ToString() &&
+                                                  a.ToString() != ItemLocationEnum.RightFinger.ToString()
+                                             )
+                                       .OrderBy(a => a)
+                                       .ToList();
 
             // Act
 
@@ -136,7 +134,6 @@ namespace UnitTests.Helpers
                 // Assert
                 Assert.AreEqual(true, found, "expected : " + expected + TestContext.CurrentContext.Test.Name);
             }
-
         }
 
         [Test]
@@ -185,7 +182,7 @@ namespace UnitTests.Helpers
 
             // Act
             var Actual = ItemLocationEnumHelper.GetLocationByPosition(value);
-            var Expected = ItemLocationEnum.Necklass;
+            var Expected = ItemLocationEnum.Necklace;
 
             // Assert
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);

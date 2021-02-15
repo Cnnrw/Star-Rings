@@ -1,36 +1,35 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-using NUnit.Framework;
-
-using Game.Models;
-using Game.Helpers;
-using Game.ViewModels;
 using Game.Engine.EngineKoenig;
 using Game.Engine.EngineModels;
+using Game.Helpers;
+using Game.Models;
+using Game.Models.Enums;
+using Game.ViewModels;
+
+using NUnit.Framework;
 
 namespace UnitTests.Engine.EngineKoenig
 {
     [TestFixture]
     public class TurnEngineKoenigTests
     {
-        #region TestSetup
-        BattleEngine Engine;
 
         [SetUp]
         public void Setup()
         {
             Engine = new BattleEngine();
-            Engine.StartBattle(true);   // Start engine in auto battle mode
+            Engine.StartBattle(true); // Start engine in auto battle mode
         }
 
         [TearDown]
         public void TearDown()
         {
         }
-        #endregion TestSetup
 
-        #region Constructor
+        BattleEngine Engine;
+
         [Test]
         public void TurnEngine_Constructor_Valid_Default_Should_Pass()
         {
@@ -44,9 +43,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.IsNotNull(result);
         }
-        #endregion Constructor
 
-        #region Attack
         [Test]
         public void TurnEngine_Attack_Valid_Empty_Monster_List_Should_Fail()
         {
@@ -57,7 +54,7 @@ namespace UnitTests.Engine.EngineKoenig
             var result = Engine.Round.Turn.Attack(PlayerInfo);
 
             // Reset
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(true, result);
@@ -74,13 +71,13 @@ namespace UnitTests.Engine.EngineKoenig
             Engine.EngineSettings.CurrentDefender = null;
             Engine.EngineSettings.CurrentAttacker = null;
 
-            Engine.StartBattle(true);   // Clear the Engine
+            Engine.StartBattle(true); // Clear the Engine
 
             // Act
             var result = Engine.Round.Turn.Attack(PlayerInfo);
 
             // Reset
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(false, result);
@@ -97,14 +94,12 @@ namespace UnitTests.Engine.EngineKoenig
             var result = Engine.Round.Turn.Attack(PlayerInfo);
 
             // Reset
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion Attack
 
-        #region SelectMonsterToAttack
         [Test]
         public void TurnEngine_SelectMonsterToAttack_InValid_Null_List_Should_Fail()
         {
@@ -122,7 +117,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -145,7 +140,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -172,7 +167,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -200,7 +195,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -228,7 +223,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -254,14 +249,12 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreNotEqual(null, result);
         }
-        #endregion SelectMonsterToAttack
 
-        #region SelectCharacterToAttack
         [Test]
         public void TurnEngine_SelectCharacterToAttack_InValid_Null_List_Should_Fail()
         {
@@ -279,7 +272,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -302,7 +295,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -329,7 +322,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -357,7 +350,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -385,7 +378,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreEqual(null, result);
@@ -411,14 +404,11 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Restore the List
             Engine.EngineSettings.PlayerList = saveList;
-            Engine.StartBattle(false);   // Clear the Engine
+            Engine.StartBattle(false); // Clear the Engine
 
             // Assert
             Assert.AreNotEqual(null, result);
         }
-        #endregion SelectCharacterToAttack
-
-        #region RollToHitTarget
 
         [Test]
         public void TurnEngine_RolltoHitTarget_Hit_Should_Pass()
@@ -429,7 +419,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             DiceHelper.EnableForcedRolls();
             DiceHelper.SetForcedRollValue(3); // Always roll a 3.
-            
+
             // Act
             var result = Engine.Round.Turn.RollToHitTarget(AttackScore, DefenseScore);
 
@@ -547,9 +537,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(HitStatusEnum.CriticalHit, result);
         }
-        #endregion RollToHitTarget
 
-        #region TakeTurn
         [Test]
         public void TurnEngine_TakeTurn_Default_Should_Pass()
         {
@@ -591,8 +579,8 @@ namespace UnitTests.Engine.EngineKoenig
 
             Engine.EngineSettings.CurrentAction = ActionEnum.Move;
 
-            var character  = new PlayerInfoModel(new CharacterModel());
-            var monster   = new PlayerInfoModel(new CharacterModel());
+            var character = new PlayerInfoModel(new CharacterModel());
+            var monster = new PlayerInfoModel(new CharacterModel());
 
             Engine.EngineSettings.PlayerList.Add(character);
             Engine.EngineSettings.PlayerList.Add(monster);
@@ -638,9 +626,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion TakeTurn
 
-        #region DropItems
         [Test]
         public void TurnEngine_DropItems_Valid_No_Items_Should_Return_0()
         {
@@ -696,9 +682,9 @@ namespace UnitTests.Engine.EngineKoenig
             var PlayerInfo = new PlayerInfoModel(player);
 
             DiceHelper.EnableForcedRolls();
-            
+
             // Drop is 0-Number, so 2 will yield 1
-            DiceHelper.SetForcedRollValue(2);   
+            DiceHelper.SetForcedRollValue(2);
 
             // Act
             var result = Engine.Round.Turn.DropItems(PlayerInfo);
@@ -709,9 +695,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(1, result);
         }
-        #endregion DropItems
 
-        #region TargetDied
         [Test]
         public void TurnEngine_TargedDied_Valid_Character_Should_Pass()
         {
@@ -747,9 +731,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion TargetDied
 
-        #region TurnAsAttack
         [Test]
         public void TurnEngine_TurnAsAttack_Valid_Character_Attacks_Null_Should_Fail()
         {
@@ -982,9 +964,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion TurnAsAttack
 
-        #region RemoveIfDead
         [Test]
         public void TurnEngine_RemoveIfDead_Valid_Dead_True_Should_Return_False()
         {
@@ -993,7 +973,7 @@ namespace UnitTests.Engine.EngineKoenig
             {
                 CurrentHealth = 1,
                 Alive = true,
-                Guid="me"
+                Guid = "me"
             };
 
             var PlayerInfo = new PlayerInfoModel(Monster);
@@ -1036,9 +1016,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(false, result);
         }
-        #endregion RemoveIfDead
 
-        #region TurnAsAttack
         [Test]
         public void TurnEngine_TurnAsAttack_Valid_Character_Attacks_Monster_Levels_Up_Should_Pass()
         {
@@ -1051,7 +1029,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             var CharacterPlayer = new PlayerInfoModel(Character);
 
-            CharacterPlayer.ExperienceTotal = 300;    // Enough for next level
+            CharacterPlayer.ExperienceTotal = 300; // Enough for next level
 
             Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
@@ -1060,7 +1038,7 @@ namespace UnitTests.Engine.EngineKoenig
             DiceHelper.SetForcedRollValue(20);
 
             // Act
-            var result = Engine.Round.Turn.TurnAsAttack(CharacterPlayer,MonsterPlayer);
+            var result = Engine.Round.Turn.TurnAsAttack(CharacterPlayer, MonsterPlayer);
 
             // Reset
             DiceHelper.DisableForcedRolls();
@@ -1069,16 +1047,14 @@ namespace UnitTests.Engine.EngineKoenig
             Assert.AreEqual(true, result);
             Assert.AreEqual(2, CharacterPlayer.Level);
         }
-        #endregion TurnAsAttack
 
-        #region UseAbility
         [Test]
         public void TurnEngine_UseAbility_InValid_Ability_Null_Should_Fail()
         {
             // Arrange
             Engine.EngineSettings.CurrentActionAbility = AbilityEnum.Unknown;
-            
-            var characterPlayer = new PlayerInfoModel(new CharacterModel { Job=CharacterJobEnum.Unknown});
+
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Unknown});
 
             // remove it so it is not found
             characterPlayer.AbilityTracker.Remove(AbilityEnum.Unknown);
@@ -1098,7 +1074,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Arrange
             Engine.EngineSettings.CurrentActionAbility = AbilityEnum.Unknown;
 
-            var characterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Unknown });
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Unknown});
 
             // remove it so it is not found
             characterPlayer.AbilityTracker[AbilityEnum.Unknown] = 0;
@@ -1117,7 +1093,7 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var characterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Unknown });
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Unknown});
 
             // remove it so it is not found
             characterPlayer.AbilityTracker.Add(AbilityEnum.Heal, 1);
@@ -1137,10 +1113,10 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var characterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Unknown });
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Unknown});
 
             // remove it so it is not found
-            characterPlayer.AbilityTracker.Add(AbilityEnum.Toughness,1);
+            characterPlayer.AbilityTracker.Add(AbilityEnum.Toughness, 1);
             Engine.EngineSettings.CurrentActionAbility = AbilityEnum.Toughness;
 
             // Act
@@ -1157,7 +1133,7 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var characterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Unknown });
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Unknown});
 
             // remove it so it is not found
             characterPlayer.AbilityTracker.Add(AbilityEnum.Quick, 1);
@@ -1177,7 +1153,7 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var characterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Unknown });
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Unknown});
 
             // remove it so it is not found
             characterPlayer.AbilityTracker.Add(AbilityEnum.Curse, 1);
@@ -1191,9 +1167,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion UseAbility
 
-        #region BattleSettings
         [Test]
         public void TurnEngine_BattleSettingsOverrideHitStatusEnum_Valid_Hit_Should_Pass()
         {
@@ -1282,9 +1256,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion BattleSettings
 
-        #region DetermineActionChoice
         [Test]
         public void TurnEngine_DetermineActionChoice_Valid_Monster_Should_Return_CurrentAction()
         {
@@ -1332,9 +1304,10 @@ namespace UnitTests.Engine.EngineKoenig
             // Arrange
 
             var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
-            
+
             // Get the longest range weapon in stock.
-            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList().OrderByDescending(m => m.Range).FirstOrDefault();
+            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
+                                           .OrderByDescending(m => m.Range).FirstOrDefault();
             CharacterPlayer.PrimaryHand = weapon.Id;
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
@@ -1355,9 +1328,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(ActionEnum.Attack, result);
         }
-        #endregion DetermineActionChoice
 
-        #region ChooseToUseAbility
         [Test]
         public void TurnEngine_ChooseToUseAbility_Valid_Heal_Should_Return_True()
         {
@@ -1366,7 +1337,8 @@ namespace UnitTests.Engine.EngineKoenig
             var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
 
             // Get the longest range weapon in stock.
-            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList().OrderByDescending(m => m.Range).FirstOrDefault();
+            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
+                                           .OrderByDescending(m => m.Range).FirstOrDefault();
             CharacterPlayer.PrimaryHand = weapon.Id;
             CharacterPlayer.CurrentHealth = 1;
             CharacterPlayer.MaxHealth = 100;
@@ -1395,7 +1367,8 @@ namespace UnitTests.Engine.EngineKoenig
             var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
 
             // Get the longest range weapon in stock.
-            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList().OrderByDescending(m => m.Range).FirstOrDefault();
+            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
+                                           .OrderByDescending(m => m.Range).FirstOrDefault();
             CharacterPlayer.PrimaryHand = weapon.Id;
 
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
@@ -1425,7 +1398,8 @@ namespace UnitTests.Engine.EngineKoenig
             var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
 
             // Get the longest range weapon in stock.
-            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList().OrderByDescending(m => m.Range).FirstOrDefault();
+            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
+                                           .OrderByDescending(m => m.Range).FirstOrDefault();
             CharacterPlayer.PrimaryHand = weapon.Id;
             CharacterPlayer.AbilityTracker.Clear();
 
@@ -1453,10 +1427,11 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Cleric});
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Cleric});
 
             // Get the longest range weapon in stock.
-            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList().OrderByDescending(m => m.Range).FirstOrDefault();
+            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
+                                           .OrderByDescending(m => m.Range).FirstOrDefault();
             CharacterPlayer.PrimaryHand = weapon.Id;
 
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
@@ -1477,15 +1452,13 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion ChooseToUseAbility
 
-        #region MoveAsTurn
         [Test]
         public void TurnEngine_MoveAsTurn_Valid_Character_Should_Pass()
         {
             // Arrange
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Cleric });
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Cleric});
 
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
@@ -1511,7 +1484,7 @@ namespace UnitTests.Engine.EngineKoenig
             var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
             Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Cleric });
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Cleric});
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
             Engine.EngineSettings.MapModel.PopulateMapModel(Engine.EngineSettings.PlayerList);
@@ -1558,10 +1531,10 @@ namespace UnitTests.Engine.EngineKoenig
         public void TurnEngine_MoveAsTurn_Invalid_Monster_InValid_Defender_Not_On_Map_Should_Fail()
         {
             // Arrange
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Cleric });
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Cleric});
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
-            // Not on map.... 
+            // Not on map....
             Engine.EngineSettings.MapModel.PopulateMapModel(Engine.EngineSettings.PlayerList);
 
             var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
@@ -1591,7 +1564,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Add player after map is made, so player is not on the map
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Cleric });
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Cleric});
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
             Engine.EngineSettings.CurrentAction = ActionEnum.Unknown;
@@ -1605,6 +1578,5 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(false, result);
         }
-        #endregion MoveAsTurn
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-using NUnit.Framework;
+using Game.Models.Enums;
 
-using Game.Models;
-using Game.Helpers;
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
@@ -22,8 +21,8 @@ namespace UnitTests.Helpers
             // Get Expected set
             var myList = Enum.GetNames(typeof(DifficultyEnum)).ToList();
             var myExpectedList = myList.Where(a =>
-                                            a.ToString() != DifficultyEnum.Unknown.ToString()
-                                        ).ToList();
+                                                  a.ToString() != DifficultyEnum.Unknown.ToString()
+                                             ).ToList();
 
             // Act
 
@@ -66,7 +65,6 @@ namespace UnitTests.Helpers
                 // Assert
                 Assert.AreEqual(true, found, "expected : " + expected + TestContext.CurrentContext.Test.Name);
             }
-
         }
 
         [Test]
@@ -80,8 +78,8 @@ namespace UnitTests.Helpers
             // Get Expected set
             var myList = Enum.GetNames(typeof(DifficultyEnum)).ToList();
             var myExpectedList = myList.Where(a =>
-                                                a.ToString() != DifficultyEnum.Unknown.ToString()
-                                            ).ToList();
+                                                  a.ToString() != DifficultyEnum.Unknown.ToString()
+                                             ).ToList();
 
             // Act
 
@@ -124,7 +122,6 @@ namespace UnitTests.Helpers
                 // Assert
                 Assert.AreEqual(true, found, "expected : " + expected + TestContext.CurrentContext.Test.Name);
             }
-
         }
 
         [Test]
@@ -150,4 +147,3 @@ namespace UnitTests.Helpers
         }
     }
 }
-

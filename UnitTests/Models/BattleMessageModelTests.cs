@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Game.Models;
+using Game.Models.Enums;
 
-using Game.Models;
-
+using NUnit.Framework;
 
 namespace UnitTests.Models
 {
@@ -47,10 +47,10 @@ namespace UnitTests.Models
             Assert.AreEqual(string.Empty, result.LevelUpMessage);
 
             Assert.AreEqual(0, result.DamageAmount);
-            Assert.AreEqual(0,result.CurrentHealth);
+            Assert.AreEqual(0, result.CurrentHealth);
 
-            Assert.AreEqual(@"<html><body bgcolor=""#E8D0B6""><p>", result.htmlHead);
-            Assert.AreEqual(@"</p></body></html>", result.htmlTail);
+            Assert.AreEqual(@"<html><body bgcolor=""#E8D0B6""><p>", BattleMessagesModel.htmlHead);
+            Assert.AreEqual(@"</p></body></html>", BattleMessagesModel.htmlTail);
         }
 
         [Test]
@@ -80,8 +80,8 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-         
-            Assert.AreEqual(" for 0 damage ",result);
+
+            Assert.AreEqual(" for 0 damage ", result);
         }
 
         [Test]

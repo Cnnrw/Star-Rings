@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
 
-using Game.Helpers;
-using Game.Models;
-using Game.ViewModels;
-using System.Linq;
-using System.Threading.Tasks;
 using Game.GameRules;
+using Game.Helpers;
+using Game.Models.Enums;
+using Game.ViewModels;
+
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
@@ -26,7 +26,7 @@ namespace UnitTests.Helpers
             DiceHelper.DisableForcedRolls();
 
             // Assert
-            Assert.AreEqual(2-1, result);
+            Assert.AreEqual(2 - 1, result);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace UnitTests.Helpers
             DiceHelper.SetForcedRollValue(2);
 
             // Act
-            var result = RandomPlayerHelper.GetItem(Game.Models.ItemLocationEnum.Feet);
+            var result = RandomPlayerHelper.GetItem(ItemLocationEnum.Feet);
 
             // Reset
             DiceHelper.DisableForcedRolls();

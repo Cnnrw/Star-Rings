@@ -1,19 +1,18 @@
-﻿using System.Threading.Tasks;
-using System.Linq;
+﻿using System.Linq;
+using System.Threading.Tasks;
+
+using Game.Engine.EngineKoenig;
+using Game.Models;
+using Game.Models.Enums;
+using Game.ViewModels;
 
 using NUnit.Framework;
-
-using Game.Models;
-using Game.ViewModels;
-using Game.Engine.EngineKoenig;
 
 namespace UnitTests.Engine.EngineKoenig
 {
     [TestFixture]
     public class RoundEngineKoenigTests
     {
-        #region TestSetup
-        BattleEngine Engine;
 
         [SetUp]
         public void Setup()
@@ -23,16 +22,16 @@ namespace UnitTests.Engine.EngineKoenig
             Engine.Round.ClearLists();
 
             //Start the Engine in AutoBattle Mode
-            Engine.StartBattle(true);   
+            Engine.StartBattle(true);
         }
 
         [TearDown]
         public void TearDown()
         {
         }
-        #endregion TestSetup
 
-        #region Constructor
+        BattleEngine Engine;
+
         [Test]
         public void RoundEngine_Constructor_Valid_Default_Should_Pass()
         {
@@ -61,9 +60,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.IsNotNull(result.Turn);
         }
-        #endregion Constructor
 
-        #region OrderPlayListByTurnOrder
         [Test]
         public void RoundEngine_OrderPlayerListByTurnOrder_Valid_Speed_Higher_Should_Be_Z()
         {
@@ -87,7 +84,7 @@ namespace UnitTests.Engine.EngineKoenig
                 Speed = 1,
                 Level = 1,
                 CurrentHealth = 2,
-                ExperienceTotal= 1,
+                ExperienceTotal = 1,
                 Name = "C",
                 ListOrder = 10
             };
@@ -302,9 +299,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual("Z", result[0].Name);
         }
-        #endregion OrderPlayListByTurnOrder
 
-        #region GetItemFromPoolIfBetter
         [Test]
         public async Task RoundEngine_GetItemFromPoolIfBetter_InValid_Location_Empty_Should_Fail()
         {
@@ -326,8 +321,18 @@ namespace UnitTests.Engine.EngineKoenig
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            var item1 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Location = ItemLocationEnum.Feet };
-            var item2 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Location = ItemLocationEnum.Feet };
+            var item1 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Location = ItemLocationEnum.Feet
+            };
+            var item2 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Location = ItemLocationEnum.Feet
+            };
 
             await ItemIndexViewModel.Instance.CreateAsync(item1);
             await ItemIndexViewModel.Instance.CreateAsync(item2);
@@ -353,7 +358,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Assert
             Assert.AreEqual(true, result);
-            Assert.AreEqual(item2.Id, CharacterPlayer.Feet);    // The 2nd item is better, so did they swap?
+            Assert.AreEqual(item2.Id, CharacterPlayer.Feet); // The 2nd item is better, so did they swap?
         }
 
         [Test]
@@ -368,7 +373,7 @@ namespace UnitTests.Engine.EngineKoenig
                 Speed = 20,
                 Level = 1,
                 CurrentHealth = 1,
-                ExperienceTotal= 1,
+                ExperienceTotal = 1,
                 Name = "Z",
                 ListOrder = 1,
                 Guid = "me"
@@ -377,8 +382,18 @@ namespace UnitTests.Engine.EngineKoenig
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            var item1 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Location = ItemLocationEnum.PrimaryHand };
-            var item2 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Location = ItemLocationEnum.PrimaryHand };
+            var item1 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Location = ItemLocationEnum.PrimaryHand
+            };
+            var item2 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Location = ItemLocationEnum.PrimaryHand
+            };
 
             await ItemIndexViewModel.Instance.CreateAsync(item1);
             await ItemIndexViewModel.Instance.CreateAsync(item2);
@@ -403,7 +418,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Assert
             Assert.AreEqual(true, result);
-            Assert.AreEqual(item2.Id, CharacterPlayer.PrimaryHand);    // The 2nd item is better, so did they swap?
+            Assert.AreEqual(item2.Id, CharacterPlayer.PrimaryHand); // The 2nd item is better, so did they swap?
         }
 
         [Test]
@@ -427,8 +442,18 @@ namespace UnitTests.Engine.EngineKoenig
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            var item1 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Location = ItemLocationEnum.PrimaryHand };
-            var item2 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Location = ItemLocationEnum.PrimaryHand };
+            var item1 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Location = ItemLocationEnum.PrimaryHand
+            };
+            var item2 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Location = ItemLocationEnum.PrimaryHand
+            };
 
             await ItemIndexViewModel.Instance.CreateAsync(item1);
             await ItemIndexViewModel.Instance.CreateAsync(item2);
@@ -453,7 +478,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Assert
             Assert.AreEqual(true, result);
-            Assert.AreEqual(item2.Id, CharacterPlayer.PrimaryHand);    // Kept the one
+            Assert.AreEqual(item2.Id, CharacterPlayer.PrimaryHand); // Kept the one
         }
 
         [Test]
@@ -477,8 +502,18 @@ namespace UnitTests.Engine.EngineKoenig
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            var item1 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Location = ItemLocationEnum.PrimaryHand };
-            var item2 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Location = ItemLocationEnum.PrimaryHand };
+            var item1 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Location = ItemLocationEnum.PrimaryHand
+            };
+            var item2 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Location = ItemLocationEnum.PrimaryHand
+            };
 
             await ItemIndexViewModel.Instance.CreateAsync(item1);
             await ItemIndexViewModel.Instance.CreateAsync(item2);
@@ -526,8 +561,18 @@ namespace UnitTests.Engine.EngineKoenig
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            var item1 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Location = ItemLocationEnum.Finger };
-            var item2 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Location = ItemLocationEnum.Finger };
+            var item1 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Location = ItemLocationEnum.Finger
+            };
+            var item2 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Location = ItemLocationEnum.Finger
+            };
 
             await ItemIndexViewModel.Instance.CreateAsync(item1);
             await ItemIndexViewModel.Instance.CreateAsync(item2);
@@ -552,7 +597,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Assert
             Assert.AreEqual(true, result);
-            Assert.AreEqual(item2.Id, CharacterPlayer.RightFinger);    // The 2nd item is better, so did they swap?
+            Assert.AreEqual(item2.Id, CharacterPlayer.RightFinger); // The 2nd item is better, so did they swap?
         }
 
         [Test]
@@ -576,8 +621,18 @@ namespace UnitTests.Engine.EngineKoenig
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
 
-            var item1 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 1, Location = ItemLocationEnum.Finger };
-            var item2 = new ItemModel { Attribute = AttributeEnum.Attack, Value = 20, Location = ItemLocationEnum.Finger };
+            var item1 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 1,
+                Location = ItemLocationEnum.Finger
+            };
+            var item2 = new ItemModel
+            {
+                Attribute = AttributeEnum.Attack,
+                Value = 20,
+                Location = ItemLocationEnum.Finger
+            };
 
             await ItemIndexViewModel.Instance.CreateAsync(item1);
             await ItemIndexViewModel.Instance.CreateAsync(item2);
@@ -602,11 +657,9 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Assert
             Assert.AreEqual(true, result);
-            Assert.AreEqual(item2.Id, CharacterPlayer.LeftFinger);    // The 2nd item is better, so did they swap?
+            Assert.AreEqual(item2.Id, CharacterPlayer.LeftFinger); // The 2nd item is better, so did they swap?
         }
-        #endregion GetItemFromPoolIfBetter
 
-        #region PickupItemsFromPool
         [Test]
         public void RoundEngine_PickupItemsFromPool_Valid_Default_Should_Pass()
         {
@@ -643,9 +696,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion PickupItemsFromPool
 
-        #region EndRound
         [Test]
         public void RoundEngine_EndRound_Valid_Default_Should_Pass()
         {
@@ -681,9 +732,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion EndRound
 
-        #region RoundNextTurn
         [Test]
         public void RoundEngine_RoundNextTurn_Valid_No_Characters_Should_Return_GameOver()
         {
@@ -792,9 +841,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(RoundEnum.NextTurn, result);
         }
-        #endregion RoundNextTurn
 
-        #region GetNextPlayerInList
         [Test]
         public void RoundEngine_GetNextPlayerInList_Valid_Mike_Should_Return_Doug()
         {
@@ -802,48 +849,48 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Arrange
             var CharacterPlayerMike = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 200,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Mike",
-                                            ListOrder = 1,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 200,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Mike",
+                                                              ListOrder = 1,
+                                                          });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 20,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Doug",
-                                            ListOrder = 2,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 20,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Doug",
+                                                              ListOrder = 2,
+                                                          });
 
             var CharacterPlayerSue = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 2,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Sue",
-                                            ListOrder = 3,
-                                        });
+                                                         new CharacterModel
+                                                         {
+                                                             Speed = 2,
+                                                             Level = 1,
+                                                             CurrentHealth = 1,
+                                                             ExperienceTotal = 1,
+                                                             Name = "Sue",
+                                                             ListOrder = 3,
+                                                         });
 
             var MonsterPlayer = new PlayerInfoModel(
-                                    new MonsterModel
-                                    {
-                                        Speed = 1,
-                                        Level = 1,
-                                        CurrentHealth = 1,
-                                        ExperienceTotal = 1,
-                                        Name = "Monster",
-                                        ListOrder = 4,
-                                    });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 1,
+                                                        Level = 1,
+                                                        CurrentHealth = 1,
+                                                        ExperienceTotal = 1,
+                                                        Name = "Monster",
+                                                        ListOrder = 4,
+                                                    });
 
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
@@ -870,7 +917,7 @@ namespace UnitTests.Engine.EngineKoenig
 
 
             // Assert
-            Assert.AreEqual("Doug",result.Name);
+            Assert.AreEqual("Doug", result.Name);
         }
 
         [Test]
@@ -880,48 +927,48 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Arrange
             var CharacterPlayerMike = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 200,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Mike",
-                                            ListOrder = 1,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 200,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Mike",
+                                                              ListOrder = 1,
+                                                          });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 20,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Doug",
-                                            ListOrder = 2,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 20,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Doug",
+                                                              ListOrder = 2,
+                                                          });
 
             var CharacterPlayerSue = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 2,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Sue",
-                                            ListOrder = 3,
-                                        });
+                                                         new CharacterModel
+                                                         {
+                                                             Speed = 2,
+                                                             Level = 1,
+                                                             CurrentHealth = 1,
+                                                             ExperienceTotal = 1,
+                                                             Name = "Sue",
+                                                             ListOrder = 3,
+                                                         });
 
             var MonsterPlayer = new PlayerInfoModel(
-                                    new MonsterModel
-                                    {
-                                        Speed = 1,
-                                        Level = 1,
-                                        CurrentHealth = 1,
-                                        ExperienceTotal = 1,
-                                        Name = "Monster",
-                                        ListOrder = 4,
-                                    });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 1,
+                                                        Level = 1,
+                                                        CurrentHealth = 1,
+                                                        ExperienceTotal = 1,
+                                                        Name = "Monster",
+                                                        ListOrder = 4,
+                                                    });
 
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
@@ -958,48 +1005,48 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Arrange
             var CharacterPlayerMike = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 200,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Mike",
-                                            ListOrder = 1,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 200,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Mike",
+                                                              ListOrder = 1,
+                                                          });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 20,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Doug",
-                                            ListOrder = 2,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 20,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Doug",
+                                                              ListOrder = 2,
+                                                          });
 
             var CharacterPlayerSue = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 2,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Sue",
-                                            ListOrder = 3,
-                                        });
+                                                         new CharacterModel
+                                                         {
+                                                             Speed = 2,
+                                                             Level = 1,
+                                                             CurrentHealth = 1,
+                                                             ExperienceTotal = 1,
+                                                             Name = "Sue",
+                                                             ListOrder = 3,
+                                                         });
 
             var MonsterPlayer = new PlayerInfoModel(
-                                    new MonsterModel
-                                    {
-                                        Speed = 1,
-                                        Level = 1,
-                                        CurrentHealth = 1,
-                                        ExperienceTotal = 1,
-                                        Name = "Monster",
-                                        ListOrder = 4,
-                                    });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 1,
+                                                        Level = 1,
+                                                        CurrentHealth = 1,
+                                                        ExperienceTotal = 1,
+                                                        Name = "Monster",
+                                                        ListOrder = 4,
+                                                    });
 
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
@@ -1035,26 +1082,26 @@ namespace UnitTests.Engine.EngineKoenig
             Game.Helpers.DataSetsHelper.WarmUp();
 
             var CharacterPlayerSue = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 2,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Sue",
-                                            ListOrder = 3,
-                                        });
+                                                         new CharacterModel
+                                                         {
+                                                             Speed = 2,
+                                                             Level = 1,
+                                                             CurrentHealth = 1,
+                                                             ExperienceTotal = 1,
+                                                             Name = "Sue",
+                                                             ListOrder = 3,
+                                                         });
 
             var MonsterPlayer = new PlayerInfoModel(
-                                    new MonsterModel
-                                    {
-                                        Speed = 1,
-                                        Level = 1,
-                                        CurrentHealth = 1,
-                                        ExperienceTotal = 1,
-                                        Name = "Monster",
-                                        ListOrder = 4,
-                                    });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 1,
+                                                        Level = 1,
+                                                        CurrentHealth = 1,
+                                                        ExperienceTotal = 1,
+                                                        Name = "Monster",
+                                                        ListOrder = 4,
+                                                    });
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -1065,7 +1112,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Make the List
             Engine.EngineSettings.PlayerList = Engine.Round.MakePlayerList();
-            
+
             // Clear the List to cause the error
             Engine.EngineSettings.PlayerList.Clear();
 
@@ -1089,48 +1136,48 @@ namespace UnitTests.Engine.EngineKoenig
             Game.Helpers.DataSetsHelper.WarmUp();
 
             var CharacterPlayerMike = new PlayerInfoModel(
-                                       new CharacterModel
-                                       {
-                                           Speed = 200,
-                                           Level = 1,
-                                           CurrentHealth = 1,
-                                           ExperienceTotal = 1,
-                                           Name = "Mike",
-                                           ListOrder = 1,
-                                       });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 200,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Mike",
+                                                              ListOrder = 1,
+                                                          });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 20,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Doug",
-                                            ListOrder = 2,
-                                        });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 20,
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              Name = "Doug",
+                                                              ListOrder = 2,
+                                                          });
 
             var CharacterPlayerSue = new PlayerInfoModel(
-                                        new CharacterModel
-                                        {
-                                            Speed = 2,
-                                            Level = 1,
-                                            CurrentHealth = 1,
-                                            ExperienceTotal = 1,
-                                            Name = "Sue",
-                                            ListOrder = 3,
-                                        });
+                                                         new CharacterModel
+                                                         {
+                                                             Speed = 2,
+                                                             Level = 1,
+                                                             CurrentHealth = 1,
+                                                             ExperienceTotal = 1,
+                                                             Name = "Sue",
+                                                             ListOrder = 3,
+                                                         });
 
             var MonsterPlayer = new PlayerInfoModel(
-                                    new MonsterModel
-                                    {
-                                        Speed = 1,
-                                        Level = 1,
-                                        CurrentHealth = 1,
-                                        ExperienceTotal = 1,
-                                        Name = "Monster",
-                                        ListOrder = 4,
-                                    });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 1,
+                                                        Level = 1,
+                                                        CurrentHealth = 1,
+                                                        ExperienceTotal = 1,
+                                                        Name = "Monster",
+                                                        ListOrder = 4,
+                                                    });
 
             // Add each model here to warm up and load it.
             Game.Helpers.DataSetsHelper.WarmUp();
@@ -1158,6 +1205,5 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(Engine.EngineSettings.PlayerList.First().Guid, result.Guid);
         }
-        #endregion GetNextPlayerInList
     }
 }

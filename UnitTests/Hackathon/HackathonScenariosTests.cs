@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
 
 using Game.Models;
-using System.Threading.Tasks;
+using Game.Models.Enums;
 using Game.ViewModels;
+
+using NUnit.Framework;
 
 namespace Scenario
 {
     [TestFixture]
     public class HackathonScenarioTests
     {
-        #region TestSetup
-        readonly BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
 
         [SetUp]
         public void Setup()
@@ -22,7 +22,7 @@ namespace Scenario
             BattleEngineViewModel.Instance.Engine.StartBattle(false);
 
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Default;
-            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum= HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
 
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.AllowCriticalHit = false;
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.AllowCriticalMiss = false;
@@ -32,33 +32,33 @@ namespace Scenario
         public void TearDown()
         {
         }
-        #endregion TestSetup
 
-        #region Scenario0
+        readonly BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
+
         [Test]
         public void HakathonScenario_Scenario_0_Valid_Default_Should_Pass()
         {
-            /* 
-            * Scenario Number:  
+            /*
+            * Scenario Number:
             *      #
-            *      
-            * Description: 
+            *
+            * Description:
             *      <Describe the scenario>
-            * 
-            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+            *
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
             *      <List Files Changed>
             *      <List Classes Changed>
             *      <List Methods Changed>
-            * 
+            *
             * Test Algrorithm:
             *      <Step by step how to validate this change>
-            * 
+            *
             * Test Conditions:
             *      <List the different test conditions to make>
-            * 
+            *
             * Validation:
             *      <List how to validate this change>
-            *  
+            *
             */
 
             // Arrange
@@ -66,7 +66,7 @@ namespace Scenario
             // Act
 
             // Assert
-           
+
 
             // Act
             var result = EngineViewModel;
@@ -76,39 +76,37 @@ namespace Scenario
             // Assert
             Assert.IsNotNull(result);
         }
-        #endregion Scenario0
 
-        #region Scenario1
         [Test]
         public async Task HackathonScenario_Scenario_1_Valid_Default_Should_Pass()
         {
-            /* 
-            * Scenario Number:  
+            /*
+            * Scenario Number:
             *      1
-            *      
-            * Description: 
+            *
+            * Description:
             *      Make a Character called Mike, who dies in the first round
-            * 
-            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
-            *      No Code changes requied 
-            * 
+            *
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
+            *      No Code changes requied
+            *
             * Test Algrorithm:
             *      Create Character named Mike
             *      Set speed to -1 so he is really slow
             *      Set Max health to 1 so he is weak
             *      Set Current Health to 1 so he is weak
-            *  
+            *
             *      Startup Battle
             *      Run Auto Battle
-            * 
+            *
             * Test Conditions:
             *      Default condition is sufficient
-            * 
+            *
             * Validation:
             *      Verify Battle Returned True
             *      Verify Mike is not in the Player List
             *      Verify Round Count is 1
-            *  
+            *
             */
 
             //Arrange
@@ -118,15 +116,15 @@ namespace Scenario
             EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayerMike = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = -1, // Will go last...
-                                Level = 1,
-                                CurrentHealth = 1,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                            });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = -1, // Will go last...
+                                                              Level = 1,
+                                                              CurrentHealth = 1,
+                                                              ExperienceTotal = 1,
+                                                              ExperienceRemaining = 1,
+                                                              Name = "Mike",
+                                                          });
 
             EngineViewModel.Engine.EngineSettings.CharacterList.Add(CharacterPlayerMike);
 
@@ -148,6 +146,5 @@ namespace Scenario
             Assert.AreEqual(null, EngineViewModel.Engine.EngineSettings.PlayerList.Find(m => m.Name.Equals("Mike")));
             Assert.AreEqual(1, EngineViewModel.Engine.EngineSettings.BattleScore.RoundCount);
         }
-        #endregion Scenario1
     }
 }

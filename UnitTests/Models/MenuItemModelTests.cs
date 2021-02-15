@@ -1,4 +1,5 @@
 ﻿using Game.Models;
+using Game.Models.Enums;
 
 using NUnit.Framework;
 

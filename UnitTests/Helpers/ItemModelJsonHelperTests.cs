@@ -1,12 +1,12 @@
 ﻿using System;
-using NUnit.Framework;
-
-using Newtonsoft;
-using Newtonsoft.Json.Linq;
+using System.Linq;
 
 using Game.Helpers;
-using System.Linq;
-using Game.Models;
+using Game.Models.Enums;
+
+using Newtonsoft.Json.Linq;
+
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
@@ -142,8 +142,8 @@ namespace UnitTests.Helpers
             // Arrange
 
             // Act
-            var result = ItemModelJsonHelper.ConvertFromJson(null); 
-            
+            var result = ItemModelJsonHelper.ConvertFromJson(null);
+
             // Reset
 
             // Assert

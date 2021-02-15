@@ -2,6 +2,7 @@
 
 using Game;
 using Game.Models;
+using Game.Models.Enums;
 using Game.Views;
 
 using NUnit.Framework;

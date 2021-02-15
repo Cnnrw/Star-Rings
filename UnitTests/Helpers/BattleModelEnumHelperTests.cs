@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-using NUnit.Framework;
+using Game.Models.Enums;
 
-using Game.Models;
-using Game.Helpers;
-using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
@@ -21,7 +19,7 @@ namespace UnitTests.Helpers
             var result = BattleModeEnumHelper.GetListAll;
 
             // Assert
-            Assert.AreEqual(6,result.Count());
+            Assert.AreEqual(6, result.Count());
 
             // Assert
         }
@@ -85,4 +83,3 @@ namespace UnitTests.Helpers
         }
     }
 }
-

@@ -1,13 +1,15 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Game.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System;
+using Game.Models.Enums;
+
+using NUnit.Framework;
 
 namespace UnitTests.Models
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization",
+                                                     Justification = "<Pending>")]
     [TestFixture]
     public class MapModelTests
     {
@@ -21,7 +23,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result);
         }
 
@@ -35,7 +37,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result.EmptySquare);
             Assert.IsNotNull(result.MapGridLocation);
         }
@@ -46,15 +48,17 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = new MapModel();
-            result.EmptySquare = new PlayerInfoModel { PlayerType = PlayerTypeEnum.Unknown };
-            result.MapXAxiesCount = 1;
-            result.MapYAxiesCount = 1;
-            result.MapGridLocation = new MapModelLocation[result.MapXAxiesCount, result.MapYAxiesCount];
+            var result = new MapModel
+            {
+                EmptySquare = new PlayerInfoModel {PlayerType = PlayerTypeEnum.Unknown},
+                MapXAxesCount = 1,
+                MapYAxesCount = 1
+            };
+            result.MapGridLocation = new MapModelLocation[result.MapXAxesCount, result.MapYAxesCount];
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.IsNotNull(result.EmptySquare);
             Assert.IsNotNull(result.MapGridLocation);
         }
@@ -66,9 +70,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 1;
-            map.MapYAxiesCount = 1;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 1;
+            map.MapYAxesCount = 1;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
 
             var PlayerList = new List<PlayerInfoModel>();
@@ -86,7 +90,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
         }
 
@@ -97,9 +101,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 1;
-            map.MapYAxiesCount = 1;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 1;
+            map.MapYAxesCount = 1;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
 
             var PlayerList = new List<PlayerInfoModel>();
@@ -117,7 +121,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
         }
 
@@ -128,9 +132,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -145,11 +149,11 @@ namespace UnitTests.Models
             var MapLocationData = map.MapGridLocation[0, 0];
 
             // Act
-            var result = map.MovePlayerOnMap(MapLocationData,new MapModelLocation { Column = -1, Row = 0 });
+            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation {Column = -1, Row = 0});
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -160,9 +164,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -177,11 +181,11 @@ namespace UnitTests.Models
             var MapLocationData = map.MapGridLocation[0, 0];
 
             // Act
-            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation { Column = 0, Row = -1 });
+            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation {Column = 0, Row = -1});
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -192,9 +196,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -209,11 +213,11 @@ namespace UnitTests.Models
             var MapLocationData = map.MapGridLocation[0, 0];
 
             // Act
-            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation { Column = 100, Row = 0 });
+            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation {Column = 100, Row = 0});
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -224,9 +228,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -241,11 +245,11 @@ namespace UnitTests.Models
             var MapLocationData = map.MapGridLocation[0, 0];
 
             // Act
-            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation { Column = 0, Row = 100 });
+            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation {Column = 0, Row = 100});
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -256,9 +260,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -273,11 +277,11 @@ namespace UnitTests.Models
             var MapLocationData = map.MapGridLocation[0, 0];
 
             // Act
-            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation { Column = 1, Row = 1 });
+            var result = map.MovePlayerOnMap(MapLocationData, new MapModelLocation {Column = 1, Row = 1});
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
         }
 
@@ -288,14 +292,14 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapGridLocation = new MapModelLocation[0,0];
+            map.MapGridLocation = new MapModelLocation[0, 0];
 
             // Act
             var result = map.GetEmptyLocations();
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(0, result.Count());
         }
 
@@ -306,9 +310,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -327,7 +331,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(0, result.Count());
         }
 
@@ -338,9 +342,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -361,7 +365,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(3, result.Count());
         }
 
@@ -372,9 +376,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -391,11 +395,11 @@ namespace UnitTests.Models
             map.PopulateMapModel(PlayerList);
 
             // Act
-            var result = map.IsEmptySquare(0,0);
+            var result = map.IsEmptySquare(0, 0);
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -406,9 +410,9 @@ namespace UnitTests.Models
 
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -429,7 +433,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -439,9 +443,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -458,11 +462,11 @@ namespace UnitTests.Models
             map.PopulateMapModel(PlayerList);
 
             // Act
-            var result = map.IsEmptySquare(0,1);
+            var result = map.IsEmptySquare(0, 1);
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
         }
 
@@ -473,11 +477,11 @@ namespace UnitTests.Models
             var map = new MapModel();
 
             // Act
-            var result = map.Distance(0, 1, 1,1);
+            var result = MapModel.Distance(0, 1, 1, 1);
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(1, result);
         }
 
@@ -492,7 +496,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(int.MaxValue, result);
         }
 
@@ -507,7 +511,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(int.MaxValue, result);
         }
 
@@ -517,9 +521,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -542,7 +546,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(2, result);
         }
 
@@ -552,9 +556,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -577,7 +581,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -587,9 +591,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -612,7 +616,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
         }
 
@@ -622,9 +626,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -649,7 +653,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -659,9 +663,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -686,7 +690,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -696,9 +700,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 3;
-            map.MapYAxiesCount = 3;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 3;
+            map.MapYAxesCount = 3;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -715,11 +719,11 @@ namespace UnitTests.Models
             map.PopulateMapModel(PlayerList);
 
             // Act
-            var result = map.ReturnClosestEmptyLocation(map.MapGridLocation[0,0]);
+            var result = map.ReturnClosestEmptyLocation(map.MapGridLocation[0, 0]);
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(0, result.Column);
             Assert.AreEqual(1, result.Row);
         }
@@ -730,9 +734,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -751,7 +755,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(null, result);
         }
 
@@ -761,9 +765,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -782,7 +786,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(null, result);
         }
 
@@ -792,9 +796,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -813,7 +817,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(0, result.Column);
             Assert.AreEqual(0, result.Row);
         }
@@ -824,9 +828,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -845,7 +849,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(true, result);
         }
 
@@ -855,9 +859,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -876,7 +880,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
 
@@ -886,9 +890,9 @@ namespace UnitTests.Models
             // Arrange
             var map = new MapModel();
 
-            map.MapXAxiesCount = 2;
-            map.MapYAxiesCount = 2;
-            map.MapGridLocation = new MapModelLocation[map.MapXAxiesCount, map.MapYAxiesCount];
+            map.MapXAxesCount = 2;
+            map.MapYAxesCount = 2;
+            map.MapGridLocation = new MapModelLocation[map.MapXAxesCount, map.MapYAxesCount];
 
             var PlayerList = new List<PlayerInfoModel>();
 
@@ -911,7 +915,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert 
+            // Assert
             Assert.AreEqual(false, result);
         }
     }

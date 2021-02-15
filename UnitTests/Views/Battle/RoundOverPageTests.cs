@@ -1,26 +1,21 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Game;
-using Game.Views;
 using Game.Models;
-
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
+using Game.Models.Enums;
 using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class RoundOverPageTests
     {
-        App app;
-        RoundOverPage page;
 
         [SetUp]
         public void Setup()
@@ -40,6 +35,9 @@ namespace UnitTests.Views
         {
             Application.Current = null;
         }
+
+        App           app;
+        RoundOverPage page;
 
         [Test]
         public void RoundOverPage_Constructor_Default_Should_Pass()
@@ -138,7 +136,7 @@ namespace UnitTests.Views
         {
             // Arrange
             // Act
-            page.GetItemToDisplay(new ItemModel { Id = "" });
+            page.GetItemToDisplay(new ItemModel {Id = ""});
 
             // Reset
 
@@ -150,7 +148,7 @@ namespace UnitTests.Views
         public async Task RoundOverPage_GetItemToDisplay_Valid_Should_Pass()
         {
             // Arrange
-            var data = new ItemModel { Name = "Mike" };
+            var data = new ItemModel {Name = "Mike"};
             await ItemIndexViewModel.Instance.CreateAsync(data);
 
             // Act
@@ -167,10 +165,12 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.CharacterModelDeathList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             // Draw the Monsters
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.MonsterModelDeathList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.MonsterModelDeathList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             // Do it two times
             page.DrawCharacterList();

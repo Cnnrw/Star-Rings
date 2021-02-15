@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
 
-using Game.Models;
 using Game.Engine.EngineModels;
-using System.Collections.Generic;
+using Game.Models;
+using Game.Models.Enums;
+
+using NUnit.Framework;
 
 namespace UnitTests.Engine.EngineModels
 {
@@ -81,8 +83,6 @@ namespace UnitTests.Engine.EngineModels
             Assert.AreEqual(AbilityEnum.Heal, result.CurrentActionAbility);
             Assert.AreEqual(RoundEnum.Unknown, result.RoundStateEnum);
             Assert.AreEqual(BattleStateEnum.Unknown, result.BattleStateEnum);
-
         }
-
     }
 }

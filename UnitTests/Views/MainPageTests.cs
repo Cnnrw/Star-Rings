@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 
 using Game;
-using Game.Models;
+using Game.Models.Enums;
 using Game.Views;
 
 using NUnit.Framework;
@@ -29,10 +29,7 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
 
         App      app;
         MainPage page;

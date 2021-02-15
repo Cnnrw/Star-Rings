@@ -1,29 +1,26 @@
 ﻿using System.Threading.Tasks;
 
+using Game;
+using Game.Models;
+using Game.Models.Enums;
+using Game.ViewModels;
+using Game.Views;
+
 using NUnit.Framework;
 
-using Xamarin.Forms.Mocks;
 using Xamarin.Forms;
-
-using Game;
-using Game.Views;
-using Game.Models;
-using Game.ViewModels;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class BattlePageTests : BattlePage
     {
-        App app;
-        BattlePage page;
-
-        public BattlePageTests() : base(true) { }
 
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
@@ -38,16 +35,20 @@ namespace UnitTests.Views
             //Start the Engine in AutoBattle Mode
             BattleEngineViewModel.Instance.Engine.StartBattle(false);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(new CharacterModel()));
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(new PlayerInfoModel(new MonsterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
+                                 .Add(new PlayerInfoModel(new MonsterModel()));
             BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App        app;
+        private BattlePage page;
+
+        public BattlePageTests() : base(true) { }
 
         [Test]
         public void BattlePage_OnAppearing_Should_Pass()
@@ -160,7 +161,7 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-        
+
 
         [Test]
         public void BattlePage_ClearMessages_Default_Should_Pass()
@@ -204,6 +205,7 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
+
         [Test]
         public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_Null_CurrentDefender_Null_Should_Pass()
         {
@@ -264,7 +266,10 @@ namespace UnitTests.Views
             // Arrange
 
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender( new PlayerInfoModel(new CharacterModel { Alive=false }));
+            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
+            {
+                Alive = false
+            }));
 
             // Act
             page.DrawGameAttackerDefenderBoard();
@@ -281,7 +286,10 @@ namespace UnitTests.Views
             // Arrange
 
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel { Alive = false }));
+            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
+            {
+                Alive = false
+            }));
 
             var oldItem = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand;
 
@@ -303,7 +311,8 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
 
@@ -329,7 +338,8 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(new PlayerInfoModel(new MonsterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
+                                 .Add(new PlayerInfoModel(new MonsterModel()));
 
             BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
 
@@ -356,16 +366,16 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayer = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = 100,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                            });
+                                                      new CharacterModel
+                                                      {
+                                                          Speed = 100,
+                                                          Level = 10,
+                                                          CurrentHealth = 11,
+                                                          ExperienceTotal = 1,
+                                                          ExperienceRemaining = 1,
+                                                          Name = "Mike",
+                                                          ListOrder = 1,
+                                                      });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
@@ -374,16 +384,16 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
             var MonsterPlayer = new PlayerInfoModel(
-                            new MonsterModel
-                            {
-                                Speed = -1,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                            });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = -1,
+                                                        Level = 10,
+                                                        CurrentHealth = 11,
+                                                        ExperienceTotal = 1,
+                                                        ExperienceRemaining = 1,
+                                                        Name = "Mike",
+                                                        ListOrder = 1,
+                                                    });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
@@ -393,7 +403,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
 
             // Act
-            page.SetAttackerAndDefender();
+            SetAttackerAndDefender();
 
             // Reset
 
@@ -414,16 +424,16 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayer = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = -1,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                            });
+                                                      new CharacterModel
+                                                      {
+                                                          Speed = -1,
+                                                          Level = 10,
+                                                          CurrentHealth = 11,
+                                                          ExperienceTotal = 1,
+                                                          ExperienceRemaining = 1,
+                                                          Name = "Mike",
+                                                          ListOrder = 1,
+                                                      });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
@@ -432,16 +442,16 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
             var MonsterPlayer = new PlayerInfoModel(
-                            new MonsterModel
-                            {
-                                Speed = 100,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                            });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 100,
+                                                        Level = 10,
+                                                        CurrentHealth = 11,
+                                                        ExperienceTotal = 1,
+                                                        ExperienceRemaining = 1,
+                                                        Name = "Mike",
+                                                        ListOrder = 1,
+                                                    });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
 
@@ -451,7 +461,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
 
             // Act
-            page.SetAttackerAndDefender();
+            SetAttackerAndDefender();
 
             // Reset
 
@@ -471,16 +481,16 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayer = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = -1,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                            });
+                                                      new CharacterModel
+                                                      {
+                                                          Speed = -1,
+                                                          Level = 10,
+                                                          CurrentHealth = 11,
+                                                          ExperienceTotal = 1,
+                                                          ExperienceRemaining = 1,
+                                                          Name = "Mike",
+                                                          ListOrder = 1,
+                                                      });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
@@ -489,17 +499,17 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
             var MonsterPlayer = new PlayerInfoModel(
-                            new MonsterModel
-                            {
-                                Speed = 100,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                                PlayerType = PlayerTypeEnum.Unknown
-                            });
+                                                    new MonsterModel
+                                                    {
+                                                        Speed = 100,
+                                                        Level = 10,
+                                                        CurrentHealth = 11,
+                                                        ExperienceTotal = 1,
+                                                        ExperienceRemaining = 1,
+                                                        Name = "Mike",
+                                                        ListOrder = 1,
+                                                        PlayerType = PlayerTypeEnum.Unknown
+                                                    });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
 
@@ -509,7 +519,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
 
             // Act
-            page.SetAttackerAndDefender();
+            SetAttackerAndDefender();
 
             // Reset
 
@@ -537,7 +547,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page.SetSelectedCharacter(new MapModelLocation());
+            var result = SetSelectedCharacter(new MapModelLocation());
 
             // Reset
 
@@ -551,7 +561,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page.SetSelectedMonster(new MapModelLocation());
+            var result = SetSelectedMonster(new MapModelLocation());
 
             // Reset
 
@@ -565,12 +575,12 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page.SetSelectedEmpty(new MapModelLocation());
+            var result = SetSelectedEmpty(new MapModelLocation());
 
             // Reset
 
             // Assert
-            Assert.AreEqual(true,result); // Got to here, so it happened...
+            Assert.AreEqual(true, result); // Got to here, so it happened...
         }
 
         [Test]
@@ -615,12 +625,12 @@ namespace UnitTests.Views
             page.MapLocationObject.TryGetValue(nameStack, out object dataStack);
             page.MapLocationObject.Remove(nameStack);
 
-            var nameImage= "MapR0C0ImageButton";
+            var nameImage = "MapR0C0ImageButton";
             page.MapLocationObject.TryGetValue(nameImage, out object dataImage);
 
             page.MapLocationObject.Remove(nameImage);
 
-            var dataImageBogus = new ImageButton { AutomationId = "bogus" };
+            var dataImageBogus = new ImageButton {AutomationId = "bogus"};
             page.MapLocationObject.Add(nameImage, dataImageBogus);
 
             // Act
@@ -646,7 +656,8 @@ namespace UnitTests.Views
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList);
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+                .Instance.Engine.EngineSettings.PlayerList);
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Unknown;
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.AutoBattle = true;
@@ -689,7 +700,7 @@ namespace UnitTests.Views
             // Get the current valute
 
             // Act
-            page.Setttings_Clicked(null,null);
+            page.Setttings_Clicked(null, null);
 
             // Reset
 
@@ -701,7 +712,12 @@ namespace UnitTests.Views
         public void BattleSettingsPage_MakeMapGridBox_InValid_Should_Fail()
         {
             // Arrange
-            var data = new MapModelLocation { Player = null, Column = 0, Row = 0 };
+            var data = new MapModelLocation
+            {
+                Player = null,
+                Column = 0,
+                Row = 0
+            };
 
             // Act
             var result = page.MakeMapGridBox(data);
@@ -709,7 +725,8 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.AreEqual(HitStatusEnum.Default, BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
+            Assert.AreEqual(HitStatusEnum.Default,
+                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
         }
 
         [Test]
@@ -730,14 +747,14 @@ namespace UnitTests.Views
         public void BattleSettingsPage_ShowBattleModeUIElements_Starting_Should_Pass()
         {
             // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum ;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = BattleStateEnum.Starting;
+            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Starting;
 
             // Act
             page.ShowBattleModeUIElements();
 
             // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = save;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = save;
 
             // Assert
             Assert.IsTrue(true); // Got Here
@@ -747,14 +764,14 @@ namespace UnitTests.Views
         public void BattleSettingsPage_ShowBattleModeUIElements_NewRound_Should_Pass()
         {
             // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum ;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = BattleStateEnum.NewRound;
+            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
 
             // Act
             page.ShowBattleModeUIElements();
 
             // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = save;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = save;
 
             // Assert
             Assert.IsTrue(true); // Got Here
@@ -764,14 +781,14 @@ namespace UnitTests.Views
         public void BattleSettingsPage_ShowBattleModeUIElements_GameOver_Should_Pass()
         {
             // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum ;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = BattleStateEnum.GameOver;
+            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.GameOver;
 
             // Act
             page.ShowBattleModeUIElements();
 
             // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = save;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = save;
 
             // Assert
             Assert.IsTrue(true); // Got Here
@@ -781,14 +798,14 @@ namespace UnitTests.Views
         public void BattleSettingsPage_ShowBattleModeUIElements_RoundOver_Should_Pass()
         {
             // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum ;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = BattleStateEnum.RoundOver;
+            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.RoundOver;
 
             // Act
             page.ShowBattleModeUIElements();
 
             // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = save;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = save;
 
             // Assert
             Assert.IsTrue(true); // Got Here
@@ -798,14 +815,14 @@ namespace UnitTests.Views
         public void BattleSettingsPage_ShowBattleModeUIElements_Battling_Should_Pass()
         {
             // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum ;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = BattleStateEnum.Battling;
+            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
 
             // Act
             page.ShowBattleModeUIElements();
 
             // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = save;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = save;
 
             // Assert
             Assert.IsTrue(true); // Got Here
@@ -815,14 +832,14 @@ namespace UnitTests.Views
         public void BattleSettingsPage_ShowBattleModeUIElements_Unknown_Should_Pass()
         {
             // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum ;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = BattleStateEnum.Unknown;
+            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Unknown;
 
             // Act
             page.ShowBattleModeUIElements();
 
             // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum  = save;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = save;
 
             // Assert
             Assert.IsTrue(true); // Got Here
@@ -833,7 +850,8 @@ namespace UnitTests.Views
         {
             // Arrange
             var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.MapAbility;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.MapAbility;
 
             // Act
             page.ShowBattleModeDisplay();
@@ -850,7 +868,8 @@ namespace UnitTests.Views
         {
             // Arrange
             var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.MapFull;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.MapFull;
 
             // Act
             page.ShowBattleModeDisplay();
@@ -867,7 +886,8 @@ namespace UnitTests.Views
         {
             // Arrange
             var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.MapNext;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.MapNext;
 
             // Act
             page.ShowBattleModeDisplay();
@@ -884,7 +904,8 @@ namespace UnitTests.Views
         {
             // Arrange
             var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.SimpleAbility;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.SimpleAbility;
 
             // Act
             page.ShowBattleModeDisplay();
@@ -901,7 +922,8 @@ namespace UnitTests.Views
         {
             // Arrange
             var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.Unknown;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.Unknown;
 
             // Act
             page.ShowBattleModeDisplay();
@@ -918,7 +940,8 @@ namespace UnitTests.Views
         {
             // Arrange
             var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnum.SimpleNext;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnum.SimpleNext;
 
             // Act
             page.ShowBattleModeDisplay();
@@ -940,18 +963,19 @@ namespace UnitTests.Views
             var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList);
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+                .Instance.Engine.EngineSettings.PlayerList);
 
             // Make UI Map
             page.CreateMapGridObjects();
 
-            var nameImage = "MapR0C0ImageButton";
+            const string nameImage = "MapR0C0ImageButton";
             page.MapLocationObject.TryGetValue(nameImage, out object dataImage);
 
             // Act
 
             // Force the click event to fire
-            ((ImageButton)dataImage).PropagateUpClicked();
+            ((ImageButton)dataImage)?.PropagateUpClicked();
 
             // Reset
 
@@ -969,7 +993,8 @@ namespace UnitTests.Views
             var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList);
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+                .Instance.Engine.EngineSettings.PlayerList);
 
             // Make UI Map
             page.CreateMapGridObjects();
@@ -980,7 +1005,7 @@ namespace UnitTests.Views
             // Act
 
             // Force the click event to fire
-            ((ImageButton)dataImage).PropagateUpClicked();
+            ((ImageButton)dataImage)?.PropagateUpClicked();
 
             // Reset
 
@@ -998,7 +1023,8 @@ namespace UnitTests.Views
             var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList);
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+                .Instance.Engine.EngineSettings.PlayerList);
 
             // Make UI Map
             page.DrawMapGridInitialState();
@@ -1009,7 +1035,7 @@ namespace UnitTests.Views
             // Act
 
             // Force the click event to fire
-            ((ImageButton)dataImage).PropagateUpClicked();
+            ((ImageButton)dataImage)?.PropagateUpClicked();
 
             // Reset
 

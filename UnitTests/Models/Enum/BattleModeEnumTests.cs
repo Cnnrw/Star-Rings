@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Game.Models.Enums;
 
-using Game.Models;
+using NUnit.Framework;
 
 namespace UnitTests.Models
 {
