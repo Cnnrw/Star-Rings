@@ -2,28 +2,47 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="Black"
              x:Class="Game.Views.LandingPage">
 
-    <StackLayout>
+    <RelativeLayout>
         <Image Source="magic_tree.gif"
-               IsAnimationPlaying="True"/>
+               Opacity="0.3"
+               IsAnimationPlaying="true"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />
+        <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
-        <Label Text="A long time ago in a galaxy far, far away...."
-               Style="{StaticResource CenterMessageLargeStyle}"
-               HorizontalOptions="Center"
-               Margin="0, 30, 0, 10"
-               LineBreakMode="WordWrap"/>
-
-        <Label Text="The Millenium Falcon has been sucked into a wormhole and teleported to Middle Earth! Help the Rebel crew battle their way across the land in search of a magical portal to take them home!"
-               Style="{StaticResource CenterMessageStyle}"
-               HorizontalOptions="Center"
-               Margin="50, 0, 50, 0"
-               LineBreakMode="WordWrap"/>
-
-        <ImageButton x:Name="StartButton"
-                     Source="start_button_normal.png"
-                     Pressed="StartButton_OnPressed"
-                     Released="StartButton_OnReleased"/>
-    </StackLayout>
-    
+         <ImageButton x:Name="StartButton"
+                      Source="start_button_normal.png"
+                      Pressed="StartButton_OnPressed"
+                      Released="StartButton_OnReleased"/>
+        </Grid>
+    </RelativeLayout>
 </ContentPage>
+
+
+<!--     <StackLayout VerticalOptions="FillAndExpand"> -->
+<!--         ~1~ <Image Source="magic_tree.gif" @1@ -->
+<!--         ~1~        IsAnimationPlaying="True"/> @1@ -->
+<!-- -->
+<!--         <Label Text="A long time ago in a galaxy far, far away...." -->
+<!--                Style="{StaticResource CenterMessageLargeStyle}" -->
+<!--                HorizontalOptions="Center" -->
+<!--                Margin="0, 30, 0, 10" -->
+<!--                LineBreakMode="WordWrap"/> -->
+<!-- -->
+<!--         <Label Text="The Millenium Falcon has been sucked into a wormhole and teleported to Middle Earth! Help the Rebel crew battle their way across the land in search of a magical portal to take them home!" -->
+<!--                Style="{StaticResource CenterMessageStyle}" -->
+<!--                HorizontalOptions="Center" -->
+<!--                Margin="50, 0, 50, 0" -->
+<!--                LineBreakMode="WordWrap"/> -->
+<!-- -->
+<!--         <ImageButton x:Name="StartButton" -->
+<!--                      Source="start_button_normal.png" -->
+<!--                      Pressed="StartButton_OnPressed" -->
+<!--                      Released="StartButton_OnReleased"/> -->
+<!--     </StackLayout> -->
+<!-- -->
+<!-- </ContentPage> -->
