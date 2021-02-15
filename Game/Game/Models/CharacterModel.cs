@@ -23,7 +23,7 @@ namespace Game.Models
             Attack = 1;
             Defense = 1;
             Speed = 1;
-            ImageURI = "item.png";
+            ImageURI = "jedi_icon.png";
             ExperienceTotal = 0;
             ExperienceRemaining = LevelTableHelper.LevelDetailsList[Level + 1].Experience - 1;
 

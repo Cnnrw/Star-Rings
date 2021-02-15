@@ -38,6 +38,14 @@ namespace Game.Views
             _viewModel.Title = "Create";
         }
 
+        private void OnJobPickerChanged(object sender, EventArgs e)
+        {
+            string iconImageURI = CharacterJobEnumExtensions.ToIconImageURI(_viewModel.Data.Job);
+
+            _viewModel.Data.ImageURI = iconImageURI;
+            JobImage.Source = iconImageURI;
+        }
+
         /// <summary>
         ///     Changes Level attribute of a Character
         /// </summary>

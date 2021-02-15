@@ -94,6 +94,50 @@ namespace Game.Models
 
             return Message;
         }
+
+        /// <summary>
+        /// Convert the Job to its corresponding icon image
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToIconImageURI(this CharacterJobEnum value)
+        {
+            // Default String
+            var ImageURI = "item.png";
+
+            switch (value)
+            {
+                case CharacterJobEnum.Jedi:
+                    ImageURI = "jedi_icon.png";
+                    break;
+
+                case CharacterJobEnum.Princess:
+                    ImageURI = "jedi_princess_icon.png";
+                    break;
+
+                case CharacterJobEnum.Smuggler:
+                    ImageURI = "smuggler_icon.png";
+                    break;
+
+                case CharacterJobEnum.Wookie:
+                    ImageURI = "wookie_icon.png";
+                    break;
+
+                case CharacterJobEnum.ProtocolDroid:
+                    ImageURI = "protocol_droid_icon.png";
+                    break;
+
+                case CharacterJobEnum.AstroDroid:
+                    ImageURI = "astromech_icon.png";
+                    break;
+
+                case CharacterJobEnum.Unknown:
+                default:
+                    break;
+            }
+
+            return ImageURI;
+        }
     }
 
     /// <summary>

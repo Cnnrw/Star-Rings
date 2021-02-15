@@ -30,26 +30,25 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Image Source="{Binding Data.ImageURI}"
+                        <Image x:Name="JobImage"
+                               Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
                         <Label Text="Job"
                                Style="{StaticResource LabelStyle}" />
                         <Picker x:Name="JobPicker"
                                 ItemsSource="{x:Static models:CharacterJobEnumHelper.GetListCharacterJobs}"
-                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}" />
+                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
+                                SelectedIndexChanged="OnJobPickerChanged"/>
                     </StackLayout>
 
                     <StackLayout>
-                        <!-- <StackLayout> -->
-                        <!--     <Label Text="Name" -->
-                        <!--            Style="{StaticResource LabelStyle}" /> -->
-                        <!--     <Entry Text="{Binding Data.Name}" -->
-                        <!--            Style="{StaticResource EntryStyle}" /> -->
-                        <!-- </StackLayout> -->
-
-                        <controls:FormEntry Title="Name"
-                                            Text="{Binding Data.Name}" />
+                        <StackLayout>
+                            <Label Text="Name"
+                                    Style="{StaticResource LabelStyle}" />
+                            <Entry Text="{Binding Data.Name}"
+                                    Style="{StaticResource EntryStyle}" />
+                        </StackLayout>
 
                         <StackLayout>
                             <Label Text="Description"
