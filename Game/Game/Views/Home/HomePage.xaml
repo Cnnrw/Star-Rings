@@ -5,46 +5,49 @@
              x:Class="Game.Views.HomePage">
 
     <ContentPage.Content>
-
         <ScrollView Orientation="Vertical"
                     HorizontalScrollBarVisibility="Never"
                     VerticalScrollBarVisibility="Never"
                     Padding="10">
-
             <FlexLayout x:Name="FlexLayout"
                         Wrap="Wrap"
                         JustifyContent="SpaceAround"
                         AlignContent="SpaceAround">
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-
                     <ImageButton Source="item.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="VillageButton_Clicked" />
-
                     <Label Text="Village"
                            Style="{StaticResource CenterMessageStyle}" />
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-
                     <ImageButton Source="item.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="DungeonButton_Clicked" />
-
                     <Label Text="Dungeon"
                            Style="{StaticResource CenterMessageStyle}" />
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-
                     <ImageButton Source="item.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="AutobattleButton_Clicked" />
-
                     <Label Text="Auto Battle"
                            Style="{StaticResource CenterMessageStyle}" />
                 </StackLayout>
+
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+                    <ImageButton Source="item.png"
+                                 Style="{StaticResource ImageLargeStyle}"
+                                 Clicked="SettingsButton_Clicked" />
+                    <Label Text="Settings"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
+
+
+
             </FlexLayout>
         </ScrollView>
     </ContentPage.Content>

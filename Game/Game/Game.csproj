@@ -113,16 +113,16 @@
 			<DependentUpon>MonsterReadPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Views\Village\VillagePage.xaml.cs">
-      <DependentUpon>VillagePage.xaml</DependentUpon>
+			<DependentUpon>VillagePage.xaml</DependentUpon>
 		</Compile>
-    <Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
-      <DependentUpon>ScoreCreatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Score\ScoreDeletePage.xaml.cs">
-      <DependentUpon>ScoreDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Score\ScoreIndexPage.xaml.cs">
-      <DependentUpon>ScoreIndexPage.xaml</DependentUpon>
+		<Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
+			<DependentUpon>ScoreCreatePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Score\ScoreDeletePage.xaml.cs">
+			<DependentUpon>ScoreDeletePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Score\ScoreIndexPage.xaml.cs">
+			<DependentUpon>ScoreIndexPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Views\Score\ScoreReadPage.xaml.cs">
 			<DependentUpon>ScoreReadPage.xaml</DependentUpon>
@@ -133,20 +133,10 @@
 		<Compile Update="Common\Styles\DefaultTheme.xaml.cs">
 			<DependentUpon>DefaultTheme.xaml</DependentUpon>
 		</Compile>
-		<Compile Remove="Models\Enum\ActionEnum.cs" />
-		<Compile Remove="Models\Enum\AttributeEnum.cs" />
-		<Compile Remove="Models\Enum\BattleActionEnum.cs" />
-		<Compile Remove="Models\Enum\BattleLocationEnum.cs" />
-		<Compile Remove="Models\Enum\BattleModeEnum.cs" />
-		<Compile Remove="Models\Enum\BattleStateEnum.cs" />
-		<Compile Remove="Models\Enum\CharacterJobEnum.cs" />
-		<Compile Remove="Models\DataSourceEnum.cs" />
-		<Compile Remove="Models\Enum\DifficultyEnum.cs" />
-		<Compile Remove="Models\Enum\HitStatusEnum.cs" />
-		<Compile Remove="Models\Enum\ItemLocationEnum.cs" />
-		<Compile Remove="Models\Enum\MenuItemEnum.cs" />
-		<Compile Remove="Models\Enum\PlayerTypeEnum.cs" />
-		<Compile Remove="Models\Enum\RoundEnum.cs" />
+		<Compile Update="Views\Home\SettingsPage.xaml.cs">
+			<DependentUpon>SettingsPage.xaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -159,10 +149,6 @@
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\wookie_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\astromech_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\protocol_droid_icon.png" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<Folder Include="Models\Enum" />
 	</ItemGroup>
 
 </Project>

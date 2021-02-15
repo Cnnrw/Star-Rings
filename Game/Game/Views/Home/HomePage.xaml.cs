@@ -45,5 +45,8 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void AutobattleButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new AutoBattlePage());
+
+        private async void SettingsButton_Clicked(object sender, EventArgs e) =>
+            await Navigation.PushAsync(new SettingsPage());
     }
 }
