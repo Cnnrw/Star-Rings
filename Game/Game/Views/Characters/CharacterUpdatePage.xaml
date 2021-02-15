@@ -29,7 +29,8 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Image Source="{Binding Data.ImageURI}"
+                        <Image x:Name="JobImage"
+                               Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand"/>
 
@@ -37,7 +38,8 @@
                                Style="{StaticResource LabelStyle}"/>
                         <Picker x:Name="JobPicker"
                                 ItemsSource="{x:Static models:CharacterJobEnumHelper.GetListCharacterJobs}"
-                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"/>
+                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
+                                SelectedIndexChanged="OnJobPickerChanged"/>
 
                     </StackLayout>
 

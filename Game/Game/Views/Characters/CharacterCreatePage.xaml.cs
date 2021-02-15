@@ -38,6 +38,11 @@ namespace Game.Views
             _viewModel.Title = "Create";
         }
 
+        /// <summary>
+        /// Updates the Character's ImageURI and the page's image source
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnJobPickerChanged(object sender, EventArgs e)
         {
             string iconImageURI = CharacterJobEnumExtensions.ToIconImageURI(_viewModel.Data.Job);
