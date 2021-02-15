@@ -1,8 +1,8 @@
-using Game.Models;
-using Game.ViewModels;
-
 using System;
 using System.ComponentModel;
+
+using Game.Models;
+using Game.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,15 +12,15 @@ namespace Game.Views
     /// <summary>
     /// Create Item
     /// </summary>
-    [DesignTimeVisible(false)] 
+    [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemCreatePage : ContentPage
     {
         // The item to create
-        public GenericViewModel<ItemModel> ViewModel = new GenericViewModel<ItemModel>();
+        public readonly GenericViewModel<ItemModel> _viewModel = new GenericViewModel<ItemModel>();
 
         // Empty Constructor for UTs
-        public ItemCreatePage(bool UnitTest){}
+        public ItemCreatePage(bool UnitTest) { }
 
         /// <summary>
         /// Constructor for Create makes a new model
@@ -29,15 +29,14 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            this.ViewModel.Data = new ItemModel();
+            _viewModel.Title = "Create";
+            _viewModel.Data = new ItemModel();
 
-            BindingContext = this.ViewModel;
-
-            this.ViewModel.Title = "Create";
+            BindingContext = _viewModel;
 
             //Need to make the SelectedItem a string, so it can select the correct item.
-            LocationPicker.SelectedItem = ViewModel.Data.Location.ToString();
-            AttributePicker.SelectedItem = ViewModel.Data.Attribute.ToString();
+            LocationPicker.SelectedItem = _viewModel.Data.Location.ToString();
+            AttributePicker.SelectedItem = _viewModel.Data.Attribute.ToString();
         }
 
         /// <summary>
@@ -48,18 +47,18 @@ namespace Game.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             // If the image in the data box is empty, use the default one..
-            if (string.IsNullOrEmpty(ViewModel.Data.ImageURI))
+            if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
             {
-                ViewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
+                _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
             }
 
-            if (ViewModel.Data.Name.Length == 0)
+            if (_viewModel.Data.Name.Length == 0)
             {
                 await DisplayAlert("Hold up!", "Please give your item a name", "OK");
             }
             else
             {
-                MessagingCenter.Send(this, "Create", ViewModel.Data);
+                MessagingCenter.Send(this, "Create", _viewModel.Data);
                 await Navigation.PopModalAsync();
             }
         }
@@ -69,39 +68,30 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         /// Catch the change to the Stepper for Range
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            RangeValue.Text = String.Format("{0}", e.NewValue);
-        }
+        public void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            RangeValue.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Catch the change to the stepper for Value
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            ValueValue.Text = String.Format("{0}", e.NewValue);
-        }
+        public void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            ValueValue.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Catch the change to the stepper for Damage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Damage_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            DamageValue.Text = String.Format("{0}", e.NewValue);
-        }
+        public void Damage_OnStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            DamageValue.Text = $"{e.NewValue}";
     }
 }

@@ -1,15 +1,7 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
+﻿using Game;
 using Game.Views;
-using Game.ViewModels;
-using Game.Models;
+
+using NUnit.Framework;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
@@ -19,15 +11,11 @@ namespace UnitTests.Views
     [TestFixture]
     public class ItemCreatePageTests : ItemCreatePage
     {
-        App app;
-        ItemCreatePage page;
 
-        public ItemCreatePageTests() : base(true) { }
-        
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
@@ -38,10 +26,15 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App            app;
+        private ItemCreatePage page;
+
+        private const double oldValue = 0.0;
+        private const double newValue = 1.0;
+
+        public ItemCreatePageTests() : base(true) { }
 
         [Test]
         public void ItemCreatePage_Constructor_Default_Should_Pass()
@@ -89,7 +82,7 @@ namespace UnitTests.Views
         public void ItemCreatePage_Save_Clicked_Null_Image_Should_Pass()
         {
             // Arrange
-            page.ViewModel.Data.ImageURI = null;
+            page._viewModel.Data.ImageURI = null;
 
             // Act
             page.Save_Clicked(null, null);
@@ -120,8 +113,6 @@ namespace UnitTests.Views
             // Arrange
 
             page = new ItemCreatePage();
-            double oldValue = 0.0;
-            double newValue = 1.0;
 
             var args = new ValueChangedEventArgs(oldValue, newValue);
 
@@ -133,7 +124,7 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-        
+
         [Test]
         public void ItemCreatePage_Range_OnStepperValueChanged_Default_Should_Pass()
         {
