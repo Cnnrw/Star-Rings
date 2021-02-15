@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:enums="clr-namespace:Game.Models.Enums;assembly=Game"
+             x:Class="Game.Views.SettingsPage"
+             x:Name="SettingsPg"
+             BindingContext="{x:Reference SettingsPg}"
+             Title="Settings">
+
+    <ContentPage.Resources>
+        <Style TargetType="ContentView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroup>
+
+                    <VisualState x:Name="unknownDataSource">
+                        <VisualState.StateTriggers>
+                            <CompareStateTrigger Property="{Binding CurrentDataSource}"
+                                                 Value="{x:Static enums:DataSourceEnum.Unknown}" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="Red" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState x:Name="mockDataSource">
+                        <VisualState.StateTriggers>
+                            <CompareStateTrigger Property="{Binding CurrentDataSource}"
+                                                 Value="{x:Static enums:DataSourceEnum.Mock}" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="Yellow" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState x:Name="sqlDataSource">
+                        <VisualState.StateTriggers>
+                            <CompareStateTrigger Property="{Binding CurrentDataSource}"
+                                                 Value="{x:Static enums:DataSourceEnum.SQL}" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="Green" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                </VisualStateGroup>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource VerticalStack}">
+
+            <StackLayout Style="{StaticResource HorizontalStack}">
+
+                <Label Text="Database Settings"
+                       Style="{DynamicResource LabelStyle}" />
+
+                <StackLayout Style="{StaticResource HorizontalStack}"
+                             Padding="50,0,0,0">
+                    <Label Text="Current DataSource: " />
+                    <Label Text="{Binding CurrentDataSource}"
+                           Style="{DynamicResource LabelStyle}" />
+
+                    <Label Text="SQL Data Source"
+                           Style="{DynamicResource LabelStyle}" />
+                    <Switch HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            x:Name="DataSourceValue"
+                            IsToggled="{Binding CurrentDataSource}"
+                            Toggled="DataSource_Toggled" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource HorizontalStack}"
+                             Padding="50,0,0,0">
+                    <Label Text="Wipe Data List" Style="{DynamicResource LabelStyle}" />
+                    <Button Text="Wipe" Clicked="WipeDataList_Clicked" />
+                </StackLayout>
+
+            </StackLayout>
+
+            <!-- Debug -->
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout x:Name="DebugSettingsFrame" Style="{StaticResource VerticalStack}">
+                    <Label Text="Debug Settings" Style="{DynamicResource LabelStyle}" />
+                    <StackLayout Style="{StaticResource VerticalStack}" Padding="5,0,0,0">
+                        <Label Text="More Debug Settings to come..." Style="{DynamicResource MessageStyle}" />
+
+                        <StackLayout Style="{StaticResource VerticalStack}">
+
+                            <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="FillAndExpand">
+                                <Label Text="Number of Items "
+                                       HorizontalTextAlignment="Start"
+                                       HorizontalOptions="Start"
+                                       Style="{DynamicResource LabelStyle}" />
+
+                                <Entry x:Name="ServerItemValue"
+                                       Text="1"
+                                       FontSize="Micro"
+                                       MaxLength="5"
+                                       CursorPosition="0"
+                                       SelectionLength="5"
+                                       Keyboard="Numeric"
+                                       WidthRequest="50"
+                                       HorizontalOptions="FillAndExpand"
+                                       Style="{DynamicResource EntryStyle}" />
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource HorizontalStack}">
+                                <Button Text="Get"
+                                        Clicked="GetItemsGet_Command" />
+
+                                <Button Text="Post"
+                                        Clicked="GetItemsPost_Command" />
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

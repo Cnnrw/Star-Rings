@@ -1,27 +1,19 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Game;
-using Game.Views;
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
 using Game.Models;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
-    public class AboutPageTests : AboutPage
+    public class SettingsPageTests : SettingsPage
     {
-        App app;
-        AboutPage page;
-
-        // Base Constructor
-        public AboutPageTests() : base(true) { }
 
         [SetUp]
         public void Setup()
@@ -33,14 +25,17 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
-            page = new AboutPage();
+            page = new SettingsPage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App          app;
+        private SettingsPage page;
+
+        // Base Constructor
+        public SettingsPageTests() : base(true) { }
 
         [Test]
         public void AboutPage_Elements_Get_Set_Should_Pass()
@@ -72,7 +67,7 @@ namespace UnitTests.Views
 
             // Assert
             Assert.IsNotNull((StackLayout)page.FindByName("DebugSettingsFrame"));
-            Assert.IsNotNull(((StackLayout)page.FindByName("DatabaseSettingsFrame")));
+            Assert.IsNotNull((StackLayout)page.FindByName("DatabaseSettingsFrame"));
 
             Assert.IsNotNull((Label)page.FindByName("CurrentDateTime"));
 
@@ -81,102 +76,62 @@ namespace UnitTests.Views
             Assert.IsNotNull((Switch)page.FindByName("DebugSettingsSwitch"));
         }
 
-        [Test]
-        public void AboutPage_DatabaseSettingsSwitch_OnToggled_Default_Should_Pass()
-        {
-            // Arrange
+        // [Test]
+        // public void AboutPage_DataSource_Toggled_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var control = (Switch)page.FindByName("DataSourceValue");
+        //     var current = control.IsToggled;
+        //
+        //     ToggledEventArgs args = new ToggledEventArgs(current);
+        //
+        //     // Act
+        //     page.DataSource_Toggled(null, args);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(!current); // Got to here, so it happened...
+        // }
 
-            StackLayout frame = (StackLayout)page.FindByName("DatabaseSettingsFrame");
-            var current = frame.IsVisible;
-
-            ToggledEventArgs args = new ToggledEventArgs(current);
-
-
-            // Act
-            page.DatabaseSettingsSwitch_OnToggled(null, args);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(!current); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void AboutPage_DebugSettingsSwitch_OnToggled_Default_Should_Pass()
-        {
-            // Arrange
-
-            StackLayout frame = (StackLayout)page.FindByName("DebugSettingsFrame");
-            var current = frame.IsVisible;
-
-            ToggledEventArgs args = new ToggledEventArgs(current);
-
-
-            // Act
-            page.DebugSettingsSwitch_OnToggled(null, args);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(!current); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void AboutPage_DataSource_Toggled_Default_Should_Pass()
-        {
-            // Arrange
-
-            var control = (Switch)page.FindByName("DataSourceValue");
-            var current = control.IsToggled;
-
-            ToggledEventArgs args = new ToggledEventArgs(current);
-
-            // Act
-            page.DataSource_Toggled(null, args);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(!current); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void AboutPage_DataSource_Toggled_False_Should_Pass()
-        {
-            // Arrange
-
-            var control = (Switch)page.FindByName("DataSourceValue");
-            var current = control.IsToggled = false;
-
-            // Act
-            control.IsToggled = true;
-
-            var result = control.IsToggled;
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(!current,result); 
-        }
-
-        [Test]
-        public void AboutPage_DataSource_Toggled_True_Should_Pass()
-        {
-            // Arrange
-
-            var control = (Switch)page.FindByName("DataSourceValue");
-            var current = control.IsToggled = true;
-
-            // Act
-            control.IsToggled = false;
-
-            var result = control.IsToggled;
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(!current, result); 
-        }
+        // [Test]
+        // public void AboutPage_DataSource_Toggled_False_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var control = (Switch)page.FindByName("DataSourceValue");
+        //     var current = control.IsToggled = false;
+        //
+        //     // Act
+        //     control.IsToggled = true;
+        //
+        //     var result = control.IsToggled;
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.AreEqual(!current,result);
+        // }
+        //
+        // [Test]
+        // public void AboutPage_DataSource_Toggled_True_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var control = (Switch)page.FindByName("DataSourceValue");
+        //     var current = control.IsToggled = true;
+        //
+        //     // Act
+        //     control.IsToggled = false;
+        //
+        //     var result = control.IsToggled;
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.AreEqual(!current, result);
+        // }
 
         [Test]
         public void AboutPage_WipeDataList_Clicked_Default_Should_Pass()
@@ -221,14 +176,14 @@ namespace UnitTests.Views
         public void AboutPage_GetItemsGet_Clicked_Default_Should_Pass()
         {
             // Arrange
-            
+
             // Act
-            page.GetItemsGet_Command(null,null);
+            page.GetItemsGet_Command(null, null);
 
             // Reset
 
             // Assert
-            Assert.AreEqual(true,true); // Got to here, so it happened...
+            Assert.AreEqual(true, true); // Got to here, so it happened...
         }
 
         [Test]
