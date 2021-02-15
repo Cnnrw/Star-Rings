@@ -8,33 +8,44 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game">
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
         <viewModels:GenericViewModel x:TypeArguments="models:CharacterModel" />
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <StackLayout Style="{StaticResource OuterBoxStack}"
+    <ContentPage.Content>
+
+        <FlexLayout JustifyContent="Center"
+                    Padding="40">
+
+            <ScrollView>
+                <StackLayout Style="{StaticResource OuterBoxStack}"
                      Spacing="10">
-            <Image Source="{Binding Data.ImageURI}"
+                    <Image Source="{Binding Data.ImageURI}"
                    Style="{StaticResource ImageLargeStyle}"/>
 
-            <StackLayout HorizontalOptions="Center"
+                    <StackLayout HorizontalOptions="Center"
                          Padding="20">
-                <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
+                        <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
                        Style="{StaticResource MessageStyle}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Yes"
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Yes"
                             Clicked="Delete_Clicked"
                             HorizontalOptions="Center" />
 
-                    <Button Text="No"
+                            <Button Text="No"
                             Clicked="Cancel_Clicked"
                             HorizontalOptions="Center" />
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </StackLayout>
-    </ScrollView>
+            </ScrollView>
+            
+        </FlexLayout>
+        
+    </ContentPage.Content>
+
 </ContentPage>
