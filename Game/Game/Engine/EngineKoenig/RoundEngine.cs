@@ -17,7 +17,7 @@ namespace Game.Engine.EngineKoenig
     public class RoundEngine : RoundEngineBase, IRoundEngineInterface
     {
         // Hold the BaseEngine
-        public new EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+        private readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         // The Turn Engine
         public new ITurnEngineInterface Turn
@@ -30,7 +30,14 @@ namespace Game.Engine.EngineKoenig
                 }
                 return base.Turn;
             }
-            set { base.Turn = Turn; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+                base.Turn = Turn;
+            }
         }
 
         /// <summary>

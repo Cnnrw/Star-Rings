@@ -16,7 +16,7 @@ namespace Game.Engine.EngineGame
     public class RoundEngine : RoundEngineBase, IRoundEngineInterface
     {
         // Hold the BaseEngine
-        private new readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+        private readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         // The Turn Engine
         public new ITurnEngineInterface Turn
@@ -86,7 +86,7 @@ namespace Game.Engine.EngineGame
          *
          */
         // TODO: Teams, You need to implement your own Logic can not use mine.
-        public override int AddMonstersToRound() => throw new System.NotImplementedException();
+        public override int AddMonstersToRound() => throw new NotImplementedException();
 
         /// <summary>
         /// At the end of the round
@@ -129,7 +129,7 @@ namespace Game.Engine.EngineGame
                 // Check if round is over
                 // If in Auto Battle pick the next attacker
                 // Do the turn..
-                new System.NotImplementedException();
+                new NotImplementedException();
 
         /// <summary>
         /// Get the Next Player to have a turn
@@ -138,12 +138,12 @@ namespace Game.Engine.EngineGame
             throw
                 // Remove the Dead
                 // Get Next Player
-                new System.NotImplementedException();
+                new NotImplementedException();
 
         /// <summary>
         /// Remove Dead Players from the List
         /// </summary>
-        public override List<PlayerInfoModel> RemoveDeadPlayersFromList() => throw new System.NotImplementedException();
+        public override List<PlayerInfoModel> RemoveDeadPlayersFromList() => throw new NotImplementedException();
 
         /// <summary>
         /// Order the Players in Turn Sequence
@@ -151,7 +151,7 @@ namespace Game.Engine.EngineGame
         public override List<PlayerInfoModel> OrderPlayerListByTurnOrder() =>
             throw
                 // TODO Teams: Implement the order
-                new System.NotImplementedException();
+                new NotImplementedException();
 
         /// <summary>
         /// Who is Playing this round?
@@ -162,51 +162,39 @@ namespace Game.Engine.EngineGame
                 // Remember the Insert order, used for Sorting
                 // Add the Characters
                 // Add the Monsters
-                new System.NotImplementedException();
+                new NotImplementedException();
 
         /// <summary>
         /// Get the Information about the Player
         /// </summary>
-        public override PlayerInfoModel GetNextPlayerInList()
-        {
-            // Walk the list from top to bottom
-            // If Player is found, then see if next player exist, if so return that.
-            // If not, return first player (looped)
-
-            // If List is empty, return null
-
-            // No current player, so set the first one
-
-            // Find current player in the list
-
-            // If at the end of the list, return the first element
-
-            // Return the next element
-
-            throw new System.NotImplementedException();
-        }
+        public override PlayerInfoModel GetNextPlayerInList() =>
+            throw
+                // Walk the list from top to bottom
+                // If Player is found, then see if next player exist, if so return that.
+                // If not, return first player (looped)
+                // If List is empty, return null
+                // No current player, so set the first one
+                // Find current player in the list
+                // If at the end of the list, return the first element
+                // Return the next element
+                new NotImplementedException();
 
         /// <summary>
         /// Pickup Items Dropped
         /// </summary>
-        public override bool PickupItemsFromPool(PlayerInfoModel character)
-        {
-            // TODO: Teams, You need to implement your own Logic if not using auto apply
-
-            // I use the same logic for Auto Battle as I do for Manual Battle
-
-            throw new System.NotImplementedException();
-        }
+        public override bool PickupItemsFromPool(PlayerInfoModel character) =>
+            throw
+                // TODO: Teams, You need to implement your own Logic if not using auto apply
+                // I use the same logic for Auto Battle as I do for Manual Battle
+                new NotImplementedException();
 
         /// <summary>
         /// Swap out the item if it is better
         ///
         /// Uses Value to determine
         /// </summary>
-        public override bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation)
-        {
-            throw new System.NotImplementedException();
-        }
+        public override bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation) =>
+            throw new NotImplementedException();
 
         /// <summary>
         /// Swap the Item the character has for one from the pool
@@ -214,17 +202,12 @@ namespace Game.Engine.EngineGame
         /// Drop the current item back into the Pool
         /// </summary>
         public override ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation,
-                                                    ItemModel       PoolItem)
-        {
-            throw new System.NotImplementedException();
-        }
+                                                    ItemModel       PoolItem) =>
+            throw new NotImplementedException();
 
         /// <summary>
         /// For all characters in player list, remove their buffs
         /// </summary>
-        public override bool RemoveCharacterBuffs()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override bool RemoveCharacterBuffs() => throw new NotImplementedException();
     }
 }
