@@ -64,7 +64,7 @@ namespace Game.ViewModels
         /// The Sort Order for the ItemModel
         /// </summary>
         /// <returns></returns>
-        public override List<ItemModel> SortDataset(List<ItemModel> dataset) =>
+        public override List<ItemModel> SortDataset(IEnumerable<ItemModel> dataset) =>
             dataset.OrderBy(a => a.Name)
                    .ThenBy(a => a.Description)
                    .ToList();

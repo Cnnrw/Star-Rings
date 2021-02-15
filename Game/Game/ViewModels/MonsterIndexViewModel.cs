@@ -55,7 +55,7 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<MonsterModel> SortDataset(List<MonsterModel> dataset) =>
+        public override List<MonsterModel> SortDataset(IEnumerable<MonsterModel> dataset) =>
             dataset.OrderBy(a => a.Name)
                    .ThenBy(a => a.Description)
                    .ToList();

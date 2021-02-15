@@ -74,7 +74,7 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<ScoreModel> SortDataset(List<ScoreModel> dataset) =>
+        public override List<ScoreModel> SortDataset(IEnumerable<ScoreModel> dataset) =>
             dataset
                 .OrderBy(a => a.Name)
                 .ThenBy(a => a.Description)
