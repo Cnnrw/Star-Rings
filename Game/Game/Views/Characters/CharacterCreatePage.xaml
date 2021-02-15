@@ -12,7 +12,8 @@
              xmlns:controls="clr-namespace:Game.Controls;assembly=Game"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
              xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game">
+             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game"
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
         <viewModels:GenericViewModel x:TypeArguments="models:CharacterModel" />
@@ -25,116 +26,121 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Style="{StaticResource OuterBoxStack}"
+
+        <FlexLayout JustifyContent="Center"
+                    Padding="40">
+
+            <ScrollView>
+                <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10" >
 
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout>
-                        <Image x:Name="JobImage"
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Image x:Name="JobImage"
                                Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Job"
+                            <Label Text="Job"
                                Style="{StaticResource LabelStyle}" />
-                        <Picker x:Name="JobPicker"
+                            <Picker x:Name="JobPicker"
                                 ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}"
                                 SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
                                 SelectedIndexChanged="OnJobPickerChanged"/>
-                    </StackLayout>
-
-                    <StackLayout>
-                        <controls:FormEntry Title="Name"
-                                            Text="{Binding Data.Name}" />
-                        <controls:FormEntry Title="Description"
-                                            Text="{Binding Data.Description}" />
+                        </StackLayout>
 
                         <StackLayout>
-                            <Label Text="Level"
+                            <controls:FormEntry Title="Name"
+                                            Text="{Binding Data.Name}" />
+                            <controls:FormEntry Title="Description"
+                                            Text="{Binding Data.Description}" />
+
+                            <StackLayout>
+                                <Label Text="Level"
                                    Style="{StaticResource LabelStyle}" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="LevelValueLabel"
+                                <StackLayout Orientation="Horizontal">
+                                    <Label x:Name="LevelValueLabel"
                                        Text="{Binding Data.Level}" />
-                                <Stepper x:Name="LevelStepper"
+                                    <Stepper x:Name="LevelStepper"
                                          Value="{Binding Data.Level, Mode=TwoWay}"
                                          ValueChanged="OnLevelStepperChanged"
                                          Minimum="1"
                                          Maximum="10"
                                          Increment="1" />
+                                </StackLayout>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout>
-                        <Label Text="Max Health"
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label Text="Max Health"
                                Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="MaxHealthValueLabel"
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="MaxHealthValueLabel"
                                    Text="{Binding Data.MaxHealth}" />
-                            <Stepper x:Name="MaxHealthStepper"
+                                <Stepper x:Name="MaxHealthStepper"
                                      Value="{Binding Data.MaxHealth, Mode=TwoWay}"
                                      ValueChanged="OnMaxHealthStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="Attack"
+                        <StackLayout>
+                            <Label Text="Attack"
                                Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="AttackValueLabel"
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="AttackValueLabel"
                                    Text="{Binding Data.Attack}" />
-                            <Stepper x:Name="AttackStepper"
+                                <Stepper x:Name="AttackStepper"
                                      Value="{Binding Data.Attack, Mode=TwoWay}"
                                      ValueChanged="OnAttackStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="Defense"
+                        <StackLayout>
+                            <Label Text="Defense"
                                Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="DefenseValueLabel"
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="DefenseValueLabel"
                                    Text="{Binding Data.Defense}" />
-                            <Stepper x:Name="DefenseStepper"
+                                <Stepper x:Name="DefenseStepper"
                                      Value="{Binding Data.Defense, Mode=TwoWay}"
                                      ValueChanged="OnDefenseStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="Speed" Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="SpeedValueLabel"
+                        <StackLayout>
+                            <Label Text="Speed" Style="{StaticResource LabelStyle}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="SpeedValueLabel"
                                    Text="{Binding Data.Speed}" />
-                            <Stepper x:Name="SpeedStepper"
+                                <Stepper x:Name="SpeedStepper"
                                      Value="{Binding Data.Speed, Mode=TwoWay}"
                                      ValueChanged="OnSpeedStepperChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Cancel"
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Cancel"
                             Clicked="Cancel_Clicked"/>
-                    <Button Text="Save"
+                        <Button Text="Save"
                             Clicked="Save_Clicked" />
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </FlexLayout>
     </ContentPage.Content>
 
 </ContentPage>
