@@ -12,6 +12,7 @@
     <!-- Pages -->
     <Style TargetType="NavigationPage">
         <Setter Property="BarTextColor" Value="{StaticResource SecondaryTextColor}" />
+        <Setter Property="BarBackgroundColor" Value="{StaticResource TransparentColor}" />
     </Style>
 
     <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
