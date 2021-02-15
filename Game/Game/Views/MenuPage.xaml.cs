@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 using Game.Models;
@@ -29,7 +29,7 @@ namespace Game.Views
             var _menuItems = new List<MenuItemModel>
             {
                 new MenuItemModel {Id = MenuItemEnum.Home, Title = "Home"},
-                new MenuItemModel {Id = MenuItemEnum.Village, Title = "Village"},
+                new MenuItemModel {Id = MenuItemEnum.RebelBase, Title = "Rebel Base"},
                 new MenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"},
                 new MenuItemModel {Id = MenuItemEnum.About, Title = "About"},
                 new MenuItemModel {Id = MenuItemEnum.Settings, Title = "Settings"}

@@ -112,8 +112,8 @@
 		<Compile Update="Views\Monsters\MonsterReadPage.xaml.cs">
 			<DependentUpon>MonsterReadPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Views\Village\VillagePage.xaml.cs">
-			<DependentUpon>VillagePage.xaml</DependentUpon>
+		<Compile Update="Views\RebelBase\RebelBasePage.xaml.cs">
+			<DependentUpon>RebelBasePage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
 			<DependentUpon>ScoreCreatePage.xaml</DependentUpon>

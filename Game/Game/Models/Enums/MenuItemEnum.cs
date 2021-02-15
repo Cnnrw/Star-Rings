@@ -1,4 +1,4 @@
-﻿namespace Game.Models.Enums
+namespace Game.Models.Enums
 {
     /// <summary>
     ///     List of items to show in the Menu
@@ -7,6 +7,7 @@
     {
         Battle   = 1,
         Village  = 2,
+        RebelBase = 3,
         Home     = 5,
         About    = 6,
         Settings = 7

@@ -31,12 +31,12 @@ namespace Game.Views
             await Navigation.PushAsync(new PickCharactersPage());
 
         /// <summary>
-        ///     Jump to the Village
+        ///     Jump to the Rebel Base
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void VillageButton_Clicked(object sender, EventArgs e) =>
-            await Navigation.PushAsync(new VillagePage());
+        public async void RebelBaseButton_Clicked(object sender, EventArgs e) =>
+            await Navigation.PushAsync(new RebelBasePage());
 
         /// <summary>
         ///     Jump to the Dungeon

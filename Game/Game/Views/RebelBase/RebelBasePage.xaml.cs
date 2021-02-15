@@ -9,12 +9,12 @@ namespace Game.Views
     ///     The Main Game Page
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class VillagePage : ContentPage
+    public partial class RebelBasePage : ContentPage
     {
         /// <summary>
         ///     Constructor
         /// </summary>
-        public VillagePage()
+        public RebelBasePage()
         {
             InitializeComponent();
         }

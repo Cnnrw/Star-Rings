@@ -17,8 +17,8 @@
                 <StackLayout Style="{StaticResource CardImageTextBox}">
                     <ImageButton Source="item.png"
                                  Style="{StaticResource ImageLargeStyle}"
-                                 Clicked="VillageButton_Clicked" />
-                    <Label Text="Village"
+                                 Clicked="RebelBaseButton_Clicked" />
+                    <Label Text="Rebel Base"
                            Style="{StaticResource CenterMessageStyle}" />
                 </StackLayout>
 

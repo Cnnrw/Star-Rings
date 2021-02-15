@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -42,8 +42,8 @@ namespace Game.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemEnum.Village:
-                        MenuPages.Add(id, new CustomNavigationPage(new VillagePage()));
+                    case (int)MenuItemEnum.RebelBase:
+                        MenuPages.Add(id, new CustomNavigationPage(new RebelBasePage()));
                         break;
 
                     case (int)MenuItemEnum.Battle:
