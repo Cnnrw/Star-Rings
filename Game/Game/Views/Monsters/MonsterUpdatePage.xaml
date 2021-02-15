@@ -36,6 +36,8 @@
                             <Image Source="{Binding Data.ImageURI}"
                                    Style="{StaticResource ImageMediumStyle}"
                                    HorizontalOptions="CenterAndExpand" />
+                            <Entry Text="{Binding Data.ImageURI, Mode=TwoWay}"
+                                   Style="{StaticResource EntryStyle}" />
                         </StackLayout>
                         <StackLayout>
                             <Label Text="Name" Style="{StaticResource LabelStyle}" />
