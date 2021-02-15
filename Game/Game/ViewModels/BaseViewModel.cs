@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using Game.Helpers;
 using Game.Models;
+using Game.Models.Enums;
 using Game.Services;
 
 using Xamarin.Forms;
@@ -62,15 +63,16 @@ namespace Game.ViewModels
         ///     Sets the Load command
         ///     Sets the default data source
         /// </summary>
-        public async void Initialize()
+        protected async void Initialize()
         {
             Dataset = new ObservableCollection<T>();
             LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-            await SetDataSource(CurrentDataSource); // Set to Mock to start with
+            await SetDataSource(DataSourceEnum.Mock); // Set to Mock to start with
         }
 
         #endregion Constructor
+
         #region Attributes
 
         // The Mock DataStore
@@ -80,16 +82,16 @@ namespace Game.ViewModels
         private static IDataStore<T> DataSource_SQL => DatabaseService<T>.Instance;
 
         // Which DataStore to use
-        public IDataStore<T> DataStore;
+        private IDataStore<T> DataStore;
 
         // The Data set of records
         public ObservableCollection<T> Dataset { get; set; }
 
         // Tack the current data source, SQL, Mock
-        public int CurrentDataSource;
+        private DataSourceEnum _currentDataSource = DataSourceEnum.Unknown;
 
         // Track if the system needs refreshing
-        public bool _needsRefresh;
+        private bool _needsRefresh;
 
         // Command to force a Load of data
         public Command LoadDatasetCommand { get; set; }
@@ -97,45 +99,56 @@ namespace Game.ViewModels
         /// <summary>
         ///     Mark if the view model is busy loading or done loading
         /// </summary>
-        private bool isBusy;
+        private bool _isBusy;
 
         public bool IsBusy
         {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
         /// <summary>
         ///     The String to show on the page
         /// </summary>
-        private string title = string.Empty;
+        private string _title = string.Empty;
 
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         #endregion Attributes
 
         #region DataSourceManagement
 
+        // TODO: Check if we need to await results in override
+        public async Task<bool> SetDataSource(int isSQL)
+        {
+            var newDataSource = Enum.IsDefined(typeof(DataSourceEnum), isSQL)
+                                    ? (DataSourceEnum)isSQL
+                                    : DataSourceEnum.Unknown;
+
+            return await SetDataSource(newDataSource);
+        }
+
         /// <summary>
-        ///     Sets the DataSource to use (SQL or Mock)
+        ///     Sets the DataSource to use
+        ///     (SQL/Mock, Unknown if isSQL falls outside DataSourceEnum range)
         /// </summary>
         /// <param name="isSQL"></param>
         /// <returns></returns>
-        public async Task<bool> SetDataSource(int isSQL)
+        public async Task<bool> SetDataSource(DataSourceEnum isSQL)
         {
-            if (isSQL == 1)
+            if (isSQL == DataSourceEnum.SQL)
             {
                 DataStore = DataSource_SQL;
-                CurrentDataSource = 1;
+                _currentDataSource = DataSourceEnum.SQL;
             }
             else
             {
                 DataStore = DataSource_Mock;
-                CurrentDataSource = 0;
+                _currentDataSource = DataSourceEnum.Mock;
             }
 
             await LoadDefaultDataAsync();
@@ -156,7 +169,7 @@ namespace Game.ViewModels
         ///     As populated lists are expected
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> LoadDefaultDataAsync()
+        private async Task<bool> LoadDefaultDataAsync()
         {
             if (await DataStore.GetNeedsInitializationAsync())
             {
@@ -223,10 +236,10 @@ namespace Game.ViewModels
         ///     Load the Data from the Index Call into the Data List
         /// </summary>
         /// <returns></returns>
-        public async Task LoadDataFromIndexAsync()
+        private async Task LoadDataFromIndexAsync()
         {
             Dataset.Clear();
-            List<T> dataset = await DataStore.IndexAsync();
+            var dataset = await DataStore.IndexAsync();
 
             // Example of how to sort the database output using a linq query.
             // Sort the list
@@ -245,7 +258,7 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public virtual List<T> SortDataset(List<T> dataset) => dataset.ToList();
+        public virtual List<T> SortDataset(IEnumerable<T> dataset) => dataset.ToList();
 
         /// <summary>
         ///     Return True if a refresh is needed
@@ -254,13 +267,13 @@ namespace Game.ViewModels
         /// <returns></returns>
         public bool NeedsRefresh()
         {
-            if (_needsRefresh)
+            if (!_needsRefresh)
             {
-                _needsRefresh = false;
-                return true;
+                return false;
             }
 
-            return false;
+            _needsRefresh = false;
+            return true;
         }
 
         /// <summary>
@@ -323,7 +336,7 @@ namespace Game.ViewModels
         /// <summary>
         ///     Returns the current data source
         /// </summary>
-        public int GetCurrentDataSource() => CurrentDataSource;
+        public DataSourceEnum GetCurrentDataSource() => _currentDataSource;
 
         #endregion DataSourceManagement
 
@@ -420,7 +433,6 @@ namespace Game.ViewModels
 
             return result;
         }
-
 
         /// <summary>
         ///     Returns the item passed in

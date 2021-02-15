@@ -1,38 +1,35 @@
 ﻿using System;
-using System.ComponentModel;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using Game.Models;
 using Game.ViewModels;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     /// Index Page
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-    [DesignTimeVisible(false)] 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemIndexPage : ContentPage
     {
         // The view model, used for data binding
-        readonly ItemIndexViewModel ViewModel = ItemIndexViewModel.Instance;
+        private readonly ItemIndexViewModel _viewModel = ItemIndexViewModel.Instance;
 
         // Empty Constructor for UTs
         public ItemIndexPage(bool UnitTest) { }
 
         /// <summary>
         /// Constructor for Index Page
-        /// 
+        ///
         /// Get the ItemIndexView Model
         /// </summary>
         public ItemIndexPage()
         {
             InitializeComponent();
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
 
         /// <summary>
@@ -60,10 +57,8 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void AddItem_Clicked(object sender, EventArgs e)
-        {
+        public async void AddItem_Clicked(object sender, EventArgs e) =>
             await Navigation.PushModalAsync(new NavigationPage(new ItemCreatePage()));
-        }
 
         /// <summary>
         /// Refresh the list on page appearing
@@ -75,18 +70,18 @@ namespace Game.Views
             BindingContext = null;
 
             // If no data, then set it for needing refresh
-            if (ViewModel.Dataset.Count == 0)
+            if (_viewModel.Dataset.Count == 0)
             {
-                ViewModel.SetNeedsRefresh(true);
+                _viewModel.SetNeedsRefresh(true);
             }
 
             // If the needs Refresh flag is set update it
-            if (ViewModel.NeedsRefresh())
+            if (_viewModel.NeedsRefresh())
             {
-                ViewModel.LoadDatasetCommand.Execute(null);
+                _viewModel.LoadDatasetCommand.Execute(null);
             }
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
     }
 }

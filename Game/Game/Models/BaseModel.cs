@@ -1,5 +1,4 @@
-﻿
-namespace Game.Models
+﻿namespace Game.Models
 {
     /// <summary>
     /// Base model for records that get saved
@@ -10,13 +9,10 @@ namespace Game.Models
         public string ImageURI { get; set; } = Services.ItemService.DefaultImageURI;
 
         /// <summary>
-        /// Update Method is virutal and changed for each class
+        /// Update Method is virtual and changed for each class
         /// </summary>
         /// <param name="newData"></param>
         /// <returns></returns>
-        public virtual bool Update(T newData)
-        {
-            return true;
-        }
+        public virtual bool Update(T newData) => true;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -137,18 +136,14 @@ namespace Game.Services
         /// <summary>
         /// Get the full list of data
         /// </summary>
-        /// <param name="forceRefresh"></param>
         /// <returns></returns>
-        public async Task<List<T>> IndexAsync()
-        {
-            return await Task.FromResult(datalist);
-        }
+        public async Task<List<T>> IndexAsync() => await Task.FromResult(datalist);
 
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static volatile MockDataStore<T> instance;
-        private static readonly object           syncRoot = new Object();
+        private static readonly object           syncRoot = new object();
 
         public static MockDataStore<T> Instance
         {

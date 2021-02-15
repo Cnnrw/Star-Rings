@@ -9,10 +9,7 @@ namespace Game.ViewModels
         /// <summary>
         ///     Empty GenericViewModel constructor
         /// </summary>
-        public GenericViewModel()
-
-        {
-        }
+        public GenericViewModel() { }
 
         /// <summary>
         ///     Constructor takes an existing item and sets

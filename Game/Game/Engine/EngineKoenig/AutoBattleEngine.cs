@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,15 +21,15 @@ namespace Game.Engine.EngineKoenig
 
         public new IBattleEngineInterface Battle
         {
-            get
+            get => base.Battle ?? (base.Battle = new BattleEngine());
+            set
             {
-                if (base.Battle == null)
+                if (value == null)
                 {
-                    base.Battle = new BattleEngine();
+                    throw new ArgumentNullException(nameof(value));
                 }
-                return base.Battle;
+                base.Battle = Battle;
             }
-            set { base.Battle = Battle; }
         }
 
         /// <summary>
