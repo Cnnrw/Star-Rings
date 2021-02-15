@@ -44,12 +44,10 @@
                     </StackLayout>
 
                     <StackLayout>
-                        <StackLayout>
-                            <Label Text="Name"
-                                    Style="{StaticResource LabelStyle}" />
-                            <Entry Text="{Binding Data.Name}"
-                                    Style="{StaticResource EntryStyle}" />
-                        </StackLayout>
+                        <controls:FormEntry Title="Name"
+                                            Text="{Binding Data.Name}" />
+                        <controls:FormEntry Title="Description"
+                                            Text="{Binding Data.Description}" />
 
                         <StackLayout>
                             <Label Text="Description"
