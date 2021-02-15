@@ -1,4 +1,6 @@
-﻿namespace Game.Models
+﻿using Game.Models.Enums;
+
+namespace Game.Models
 {
     /// <summary>
     ///     Navigation Menu Item Model

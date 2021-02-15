@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using SQLite;
-
 using Game.GameRules;
 using Game.Helpers;
+using Game.Models.Enums;
 using Game.ViewModels;
+
+using SQLite;
 
 namespace Game.Models
 {
@@ -18,41 +19,34 @@ namespace Game.Models
         #region Attributes
 
         #region GameEngineAttributes
+
         // alive status, !alive will be removed from the list
-        [Ignore]
-        public bool Alive { get; set; } = true;
+        [Ignore] public bool Alive { get; set; } = true;
 
         // The type of player, character comes before monster
-        [Ignore]
-        public PlayerTypeEnum PlayerType { get; set; } = PlayerTypeEnum.Unknown;
+        [Ignore] public PlayerTypeEnum PlayerType { get; set; } = PlayerTypeEnum.Unknown;
 
         // TurnOrder
-        [Ignore]
-        public int Order { get; set; } = 0;
+        [Ignore] public int Order { get; set; }
 
         // Remember who was first into the list...
-        [Ignore]
-        public int ListOrder { get; set; } = 0;
+        [Ignore] public int ListOrder { get; set; }
 
         #endregion GameEngineAttributes
 
         #region Buffs
 
         // Add to Health
-        [Ignore]
-        public int BuffHealthValue { get; set; } = 0;
+        [Ignore] public int BuffHealthValue { get; set; }
 
         // Add to Attack
-        [Ignore]
-        public int BuffAttackValue { get; set; } = 0;
+        [Ignore] public int BuffAttackValue { get; set; }
 
         // Add to defense
-        [Ignore]
-        public int BuffDefenseValue { get; set; } = 0;
+        [Ignore] public int BuffDefenseValue { get; set; }
 
         // Add to Speed
-        [Ignore]
-        public int BuffSpeedValue { get; set; } = 0;
+        [Ignore] public int BuffSpeedValue { get; set; }
 
         /// <summary>
         /// Clear all the Buffs
@@ -68,34 +62,22 @@ namespace Game.Models
         /// <summary>
         /// Add to Health
         /// </summary>
-        public int BuffHealth()
-        {
-            return BuffHealthValue += 5;
-        }
+        public int BuffHealth() => BuffHealthValue += 5;
 
         /// <summary>
         /// Add to Health
         /// </summary>
-        public int BuffAttack()
-        {
-            return BuffAttackValue += 5;
-        }
+        public int BuffAttack() => BuffAttackValue += 5;
 
         /// <summary>
         /// Add to Health
         /// </summary>
-        public int BuffDefense()
-        {
-            return BuffDefenseValue += 5;
-        }
+        public int BuffDefense() => BuffDefenseValue += 5;
 
         /// <summary>
         /// Add to Health
         /// </summary>
-        public int BuffSpeed()
-        {
-            return BuffSpeedValue += 5;
-        }
+        public int BuffSpeed() => BuffSpeedValue += 5;
 
         #endregion Buffs
 
@@ -105,25 +87,25 @@ namespace Game.Models
         public int Level { get; set; } = 1;
 
         // Current Health
-        public int CurrentHealth { get; set; } = 0;
+        public int CurrentHealth { get; set; }
 
         // Max Health
-        public int MaxHealth { get; set; } = 0;
+        public int MaxHealth { get; set; }
 
         // Total Experience Earned
-        public int ExperienceTotal { get; set; } = 0;
+        public int ExperienceTotal { get; set; }
 
         // The Experience available to given up
         public int ExperienceRemaining { get; set; }
 
         // Total speed, including level and items
-        public int Speed { get; set; } = 0;
+        public int Speed { get; set; }
 
         // The defense score, to be used for defending against attacks
-        public int Defense { get; set; } = 0;
+        public int Defense { get; set; }
 
         // The Attack score to be used when attacking
-        public int Attack { get; set; } = 0;
+        public int Attack { get; set; }
 
         // The natural range for this Player, 1 is normal
         public int Range { get; set; } = 1;
@@ -139,47 +121,50 @@ namespace Game.Models
         #endregion Attributes
 
         #region Items
+
         // ItemModel is a string referencing the database table
-        public string Head { get; set; } = null;
+        public string Head { get; set; }
 
         // Feet is a string referencing the database table
-        public string Feet { get; set; } = null;
+        public string Feet { get; set; }
 
-        // Necklasss is a string referencing the database table
-        public string Necklass { get; set; } = null;
+        // Necklace is a string referencing the database table
+        public string Necklace { get; set; }
 
         // PrimaryHand is a string referencing the database table
-        public string PrimaryHand { get; set; } = null;
+        public string PrimaryHand { get; set; }
 
         // Offhand is a string referencing the database table
-        public string OffHand { get; set; } = null;
+        public string OffHand { get; set; }
 
         // RightFinger is a string referencing the database table
-        public string RightFinger { get; set; } = null;
+        public string RightFinger { get; set; }
 
         // LeftFinger is a string referencing the database table
-        public string LeftFinger { get; set; } = null;
+        public string LeftFinger { get; set; }
 
         // Unique Drop Item for Monsters
-        public string UniqueItem { get; set; } = null;
+        public string UniqueItem { get; set; }
+
         #endregion Items
 
         #region AttributeDisplay
 
         // Following returns the values for each of the attributes with the modifiers
 
-        #region Attack        
+        #region Attack
+
         [Ignore]
         // Return the attack value
-        public int GetAttackLevelBonus { get { return LevelTableHelper.LevelDetailsList[Level].Attack; } }
+        private int GetAttackLevelBonus => LevelTableHelper.LevelDetailsList[Level].Attack;
 
         [Ignore]
         // Return the Attack with Item Bonus
-        public int GetAttackItemBonus { get { return GetItemBonus(AttributeEnum.Attack); } }
+        private int GetAttackItemBonus => GetItemBonus(AttributeEnum.Attack);
 
         [Ignore]
         // Return the Attack with Item Bonus
-        public int GetAttackJobBonus
+        private int GetAttackJobBonus
         {
             get
             {
@@ -193,9 +178,22 @@ namespace Game.Models
                     case CharacterJobEnum.Fighter:
                         result = +2;
                         break;
-                    case CharacterJobEnum.Unknown:
-                    default:
+                    case CharacterJobEnum.Jedi:
                         break;
+                    case CharacterJobEnum.Princess:
+                        break;
+                    case CharacterJobEnum.Smuggler:
+                        break;
+                    case CharacterJobEnum.Wookie:
+                        break;
+                    case CharacterJobEnum.ProtocolDroid:
+                        break;
+                    case CharacterJobEnum.AstroDroid:
+                        break;
+                    case CharacterJobEnum.Unknown:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
                 return result;
             }
@@ -203,21 +201,23 @@ namespace Game.Models
 
         [Ignore]
         // Return the Total of All Attack
-        public int GetAttackTotal { get { return GetAttack(); } }
+        public int GetAttackTotal => GetAttack();
+
         #endregion Attack
 
         #region Defense
+
         [Ignore]
         // Return the Defense value
-        public int GetDefenseLevelBonus { get { return LevelTableHelper.LevelDetailsList[Level].Defense; } }
+        private int GetDefenseLevelBonus => LevelTableHelper.LevelDetailsList[Level].Defense;
 
         [Ignore]
         // Return the Defense with Item Bonus
-        public int GetDefenseItemBonus { get { return GetItemBonus(AttributeEnum.Defense); } }
+        public int GetDefenseItemBonus => GetItemBonus(AttributeEnum.Defense);
 
         [Ignore]
         // Return the Total of All Defense
-        public int GetDefenseTotal { get { return GetDefense(); } }
+        public int GetDefenseTotal => GetDefense();
 
 
         [Ignore]
@@ -236,29 +236,42 @@ namespace Game.Models
                     case CharacterJobEnum.Fighter:
                         result = -1;
                         break;
-                    case CharacterJobEnum.Unknown:
-                    default:
+                    case CharacterJobEnum.Jedi:
                         break;
+                    case CharacterJobEnum.Princess:
+                        break;
+                    case CharacterJobEnum.Smuggler:
+                        break;
+                    case CharacterJobEnum.Wookie:
+                        break;
+                    case CharacterJobEnum.ProtocolDroid:
+                        break;
+                    case CharacterJobEnum.AstroDroid:
+                        break;
+                    case CharacterJobEnum.Unknown:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
                 return result;
             }
         }
 
-
         #endregion Defense
 
         #region Speed
+
         [Ignore]
         // Return the Speed value
-        public int GetSpeedLevelBonus { get { return LevelTableHelper.LevelDetailsList[Level].Speed; } }
+        public int GetSpeedLevelBonus => LevelTableHelper.LevelDetailsList[Level].Speed;
 
         [Ignore]
         // Return the Speed with Item Bonus
-        public int GetSpeedItemBonus { get { return GetItemBonus(AttributeEnum.Speed); } }
+        public int GetSpeedItemBonus => GetItemBonus(AttributeEnum.Speed);
 
         [Ignore]
         // Return the Total of All Speed
-        public int GetSpeedTotal { get { return GetSpeed(); } }
+        public int GetSpeedTotal => GetSpeed();
 
         [Ignore]
         // Return the Attack with Item Bonus
@@ -276,47 +289,66 @@ namespace Game.Models
                     case CharacterJobEnum.Fighter:
                         result = +1;
                         break;
-                    case CharacterJobEnum.Unknown:
-                    default:
+                    case CharacterJobEnum.Jedi:
                         break;
+                    case CharacterJobEnum.Princess:
+                        break;
+                    case CharacterJobEnum.Smuggler:
+                        break;
+                    case CharacterJobEnum.Wookie:
+                        break;
+                    case CharacterJobEnum.ProtocolDroid:
+                        break;
+                    case CharacterJobEnum.AstroDroid:
+                        break;
+                    case CharacterJobEnum.Unknown:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
                 return result;
             }
         }
+
         #endregion Speed
 
         #region CurrentHealth
+
         [Ignore]
         // Return the CurrentHealth value
-        public int GetCurrentHealthLevelBonus { get { return 0; } }
+        public int GetCurrentHealthLevelBonus => 0;
 
         [Ignore]
         // Return the CurrentHealth with Item Bonus
-        public int GetCurrentHealthItemBonus { get { return GetItemBonus(AttributeEnum.CurrentHealth); } }
+        public int GetCurrentHealthItemBonus => GetItemBonus(AttributeEnum.CurrentHealth);
 
         [Ignore]
         // Return the Total of All CurrentHealth
-        public int GetCurrentHealthTotal { get { return GetCurrentHealth(); } }
+        public int GetCurrentHealthTotal => GetCurrentHealth();
+
         #endregion CurrentHealth
 
         #region MaxHealth
+
         [Ignore]
         // Return the MaxHealth value
-        public int GetMaxHealthLevelBonus { get { return 0; } }
+        public int GetMaxHealthLevelBonus => 0;
 
         [Ignore]
         // Return the MaxHealth with Item Bonus
-        public int GetMaxHealthItemBonus { get { return GetItemBonus(AttributeEnum.MaxHealth); } }
+        public int GetMaxHealthItemBonus => GetItemBonus(AttributeEnum.MaxHealth);
 
         [Ignore]
         // Return the Total of All MaxHealth
-        public int GetMaxHealthTotal { get { return GetMaxHealth(); } }
+        public int GetMaxHealthTotal => GetMaxHealth();
+
         #endregion MaxHealth
 
         #region Damage
+
         [Ignore]
         // Return the Damage value, it is 25% of the Level rounded up
-        public int GetDamageLevelBonus { get { return Convert.ToInt32(Math.Ceiling(Level * .25)); } }
+        public int GetDamageLevelBonus => Convert.ToInt32(Math.Ceiling(Level * .25));
 
         [Ignore]
         // Return the Damage with Item Bonus
@@ -325,11 +357,7 @@ namespace Game.Models
             get
             {
                 var myItem = ItemIndexViewModel.Instance.GetItem(PrimaryHand);
-                if (myItem == null)
-                {
-                    return 0;
-                }
-                return myItem.Damage;
+                return myItem?.Damage ?? 0;
             }
         }
 
@@ -340,12 +368,7 @@ namespace Game.Models
             get
             {
                 var data = GetDamageItemBonus;
-                if (data == 0)
-                {
-                    return "-";
-                }
-
-                return string.Format("1D {0}", data);
+                return data == 0 ? "-" : $"1D {data}";
             }
         }
 
@@ -355,16 +378,15 @@ namespace Game.Models
         {
             get
             {
-
                 if (GetDamageItemBonusString.Equals("-"))
                 {
                     return GetDamageLevelBonus.ToString();
                 }
 
-                return GetDamageLevelBonus.ToString() + " + " + GetDamageItemBonusString;
-
+                return GetDamageLevelBonus + " + " + GetDamageItemBonusString;
             }
         }
+
         #endregion Damage
 
         #endregion AttributeDisplay
@@ -376,16 +398,13 @@ namespace Game.Models
         /// <summary>
         /// Constructor for BasePlayer
         /// </summary>
-        public BasePlayerModel()
-        {
-            Guid = Id;
-        }
+        public BasePlayerModel() => Guid = Id;
 
         /// <summary>
         /// Format Output
         /// </summary>
         /// <returns></returns>
-        public virtual string FormatOutput() { return ""; }
+        public virtual string FormatOutput() => "";
 
         #endregion BasicMethods
 
@@ -518,10 +537,11 @@ namespace Game.Models
         #endregion GetAttributeValues
 
         #region BattleMethods
+
         /// <summary>
         /// Take Damage
         /// If the damage recived, is > health, then death occurs
-        /// Return the number of experience received for this attack 
+        /// Return the number of experience received for this attack
         /// monsters give experience to characters.  Characters don't accept expereince from monsters
         /// </summary>
         /// <param name="damage"></param>
@@ -623,7 +643,7 @@ namespace Game.Models
             }
 
             int remainingHealth = Math.Max(CurrentHealth - damage, 0); // Go to 0 is OK...
-            double rawPercent = (double)remainingHealth / (double)CurrentHealth;
+            double rawPercent = remainingHealth / (double)CurrentHealth;
             double deltaPercent = 1 - rawPercent;
             var pointsAllocate = (int)Math.Floor(ExperienceRemaining * deltaPercent);
 
@@ -669,7 +689,7 @@ namespace Game.Models
 
                     // Calculate new current health
                     // old max was 10, current health 8, new max is 15 so (15-(10-8)) = current health
-                    CurrentHealth = (MaxHealth - (OldMaxHealth - OldCurrentHealth));
+                    CurrentHealth = MaxHealth - (OldMaxHealth - OldCurrentHealth);
 
                     // Set the new level
                     Level = NewLevel;
@@ -683,29 +703,29 @@ namespace Game.Models
         }
 
         // Level up to a number, say Level 3
-        public int LevelUpToValue(int Value)
+        public int LevelUpToValue(int value)
         {
             // Adjust the experience to the min for that level.
             // That will trigger level up to happen
 
-            if (Value < 0)
+            if (value < 0)
             {
                 // Skip, and return old level
                 return Level;
             }
 
-            if (Value <= Level)
+            if (value <= Level)
             {
                 // Skip, and return old level
                 return Level;
             }
 
-            if (Value > LevelTableHelper.MaxLevel)
+            if (value > LevelTableHelper.MaxLevel)
             {
                 return Level;
             }
 
-            AddExperience(LevelTableHelper.LevelDetailsList[Value].Experience + 1);
+            AddExperience(LevelTableHelper.LevelDetailsList[value].Experience + 1);
 
             return Level;
         }
@@ -716,9 +736,9 @@ namespace Game.Models
 
         /// <summary>
         /// Get the Range value for the equipped primary weapon
-        /// 
+        ///
         /// If it has a positive value, return that
-        /// 
+        ///
         /// Else return 0
         /// </summary>
         /// <returns></returns>
@@ -743,10 +763,7 @@ namespace Game.Models
         /// </summary>
         /// <param name="itemString"></param>
         /// <returns></returns>
-        public ItemModel GetItem(string itemString)
-        {
-            return ItemIndexViewModel.Instance.GetItem(itemString);
-        }
+        public ItemModel GetItem(string itemString) => ItemIndexViewModel.Instance.GetItem(itemString);
 
         // Drop All Items
         // Return a list of items for the pool of items
@@ -755,15 +772,14 @@ namespace Game.Models
             var myReturn = new List<ItemModel>();
 
             // Drop all Items
-            ItemModel myItem;
 
-            myItem = RemoveItem(ItemLocationEnum.Head);
+            var myItem = RemoveItem(ItemLocationEnum.Head);
             if (myItem != null)
             {
                 myReturn.Add(myItem);
             }
 
-            myItem = RemoveItem(ItemLocationEnum.Necklass);
+            myItem = RemoveItem(ItemLocationEnum.Necklace);
             if (myItem != null)
             {
                 myReturn.Add(myItem);
@@ -823,8 +839,8 @@ namespace Game.Models
                 case ItemLocationEnum.Head:
                     return GetItem(Head);
 
-                case ItemLocationEnum.Necklass:
-                    return GetItem(Necklass);
+                case ItemLocationEnum.Necklace:
+                    return GetItem(Necklace);
 
                 case ItemLocationEnum.PrimaryHand:
                     return GetItem(PrimaryHand);
@@ -840,6 +856,12 @@ namespace Game.Models
 
                 case ItemLocationEnum.Feet:
                     return GetItem(Feet);
+                case ItemLocationEnum.Unknown:
+                    break;
+                case ItemLocationEnum.Finger:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(itemLocation), itemLocation, null);
             }
 
             return null;
@@ -850,40 +872,44 @@ namespace Game.Models
         // Puts the ItemModel ID as a string in the location slot
         // If ItemModel is null, then puts null in the slot
         // Returns the ItemModel that was in the location
-        public ItemModel AddItem(ItemLocationEnum itemLocation, string itemID)
+        public ItemModel AddItem(ItemLocationEnum itemLocation, string itemId)
         {
             var myReturn = GetItemByLocation(itemLocation);
 
             switch (itemLocation)
             {
                 case ItemLocationEnum.Feet:
-                    Feet = itemID;
+                    Feet = itemId;
                     break;
 
                 case ItemLocationEnum.Head:
-                    Head = itemID;
+                    Head = itemId;
                     break;
 
-                case ItemLocationEnum.Necklass:
-                    Necklass = itemID;
+                case ItemLocationEnum.Necklace:
+                    Necklace = itemId;
                     break;
 
                 case ItemLocationEnum.PrimaryHand:
-                    PrimaryHand = itemID;
+                    PrimaryHand = itemId;
                     break;
 
                 case ItemLocationEnum.OffHand:
-                    OffHand = itemID;
+                    OffHand = itemId;
                     break;
 
                 case ItemLocationEnum.RightFinger:
-                    RightFinger = itemID;
+                    RightFinger = itemId;
                     break;
 
                 case ItemLocationEnum.LeftFinger:
-                    LeftFinger = itemID;
+                    LeftFinger = itemId;
                     break;
 
+                case ItemLocationEnum.Unknown:
+                    break;
+                case ItemLocationEnum.Finger:
+                    break;
                 default:
                     myReturn = null;
                     break;
@@ -909,7 +935,7 @@ namespace Game.Models
                 }
             }
 
-            myItem = GetItem(Necklass);
+            myItem = GetItem(Necklace);
             if (myItem != null)
             {
                 if (myItem.Attribute == attributeEnum)
@@ -986,7 +1012,7 @@ namespace Game.Models
                 myReturn += data.FormatOutput();
             }
 
-            data = ItemIndexViewModel.Instance.GetItem(Necklass);
+            data = ItemIndexViewModel.Instance.GetItem(Necklace);
             if (data != null)
             {
                 myReturn += data.FormatOutput();

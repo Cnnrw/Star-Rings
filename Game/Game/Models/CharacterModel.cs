@@ -1,4 +1,5 @@
 using Game.GameRules;
+using Game.Models.Enums;
 
 namespace Game.Models
 {
@@ -68,7 +69,7 @@ namespace Game.Models
             MaxHealth = newData.MaxHealth;
 
             Head = newData.Head;
-            Necklass = newData.Necklass;
+            Necklace = newData.Necklace;
             PrimaryHand = newData.PrimaryHand;
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;

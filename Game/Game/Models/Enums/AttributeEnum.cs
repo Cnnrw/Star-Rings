@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// The Types of Attributes
@@ -11,7 +10,7 @@ namespace Game.Models
     public enum AttributeEnum
     {
         // Not specified
-        Unknown = 0,    
+        Unknown = 0,
 
         // The speed of the character, impacts movement, and initiative
         Speed = 10,
@@ -65,10 +64,6 @@ namespace Game.Models
                 case AttributeEnum.Speed:
                     Message = "Speed";
                     break;
-
-                case AttributeEnum.Unknown:
-                default:
-                    break;
             }
 
             return Message;
@@ -88,7 +83,7 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(AttributeEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(AttributeEnum)).ToList();
                 return myList;
             }
         }
@@ -101,7 +96,8 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(AttributeEnum)).ToList().Where(m => m.ToString().Equals("Unknown") == false).ToList();
+                var myList = System.Enum.GetNames(typeof(AttributeEnum)).ToList()
+                                   .Where(m => m.ToString().Equals("Unknown") == false).ToList();
                 return myList;
             }
         }
@@ -111,9 +107,7 @@ namespace Game.Models
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static AttributeEnum ConvertStringToEnum(string value)
-        {
-            return (AttributeEnum)Enum.Parse(typeof(AttributeEnum), value);
-        }
+        public static AttributeEnum ConvertStringToEnum(string value) =>
+            (AttributeEnum)System.Enum.Parse(typeof(AttributeEnum), value);
     }
 }

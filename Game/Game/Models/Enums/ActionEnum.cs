@@ -1,4 +1,4 @@
-﻿namespace Game.Models
+﻿namespace Game.Models.Enums
 {
     /// <summary>
     /// The Types of s a Action can have

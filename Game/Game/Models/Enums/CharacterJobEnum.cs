@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// The Types of Jobs a character can have
@@ -86,10 +86,10 @@ namespace Game.Models
                 case CharacterJobEnum.Cleric:
                     Message = "Cleric";
                     break;
-
                 case CharacterJobEnum.Unknown:
-                default:
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
 
             return Message;
@@ -149,14 +149,16 @@ namespace Game.Models
         /// Gets the list of Character Jobs that Characters can have.
         /// Does not include the Unknown Job.
         /// </summary>
-        public static List<string> GetListCharacterJobs {
-            get {
+        public static List<string> GetListCharacterJobs
+        {
+            get
+            {
                 var myList = Enum.GetNames(typeof(CharacterJobEnum)).ToList();
                 var myReturn = myList.Where(a =>
-                        a.ToString() != CharacterJobEnum.Unknown.ToString()
-                    )
-                    .OrderBy(a => a)
-                    .ToList();
+                                                a.ToString() != CharacterJobEnum.Unknown.ToString()
+                                           )
+                                     .OrderBy(a => a)
+                                     .ToList();
                 return myReturn;
             }
         }

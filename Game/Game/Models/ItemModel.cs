@@ -1,28 +1,45 @@
-using Game.Services;
 using Game.Helpers;
+using Game.Models.Enums;
+using Game.Services;
 
 namespace Game.Models
 {
     /// <summary>
     /// Item for the Game
-    /// 
+    ///
     /// The Items that a character can use, a Monster may drop, or may be randomly available.
     /// The items are stored in the DB, and during game time a random item is selected.
-    /// The system supports CRUDi operatoins on the items
+    /// The system supports CRUDi operations on the items
     /// When in test mode, a test set of items is loaded
     /// When in run mode the items from from the database
     /// When in online mode, the items come from an api call to a webservice
-    /// 
+    ///
     /// When characters or monsters die, they drop items into the Items Pool for the Battle
-    /// 
+    ///
     /// </summary>
     public class ItemModel : BaseModel<ItemModel>
     {
-        // Range of the item, swords are 1, hats/rings are 0, bows are >1
-        public int Range { get; set; } = 0;
 
-        // The Damage the Item can do if it is used as a weapon in the primary hand
-        public int Damage { get; set; } = 0;
+        // TODO: Add Unique attributes for Item
+
+        /// <summary>
+        /// Default ItemModel
+        /// Establish the Default Image Path
+        /// </summary>
+        public ItemModel() => ImageURI = ItemService.DefaultImageURI;
+
+        /// <summary>
+        /// Constructor to create an item based on what is passed in
+        /// </summary>
+        /// <param name="data"></param>
+        public ItemModel(ItemModel data) => Update(data);
+
+        public int Range { get; set; } // Range of the item, swords are 1, hats/rings are 0, bows are >1
+        public int Damage { get; set; } // Damage the Item can do if it is in the primary hand
+        public int Value { get; set; } // The Value item modifies. i.e. ring of Health +3 -> Value = 3
+        public int Count { get; set; } = 1; // Count of how many
+        public int Category { get; set; } = 0; // The Category of the item
+        public bool IsConsumable { get; set; } = false; // Tracks if the item is a consumable or not
 
         // Enum of the different attributes that the item modifies, Items can only modify one item
         public AttributeEnum Attribute { get; set; } = AttributeEnum.Attack;
@@ -30,43 +47,11 @@ namespace Game.Models
         // Where the Item goes on the character.  Head, Foot etc.
         public ItemLocationEnum Location { get; set; } = ItemLocationEnum.PrimaryHand;
 
-        // The Value item modifies.  So a ring of Health +3, has a Value of 3
-        public int Value { get; set; } = 0;
-        
-        //// Count of how many
-        //public int Count { get; set; } = 1;
-        
-        //// Tracks if the item is a consumable or not
-        //public bool IsConsumable { get; set; } = false;
-        
-        //// The Category of the itme
-        //public int Category { get; set; } = 0;
-
-        // Add Unique attributes for Item
-
-        /// <summary>
-        /// Default ItemModel
-        /// Establish the Default Image Path
-        /// </summary>
-        public ItemModel()
-        {
-            ImageURI = ItemService.DefaultImageURI;
-        }
-
-        /// <summary>
-        /// Constructor to create an item based on what is passed in
-        /// </summary>
-        /// <param name="data"></param>
-        public ItemModel(ItemModel data)
-        {
-            Update(data);
-        }
-
         /// <summary>
         /// Update the Record
         /// </summary>
         /// <param name="newData">The new data</param>
-        public override bool Update(ItemModel newData)
+        public sealed override bool Update(ItemModel newData)
         {
             if (newData == null)
             {
@@ -100,12 +85,12 @@ namespace Game.Models
         public string FormatOutput()
         {
             var myReturn = Name + " , " +
-                            Description + " for " +
-                            Location.ToString() + " with " +
-                            Attribute.ToString() +
-                            "+" + Value + " , " +
-                            "Damage : " + Damage + " , " +
-                            "Range : " + Range;
+                           Description + " for " +
+                           Location.ToString() + " with " +
+                           Attribute.ToString() + "+" +
+                           Value + " , " +
+                           "Damage : " + Damage + " , " +
+                           "Range : " + Range;
 
             return myReturn.Trim();
         }

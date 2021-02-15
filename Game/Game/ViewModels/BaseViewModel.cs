@@ -226,7 +226,7 @@ namespace Game.ViewModels
         public async Task LoadDataFromIndexAsync()
         {
             Dataset.Clear();
-            var dataset = await DataStore.IndexAsync();
+            List<T> dataset = await DataStore.IndexAsync();
 
             // Example of how to sort the database output using a linq query.
             // Sort the list
@@ -245,9 +245,7 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public virtual List<T> SortDataset(List<T> dataset) =>
-            dataset
-                .ToList();
+        public virtual List<T> SortDataset(List<T> dataset) => dataset.ToList();
 
         /// <summary>
         ///     Return True if a refresh is needed

@@ -1,38 +1,30 @@
 ﻿using System.Collections.Generic;
 
-using Game.Models;
+using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
-using Game.Engine.EngineBase;
+using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineGame
 {
-    /* 
+    /*
      * Need to decide who takes the next turn
      * Target to Attack
      * Should Move, or Stay put (can hit with weapon range?)
      * Death
      * Manage Round...
-     * 
+     *
      */
 
     /// <summary>
     /// Engine controls the turns
-    /// 
+    ///
     /// A turn is when a Character takes an action or a Monster takes an action
-    /// 
+    ///
     /// </summary>
     public class TurnEngine : TurnEngineBase, ITurnEngineInterface
     {
-        #region Algrorithm
-        // Attack or Move
-        // Roll To Hit
-        // Decide Hit or Miss
-        // Decide Damage
-        // Death
-        // Drop Items
-        // Turn Over
-        #endregion Algrorithm
 
         // Hold the BaseEngine
         public new EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
@@ -72,7 +64,7 @@ namespace Game.Engine.EngineGame
 
             /*
              * The following is Used for Monsters, and Auto Battle Characters
-             * 
+             *
              * Order of Priority
              * If can attack Then Attack
              * Next use Ability or Move
@@ -94,17 +86,16 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool MoveAsTurn(PlayerInfoModel Attacker)
         {
-
             /*
              * TODO: TEAMS Work out your own move logic if you are implementing move
-             * 
+             *
              * Mike's Logic
              * The monster or charcter will move to a different square if one is open
              * Find the Desired Target
              * Jump to the closest space near the target that is open
-             * 
+             *
              * If no open spaces, return false
-             * 
+             *
              */
 
             // If the Monster the calculate the options
@@ -130,7 +121,7 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Decide to use an Ability or not
-        /// 
+        ///
         /// Set the Ability
         /// </summary>
         public override bool ChooseToUseAbility(PlayerInfoModel Attacker)
@@ -156,14 +147,14 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Attack as a Turn
-        /// 
+        ///
         /// Pick who to go after
-        /// 
+        ///
         /// Determine Attack Score
         /// Determine DefenseScore
-        /// 
+        ///
         /// Do the Attack
-        /// 
+        ///
         /// </summary>
         public override bool Attack(PlayerInfoModel Attacker)
         {
@@ -202,12 +193,11 @@ namespace Game.Engine.EngineGame
         public override PlayerInfoModel SelectMonsterToAttack()
         {
             // Select first one to hit in the list for now...
-            // Attack the Weakness (lowest HP) MonsterModel first 
+            // Attack the Weakness (lowest HP) MonsterModel first
 
             // TODO: Teams, You need to implement your own Logic can not use mine.
 
             throw new System.NotImplementedException();
-
         }
 
         /// <summary>
@@ -220,7 +210,7 @@ namespace Game.Engine.EngineGame
             // Do the Attack
 
             // Hackathon
-            // ?? Hackathon Scenario ?? 
+            // ?? Hackathon Scenario ??
 
             // See if the Battle Settings Overrides the Roll
 
@@ -237,7 +227,7 @@ namespace Game.Engine.EngineGame
 
             // If it is a character apply the experience earned
 
-            // Battle Message 
+            // Battle Message
 
             throw new System.NotImplementedException();
         }
@@ -296,16 +286,16 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Target Died
-        /// 
+        ///
         /// Process for death...
-        /// 
+        ///
         /// Returns the count of items dropped at death
         /// </summary>
         public override bool TargetDied(PlayerInfoModel Target)
         {
             // Mark Status in output
 
-            // Removing the 
+            // Removing the
 
             // INFO: Teams, Hookup your Boss if you have one...
 
@@ -353,7 +343,7 @@ namespace Game.Engine.EngineGame
 
             // You decide how to drop monster items, level, etc.
 
-            // The Number drop can be Up to the Round Count, but may be less.  
+            // The Number drop can be Up to the Round Count, but may be less.
             // Negative results in nothing dropped
 
             throw new System.NotImplementedException();
@@ -366,5 +356,17 @@ namespace Game.Engine.EngineGame
         {
             throw new System.NotImplementedException();
         }
+
+        #region Algrorithm
+
+        // Attack or Move
+        // Roll To Hit
+        // Decide Hit or Miss
+        // Decide Damage
+        // Death
+        // Drop Items
+        // Turn Over
+
+        #endregion Algrorithm
     }
 }

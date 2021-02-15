@@ -10,7 +10,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:Game.Helpers.Converters;assembly=Game"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game">
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
+             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game">
 
     <ContentPage.BindingContext>
         <viewModels:GenericViewModel x:TypeArguments="models:CharacterModel"/>
@@ -37,7 +38,7 @@
                         <Label Text="Job"
                                Style="{StaticResource LabelStyle}"/>
                         <Picker x:Name="JobPicker"
-                                ItemsSource="{x:Static models:CharacterJobEnumHelper.GetListCharacterJobs}"
+                                ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}"
                                 SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
                                 SelectedIndexChanged="OnJobPickerChanged"/>
 
@@ -87,15 +88,6 @@
                                Style="{StaticResource LabelStyle}" />
                         <Label x:Name="MaxHealthValue"
                                Text="{Binding Data.MaxHealth, StringFormat= '{0:G} hp'}" />
-                        <!-- <StackLayout Orientation="Horizontal"> -->
-
-                            <!-- <Stepper x:Name="MaxHealthStepper" -->
-                            <!--          Value="{Binding Character.MaxHealth, Mode=TwoWay}" -->
-                            <!--          ValueChanged="OnMaxHealthStepperChanged" -->
-                            <!--          Minimum="1" -->
-                            <!--          Maximum="10" -->
-                            <!--          Increment="1"/> -->
-                        <!-- </StackLayout> -->
                     </StackLayout>
 
                     <StackLayout>

@@ -1,21 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Game.GameRules;
+using Game.Models.Enums;
 
 namespace Game.Models
 {
     /// <summary>
     /// Player for the game.
-    /// 
+    ///
     /// Either Monster or Character
-    /// 
+    ///
     /// Constructor Player to Player used a T in Round
     /// </summary>
     public class PlayerInfoModel : BasePlayerModel<PlayerInfoModel>
     {
         // Track the Abilities in the Battle
         // The Ability will be the List of Abilities per Job, and a count of how many times they can use it per round
-        public Dictionary<AbilityEnum, int> AbilityTracker = new Dictionary<AbilityEnum, int>();
+        public readonly Dictionary<AbilityEnum, int> AbilityTracker = new Dictionary<AbilityEnum, int>();
 
         /// <summary>
         /// Default Constructor
@@ -49,7 +52,7 @@ namespace Game.Models
 
             // Set the strings for the items
             Head = data.Head;
-            Necklass = data.Necklass;
+            Necklace = data.Necklace;
             PrimaryHand = data.PrimaryHand;
             OffHand = data.OffHand;
             RightFinger = data.RightFinger;
@@ -91,7 +94,7 @@ namespace Game.Models
 
             // Set the strings for the items
             Head = data.Head;
-            Necklass = data.Necklass;
+            Necklace = data.Necklace;
             PrimaryHand = data.PrimaryHand;
             OffHand = data.OffHand;
             RightFinger = data.RightFinger;
@@ -165,7 +168,7 @@ namespace Game.Models
 
             // Set the strings for the items
             Head = data.Head;
-            Necklass = data.Necklass;
+            Necklace = data.Necklace;
             PrimaryHand = data.PrimaryHand;
             OffHand = data.OffHand;
             RightFinger = data.RightFinger;
@@ -189,7 +192,6 @@ namespace Game.Models
             {
                 AbilityTracker.Add(AbilityEnumHelper.ConvertStringToEnum(item), Level);
             }
-
         }
 
         public override string FormatOutput()
@@ -218,7 +220,7 @@ namespace Game.Models
 
         /// <summary>
         /// Check to see if healing would help
-        /// 
+        ///
         /// if not, return unknown
         /// </summary>
         /// <returns></returns>
@@ -226,7 +228,7 @@ namespace Game.Models
         {
             // Save the Health for when it is needed
             // If health is 25% or less of max health, try to heal
-            if (GetCurrentHealth() < (GetMaxHealth() * .25))
+            if (GetCurrentHealth() < GetMaxHealth() * .25)
             {
                 // Try to use Heal or Bandage
                 if (IsAbilityAvailable(AbilityEnum.Heal))
@@ -246,27 +248,18 @@ namespace Game.Models
         /// <summary>
         /// Walk the Abilities and return one to use
         /// </summary>
-        /// <param name="Attacker"></param>
         /// <returns></returns>
         public AbilityEnum SelectAbilityToUse()
         {
             // Walk the other abilities and see which can be used
-            foreach (var ability in AbilityTracker)
+            foreach (var data in from ability in AbilityTracker
+                                 select ability.Key
+                                 into data
+                                 where data != AbilityEnum.Heal
+                                 where data != AbilityEnum.Bandage
+                                 select data)
             {
-                var data = ability.Key;
-
-                // Skip over Heal and Bandage because covered in healing
-                if (data == AbilityEnum.Heal)
-                {
-                    continue;
-                }
-
-                if (data == AbilityEnum.Bandage)
-                {
-                    continue;
-                }
-
-                var result = AbilityTracker.TryGetValue(data, out int remaining);
+                var result = AbilityTracker.TryGetValue(data, out var remaining);
                 if (remaining > 0)
                 {
                     // Got one so can prepare it to be used
@@ -279,31 +272,24 @@ namespace Game.Models
 
         public bool IsAbilityAvailable(AbilityEnum ability)
         {
-            var avaible = AbilityTracker.TryGetValue(ability, out int remaining);
-            if (avaible == false)
+            var available = AbilityTracker.TryGetValue(ability, out var remaining);
+            if (available == false)
             {
                 // does not exist
                 return false;
             }
 
-            if (remaining < 1)
-            {
-                // out of tries
-                return false;
-            }
-
-            return true;
+            return remaining >= 1;
         }
 
         /// <summary>
         /// Use the Ability
         /// </summary>
-        /// <param name="Attacker"></param>
         /// <returns></returns>
         public bool UseAbility(AbilityEnum ability)
         {
-            var avaible = AbilityTracker.TryGetValue(ability, out int remaining);
-            if (avaible == false)
+            var available = AbilityTracker.TryGetValue(ability, out var remaining);
+            if (available == false)
             {
                 // does not exist
                 return false;
@@ -336,6 +322,12 @@ namespace Game.Models
                 case AbilityEnum.Nimble:
                     BuffSpeed();
                     break;
+                case AbilityEnum.Unknown:
+                    break;
+                case AbilityEnum.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ability), ability, null);
             }
 
             // Reduce the count
@@ -343,7 +335,7 @@ namespace Game.Models
 
             return true;
         }
-        #endregion Abilities
 
+        #endregion Abilities
     }
 }

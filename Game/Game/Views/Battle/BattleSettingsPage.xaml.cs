@@ -1,8 +1,8 @@
-﻿using Game.Helpers;
-using Game.Models;
+﻿using System;
+
+using Game.Models.Enums;
 using Game.ViewModels;
-using System;
-using System.Linq;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +15,7 @@ namespace Game.Views
     public partial class BattleSettingsPage : ContentPage
     {
         // Empty Constructor for UTs
-       // public BattleSettingsPage(bool UnitTest) { }
+        // public BattleSettingsPage(bool UnitTest) { }
 
         /// <summary>
         /// Constructor
@@ -25,6 +25,7 @@ namespace Game.Views
             InitializeComponent();
 
             #region BattleMode
+
             // Load the values for the Diffculty into the Picker
             foreach (var item in BattleModeEnumHelper.GetListMessageAll)
             {
@@ -32,11 +33,14 @@ namespace Game.Views
             }
 
             // Set Values to current State
-            BattleModePicker.SelectedItem = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum.ToMessage();
+            BattleModePicker.SelectedItem = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
+                                                                 .BattleModeEnum.ToMessage();
             BattleModePicker.SelectedIndex = BattleModePicker.Items.IndexOf(BattleModePicker.SelectedItem.ToString());
+
             #endregion BattleMode
 
             #region HitPickers
+
             // Load the values for the Diffculty into the Picker
             foreach (var item in HitStatusEnumHelper.GetListAll)
             {
@@ -45,20 +49,31 @@ namespace Game.Views
             }
 
             // Set Values to current State
-            MonsterHitPicker.SelectedItem = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum.ToString();
+            MonsterHitPicker.SelectedItem = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
+                                                                 .MonsterHitEnum.ToString();
             MonsterHitPicker.SelectedIndex = MonsterHitPicker.Items.IndexOf(MonsterHitPicker.SelectedItem.ToString());
 
-            CharacterHitPicker.SelectedItem = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum.ToString();
-            CharacterHitPicker.SelectedIndex = CharacterHitPicker.Items.IndexOf(CharacterHitPicker.SelectedItem.ToString());
+            CharacterHitPicker.SelectedItem = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
+                                                                   .CharacterHitEnum.ToString();
+            CharacterHitPicker.SelectedIndex =
+                CharacterHitPicker.Items.IndexOf(CharacterHitPicker.SelectedItem.ToString());
+
             #endregion HitPickers
 
             #region HitToggles
-            AllowCriticalHitSwitch.IsToggled = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowCriticalHit;
-            AllowCriticalMissSwitch.IsToggled = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowCriticalMiss;
+
+            AllowCriticalHitSwitch.IsToggled = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
+                                                                    .AllowCriticalHit;
+            AllowCriticalMissSwitch.IsToggled = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
+                                                                     .AllowCriticalMiss;
+
             #endregion HitToggles
 
             #region MonsterToggles
-            AllowMonsterItemsSwitch.IsToggled = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowMonsterItems;
+
+            AllowMonsterItemsSwitch.IsToggled = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
+                                                                     .AllowMonsterItems;
+
             #endregion
         }
 
@@ -76,7 +91,8 @@ namespace Game.Views
             }
 
             // Change the Difficulty
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = BattleModeEnumHelper.ConvertMessageStringToEnum(BattleModePicker.SelectedItem.ToString());
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+                BattleModeEnumHelper.ConvertMessageStringToEnum(BattleModePicker.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -93,7 +109,8 @@ namespace Game.Views
             }
 
             // Change the Difficulty
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnumHelper.ConvertStringToEnum(MonsterHitPicker.SelectedItem.ToString());
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum =
+                HitStatusEnumHelper.ConvertStringToEnum(MonsterHitPicker.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -110,7 +127,8 @@ namespace Game.Views
             }
 
             // Change the Difficulty
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnumHelper.ConvertStringToEnum(CharacterHitPicker.SelectedItem.ToString());
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum =
+                HitStatusEnumHelper.ConvertStringToEnum(CharacterHitPicker.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -118,10 +136,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void CloseButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        public async void CloseButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         /// Toggle Critical Miss
@@ -131,7 +146,7 @@ namespace Game.Views
         public void AllowCriticalMiss_Toggled(object sender, EventArgs e)
         {
             // Flip the settings
-            if (AllowCriticalMissSwitch.IsToggled == true)
+            if (AllowCriticalMissSwitch.IsToggled)
             {
                 BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowCriticalMiss = true;
                 return;
@@ -148,7 +163,7 @@ namespace Game.Views
         public void AllowCriticalHit_Toggled(object sender, EventArgs e)
         {
             // Flip the settings
-            if (AllowCriticalHitSwitch.IsToggled == true)
+            if (AllowCriticalHitSwitch.IsToggled)
             {
                 BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowCriticalHit = true;
                 return;
@@ -165,7 +180,7 @@ namespace Game.Views
         public void AllowMonsterItems_Toggled(object sender, EventArgs e)
         {
             // Flip the settings
-            if (AllowMonsterItemsSwitch.IsToggled == true)
+            if (AllowMonsterItemsSwitch.IsToggled)
             {
                 BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowMonsterItems = true;
                 return;
@@ -173,6 +188,5 @@ namespace Game.Views
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.AllowMonsterItems = false;
         }
-
     }
 }

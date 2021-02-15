@@ -1,7 +1,7 @@
-﻿
-using Game.Engine.EngineInterfaces;
+﻿using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineBase
 {
@@ -10,24 +10,14 @@ namespace Game.Engine.EngineBase
     /// </summary>
     public class BattleEngineBase : IBattleEngineInterface
     {
+
+        // Track if the Battle is Running or Not
+        public bool BattleRunning = false;
         // The Round
         public IRoundEngineInterface Round { get; set; } = null;
 
         // Engine Sttings
         public EngineSettingsModel EngineSettings { get; } = EngineSettingsModel.Instance;
-
-        // Track if the Battle is Running or Not
-        public bool BattleRunning = false;
-
-        /// <summary>
-        /// Set the Battle State
-        /// </summary>
-        public virtual bool SetBattleStateEnum(BattleStateEnum data)
-        {
-            EngineSettings.BattleStateEnum = data;
-
-            return true;
-        }
 
         /// <summary>
         /// Add the charcter to the character list
@@ -47,10 +37,7 @@ namespace Game.Engine.EngineBase
         public virtual bool StartBattle(bool isAutoBattle)
         {
             // Reset the Score so it is fresh
-            EngineSettings.BattleScore = new ScoreModel
-            {
-                AutoBattle = isAutoBattle
-            };
+            EngineSettings.BattleScore = new ScoreModel {AutoBattle = isAutoBattle};
 
             BattleRunning = true;
 
@@ -68,6 +55,16 @@ namespace Game.Engine.EngineBase
             BattleRunning = false;
 
             EngineSettings.BattleScore.CalculateScore();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Set the Battle State
+        /// </summary>
+        public virtual bool SetBattleStateEnum(BattleStateEnum data)
+        {
+            EngineSettings.BattleStateEnum = data;
 
             return true;
         }

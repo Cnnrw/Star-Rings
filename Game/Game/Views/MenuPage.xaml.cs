@@ -2,6 +2,7 @@
 using System.ComponentModel;
 
 using Game.Models;
+using Game.Models.Enums;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -30,7 +31,8 @@ namespace Game.Views
                 new MenuItemModel {Id = MenuItemEnum.Home, Title = "Home"},
                 new MenuItemModel {Id = MenuItemEnum.Village, Title = "Village"},
                 new MenuItemModel {Id = MenuItemEnum.Battle, Title = "Battle"},
-                new MenuItemModel {Id = MenuItemEnum.About, Title = "About"}
+                new MenuItemModel {Id = MenuItemEnum.About, Title = "About"},
+                new MenuItemModel {Id = MenuItemEnum.Settings, Title = "Settings"}
             };
 
             // Register the ListView for the Menu and the Item Selected call back

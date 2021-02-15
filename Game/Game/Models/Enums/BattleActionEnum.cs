@@ -1,27 +1,25 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// Actions that can happen in the battle.
-    /// 
-    /// Example.  
+    ///
+    /// Example.
     /// PlayerAlwaysHit can be Default, On, or Off
     /// PlayerAbility can be Default, On, Off
     /// </summary>
-    public enum BattleActionEnum 
-    { 
+    public enum BattleActionEnum
+    {
         // Default behavior
-        Default = 0, 
+        Default = 0,
 
         // Supress Behavior
-        Off = 2, 
+        Off = 2,
 
         // Force behavior
-        On = 3, 
+        On = 3,
     }
 
     /// <summary>
@@ -37,7 +35,7 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(BattleActionEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(BattleActionEnum)).ToList();
                 return myList;
             }
         }
@@ -49,7 +47,7 @@ namespace Game.Models
         /// <returns></returns>
         public static BattleActionEnum ConvertStringToEnum(string value)
         {
-            return (BattleActionEnum)Enum.Parse(typeof(BattleActionEnum), value);
+            return (BattleActionEnum)System.Enum.Parse(typeof(BattleActionEnum), value);
         }
     }
 }

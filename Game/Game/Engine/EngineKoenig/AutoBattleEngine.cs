@@ -5,35 +5,18 @@ using System.Threading.Tasks;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.GameRules;
-using Game.Models;
-using Game.ViewModels;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineKoenig
 {
     /// <summary>
     /// AutoBattle Engine
-    /// 
+    ///
     /// Runs the engine simulation with no user interaction
-    /// 
+    ///
     /// </summary>
     public class AutoBattleEngine : AutoBattleEngineBase, IAutoBattleInterface
     {
-        #region Algrorithm
-        // Prepare for Battle
-        // Pick 6 Characters
-        // Initialize the Battle
-        // Start a Round
-
-        // Fight Loop
-        // Loop in the round each turn
-        // If Round is over, Start New Round
-        // Check end state of round/game
-
-        // Wrap up
-        // Get Score
-        // Save Score
-        // Output Score
-        #endregion Algrorithm
 
         public new IBattleEngineInterface Battle
         {
@@ -52,9 +35,9 @@ namespace Game.Engine.EngineKoenig
         /// Run Auto Battle
         /// </summary>
         /// <returns></returns>
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public override async Task<bool> RunAutoBattle()
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+            #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             RoundEnum RoundCondition;
 
@@ -91,7 +74,6 @@ namespace Game.Engine.EngineKoenig
                     Battle.Round.NewRound();
                     Debug.WriteLine("New Round");
                 }
-
             } while (RoundCondition != RoundEnum.GameOver);
 
             Debug.WriteLine("Game Over");
@@ -104,10 +86,10 @@ namespace Game.Engine.EngineKoenig
 
         /// <summary>
         /// Check if the Engine is not ending
-        /// 
+        ///
         /// Too many Rounds
         /// Too many Turns in a round
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override bool DetectInfinateLoop()
@@ -148,12 +130,33 @@ namespace Game.Engine.EngineKoenig
             //}
 
             //If there are not enough will add random ones
-            for (int i = Battle.EngineSettings.CharacterList.Count(); i < Battle.EngineSettings.MaxNumberPartyCharacters; i++)
+            for (int i = Battle.EngineSettings.CharacterList.Count();
+                 i < Battle.EngineSettings.MaxNumberPartyCharacters;
+                 i++)
             {
                 Battle.PopulateCharacterList(RandomPlayerHelper.GetRandomCharacter(1));
             }
 
             return true;
         }
+
+        #region Algrorithm
+
+        // Prepare for Battle
+        // Pick 6 Characters
+        // Initialize the Battle
+        // Start a Round
+
+        // Fight Loop
+        // Loop in the round each turn
+        // If Round is over, Start New Round
+        // Check end state of round/game
+
+        // Wrap up
+        // Get Score
+        // Save Score
+        // Output Score
+
+        #endregion Algrorithm
     }
 }

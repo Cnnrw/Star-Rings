@@ -1,17 +1,15 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// The Conditions a round can have
     /// </summary>
-    public enum BattleModeEnum 
-    { 
+    public enum BattleModeEnum
+    {
         // Invalid State
-        Unknown = 0, 
+        Unknown = 0,
 
         // Default, just click until the end
         SimpleNext = 1,
@@ -46,7 +44,6 @@ namespace Game.Models
 
             switch (value)
             {
-
                 case BattleModeEnum.MapFull:
                     Message = "Map All Actions";
                     break;
@@ -66,10 +63,6 @@ namespace Game.Models
                 case BattleModeEnum.SimpleAbility:
                     Message = "Simple Abilities";
                     break;
-
-                case BattleModeEnum.Unknown:
-                default:
-                    break;
             }
             return Message;
         }
@@ -88,7 +81,7 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(BattleModeEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(BattleModeEnum)).ToList();
                 return myList;
             }
         }
@@ -97,45 +90,25 @@ namespace Game.Models
         /// Returns a list of Full strings of the enum for BattleMode
         /// Removes the BattleModes that are not changable by Items such as Unknown, MaxHealth
         /// </summary>
-        public static List<string> GetListMessageAll
-        {
-            get
-            {
-                var list = new List<string>();
-
-                foreach (var item in Enum.GetValues(typeof(BattleModeEnum)))
-                {
-                    list.Add(((BattleModeEnum)item).ToMessage());
-                }
-                return list;
-            }
-        }
+        public static IEnumerable<string> GetListMessageAll =>
+            (from object item in System.Enum.GetValues(typeof(BattleModeEnum))
+             select ((BattleModeEnum)item).ToMessage()).ToList();
 
         /// <summary>
         /// Given the String for an enum, return its value.  That allows for the enums to be numbered 2,4,6 rather than 1,2,3
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static BattleModeEnum ConvertStringToEnum(string value)
-        {
-            return (BattleModeEnum)Enum.Parse(typeof(BattleModeEnum), value);
-        }
+        public static BattleModeEnum ConvertStringToEnum(string value) =>
+            (BattleModeEnum)System.Enum.Parse(typeof(BattleModeEnum), value);
 
         /// <summary>
         /// Given the Full String for an enum, return its value
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static BattleModeEnum ConvertMessageStringToEnum(string value)
-        {
-            foreach (BattleModeEnum item in Enum.GetValues(typeof(BattleModeEnum)))
-            {
-                if (item.ToMessage().Equals(value))
-                {
-                    return item;
-                }
-            }
-            return BattleModeEnum.Unknown;
-        }
+        public static BattleModeEnum ConvertMessageStringToEnum(string value) =>
+            System.Enum.GetValues(typeof(BattleModeEnum)).Cast<BattleModeEnum>()
+                  .FirstOrDefault(item => item.ToMessage().Equals(value));
     }
 }

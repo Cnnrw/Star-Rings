@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineInterfaces
 {
@@ -10,7 +11,7 @@ namespace Game.Engine.EngineInterfaces
 
         bool ClearLists();
         bool NewRound();
-        int AddMonstersToRound();
+        int  AddMonstersToRound();
         bool EndRound();
         void PickupItemsForAllCharacters();
 

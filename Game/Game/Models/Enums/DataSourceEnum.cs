@@ -1,8 +1,7 @@
-﻿
-namespace Game.Models
+﻿namespace Game.Models.Enums
 {
-    // What data store will be used.  
-    public enum DataStoreEnum
+    // What data store will be used.
+    public enum DataSourceEnum
     {
         // Unknown is not a valid store
         Unknown = 0,

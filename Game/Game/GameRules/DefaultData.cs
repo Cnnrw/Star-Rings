@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Game.Models;
+using Game.Models.Enums;
 using Game.ViewModels;
 
 namespace Game.GameRules
@@ -15,7 +16,8 @@ namespace Game.GameRules
         {
             var datalist = new List<ItemModel>()
             {
-                new ItemModel {
+                new ItemModel
+                {
                     Name = "Lembas Bread",
                     Description = "A fresh loaf of Elven bread",
                     ImageURI = "item.png",
@@ -25,7 +27,8 @@ namespace Game.GameRules
                     Location = ItemLocationEnum.OffHand,
                     Attribute = AttributeEnum.Defense
                 },
-                new ItemModel {
+                new ItemModel
+                {
                     Name = "Hobbit feet",
                     Description = "Nimble feet to carry you from danger",
                     ImageURI = "item.png",
@@ -35,7 +38,8 @@ namespace Game.GameRules
                     Location = ItemLocationEnum.Feet,
                     Attribute = AttributeEnum.Speed
                 },
-                new ItemModel {
+                new ItemModel
+                {
                     Name = "Ring of Power",
                     Description = "A golden ring that turns its wearer invisible",
                     ImageURI = "item.png",
@@ -45,7 +49,8 @@ namespace Game.GameRules
                     Location = ItemLocationEnum.RightFinger,
                     Attribute = AttributeEnum.Speed
                 },
-                new ItemModel {
+                new ItemModel
+                {
                     Name = "Troll Axe",
                     Description = "A heavy iron axe",
                     ImageURI = "item.png",
@@ -60,43 +65,42 @@ namespace Game.GameRules
             return datalist;
         }
 
-    /// <summary>
-    /// Load Example Scores
-    /// </summary>
-    /// <param name="temp"></param>
-    /// <returns></returns>
-    public static List<ScoreModel> LoadData(ScoreModel temp)
-    {
-        var datalist = new List<ScoreModel>()
+        /// <summary>
+        /// Load Example Scores
+        /// </summary>
+        /// <param name="temp"></param>
+        /// <returns></returns>
+        public static List<ScoreModel> LoadData(ScoreModel temp)
+        {
+            var datalist = new List<ScoreModel>()
             {
-                new ScoreModel {
-                    Name = "First Score",
-                    Description = "Test Data",
+                new ScoreModel
+                {
+                    Name = "First Score", Description = "Test Data",
                 },
-
-                new ScoreModel {
-                    Name = "Second Score",
-                    Description = "Test Data",
+                new ScoreModel
+                {
+                    Name = "Second Score", Description = "Test Data",
                 }
             };
 
-        return datalist;
-    }
+            return datalist;
+        }
 
-    /// <summary>
-    /// Load Characters
-    /// </summary>
-    /// <param name="temp"></param>
-    /// <returns></returns>
-    public static List<CharacterModel> LoadData(CharacterModel temp)
-    {
-        var HeadString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
-        var NecklassString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Necklass);
-        var PrimaryHandString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.PrimaryHand);
-        var OffHandString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.OffHand);
-        var FeetString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Feet);
-        var RightFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
-        var LeftFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
+        /// <summary>
+        /// Load Characters
+        /// </summary>
+        /// <param name="temp"></param>
+        /// <returns></returns>
+        public static List<CharacterModel> LoadData(CharacterModel temp)
+        {
+            var HeadString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
+            var NecklaceString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Necklace);
+            var PrimaryHandString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.PrimaryHand);
+            var OffHandString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.OffHand);
+            var FeetString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Feet);
+            var RightFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
+            var LeftFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
 
             var datalist = new List<CharacterModel>()
             {
@@ -138,38 +142,39 @@ namespace Game.GameRules
                 }
             };
 
-        return datalist;
-    }
+            return datalist;
+        }
 
-    /// <summary>
-    /// Load Monsters
-    /// </summary>
-    /// <param name="temp"></param>
-    /// <returns></returns>
-    public static List<MonsterModel> LoadData(MonsterModel temp)
-    {
-        var datalist = new List<MonsterModel>()
+        /// <summary>
+        /// Load Monsters
+        /// </summary>
+        /// <param name="temp"></param>
+        /// <returns></returns>
+        public static List<MonsterModel> LoadData(MonsterModel temp)
+        {
+            var datalist = new List<MonsterModel>()
             {
-                new MonsterModel {
+                new MonsterModel
+                {
                     Name = "Bogbi",
                     Description = "Hates Hobbits",
                     ImageURI = "item.png",
                 },
-
-                new MonsterModel {
+                new MonsterModel
+                {
                     Name = "Srauguc",
                     Description = "One evil monster",
                     ImageURI = "item.png",
                 },
-
-                new MonsterModel {
+                new MonsterModel
+                {
                     Name = "Shelob",
                     Description = "Hides in shadows",
                     ImageURI = "item.png",
                 },
             };
 
-        return datalist;
+            return datalist;
+        }
     }
-}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 using Game.Models;
+using Game.Models.Enums;
 
 using Newtonsoft.Json.Linq;
 
@@ -16,7 +17,7 @@ namespace Game.Helpers
 
         /// <summary>
         /// ParseJson takes the raw stirng and parses it into valid ItemModel
-        /// 
+        ///
         /// The returned data will be a list of items.  Need to pull that list out
         /// </summary>
         /// <param name="myJsonData"></param>
@@ -63,7 +64,7 @@ namespace Game.Helpers
 
             myData.Name = JsonHelper.GetJsonString(json, "Name");
             myData.Guid = JsonHelper.GetJsonString(json, "Guid");
-            myData.Id = myData.Guid;    // Set to be the same as Guid, does not come down from server, but needed for DB
+            myData.Id = myData.Guid; // Set to be the same as Guid, does not come down from server, but needed for DB
 
             myData.Description = JsonHelper.GetJsonString(json, "Description");
             myData.ImageURI = JsonHelper.GetJsonString(json, "ImageURI");

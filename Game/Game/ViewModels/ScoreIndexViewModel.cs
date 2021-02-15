@@ -1,12 +1,11 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
 
-using Xamarin.Forms;
-
+using Game.GameRules;
 using Game.Models;
 using Game.Views;
-using Game.GameRules;
+
+using Xamarin.Forms;
 
 namespace Game.ViewModels
 {
@@ -16,11 +15,77 @@ namespace Game.ViewModels
     /// </summary>
     public class ScoreIndexViewModel : BaseViewModel<ScoreModel>
     {
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        ///
+        /// The constructor subscribes message listeners for crudi operations
+        /// </summary>
+        public ScoreIndexViewModel()
+        {
+            Title = "Scores";
+
+            #region Messages
+
+            // Register the Create Message
+            MessagingCenter.Subscribe<ScoreCreatePage, ScoreModel>(this, "Create", async (obj, data) =>
+            {
+                await CreateAsync(data);
+            });
+
+            // Register the Update Message
+            MessagingCenter.Subscribe<ScoreUpdatePage, ScoreModel>(this, "Update", async (obj, data) =>
+            {
+                // Have the Score update itself
+                data.Update(data);
+
+                await UpdateAsync(data);
+            });
+
+            // Register the Delete Message
+            MessagingCenter.Subscribe<ScoreDeletePage, ScoreModel>(this, "Delete", async (obj, data) =>
+            {
+                await DeleteAsync(data);
+            });
+
+            // Register the Set Data Source Message
+            MessagingCenter.Subscribe<AboutPage, int>(this, "SetDataSource", async (obj, data) =>
+            {
+                await SetDataSource(data);
+            });
+
+            // Register the Wipe Data List Message
+            MessagingCenter.Subscribe<AboutPage, bool>(this, "WipeDataList", async (obj, data) =>
+            {
+                await WipeDataListAsync();
+            });
+
+            #endregion Messages
+        }
+
+        #endregion Constructor
+
+        #region SortDataSet
+
+        /// <summary>
+        /// The Sort Order for the ScoreModel
+        /// </summary>
+        /// <param name="dataset"></param>
+        /// <returns></returns>
+        public override List<ScoreModel> SortDataset(List<ScoreModel> dataset) =>
+            dataset
+                .OrderBy(a => a.Name)
+                .ThenBy(a => a.Description)
+                .ToList();
+
+        #endregion SortDataSet
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static volatile ScoreIndexViewModel instance;
-        private static readonly object syncRoot = new Object();
+        private static readonly object              syncRoot = new object();
 
         public static ScoreIndexViewModel Instance
         {
@@ -44,57 +109,6 @@ namespace Game.ViewModels
 
         #endregion Singleton
 
-        #region Constructor
-
-        /// <summary>
-        /// Constructor
-        /// 
-        /// The constructor subscribes message listeners for crudi operations
-        /// </summary>
-        public ScoreIndexViewModel()
-        {
-            Title = "Scores";
-
-            #region Messages
-
-            // Register the Create Message
-            MessagingCenter.Subscribe<ScoreCreatePage, ScoreModel>(this, "Create", async (obj, data) =>
-            {
-                await CreateAsync(data as ScoreModel);
-            });
-
-            // Register the Update Message
-            MessagingCenter.Subscribe<ScoreUpdatePage, ScoreModel>(this, "Update", async (obj, data) =>
-            {
-                // Have the Score update itself
-                data.Update(data);
-
-                await UpdateAsync(data as ScoreModel);
-            });
-
-            // Register the Delete Message
-            MessagingCenter.Subscribe<ScoreDeletePage, ScoreModel>(this, "Delete", async (obj, data) =>
-            {
-                await DeleteAsync(data as ScoreModel);
-            });
-
-            // Register the Set Data Source Message
-            MessagingCenter.Subscribe<AboutPage, int>(this, "SetDataSource", async (obj, data) =>
-            {
-                await SetDataSource(data);
-            });
-
-            // Register the Wipe Data List Message
-            MessagingCenter.Subscribe<AboutPage, bool>(this, "WipeDataList", async (obj, data) =>
-            {
-                await WipeDataListAsync();
-            });
-
-            #endregion Messages
-        }
-
-        #endregion Constructor
-        
         #region DataOperations_CRUDi
 
         /// <summary>
@@ -108,8 +122,8 @@ namespace Game.ViewModels
             // If so, it returns the Score...
 
             var myList = Dataset.Where(a =>
-                                        a.Name == data.Name)
-                                        .FirstOrDefault();
+                                           a.Name == data.Name)
+                                .FirstOrDefault();
 
             if (myList == null)
             {
@@ -124,28 +138,8 @@ namespace Game.ViewModels
         /// Load the Default Data
         /// </summary>
         /// <returns></returns>
-        public override List<ScoreModel> GetDefaultData() 
-        {
-            return DefaultData.LoadData(new ScoreModel());
-        }
+        public override List<ScoreModel> GetDefaultData() => DefaultData.LoadData(new ScoreModel());
 
         #endregion DataOperations_CRUDi
-
-        #region SortDataSet
-
-        /// <summary>
-        /// The Sort Order for the ScoreModel
-        /// </summary>
-        /// <param name="dataset"></param>
-        /// <returns></returns>
-        public override List<ScoreModel> SortDataset(List<ScoreModel> dataset)
-        {
-            return dataset
-                    .OrderBy(a => a.Name)
-                    .ThenBy(a => a.Description)
-                    .ToList();
-        }
-
-        #endregion SortDataSet
     }
 }

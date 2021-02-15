@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// The Types of location a battle can take place in.
@@ -84,12 +83,12 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(BattleLocationEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(BattleLocationEnum)).ToList();
                 var myReturn = myList.Where(a =>
-                        a.ToString() != BattleLocationEnum.Unknown.ToString()
-                    )
-                    .OrderBy(a => a)
-                    .ToList();
+                                                a.ToString() != BattleLocationEnum.Unknown.ToString()
+                                           )
+                                     .OrderBy(a => a)
+                                     .ToList();
                 return myReturn;
             }
         }
@@ -100,6 +99,6 @@ namespace Game.Models
         /// <param name="value"></param>
         /// <returns></returns>
         public static BattleLocationEnum ConvertStringToEnum(string value) =>
-            (BattleLocationEnum)Enum.Parse(typeof(BattleLocationEnum), value);
+            (BattleLocationEnum)System.Enum.Parse(typeof(BattleLocationEnum), value);
     }
 }

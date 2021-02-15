@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// Valid Locations to put things
-    /// 
+    ///
     /// Notice how Finger has Right and Left
     /// </summary>
     public enum ItemLocationEnum
@@ -18,9 +18,9 @@ namespace Game.Models
         Head = 10,
 
         // Things to put around the neck, such as necklass, broaches, scarfs, neck ribbons.  Can have at the same time with Head items ex. Ribbon for Hair, and Ribbon for Neck is OK to have
-        Necklass = 12,
+        Necklace = 12,
 
-        // The primary hand used for fighting with a sword or a staff.  
+        // The primary hand used for fighting with a sword or a staff.
         PrimaryHand = 20,
 
         // The second hand used for holding a shield or dagger, or wand.  OK to have both primary and offhand loaded at the same time
@@ -60,8 +60,8 @@ namespace Game.Models
                     Message = "Head";
                     break;
 
-                case ItemLocationEnum.Necklass:
-                    Message = "Necklass";
+                case ItemLocationEnum.Necklace:
+                    Message = "Necklace";
                     break;
 
                 case ItemLocationEnum.PrimaryHand:
@@ -87,10 +87,10 @@ namespace Game.Models
                 case ItemLocationEnum.Feet:
                     Message = "Feet";
                     break;
-
                 case ItemLocationEnum.Unknown:
-                default:
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
             return Message;
         }
@@ -103,20 +103,20 @@ namespace Game.Models
     {
         /// <summary>
         /// Gets the list of locations that an Item can have.
-        /// Does not include the Left and Right Finger 
+        /// Does not include the Left and Right Finger
         /// </summary>
         public static List<string> GetListItem
         {
             get
             {
-                var myList = Enum.GetNames(typeof(ItemLocationEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(ItemLocationEnum)).ToList();
                 var myReturn = myList.Where(a =>
-                                            a.ToString() != ItemLocationEnum.Unknown.ToString() &&
-                                            a.ToString() != ItemLocationEnum.LeftFinger.ToString() &&
-                                            a.ToString() != ItemLocationEnum.RightFinger.ToString()
-                                            )
-                                            .OrderBy(a => a)
-                                            .ToList();
+                                                a.ToString() != ItemLocationEnum.Unknown.ToString() &&
+                                                a.ToString() != ItemLocationEnum.LeftFinger.ToString() &&
+                                                a.ToString() != ItemLocationEnum.RightFinger.ToString()
+                                           )
+                                     .OrderBy(a => a)
+                                     .ToList();
                 return myReturn;
             }
         }
@@ -129,31 +129,29 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(ItemLocationEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(ItemLocationEnum)).ToList();
                 var myReturn = myList.Where(a =>
-                                           a.ToString() != ItemLocationEnum.Unknown.ToString() &&
-                                            a.ToString() != ItemLocationEnum.Finger.ToString()
-                                            )
-                                            .OrderBy(a => a)
-                                            .ToList();
+                                                a.ToString() != ItemLocationEnum.Unknown.ToString() &&
+                                                a.ToString() != ItemLocationEnum.Finger.ToString()
+                                           )
+                                     .OrderBy(a => a)
+                                     .ToList();
 
                 return myReturn;
             }
         }
 
         /// <summary>
-        /// Given the String for an enum, return its value.  That allows for the enums to be numbered 2,4,6 rather than 1,2,3 
+        /// Given the String for an enum, return its value.  That allows for the enums to be numbered 2,4,6 rather than 1,2,3
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static ItemLocationEnum ConvertStringToEnum(string value)
-        {
-            return (ItemLocationEnum)Enum.Parse(typeof(ItemLocationEnum), value);
-        }
+        public static ItemLocationEnum ConvertStringToEnum(string value) =>
+            (ItemLocationEnum)System.Enum.Parse(typeof(ItemLocationEnum), value);
 
         /// <summary>
-        /// If asked for a position number, return a location.  Head as 1 etc. 
-        /// This compsenstates for the enum #s not being sequential, but allows for calls to the postion for random allocation etc (roll 1-7 dice and pick a item to equipt), etc... 
+        /// If asked for a position number, return a location.  Head as 1 etc.
+        /// This compsenstates for the enum #s not being sequential, but allows for calls to the postion for random allocation etc (roll 1-7 dice and pick a item to equipt), etc...
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
@@ -165,7 +163,7 @@ namespace Game.Models
                     return ItemLocationEnum.Head;
 
                 case 2:
-                    return ItemLocationEnum.Necklass;
+                    return ItemLocationEnum.Necklace;
 
                 case 3:
                     return ItemLocationEnum.PrimaryHand;
@@ -179,7 +177,6 @@ namespace Game.Models
                 case 6:
                     return ItemLocationEnum.LeftFinger;
 
-                case 7:
                 default:
                     return ItemLocationEnum.Feet;
             }

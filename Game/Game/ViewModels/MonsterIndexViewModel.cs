@@ -77,7 +77,7 @@ namespace Game.ViewModels
             var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
                                                      a.Description == data.Description);
 
-            return myList ?? null;
+            return myList;
         }
 
         #region Singleton

@@ -7,42 +7,16 @@ using Game.Models;
 
 namespace Game.Services
 {
-    public class MockDataStore<T> : IDataStore<T> where T: new()
+    public class MockDataStore<T> : IDataStore<T> where T : new()
     {
-        #region Singleton
-
-        // Make this a singleton so it only exist one time because holds all the data records in memory
-        private static volatile MockDataStore<T> instance;
-        private static readonly object syncRoot = new Object();
-
-        public static MockDataStore<T> Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new MockDataStore<T>();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
 
         /// <summary>
         /// The Data List
         /// This is where the items are stored
         /// </summary>
-        public List<T> datalist = new List<T>();
+        public readonly List<T> datalist = new List<T>();
 
-        // Set Needs Init to False, so toggles to true 
+        // Set Needs Init to False, so toggles to true
         public bool NeedsInitialization = true;
 
         /// <summary>
@@ -51,7 +25,7 @@ namespace Game.Services
         /// <returns></returns>
         public async Task<bool> GetNeedsInitializationAsync()
         {
-            if (NeedsInitialization == true)
+            if (NeedsInitialization)
             {
                 // Toggle State
                 NeedsInitialization = false;
@@ -96,7 +70,7 @@ namespace Game.Services
         /// <returns>Record if found else null</returns>
         #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async Task<T> ReadAsync(string id)
-        #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+            #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -108,7 +82,7 @@ namespace Game.Services
                 return default(T);
             }
 
-            T oldData = datalist.Where((T arg) => ((BaseModel<T>)(object)arg).Id.Equals(id)).FirstOrDefault();
+            T oldData = datalist.FirstOrDefault(arg => ((BaseModel<T>)(object)arg).Id.Equals(id));
             return oldData;
         }
 
@@ -169,5 +143,32 @@ namespace Game.Services
         {
             return await Task.FromResult(datalist);
         }
+
+        #region Singleton
+
+        // Make this a singleton so it only exist one time because holds all the data records in memory
+        private static volatile MockDataStore<T> instance;
+        private static readonly object           syncRoot = new Object();
+
+        public static MockDataStore<T> Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new MockDataStore<T>();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        #endregion Singleton
     }
 }

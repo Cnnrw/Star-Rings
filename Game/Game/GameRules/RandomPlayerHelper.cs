@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Game.Helpers;
 using Game.Models;
+using Game.Models.Enums;
 using Game.ViewModels;
-
 
 namespace Game.GameRules
 {
@@ -16,11 +15,9 @@ namespace Game.GameRules
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static int GetHealth(int level)
-        {
+        public static int GetHealth(int level) =>
             // Roll the Dice and reset the Health
-            return DiceHelper.RollDice(level, 10);
-        }
+            DiceHelper.RollDice(level, 10);
 
         /// <summary>
         /// Get A Random Difficulty
@@ -55,8 +52,15 @@ namespace Game.GameRules
         /// <returns></returns>
         public static string GetMonsterImage()
         {
-
-            List<String> FirstNameList = new List<String> { "item.png", "item.png", "item.png", "item.png", "item.png", "item.png" };
+            List<string> FirstNameList = new List<string>
+            {
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png"
+            };
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -69,8 +73,16 @@ namespace Game.GameRules
         /// <returns></returns>
         public static string GetCharacterImage()
         {
-
-            List<String> FirstNameList = new List<String> { "item.png", "item.png", "item.png", "item.png", "item.png", "item.png", "item.png" };
+            List<string> FirstNameList = new List<string>
+            {
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png",
+                "item.png"
+            };
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -79,14 +91,26 @@ namespace Game.GameRules
 
         /// <summary>
         /// Get Name
-        /// 
+        ///
         /// Return a Random Name
         /// </summary>
         /// <returns></returns>
         public static string GetMonsterName()
         {
-
-            List<String> FirstNameList = new List<String> { "Bogbi", "Suzbul", "Srauguc", "Macreg", "Briglath", "Shelob", "Smegeul", "Ofdosh", "Ogdod", "Aushnosh", "Aurzur" };
+            List<string> FirstNameList = new List<string>
+            {
+                "Bogbi",
+                "Suzbul",
+                "Srauguc",
+                "Macreg",
+                "Briglath",
+                "Shelob",
+                "Smegeul",
+                "Ofdosh",
+                "Ogdod",
+                "Aushnosh",
+                "Aurzur"
+            };
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -95,13 +119,19 @@ namespace Game.GameRules
 
         /// <summary>
         /// Get Description
-        /// 
+        ///
         /// Return a random description
         /// </summary>
         /// <returns></returns>
         public static string GetMonsterDescription()
         {
-            List<String> StringList = new List<String> { "Hates Hobbits", "The son of Dvelyn", "Hides in shadows", "One evil monster" };
+            List<string> StringList = new List<string>
+            {
+                "Hates Hobbits",
+                "The son of Dvelyn",
+                "Hides in shadows",
+                "One evil monster"
+            };
 
             var result = StringList.ElementAt(DiceHelper.RollDice(1, StringList.Count()) - 1);
 
@@ -110,15 +140,16 @@ namespace Game.GameRules
 
         /// <summary>
         /// Get Monster Battle Location
-        /// 
+        ///
         /// Return a random BattleLocation
         /// </summary>
         /// <returns></returns>
-        public static BattleLocationEnum GetMonsterBattleLocation()
+        private static BattleLocationEnum GetMonsterBattleLocation()
         {
             var BattleLocationList = BattleLocationEnumHelper.GetListBattleLocations;
 
-            var RandomBattleLocation = BattleLocationList.ElementAt(DiceHelper.RollDice(1, BattleLocationList.Count()) - 1);
+            var RandomBattleLocation =
+                BattleLocationList.ElementAt(DiceHelper.RollDice(1, BattleLocationList.Count()) - 1);
 
             var result = BattleLocationEnumHelper.ConvertStringToEnum(RandomBattleLocation);
 
@@ -127,14 +158,35 @@ namespace Game.GameRules
 
         /// <summary>
         /// Get Name
-        /// 
+        ///
         /// Return a Random Name
         /// </summary>
         /// <returns></returns>
         public static string GetCharacterName()
         {
-
-            List<String> FirstNameList = new List<String> { "Mike", "Doug", "Jea", "Sue", "Tim", "Daren", "Dani", "Mami", "Mari", "Ryu", "Hucky", "Peanut", "Sumi", "Apple", "Ami", "Honami", "Sonomi", "Pat", "Sakue", "Isamu" };
+            List<string> FirstNameList = new List<string>
+            {
+                "Mike",
+                "Doug",
+                "Jea",
+                "Sue",
+                "Tim",
+                "Daren",
+                "Dani",
+                "Mami",
+                "Mari",
+                "Ryu",
+                "Hucky",
+                "Peanut",
+                "Sumi",
+                "Apple",
+                "Ami",
+                "Honami",
+                "Sonomi",
+                "Pat",
+                "Sakue",
+                "Isamu"
+            };
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -143,13 +195,27 @@ namespace Game.GameRules
 
         /// <summary>
         /// Get Description
-        /// 
+        ///
         /// Return a random description
         /// </summary>
         /// <returns></returns>
         public static string GetCharacterDescription()
         {
-            List<String> StringList = new List<String> { "the terrible", "the awesome", "the lost", "the old", "the younger", "the quiet", "the loud", "the helpless", "the happy", "the sleepy", "the angry", "the clever" };
+            List<string> StringList = new List<string>
+            {
+                "the terrible",
+                "the awesome",
+                "the lost",
+                "the old",
+                "the younger",
+                "the quiet",
+                "the loud",
+                "the helpless",
+                "the happy",
+                "the sleepy",
+                "the angry",
+                "the clever"
+            };
 
             var result = StringList.ElementAt(DiceHelper.RollDice(1, StringList.Count()) - 1);
 
@@ -160,25 +226,21 @@ namespace Game.GameRules
         /// Get Random Ability Number
         /// </summary>
         /// <returns></returns>
-        public static int GetAbilityValue()
-        {
+        public static int GetAbilityValue() =>
             // 0 to 9, not 1-10
-            return DiceHelper.RollDice(1, 10) - 1;
-        }
+            DiceHelper.RollDice(1, 10) - 1;
 
         /// <summary>
         /// Get a Random Level
         /// </summary>
         /// <returns></returns>
-        public static int GetLevel()
-        {
+        public static int GetLevel() =>
             // 1-20
-            return DiceHelper.RollDice(1, 20);
-        }
+            DiceHelper.RollDice(1, 20);
 
         /// <summary>
         /// Get a Random Item for the Location
-        /// 
+        ///
         /// Return the String for the ID
         /// </summary>
         /// <param name="location"></param>
@@ -192,7 +254,7 @@ namespace Game.GameRules
             }
 
             // Add None to the list
-            ItemList.Add(new ItemModel { Id = null, Name = "None" });
+            ItemList.Add(new ItemModel {Id = null, Name = "None"});
 
             var result = ItemList.ElementAt(DiceHelper.RollDice(1, ItemList.Count()) - 1).Id;
             return result;
@@ -205,7 +267,7 @@ namespace Game.GameRules
         /// <returns></returns>
         public static CharacterModel GetRandomCharacter(int MaxLevel)
         {
-            var result = new CharacterModel()
+            var result = new CharacterModel
             {
                 Level = DiceHelper.RollDice(1, MaxLevel),
 
@@ -220,17 +282,16 @@ namespace Game.GameRules
 
                 // Randomize an Item for Location
                 Head = GetItem(ItemLocationEnum.Head),
-                Necklass = GetItem(ItemLocationEnum.Necklass),
+                Necklace = GetItem(ItemLocationEnum.Necklace),
                 PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand),
                 OffHand = GetItem(ItemLocationEnum.OffHand),
                 RightFinger = GetItem(ItemLocationEnum.Finger),
                 LeftFinger = GetItem(ItemLocationEnum.Finger),
                 Feet = GetItem(ItemLocationEnum.Feet),
-
-                ImageURI = GetCharacterImage()
+                ImageURI = GetCharacterImage(),
+                MaxHealth = DiceHelper.RollDice(MaxLevel, 10)
             };
 
-            result.MaxHealth = DiceHelper.RollDice(MaxLevel, 10);
 
             // Level up to the new level
             result.LevelUpToValue(result.Level);
@@ -244,13 +305,14 @@ namespace Game.GameRules
         /// <summary>
         /// Create Random Monster for the battle
         /// </summary>
-        /// <param name="MaxLevel"></param>
+        /// <param name="maxLevel"></param>
+        /// <param name="items"></param>
         /// <returns></returns>
-        public static MonsterModel GetRandomMonster(int MaxLevel, bool Items= false)
+        public static MonsterModel GetRandomMonster(int maxLevel, bool items = false)
         {
             var result = new MonsterModel()
             {
-                Level = DiceHelper.RollDice(1, MaxLevel),
+                Level = DiceHelper.RollDice(1, maxLevel),
 
                 // Randomize Name
                 Name = GetMonsterName(),
@@ -260,11 +322,8 @@ namespace Game.GameRules
                 Attack = GetAbilityValue(),
                 Speed = GetAbilityValue(),
                 Defense = GetAbilityValue(),
-
                 ImageURI = GetMonsterImage(),
-
                 BattleLocation = GetMonsterBattleLocation(),
-
                 Difficulty = GetMonsterDifficultyValue()
             };
 
@@ -294,16 +353,18 @@ namespace Game.GameRules
             result.CurrentHealth = result.MaxHealth;
 
             // Monsters can have weapons too....
-            if (Items)
+            if (!items)
             {
-                result.Head = GetItem(ItemLocationEnum.Head);
-                result.Necklass = GetItem(ItemLocationEnum.Necklass);
-                result.PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand);
-                result.OffHand = GetItem(ItemLocationEnum.OffHand);
-                result.RightFinger = GetItem(ItemLocationEnum.Finger);
-                result.LeftFinger = GetItem(ItemLocationEnum.Finger);
-                result.Feet = GetItem(ItemLocationEnum.Feet);
+                return result;
             }
+
+            result.Head = GetItem(ItemLocationEnum.Head);
+            result.Necklace = GetItem(ItemLocationEnum.Necklace);
+            result.PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand);
+            result.OffHand = GetItem(ItemLocationEnum.OffHand);
+            result.RightFinger = GetItem(ItemLocationEnum.Finger);
+            result.LeftFinger = GetItem(ItemLocationEnum.Finger);
+            result.Feet = GetItem(ItemLocationEnum.Feet);
 
             return result;
         }

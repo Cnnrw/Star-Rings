@@ -1,24 +1,50 @@
-﻿namespace Game.Models
+﻿using Game.Models.Enums;
+
+namespace Game.Models
 {
     /// <summary>
     /// Manages the Message formatting for the UI to Display
     /// </summary>
     public class BattleMessagesModel
     {
-        // Is the player a character or a monster
-        public PlayerTypeEnum PlayerType = PlayerTypeEnum.Unknown;
 
-        // The Status of the action
-        public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
+        // Beginning of the Html Block for html formatting
+        public const string htmlHead = @"<html><body bgcolor=""#E8D0B6""><p>";
+
+        // Ending of the Html Block for Html formatting
+        public const string htmlTail = @"</p></body></html>";
 
         // Name of the Attacker
         public string AttackerName = string.Empty;
 
-        // Name of who the target was
-        public string TargetName = string.Empty;
-
         // The status of the Attack
         public string AttackStatus = string.Empty;
+
+        // Message when something bad happens with Critical Miss
+        public string BadCriticalMissMessage = string.Empty;
+
+        // The Remaining Health Message
+        public int CurrentHealth;
+
+        // Amount of Damage
+        public int DamageAmount;
+
+        // Message when something Drops
+        public string DroppedMessage = string.Empty;
+
+        // Turn Experience Earned Message
+        public string ExperienceEarned = string.Empty;
+
+        // The Status of the action
+        public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
+
+        // Level Up Message
+        public string LevelUpMessage = string.Empty;
+        // Is the player a character or a monster
+        public PlayerTypeEnum PlayerType = PlayerTypeEnum.Unknown;
+
+        // Name of who the target was
+        public string TargetName = string.Empty;
 
         // Turn Message
         public string TurnMessage = string.Empty;
@@ -26,34 +52,9 @@
         // Turn Special Message
         public string TurnMessageSpecial = string.Empty;
 
-        // Turn Experience Earned Message
-        public string ExperienceEarned = string.Empty;
 
-        // Level Up Message
-        public string LevelUpMessage = string.Empty;
-
-        // Message when something Drops
-        public string DroppedMessage = string.Empty;
-
-        // Message when something bad happens with Critical Miss
-        public string BadCriticalMissMessage = string.Empty;
-
-        // Amount of Damage
-        public int DamageAmount = 0;
-
-        // The Remaining Health Mesage
-        public int CurrentHealth = 0;
-
-        // Beginning of the Html Block for html formatting
-        public string htmlHead = @"<html><body bgcolor=""#E8D0B6""><p>";
-
-        // Ending of the Html Block for Html formatting
-        public string htmlTail = @"</p></body></html>";
-
-
-        public bool ClearMessages()
+        public void ClearMessages()
         {
-
             PlayerType = PlayerTypeEnum.Unknown;
             HitStatus = HitStatusEnum.Unknown;
             AttackerName = string.Empty;
@@ -67,46 +68,31 @@
 
             DamageAmount = 0;
             CurrentHealth = 0;
-
-            return true;
         }
 
         /// <summary>
         /// Return formatted string
         /// </summary>
-        /// <param name="hitStatus"></param>
         /// <returns></returns>
-        public string GetSwingResult()
-        {
-            return HitStatus.ToMessage();
-        }
+        public string GetSwingResult() => HitStatus.ToMessage();
 
         /// <summary>
         /// Return formatted Damage
         /// </summary>
         /// <returns></returns>
-        public string GetDamageMessage()
-        {
-            return string.Format(" for {0} damage ", DamageAmount);
-        }
+        public string GetDamageMessage() => $" for {DamageAmount} damage ";
 
         /// <summary>
         /// Returns the String Attacker Hit Defender
         /// </summary>
         /// <returns></returns>
-        public string GetTurnMessage()
-        {
-            return AttackerName + GetSwingResult() + TargetName;
-        }
+        public string GetTurnMessage() => AttackerName + GetSwingResult() + TargetName;
 
         /// <summary>
         /// Remaining Health Message
         /// </summary>
         /// <returns></returns>
-        public string GetCurrentHealthMessage()
-        {
-            return " remaining health is " + CurrentHealth.ToString();
-        }
+        public string GetCurrentHealthMessage() => " remaining health is " + CurrentHealth.ToString();
 
         /// <summary>
         /// Returns a blank HTML page, used for clearing the output window
@@ -124,8 +110,6 @@
         /// <returns></returns>
         public string GetHTMLFormattedTurnMessage()
         {
-            var myResult = string.Empty;
-
             var AttackerStyle = @"<span style=""color:blue"">";
             var DefenderStyle = @"<span style=""color:green"">";
 
@@ -136,7 +120,7 @@
                 AttackerStyle = @"<span style=""color:green"">";
             }
 
-            var SwingResult = string.Empty;
+            string SwingResult = null;
             switch (HitStatus)
             {
                 case HitStatusEnum.Miss:
@@ -151,19 +135,24 @@
                     SwingResult = @"<span bold style=""color:red; font-weight:bold;"">";
                     break;
 
+                case HitStatusEnum.Unknown:
+                    break;
+                case HitStatusEnum.Default:
+                    break;
                 case HitStatusEnum.Hit:
+                    break;
                 default:
                     SwingResult = @"<span style=""color:red"">";
                     break;
             }
 
             var htmlBody = string.Empty;
-            htmlBody += string.Format(@"{0}{1}</span>", AttackerStyle, AttackerName);
-            htmlBody += string.Format(@"{0}{1}</span>", SwingResult, GetSwingResult());
-            htmlBody += string.Format(@"{0}{1}</span>", DefenderStyle, TargetName);
-            htmlBody += string.Format(@"<span>{0}</span>", TurnMessageSpecial);
+            htmlBody += $@"{AttackerStyle}{AttackerName}</span>";
+            htmlBody += $@"{SwingResult}{GetSwingResult()}</span>";
+            htmlBody += $@"{DefenderStyle}{TargetName}</span>";
+            htmlBody += $@"<span>{TurnMessageSpecial}</span>";
 
-            myResult = htmlHead + htmlBody + htmlTail;
+            var myResult = htmlHead + htmlBody + htmlTail;
             return myResult;
         }
     }

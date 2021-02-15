@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// Types of Hits during a Turn.
@@ -15,7 +15,7 @@ namespace Game.Models
         Default = 1,
 
         // Miss
-        Miss = 10, 
+        Miss = 10,
 
         // Critical Miss, miss and something bad happens
         CriticalMiss = 15,
@@ -59,11 +59,12 @@ namespace Game.Models
                 case HitStatusEnum.CriticalMiss:
                     Message = " misses really badly";
                     break;
-
-                case HitStatusEnum.Default:
                 case HitStatusEnum.Unknown:
-                default:
                     break;
+                case HitStatusEnum.Default:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
 
             return Message;
@@ -92,45 +93,25 @@ namespace Game.Models
         /// Returns a list of Full strings of the enum for Hit
         /// Removes the Hits that are not changable by Items such as Unknown, MaxHealth
         /// </summary>
-        public static List<string> GetListMessageAll
-        {
-            get
-            {
-                var list = new List<string>();
-
-                foreach (var item in Enum.GetValues(typeof(HitStatusEnum)))
-                {
-                    list.Add(((HitStatusEnum)item).ToMessage());
-                }
-                return list;
-            }
-        }
+        public static IEnumerable<string> GetListMessageAll =>
+            (from object item in Enum.GetValues(typeof(HitStatusEnum)) select ((HitStatusEnum)item).ToMessage())
+            .ToList();
 
         /// <summary>
         /// Given the String for an enum, return its value.  That allows for the enums to be numbered 2,4,6 rather than 1,2,3
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static HitStatusEnum ConvertStringToEnum(string value)
-        {
-            return (HitStatusEnum)Enum.Parse(typeof(HitStatusEnum), value);
-        }
+        public static HitStatusEnum ConvertStringToEnum(string value) =>
+            (HitStatusEnum)Enum.Parse(typeof(HitStatusEnum), value);
 
         /// <summary>
         /// Given the Full String for an enum, return its value
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static HitStatusEnum ConvertMessageStringToEnum(string value)
-        {
-            foreach (HitStatusEnum item in Enum.GetValues(typeof(HitStatusEnum)))
-            {
-                if (item.ToMessage().Equals(value))
-                {
-                    return item;
-                }
-            }
-            return HitStatusEnum.Unknown;
-        }
+        public static HitStatusEnum ConvertMessageStringToEnum(string value) =>
+            Enum.GetValues(typeof(HitStatusEnum)).Cast<HitStatusEnum>()
+                .FirstOrDefault(item => item.ToMessage().Equals(value));
     }
 }

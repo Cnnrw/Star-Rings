@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Newtonsoft.Json.Linq;
-
 using Game.Helpers;
 using Game.Models;
+using Game.Models.Enums;
 using Game.ViewModels;
+
+using Newtonsoft.Json.Linq;
 
 namespace Game.Services
 {
@@ -19,6 +20,7 @@ namespace Game.Services
         public static string DefaultImageURI = "item.png";
 
         #region ServerCalls
+
         public static async Task<List<ItemModel>> GetItemsFromServerGetAsync(int parameter = 100)
         {
             // parameter is the ItemModel group to request.  1, 2, 3, 100
@@ -34,7 +36,9 @@ namespace Game.Services
 
             var URLComponent = "GetItemList/";
 
-            var DataResult = await HttpClientService.Instance.GetJsonGetAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent + parameter);
+            var DataResult =
+                await HttpClientService.Instance.GetJsonGetAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent +
+                                                                 parameter);
 
             // Parse them
             var myList = ItemModelJsonHelper.ParseJson(DataResult);
@@ -65,7 +69,9 @@ namespace Game.Services
         // Random is to have the value random between 1 and the Level
         // Attribute is a filter to return only items for that attribute, else unknown is used for any
         // Location is a filter to return only items for that location, else unknown is used for any
-        public static async Task<List<ItemModel>> GetItemsFromServerPostAsync(int number, int level, AttributeEnum attribute, ItemLocationEnum location, int category, bool random, bool updateDataBase)
+        public static async Task<List<ItemModel>> GetItemsFromServerPostAsync(
+            int  number, int level, AttributeEnum attribute, ItemLocationEnum location, int category, bool random,
+            bool updateDataBase)
         {
             // Needs to get items from the server
             // Parse them
@@ -80,19 +86,21 @@ namespace Game.Services
 
             var dict = new Dictionary<string, string>
             {
-                { "Number", number.ToString()},
-                { "Level", level.ToString()},
-                { "Attribute", ((int)attribute).ToString()},
-                { "Location", ((int)location).ToString()},
-                { "Random", random.ToString()},
-                { "Category", category.ToString()},
+                {"Number", number.ToString()},
+                {"Level", level.ToString()},
+                {"Attribute", ((int)attribute).ToString()},
+                {"Location", ((int)location).ToString()},
+                {"Random", random.ToString()},
+                {"Category", category.ToString()},
             };
 
             // Convert parameters to a key value pairs to a json object
             JObject finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Make a call to the helper.  URL and Parameters
-            var DataResult = await HttpClientService.Instance.GetJsonPostAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent, finalContentJson);
+            var DataResult =
+                await HttpClientService.Instance.GetJsonPostAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent,
+                                                                  finalContentJson);
 
             // Parse them
             var myList = ItemModelJsonHelper.ParseJson(DataResult);
@@ -119,6 +127,7 @@ namespace Game.Services
 
             return myList;
         }
+
         #endregion ServerCalls
     }
 }

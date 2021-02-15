@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 
 using Game.Controls;
-using Game.Models;
+using Game.Models.Enums;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,7 +18,7 @@ namespace Game.Views
     public partial class MainPage : FlyoutPage
     {
         // Collection of Navigation Pages
-        public readonly Dictionary<int, CustomNavigationPage> MenuPages = new Dictionary<int, CustomNavigationPage>();
+        public readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
 
         /// <summary>
         ///     Constructor setups the behavior and menu pages

@@ -1,22 +1,25 @@
-﻿using Game.Models;
-using Game.ViewModels;
-using System;
+﻿using System;
 using System.Linq;
+
+using Game.Models;
+using Game.Models.Enums;
+using Game.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
-	/// <summary>
-	/// The Main Game Page
-	/// </summary>
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RoundOverPage: ContentPage
-	{
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public RoundOverPage()
+    /// <summary>
+    /// The Main Game Page
+    /// </summary>
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RoundOverPage : ContentPage
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public RoundOverPage()
         {
             InitializeComponent();
 
@@ -24,10 +27,12 @@ namespace Game.Views
             TotalRound.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.RoundCount.ToString();
 
             // Update the Found Number
-            TotalFound.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList.Count().ToString();
+            TotalFound.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList.Count()
+                                                   .ToString();
 
             // Update the Selected Number, this gets updated later when selected refresh happens
-            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList.Count().ToString();
+            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
+                                                      .Count().ToString();
 
             DrawCharacterList();
 
@@ -55,11 +60,11 @@ namespace Game.Views
 
         /// <summary>
         /// Draw the List of Items
-        /// 
+        ///
         /// The Ones Dropped
-        /// 
+        ///
         /// The Ones Selected
-        /// 
+        ///
         /// </summary>
         public void DrawItemLists()
         {
@@ -67,7 +72,8 @@ namespace Game.Views
             DrawSelectedItems();
 
             // Only need to update the selected, the Dropped is set in the constructor
-            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList.Count().ToString();
+            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
+                                                      .Count().ToString();
         }
 
         /// <summary>
@@ -82,7 +88,8 @@ namespace Game.Views
                 ItemListFoundFrame.Children.Remove(data);
             }
 
-            foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList.Distinct())
+            foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList
+                                                      .Distinct())
             {
                 ItemListFoundFrame.Children.Add(GetItemToDisplay(data));
             }
@@ -130,7 +137,7 @@ namespace Game.Views
             if (data == null)
             {
                 // Show the Default Icon for the Location
-                data = new ItemModel { Name="Unknown", ImageURI = "icon_cancel.png" };
+                data = new ItemModel {Name = "Unknown", ImageURI = "icon_cancel.png"};
 
                 // Turn off click action
                 ClickableButton = false;
@@ -139,8 +146,7 @@ namespace Game.Views
             // Hookup the Image Button to show the Item picture
             var ItemButton = new ImageButton
             {
-                Style = (Style)Application.Current.Resources["ImageMediumStyle"],
-                Source = data.ImageURI
+                Style = (Style)Application.Current.Resources["ImageMediumStyle"], Source = data.ImageURI
             };
 
             if (ClickableButton)
@@ -155,9 +161,7 @@ namespace Game.Views
                 Padding = 3,
                 Style = (Style)Application.Current.Resources["ItemImageBox"],
                 HorizontalOptions = LayoutOptions.Center,
-                Children = {
-                    ItemButton,
-                },
+                Children = {ItemButton,},
             };
 
             return ItemStack;
@@ -178,8 +182,7 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"],
-                Source = data.ImageURI
+                Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"], Source = data.ImageURI
             };
 
             // Add the Level
@@ -230,7 +233,8 @@ namespace Game.Views
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
-                Children = {
+                Children =
+                {
                     PlayerImage,
                     PlayerNameLabel,
                     PlayerLevelLabel,
@@ -265,38 +269,38 @@ namespace Game.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void ClosePopup_Clicked(object sender, EventArgs e)
-		{
-			PopupLoadingView.IsVisible = false;
-		}
-		
-		/// <summary>
-		/// Closes the Round Over Popup
-        /// 
+        {
+            PopupLoadingView.IsVisible = false;
+        }
+
+        /// <summary>
+        /// Closes the Round Over Popup
+        ///
         /// Launches the Next Round Popup
-        /// 
+        ///
         /// Resets the Game Round
-        /// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		public void CloseButton_Clicked(object sender, EventArgs e)
-		{
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void CloseButton_Clicked(object sender, EventArgs e)
+        {
             // Reset to a new Round
             BattleEngineViewModel.Instance.Engine.Round.NewRound();
 
             // Show the New Round Screen
             ShowModalNewRoundPage();
-		}
+        }
 
-		/// <summary>
-		/// Start next Round, returning to the battle screen
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		public void AutoAssignButton_Clicked(object sender, EventArgs e)
-		{
-			// Distribute the Items
-			BattleEngineViewModel.Instance.Engine.Round.PickupItemsForAllCharacters();
+        /// <summary>
+        /// Start next Round, returning to the battle screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void AutoAssignButton_Clicked(object sender, EventArgs e)
+        {
+            // Distribute the Items
+            BattleEngineViewModel.Instance.Engine.Round.PickupItemsForAllCharacters();
 
             // Show what was picked up
             DrawItemLists();
@@ -304,14 +308,13 @@ namespace Game.Views
 
         /// <summary>
         /// Show the Page for New Round
-        /// 
+        ///
         /// Upcomming Monsters
-        /// 
+        ///
         /// </summary>
         public async void ShowModalNewRoundPage()
         {
             await Navigation.PopModalAsync();
         }
-
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+
 using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineInterfaces
 {
@@ -52,9 +54,5 @@ namespace Game.Engine.EngineInterfaces
         int MaxRoundCount { get; set; }
 
         int MaxTurnCount { get; set; }
-
- 
-
-        
     }
 }

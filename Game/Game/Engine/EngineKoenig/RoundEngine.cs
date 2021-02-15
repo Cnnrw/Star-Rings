@@ -7,6 +7,7 @@ using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.GameRules;
 using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineKoenig
 {
@@ -73,16 +74,16 @@ namespace Game.Engine.EngineKoenig
 
         /// <summary>
         /// Add Monsters to the Round
-        /// 
+        ///
         /// Because Monsters can be duplicated, will add 1, 2, 3 to their name
-        ///   
+        ///
         /*
-            * Hint: 
+            * Hint:
             * I don't have crudi monsters yet so will add 6 new ones...
             * If you have crudi monsters, then pick from the list
 
             * Consdier how you will scale the monsters up to be appropriate for the characters to fight
-            * 
+            *
             */
         /// </summary>
         /// <returns></returns>
@@ -100,7 +101,8 @@ namespace Game.Engine.EngineKoenig
 
             for (var i = 0; i < EngineSettings.MaxNumberPartyMonsters; i++)
             {
-                var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
+                var data = RandomPlayerHelper.GetRandomMonster(TargetLevel,
+                                                               EngineSettings.BattleSettingsModel.AllowMonsterItems);
 
                 // Help identify which Monster it is
                 data.Name += " " + EngineSettings.MonsterList.Count() + 1;
@@ -148,12 +150,12 @@ namespace Game.Engine.EngineKoenig
 
         /// <summary>
         /// Manage Next Turn
-        /// 
+        ///
         /// Decides Who's Turn
         /// Remembers Current Player
-        /// 
+        ///
         /// Starts the Turn
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override RoundEnum RoundNextTurn()
@@ -222,7 +224,7 @@ namespace Game.Engine.EngineKoenig
         /// </summary>
         public override List<PlayerInfoModel> OrderPlayerListByTurnOrder()
         {
-            // Order is based by... 
+            // Order is based by...
             // Order by Speed (Desending)
             // Then by Highest level (Descending)
             // Then by Highest Experience Points (Descending)
@@ -231,12 +233,12 @@ namespace Game.Engine.EngineKoenig
             // Then by First in list order (Assending
 
             EngineSettings.PlayerList = EngineSettings.PlayerList.OrderByDescending(a => a.GetSpeed())
-                .ThenByDescending(a => a.Level)
-                .ThenByDescending(a => a.ExperienceTotal)
-                .ThenByDescending(a => a.PlayerType)
-                .ThenBy(a => a.Name)
-                .ThenBy(a => a.ListOrder)
-                .ToList();
+                                                      .ThenByDescending(a => a.Level)
+                                                      .ThenByDescending(a => a.ExperienceTotal)
+                                                      .ThenByDescending(a => a.PlayerType)
+                                                      .ThenBy(a => a.Name)
+                                                      .ThenBy(a => a.ListOrder)
+                                                      .ToList();
 
             return EngineSettings.PlayerList;
         }
@@ -257,11 +259,11 @@ namespace Game.Engine.EngineKoenig
                 if (data.Alive)
                 {
                     EngineSettings.PlayerList.Add(
-                        new PlayerInfoModel(data)
-                        {
-                            // Remember the order
-                            ListOrder = ListOrder
-                        });
+                                                  new PlayerInfoModel(data)
+                                                  {
+                                                      // Remember the order
+                                                      ListOrder = ListOrder
+                                                  });
 
                     ListOrder++;
                 }
@@ -272,11 +274,11 @@ namespace Game.Engine.EngineKoenig
                 if (data.Alive)
                 {
                     EngineSettings.PlayerList.Add(
-                        new PlayerInfoModel(data)
-                        {
-                            // Remember the order
-                            ListOrder = ListOrder
-                        });
+                                                  new PlayerInfoModel(data)
+                                                  {
+                                                      // Remember the order
+                                                      ListOrder = ListOrder
+                                                  });
 
                     ListOrder++;
                 }
@@ -326,7 +328,6 @@ namespace Game.Engine.EngineKoenig
         /// <param name="character"></param>
         public override bool PickupItemsFromPool(PlayerInfoModel character)
         {
-
             // TODO: Teams, You need to implement your own Logic if not using auto apply
 
             // I use the same logic for Auto Battle as I do for Manual Battle
@@ -336,7 +337,7 @@ namespace Game.Engine.EngineKoenig
                 // Have the character, walk the items in the pool, and decide if any are better than current one.
 
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.Head);
-                GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklass);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklace);
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.PrimaryHand);
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.OffHand);
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.RightFinger);
@@ -348,7 +349,7 @@ namespace Game.Engine.EngineKoenig
 
         /// <summary>
         /// Swap out the item if it is better
-        /// 
+        ///
         /// Uses Value to determine
         /// </summary>
         /// <param name="character"></param>
@@ -367,8 +368,8 @@ namespace Game.Engine.EngineKoenig
             }
 
             var myList = EngineSettings.ItemPool.Where(a => a.Location == thisLocation)
-                .OrderByDescending(a => a.Value)
-                .ToList();
+                                       .OrderByDescending(a => a.Value)
+                                       .ToList();
 
             // If no items in the list, return...
             if (!myList.Any())
@@ -397,15 +398,16 @@ namespace Game.Engine.EngineKoenig
 
         /// <summary>
         /// Swap the Item the character has for one from the pool
-        /// 
+        ///
         /// Drop the current item back into the Pool
-        /// 
+        ///
         /// </summary>
         /// <param name="character"></param>
         /// <param name="setLocation"></param>
         /// <param name="PoolItem"></param>
         /// <returns></returns>
-        public override ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation, ItemModel PoolItem)
+        public override ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation,
+                                                    ItemModel       PoolItem)
         {
             // Put on the new ItemModel, which drops the one back to the pool
             var droppedItem = character.AddItem(setLocation, PoolItem.Id);

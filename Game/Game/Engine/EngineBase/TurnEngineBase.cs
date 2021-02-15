@@ -1,47 +1,39 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
 
-using Game.Models;
-using Game.Helpers;
-using Game.ViewModels;
-using Game.GameRules;
-using Game.Engine.EngineModels;
 using Game.Engine.EngineInterfaces;
+using Game.Engine.EngineModels;
+using Game.GameRules;
+using Game.Helpers;
+using Game.Models;
+using Game.Models.Enums;
+using Game.ViewModels;
 
 namespace Game.Engine.EngineBase
 {
-    /* 
+    /*
      * Need to decide who takes the next turn
      * Target to Attack
      * Should Move, or Stay put (can hit with weapon range?)
      * Death
      * Manage Round...
-     * 
+     *
      */
 
     /// <summary>
     /// Engine controls the turns
-    /// 
+    ///
     /// A turn is when a Character takes an action or a Monster takes an action
     /// </summary>
     public class TurnEngineBase : ITurnEngineInterface
     {
-        #region Algrorithm
-        // Attack or Move
-        // Roll To Hit
-        // Decide Hit or Miss
-        // Decide Damage
-        // Death
-        // Drop Items
-        // Turn Over
-        #endregion Algrorithm
-
-        // The Turn Engine
-        public ITurnEngineInterface Turn = null;
 
         // Hold the BaseEngine
         public EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+
+        // The Turn Engine
+        public ITurnEngineInterface Turn = null;
 
         /// <summary>
         /// CharacterModel Attacks...
@@ -117,7 +109,7 @@ namespace Game.Engine.EngineBase
 
             /*
              * The following is Used for Monsters, and Auto Battle Characters
-             * 
+             *
              * Order of Priority
              * If can attack Then Attack
              * Next use Ability or Move
@@ -151,17 +143,16 @@ namespace Game.Engine.EngineBase
         /// <returns></returns>
         public virtual bool MoveAsTurn(PlayerInfoModel Attacker)
         {
-
             /*
              * TODO: TEAMS Work out your own move logic if you are implementing move
-             * 
+             *
              * Mike's Logic
              * The monster or charcter will move to a different square if one is open
              * Find the Desired Target
              * Jump to the closest space near the target that is open
-             * 
+             *
              * If no open spaces, return false
-             * 
+             *
              */
 
             if (Attacker.PlayerType == PlayerTypeEnum.Monster)
@@ -192,9 +183,12 @@ namespace Game.Engine.EngineBase
                 // Get the Open Locations
                 var openSquare = EngineSettings.MapModel.ReturnClosestEmptyLocation(locationDefender);
 
-                Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name, locationAttacker.Column, locationAttacker.Row, openSquare.Column, openSquare.Row));
+                Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name,
+                                              locationAttacker.Column, locationAttacker.Row, openSquare.Column,
+                                              openSquare.Row));
 
-                EngineSettings.BattleMessagesModel.TurnMessage = Attacker.Name + " moves closer to " + EngineSettings.CurrentDefender.Name;
+                EngineSettings.BattleMessagesModel.TurnMessage =
+                    Attacker.Name + " moves closer to " + EngineSettings.CurrentDefender.Name;
 
                 return EngineSettings.MapModel.MovePlayerOnMap(locationAttacker, openSquare);
             }
@@ -204,7 +198,7 @@ namespace Game.Engine.EngineBase
 
         /// <summary>
         /// Decide to use an Ability or not
-        /// 
+        ///
         /// Set the Ability
         /// </summary>
         /// <param name="Attacker"></param>
@@ -247,20 +241,21 @@ namespace Game.Engine.EngineBase
         /// <returns></returns>
         public virtual bool UseAbility(PlayerInfoModel Attacker)
         {
-            EngineSettings.BattleMessagesModel.TurnMessage = Attacker.Name + " Uses Ability " + EngineSettings.CurrentActionAbility.ToMessage();
+            EngineSettings.BattleMessagesModel.TurnMessage =
+                Attacker.Name + " Uses Ability " + EngineSettings.CurrentActionAbility.ToMessage();
             return (Attacker.UseAbility(EngineSettings.CurrentActionAbility));
         }
 
         /// <summary>
         /// Attack as a Turn
-        /// 
+        ///
         /// Pick who to go after
-        /// 
+        ///
         /// Determine Attack Score
         /// Determine DefenseScore
-        /// 
+        ///
         /// Do the Attack
-        /// 
+        ///
         /// </summary>
         /// <param name="Attacker"></param>
         /// <returns></returns>
@@ -322,8 +317,8 @@ namespace Game.Engine.EngineBase
 
             // TODO: Teams, You need to implement your own Logic can not use mine.
             var Defender = EngineSettings.PlayerList
-                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Character)
-                .OrderBy(m => m.ListOrder).FirstOrDefault();
+                                         .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Character)
+                                         .OrderBy(m => m.ListOrder).FirstOrDefault();
 
             return Defender;
         }
@@ -345,13 +340,13 @@ namespace Game.Engine.EngineBase
             }
 
             // Select first one to hit in the list for now...
-            // Attack the Weakness (lowest HP) MonsterModel first 
+            // Attack the Weakness (lowest HP) MonsterModel first
 
             // TODO: Teams, You need to implement your own Logic can not use mine.
 
             var Defender = EngineSettings.PlayerList
-                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
-                .OrderBy(m => m.CurrentHealth).FirstOrDefault();
+                                         .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
+                                         .OrderBy(m => m.CurrentHealth).FirstOrDefault();
 
             return Defender;
         }
@@ -414,7 +409,8 @@ namespace Game.Engine.EngineBase
                     // Apply the Damage
                     ApplyDamage(Target);
 
-                    EngineSettings.BattleMessagesModel.TurnMessageSpecial = EngineSettings.BattleMessagesModel.GetCurrentHealthMessage();
+                    EngineSettings.BattleMessagesModel.TurnMessageSpecial =
+                        EngineSettings.BattleMessagesModel.GetCurrentHealthMessage();
 
                     // Check if Dead and Remove
                     RemoveIfDead(Target);
@@ -425,7 +421,11 @@ namespace Game.Engine.EngineBase
                     break;
             }
 
-            EngineSettings.BattleMessagesModel.TurnMessage = Attacker.Name + EngineSettings.BattleMessagesModel.AttackStatus + Target.Name + EngineSettings.BattleMessagesModel.TurnMessageSpecial + EngineSettings.BattleMessagesModel.ExperienceEarned;
+            EngineSettings.BattleMessagesModel.TurnMessage = Attacker.Name +
+                                                             EngineSettings.BattleMessagesModel.AttackStatus +
+                                                             Target.Name +
+                                                             EngineSettings.BattleMessagesModel.TurnMessageSpecial +
+                                                             EngineSettings.BattleMessagesModel.ExperienceEarned;
             Debug.WriteLine(EngineSettings.BattleMessagesModel.TurnMessage);
 
             return true;
@@ -478,6 +478,7 @@ namespace Game.Engine.EngineBase
                     return EngineSettings.BattleMessagesModel.HitStatus;
             }
         }
+
         /// <summary>
         /// Apply the Damage to the Target
         /// </summary>
@@ -524,8 +525,9 @@ namespace Game.Engine.EngineBase
             {
                 var points = " points";
 
-                var experienceEarned = Target.CalculateExperienceEarned(EngineSettings.BattleMessagesModel.DamageAmount);
-                
+                var experienceEarned =
+                    Target.CalculateExperienceEarned(EngineSettings.BattleMessagesModel.DamageAmount);
+
                 if (experienceEarned == 1)
                 {
                     points = " point";
@@ -536,7 +538,9 @@ namespace Game.Engine.EngineBase
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    EngineSettings.BattleMessagesModel.LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetMaxHealthTotal;
+                    EngineSettings.BattleMessagesModel.LevelUpMessage =
+                        Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " +
+                        Attacker.GetMaxHealthTotal;
                     Debug.WriteLine(EngineSettings.BattleMessagesModel.LevelUpMessage);
                 }
 
@@ -565,9 +569,9 @@ namespace Game.Engine.EngineBase
 
         /// <summary>
         /// Target Died
-        /// 
+        ///
         /// Process for death...
-        /// 
+        ///
         /// Returns the count of items dropped at death
         /// </summary>
         /// <param name="Target"></param>
@@ -578,7 +582,7 @@ namespace Game.Engine.EngineBase
             // Mark Status in output
             EngineSettings.BattleMessagesModel.TurnMessageSpecial = " and causes death. ";
 
-            // Removing the 
+            // Removing the
             EngineSettings.MapModel.RemovePlayerFromMap(Target);
 
             // INFO: Teams, Hookup your Boss if you have one...
@@ -594,8 +598,12 @@ namespace Game.Engine.EngineBase
 
                     DropItems(Target);
 
-                    found = EngineSettings.CharacterList.Remove(EngineSettings.CharacterList.Find(m => m.Guid.Equals(Target.Guid)));
-                    found = EngineSettings.PlayerList.Remove(EngineSettings.PlayerList.Find(m => m.Guid.Equals(Target.Guid)));
+                    found =
+                        EngineSettings.CharacterList.Remove(EngineSettings.CharacterList
+                                                                          .Find(m => m.Guid.Equals(Target.Guid)));
+                    found =
+                        EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
+                                                                       .Find(m => m.Guid.Equals(Target.Guid)));
 
                     return true;
 
@@ -611,8 +619,12 @@ namespace Game.Engine.EngineBase
 
                     DropItems(Target);
 
-                    found = EngineSettings.MonsterList.Remove(EngineSettings.MonsterList.Find(m => m.Guid.Equals(Target.Guid)));
-                    found = EngineSettings.PlayerList.Remove(EngineSettings.PlayerList.Find(m => m.Guid.Equals(Target.Guid)));
+                    found =
+                        EngineSettings.MonsterList.Remove(EngineSettings.MonsterList
+                                                                        .Find(m => m.Guid.Equals(Target.Guid)));
+                    found =
+                        EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
+                                                                       .Find(m => m.Guid.Equals(Target.Guid)));
 
                     return true;
             }
@@ -720,7 +732,7 @@ namespace Game.Engine.EngineBase
 
             // You decide how to drop monster items, level, etc.
 
-            // The Number drop can be Up to the Round Count, but may be less.  
+            // The Number drop can be Up to the Round Count, but may be less.
             // Negative results in nothing dropped
             var NumberToDrop = (DiceHelper.RollDice(1, round + 1) - 1);
 
@@ -745,5 +757,17 @@ namespace Game.Engine.EngineBase
         {
             return true;
         }
+
+        #region Algrorithm
+
+        // Attack or Move
+        // Roll To Hit
+        // Decide Hit or Miss
+        // Decide Damage
+        // Death
+        // Drop Items
+        // Turn Over
+
+        #endregion Algrorithm
     }
 }

@@ -1,31 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineGame
 {
     /// <summary>
     /// Manages the Rounds
+    /// TODO: This whole file boys
     /// </summary>
     public class RoundEngine : RoundEngineBase, IRoundEngineInterface
     {
         // Hold the BaseEngine
-        public new EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+        private new readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         // The Turn Engine
         public new ITurnEngineInterface Turn
         {
-            get
+            get => base.Turn ?? (base.Turn = new TurnEngine());
+            set
             {
-                if (base.Turn == null)
+                if (value == null)
                 {
-                    base.Turn = new TurnEngine();
+                    throw new ArgumentNullException(nameof(value));
                 }
-                return base.Turn;
+                base.Turn = Turn;
             }
-            set { base.Turn = Turn; }
         }
 
         /// <summary>
@@ -69,25 +73,20 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Add Monsters to the Round
-        /// 
+        ///
         /// Because Monsters can be duplicated, will add 1, 2, 3 to their name
-        ///   
-        /*
-            * Hint: 
-            * I don't have crudi monsters yet so will add 6 new ones..
-            * If you have crudi monsters, then pick from the list
-
-            * Consdier how you will scale the monsters up to be appropriate for the characters to fight
-            * 
-            */
+        ///
         /// </summary>
         /// <returns></returns>
-        public override int AddMonstersToRound()
-        {
-            // TODO: Teams, You need to implement your own Logic can not use mine.
-
-            throw new System.NotImplementedException();
-        }
+        /*
+         * Hint:
+         * I don't have crudi monsters yet so will add 6 new ones..
+         * If you have crudi monsters, then pick from the list
+         * Consdier how you will scale the monsters up to be appropriate for the characters to fight
+         *
+         */
+        // TODO: Teams, You need to implement your own Logic can not use mine.
+        public override int AddMonstersToRound() => throw new System.NotImplementedException();
 
         /// <summary>
         /// At the end of the round
@@ -111,81 +110,59 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// For each character pickup the items
         /// </summary>
-        public override void PickupItemsForAllCharacters()
-        {
-            // In Auto Battle this happens and the characters get their items
-            // When called manualy, make sure to do the character pickup before calling EndRound
-
-            throw new System.NotImplementedException();
-        }
+        // In Auto Battle this happens and the characters get their items
+        // When called manualy, make sure to do the character pickup before calling EndRound
+        public override void PickupItemsForAllCharacters() => throw new NotImplementedException();
 
         /// <summary>
         /// Manage Next Turn
-        /// 
+        ///
         /// Decides Who's Turn
         /// Remembers Current Player
-        /// 
+        ///
         /// Starts the Turn
-        /// 
+        ///
         /// </summary>
-        public override RoundEnum RoundNextTurn()
-        {
-            // No characters, game is over..
-
-            // Check if round is over
-
-            // If in Auto Battle pick the next attacker
-
-            // Do the turn..
-
-            throw new System.NotImplementedException();
-        }
+        public override RoundEnum RoundNextTurn() =>
+            throw
+                // No characters, game is over..
+                // Check if round is over
+                // If in Auto Battle pick the next attacker
+                // Do the turn..
+                new System.NotImplementedException();
 
         /// <summary>
         /// Get the Next Player to have a turn
         /// </summary>
-        public override PlayerInfoModel GetNextPlayerTurn()
-        {
-            // Remove the Dead
-
-            // Get Next Player
-
-            throw new System.NotImplementedException();
-        }
+        public override PlayerInfoModel GetNextPlayerTurn() =>
+            throw
+                // Remove the Dead
+                // Get Next Player
+                new System.NotImplementedException();
 
         /// <summary>
         /// Remove Dead Players from the List
         /// </summary>
-        public override List<PlayerInfoModel> RemoveDeadPlayersFromList()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override List<PlayerInfoModel> RemoveDeadPlayersFromList() => throw new System.NotImplementedException();
 
         /// <summary>
         /// Order the Players in Turn Sequence
         /// </summary>
-        public override List<PlayerInfoModel> OrderPlayerListByTurnOrder()
-        {
-            // TODO Teams: Implement the order
-
-            throw new System.NotImplementedException();
-        }
+        public override List<PlayerInfoModel> OrderPlayerListByTurnOrder() =>
+            throw
+                // TODO Teams: Implement the order
+                new System.NotImplementedException();
 
         /// <summary>
         /// Who is Playing this round?
         /// </summary>
-        public override List<PlayerInfoModel> MakePlayerList()
-        {
-            // Start from a clean list of players
-
-            // Remember the Insert order, used for Sorting
-
-            // Add the Characters
-
-            // Add the Monsters
-
-            throw new System.NotImplementedException();
-        }
+        public override List<PlayerInfoModel> MakePlayerList() =>
+            throw
+                // Start from a clean list of players
+                // Remember the Insert order, used for Sorting
+                // Add the Characters
+                // Add the Monsters
+                new System.NotImplementedException();
 
         /// <summary>
         /// Get the Information about the Player
@@ -214,7 +191,6 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool PickupItemsFromPool(PlayerInfoModel character)
         {
-
             // TODO: Teams, You need to implement your own Logic if not using auto apply
 
             // I use the same logic for Auto Battle as I do for Manual Battle
@@ -224,7 +200,7 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Swap out the item if it is better
-        /// 
+        ///
         /// Uses Value to determine
         /// </summary>
         public override bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation)
@@ -234,10 +210,11 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Swap the Item the character has for one from the pool
-        /// 
+        ///
         /// Drop the current item back into the Pool
         /// </summary>
-        public override ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation, ItemModel PoolItem)
+        public override ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation,
+                                                    ItemModel       PoolItem)
         {
             throw new System.NotImplementedException();
         }

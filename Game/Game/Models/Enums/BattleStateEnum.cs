@@ -1,13 +1,12 @@
-﻿
-namespace Game.Models
+﻿namespace Game.Models.Enums
 {
     /// <summary>
     /// The Conditions a round can have
     /// </summary>
-    public enum BattleStateEnum 
-    { 
+    public enum BattleStateEnum
+    {
         // Invalid State
-        Unknown = 0, 
+        Unknown = 0,
 
         // Just Loaded, nothing has happened
         Starting = 1,

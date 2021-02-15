@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
-    /// The Types of Difficultys
+    /// The Types of Difficulties
     /// Used by Item to specify what it modifies.
     /// </summary>
     public enum DifficultyEnum
     {
         // Not specified
-        Unknown = 0,    
+        Unknown = 0,
 
         // Easier than mostThe speed of the character, impacts movement, and initiative
         Easy = 10,
@@ -26,7 +26,7 @@ namespace Game.Models
         Difficult = 16,
 
         // The highest value
-        Impossible= 18,
+        Impossible = 18,
     }
 
     /// <summary>
@@ -76,20 +76,21 @@ namespace Game.Models
 
         /// <summary>
         /// Return a modifier as an Int rounded up
-        /// 
-        /// From the Enun value
-        /// 
+        ///
+        /// From the Enum value
+        ///
         /// And the passed in value
-        /// 
+        ///
         /// </summary>
+        /// <param name="enumValue"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static int ToModifier(this DifficultyEnum EnumValue, int value)
+        public static int ToModifier(this DifficultyEnum enumValue, int value)
         {
             // Default String
             var modifier = 1.0;
 
-            switch (EnumValue)
+            switch (enumValue)
             {
                 case DifficultyEnum.Easy:
                     modifier = .25;
@@ -148,7 +149,8 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(DifficultyEnum)).ToList().Where(m => m.ToString().Equals("Unknown") == false).ToList();
+                var myList = Enum.GetNames(typeof(DifficultyEnum)).ToList()
+                                 .Where(m => m.ToString().Equals("Unknown") == false).ToList();
                 return myList;
             }
         }
@@ -158,9 +160,7 @@ namespace Game.Models
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static DifficultyEnum ConvertStringToEnum(string value)
-        {
-            return (DifficultyEnum)Enum.Parse(typeof(DifficultyEnum), value);
-        }
+        public static DifficultyEnum ConvertStringToEnum(string value) =>
+            (DifficultyEnum)Enum.Parse(typeof(DifficultyEnum), value);
     }
 }

@@ -6,6 +6,7 @@ using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.GameRules;
 using Game.Models;
+using Game.Models.Enums;
 
 namespace Game.Engine.EngineBase
 {
@@ -15,10 +16,10 @@ namespace Game.Engine.EngineBase
     public class RoundEngineBase : IRoundEngineInterface
     {
         // Hold the BaseEngine
-        public EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+        private readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         // Hold the turn
-        public ITurnEngineInterface Turn { get; set; } = null;
+        public ITurnEngineInterface Turn { get; set; }
 
         /// <summary>
         /// Clear the List between Rounds
@@ -82,16 +83,16 @@ namespace Game.Engine.EngineBase
 
         /// <summary>
         /// Add Monsters to the Round
-        /// 
+        ///
         /// Because Monsters can be duplicated, will add 1, 2, 3 to their name
-        ///   
+        ///
         /*
-            * Hint: 
+            * Hint:
             * I don't have crudi monsters yet so will add 6 new ones...
             * If you have crudi monsters, then pick from the list
 
             * Consdier how you will scale the monsters up to be appropriate for the characters to fight
-            * 
+            *
             */
         /// </summary>
         /// <returns></returns>
@@ -101,7 +102,7 @@ namespace Game.Engine.EngineBase
 
             int TargetLevel = 1;
 
-            if (EngineSettings.CharacterList.Count() > 0)
+            if (EngineSettings.CharacterList.Any())
             {
                 // Get the Min Character Level (linq is soo cool....)
                 TargetLevel = Convert.ToInt32(EngineSettings.CharacterList.Min(m => m.Level));
@@ -109,7 +110,8 @@ namespace Game.Engine.EngineBase
 
             for (var i = 0; i < EngineSettings.MaxNumberPartyMonsters; i++)
             {
-                var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
+                var data = RandomPlayerHelper.GetRandomMonster(TargetLevel,
+                                                               EngineSettings.BattleSettingsModel.AllowMonsterItems);
 
                 // Help identify which Monster it is
                 data.Name += " " + EngineSettings.MonsterList.Count() + 1;
@@ -157,12 +159,12 @@ namespace Game.Engine.EngineBase
 
         /// <summary>
         /// Manage Next Turn
-        /// 
+        ///
         /// Decides Who's Turn
         /// Remembers Current Player
-        /// 
+        ///
         /// Starts the Turn
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual RoundEnum RoundNextTurn()
@@ -222,7 +224,7 @@ namespace Game.Engine.EngineBase
         /// <returns></returns>
         public virtual List<PlayerInfoModel> RemoveDeadPlayersFromList()
         {
-            EngineSettings.PlayerList = EngineSettings.PlayerList.Where(m => m.Alive == true).ToList();
+            EngineSettings.PlayerList = EngineSettings.PlayerList.Where(m => m.Alive).ToList();
             return EngineSettings.PlayerList;
         }
 
@@ -231,7 +233,7 @@ namespace Game.Engine.EngineBase
         /// </summary>
         public virtual List<PlayerInfoModel> OrderPlayerListByTurnOrder()
         {
-            // Order is based by... 
+            // Order is based by...
             // Order by Speed (Desending)
             // Then by Highest level (Descending)
             // Then by Highest Experience Points (Descending)
@@ -240,12 +242,12 @@ namespace Game.Engine.EngineBase
             // Then by First in list order (Assending
 
             EngineSettings.PlayerList = EngineSettings.PlayerList.OrderByDescending(a => a.GetSpeed())
-                .ThenByDescending(a => a.Level)
-                .ThenByDescending(a => a.ExperienceTotal)
-                .ThenByDescending(a => a.PlayerType)
-                .ThenBy(a => a.Name)
-                .ThenBy(a => a.ListOrder)
-                .ToList();
+                                                      .ThenByDescending(a => a.Level)
+                                                      .ThenByDescending(a => a.ExperienceTotal)
+                                                      .ThenByDescending(a => a.PlayerType)
+                                                      .ThenBy(a => a.Name)
+                                                      .ThenBy(a => a.ListOrder)
+                                                      .ToList();
 
             return EngineSettings.PlayerList;
         }
@@ -266,11 +268,11 @@ namespace Game.Engine.EngineBase
                 if (data.Alive)
                 {
                     EngineSettings.PlayerList.Add(
-                        new PlayerInfoModel(data)
-                        {
-                            // Remember the order
-                            ListOrder = ListOrder
-                        });
+                                                  new PlayerInfoModel(data)
+                                                  {
+                                                      // Remember the order
+                                                      ListOrder = ListOrder
+                                                  });
 
                     ListOrder++;
                 }
@@ -281,11 +283,11 @@ namespace Game.Engine.EngineBase
                 if (data.Alive)
                 {
                     EngineSettings.PlayerList.Add(
-                        new PlayerInfoModel(data)
-                        {
-                            // Remember the order
-                            ListOrder = ListOrder
-                        });
+                                                  new PlayerInfoModel(data)
+                                                  {
+                                                      // Remember the order
+                                                      ListOrder = ListOrder
+                                                  });
 
                     ListOrder++;
                 }
@@ -310,11 +312,11 @@ namespace Game.Engine.EngineBase
                 if (data.Alive)
                 {
                     EngineSettings.PlayerList.Add(
-                        new PlayerInfoModel(data)
-                        {
-                            // Remember the order
-                            ListOrder = ListOrder
-                        });
+                                                  new PlayerInfoModel(data)
+                                                  {
+                                                      // Remember the order
+                                                      ListOrder = ListOrder
+                                                  });
 
                     ListOrder++;
                 }
@@ -325,11 +327,11 @@ namespace Game.Engine.EngineBase
                 if (data.Alive)
                 {
                     EngineSettings.PlayerList.Add(
-                        new PlayerInfoModel(data)
-                        {
-                            // Remember the order
-                            ListOrder = ListOrder
-                        });
+                                                  new PlayerInfoModel(data)
+                                                  {
+                                                      // Remember the order
+                                                      ListOrder = ListOrder
+                                                  });
 
                     ListOrder++;
                 }
@@ -379,7 +381,6 @@ namespace Game.Engine.EngineBase
         /// <param name="character"></param>
         public virtual bool PickupItemsFromPool(PlayerInfoModel character)
         {
-
             // TODO: Teams, You need to implement your own Logic if not using auto apply
 
             // I use the same logic for Auto Battle as I do for Manual Battle
@@ -389,7 +390,7 @@ namespace Game.Engine.EngineBase
                 // Have the character, walk the items in the pool, and decide if any are better than current one.
 
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.Head);
-                GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklass);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklace);
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.PrimaryHand);
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.OffHand);
                 GetItemFromPoolIfBetter(character, ItemLocationEnum.RightFinger);
@@ -401,7 +402,7 @@ namespace Game.Engine.EngineBase
 
         /// <summary>
         /// Swap out the item if it is better
-        /// 
+        ///
         /// Uses Value to determine
         /// </summary>
         /// <param name="character"></param>
@@ -420,8 +421,8 @@ namespace Game.Engine.EngineBase
             }
 
             var myList = EngineSettings.ItemPool.Where(a => a.Location == thisLocation)
-                .OrderByDescending(a => a.Value)
-                .ToList();
+                                       .OrderByDescending(a => a.Value)
+                                       .ToList();
 
             // If no items in the list, return...
             if (!myList.Any())
@@ -450,15 +451,16 @@ namespace Game.Engine.EngineBase
 
         /// <summary>
         /// Swap the Item the character has for one from the pool
-        /// 
+        ///
         /// Drop the current item back into the Pool
-        /// 
+        ///
         /// </summary>
         /// <param name="character"></param>
         /// <param name="setLocation"></param>
         /// <param name="PoolItem"></param>
         /// <returns></returns>
-        public virtual ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation, ItemModel PoolItem)
+        public virtual ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation,
+                                                   ItemModel       PoolItem)
         {
             // Put on the new ItemModel, which drops the one back to the pool
             var droppedItem = character.AddItem(setLocation, PoolItem.Id);

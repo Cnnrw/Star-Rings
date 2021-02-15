@@ -5,6 +5,7 @@ using System.Linq;
 
 using Game.GameRules;
 using Game.Models;
+using Game.Models.Enums;
 using Game.ViewModels;
 
 using Xamarin.Forms;

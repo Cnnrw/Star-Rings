@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Models
+namespace Game.Models.Enums
 {
     /// <summary>
     /// The Types of s a Ability can have
@@ -118,7 +117,7 @@ namespace Game.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(AbilityEnum)).ToList();
+                var myList = System.Enum.GetNames(typeof(AbilityEnum)).ToList();
                 return myList;
             }
         }
@@ -130,10 +129,11 @@ namespace Game.Models
         {
             get
             {
-                List<string> AbilityList = new List<string>{
-                AbilityEnum.Nimble.ToString(),
-                AbilityEnum.Toughness.ToString(),
-                AbilityEnum.Focus.ToString()
+                List<string> AbilityList = new List<string>
+                {
+                    AbilityEnum.Nimble.ToString(),
+                    AbilityEnum.Toughness.ToString(),
+                    AbilityEnum.Focus.ToString()
                 };
 
                 AbilityList.AddRange(GetListOthers);
@@ -148,12 +148,12 @@ namespace Game.Models
         {
             get
             {
-
-                List<string> AbilityList = new List<string>{
-                AbilityEnum.Quick.ToString(),
-                AbilityEnum.Barrier.ToString(),
-                AbilityEnum.Curse.ToString(),
-                AbilityEnum.Heal.ToString()
+                List<string> AbilityList = new List<string>
+                {
+                    AbilityEnum.Quick.ToString(),
+                    AbilityEnum.Barrier.ToString(),
+                    AbilityEnum.Curse.ToString(),
+                    AbilityEnum.Heal.ToString()
                 };
 
                 AbilityList.AddRange(GetListOthers);
@@ -168,10 +168,7 @@ namespace Game.Models
         {
             get
             {
-
-                List<string> AbilityList = new List<string>{
-                AbilityEnum.Bandage.ToString(),
-                };
+                List<string> AbilityList = new List<string> {AbilityEnum.Bandage.ToString(),};
 
                 return AbilityList;
             }
@@ -184,7 +181,7 @@ namespace Game.Models
         /// <returns></returns>
         public static AbilityEnum ConvertStringToEnum(string value)
         {
-            return (AbilityEnum)Enum.Parse(typeof(AbilityEnum), value);
+            return (AbilityEnum)System.Enum.Parse(typeof(AbilityEnum), value);
         }
     }
 }

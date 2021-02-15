@@ -1,35 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Game.Models;
+
+using Game.Models.Enums;
 
 namespace Game.Models
 {
     /// <summary>
     /// Represent the Map
-    /// 
+    ///
     /// The Cordinates
     /// What is at that location
-    /// 
+    ///
     /// </summary>
     public class MapModel
     {
-        // The X axies Size
-        public int MapXAxiesCount = 6;
 
-        // The Y axies Size
-        public int MapYAxiesCount = 6;
+        public PlayerInfoModel EmptySquare =
+            new PlayerInfoModel {PlayerType = PlayerTypeEnum.Unknown, ImageURI = "item.png"};
 
         // The Map Locations
         public MapModelLocation[,] MapGridLocation;
+        // The X axes Size
+        public int MapXAxesCount = 6;
 
-        public PlayerInfoModel EmptySquare = new PlayerInfoModel { PlayerType = PlayerTypeEnum.Unknown, ImageURI= "item.png" };
+        // The Y axes Size
+        public int MapYAxesCount = 6;
 
         public MapModel()
         {
             // Create the Map
-            MapGridLocation = new MapModelLocation[MapXAxiesCount, MapYAxiesCount];
+            MapGridLocation = new MapModelLocation[MapXAxesCount, MapYAxesCount];
 
             ClearMapGrid();
         }
@@ -41,12 +42,17 @@ namespace Game.Models
         public bool ClearMapGrid()
         {
             //Populate Map with Empty Values
-            for (var x = 0; x < MapXAxiesCount; x++)
+            for (var x = 0; x < MapXAxesCount; x++)
             {
-                for (var y = 0; y < MapYAxiesCount; y++)
+                for (var y = 0; y < MapYAxesCount; y++)
                 {
                     // Populate the entire map with blank
-                    MapGridLocation[x, y] = new MapModelLocation { Row = y, Column = x, Player = EmptySquare };
+                    MapGridLocation[x, y] = new MapModelLocation
+                    {
+                        Row = y,
+                        Column = x,
+                        Player = EmptySquare
+                    };
                 }
             }
             return true;
@@ -70,7 +76,7 @@ namespace Game.Models
 
                 // If too many to fit on a row, start at the next row
                 x++;
-                if (x >= MapXAxiesCount)
+                if (x >= MapXAxesCount)
                 {
                     x = 0;
                     y++;
@@ -78,14 +84,14 @@ namespace Game.Models
             }
 
             x = 0;
-            y = MapYAxiesCount - 1;
+            y = MapYAxesCount - 1;
             foreach (var data in PlayerList.Where(m => m.PlayerType == PlayerTypeEnum.Monster))
             {
                 MapGridLocation[x, y].Player = data;
 
                 // If too many to fit on a row, start at the next row
                 x++;
-                if (x >= MapXAxiesCount)
+                if (x >= MapXAxesCount)
                 {
                     x = 0;
                     y--;
@@ -99,6 +105,7 @@ namespace Game.Models
         /// Changes the Row and Column for the Player
         /// </summary>
         /// <param name="data"></param>
+        /// <param name="target"></param>
         /// <returns></returns>
         public bool MovePlayerOnMap(MapModelLocation data, MapModelLocation target)
         {
@@ -112,12 +119,12 @@ namespace Game.Models
                 return false;
             }
 
-            if (target.Column >= MapXAxiesCount)
+            if (target.Column >= MapXAxesCount)
             {
                 return false;
             }
 
-            if (target.Row >= MapYAxiesCount)
+            if (target.Row >= MapYAxesCount)
             {
                 return false;
             }
@@ -138,18 +145,23 @@ namespace Game.Models
         /// <returns></returns>
         public bool RemovePlayerFromMap(PlayerInfoModel data)
         {
-            if (data== null)
+            if (data == null)
             {
                 return false;
             }
 
-            for (var x = 0; x < MapXAxiesCount; x++)
+            for (var x = 0; x < MapXAxesCount; x++)
             {
-                for (var y = 0; y < MapYAxiesCount; y++)
+                for (var y = 0; y < MapYAxesCount; y++)
                 {
                     if (MapGridLocation[x, y].Player.Guid.Equals(data.Guid))
                     {
-                        MapGridLocation[x, y] = new MapModelLocation { Column = x, Row = y, Player = EmptySquare};
+                        MapGridLocation[x, y] = new MapModelLocation
+                        {
+                            Column = x,
+                            Row = y,
+                            Player = EmptySquare
+                        };
                         return true;
                     }
                 }
@@ -161,11 +173,11 @@ namespace Game.Models
 
         /// <summary>
         /// Clear all Locations of the Selected Bool
-        /// 
+        ///
         /// Mike does not use this in the example battle grammar
-        /// 
+        ///
         /// TODO: INFO  Could be helpfull to track what is selected for actions etc
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool ClearSelection()
@@ -181,10 +193,9 @@ namespace Game.Models
         /// <summary>
         /// Find the Player on the map
         /// Return their information
-        /// 
+        ///
         /// If they don't exist, return null
         /// </summary>
-        /// <param name="data"></param>
         /// <returns></returns>
         public MapModelLocation GetLocationForPlayer(PlayerInfoModel player)
         {
@@ -208,17 +219,12 @@ namespace Game.Models
         /// Return who is at the location
         /// Could be Character, Monster or Empty
         /// </summary>
-        /// <param name="data"></param>
         /// <returns></returns>
-        public PlayerInfoModel GetPlayerAtLocation(int x, int y)
-        {
-            return MapGridLocation[x, y].Player;
-        }
+        public PlayerInfoModel GetPlayerAtLocation(int x, int y) => MapGridLocation[x, y].Player;
 
         /// <summary>
         /// Is the location empty?
         /// </summary>
-        /// <param name="data"></param>
         /// <returns></returns>
         public bool IsEmptySquare(int x, int y)
         {
@@ -279,7 +285,7 @@ namespace Game.Models
 
         /// <summary>
         /// See if the Attacker is next to the Defender by the distance of Range
-        /// 
+        ///
         /// If either the X or Y distance is less than or equal the range, then they can hit
         /// </summary>
         /// <param name="Attacker"></param>
@@ -343,9 +349,7 @@ namespace Game.Models
         /// <param name="x2"></param>
         /// <param name="y2"></param>
         /// <returns></returns>
-        public int Distance(int x1, int y1, int x2, int y2)
-        {
-            return ((int)Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2)));
-        }
+        public static int Distance(int x1, int y1, int x2, int y2) =>
+            (int)Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
     }
 }
