@@ -4,20 +4,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.LandingPage">
 
-    <AbsoluteLayout VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
-
+    <StackLayout>
         <Image Source="magic_tree.gif"
-               IsAnimationPlaying="True"
-               Aspect="AspectFill"
-               AbsoluteLayout.LayoutBounds="0,0,1,1"
-               AbsoluteLayout.LayoutFlags="All" />
+               IsAnimationPlaying="True"/>
+
+        <Label Text="A long time ago in a galaxy far, far away...."
+               Style="{StaticResource CenterMessageLargeStyle}"
+               HorizontalOptions="Center"
+               Margin="0, 30, 0, 10"
+               LineBreakMode="WordWrap"/>
+
+        <Label Text="The Millenium Falcon has been sucked into a wormhole and teleported to Middle Earth! Help the Rebel crew battle their way across the land in search of a magical portal to take them home!"
+               Style="{StaticResource CenterMessageStyle}"
+               HorizontalOptions="Center"
+               Margin="50, 0, 50, 0"
+               LineBreakMode="WordWrap"/>
 
         <ImageButton x:Name="StartButton"
                      Source="start_button_normal.png"
                      Pressed="StartButton_OnPressed"
-                     Released="StartButton_OnReleased"
-                     AbsoluteLayout.LayoutBounds=".5,1,.5,.25"
-                     AbsoluteLayout.LayoutFlags="All"/>
-    </AbsoluteLayout>
+                     Released="StartButton_OnReleased"/>
+    </StackLayout>
+    
 </ContentPage>
