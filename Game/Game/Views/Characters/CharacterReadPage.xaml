@@ -84,6 +84,13 @@
                 </StackLayout>
             </StackLayout>
 
+            <!-- Equipped Items -->
+            <FlexLayout x:Name="ItemBox"
+                                Padding="5"
+                                Wrap="Wrap"
+                                JustifyContent="SpaceAround"
+                                AlignContent="SpaceAround" />
+
             <StackLayout Orientation="Horizontal">
                 <Button Text="Delete"
                             Clicked="Delete_Clicked"/>
