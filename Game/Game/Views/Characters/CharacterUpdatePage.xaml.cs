@@ -3,6 +3,7 @@ using System.ComponentModel;
 
 using Game.GameRules;
 using Game.Models;
+using Game.Models.Enums;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -108,7 +109,7 @@ namespace Game.Views
         /// <param name="e"></param>
         private void OnJobPickerChanged(object sender, EventArgs e)
         {
-            string iconImageURI = CharacterJobEnumExtensions.ToIconImageURI(_viewModel.Data.Job);
+            var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
 
             _viewModel.Data.ImageURI = iconImageURI;
             JobImage.Source = iconImageURI;
