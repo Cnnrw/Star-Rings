@@ -50,13 +50,6 @@
                                             Text="{Binding Data.Description}" />
 
                         <StackLayout>
-                            <Label Text="Description"
-                                   Style="{StaticResource LabelStyle}" />
-                            <Entry Text="{Binding Data.Description}"
-                                   Style="{StaticResource EntryStyle}" />
-                        </StackLayout>
-
-                        <StackLayout>
                             <Label Text="Level"
                                    Style="{StaticResource LabelStyle}" />
                             <StackLayout Orientation="Horizontal">
