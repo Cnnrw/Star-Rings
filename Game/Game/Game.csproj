@@ -154,5 +154,9 @@
 		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\UIIcons\auto_battle.png" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Common\Assets\ItemIcons\" />
+	</ItemGroup>
 
 </Project>
