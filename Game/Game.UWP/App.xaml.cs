@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -14,6 +15,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+using Sharpnado.Shades.UWP;
+using Sharpnado.Tabs.Uwp;
 
 namespace Game.UWP
 {
@@ -51,6 +55,12 @@ namespace Game.UWP
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+
+                var rendererAssemblies = new[]
+                {
+                    typeof(UWPShadowsRenderer).GetTypeInfo().Assembly,
+                    typeof(UwpTintableImageEffect).GetTypeInfo().Assembly,
+                };
 
                 Xamarin.Forms.Forms.Init(e);
 
