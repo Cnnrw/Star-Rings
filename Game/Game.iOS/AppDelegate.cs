@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Foundation;
 
-using Foundation;
 using UIKit;
 
 namespace Game.iOS
@@ -23,7 +20,7 @@ namespace Game.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            Sharpnado.Tabs.iOS.Preserver.Preserve();
+            // Sharpnado.Tabs.iOS.Preserver.Preserve();
 
             LoadApplication(new App());
 
