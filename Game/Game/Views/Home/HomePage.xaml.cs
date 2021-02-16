@@ -46,6 +46,11 @@ namespace Game.Views
         public async void AutobattleButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new AutoBattlePage());
 
+        /// <summary>
+        /// Jump to Settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SettingsButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new SettingsPage());
 
