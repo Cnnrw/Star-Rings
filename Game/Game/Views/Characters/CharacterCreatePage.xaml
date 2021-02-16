@@ -59,7 +59,8 @@
                                    Style="{StaticResource LabelStyle}" />
                                 <StackLayout Orientation="Horizontal">
                                     <Label x:Name="LevelValueLabel"
-                                       Text="{Binding Data.Level}" />
+                                       Text="{Binding Data.Level}"
+                                           Style="{StaticResource ValueStyle}"/>
                                     <Stepper x:Name="LevelStepper"
                                          Value="{Binding Data.Level, Mode=TwoWay}"
                                          ValueChanged="OnLevelStepperChanged"
@@ -77,7 +78,8 @@
                                Style="{StaticResource LabelStyle}" />
                             <StackLayout Orientation="Horizontal">
                                 <Label x:Name="MaxHealthValueLabel"
-                                   Text="{Binding Data.MaxHealth}" />
+                                   Text="{Binding Data.MaxHealth}"
+                                       Style="{StaticResource ValueStyle}"/>
                                 <Stepper x:Name="MaxHealthStepper"
                                      Value="{Binding Data.MaxHealth, Mode=TwoWay}"
                                      ValueChanged="OnMaxHealthStepperChanged"
@@ -92,7 +94,8 @@
                                Style="{StaticResource LabelStyle}" />
                             <StackLayout Orientation="Horizontal">
                                 <Label x:Name="AttackValueLabel"
-                                   Text="{Binding Data.Attack}" />
+                                   Text="{Binding Data.Attack}"
+                                       Style="{StaticResource ValueStyle}" />
                                 <Stepper x:Name="AttackStepper"
                                      Value="{Binding Data.Attack, Mode=TwoWay}"
                                      ValueChanged="OnAttackStepperChanged"
@@ -107,7 +110,8 @@
                                Style="{StaticResource LabelStyle}" />
                             <StackLayout Orientation="Horizontal">
                                 <Label x:Name="DefenseValueLabel"
-                                   Text="{Binding Data.Defense}" />
+                                   Text="{Binding Data.Defense}"
+                                       Style="{StaticResource ValueStyle}"/>
                                 <Stepper x:Name="DefenseStepper"
                                      Value="{Binding Data.Defense, Mode=TwoWay}"
                                      ValueChanged="OnDefenseStepperChanged"
@@ -121,7 +125,8 @@
                             <Label Text="Speed" Style="{StaticResource LabelStyle}" />
                             <StackLayout Orientation="Horizontal">
                                 <Label x:Name="SpeedValueLabel"
-                                   Text="{Binding Data.Speed}" />
+                                   Text="{Binding Data.Speed}"
+                                       Style="{StaticResource ValueStyle}"/>
                                 <Stepper x:Name="SpeedStepper"
                                      Value="{Binding Data.Speed, Mode=TwoWay}"
                                      ValueChanged="OnSpeedStepperChanged"
