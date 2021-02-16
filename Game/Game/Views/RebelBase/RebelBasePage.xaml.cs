@@ -17,6 +17,8 @@ namespace Game.Views
         public RebelBasePage()
         {
             InitializeComponent();
+            // Remove the nav bar on the home page
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         /// <summary>
