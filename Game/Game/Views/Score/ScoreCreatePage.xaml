@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <ContentPage Title="{Binding Title}"
              x:Class="Game.Views.ScoreCreatePage"
@@ -8,7 +8,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game">
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
         <viewModels:GenericViewModel x:TypeArguments="models:ScoreModel" />
@@ -20,48 +21,51 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ScrollView>
+        <FlexLayout JustifyContent="Center"
+                    Padding="40">
+            <ScrollView>
 
-            <StackLayout Style="{StaticResource OuterBoxStack}"
+                <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10">
 
-                <Label Text="Create Page"
+                    <Label Text="Create Page"
                        Style="{StaticResource HeaderStyle}" />
 
-                <Grid RowSpacing="1" ColumnSpacing="2"
+                    <Grid RowSpacing="1" ColumnSpacing="2"
                       VerticalOptions="Center">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0"
+                        <Label Grid.Row="0" Grid.Column="0"
                            Text="Name"
                            Style="{StaticResource LabelStyle}" />
 
-                    <Entry Grid.Row="0" Grid.Column="1"
+                        <Entry Grid.Row="0" Grid.Column="1"
                            Text="{Binding Data.Name}"
                            Style="{StaticResource EntryStyle}" />
 
-                    <Label Grid.Row="1" Grid.Column="0"
+                        <Label Grid.Row="1" Grid.Column="0"
                            Text="Score"
                            Style="{StaticResource LabelStyle}" />
 
-                    <Entry Grid.Row="1" Grid.Column="1"
+                        <Entry Grid.Row="1" Grid.Column="1"
                            Text="{Binding Data.ScoreTotal}"
                            Style="{StaticResource EntryStyle}" />
 
-                    <Label Grid.Row="1" Grid.Column="0"
+                        <Label Grid.Row="1" Grid.Column="0"
                            Text="Score"
                            Style="{StaticResource LabelStyle}" />
 
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
