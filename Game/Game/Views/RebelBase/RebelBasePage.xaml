@@ -17,7 +17,7 @@
                         Padding="40">
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="wookie_icon.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="CharactersButton_Clicked" />
                     <Label Text="Characters"
@@ -35,7 +35,7 @@
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
 
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="lembas.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="ItemsButton_Clicked" />
                     <Label Text="Items"
