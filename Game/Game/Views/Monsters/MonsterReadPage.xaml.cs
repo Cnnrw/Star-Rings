@@ -41,6 +41,7 @@ namespace Game.Views
         }
 
         #endregion
+
         #region Event Handlers
 
         /// <summary>
@@ -65,37 +66,12 @@ namespace Game.Views
             await Navigation.PopAsync();
         }
 
-        // /// <summary>
-        // ///     Show the Popup for the Item
-        // /// </summary>
-        // /// <param name="data"></param>
-        // /// <returns></returns>
-        // private void ShowPopup(ItemModel data)
-        // {
-        //     PopupLoadingView.IsVisible = true;
-        //     PopupItemImage.Source = data.ImageURI;
-        //
-        //     PopupItemName.Text = data.Name;
-        //     PopupItemDescription.Text = data.Description;
-        //     PopupItemLocation.Text = data.Location.ToMessage();
-        //     PopupItemAttribute.Text = data.Attribute.ToMessage();
-        //     PopupItemValue.Text = " + " + data.Value;
-        // }
-
-        /// <summary>
-        ///     When the user clicks the close in the Popup
-        ///     hide the view
-        ///     show the scroll view
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClosePopup_Clicked(object sender, EventArgs e) => PopupLoadingView.IsVisible = false;
-
         #endregion
-        #region Item Popup
+
+        #region EquippedItems
 
         /// <summary>
-        ///     Show the Items the Monster has
+        /// Show the Items the Character has
         /// </summary>
         private void AddItemsToDisplay()
         {
@@ -105,76 +81,61 @@ namespace Game.Views
                 ItemBox.Children.Remove(data);
             }
 
+            // Add an item display box for each Item Location 
             ItemBox.Children.Add(GetItemToDisplay());
         }
 
         /// <summary>
-        ///     Look up the Item to Display
+        /// Look up the Item to Display
         /// </summary>
         /// <returns></returns>
         private StackLayout GetItemToDisplay()
         {
-            // Default Image is for the Plus
-            // const string ImageSource = "icon_cancel.png";
-            // var ClickableButton = true;
+            ItemModel data = null;
 
-            var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem);
-            if (data == null)
-            {
-                // show the default icon for the location
-                data = new ItemModel {Location = ItemLocationEnum.Unknown, ImageURI = "icon_cancel.png"};
-
-                // Turn off click action
-                // ClickableButton = false;
-            }
-
-            var ItemView = new BasicItemView
-            {
-                ItemName = data.Name,
-                ItemDescription = "Hello",
-                IconImageSource = ImageSource.FromFile(data.ImageURI)
-            };
+            // If there's no Item currently in the slot, show a blank Item
+            data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem) ??
+                new ItemModel
+                {
+                    Location = ItemLocationEnum.Unknown,
+                    ImageURI = "icon_cancel.png",
+                    Name = "No item"
+                };
 
             // Hookup the Image Button to show the Item picture
+            var ItemButton = new Image
+            {
+                Source = data.ImageURI,
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object buttonStyle)
+                            ? (Style)buttonStyle
+                            : null
+            };
 
-            // var ItemButton = new ImageButton
-            // {
-            //     Source = data.ImageURI,
-            //     Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out var iMS) ?
-            //                 (Style)iMS :
-            //                 null
-            // };
-
-            // if (ClickableButton)
-            // {
-            //     // Add an event so the user can click the item and see more
-            //     ItemButton.Clicked += (sender, args) => ShowPopup(data);
-            // }
-            //
-            // Add the Display text for the item
-            // var ItemLabel = new Label
-            // {
-            //     Text = "Unique Drop",
-            //     Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var vSM) ?
-            //                 (Style)vSM :
-            //                 null,
-            //     HorizontalOptions = LayoutOptions.Center,
-            //     HorizontalTextAlignment = TextAlignment.Center
-            // };
+            // Add the Display Text for the item
+            var ItemLabel = new Label
+            {
+                Text = data.Name,
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object labelStyle)
+                            ? (Style)labelStyle
+                            : null
+            };
 
             // Put the Image Button and Text inside a layout
             var ItemStack = new StackLayout
             {
                 Padding = 3,
-                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out var iIB) ? (Style)iIB : null,
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object stackStyle)
+                            ? (Style)stackStyle
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
-                // Children = {ItemButton, ItemLabel}
-                Children = {ItemView}
+                Children = { ItemButton, ItemLabel }
             };
 
             return ItemStack;
         }
 
-        #endregion
+        #endregion EquippedItems
     }
 }

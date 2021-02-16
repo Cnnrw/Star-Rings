@@ -73,53 +73,6 @@
                         <Button Text="Delete" Clicked="Delete_Clicked" />
                         <Button Text="Update" Clicked="Update_Clicked" />
                     </StackLayout>
-
-                    <!-- Item Popup -->
-                    <StackLayout x:Name="PopupLoadingView"
-                             BackgroundColor="{StaticResource PageBackgroundColor}"
-                             IsVisible="False"
-                             AbsoluteLayout.LayoutBounds=".5, .5, .5, .5"
-                             AbsoluteLayout.LayoutFlags="All">
-
-                        <StackLayout VerticalOptions="CenterAndExpand"
-                                 HorizontalOptions="CenterAndExpand"
-                                 WidthRequest="300"
-                                 HeightRequest="300">
-
-                            <Frame BorderColor="{StaticResource TriciaryTextColor}" Padding="1">
-                                <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="CenterAndExpand" Padding="2">
-                                    <Image x:Name="PopupItemImage" Style="{StaticResource ImageLargeStyle}" />
-
-                                    <Label x:Name="PopupItemName"
-                                       Style="{StaticResource PopupItemTextStyle}"
-                                       MaxLines="2"
-                                       LineBreakMode="WordWrap" />
-                                    <Label x:Name="PopupItemDescription"
-                                       Style="{StaticResource PopupItemTextStyle}"
-                                       MaxLines="2"
-                                       LineBreakMode="WordWrap" />
-
-                                    <StackLayout Style="{StaticResource HorizontalStack}">
-                                        <Label Text="Location: "
-                                           Style="{StaticResource LabelStyle}" />
-                                        <Label x:Name="PopupItemLocation"
-                                           Style="{StaticResource ValueStyle}" />
-                                    </StackLayout>
-
-                                    <StackLayout Style="{StaticResource HorizontalStack}">
-                                        <Label x:Name="PopupItemAttribute"
-                                           Style="{StaticResource LabelStyle}" />
-                                        <Label x:Name="PopupItemValue"
-                                           Style="{StaticResource ValueStyle}" />
-                                    </StackLayout>
-
-                                    <Button x:Name="PopupCloseButton"
-                                        Clicked="ClosePopup_Clicked"
-                                        Text="Close" />
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </StackLayout>
                 </StackLayout>
             </ScrollView>
 
