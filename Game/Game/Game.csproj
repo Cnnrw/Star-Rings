@@ -17,8 +17,13 @@
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
 		<None Remove="Common\Assets\star_rings_logo.png" />
-		<None Remove="Common\Assets\page_background.png" />
 		<None Remove="Common\Assets\magic_tree.gif" />
+		<None Remove="Common\Assets\Backgrounds\page_background.png" />
+		<None Remove="Common\Assets\Backgrounds\page_background_2.png" />
+		<None Remove="Common\Assets\Backgrounds\page_background_3.png" />
+		<None Remove="Common\Assets\Backgrounds\page_background_4.png" />
+		<None Remove="Common\Assets\Backgrounds\page_background_5.png" />
+		<None Remove="Common\Assets\Backgrounds\page_background_6.png" />
 		<None Remove="Common\Assets\UIIcons\start_button_normal.png" />
 		<None Remove="Common\Assets\UIIcons\start_button_pressed.png" />
 		<None Remove="Common\Assets\UIIcons\auto_battle.png" />
@@ -46,17 +51,10 @@
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
-		<EmbeddedResource Update="Controls\BasicItemView.xaml">
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="Controls\BasicItemView.xaml">
-			<Generator>Compile</Generator>
-		</None>
+		<None Update="Controls\BasicItemView.xaml" />
+		<None Update="Controls\BasicItemView.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -146,26 +144,49 @@
 	
 	<ItemGroup>
 		<SharedImage BaseSize="200,200" Include="Common\Assets\star_rings_logo.png" />
-		<SharedImage BaseSize="200,200" Include="Common\Assets\page_background.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<SharedImage BaseSize="200,200" Include="Common\Assets\Backgrounds\page_background.png" />
+		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_2.png" />
+		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_3.png" />
+		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_4.png" />
+		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_5.png" />
+		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_6.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\jedi_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\jedi_princess_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\smuggler_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\wookie_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\astromech_icon.png" />
 		<SharedImage BaseSize="128,128" Include="Common\Assets\CharacterIcons\protocol_droid_icon.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
 		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\UIIcons\auto_battle.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\about_1.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\about_2.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\dungeon.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\eye.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\rebel_base_1.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\rebel_base_2.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\ring.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\settings.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\stats.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\warrior.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\blaster.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\fireworks.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\gimlis_axe.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\hobbit_foot.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\lembas.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\light_saber.png" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Common\Assets\ItemIcons\" />
 	</ItemGroup>
 
 </Project>
