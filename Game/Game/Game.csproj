@@ -160,6 +160,7 @@
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\fireworks.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\gimlis_axe.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\hobbit_foot.png" />
+		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\lembas.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\light_saber.png" />
 	</ItemGroup>
 	
