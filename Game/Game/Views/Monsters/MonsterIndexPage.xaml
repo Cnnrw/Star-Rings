@@ -8,7 +8,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game">
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
         <viewModels:MonsterIndexViewModel/>
@@ -19,7 +20,9 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource OuterBoxStack}">
+
+        <FlexLayout JustifyContent="Center"
+                    Padding="40">
 
             <ListView x:Name="MonstersListView"
                       ItemsSource="{Binding Dataset}"
@@ -66,6 +69,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
