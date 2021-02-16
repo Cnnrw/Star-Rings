@@ -20,7 +20,7 @@ namespace Game.GameRules
                 {
                     Name = "Lembas Bread",
                     Description = "A fresh loaf of Elven bread",
-                    ImageURI = "item.png",
+                    ImageURI = "lembas.png",
                     Range = 0,
                     Damage = 5,
                     Value = 3,
@@ -31,7 +31,7 @@ namespace Game.GameRules
                 {
                     Name = "Hobbit feet",
                     Description = "Nimble feet to carry you from danger",
-                    ImageURI = "item.png",
+                    ImageURI = "hobbit_foot.png",
                     Range = 0,
                     Damage = 0,
                     Value = 5,
@@ -40,25 +40,25 @@ namespace Game.GameRules
                 },
                 new ItemModel
                 {
-                    Name = "Ring of Power",
-                    Description = "A golden ring that turns its wearer invisible",
-                    ImageURI = "item.png",
-                    Range = 0,
-                    Damage = 0,
-                    Value = 8,
-                    Location = ItemLocationEnum.RightFinger,
-                    Attribute = AttributeEnum.Speed
-                },
-                new ItemModel
-                {
-                    Name = "Troll Axe",
+                    Name = "Gimli's Axe",
                     Description = "A heavy iron axe",
-                    ImageURI = "item.png",
+                    ImageURI = "gimlis_axe.png",
                     Range = 5,
                     Damage = 11,
                     Value = 7,
                     Location = ItemLocationEnum.PrimaryHand,
                     Attribute = AttributeEnum.Attack
+                },
+                new ItemModel
+                {
+                    Name = "Gandalf's Fireworks",
+                    Description = "Bright sparks which dazzle your foe",
+                    ImageURI = "fireworks.png",
+                    Range = 7,
+                    Damage = 1,
+                    Value = 3,
+                    Location = ItemLocationEnum.OffHand,
+                    Attribute = AttributeEnum.Speed
                 },
             };
 
