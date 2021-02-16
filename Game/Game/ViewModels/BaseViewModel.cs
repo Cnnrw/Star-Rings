@@ -107,15 +107,28 @@ namespace Game.ViewModels
             set => SetProperty(ref _isBusy, value);
         }
 
-        /// <summary>
-        ///     The String to show on the page
-        /// </summary>
-        private string _title = string.Empty;
+        private string? _title = string.Empty;
 
-        public string Title
+        /// <summary>
+        ///     Gets or sets the title of a page.
+        /// </summary>
+        /// <value>The title of the page</value>
+        public string? Title
         {
             get => _title;
             set => SetProperty(ref _title, value);
+        }
+
+        private string? _icon = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the icon.
+        /// </summary>
+        /// <value>The page icon.</value>
+        public string? Icon
+        {
+            get => _icon;
+            set => SetProperty(ref _icon, value);
         }
 
         #endregion Attributes
