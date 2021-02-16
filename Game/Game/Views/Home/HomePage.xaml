@@ -10,7 +10,7 @@
         <ScrollView Orientation="Vertical"
                     HorizontalScrollBarVisibility="Never"
                     VerticalScrollBarVisibility="Never">
-            
+
             <FlexLayout x:Name="FlexLayout"
                         Wrap="Wrap"
                         JustifyContent="SpaceAround"
@@ -18,7 +18,7 @@
                         Padding="40">
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="rebel_base_2.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="RebelBaseButton_Clicked" />
                     <Label Text="Rebel Base"
@@ -26,7 +26,7 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="dungeon.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="DungeonButton_Clicked" />
                     <Label Text="Dungeon"
@@ -42,7 +42,7 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="settings.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="SettingsButton_Clicked" />
                     <Label Text="Settings"
@@ -50,7 +50,7 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="about_2.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="AboutButton_Clicked" />
                     <Label Text="About"
