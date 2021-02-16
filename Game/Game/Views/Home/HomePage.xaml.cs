@@ -27,7 +27,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void DungeonButton_Clicked(object sender, EventArgs e) =>
+        private async void DungeonButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new PickCharactersPage());
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void RebelBaseButton_Clicked(object sender, EventArgs e) =>
+        private async void RebelBaseButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new RebelBasePage());
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void AutobattleButton_Clicked(object sender, EventArgs e) =>
+        private async void AutobattleButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new AutoBattlePage());
 
         /// <summary>
