@@ -54,7 +54,7 @@
     <Color x:Key="PrimaryBackgroundColor">red</Color>
     <Color x:Key="SecondaryBackgroundColor">gray</Color>
     <Color x:Key="TriciaryBackgroundColor">lightgray</Color>
-    <Color x:Key="LightBackgroundColor">orange</Color>
+    <Color x:Key="LightBackgroundColor">#E0D5C6</Color>
 
     <Color x:Key="PrimaryTextColor">lightblue</Color>
     <Color x:Key="SecondaryTextColor">darkblue</Color>
