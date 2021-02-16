@@ -55,20 +55,17 @@
                                            Text="{Binding Description}" 
                                            Style="{StaticResource ListStyle}"
                                            FontSize="Micro"/>
-                                
+
                                     <StackLayout Grid.Column="1" Grid.Row="2"
-                                        Orientation="Horizontal">
-                                    
-                                        <Label 
-                                           Text="{Binding Attribute}" 
-                                           Style="{StaticResource ListStyle}"/>
+                                                 Orientation="Horizontal">
+                                        <Label Text="{Binding Attribute}" 
+                                               Style="{StaticResource ListStyle}"
+                                               FontSize="Micro"/>
 
                                         <Label Text="{Binding Value}" 
-                                            Style="{StaticResource ListStyle}"/>
-                                
+                                               Style="{StaticResource ListStyle}"
+                                               FontSize="Micro"/>
                                     </StackLayout>
-
-                                
 
                                 </Grid>
                             </ViewCell>
