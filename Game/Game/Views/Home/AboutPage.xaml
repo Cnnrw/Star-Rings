@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Game.Views.AboutPage"
-             BackgroundImageSource="page_background.png">
+             BackgroundImageSource="page_background_2.png">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -18,15 +18,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0"
-               Source="star_rings_logo.png"
-               HeightRequest="300"
-               WidthRequest="300"
-               Style="{StaticResource ImageLargeStyle}" />
+        <!-- <Image Grid.Row="0" -->
+        <!--        Source="star_rings_logo.png" -->
+        <!--        HeightRequest="300" -->
+        <!--        WidthRequest="300" -->
+        <!--        Style="{StaticResource ImageLargeStyle}" /> -->
 
         <StackLayout Grid.Row="1"
                      Orientation="Vertical"
