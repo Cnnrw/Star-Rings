@@ -25,7 +25,7 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="eye.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="MonstersButton_Clicked" />
                     <Label Text="Monsters"
@@ -44,7 +44,7 @@
 
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="item.png"
+                    <ImageButton Source="stats.png"
                                  Style="{StaticResource ImageLargeStyle}"
                                  Clicked="ScoresButton_Clicked" />
                     <Label Text="Scores"
