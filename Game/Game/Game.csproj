@@ -24,9 +24,17 @@
 		<None Remove="Common\Assets\Backgrounds\page_background_4.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_5.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_6.png" />
+		<None Remove="Common\Assets\UIIcons\about_1.png" />
+		<None Remove="Common\Assets\UIIcons\about_2.png" />
+		<None Remove="Common\Assets\UIIcons\auto_battle.png" />
+		<None Remove="Common\Assets\UIIcons\dungeon.png" />
+		<None Remove="Common\Assets\UIIcons\eye.png" />
+		<None Remove="Common\Assets\UIIcons\rebel_base_1.png" />
+		<None Remove="Common\Assets\UIIcons\rebel_base_2.png" />
 		<None Remove="Common\Assets\UIIcons\start_button_normal.png" />
 		<None Remove="Common\Assets\UIIcons\start_button_pressed.png" />
-		<None Remove="Common\Assets\UIIcons\auto_battle.png" />
+		<None Remove="Common\Assets\UIIcons\stats.png" />
+		<None Remove="Common\Assets\UIIcons\warrior.png" />
 		<None Remove="Common\Assets\CharacterIcons\jedi_icon.png" />
 		<None Remove="Common\Assets\CharacterIcons\jedi_princess_icon.png" />
 		<None Remove="Common\Assets\CharacterIcons\smuggler_icon.png" />
@@ -166,7 +174,7 @@
 	
 	<ItemGroup>
 		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
-		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
+		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_pressed.png" />
 		<SharedImage BaseSize="150, 150" Include="Common\Assets\UIIcons\auto_battle.png" />
 		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\about_1.png" />
 		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\about_2.png" />
