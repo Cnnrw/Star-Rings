@@ -38,8 +38,10 @@
                             <Image Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
-                            <Label Text="Icon"
+                            <Label Text="Image"
                                Style="{StaticResource LabelStyle}" />
+                            <Entry Text="{Binding Data.ImageURI, Mode=TwoWay}"
+                                   Style="{StaticResource EntryStyle}" />
                         </StackLayout>
                         <StackLayout>
                             <Label Text="Name" Style="{StaticResource LabelStyle}" />
