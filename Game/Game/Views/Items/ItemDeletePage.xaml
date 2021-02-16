@@ -5,28 +5,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Game.Views.ItemDeletePage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundImageSource="page_background.png">
 
-    <ScrollView>
-        <StackLayout Style="{StaticResource OuterBoxStack}"
+    <FlexLayout JustifyContent="Center"
+                Padding="40">
+        <ScrollView>
+            <StackLayout Style="{StaticResource OuterBoxStack}"
                      Spacing="10">
-            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
 
-            <StackLayout HorizontalOptions="Center"
+                <StackLayout HorizontalOptions="Center"
                          Padding="20">
-                <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
+                    <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
                        Style="{StaticResource MessageStyle}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Yes"
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Yes"
                         Clicked="Delete_Clicked"
                         HorizontalOptions="Center"/>
 
-                    <Button Text="No"
+                        <Button Text="No"
                         Clicked="Cancel_Clicked"
                         HorizontalOptions="Center"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
-    </ScrollView>
+        </ScrollView>
+    </FlexLayout>
+    
 </ContentPage>
