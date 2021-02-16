@@ -11,7 +11,7 @@
              xmlns:converters="clr-namespace:Game.Helpers.Converters;assembly=Game"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
              xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game"
+             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game" xmlns:controls="clr-namespace:Game.Controls"
              BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
@@ -50,19 +50,10 @@
                         </StackLayout>
 
                         <StackLayout>
-                            <StackLayout>
-                                <Label Text="Name"
-                                   Style="{StaticResource LabelStyle}"/>
-                                <Entry Text="{Binding Data.Name}"
-                                   Style="{StaticResource EntryStyle}"/>
-                            </StackLayout>
-
-                            <StackLayout>
-                                <Label Text="Description"
-                                   Style="{StaticResource LabelStyle}"/>
-                                <Entry Text="{Binding Data.Description}"
-                                   Style="{StaticResource EntryStyle}"/>
-                            </StackLayout>
+                            <controls:FormEntry Title="Name"
+                                            Text="{Binding Data.Name}" />
+                            <controls:FormEntry Title="Description"
+                                            Text="{Binding Data.Description}" />
 
                             <StackLayout>
 
