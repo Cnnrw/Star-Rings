@@ -106,8 +106,8 @@ namespace Game.GameRules
             {
                 new CharacterModel()
                 {
-                    Name = "Luke Skywalker",
-                    Description = "A Jedi master from Tatooine",
+                    Name = "Obi-Wan Kenobi",
+                    Description = "A Jedi master and teacher of Anakin",
                     Job = CharacterJobEnum.Jedi,
                     ImageURI = "jedi_icon.png",
                     Level = 7,
@@ -115,6 +115,30 @@ namespace Game.GameRules
                     Attack = 5,
                     Defense = 3,
                     Speed = 4
+                },
+                new CharacterModel()
+                {
+                    Name = "Keshmya Jungdasa",
+                    Description = "Leader of the Rebel unit",
+                    Job = CharacterJobEnum.Princess,
+                    ImageURI = "jedi_princess_icon.png",
+                    Level = 3,
+                    MaxHealth = 7,
+                    Attack = 6,
+                    Defense = 3,
+                    Speed = 5
+                },
+                new CharacterModel()
+                {
+                    Name = "Jebusa Fivilar",
+                    Description = "Pilot of the ship",
+                    Job = CharacterJobEnum.Smuggler,
+                    ImageURI = "smuggler_icon.png",
+                    Level = 2,
+                    MaxHealth = 4,
+                    Attack = 6,
+                    Defense = 2,
+                    Speed = 2
                 },
                 new CharacterModel()
                 {
@@ -130,7 +154,7 @@ namespace Game.GameRules
                 },
                 new CharacterModel()
                 {
-                    Name = "C3PO",
+                    Name = "C5PQ",
                     Description = "Fluent in over 6 million forms of communication",
                     Job = CharacterJobEnum.ProtocolDroid,
                     ImageURI = "protocol_droid_icon.png",
@@ -139,7 +163,19 @@ namespace Game.GameRules
                     Attack = 2,
                     Defense = 1,
                     Speed = 1
-                }
+                },
+                new CharacterModel()
+                {
+                    Name = "R3D3",
+                    Description = "A clunky Astromech",
+                    Job = CharacterJobEnum.AstroDroid,
+                    ImageURI = "astromech_icon.png",
+                    Level = 4,
+                    MaxHealth = 2,
+                    Attack = 2,
+                    Defense = 1,
+                    Speed = 1
+                },
             };
 
             return datalist;
