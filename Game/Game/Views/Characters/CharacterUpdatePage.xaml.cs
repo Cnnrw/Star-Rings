@@ -159,17 +159,7 @@ namespace Game.Views
 
             // Change character level
             _viewModel.Data.Level = result;
-
-            // Roll for new HP
-            _viewModel.Data.MaxHealth = RandomPlayerHelper.GetHealth(_viewModel.Data.Level);
-
-            UpdateHealthValue();
         }
-
-        /// <summary>
-        ///     Updates character max health based on new level
-        /// </summary>
-        private void UpdateHealthValue() => MaxHealthValue.Text = _viewModel.Data.MaxHealth.ToString();
 
         #endregion
 
@@ -183,13 +173,13 @@ namespace Game.Views
         // private void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
         //     LevelValueLabel.Text = $"{e.NewValue}";
 
-        // /// <summary>
-        // ///     Changes Max Health attribute of a Character
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        // private void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
-        //     MaxHealthValueLabel.Text = $"{e.NewValue}";
+        /// <summary>
+        ///     Changes Max Health attribute of a Character
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MaxHealthValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes Attack attribute of a Character
