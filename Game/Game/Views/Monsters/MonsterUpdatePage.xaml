@@ -11,7 +11,8 @@
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
              xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
              xmlns:converters="clr-namespace:Game.Helpers.Converters;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game">
+             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game"
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
         <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel" />
@@ -25,7 +26,8 @@
 
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
+                        VerticalOptions="FillAndExpand"
+                        Padding="40">
 
             <ScrollView>
                 <StackLayout Style="{StaticResource OuterBoxStack}"
