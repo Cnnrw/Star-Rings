@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -48,5 +48,13 @@ namespace Game.Views
 
         private async void SettingsButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new SettingsPage());
+
+        /// <summary>
+        /// Jump to About
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void AboutButton_Clicked(object sender, EventArgs e) =>
+            await Navigation.PushAsync(new AboutPage());
     }
 }
