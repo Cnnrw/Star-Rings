@@ -48,7 +48,8 @@
                                 <Label Text="Description:"
                                Style="{StaticResource LabelStyle}"/>
                                 <Label Text="{Binding Data.Description}"
-                               Style="{StaticResource ValueStyle}"/>
+                               Style="{StaticResource ValueStyle}"
+                                       LineBreakMode="WordWrap"/>
                             </StackLayout>
 
                             <StackLayout>
