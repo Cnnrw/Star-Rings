@@ -3,78 +3,76 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.HomePage">
+    <Grid>
 
-    <ContentPage.Content>
+        <!-- Page background -->
+        <Image Source="page_background_3.png"
+               Opacity=".3"
+               Aspect="AspectFill" />
 
         <Grid>
-            <Image Source="page_background_3"
-                   Opacity=".3"
-                   Aspect="AspectFill"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Aspect="Fill"
+                   Source="column.png" />
 
-                <Image Grid.Column="0"
-                       Aspect="Fill"
-                       Source="column" />
+            <FlexLayout Grid.Column="1"
+                        Wrap="Wrap"
+                        Margin="0, 30"
+                        JustifyContent="SpaceAround"
+                        AlignContent="SpaceAround">
 
-                <FlexLayout Grid.Column="1"
-                            Wrap="Wrap"
-                            Margin="0, 30"
-                            JustifyContent="SpaceAround"
-                            AlignContent="SpaceAround">
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+                    <ImageButton Source="rebel_base_2.png"
+                                 Style="{StaticResource ImageMediumStyle}"
+                                 Clicked="RebelBaseButton_Clicked" />
+                    <Label Text="Rebel Base"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
 
-                    <StackLayout Style="{StaticResource CardImageTextBox}">
-                        <ImageButton Source="rebel_base_2.png"
-                                     Style="{StaticResource ImageMediumStyle}"
-                                     Clicked="RebelBaseButton_Clicked" />
-                        <Label Text="Rebel Base"
-                               Style="{StaticResource CenterMessageStyle}" />
-                    </StackLayout>
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+                    <ImageButton Source="dungeon.png"
+                                 Style="{StaticResource ImageMediumStyle}"
+                                 Clicked="DungeonButton_Clicked" />
+                    <Label Text="Dungeon"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
 
-                    <StackLayout Style="{StaticResource CardImageTextBox}">
-                        <ImageButton Source="dungeon.png"
-                                     Style="{StaticResource ImageMediumStyle}"
-                                     Clicked="DungeonButton_Clicked" />
-                        <Label Text="Dungeon"
-                               Style="{StaticResource CenterMessageStyle}" />
-                    </StackLayout>
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+                    <ImageButton Source="auto_battle.png"
+                                 Style="{StaticResource ImageMediumStyle}"
+                                 Clicked="AutobattleButton_Clicked" />
+                    <Label Text="Auto Battle"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
 
-                    <StackLayout Style="{StaticResource CardImageTextBox}">
-                        <ImageButton Source="auto_battle.png"
-                                     Style="{StaticResource ImageMediumStyle}"
-                                     Clicked="AutobattleButton_Clicked" />
-                        <Label Text="Auto Battle"
-                               Style="{StaticResource CenterMessageStyle}" />
-                    </StackLayout>
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+                    <ImageButton Source="settings.png"
+                                 Style="{StaticResource ImageMediumStyle}"
+                                 Clicked="SettingsButton_Clicked" />
+                    <Label Text="Settings"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
 
-                    <StackLayout Style="{StaticResource CardImageTextBox}">
-                        <ImageButton Source="settings.png"
-                                     Style="{StaticResource ImageMediumStyle}"
-                                     Clicked="SettingsButton_Clicked" />
-                        <Label Text="Settings"
-                               Style="{StaticResource CenterMessageStyle}" />
-                    </StackLayout>
+                <StackLayout Style="{StaticResource CardImageTextBox}">
+                    <ImageButton Source="about_2.png"
+                                 Style="{StaticResource ImageMediumStyle}"
+                                 Clicked="AboutButton_Clicked" />
+                    <Label Text="About"
+                           Style="{StaticResource CenterMessageStyle}" />
+                </StackLayout>
 
-                    <StackLayout Style="{StaticResource CardImageTextBox}">
-                        <ImageButton Source="about_2.png"
-                                     Style="{StaticResource ImageMediumStyle}"
-                                     Clicked="AboutButton_Clicked" />
-                        <Label Text="About"
-                               Style="{StaticResource CenterMessageStyle}" />
-                    </StackLayout>
+            </FlexLayout>
 
-                </FlexLayout>
+            <Image Grid.Column="2"
+                   Aspect="Fill"
+                   Source="column.png" />
 
-                <Image Grid.Column="2"
-                       Aspect="Fill"
-                       Source="column.png" />
-
-            </Grid>
         </Grid>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>
