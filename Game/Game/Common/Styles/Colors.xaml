@@ -51,7 +51,7 @@
     <Color x:Key="ViewBackgroundColor">green</Color>
     <Color x:Key="NavigationBarColor">orange</Color>
 
-    <Color x:Key="PrimaryBackgroundColor">red</Color>
+    <Color x:Key="PrimaryBackgroundColor">#BCB4AA</Color>
     <Color x:Key="SecondaryBackgroundColor">gray</Color>
     <Color x:Key="TriciaryBackgroundColor">lightgray</Color>
     <Color x:Key="LightBackgroundColor">#E0D5C6</Color>
