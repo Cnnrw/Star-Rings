@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-using Game.Controls;
 using Game.Models.Enums;
 
 using Xamarin.Forms;
@@ -43,23 +42,23 @@ namespace Game.Views
                 switch (id)
                 {
                     case (int)MenuItemEnum.RebelBase:
-                        MenuPages.Add(id, new CustomNavigationPage(new RebelBasePage()));
+                        MenuPages.Add(id, new NavigationPage(new RebelBasePage()));
                         break;
 
                     case (int)MenuItemEnum.Battle:
-                        MenuPages.Add(id, new CustomNavigationPage(new PickCharactersPage()));
+                        MenuPages.Add(id, new NavigationPage(new PickCharactersPage()));
                         break;
 
                     case (int)MenuItemEnum.About:
-                        MenuPages.Add(id, new CustomNavigationPage(new AboutPage()));
+                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
 
                     case (int)MenuItemEnum.Home:
-                        MenuPages.Add(id, new CustomNavigationPage(new HomePage()));
+                        MenuPages.Add(id, new NavigationPage(new HomePage()));
                         break;
 
                     case (int)MenuItemEnum.Settings:
-                        MenuPages.Add(id, new CustomNavigationPage(new SettingsPage()));
+                        MenuPages.Add(id, new NavigationPage(new SettingsPage()));
                         break;
                 }
             }
