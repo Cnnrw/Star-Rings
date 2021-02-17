@@ -166,21 +166,21 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                       Source="{Binding Data.ImageURI}"
+                                                       Source="{Binding ImageURI}"
                                                        Style="{StaticResource ImageSmallStyle}"
                                                        VerticalOptions="CenterAndExpand" />
 
                                                 <Label Grid.Column="1" Grid.Row="0"
-                                                       Text="{Binding Data.Name}"
+                                                       Text="{Binding Name}"
                                                        Style="{StaticResource ListStyle}" />
 
                                                 <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-                                                    <Label Text="{Binding Data.Attribute}" Style="{StaticResource ListStyle}" />
-                                                    <Label Text="{Binding Data.Value}" Style="{StaticResource ListStyle}" />
+                                                    <Label Text="{Binding Attribute}" Style="{StaticResource ListStyle}" />
+                                                    <Label Text="{Binding Value}" Style="{StaticResource ListStyle}" />
                                                 </StackLayout>
 
                                                 <Label Grid.Column="1" Grid.Row="2"
-                                                       Text="{Binding Data.Description}"
+                                                       Text="{Binding Description}"
                                                        Style="{StaticResource ListStyle}"
                                                        FontSize="Micro" />
                                             </Grid>
