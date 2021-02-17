@@ -20,7 +20,7 @@ namespace Game.GameRules
                 {
                     Name = "Lembas Bread",
                     Description = "A fresh loaf of Elven bread",
-                    ImageURI = "item.png",
+                    ImageURI = "lembas.png",
                     Range = 0,
                     Damage = 5,
                     Value = 3,
@@ -31,7 +31,7 @@ namespace Game.GameRules
                 {
                     Name = "Hobbit feet",
                     Description = "Nimble feet to carry you from danger",
-                    ImageURI = "item.png",
+                    ImageURI = "hobbit_foot.png",
                     Range = 0,
                     Damage = 0,
                     Value = 5,
@@ -40,25 +40,25 @@ namespace Game.GameRules
                 },
                 new ItemModel
                 {
-                    Name = "Ring of Power",
-                    Description = "A golden ring that turns its wearer invisible",
-                    ImageURI = "item.png",
-                    Range = 0,
-                    Damage = 0,
-                    Value = 8,
-                    Location = ItemLocationEnum.RightFinger,
-                    Attribute = AttributeEnum.Speed
-                },
-                new ItemModel
-                {
-                    Name = "Troll Axe",
+                    Name = "Gimli's Axe",
                     Description = "A heavy iron axe",
-                    ImageURI = "item.png",
+                    ImageURI = "gimlis_axe.png",
                     Range = 5,
                     Damage = 11,
                     Value = 7,
                     Location = ItemLocationEnum.PrimaryHand,
                     Attribute = AttributeEnum.Attack
+                },
+                new ItemModel
+                {
+                    Name = "Gandalf's Fireworks",
+                    Description = "Bright sparks which dazzle your foe",
+                    ImageURI = "fireworks.png",
+                    Range = 7,
+                    Damage = 1,
+                    Value = 3,
+                    Location = ItemLocationEnum.OffHand,
+                    Attribute = AttributeEnum.Speed
                 },
             };
 
@@ -106,8 +106,8 @@ namespace Game.GameRules
             {
                 new CharacterModel()
                 {
-                    Name = "Luke Skywalker",
-                    Description = "A Jedi master from Tatooine",
+                    Name = "Obi-Wan Kenobi",
+                    Description = "A Jedi master and teacher of Anakin",
                     Job = CharacterJobEnum.Jedi,
                     ImageURI = "jedi_icon.png",
                     Level = 7,
@@ -115,6 +115,30 @@ namespace Game.GameRules
                     Attack = 5,
                     Defense = 3,
                     Speed = 4
+                },
+                new CharacterModel()
+                {
+                    Name = "Keshmya Jungdasa",
+                    Description = "Leader of the Rebel unit",
+                    Job = CharacterJobEnum.Princess,
+                    ImageURI = "jedi_princess_icon.png",
+                    Level = 3,
+                    MaxHealth = 7,
+                    Attack = 6,
+                    Defense = 3,
+                    Speed = 5
+                },
+                new CharacterModel()
+                {
+                    Name = "Jebusa Fivilar",
+                    Description = "Pilot of the ship",
+                    Job = CharacterJobEnum.Smuggler,
+                    ImageURI = "smuggler_icon.png",
+                    Level = 2,
+                    MaxHealth = 4,
+                    Attack = 6,
+                    Defense = 2,
+                    Speed = 2
                 },
                 new CharacterModel()
                 {
@@ -130,7 +154,7 @@ namespace Game.GameRules
                 },
                 new CharacterModel()
                 {
-                    Name = "C3PO",
+                    Name = "C5PQ",
                     Description = "Fluent in over 6 million forms of communication",
                     Job = CharacterJobEnum.ProtocolDroid,
                     ImageURI = "protocol_droid_icon.png",
@@ -139,7 +163,19 @@ namespace Game.GameRules
                     Attack = 2,
                     Defense = 1,
                     Speed = 1
-                }
+                },
+                new CharacterModel()
+                {
+                    Name = "R3D3",
+                    Description = "A clunky Astromech",
+                    Job = CharacterJobEnum.AstroDroid,
+                    ImageURI = "astromech_icon.png",
+                    Level = 4,
+                    MaxHealth = 2,
+                    Attack = 2,
+                    Defense = 1,
+                    Speed = 1
+                },
             };
 
             return datalist;
