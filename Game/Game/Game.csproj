@@ -4,37 +4,39 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
+	
 	<ItemGroup>
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
 		<None Remove="Common\Assets\star_rings_logo.png" />
+		<None Remove="Common\Assets\column.png" />
 		<None Remove="Common\Assets\magic_tree.gif" />
 		<None Remove="Common\Assets\Backgrounds\page_background.png" />
+		<None Remove="Common\Assets\Backgrounds\page_background_1.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_2.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_3.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_4.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_5.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_6.png" />
-		<None Remove="Common\Assets\UIIcons\about_1.png" />
-		<None Remove="Common\Assets\UIIcons\about_2.png" />
-		<None Remove="Common\Assets\UIIcons\auto_battle.png" />
-		<None Remove="Common\Assets\UIIcons\dungeon.png" />
-		<None Remove="Common\Assets\UIIcons\eye.png" />
-		<None Remove="Common\Assets\UIIcons\rebel_base_1.png" />
-		<None Remove="Common\Assets\UIIcons\rebel_base_2.png" />
-		<None Remove="Common\Assets\UIIcons\start_button_normal.png" />
-		<None Remove="Common\Assets\UIIcons\start_button_pressed.png" />
-		<None Remove="Common\Assets\UIIcons\stats.png" />
-		<None Remove="Common\Assets\UIIcons\warrior.png" />
+		<None Remove="Common\Assets\UIButtonIcons\about_1.png" />
+		<None Remove="Common\Assets\UIButtonIcons\about_2.png" />
+		<None Remove="Common\Assets\UIButtonIcons\auto_battle.png" />
+		<None Remove="Common\Assets\UIButtonIcons\dungeon.png" />
+		<None Remove="Common\Assets\UIButtonIcons\eye.png" />
+		<None Remove="Common\Assets\UIButtonIcons\rebel_base_1.png" />
+		<None Remove="Common\Assets\UIButtonIcons\rebel_base_2.png" />
+		<None Remove="Common\Assets\UIButtonIcons\start_button_normal.png" />
+		<None Remove="Common\Assets\UIButtonIcons\start_button_pressed.png" />
+		<None Remove="Common\Assets\UIButtonIcons\stats.png" />
+		<None Remove="Common\Assets\UIButtonIcons\warrior.png" />
 		<None Remove="Common\Assets\CharacterIcons\jedi_icon.png" />
 		<None Remove="Common\Assets\CharacterIcons\jedi_princess_icon.png" />
 		<None Remove="Common\Assets\CharacterIcons\smuggler_icon.png" />
@@ -54,7 +56,6 @@
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="Resizetizer.NT" Version="0.2.0" />
-		<PackageReference Include="Sharpnado.Tabs" Version="2.1.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -152,10 +153,12 @@
 	
 	<ItemGroup>
 		<SharedImage BaseSize="200,200" Include="Common\Assets\star_rings_logo.png" />
+		<SharedImage BaseSize="26,261" Include="Common\Assets\column.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
-		<SharedImage BaseSize="200,200" Include="Common\Assets\Backgrounds\page_background.png" />
+		<SharedImage BaseSize="204,275" Include="Common\Assets\Backgrounds\page_background.png" />
+		<SharedImage BaseSize="204,275" Include="Common\Assets\Backgrounds\page_background_1.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_2.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_3.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Assets\Backgrounds\page_background_4.png" />
@@ -173,28 +176,28 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_normal.png" />
-		<SharedImage BaseSize="150, 100" Include="Common\Assets\UIIcons\start_button_pressed.png" />
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\UIIcons\auto_battle.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\about_1.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\about_2.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\dungeon.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\eye.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\rebel_base_1.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\rebel_base_2.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\ring.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\settings.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\stats.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Assets\UIIcons\warrior.png" />
+		<SharedImage BaseSize="150,100" Include="Common\Assets\UIButtonIcons\start_button_normal.png" />
+		<SharedImage BaseSize="150,100" Include="Common\Assets\UIButtonIcons\start_button_pressed.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\auto_battle.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\about_1.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\about_2.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\dungeon.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\eye.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\rebel_base_1.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\rebel_base_2.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\ring.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\settings.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\stats.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\warrior.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\blaster.png" />
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\fireworks.png" />
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\gimlis_axe.png" />
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\hobbit_foot.png" />
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\lembas.png" />
-		<SharedImage BaseSize="150, 150" Include="Common\Assets\ItemIcons\light_saber.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\ItemIcons\blaster.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\ItemIcons\fireworks.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\ItemIcons\gimlis_axe.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\ItemIcons\hobbit_foot.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\ItemIcons\lembas.png" />
+		<SharedImage BaseSize="150,150" Include="Common\Assets\ItemIcons\light_saber.png" />
 	</ItemGroup>
 
 </Project>

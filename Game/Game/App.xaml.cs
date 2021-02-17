@@ -21,10 +21,6 @@ namespace Game
             // Add each model here to warm up and load it.
             Helpers.DataSetsHelper.WarmUp();
 
-
-            // Sharpnado.Tabs.Initializer.Initialize(false, false);
-            // Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-
             // Call the Landing Page to open
             MainPage = new MainPage();
         }

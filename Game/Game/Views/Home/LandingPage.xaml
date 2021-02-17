@@ -5,40 +5,38 @@
              BackgroundColor="Black"
              x:Class="Game.Views.LandingPage">
 
-    <RelativeLayout>
+    <Grid>
         <Image Source="magic_tree.gif"
-               Opacity="0.7"
-               IsAnimationPlaying="true"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />
+               Opacity="0.5"
+               Aspect="AspectFill"
+               IsAnimationPlaying="true" />
 
-        <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+        <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="1"
+            <Image Grid.Row="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
                    Source="star_rings_logo.png" />
 
-            <Label Grid.Row="2"
+            <Label Grid.Row="1"
                    Text="The Millennium Falcon has been sucked into a wormhole and teleported to Middle Earth! Help the Rebel crew battle their way across the land in search of a magical portal to take them home!"
                    Style="{StaticResource LabelStyle}"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
+                   Margin="20, 0"
                    FontSize="20"
-                   Padding="50"
                    LineBreakMode="WordWrap" />
 
-            <ImageButton Grid.Row="3"
+            <ImageButton Grid.Row="2"
                          x:Name="StartButton"
                          Source="start_button_normal.png"
                          Pressed="StartButton_OnPressed"
                          Released="StartButton_OnReleased" />
         </Grid>
-    </RelativeLayout>
+    </Grid>
 </ContentPage>
