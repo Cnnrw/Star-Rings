@@ -7,8 +7,6 @@
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- <Thickness x:Key="PageMargin">0</Thickness> -->
-
     <!-- Pages -->
     <Style TargetType="NavigationPage">
         <Setter Property="BarTextColor" Value="{StaticResource SecondaryTextColor}" />
@@ -52,7 +50,7 @@
     <Style TargetType="Label"
            x:Key="HeaderStyle"
            BasedOn="{StaticResource LabelBaseStyle}">
-        <Setter Property="FontFamily" Value="8bit_bold"/>
+        <Setter Property="FontFamily" Value="8bit_bold" />
         <!-- <Setter Property="FontSize" Value="60"/> -->
     </Style>
 
@@ -104,8 +102,7 @@
     <Style TargetType="Label"
            x:Key="GridLabelStyle"
            BasedOn="{StaticResource LabelStyle}">
-        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}" />
-        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="Padding" Value="3" />
     </Style>
 
@@ -259,15 +256,11 @@
            BasedOn="{StaticResource CardImageTextBox}">
         <Setter Property="HeightRequest" Value="60" />
         <Setter Property="WidthRequest" Value="60" />
-        <Setter Property="Spacing" Value="1" />
     </Style>
 
     <Style TargetType="StackLayout"
            x:Key="PlayerInfoBox"
            BasedOn="{StaticResource CardImageTextBox}">
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="HeightRequest" Value="150" />
         <Setter Property="WidthRequest" Value="100" />
         <Setter Property="Spacing" Value="0" />
         <Setter Property="Padding" Value="0" />
@@ -303,7 +296,6 @@
            x:Key="BattleMapBox"
            BasedOn="{StaticResource VerticalStack}">
         <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-        <Setter Property="VerticalOptions" Value="Start" />
     </Style>
 
     <Style TargetType="StackLayout"
@@ -332,7 +324,7 @@
     </Style>
 
     <Style TargetType="StackLayout"
-           x:Key="BattleUIBottomBox"
+           x:Key="BattleUiBottomBox"
            BasedOn="{StaticResource VerticalStack}">
         <Setter Property="HeightRequest" Value="250" />
         <Setter Property="MinimumHeightRequest" Value="250" />

@@ -24,17 +24,17 @@
 
             <!--The Game UI Screen -->
             <StackLayout VerticalOptions="FillAndExpand"
-                        x:Name="GameUIDisplay" 
-                        IsVisible="True" 
-                        AbsoluteLayout.LayoutBounds="1,1,1,1" 
+                        x:Name="GameUIDisplay"
+                        IsVisible="True"
+                        AbsoluteLayout.LayoutBounds="1,1,1,1"
                         AbsoluteLayout.LayoutFlags="All">
 
                 <!--The Top of the Battle UI Holds the List of Players-->
                 <StackLayout VerticalOptions="Start" x:Name="TopPlayerDisplay">
                     <StackLayout Style="{StaticResource VerticalStack}"
-                        x:Name="GamePlayersTopDisplay" 
-                        IsVisible="true" 
-                        VerticalOptions="Start" 
+                        x:Name="GamePlayersTopDisplay"
+                        IsVisible="true"
+                        VerticalOptions="Start"
                         HorizontalOptions="CenterAndExpand">
 
                         <Label Text="Characters" Style="{StaticResource CenterMessageStyle}" HorizontalOptions="CenterAndExpand"/>
@@ -54,7 +54,7 @@
                 </StackLayout>
 
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
-                <StackLayout x:Name="BattleBottomBox" Style="{StaticResource BattleUIBottomBox}">
+                <StackLayout x:Name="BattleBottomBox" Style="{StaticResource BattleUiBottomBox}">
 
                     <Frame x:Name="BattlePlayerInfomationBox"
                                 Style="{StaticResource PlayerBattleOuterFrame}"
@@ -91,20 +91,20 @@
 
                     </StackLayout>
 
-                    <StackLayout 
-                            Style="{StaticResource VerticalStack}" 
+                    <StackLayout
+                            Style="{StaticResource VerticalStack}"
                             HeightRequest="100"
                             HorizontalOptions="CenterAndExpand">
 
-                        <StackLayout x:Name="MessageDisplayBox" 
+                        <StackLayout x:Name="MessageDisplayBox"
                             IsVisible="false"
-                            Style="{StaticResource VerticalStack}" 
+                            Style="{StaticResource VerticalStack}"
                                     VerticalOptions="StartAndExpand"
                                     HorizontalOptions="CenterAndExpand">
 
-                            <Label x:Name="BattleMessages" 
-                                    HorizontalOptions="FillAndExpand" 
-                                    LineBreakMode="WordWrap" 
+                            <Label x:Name="BattleMessages"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="WordWrap"
                                     MaxLines="3"
                                     LineHeight="1"
                                     CharacterSpacing="1"
@@ -128,12 +128,12 @@
             </StackLayout>
 
             <!--The Game Over Screen -->
-            <StackLayout 
+            <StackLayout
                     Style="{StaticResource VerticalStack}"
-                    AbsoluteLayout.LayoutBounds="1,1,1,1" 
+                    AbsoluteLayout.LayoutBounds="1,1,1,1"
                     AbsoluteLayout.LayoutFlags="All"
                     HorizontalOptions="FillAndExpand"
-                    x:Name="GameOverDisplay" 
+                    x:Name="GameOverDisplay"
                     IsVisible="false">
 
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
@@ -143,7 +143,7 @@
 
                     <Button x:Name="ShowScoreButton" Clicked="ShowScoreButton_Clicked" Text="Score" WidthRequest="50"/>
 
-                    <Button x:Name="ExitButton" Clicked="ExitButton_Clicked" Text="Exit" WidthRequest="50"></Button>
+                    <Button x:Name="ExitButton" Clicked="ExitButton_Clicked" Text="Exit" WidthRequest="50" />
 
                 </StackLayout>
             </StackLayout>
