@@ -1,15 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
-using Game.Views;
-using Game.ViewModels;
+﻿using Game;
 using Game.Models;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
@@ -19,11 +13,7 @@ namespace UnitTests.Views
     [TestFixture]
     public class ScoreUpdatePageTests : ScoreUpdatePage
     {
-        App app;
-        ScoreUpdatePage page;
 
-        public ScoreUpdatePageTests() : base(true) { }
-        
         [SetUp]
         public void Setup()
         {
@@ -42,6 +32,11 @@ namespace UnitTests.Views
         {
             Application.Current = null;
         }
+
+        App             app;
+        ScoreUpdatePage page;
+
+        public ScoreUpdatePageTests() : base(true) { }
 
         [Test]
         public void ScoreUpdatePage_Constructor_Default_Should_Pass()
@@ -89,7 +84,7 @@ namespace UnitTests.Views
         public void ScoreUpdatePage_Save_Clicked_Null_Image_Should_Pass()
         {
             // Arrange
-            page.ViewModel.Data.ImageURI = null;
+            page._viewModel.Data.ImageURI = null;
 
             // Act
             page.Save_Clicked(null, null);
