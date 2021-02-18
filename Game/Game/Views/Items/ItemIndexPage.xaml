@@ -3,11 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Game.ViewModels"
              mc:Ignorable="d"
              x:Name="BrowseItemsPage"
              x:Class="Game.Views.ItemIndexPage"
              Title="{Binding Title}"
              BackgroundImageSource="page_background.png">
+
+    <ContentPage.BindingContext>
+        <viewModels:ItemIndexViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png"/>
@@ -17,17 +22,16 @@
         <FlexLayout JustifyContent="Center"
                     Padding="40">
             <StackLayout Style="{StaticResource OuterBoxStack}">
-                <ListView x:Name="ItemsListView" 
+                <ListView x:Name="ItemsListView"
                         ItemsSource="{Binding Dataset}"
                         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                        RefreshCommand="{Binding LoadItemsCommand}"
+                        RefreshCommand="{Binding LoadDatasetCommand}"
                         CachingStrategy="RecycleElement"
                         ItemSelected="OnItemSelected"
                         HasUnevenRows="true"
                         Margin="5,0,5,0"
-                        RowHeight="80"
-                        >
-                
+                        RowHeight="80" >
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -48,21 +52,21 @@
                                             VerticalOptions="CenterAndExpand"/>
 
                                     <Label Grid.Column="1" Grid.Row="0"
-                                           Text="{Binding Name}" 
+                                           Text="{Binding Name}"
                                            Style="{StaticResource ListStyle}"/>
 
                                     <Label Grid.Column="1" Grid.Row="1"
-                                           Text="{Binding Description}" 
+                                           Text="{Binding Description}"
                                            Style="{StaticResource ListStyle}"
                                            FontSize="Micro"/>
 
                                     <StackLayout Grid.Column="1" Grid.Row="2"
                                                  Orientation="Horizontal">
-                                        <Label Text="{Binding Attribute}" 
+                                        <Label Text="{Binding Attribute}"
                                                Style="{StaticResource ListStyle}"
                                                FontSize="Micro"/>
 
-                                        <Label Text="{Binding Value}" 
+                                        <Label Text="{Binding Value}"
                                                Style="{StaticResource ListStyle}"
                                                FontSize="Micro"/>
                                     </StackLayout>

@@ -24,7 +24,7 @@ namespace Game.ViewModels
         ///
         /// The constructor subscribes message listeners for crudi operations
         /// </summary>
-        private ItemIndexViewModel()
+        public ItemIndexViewModel()
         {
             Title = "Items";
 
