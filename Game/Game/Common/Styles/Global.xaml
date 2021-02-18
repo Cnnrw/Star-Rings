@@ -10,7 +10,7 @@
     <!-- Pages -->
     <Style TargetType="NavigationPage">
         <Setter Property="BarTextColor" Value="{StaticResource SecondaryTextColor}" />
-        <Setter Property="BarBackgroundColor" Value="{StaticResource TransparentColor}" />
+        <Setter Property="BarBackgroundColor" Value="Black" />
     </Style>
 
     <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
