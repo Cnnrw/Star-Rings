@@ -26,6 +26,8 @@
 		<None Remove="Common\Assets\Backgrounds\page_background_4.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_5.png" />
 		<None Remove="Common\Assets\Backgrounds\page_background_6.png" />
+		<None Remove="Common\Assets\UIButtonIcons\cancel_button.png" />
+		<None Remove="Common\Assets\UIButtonIcons\save_button.png" />
 		<None Remove="Common\Assets\UIButtonIcons\about_1.png" />
 		<None Remove="Common\Assets\UIButtonIcons\about_2.png" />
 		<None Remove="Common\Assets\UIButtonIcons\auto_battle.png" />
@@ -176,6 +178,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<SharedImage BaseSize="36,36" Include="Common\Assets\UIButtonIcons\save_button.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Assets\UIButtonIcons\cancel_button.png" />
 		<SharedImage BaseSize="150,100" Include="Common\Assets\UIButtonIcons\start_button_normal.png" />
 		<SharedImage BaseSize="150,100" Include="Common\Assets\UIButtonIcons\start_button_pressed.png" />
 		<SharedImage BaseSize="150,150" Include="Common\Assets\UIButtonIcons\auto_battle.png" />
