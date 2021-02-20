@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace Game.Views
 {
     /// <summary>
-    ///     Create a character
+    /// Character creation page
     /// </summary>
     [DesignTimeVisible(false)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -24,7 +24,7 @@ namespace Game.Views
         public CharacterCreatePage(bool unitTest) { }
 
         /// <summary>
-        ///     Constructor for Create makes a new model
+        /// Constructor makes a new model
         /// </summary>
         public CharacterCreatePage()
         {
@@ -40,7 +40,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Updates the Character's ImageURI and the page's image source
+        /// Update the Character's ImageURI and the page's image source according to the Character's Job
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,7 +53,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Changes Level attribute of a Character
+        /// Update the Level value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -61,7 +61,7 @@ namespace Game.Views
             LevelValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
-        ///     Changes Max Health attribute of a Character
+        /// Update the MaxHealth value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -69,7 +69,7 @@ namespace Game.Views
             MaxHealthValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
-        ///     Changes Attack attribute of a Character
+        /// Update the Attack value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -77,7 +77,7 @@ namespace Game.Views
             AttackValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
-        ///     Changes Defense attribute of a Character
+        /// Update the Defense value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -85,7 +85,7 @@ namespace Game.Views
             DefenseValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
-        ///     Changes Speed attribute of a Character
+        /// Update the Speed value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,7 +93,7 @@ namespace Game.Views
             SpeedValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
-        ///     Save by calling for Create
+        /// Save the created Character
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -112,7 +112,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Cancel the Create
+        /// Cancel creation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
