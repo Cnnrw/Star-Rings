@@ -135,7 +135,7 @@ namespace Game.Views
                        {
                            Location = ItemLocationEnum.Unknown,
                            ImageURI = "icon_cancel.png",
-                           Name = "Click to Add"
+                           Name = "No item"
                        };
 
             // Hookup the Image Button to show the Item picture
@@ -214,7 +214,7 @@ namespace Game.Views
                 Description = "None"
             };
 
-            List<ItemModel> itemList = new List<ItemModel> {NoneItem, data};
+            List<ItemModel> itemList = new List<ItemModel> {NoneItem};
 
             // Add the rest of the items to the list
             itemList.AddRange(ItemIndexViewModel.Instance.Dataset);

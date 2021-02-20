@@ -381,7 +381,7 @@ namespace Game.Views
                 Description = "None"
             };
 
-            List<ItemModel> itemList = new List<ItemModel> { NoneItem, data };
+            List<ItemModel> itemList = new List<ItemModel> { NoneItem };
 
             // Add the rest of the items to the list
             itemList.AddRange(ItemIndexViewModel.Instance.Dataset);
