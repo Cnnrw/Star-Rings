@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -15,68 +16,56 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png"/>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png" />
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <FlexLayout JustifyContent="Center"
-                    Padding="40">
-            <StackLayout Style="{StaticResource OuterBoxStack}">
-                <ListView x:Name="ItemsListView"
-                        ItemsSource="{Binding Dataset}"
-                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                        RefreshCommand="{Binding LoadDatasetCommand}"
-                        CachingStrategy="RecycleElement"
-                        ItemSelected="OnItemSelected"
-                        HasUnevenRows="true"
-                        Margin="5,0,5,0"
-                        RowHeight="80" >
+    <ListView x:Name="ItemsListView"
+              ItemsSource="{Binding Dataset}"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              RefreshCommand="{Binding LoadDatasetCommand}"
+              CachingStrategy="RecycleElement"
+              ItemSelected="OnItemSelected"
+              Margin="10,25"
+              VerticalOptions="FillAndExpand">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid ColumnSpacing="5" RowSpacing="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid ColumnDefinitions="*, 2*, *" ColumnSpacing="5"
+                          RowDefinitions="*, *, *" RowSpacing="5"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand">
 
-                                    <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                            Source="{Binding ImageURI}"
-                                            Style="{StaticResource ImageMediumStyle}"
-                                            VerticalOptions="CenterAndExpand"/>
+                        <Image Grid.Column="0"
+                               Grid.Row="0" Grid.RowSpan="3"
+                               Source="{Binding ImageURI}"
+                               Style="{StaticResource ImageMediumStyle}"
+                               VerticalOptions="CenterAndExpand" />
 
-                                    <Label Grid.Column="1" Grid.Row="0"
-                                           Text="{Binding Name}"
-                                           Style="{StaticResource ListStyle}"/>
+                        <Label Grid.Column="1"
+                               Grid.Row="0"
+                               Text="{Binding Name}"
+                               Style="{StaticResource ListStyle}"
+                               TextColor="{StaticResource PrimaryTextColor}" />
 
-                                    <Label Grid.Column="1" Grid.Row="1"
-                                           Text="{Binding Description}"
-                                           Style="{StaticResource ListStyle}"
-                                           FontSize="Micro"/>
+                        <Label Grid.Column="2"
+                               Grid.Row="0"
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding Category}"
+                               Style="{StaticResource ListStyle}"
+                               FontSize="Micro" />
 
-                                    <StackLayout Grid.Column="1" Grid.Row="2"
-                                                 Orientation="Horizontal">
-                                        <Label Text="{Binding Attribute}"
-                                               Style="{StaticResource ListStyle}"
-                                               FontSize="Micro"/>
+                        <Label Grid.Column="1" Grid.ColumnSpan="2"
+                               Grid.Row="1"
+                               Text="{Binding Description}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Style="{StaticResource ListStyle}"
+                               FontSize="Micro" />
 
-                                        <Label Text="{Binding Value}"
-                                               Style="{StaticResource ListStyle}"
-                                               FontSize="Micro"/>
-                                    </StackLayout>
-
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </FlexLayout>
-    </ContentPage.Content>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
