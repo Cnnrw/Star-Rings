@@ -32,7 +32,7 @@
             <DataTemplate>
                 <ViewCell>
                     <Grid ColumnDefinitions="*, 2*, *" ColumnSpacing="5"
-                          RowDefinitions="*, *, *" RowSpacing="5"
+                          RowDefinitions="*, *" RowSpacing="5"
                           HorizontalOptions="FillAndExpand"
                           VerticalOptions="FillAndExpand">
 
