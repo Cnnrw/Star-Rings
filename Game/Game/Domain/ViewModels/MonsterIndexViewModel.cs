@@ -37,11 +37,11 @@ namespace Game.ViewModels
                                                                            await DeleteAsync(data));
 
             // Register the set data source message
-            MessagingCenter.Subscribe<AboutPage, int>(this, "SetDataSource", async (obj, data) =>
-                                                          await SetDataSource(data));
+            MessagingCenter.Subscribe<SettingsPage, int>(this, "SetDataSource", async (obj, data) =>
+                                                             await SetDataSource(data));
             // Register the Wipe Data List Message
-            MessagingCenter.Subscribe<AboutPage, bool>(this, "WipeDataList", async (obj, data) =>
-                                                           await WipeDataListAsync());
+            MessagingCenter.Subscribe<SettingsPage, bool>(this, "WipeDataList", async (obj, data) =>
+                                                              await WipeDataListAsync());
         }
 
         /// <summary>
