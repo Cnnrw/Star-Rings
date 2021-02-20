@@ -3,9 +3,9 @@ using System.Linq;
 
 using Game.Engine.EngineBase;
 using Game.Engine.EngineModels;
+using Game.Enums;
 using Game.Helpers;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using NUnit.Framework;

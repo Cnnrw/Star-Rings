@@ -1,6 +1,6 @@
 ﻿using Game.Engine.EngineBase;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 using NUnit.Framework;
 

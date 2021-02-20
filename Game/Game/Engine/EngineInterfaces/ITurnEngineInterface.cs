@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 namespace Game.Engine.EngineInterfaces
 {

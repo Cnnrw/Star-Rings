@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 namespace Game.Engine.EngineGame
 {

@@ -1,7 +1,7 @@
 ﻿using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 namespace Game.Engine.EngineBase
 {

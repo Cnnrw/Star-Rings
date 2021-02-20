@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 
-using Game.GameRules;
+using Game.Enums;
 using Game.Helpers;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using NUnit.Framework;

@@ -10,12 +10,7 @@
                Opacity=".3"
                Aspect="AspectFill" />
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="5*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid ColumnDefinitions="*, 5*, *">
 
             <Image Grid.Column="0"
                    Aspect="Fill"

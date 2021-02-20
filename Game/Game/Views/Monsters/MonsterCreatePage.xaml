@@ -11,7 +11,7 @@
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
              xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
              xmlns:converters="clr-namespace:Game.Helpers.Converters;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game"
+             xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
              BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
@@ -114,7 +114,7 @@
             </ScrollView>
 
         </FlexLayout>
-        
+
     </ContentPage.Content>
 
 </ContentPage>

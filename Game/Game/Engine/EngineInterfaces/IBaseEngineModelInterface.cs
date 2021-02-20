@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 namespace Game.Engine.EngineInterfaces
 {
@@ -44,9 +44,9 @@ namespace Game.Engine.EngineInterfaces
 
         AbilityEnum CurrentActionAbility { get; set; }
 
-        CordinatesModel CurrentMapLocation { get; set; }
+        CoordinatesModel CurrentMapLocation { get; set; }
 
-        CordinatesModel MoveMapLocation { get; set; }
+        CoordinatesModel MoveMapLocation { get; set; }
 
         RoundEnum RoundStateEnum { get; set; }
 

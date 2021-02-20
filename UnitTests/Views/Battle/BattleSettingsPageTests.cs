@@ -1,5 +1,5 @@
 ﻿using Game;
-using Game.Models.Enums;
+using Game.Enums;
 using Game.ViewModels;
 using Game.Views;
 

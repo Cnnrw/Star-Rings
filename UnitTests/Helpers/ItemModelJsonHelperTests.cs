@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using Game.Enums;
 using Game.Helpers;
-using Game.Models.Enums;
 
 using Newtonsoft.Json.Linq;
 

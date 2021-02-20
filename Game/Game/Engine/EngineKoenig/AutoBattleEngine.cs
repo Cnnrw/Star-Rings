@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
-using Game.GameRules;
-using Game.Models.Enums;
+using Game.Enums;
+using Game.Helpers;
 
 namespace Game.Engine.EngineKoenig
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using Xamarin.Forms;

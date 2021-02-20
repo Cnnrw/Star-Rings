@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 using NUnit.Framework;
 

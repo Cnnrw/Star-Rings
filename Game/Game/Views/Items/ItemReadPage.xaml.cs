@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+
+using Game.Models;
+using Game.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using Game.ViewModels;
-using Game.Models;
 
 namespace Game.Views
 {
@@ -16,7 +17,7 @@ namespace Game.Views
     public partial class ItemReadPage : ContentPage
     {
         // View Model for Item
-        public readonly GenericViewModel<ItemModel> ViewModel;
+        public readonly GenericViewModel<ItemModel> _viewModel;
 
         // Empty Constructor for UTs
         public ItemReadPage(bool UnitTest) { }
@@ -26,12 +27,12 @@ namespace Game.Views
         /// This is the primary way to open the page
         /// The viewModel is the data that should be displayed
         /// </summary>
-        /// <param name="viewModel"></param>
+        /// <param name="data"></param>
         public ItemReadPage(GenericViewModel<ItemModel> data)
         {
             InitializeComponent();
 
-            BindingContext = this.ViewModel = data;
+            BindingContext = _viewModel = data;
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Update_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ItemUpdatePage(ViewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new ItemUpdatePage(_viewModel)));
             await Navigation.PopAsync();
         }
 
@@ -52,7 +53,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Delete_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ItemDeletePage(ViewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new ItemDeletePage(_viewModel)));
             await Navigation.PopAsync();
         }
     }

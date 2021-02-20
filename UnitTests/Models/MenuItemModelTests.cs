@@ -1,5 +1,5 @@
-﻿using Game.Models;
-using Game.Models.Enums;
+﻿using Game.Enums;
+using Game.Models;
 
 using NUnit.Framework;
 

@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Engine.EngineInterfaces;
-using Game.GameRules;
-using Game.Models.Enums;
+using Game.Enums;
+using Game.Helpers;
 
 namespace Game.Engine.EngineBase
 {

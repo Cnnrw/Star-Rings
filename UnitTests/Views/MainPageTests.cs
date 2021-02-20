@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 
 using Game;
-using Game.Models.Enums;
+using Game.Enums;
 using Game.Views;
 
 using NUnit.Framework;

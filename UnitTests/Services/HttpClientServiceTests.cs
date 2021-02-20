@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Game.Enums;
 using Game.Helpers;
-using Game.Models.Enums;
 using Game.Services;
 
 using Newtonsoft.Json.Linq;

@@ -21,11 +21,7 @@
                Opacity=".8"
                Aspect="AspectFill" />
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="300" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="100, 300">
 
             <StackLayout Grid.Row="1"
                          Orientation="Vertical"

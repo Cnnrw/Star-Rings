@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
 using Game;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 using Game.Views;
 

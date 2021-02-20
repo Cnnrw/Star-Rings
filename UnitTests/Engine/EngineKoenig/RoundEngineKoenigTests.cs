@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 
 using Game.Engine.EngineKoenig;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using NUnit.Framework;

@@ -4,10 +4,9 @@ using System.Linq;
 
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
-using Game.GameRules;
+using Game.Enums;
 using Game.Helpers;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 namespace Game.Engine.EngineBase

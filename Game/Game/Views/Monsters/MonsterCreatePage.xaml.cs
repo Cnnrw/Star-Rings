@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel;
 
-using Game.GameRules;
+using Game.Enums;
+using Game.Helpers;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using Xamarin.Forms;

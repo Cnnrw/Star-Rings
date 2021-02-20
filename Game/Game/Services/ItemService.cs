@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Game.Enums;
 using Game.Helpers;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using Newtonsoft.Json.Linq;

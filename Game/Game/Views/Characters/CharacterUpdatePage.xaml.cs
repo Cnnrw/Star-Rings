@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-using Game.GameRules;
+using Game.Enums;
+using Game.Helpers;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -24,7 +24,7 @@ namespace Game.Views
         private readonly GenericViewModel<CharacterModel> _viewModel;
 
         // The current Item Location the user is selecting for
-        private ItemLocationEnum _selectedItemLocation; 
+        private ItemLocationEnum _selectedItemLocation;
 
         // Empty Constructor for UTs
         public CharacterUpdatePage(bool unitTest) { }
@@ -220,7 +220,7 @@ namespace Game.Views
                 ItemBox.Children.Remove(data);
             }
 
-            // Add an item display box for each Item Location 
+            // Add an item display box for each Item Location
             ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Head));
             ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Necklace));
             ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.PrimaryHand));
@@ -268,12 +268,12 @@ namespace Game.Views
 
             // If there's no Item currently in the slot, show a blank Item
             data = data ??
-                new ItemModel
-                {
-                    Location = ItemLocationEnum.Unknown,
-                    ImageURI = "icon_cancel.png",
-                    Name = "No item"
-                };
+                   new ItemModel
+                   {
+                       Location = ItemLocationEnum.Unknown,
+                       ImageURI = "icon_cancel.png",
+                       Name = "No item"
+                   };
 
             // Hookup the Image Button to show the Item picture
             var ItemButton = new ImageButton
@@ -310,7 +310,7 @@ namespace Game.Views
                             ? (Style)stackStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = { ItemButton, ItemLabel }
+                Children = {ItemButton, ItemLabel}
             };
 
             return ItemStack;
@@ -381,7 +381,7 @@ namespace Game.Views
                 Description = "None"
             };
 
-            List<ItemModel> itemList = new List<ItemModel> { NoneItem };
+            List<ItemModel> itemList = new List<ItemModel> {NoneItem, data};
 
             // Add the rest of the items to the list
             itemList.AddRange(ItemIndexViewModel.Instance.Dataset);

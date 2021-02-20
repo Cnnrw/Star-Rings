@@ -2,9 +2,8 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-using Game.Controls;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -81,7 +80,7 @@ namespace Game.Views
                 ItemBox.Children.Remove(data);
             }
 
-            // Add an item display box for each Item Location 
+            // Add an item display box for each Item Location
             ItemBox.Children.Add(GetItemToDisplay());
         }
 
@@ -95,12 +94,12 @@ namespace Game.Views
 
             // If there's no Item currently in the slot, show a blank Item
             data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem) ??
-                new ItemModel
-                {
-                    Location = ItemLocationEnum.Unknown,
-                    ImageURI = "icon_cancel.png",
-                    Name = "No item"
-                };
+                   new ItemModel
+                   {
+                       Location = ItemLocationEnum.Unknown,
+                       ImageURI = "icon_cancel.png",
+                       Name = "No item"
+                   };
 
             // Hookup the Image Button to show the Item picture
             var ItemButton = new Image
@@ -130,7 +129,7 @@ namespace Game.Views
                             ? (Style)stackStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = { ItemButton, ItemLabel }
+                Children = {ItemButton, ItemLabel}
             };
 
             return ItemStack;

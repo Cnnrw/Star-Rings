@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-using Game.Models.Enums;
+using Game.Enums;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

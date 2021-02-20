@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
 using Game.Engine.EngineModels;
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 using NUnit.Framework;
 
@@ -40,8 +40,8 @@ namespace UnitTests.Engine.EngineModels
             result.CharacterList = new List<PlayerInfoModel>();
             result.CurrentAttacker = new PlayerInfoModel();
             result.CurrentDefender = new PlayerInfoModel();
-            result.CurrentMapLocation = new CordinatesModel();
-            result.MoveMapLocation = new CordinatesModel();
+            result.CurrentMapLocation = new CoordinatesModel();
+            result.MoveMapLocation = new CoordinatesModel();
             result.PlayerList = new List<PlayerInfoModel>();
             result.MapModel = new MapModel();
             result.BattleSettingsModel = new BattleSettingsModel();

@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
-using Game.ViewModels;
 
-namespace Game.GameRules
+namespace Game.Helpers
 {
     public static class DefaultData
     {
@@ -25,7 +24,9 @@ namespace Game.GameRules
                     Damage = 5,
                     Value = 3,
                     Location = ItemLocationEnum.OffHand,
-                    Attribute = AttributeEnum.Defense
+                    Attribute = AttributeEnum.Defense,
+                    Category = ItemCategories.Food,
+                    IsConsumable = true
                 },
                 new ItemModel
                 {
@@ -36,7 +37,9 @@ namespace Game.GameRules
                     Damage = 0,
                     Value = 5,
                     Location = ItemLocationEnum.Feet,
-                    Attribute = AttributeEnum.Speed
+                    Attribute = AttributeEnum.Speed,
+                    Category = ItemCategories.Armour,
+                    IsConsumable = false
                 },
                 new ItemModel
                 {
@@ -47,7 +50,9 @@ namespace Game.GameRules
                     Damage = 11,
                     Value = 7,
                     Location = ItemLocationEnum.PrimaryHand,
-                    Attribute = AttributeEnum.Attack
+                    Attribute = AttributeEnum.Attack,
+                    Category = ItemCategories.Weapon,
+                    IsConsumable = false
                 },
                 new ItemModel
                 {
@@ -58,7 +63,9 @@ namespace Game.GameRules
                     Damage = 1,
                     Value = 3,
                     Location = ItemLocationEnum.OffHand,
-                    Attribute = AttributeEnum.Speed
+                    Attribute = AttributeEnum.Speed,
+                    Category = ItemCategories.AreaEffect,
+                    IsConsumable = true
                 },
             };
 
@@ -94,14 +101,6 @@ namespace Game.GameRules
         /// <returns></returns>
         public static List<CharacterModel> LoadData(CharacterModel temp)
         {
-            var HeadString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
-            var NecklaceString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Necklace);
-            var PrimaryHandString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.PrimaryHand);
-            var OffHandString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.OffHand);
-            var FeetString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Feet);
-            var RightFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
-            var LeftFingerString = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Finger);
-
             var datalist = new List<CharacterModel>()
             {
                 new CharacterModel()

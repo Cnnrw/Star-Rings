@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -206,7 +206,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.RunWipeData();
+            RunWipeData();
 
             // Reset
 

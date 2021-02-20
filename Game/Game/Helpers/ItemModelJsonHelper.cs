@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 using Newtonsoft.Json.Linq;
 
@@ -60,23 +60,21 @@ namespace Game.Helpers
         /// <returns></returns>
         public static ItemModel ConvertFromJson(JObject json)
         {
-            var myData = new ItemModel();
-
-            myData.Name = JsonHelper.GetJsonString(json, "Name");
-            myData.Guid = JsonHelper.GetJsonString(json, "Guid");
-            myData.Id = myData.Guid; // Set to be the same as Guid, does not come down from server, but needed for DB
-
-            myData.Description = JsonHelper.GetJsonString(json, "Description");
-            myData.ImageURI = JsonHelper.GetJsonString(json, "ImageURI");
-
-            myData.Value = JsonHelper.GetJsonInteger(json, "Value");
-            myData.Range = JsonHelper.GetJsonInteger(json, "Range");
-            myData.Damage = JsonHelper.GetJsonInteger(json, "Damage");
-
-            //myData.Category = JsonHelper.GetJsonInteger(json, "Category");
-
-            myData.Location = (ItemLocationEnum)JsonHelper.GetJsonInteger(json, "Location");
-            myData.Attribute = (AttributeEnum)JsonHelper.GetJsonInteger(json, "Attribute");
+            var myData = new ItemModel
+            {
+                Name = JsonHelper.GetJsonString(json, "Name"),
+                Guid = JsonHelper.GetJsonString(json, "Guid"),
+                Id = JsonHelper.GetJsonString(json, "Guid"),
+                Description = JsonHelper.GetJsonString(json, "Description"),
+                ImageURI = JsonHelper.GetJsonString(json, "ImageURI"),
+                Value = JsonHelper.GetJsonInteger(json, "Value"),
+                Range = JsonHelper.GetJsonInteger(json, "Range"),
+                Damage = JsonHelper.GetJsonInteger(json, "Damage"),
+                Location = (ItemLocationEnum)JsonHelper.GetJsonInteger(json, "Location"),
+                Attribute = (AttributeEnum)JsonHelper.GetJsonInteger(json, "Attribute"),
+                Category = (ItemCategories)JsonHelper.GetJsonInteger(json, "Category"),
+                IsConsumable = JsonHelper.GetJsonBool(json, "IsConsumable")
+            };
 
             return myData;
         }

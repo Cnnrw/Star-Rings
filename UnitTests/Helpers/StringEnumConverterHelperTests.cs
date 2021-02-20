@@ -1,7 +1,7 @@
-﻿using Game.Helpers;
+﻿using Game.Enums;
+using Game.Helpers;
 using Game.Helpers.Converters;
 using Game.Models;
-using Game.Models.Enums;
 
 using NUnit.Framework;
 

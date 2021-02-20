@@ -12,7 +12,7 @@
              xmlns:controls="clr-namespace:Game.Controls;assembly=Game"
              xmlns:models="clr-namespace:Game.Models;assembly=Game"
              xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Models.Enums;assembly=Game"
+             xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
              BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>

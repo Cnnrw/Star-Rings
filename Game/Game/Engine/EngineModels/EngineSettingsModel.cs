@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Game.Enums;
 using Game.Models;
-using Game.Models.Enums;
 
 namespace Game.Engine.EngineModels
 {
@@ -43,10 +43,10 @@ namespace Game.Engine.EngineModels
         public AbilityEnum CurrentActionAbility { get; set; }
 
         // When the current action is an ability, what ability was selected
-        public CordinatesModel CurrentMapLocation { get; set; }
+        public CoordinatesModel CurrentMapLocation { get; set; }
 
         // When the current action is an ability, what ability was selected
-        public CordinatesModel MoveMapLocation { get; set; }
+        public CoordinatesModel MoveMapLocation { get; set; }
 
         // Hold the list of players (MonsterModel, and character by guid), and order by speed
         public List<PlayerInfoModel> PlayerList { get; set; } = new List<PlayerInfoModel>();
