@@ -5,10 +5,10 @@
     /// </summary>
     public static class WebGlobalsModel
     {
-        // URL for the web site
-        public static string WebSiteAPIURL = "https://itemgetpost.azurewebsites.net/API/";
 
         // Error code value used in the json returns
         public const int ErrorResultCode = 1;
+        // URL for the web site
+        public static string WebSiteAPIURL = "https://itemgetpost.azurewebsites.net/API/";
     }
 }
