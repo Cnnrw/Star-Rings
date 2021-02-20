@@ -102,9 +102,6 @@
     <Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
       <DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Home\LandingPage.xaml.cs">
-      <DependentUpon>LandingPage.xaml</DependentUpon>
-    </Compile>
 		<Compile Update="Views\Monsters\MonsterCreatePage.xaml.cs">
 			<DependentUpon>MonsterCreatePage.xaml</DependentUpon>
 		</Compile>
@@ -147,6 +144,10 @@
 		</Compile>
 		<Compile Update="Components\Controls\FormEntry.xaml.cs">
 			<DependentUpon>FormEntry.xaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Views\LandingPage.xaml.cs">
+			<DependentUpon>LandingPage.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
