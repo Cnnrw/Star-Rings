@@ -120,7 +120,7 @@
 
             <!--The Item Popup-->
             <StackLayout x:Name="PopupItemSelector"
-                         BackgroundColor="{StaticResource PageBackgroundColor}"
+                         BackgroundColor="Transparent"
                          IsVisible="false"
                          AbsoluteLayout.LayoutBounds=".5, .5,.5,.5"
                          AbsoluteLayout.LayoutFlags="All">
