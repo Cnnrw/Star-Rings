@@ -175,12 +175,6 @@ namespace Game.Models
 
                 switch (Job)
                 {
-                    case CharacterJobEnum.Cleric:
-                        result = -1;
-                        break;
-                    case CharacterJobEnum.Fighter:
-                        result = +2;
-                        break;
                     case CharacterJobEnum.Jedi:
                         break;
                     case CharacterJobEnum.Princess:
@@ -233,12 +227,6 @@ namespace Game.Models
 
                 switch (Job)
                 {
-                    case CharacterJobEnum.Cleric:
-                        result = +2;
-                        break;
-                    case CharacterJobEnum.Fighter:
-                        result = -1;
-                        break;
                     case CharacterJobEnum.Jedi:
                         break;
                     case CharacterJobEnum.Princess:
@@ -286,12 +274,6 @@ namespace Game.Models
 
                 switch (Job)
                 {
-                    case CharacterJobEnum.Cleric:
-                        result = 0;
-                        break;
-                    case CharacterJobEnum.Fighter:
-                        result = +1;
-                        break;
                     case CharacterJobEnum.Jedi:
                         break;
                     case CharacterJobEnum.Princess:

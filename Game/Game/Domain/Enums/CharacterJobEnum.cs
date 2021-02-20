@@ -13,29 +13,23 @@ namespace Game.Enums
         // Not specified
         Unknown = 0,
 
-        // Luke is ...
+        // A mid-range combatant
         Jedi = 1,
 
-        // Leia is ...
+        // A quick and clever combatant
         Princess = 2,
 
-        // Han is ...
+        // Long range combatant
         Smuggler = 3,
 
-        // Chewbacca is ...
+        // A lumbering, close-range combatant
         Wookie = 4,
 
-        // C3PO is ...
+        // A slow, fragile, and close range combatant
         ProtocolDroid = 5,
 
-        // R2D2 is ...
+        // A sturdy, mid-range combatant
         AstroDroid = 6,
-
-        // Fighters hit hard and have fight abilities
-        Fighter = 10,
-
-        // Clerics defend well and have buff abilities
-        Cleric = 12,
     }
 
     /// <summary>
@@ -79,13 +73,6 @@ namespace Game.Enums
                     Message = "Astro Droid";
                     break;
 
-                case CharacterJobEnum.Fighter:
-                    Message = "Fighter";
-                    break;
-
-                case CharacterJobEnum.Cleric:
-                    Message = "Cleric";
-                    break;
                 case CharacterJobEnum.Unknown:
                     break;
                 default:
