@@ -1,14 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using Game.ViewModels;
 
 using NUnit.Framework;
 
 using Xamarin.Forms.Mocks;
-
-using Game.ViewModels;
-using Game.Models;
 
 namespace UnitTests.ViewModels
 {

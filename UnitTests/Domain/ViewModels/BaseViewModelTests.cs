@@ -1,27 +1,26 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-using Game.ViewModels;
 using Game.Models;
-using System.Collections.ObjectModel;
+using Game.ViewModels;
+
+using NUnit.Framework;
 
 namespace UnitTests.ViewModels
 {
     [TestFixture]
     public class BaseViewModelTests : BaseViewModel<ItemModel>
     {
-        BaseViewModel<ItemModel> ViewModel;
 
         [SetUp]
         public void Setup()
         {
             ViewModel = new BaseViewModel<ItemModel>();
         }
+
+        BaseViewModel<ItemModel> ViewModel;
 
         [Test]
         public void BaseViewModel_Constructor_Default_Should_Pass()
@@ -148,7 +147,7 @@ namespace UnitTests.ViewModels
 
             // Act
             OnPropertyChanged();
-            
+
             // Reset
 
             // Assert
@@ -174,9 +173,9 @@ namespace UnitTests.ViewModels
         {
             // Arrange
             var dataList = new List<ItemModel>();
-            dataList.Add(new ItemModel { Name = "z" });
-            dataList.Add(new ItemModel { Name = "m" });
-            dataList.Add(new ItemModel { Name = "a" });
+            dataList.Add(new ItemModel {Name = "z"});
+            dataList.Add(new ItemModel {Name = "m"});
+            dataList.Add(new ItemModel {Name = "a"});
 
             // Act
             var result = ViewModel.SortDataset(dataList);
@@ -268,16 +267,16 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Add items into the list Z ordered
-            var dataTest = new ItemModel { Name = "test" };
+            var dataTest = new ItemModel {Name = "test"};
             ViewModel.Dataset = new ObservableCollection<ItemModel>();
 
             await ViewModel.SetDataSource(0);
 
             await ViewModel.CreateAsync(dataTest);
 
-            await ViewModel.CreateAsync(new ItemModel { Name = "z" });
-            await ViewModel.CreateAsync(new ItemModel { Name = "m" });
-            await ViewModel.CreateAsync(new ItemModel { Name = "a" });
+            await ViewModel.CreateAsync(new ItemModel {Name = "z"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "m"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "a"});
 
             // Act
             var result = ViewModel.CheckIfExists(dataTest);
