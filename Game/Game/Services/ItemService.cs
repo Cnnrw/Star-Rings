@@ -17,7 +17,7 @@ namespace Game.Services
     public static class ItemService
     {
         // Return the Default Image URI for the Local Image for an ItemModel.
-        public static string DefaultImageURI = "item.png";
+        public const string DefaultImageURI = "item.png";
 
         #region ServerCalls
 
@@ -34,7 +34,7 @@ namespace Game.Services
 
             // Needs to get items from the server
 
-            var URLComponent = "GetItemList/";
+            const string URLComponent = "GetItemList/";
 
             var DataResult =
                 await HttpClientService.Instance.GetJsonGetAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent +
@@ -94,7 +94,7 @@ namespace Game.Services
                 {"Category", category.ToString()},
             };
 
-            // Convert parameters to a key value pairs to a json object
+            // Convert parameters from  key value pairs to a json object
             JObject finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Make a call to the helper.  URL and Parameters
