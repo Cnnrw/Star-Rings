@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
-
-using SQLite;
+using System.Threading.Tasks;
 
 using Game.Models;
+
+using SQLite;
 
 namespace Game.Services
 {
@@ -18,95 +18,38 @@ namespace Game.Services
     /// <typeparam name="T"></typeparam>
     public class DatabaseService<T> : IDataStore<T> where T : new()
     {
-        #region Singleton
 
-        // Make this a singleton so it only exist one time because holds all the data records in memory
         private static volatile DatabaseService<T> instance;
-        private static readonly object syncRoot = new Object();
-
-        public static DatabaseService<T> Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new DatabaseService<T>();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
-
+        private static readonly object             syncRoot = new object();
         /// <summary>
         /// Set the class to load on demand
         /// Saves app boot time
         /// </summary>
-        static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return GetDataConnection();
-        });
-
-        public static SQLiteAsyncConnection GetDataConnection()
-        {
-            if (TestMode)
-            {
-                return new SQLiteAsyncConnection(":memory:", Constants.Flags);
-            }
-
-            return new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        }
+        private static readonly Lazy<SQLiteAsyncConnection> lazyInitializer =
+            new Lazy<SQLiteAsyncConnection>(GetDataConnection);
 
         public static bool TestMode = false;
-        public int ForceExceptionOnNumber = -1;
-
-        // Lazy Connection
-        static SQLiteAsyncConnection Database => lazyInitializer.Value;
 
         // Track if Initialized or Not
-        public static bool initialized = false;
+        public static bool initialized;
 
-        // Set Needs Init to False, so toggles to true 
-        public bool NeedsInitialization = true;
+        private static readonly object WipeLock = new object();
 
         // Semaphore to track transactions
-        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1);
+        private readonly SemaphoreSlim semaphoreSlim          = new SemaphoreSlim(1);
+        public           int           ForceExceptionOnNumber = -1;
+
+        // Set Needs Init to False, so toggles to true
+        public bool NeedsInitialization = true;
 
         /// <summary>
         /// Constructor
         /// All the database to start up
         /// </summary>
-        public DatabaseService()
-        {
-            InitializeAsync().SafeFireAndForget(false);
-        }
+        public DatabaseService() => InitializeAsync().SafeFireAndForget();
 
-        /// <summary>
-        /// Create the Table if it does not exist
-        /// </summary>
-        /// <returns></returns>
-        async Task InitializeAsync()
-        {
-            if (!initialized)
-            {
-                initialized = true;
-
-                // Check if the Data Table Already exists
-                if (Database.TableMappings.Any(m => m.MappedType.Name == typeof(T).Name))
-                {
-                    return;
-                }
-
-                await Database.CreateTablesAsync(CreateFlags.None, typeof(T));
-            }
-        }
+        // Lazy Connection
+        private static SQLiteAsyncConnection Database => lazyInitializer.Value;
 
         /// <summary>
         /// First time toggled, returns true.
@@ -114,31 +57,27 @@ namespace Game.Services
         /// <returns></returns>
         public async Task<bool> GetNeedsInitializationAsync()
         {
-            if (NeedsInitialization == true)
-            {
-                // Toggle State
-                NeedsInitialization = false;
-                return await Task.FromResult(true);
-            }
+            if (NeedsInitialization != true)
+                return await Task.FromResult(NeedsInitialization);
 
-            return await Task.FromResult(NeedsInitialization);
+            // Toggle State
+            NeedsInitialization = false;
+            return await Task.FromResult(true);
         }
-
-        private static readonly object WipeLock = new object();
 
         /// <summary>
         /// Wipe Data List
         /// Drop the tables and create new ones
-        /// 
+        ///
         /// Put a Lock on the Call, so it must complete
         /// Then others can wipe
-        /// 
+        ///
         /// This prevents two attempts to wipe the database at the same time
-        /// 
+        ///
         /// </summary>
         public async Task<bool> WipeDataListAsync()
         {
-            bool result = false;
+            bool result;
 
             lock (WipeLock)
             {
@@ -178,7 +117,7 @@ namespace Game.Services
                 GetForceExceptionCount();
 
                 var result = await Database.InsertAsync(data);
-                return (result == 1);
+                return result == 1;
             }
             catch (Exception e)
             {
@@ -207,7 +146,7 @@ namespace Game.Services
 
                 var dataList = await IndexAsync();
 
-                data = dataList.Where((T arg) => ((BaseModel<T>)(object)arg).Id.Equals(id)).FirstOrDefault();
+                data = dataList.FirstOrDefault(arg => ((BaseModel<T>)(object)arg).Id.Equals(id));
             }
             catch (Exception e)
             {
@@ -236,7 +175,7 @@ namespace Game.Services
                 return false;
             }
 
-            int result = 0;
+            int result;
             try
             {
                 GetForceExceptionCount();
@@ -249,7 +188,7 @@ namespace Game.Services
                 return await Task.FromResult(false);
             }
 
-            return (result == 1);
+            return result == 1;
         }
 
         /// <summary>
@@ -283,7 +222,7 @@ namespace Game.Services
                 return false;
             }
 
-            return (result == 1);
+            return result == 1;
         }
 
         /// <summary>
@@ -308,23 +247,69 @@ namespace Game.Services
             return result;
         }
 
+        public static SQLiteAsyncConnection GetDataConnection() =>
+            TestMode
+                ? new SQLiteAsyncConnection(":memory:", Constants.Flags)
+                : new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+
         /// <summary>
-        /// Keeps track of the Forced execption Count
+        /// Create the Table if it does not exist
         /// </summary>
         /// <returns></returns>
-        public int GetForceExceptionCount()
+        private static async Task InitializeAsync()
         {
-            if (ForceExceptionOnNumber > 0)
+            if (!initialized)
             {
-                if (ForceExceptionOnNumber == 1)
+                initialized = true;
+
+                // Check if the Data Table Already exists
+                if (Database.TableMappings.Any(m => m.MappedType.Name == typeof(T).Name))
+                    return;
+
+                await Database.CreateTablesAsync(CreateFlags.None, typeof(T));
+            }
+        }
+
+        /// <summary>
+        /// Keeps track of the Forced exception Count
+        /// </summary>
+        /// <returns></returns>
+        private int GetForceExceptionCount()
+        {
+            if (ForceExceptionOnNumber <= 0)
+                return ForceExceptionOnNumber;
+
+            if (ForceExceptionOnNumber == 1)
+                throw new NotImplementedException();
+
+            return ForceExceptionOnNumber--;
+        }
+
+        #region Singleton
+
+        // Make this a singleton so it only exist one time because holds all the data records in memory
+
+
+
+        public static DatabaseService<T> Instance
+        {
+            get
+            {
+                if (instance == null)
                 {
-                    throw new NotImplementedException();
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new DatabaseService<T>();
+                        }
+                    }
                 }
 
-                ForceExceptionOnNumber--;
+                return instance;
             }
-
-            return ForceExceptionOnNumber;
         }
+
+        #endregion Singleton
     }
 }
