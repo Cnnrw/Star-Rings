@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 using Game.Enums;
 using Game.Models;
@@ -28,21 +29,14 @@ namespace Game.Helpers
 
             try
             {
-                JObject json;
-                json = JObject.Parse(myJsonData);
+                var json = JObject.Parse(myJsonData);
 
                 // Data is a List of Items, so need to pull them out one by one...
 
-                var myTempList = json["ItemList"].ToObject<List<JObject>>();
+                var myTempList = json["ItemList"]?.ToObject<List<JObject>>();
 
-                foreach (var myItem in myTempList)
-                {
-                    var myTempObject = ConvertFromJson(myItem);
-                    if (myTempObject != null)
-                    {
-                        myData.Add(myTempObject);
-                    }
-                }
+                myData.AddRange(myTempList!.Select(ConvertFromJson)
+                                           .Where(myTempObject => myTempObject != null));
 
                 return myData;
             }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.16.0" />
+    <PackageReference Include="NExpect" Version="1.0.191" />
     <PackageReference Include="nunit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0">
       <PrivateAssets>all</PrivateAssets>
@@ -16,9 +17,15 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="Xamarin.Forms.Mocks" Version="4.7.0.1" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\Game\Game\Game.csproj" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<Folder Include="Components\Controls" />
+		<Folder Include="Components\Exceptions" />
+		<Folder Include="Domain" />
+	</ItemGroup>
 
 </Project>

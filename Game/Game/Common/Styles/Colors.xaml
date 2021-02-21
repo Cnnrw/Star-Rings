@@ -56,8 +56,8 @@
     <Color x:Key="TriciaryBackgroundColor">lightgray</Color>
     <Color x:Key="LightBackgroundColor">#E0D5C6</Color>
 
-    <Color x:Key="PrimaryTextColor">lightblue</Color>
-    <Color x:Key="SecondaryTextColor">white</Color>
+    <Color x:Key="PrimaryTextColor">White</Color>
+    <Color x:Key="SecondaryTextColor">Yellow</Color>
     <Color x:Key="TriciaryTextColor">darkgreen</Color>
 
     <Color x:Key="TransparentColor">Transparent</Color>
@@ -73,7 +73,7 @@
 
     <!-- Battle Map Colors for Backgrounds -->
     <Color x:Key="BattleMapTransparentColor">Transparent</Color>
-    Landing<Color x:Key="BattleMapCharacterColor">purple</Color>
+    <Color x:Key="BattleMapCharacterColor">purple</Color>
     <Color x:Key="BattleMapMonsterColor">lavender</Color>
     <Color x:Key="BattleMapDeathColor">lightgreen</Color>
     <Color x:Key="BattleMapHitColor">darkorange</Color>

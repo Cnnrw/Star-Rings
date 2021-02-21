@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Game.Enums;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
@@ -13,7 +12,6 @@ namespace Game.Views
     ///     Main Page
     /// </summary>
     [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : FlyoutPage
     {
         // Collection of Navigation Pages

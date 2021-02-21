@@ -228,10 +228,10 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterModel_GetAttack_Fighter_Should_Pass()
+        public void CharacterModel_GetAttack_Jedi_Should_Pass()
         {
             // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Fighter};
+            var data = new CharacterModel {Job = CharacterJobEnum.Jedi};
 
             // Act
             var result = data.GetAttack();
@@ -243,10 +243,10 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterModel_GetDefense_Fighter_Should_Pass()
+        public void CharacterModel_GetDefense_Jedi_Should_Pass()
         {
             // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Fighter};
+            var data = new CharacterModel {Job = CharacterJobEnum.Jedi};
 
             // Act
             var result = data.GetDefense();
@@ -258,10 +258,10 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterModel_GetSpeed_Fighter_Should_Pass()
+        public void CharacterModel_GetSpeed_Jedi_Should_Pass()
         {
             // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Fighter};
+            var data = new CharacterModel {Job = CharacterJobEnum.Jedi};
 
             // Act
             var result = data.GetSpeed();
@@ -273,10 +273,10 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterModel_GetAttack_Cleric_Should_Pass()
+        public void CharacterModel_GetAttack_Wookie_Should_Pass()
         {
             // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Cleric};
+            var data = new CharacterModel {Job = CharacterJobEnum.Wookie};
 
             // Act
             var result = data.GetAttack();
@@ -288,10 +288,10 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterModel_GetDefense_Cleric_Should_Pass()
+        public void CharacterModel_GetDefense_Wookie_Should_Pass()
         {
             // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Cleric};
+            var data = new CharacterModel {Job = CharacterJobEnum.Wookie};
 
             // Act
             var result = data.GetDefense();
@@ -303,10 +303,10 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterModel_GetSpeed_Cleric_Should_Pass()
+        public void CharacterModel_GetSpeed_Wookie_Should_Pass()
         {
             // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Cleric};
+            var data = new CharacterModel {Job = CharacterJobEnum.Wookie};
 
             // Act
             var result = data.GetSpeed();

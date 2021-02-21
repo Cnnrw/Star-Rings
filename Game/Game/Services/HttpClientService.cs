@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
-using System.Diagnostics;
+
+using Game.Helpers;
+using Game.Models;
 
 using Newtonsoft.Json.Linq;
-
-using Game.Models;
-using Game.Helpers;
 
 namespace Game.Services
 {
@@ -55,9 +55,9 @@ namespace Game.Services
 
         /// <summary>
         /// Set the client
-        /// 
+        ///
         /// Used by UT to swap out clients for testing
-        /// 
+        ///
         /// </summary>
         /// <param name="httpClient"></param>
         /// <returns></returns>
@@ -70,12 +70,8 @@ namespace Game.Services
         /// <summary>
         /// Returns the current client
         /// </summary>
-        /// <param name="httpClient"></param>
         /// <returns></returns>
-        public HttpClient GetHttpClient()
-        {
-            return _httpClientInstance;
-        }
+        public HttpClient GetHttpClient() => _httpClientInstance;
 
         /// <summary>
         /// Parse the Json Result
@@ -109,14 +105,10 @@ namespace Game.Services
                 return null;
             }
 
-            // Check for error code            
+            // Check for error code
             if (JsonHelper.GetJsonInteger(json, "errorCode") == WebGlobalsModel.ErrorResultCode)
             {
-                var myError = new
-                {
-                    ServerError = true,
-                    MessageList = JsonHelper.GetJsonString(json, "msg")
-                };
+                var myError = new {ServerError = true, MessageList = JsonHelper.GetJsonString(json, "msg")};
 
                 var myString = (JObject)JToken.FromObject(myError);
                 return myString.ToString();
@@ -131,7 +123,7 @@ namespace Game.Services
             }
 
             data = null;
-            var tempJsonObject = json["data"].ToString();
+            var tempJsonObject = json["data"]?.ToString();
 
             if (!string.IsNullOrEmpty(tempJsonObject))
             {
@@ -157,10 +149,7 @@ namespace Game.Services
             }
 
             //// Add the Account Authorization Information to it
-            var dict = new Dictionary<string, string>
-            {
-                { "Version", "1,1" },
-            };
+            var dict = new Dictionary<string, string> {{"Version", "1,1"},};
 
             JObject finalContentJson = (JObject)JToken.FromObject(dict);
 
@@ -171,10 +160,7 @@ namespace Game.Services
             }
 
             // Merge Two json objects into a unified one...
-            finalJson.Merge(finalContentJson, new JsonMergeSettings
-            {
-                MergeArrayHandling = MergeArrayHandling.Union
-            });
+            finalJson.Merge(finalContentJson, new JsonMergeSettings {MergeArrayHandling = MergeArrayHandling.Union});
 
             var finalPostString = finalJson.ToString();
 

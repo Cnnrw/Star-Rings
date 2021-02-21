@@ -262,18 +262,15 @@ namespace Game.Views
                 case ItemLocationEnum.Feet:
                     data = _viewModel.Data.GetItem(_viewModel.Data.Feet);
                     break;
-                default:
-                    break;
             }
 
             // If there's no Item currently in the slot, show a blank Item
-            data = data ??
-                   new ItemModel
-                   {
-                       Location = ItemLocationEnum.Unknown,
-                       ImageURI = "icon_cancel.png",
-                       Name = "No item"
-                   };
+            data ??= new ItemModel
+            {
+                Location = ItemLocationEnum.Unknown,
+                ImageURI = "icon_cancel.png",
+                Name = "No item"
+            };
 
             // Hookup the Image Button to show the Item picture
             var ItemButton = new ImageButton
@@ -352,8 +349,12 @@ namespace Game.Views
                 case ItemLocationEnum.Feet:
                     _viewModel.Data.Feet = data.Id;
                     break;
-                default:
+                case ItemLocationEnum.Unknown:
                     break;
+                case ItemLocationEnum.Finger:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             AddItemsToDisplay();
@@ -381,7 +382,7 @@ namespace Game.Views
                 Description = "None"
             };
 
-            List<ItemModel> itemList = new List<ItemModel> {NoneItem, data};
+            List<ItemModel> itemList = new List<ItemModel> {NoneItem};
 
             // Add the rest of the items to the list
             itemList.AddRange(ItemIndexViewModel.Instance.Dataset);

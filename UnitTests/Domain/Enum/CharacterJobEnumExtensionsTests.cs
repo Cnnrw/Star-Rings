@@ -22,31 +22,31 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void CharacterJobEnumExtensionsTests_Fighter_Default_Should_Pass()
+        public void CharacterJobEnumExtensionsTests_Jedi_Default_Should_Pass()
         {
             // Arrange
 
             // Act
-            var result = CharacterJobEnum.Fighter.ToMessage();
+            var result = CharacterJobEnum.Jedi.ToMessage();
 
             // Reset
 
             // Assert
-            Assert.AreEqual("Fighter", result);
+            Assert.AreEqual("Jedi", result);
         }
 
         [Test]
-        public void CharacterJobEnumExtensionsTests_Cleric_Default_Should_Pass()
+        public void CharacterJobEnumExtensionsTests_Wookie_Default_Should_Pass()
         {
             // Arrange
 
             // Act
-            var result = CharacterJobEnum.Cleric.ToMessage();
+            var result = CharacterJobEnum.Wookie.ToMessage();
 
             // Reset
 
             // Assert
-            Assert.AreEqual("Cleric", result);
+            Assert.AreEqual("Wookie", result);
         }
     }
 }
