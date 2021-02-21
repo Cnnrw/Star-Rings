@@ -15,8 +15,8 @@ namespace Game.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        public DataSourceEnum CurrentDataSource { get; set; } =
-            ItemIndexViewModel.Instance.GetCurrentDataSource();
+        //public DataSourceEnum CurrentDataSource { get; set; } =
+        //    ItemIndexViewModel.Instance.GetCurrentDataSource();
 
         #region Constructors
 

@@ -71,14 +71,17 @@ namespace Game.ViewModels
         #region SortDataSet
 
         /// <summary>
-        ///     The Sort Order for the ScoreModel
+        /// The Sort Order for the CharacterModel
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<CharacterModel> SortDataset(IEnumerable<CharacterModel> dataset) =>
-            dataset.OrderBy(a => a.Name)
-                   .ThenBy(a => a.Description)
-                   .ToList();
+        public override List<CharacterModel> SortDataset(List<CharacterModel> dataset)
+        {
+            return dataset
+                    .OrderBy(a => a.Name)
+                    .ThenBy(a => a.Description)
+                    .ToList();
+        }
 
         #endregion SortDataSet
 

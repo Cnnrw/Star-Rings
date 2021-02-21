@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using Game.Enums;
@@ -63,11 +63,15 @@ namespace Game.ViewModels
         /// <summary>
         /// The Sort Order for the ItemModel
         /// </summary>
+        /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<ItemModel> SortDataset(IEnumerable<ItemModel> dataset) =>
-            dataset.OrderBy(a => a.Name)
-                   .ThenBy(a => a.Description)
-                   .ToList();
+        public override List<ItemModel> SortDataset(List<ItemModel> dataset)
+        {
+            return dataset
+                    .OrderBy(a => a.Name)
+                    .ThenBy(a => a.Description)
+                    .ToList();
+        }
 
         #endregion SortDataSet
 

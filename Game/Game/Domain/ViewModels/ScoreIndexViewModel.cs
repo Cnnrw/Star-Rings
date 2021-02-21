@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using Game.Helpers;
@@ -74,11 +74,13 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<ScoreModel> SortDataset(IEnumerable<ScoreModel> dataset) =>
-            dataset
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Description)
-                .ToList();
+        public override List<ScoreModel> SortDataset(List<ScoreModel> dataset)
+        {
+            return dataset
+                    .OrderBy(a => a.Name)
+                    .ThenBy(a => a.Description)
+                    .ToList();
+        }
 
         #endregion SortDataSet
         #region Singleton

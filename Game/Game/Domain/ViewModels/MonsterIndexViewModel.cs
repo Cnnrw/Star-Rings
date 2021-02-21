@@ -51,14 +51,17 @@ namespace Game.ViewModels
         public override List<MonsterModel> GetDefaultData() => DefaultData.LoadData(new MonsterModel());
 
         /// <summary>
-        ///     The Sort Order for the CharacterModel
+        /// The Sort Order for the MonsterModel
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<MonsterModel> SortDataset(IEnumerable<MonsterModel> dataset) =>
-            dataset.OrderBy(a => a.Name)
-                   .ThenBy(a => a.Description)
-                   .ToList();
+        public override List<MonsterModel> SortDataset(List<MonsterModel> dataset)
+        {
+            return dataset
+                    .OrderBy(a => a.Name)
+                    .ThenBy(a => a.Description)
+                    .ToList();
+        }
 
         /// <summary>
         ///     Returns the monster passed in
