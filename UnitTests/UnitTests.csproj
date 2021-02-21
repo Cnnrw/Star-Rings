@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.16.0" />
+    <PackageReference Include="NExpect" Version="1.0.191" />
     <PackageReference Include="nunit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0">
       <PrivateAssets>all</PrivateAssets>
@@ -20,9 +21,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Game\Game\Game.csproj" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Domain" />
-  </ItemGroup>
+	
+	<ItemGroup>
+		<Folder Include="Components\Controls" />
+		<Folder Include="Components\Exceptions" />
+		<Folder Include="Domain" />
+	</ItemGroup>
 
 </Project>
