@@ -213,7 +213,7 @@ namespace Game.ViewModels
         /// Load the Default Data
         /// </summary>
         /// <returns></returns>
-        public override List<ItemModel> GetDefaultData() => DefaultData.LoadData(new ItemModel());
+        public override IEnumerable<ItemModel> GetDefaultData() => DefaultData.LoadData(new ItemModel());
 
         #endregion DataOperations_CRUDi
     }
