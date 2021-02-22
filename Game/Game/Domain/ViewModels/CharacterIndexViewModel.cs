@@ -15,7 +15,6 @@ namespace Game.ViewModels
     /// </summary>
     public class CharacterIndexViewModel : BaseViewModel<CharacterModel>
     {
-
         #region Constructor
 
         /// <summary>
@@ -57,17 +56,6 @@ namespace Game.ViewModels
         }
 
         #endregion Constructor
-
-        #region DataOperations_CRUDi
-
-        /// <summary>
-        ///     Load the Default Data
-        /// </summary>
-        /// <returns></returns>
-        public override List<CharacterModel> GetDefaultData() => DefaultData.LoadData(new CharacterModel());
-
-        #endregion DataOperations_CRUDi
-
         #region SortDataSet
 
         /// <summary>
@@ -82,28 +70,6 @@ namespace Game.ViewModels
                 .ToList();
 
         #endregion SortDataSet
-
-        /// <summary>
-        ///     Returns the character passed in
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public override CharacterModel CheckIfExists(CharacterModel data)
-        {
-            if (data == null)
-            {
-                // it's not a match, return false;
-                return null;
-            }
-
-            // This will walk the Scores and find if there is one that is the same.
-            // If so, it returns the Score...
-            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
-                                                     a.Description == data.Description);
-
-            return myList;
-        }
-
         #region Singleton
 
         // Make this a singleton so it only exist one time because it holds all
@@ -132,5 +98,35 @@ namespace Game.ViewModels
         }
 
         #endregion Singleton
+        #region DataOperations_CRUDi
+
+        /// <summary>
+        ///     Load the Default Data
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<CharacterModel> GetDefaultData() => DefaultData.LoadData(new CharacterModel());
+
+        /// <summary>
+        ///     Returns the character passed in
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public override CharacterModel CheckIfExists(CharacterModel data)
+        {
+            if (data == null)
+            {
+                // it's not a match, return false;
+                return null;
+            }
+
+            // This will walk the Scores and find if there is one that is the same.
+            // If so, it returns the Score...
+            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
+                                                     a.Description == data.Description);
+
+            return myList;
+        }
+
+        #endregion DataOperations_CRUDi
     }
 }
