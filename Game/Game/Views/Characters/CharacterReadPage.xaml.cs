@@ -38,7 +38,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Save calls to Update
+        /// Save calls to Update
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -88,33 +88,18 @@ namespace Game.Views
         /// <returns></returns>
         public StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
         {
-            ItemModel data = null;
-
             // Get the current Item in this ItemLocation
-            switch (itemLocation)
-            {
-                case ItemLocationEnum.Head:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.Head);
-                    break;
-                case ItemLocationEnum.Necklace:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.Necklace);
-                    break;
-                case ItemLocationEnum.PrimaryHand:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.PrimaryHand);
-                    break;
-                case ItemLocationEnum.OffHand:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.OffHand);
-                    break;
-                case ItemLocationEnum.LeftFinger:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.LeftFinger);
-                    break;
-                case ItemLocationEnum.RightFinger:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.RightFinger);
-                    break;
-                case ItemLocationEnum.Feet:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.Feet);
-                    break;
-            }
+            ItemModel data = itemLocation switch
+                             {
+                                 ItemLocationEnum.Head        => _viewModel.Data.GetItem(_viewModel.Data.Head),
+                                 ItemLocationEnum.Necklace    => _viewModel.Data.GetItem(_viewModel.Data.Necklace),
+                                 ItemLocationEnum.PrimaryHand => _viewModel.Data.GetItem(_viewModel.Data.PrimaryHand),
+                                 ItemLocationEnum.OffHand     => _viewModel.Data.GetItem(_viewModel.Data.OffHand),
+                                 ItemLocationEnum.LeftFinger  => _viewModel.Data.GetItem(_viewModel.Data.LeftFinger),
+                                 ItemLocationEnum.RightFinger => _viewModel.Data.GetItem(_viewModel.Data.RightFinger),
+                                 ItemLocationEnum.Feet        => _viewModel.Data.GetItem(_viewModel.Data.Feet),
+                                 _                            => null
+                             };
 
             // If there's no Item currently in the slot, show a blank Item
             data ??= new ItemModel
