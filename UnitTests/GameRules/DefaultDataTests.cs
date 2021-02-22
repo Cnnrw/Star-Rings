@@ -49,7 +49,7 @@ namespace UnitTests.GameRules
             // Reset
 
             // Assert
-            Assert.AreEqual(7, result.Count());
+            Assert.AreEqual(3, result.Count());
         }
 
 
