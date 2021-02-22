@@ -76,7 +76,7 @@ namespace UnitTests.Helpers
             DiceHelper.DisableForcedRolls();
 
             // Assert
-            Assert.AreEqual("Deg", result);
+            Assert.AreEqual("Suzbul", result);
         }
 
         [Test]
