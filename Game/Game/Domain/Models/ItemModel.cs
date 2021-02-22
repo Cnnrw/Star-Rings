@@ -19,9 +19,6 @@ namespace Game.Models
     /// </summary>
     public class ItemModel : BaseModel<ItemModel>
     {
-
-        // TODO: Add Unique attributes for Item
-
         /// <summary>
         /// Default ItemModel
         /// Establish the Default Image Path

@@ -65,30 +65,15 @@ namespace Game.Enums
         public static string ToMessage(this BattleLocationEnum value)
         {
             // Default String
-            var Result = "Battle location";
-
-            switch (value)
-            {
-                case BattleLocationEnum.Shire:
-                    Result = "The Shire";
-                    break;
-
-                case BattleLocationEnum.ElvenCity:
-                    Result = "Elven City";
-                    break;
-
-                case BattleLocationEnum.Forest:
-                    Result = "Forest";
-                    break;
-
-                case BattleLocationEnum.Dungeons:
-                    Result = "Dungeons";
-                    break;
-
-                case BattleLocationEnum.Mordor:
-                    Result = "Mordor";
-                    break;
-            }
+            var Result = value switch
+                         {
+                             BattleLocationEnum.Shire     => "The Shire",
+                             BattleLocationEnum.ElvenCity => "Elven City",
+                             BattleLocationEnum.Forest    => "Forest",
+                             BattleLocationEnum.Dungeons  => "Dungeons",
+                             BattleLocationEnum.Mordor    => "Mordor",
+                             _                            => "Battle location"
+                         };
 
             return Result;
         }
@@ -108,9 +93,7 @@ namespace Game.Enums
             get
             {
                 var myList = System.Enum.GetNames(typeof(BattleLocationEnum)).ToList();
-                var myReturn = myList.Where(a =>
-                                                a.ToString() != BattleLocationEnum.Unknown.ToString()
-                                           )
+                var myReturn = myList.Where(a => a != BattleLocationEnum.Unknown.ToString())
                                      .OrderBy(a => a)
                                      .ToList();
                 return myReturn;

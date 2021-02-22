@@ -1,20 +1,15 @@
 ﻿using System;
-using System.ComponentModel;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using Game.Models;
 using Game.ViewModels;
+
+using Xamarin.Forms;
 
 namespace Game.Views
 {
     /// <summary>
     /// Index Page
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScoreIndexPage : ContentPage
     {
         // The view model, used for data binding
@@ -25,7 +20,7 @@ namespace Game.Views
 
         /// <summary>
         /// Constructor for Index Page
-        /// 
+        ///
         /// Get the ScoreIndexView Model
         /// </summary>
         public ScoreIndexPage()
@@ -42,11 +37,8 @@ namespace Game.Views
         /// <param name="args"></param>
         public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            ScoreModel data = args.SelectedItem as ScoreModel;
-            if (data == null)
-            {
+            if (!(args.SelectedItem is ScoreModel data))
                 return;
-            }
 
             // Open the Read Page
             await Navigation.PushAsync(new ScoreReadPage(new GenericViewModel<ScoreModel>(data)));
@@ -60,10 +52,9 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void AddScore_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new ScoreCreatePage(new GenericViewModel<ScoreModel>())));
-        }
+        public async void AddScore_Clicked(object sender, EventArgs e) =>
+            await Navigation
+                .PushModalAsync(new NavigationPage(new ScoreCreatePage(new GenericViewModel<ScoreModel>())));
 
         /// <summary>
         /// Refresh the list on page appearing
