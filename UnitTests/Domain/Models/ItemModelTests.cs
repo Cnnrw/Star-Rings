@@ -56,6 +56,7 @@ namespace UnitTests.Models
             Assert.IsNotNull(result.Damage);
             Assert.IsNotNull(result.Attribute);
             Assert.IsNotNull(result.Location);
+            Assert.IsNotNull(result.Count);
         }
 
         [Test]
@@ -70,6 +71,7 @@ namespace UnitTests.Models
             result.Damage = 8;
             result.Attribute = AttributeEnum.Attack;
             result.Location = ItemLocationEnum.Feet;
+            result.Count = 1;
 
             // Reset
 
@@ -79,6 +81,7 @@ namespace UnitTests.Models
             Assert.AreEqual(8, result.Damage);
             Assert.AreEqual(AttributeEnum.Attack, result.Attribute);
             Assert.AreEqual(ItemLocationEnum.Feet, result.Location);
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
