@@ -20,12 +20,13 @@ namespace Game.Models
         {
             PlayerType = PlayerTypeEnum.Monster;
             Guid = Id;
-            Name = "Goblin";
+            Name = "Orc";
             Description = "An evil minion of Sauron";
             Attack = 1;
             Difficulty = DifficultyEnum.Average;
             UniqueItem = null;
-            ImageURI = "item.png";
+            ImageURI = "orc.png";
+            IconImageURI = "orc_icon.png";
             ExperienceTotal = 0;
             ExperienceRemaining = LevelTableHelper.LevelDetailsList[Level + 1].Experience - 1;
 
@@ -62,6 +63,7 @@ namespace Game.Models
             Description = newData.Description;
             Level = newData.Level;
             ImageURI = newData.ImageURI;
+            IconImageURI = newData.IconImageURI;
 
             Difficulty = newData.Difficulty;
 
