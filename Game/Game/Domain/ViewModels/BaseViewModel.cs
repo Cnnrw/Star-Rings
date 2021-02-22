@@ -161,7 +161,7 @@ namespace Game.ViewModels
         /// The ViewModel will Implement
         /// </summary>
         /// <returns></returns>
-        public virtual List<T> GetDefaultData() => new List<T>();
+        public virtual IEnumerable<T> GetDefaultData() => new List<T>();
 
         #endregion DataSourceManagement
         #region Refresh
