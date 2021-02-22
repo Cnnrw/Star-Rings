@@ -1,19 +1,15 @@
 using System;
-using System.ComponentModel;
 
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     ///     Character Index Page
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterIndexPage : ContentPage
     {
         private readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
@@ -82,11 +78,6 @@ namespace Game.Views
             }
 
             BindingContext = _viewModel;
-        }
-
-        public void AddItem_Clicked(object o, object o1)
-        {
-            throw new NotImplementedException();
         }
     }
 }
