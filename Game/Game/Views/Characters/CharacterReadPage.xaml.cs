@@ -24,13 +24,13 @@ namespace Game.Views
         /// Constructor is called with the CharacterModel of the
         /// character to be displayed.
         /// </summary>
-        /// <param name="data"></param>
-        public CharacterReadPage(GenericViewModel<CharacterModel> data)
+        /// <param name="model">The character model object to be displayed.</param>
+        public CharacterReadPage(GenericViewModel<CharacterModel> model)
         {
             InitializeComponent();
 
-            _viewModel = data;
-            _viewModel.Title = data.Data.Name;
+            _viewModel = model;
+            _viewModel.Title = model.Data.Name;
 
             BindingContext = _viewModel;
 
