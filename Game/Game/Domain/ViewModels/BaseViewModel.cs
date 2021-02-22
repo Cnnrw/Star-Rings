@@ -20,6 +20,23 @@ namespace Game.ViewModels
     public class BaseViewModel<T> : ObservableObject
         where T : new()
     {
+        #region Constructor
+
+        /// <summary>
+        /// Initialize the ViewModel
+        /// Sets the collection Dataset
+        /// Sets the Load command
+        /// Sets the default data source
+        /// </summary>
+        protected async void Initialize()
+        {
+            Dataset = new ObservableCollection<T>();
+            LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
+
+            await SetDataSource(_currentDataSource); // Set to Mock to start with
+        }
+
+        #endregion Constructor
         #region Static Variables
 
         // The Mock DataStore
@@ -73,28 +90,6 @@ namespace Game.ViewModels
         }
 
         #endregion Attributes
-        #region Constructor
-
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        public BaseViewModel() { }
-
-        /// <summary>
-        /// Initialize the ViewModel
-        /// Sets the collection Dataset
-        /// Sets the Load command
-        /// Sets the default data source
-        /// </summary>
-        protected async void Initialize()
-        {
-            Dataset = new ObservableCollection<T>();
-            LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
-
-            await SetDataSource(_currentDataSource); // Set to Mock to start with
-        }
-
-        #endregion Constructor
         #region DataSourceManagement
 
         /// <summary>
