@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 using Game.Enums;
 using Game.Helpers;
@@ -93,7 +93,7 @@ namespace UnitTests.Helpers
             DiceHelper.DisableForcedRolls();
 
             // Assert
-            Assert.AreEqual("the Elf hater", result);
+            Assert.AreEqual("The son of Dvelyn", result);
         }
 
         [Test]
