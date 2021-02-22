@@ -15,6 +15,7 @@
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
+		<None Remove="Common\Images\Characters\EquippedSlots\offhand_slot.png" />
 		<None Remove="Common\Images\star_rings_logo.png" />
 		<None Remove="Common\Images\column.png" />
 		<None Remove="Common\Images\magic_tree.gif" />
@@ -53,7 +54,6 @@
 		<None Remove="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\astromech_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\2h_slot.png" />
 		<None Remove="Common\Images\Characters\EquippedSlots\Body_slot.png" />
 		<None Remove="Common\Images\Characters\EquippedSlots\Cape_slot.png" />
 		<None Remove="Common\Images\Characters\EquippedSlots\Feet_slot.png" />
@@ -189,7 +189,7 @@
 		<SharedImage Include="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
 		<SharedImage Include="Common\Images\Characters\CharacterIcons\smuggler_icon.png" />
 		<SharedImage Include="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\2h_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\offhand_slot.png" />
 		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Body_slot.png" />
 		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Cape_slot.png" />
 		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Feet_slot.png" />
