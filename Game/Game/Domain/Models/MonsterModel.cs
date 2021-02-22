@@ -20,20 +20,6 @@ namespace Game.Models
         {
             PlayerType = PlayerTypeEnum.Monster;
             Guid = Id;
-            Name = "Orc";
-            Description = "An evil minion of Sauron";
-            Attack = 1;
-            Difficulty = DifficultyEnum.Average;
-            UniqueItem = null;
-            ImageURI = "orc.png";
-            IconImageURI = "orc_icon.png";
-            ExperienceTotal = 0;
-            ExperienceRemaining = LevelTableHelper.LevelDetailsList[Level + 1].Experience - 1;
-
-            // Default to unknown, which is no special job
-            Job = CharacterJobEnum.Unknown;
-
-            BattleLocation = BattleLocationEnum.Mordor;
         }
 
         /// <summary>
