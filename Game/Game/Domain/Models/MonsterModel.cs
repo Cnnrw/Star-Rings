@@ -1,20 +1,26 @@
 using Game.Enums;
-using Game.Helpers;
 
 namespace Game.Models
 {
     /// <summary>
     /// The Monsters in the Game
-    ///
-    /// Derives from BasePlayer Model just like Character
+    /// Derives from BasePlayer Model
     /// </summary>
     public class MonsterModel : BasePlayerModel<MonsterModel>
     {
+        #region Monster-specific Attributes
 
         /// <summary>
-        /// Set Type to Monster
-        ///
-        /// Set Name and Description
+        /// The locations where the monster can appear
+        /// </summary>
+        public BattleLocationEnum BattleLocations { get; set; }
+
+        #endregion
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor for Monster Model. Sets the PlayerType to Monster
+        /// and the Guid equal to the ID sent from the server.
         /// </summary>
         public MonsterModel()
         {
@@ -28,11 +34,12 @@ namespace Game.Models
         /// <param name="data"></param>
         public MonsterModel(MonsterModel data) => Update(data);
 
-        // The location the Monster can appear in
-        public BattleLocationEnum BattleLocation { get; set; } = BattleLocationEnum.Mordor;
+        #endregion
+        #region Overrides
 
         /// <summary>
         /// Update
+        /// TODO: Maybe make a copy constructor?
         /// </summary>
         /// <param name="newData"></param>
         /// <returns></returns>
@@ -45,14 +52,18 @@ namespace Game.Models
 
             PlayerType = newData.PlayerType;
             Guid = newData.Guid;
+
             Name = newData.Name;
             Description = newData.Description;
-            Level = newData.Level;
+
+
             ImageURI = newData.ImageURI;
             IconImageURI = newData.IconImageURI;
+            UniqueItem = newData.UniqueItem;
 
             Difficulty = newData.Difficulty;
 
+            Level = newData.Level;
             Speed = newData.Speed;
             Defense = newData.Defense;
             Attack = newData.Attack;
@@ -69,7 +80,6 @@ namespace Game.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
-            UniqueItem = newData.UniqueItem;
 
             BattleLocations = newData.BattleLocations;
 
@@ -77,7 +87,8 @@ namespace Game.Models
         }
 
         /// <summary>
-        /// Helper to combine the attributes into a single line, to make it easier to display the item as a string
+        /// Helper to combine the attributes into a single line, to make it
+        /// easier to display the item as a string
         /// </summary>
         /// <returns></returns>
         public override string FormatOutput()
@@ -93,5 +104,7 @@ namespace Game.Models
 
             return myReturn;
         }
+
+        #endregion
     }
 }
