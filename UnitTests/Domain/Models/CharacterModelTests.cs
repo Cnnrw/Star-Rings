@@ -226,20 +226,20 @@ namespace UnitTests.Models
             Assert.AreEqual(CharacterJobEnum.Unknown, result.Job);
         }
 
-        //[Test]
-        //public void CharacterModel_GetAttack_Jedi_Should_Pass()
-        //{
-        //    // ArDefense
-        //    var data = new CharacterModel {Job = CharacterJobEnum.Jedi};
+        [Test]
+        public void CharacterModel_GetAttack_Jedi_Should_Pass()
+        {
+            // ArDefense
+            var data = new CharacterModel {Job = CharacterJobEnum.Jedi};
 
-        //    // Act
-        //    var result = data.GetAttack();
+            // Act
+            var result = data.GetAttack();
 
-        //    // Reset
+            // Reset
 
-        //    // Assert
-        //    Assert.AreEqual(3, result);
-        //}
+            // Assert
+            Assert.AreEqual(3, result);
+        }
 
         [Test]
         public void CharacterModel_GetDefense_Jedi_Should_Pass()
