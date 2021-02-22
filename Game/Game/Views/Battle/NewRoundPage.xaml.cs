@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Xamarin.Forms;
@@ -64,7 +64,7 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"],
+                //Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"],
                 Source = data.ImageURI
             };
 
@@ -72,7 +72,7 @@ namespace Game.Views
             var PlayerLevelLabel = new Label
             {
                 Text = "Level : "+data.Level,
-                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -86,7 +86,7 @@ namespace Game.Views
             var PlayerHPLabel = new Label
             {
                 Text = "HP : "+ data.GetCurrentHealthTotal,
-                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -99,7 +99,7 @@ namespace Game.Views
             var PlayerNameLabel = new Label()
             {
                 Text = data.Name,
-                Style = (Style)Application.Current.Resources["ValueStyle"],
+                //Style = (Style)Application.Current.Resources["ValueStyle"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -112,7 +112,7 @@ namespace Game.Views
             // Put the Image Button and Text inside a layout
             var PlayerStack = new StackLayout
             {
-                Style = (Style)Application.Current.Resources["PlayerInfoBox"],
+                //Style = (Style)Application.Current.Resources["PlayerInfoBox"],
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
