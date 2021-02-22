@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Enums;
-using Game.Helpers;
 using Game.Models;
 using Game.Views;
 
@@ -213,7 +212,7 @@ namespace Game.ViewModels
         /// Load the Default Data
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<ItemModel> GetDefaultData() => DefaultData.LoadData(new ItemModel());
+        public override IEnumerable<ItemModel> GetDefaultData() => DefaultData.Items;
 
         #endregion DataOperations_CRUDi
     }

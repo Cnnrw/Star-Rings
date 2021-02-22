@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Game.Helpers;
 using Game.Models;
 using Game.Views;
 
@@ -79,7 +78,7 @@ namespace Game.ViewModels
         ///     Loads the default data
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<MonsterModel> GetDefaultData() => DefaultData.LoadData(new MonsterModel());
+        public override IEnumerable<MonsterModel> GetDefaultData() => DefaultData.Monsters;
 
         /// <summary>
         /// The Sort Order for the MonsterModel

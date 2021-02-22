@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Game.Helpers;
 using Game.Models;
 using Game.Views;
 
@@ -64,10 +63,9 @@ namespace Game.ViewModels
         /// <param name="dataset"></param>
         /// <returns></returns>
         public override List<CharacterModel> SortDataset(IEnumerable<CharacterModel> dataset) =>
-            dataset
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Description)
-                .ToList();
+            dataset.OrderBy(a => a.Name)
+                   .ThenBy(a => a.Description)
+                   .ToList();
 
         #endregion SortDataSet
         #region Singleton
@@ -104,7 +102,7 @@ namespace Game.ViewModels
         ///     Load the Default Data
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<CharacterModel> GetDefaultData() => DefaultData.LoadData(new CharacterModel());
+        public override IEnumerable<CharacterModel> GetDefaultData() => DefaultData.Characters;
 
         /// <summary>
         ///     Returns the character passed in
