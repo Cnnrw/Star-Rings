@@ -15,7 +15,6 @@ namespace Game.ViewModels
     /// </summary>
     public class ScoreIndexViewModel : BaseViewModel<ScoreModel>
     {
-
         #region Constructor
 
         /// <summary>
@@ -66,21 +65,6 @@ namespace Game.ViewModels
         }
 
         #endregion Constructor
-
-        #region SortDataSet
-
-        /// <summary>
-        /// The Sort Order for the ScoreModel
-        /// </summary>
-        /// <param name="dataset"></param>
-        /// <returns></returns>
-        public override List<ScoreModel> SortDataset(IEnumerable<ScoreModel> dataset) =>
-            dataset
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Description)
-                .ToList();
-
-        #endregion SortDataSet
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
@@ -108,8 +92,18 @@ namespace Game.ViewModels
         }
 
         #endregion Singleton
-
         #region DataOperations_CRUDi
+
+        /// <summary>
+        /// The Sort Order for the ScoreModel
+        /// </summary>
+        /// <param name="dataset"></param>
+        /// <returns></returns>
+        public override List<ScoreModel> SortDataset(IEnumerable<ScoreModel> dataset) =>
+            dataset
+                .OrderBy(a => a.Name)
+                .ThenBy(a => a.Description)
+                .ToList();
 
         /// <summary>
         /// Returns the Score passed in
@@ -121,15 +115,7 @@ namespace Game.ViewModels
             // This will walk the Scores and find if there is one that is the same.
             // If so, it returns the Score...
 
-            var myList = Dataset.Where(a =>
-                                           a.Name == data.Name)
-                                .FirstOrDefault();
-
-            if (myList == null)
-            {
-                // it's not a match, return false;
-                return null;
-            }
+            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name);
 
             return myList;
         }
@@ -138,7 +124,7 @@ namespace Game.ViewModels
         /// Load the Default Data
         /// </summary>
         /// <returns></returns>
-        public override List<ScoreModel> GetDefaultData() => DefaultData.LoadData(new ScoreModel());
+        public override IEnumerable<ScoreModel> GetDefaultData() => DefaultData.LoadData(new ScoreModel());
 
         #endregion DataOperations_CRUDi
     }
