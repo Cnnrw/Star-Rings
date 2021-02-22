@@ -78,7 +78,7 @@ namespace Game.ViewModels
         /// <summary>
         /// Default Constructor
         /// </summary>
-        protected BaseViewModel() { }
+        public BaseViewModel() { }
 
         /// <summary>
         /// Initialize the ViewModel

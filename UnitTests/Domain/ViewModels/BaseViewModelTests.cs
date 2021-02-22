@@ -15,10 +15,7 @@ namespace UnitTests.ViewModels
     {
 
         [SetUp]
-        public void Setup()
-        {
-            ViewModel = new BaseViewModel<ItemModel>();
-        }
+        public void Setup() => ViewModel = new BaseViewModel<ItemModel>();
 
         BaseViewModel<ItemModel> ViewModel;
 
@@ -59,7 +56,7 @@ namespace UnitTests.ViewModels
             var result = new BaseViewModel<ItemModel>();
 
             var isBusy = false;
-            SetProperty<bool>(ref isBusy, true);
+            SetProperty(ref isBusy, true);
 
             // Reset
 
@@ -76,7 +73,7 @@ namespace UnitTests.ViewModels
             var result = new BaseViewModel<ItemModel>();
 
             var isBusy = false;
-            SetProperty<bool>(ref isBusy, false);
+            SetProperty(ref isBusy, false);
 
             // Reset
 
@@ -97,7 +94,7 @@ namespace UnitTests.ViewModels
 
             // Act
 
-            SetProperty<bool>(ref isBusy, false, "bogus", showMethod);
+            SetProperty(ref isBusy, false, "bogus", showMethod);
 
             // Reset
 
@@ -129,15 +126,9 @@ namespace UnitTests.ViewModels
         /// <summary>
         /// Following TestName class is used for the Action in the SetProperty test
         /// </summary>
-        public class TestName
+        private class TestName
         {
-            public TestName()
-            {
-            }
-
-            public void Display()
-            {
-            }
+            public void Display() { }
         }
 
         [Test]
