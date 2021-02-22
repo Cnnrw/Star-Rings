@@ -21,9 +21,8 @@ namespace Game.Views
         public CharacterReadPage(bool UnitTest) { }
 
         /// <summary>
-        ///     Constructor called with a view model
-        ///     This is the primary way to open the page
-        ///     The ViewModel is the data that should be displayed
+        /// Constructor is called with the CharacterModel of the
+        /// character to be displayed.
         /// </summary>
         /// <param name="data"></param>
         public CharacterReadPage(GenericViewModel<CharacterModel> data)
