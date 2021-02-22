@@ -322,7 +322,7 @@ namespace Game.Helpers
                 Speed = GetAbilityValue(),
                 Defense = GetAbilityValue(),
                 ImageURI = GetMonsterImage(),
-                BattleLocation = GetMonsterBattleLocation(),
+                BattleLocations = GetMonsterBattleLocation(),
                 Difficulty = GetMonsterDifficultyValue()
             };
 
