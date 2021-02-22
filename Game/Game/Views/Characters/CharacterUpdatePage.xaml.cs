@@ -99,28 +99,28 @@ namespace Game.Views
         // /// </summary>
         // /// <param name="sender"></param>
         // /// <param name="e"></param>
-        // private void RandomButton_Clicked(object sender, EventArgs e)
-        // {
-        //     _viewModel.Data.Update(RandomPlayerHelper.GetRandomCharacter(20));
-        //     UpdatePageBindingContext();
-        // }
+        private void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Data.Update(RandomPlayerHelper.GetRandomCharacter(20));
+            UpdatePageBindingContext();
+        }
 
         #endregion
 
         #region Pickers
 
-        /// <summary>
-        /// Updates the Character's ImageURI and the page's image source
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnJobPickerChanged(object sender, EventArgs e)
-        {
-            var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
-
-            _viewModel.Data.ImageURI = iconImageURI;
-            JobImage.Source = iconImageURI;
-        }
+        // /// <summary>
+        // /// Updates the Character's ImageURI and the page's image source
+        // /// </summary>
+        // /// <param name="sender"></param>
+        // /// <param name="e"></param>
+        // private void OnJobPickerChanged(object sender, EventArgs e)
+        // {
+        //     var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
+        //
+        //     _viewModel.Data.ImageURI = iconImageURI;
+        //     JobImage.Source = iconImageURI;
+        // }
 
         /// <summary>
         ///     Propagates the values for the character level picker

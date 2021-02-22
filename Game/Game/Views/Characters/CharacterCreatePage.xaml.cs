@@ -49,7 +49,7 @@ namespace Game.Views
             var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
 
             _viewModel.Data.ImageURI = iconImageURI;
-            JobImage.Source = iconImageURI;
+            // JobImage.Source = iconImageURI;
         }
 
         /// <summary>
