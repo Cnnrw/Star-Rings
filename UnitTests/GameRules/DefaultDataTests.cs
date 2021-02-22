@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 using Game.Helpers;
 using Game.Models;
@@ -35,7 +35,7 @@ namespace UnitTests.GameRules
             // Reset
 
             // Assert
-            Assert.AreEqual(7, result.Count());
+            Assert.AreEqual(6, result.Count());
         }
 
         [Test]
