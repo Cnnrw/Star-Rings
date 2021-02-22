@@ -85,8 +85,7 @@ namespace Game.Models
             Feet = newData.Feet;
             UniqueItem = newData.UniqueItem;
 
-            Job = newData.Job;
-            BattleLocation = newData.BattleLocation;
+            BattleLocations = newData.BattleLocations;
 
             return true;
         }
