@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Game.Helpers;
 using Game.Models;
 using Game.Views;
 
@@ -124,7 +123,7 @@ namespace Game.ViewModels
         /// Load the Default Data
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<ScoreModel> GetDefaultData() => DefaultData.LoadData(new ScoreModel());
+        public override IEnumerable<ScoreModel> GetDefaultData() => new List<ScoreModel>();
 
         #endregion DataOperations_CRUDi
     }
