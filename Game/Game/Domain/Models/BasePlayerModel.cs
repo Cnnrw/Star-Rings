@@ -115,10 +115,6 @@ namespace Game.Models
         // The Job for the Player
         public CharacterJobEnum Job { get; set; } = CharacterJobEnum.Unknown;
 
-        // The small icon image for the Player
-        // TODO: Use this to add small player icons
-        public string IconImageURI { get; set; } = "item.png";
-
         #endregion PlayerAttributes
 
         #endregion Attributes
