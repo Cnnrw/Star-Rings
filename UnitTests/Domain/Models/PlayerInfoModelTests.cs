@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace UnitTests.Models
 {
-    // TODO: Idk if Wookies have the ability to heal so I've commented those methods out -CW
     [TestFixture]
     public class PlayerInfoModelTests
     {
@@ -130,63 +129,63 @@ namespace UnitTests.Models
             Assert.AreEqual(false, result);
         }
 
-        // [Test]
-        // public void PlayerInfoModel_SelectHealingAbility_Wookie_Heal_Available_Should_Pass()
-        // {
-        //     // Arrange
-        //     var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
-        //     data.AbilityTracker[AbilityEnum.Heal] = 1;
-        //
-        //     data.CurrentHealth = 1;
-        //     data.MaxHealth = 100;
-        //
-        //     // Act
-        //     var result = data.SelectHealingAbility();
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(AbilityEnum.Heal, result);
-        // }
+        [Test]
+        public void PlayerInfoModel_SelectHealingAbility_Wookie_Heal_Available_Should_Pass()
+        {
+            // Arrange
+            var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            data.AbilityTracker[AbilityEnum.Heal] = 1;
 
-        // [Test]
-        // public void PlayerInfoModel_SelectHealingAbility_Cleric_Heal_Not_Needed_Should_Pass()
-        // {
-        //     // Arrange
-        //     var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
-        //     data.AbilityTracker[AbilityEnum.Heal] = 1;
-        //
-        //     data.CurrentHealth = 100;
-        //     data.MaxHealth = 100;
-        //
-        //     // Act
-        //     var result = data.SelectHealingAbility();
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(AbilityEnum.Unknown, result);
-        // }
+            data.CurrentHealth = 1;
+            data.MaxHealth = 100;
 
-        // [Test]
-        // public void PlayerInfoModel_SelectHealingAbility_Cleric_Heal_Not_Available_Should_Return_Unknown()
-        // {
-        //     // Arrange
-        //     var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
-        //     data.AbilityTracker[AbilityEnum.Heal] = 0;
-        //     data.AbilityTracker[AbilityEnum.Bandage] = 0;
-        //
-        //     data.CurrentHealth = 1;
-        //     data.MaxHealth = 100;
-        //
-        //     // Act
-        //     var result = data.SelectHealingAbility();
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(AbilityEnum.Unknown, result);
-        // }
+            // Act
+            var result = data.SelectHealingAbility();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(AbilityEnum.Heal, result);
+        }
+
+        [Test]
+        public void PlayerInfoModel_SelectHealingAbility_Wookie_Heal_Not_Needed_Should_Pass()
+        {
+            // Arrange
+            var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            data.AbilityTracker[AbilityEnum.Heal] = 1;
+
+            data.CurrentHealth = 100;
+            data.MaxHealth = 100;
+
+            // Act
+            var result = data.SelectHealingAbility();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(AbilityEnum.Unknown, result);
+        }
+
+        [Test]
+        public void PlayerInfoModel_SelectHealingAbility_Wookie_Heal_Not_Available_Should_Return_Unknown()
+        {
+            // Arrange
+            var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            data.AbilityTracker[AbilityEnum.Heal] = 0;
+            data.AbilityTracker[AbilityEnum.Bandage] = 0;
+
+            data.CurrentHealth = 1;
+            data.MaxHealth = 100;
+
+            // Act
+            var result = data.SelectHealingAbility();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(AbilityEnum.Unknown, result);
+        }
 
         [Test]
         public void PlayerInfoModel_SelectHealingAbility_Jedi_Bandage_Available_Should_Pass()
@@ -231,12 +230,11 @@ namespace UnitTests.Models
             data.AbilityTracker[AbilityEnum.Quick] = 1;
 
             // Act
-            var unused = data.SelectAbilityToUse();
+            var result = data.SelectAbilityToUse();
 
             // Reset
 
             // Assert
-            // TODO: What is this asserting? lol.
         }
 
         [Test]
@@ -254,22 +252,22 @@ namespace UnitTests.Models
             Assert.AreEqual(AbilityEnum.Unknown, result);
         }
 
-        // [Test]
-        // public void PlayerInfoModel_SelectAbilityToUse_Cleric_Heal_Should_Skip()
-        // {
-        //     // Arrange
-        //     var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
-        //     data.AbilityTracker[AbilityEnum.Quick] = 0;
-        //     data.AbilityTracker[AbilityEnum.Barrier] = 0;
-        //     data.AbilityTracker[AbilityEnum.Curse] = 0;
-        //
-        //     // Act
-        //     var result = data.SelectAbilityToUse();
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(AbilityEnum.Unknown, result);
-        // }
+        [Test]
+        public void PlayerInfoModel_SelectAbilityToUse_Wookie_Heal_Should_Skip()
+        {
+            // Arrange
+            var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            data.AbilityTracker[AbilityEnum.Quick] = 0;
+            data.AbilityTracker[AbilityEnum.Barrier] = 0;
+            data.AbilityTracker[AbilityEnum.Curse] = 0;
+
+            // Act
+            var result = data.SelectAbilityToUse();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(AbilityEnum.Unknown, result);
+        }
     }
 }

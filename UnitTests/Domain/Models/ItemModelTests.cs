@@ -19,7 +19,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.IsNotNull(result);
         }
 
@@ -36,7 +36,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreNotEqual("oldID", result.Id);
         }
 
@@ -50,7 +50,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.IsNotNull(result.Value);
             Assert.IsNotNull(result.Range);
             Assert.IsNotNull(result.Damage);
@@ -73,7 +73,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(6, result.Value);
             Assert.AreEqual(7, result.Range);
             Assert.AreEqual(8, result.Damage);
@@ -85,7 +85,8 @@ namespace UnitTests.Models
         public void ItemModel_Update_Default_Should_Pass()
         {
             // Arrange
-            var dataOriginal = new ItemModel {Value = 1};
+            var dataOriginal = new ItemModel();
+            dataOriginal.Value = 1;
 
             var dataNew = new ItemModel();
             dataNew.Value = 2;
@@ -95,7 +96,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(2, dataOriginal.Value);
         }
 
@@ -103,14 +104,15 @@ namespace UnitTests.Models
         public void ItemModel_Update_InValid_Null_Should_Fail()
         {
             // Arrange
-            var dataOriginal = new ItemModel {Value = 2};
+            var dataOriginal = new ItemModel();
+            dataOriginal.Value = 2;
 
             // Act
             var result = dataOriginal.Update(null);
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(2, dataOriginal.Value);
         }
 
@@ -125,7 +127,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual("This is an Item , Item Description for Unknown with Unknown+0 , Damage : 0 , Range : 0",
                             result);
         }
@@ -141,7 +143,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(1, result);
         }
 
@@ -160,7 +162,7 @@ namespace UnitTests.Models
             // Reset
             DiceHelper.DisableForcedRolls();
 
-            // Assert
+            // Assert 
             Assert.AreEqual(1, result);
         }
     }

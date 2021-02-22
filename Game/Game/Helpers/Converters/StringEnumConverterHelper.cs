@@ -3,7 +3,7 @@ using System.Globalization;
 
 using Xamarin.Forms;
 
-namespace Game.Helpers.Converters
+namespace Game.Converters
 {
     // This converter is used by the Pickers, to change from the picker value to the string value etc.
     // This allows the convert in the picker to be data bound back and forth the model
@@ -29,7 +29,7 @@ namespace Game.Helpers.Converters
 
             if (value is string)
             {
-                var aa = targetType.GetType();
+                var aa = targetType;
                 var myReturn = Enum.Parse((targetType), value.ToString());
                 return myReturn;
             }
@@ -55,7 +55,7 @@ namespace Game.Helpers.Converters
 
             if (value is string)
             {
-                var aa = targetType.GetType();
+                var aa = targetType;
                 var myReturn = Enum.Parse((targetType), value.ToString());
                 return myReturn;
             }

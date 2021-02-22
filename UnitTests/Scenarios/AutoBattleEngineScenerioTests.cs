@@ -1,19 +1,16 @@
 ﻿using System.Threading.Tasks;
-using System.Linq;
-
-using NUnit.Framework;
 
 using Game.Engine.EngineKoenig;
-using Game.Models;
 using Game.Helpers;
-using Game.ViewModels;
+using Game.Models;
+
+using NUnit.Framework;
 
 namespace Scenario
 {
     [TestFixture]
     public class AutoBattleEngineScenarioTests
     {
-        AutoBattleEngine AutoBattle;
 
         [SetUp]
         public void Setup()
@@ -25,13 +22,15 @@ namespace Scenario
             AutoBattle.Battle.EngineSettings.CurrentDefender = null;
             AutoBattle.Battle.EngineSettings.CurrentAttacker = null;
 
-            AutoBattle.Battle.StartBattle(true);   // Clear the Engine
+            AutoBattle.Battle.StartBattle(true); // Clear the Engine
         }
 
         [TearDown]
         public void TearDown()
         {
         }
+
+        private AutoBattleEngine AutoBattle;
 
         [Test]
         public void AutoBattleEngine_Constructor_Default_Should_Pass()
@@ -47,7 +46,7 @@ namespace Scenario
             Assert.IsNotNull(result);
         }
 
-       [Test]
+        [Test]
         public async Task AutoBattleEngine_RunAutoBattle_Monsters_1_Should_Pass()
         {
             //Arrange
@@ -57,16 +56,16 @@ namespace Scenario
             AutoBattle.Battle.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayerMike = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = -1,
-                                Level = 10,
-                                CurrentHealth = 11,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                Name = "Mike",
-                                ListOrder = 1,
-                            });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = -1,
+                                                              Level = 10,
+                                                              CurrentHealth = 11,
+                                                              ExperienceTotal = 1,
+                                                              ExperienceRemaining = 1,
+                                                              Name = "Mike",
+                                                              ListOrder = 1
+                                                          });
 
             AutoBattle.Battle.EngineSettings.CharacterList.Add(CharacterPlayerMike);
 
@@ -157,15 +156,15 @@ namespace Scenario
             AutoBattle.Battle.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayer = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = -1, // Will go last...
-                                Level = 10,
-                                CurrentHealth = 1,
-                                ExperienceTotal = 1,
-                                ExperienceRemaining = 1,
-                                ListOrder = 1,
-                            });
+                                                      new CharacterModel
+                                                      {
+                                                          Speed = -1, // Will go last...
+                                                          Level = 10,
+                                                          CurrentHealth = 1,
+                                                          ExperienceTotal = 1,
+                                                          ExperienceRemaining = 1,
+                                                          ListOrder = 1
+                                                      });
 
             AutoBattle.Battle.EngineSettings.CharacterList.Add(CharacterPlayer);
 
@@ -214,24 +213,24 @@ namespace Scenario
             AutoBattle.Battle.EngineSettings.MaxNumberPartyCharacters = 6;
 
             var CharacterPlayer = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = 100, 
-                                Level = 20,
-                                MaxHealth = 200,
-                                CurrentHealth = 200,
-                                ExperienceTotal = 1,
-                            });
+                                                      new CharacterModel
+                                                      {
+                                                          Speed = 100,
+                                                          Level = 20,
+                                                          MaxHealth = 200,
+                                                          CurrentHealth = 200,
+                                                          ExperienceTotal = 1
+                                                      });
 
             var CharacterPlayerMin = new PlayerInfoModel(
-                new CharacterModel
-                {
-                    Speed = 99,
-                    Level = 1,
-                    MaxHealth = 200,
-                    CurrentHealth = 200,
-                    ExperienceTotal = 1,
-                });
+                                                         new CharacterModel
+                                                         {
+                                                             Speed = 99,
+                                                             Level = 1,
+                                                             MaxHealth = 200,
+                                                             CurrentHealth = 200,
+                                                             ExperienceTotal = 1
+                                                         });
 
             AutoBattle.Battle.EngineSettings.CharacterList.Add(CharacterPlayer);
             AutoBattle.Battle.EngineSettings.CharacterList.Add(CharacterPlayer);
@@ -256,7 +255,9 @@ namespace Scenario
 
             //Assert
             Assert.AreEqual(false, result);
-            Assert.AreEqual(true, AutoBattle.Battle.EngineSettings.BattleScore.RoundCount > AutoBattle.Battle.EngineSettings.MaxRoundCount);
+            Assert.AreEqual(true,
+                            AutoBattle.Battle.EngineSettings.BattleScore.RoundCount >
+                            AutoBattle.Battle.EngineSettings.MaxRoundCount);
         }
 
         [Test]
@@ -292,13 +293,13 @@ namespace Scenario
             AutoBattle.Battle.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayerMike = new PlayerInfoModel(
-                            new CharacterModel
-                            {
-                                Speed = 1,
-                                Level = 1,
-                                MaxHealth = 1,
-                                CurrentHealth = 1,
-                            });
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = 1,
+                                                              Level = 1,
+                                                              MaxHealth = 1,
+                                                              CurrentHealth = 1
+                                                          });
 
             AutoBattle.Battle.EngineSettings.CharacterList.Add(CharacterPlayerMike);
 
@@ -319,8 +320,12 @@ namespace Scenario
 
             //Assert
             Assert.AreEqual(false, result);
-            Assert.AreEqual(true, AutoBattle.Battle.EngineSettings.BattleScore.TurnCount > AutoBattle.Battle.EngineSettings.MaxTurnCount);
-            Assert.AreEqual(true, AutoBattle.Battle.EngineSettings.BattleScore.RoundCount < AutoBattle.Battle.EngineSettings.MaxRoundCount);
+            Assert.AreEqual(true,
+                            AutoBattle.Battle.EngineSettings.BattleScore.TurnCount >
+                            AutoBattle.Battle.EngineSettings.MaxTurnCount);
+            Assert.AreEqual(true,
+                            AutoBattle.Battle.EngineSettings.BattleScore.RoundCount <
+                            AutoBattle.Battle.EngineSettings.MaxRoundCount);
         }
 
         //[Test]

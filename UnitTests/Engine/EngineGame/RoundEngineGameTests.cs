@@ -1,19 +1,12 @@
-﻿using System.Threading.Tasks;
-using System.Linq;
+﻿using Game.Engine.EngineGame;
 
 using NUnit.Framework;
-
-using Game.Models;
-using Game.ViewModels;
-using Game.Engine.EngineGame;
 
 namespace UnitTests.Engine.EngineGame
 {
     [TestFixture]
     public class RoundEngineGameTests
     {
-        #region TestSetup
-        BattleEngine Engine;
 
         [SetUp]
         public void Setup()
@@ -32,9 +25,9 @@ namespace UnitTests.Engine.EngineGame
         public void TearDown()
         {
         }
-        #endregion TestSetup
 
-        #region Constructor
+        private BattleEngine Engine;
+
         [Test]
         public void RoundEngine_Constructor_Valid_Default_Should_Pass()
         {
@@ -48,6 +41,5 @@ namespace UnitTests.Engine.EngineGame
             // Assert
             Assert.IsNotNull(result);
         }
-        #endregion Constructor
     }
 }

@@ -18,7 +18,7 @@ namespace Game.Views
     public partial class CharacterCreatePage : ContentPage
     {
         // The Character to create
-        private readonly GenericViewModel<CharacterModel> _viewModel = new GenericViewModel<CharacterModel>();
+        public readonly GenericViewModel<CharacterModel> _viewModel = new GenericViewModel<CharacterModel>();
 
         // Empty Constructor for UTs
         public CharacterCreatePage(bool unitTest) { }
@@ -34,7 +34,7 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
-            JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
+            // JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
 
             _viewModel.Title = "Create";
         }
@@ -97,7 +97,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Save_Clicked(object sender, EventArgs e)
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             //TODO: Create entry validator to attach to xaml control
             if (_viewModel.Data.Name.Length == 0)
@@ -116,6 +116,6 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
     }
 }

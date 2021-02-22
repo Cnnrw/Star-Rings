@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using Game.Enums;
+using Game.Helpers;
 using Game.Services;
 
 using NUnit.Framework;
@@ -12,10 +13,10 @@ namespace UnitTests.Services
     public class ItemServiceTests
     {
         [SetUp]
-        public void Setup() => Game.Helpers.DataSetsHelper.WarmUp();
+        public void Setup() => DataSetsHelper.WarmUp();
 
         [TearDown]
-        public async Task TearDown() => await Game.Helpers.DataSetsHelper.WipeDataInSequence();
+        public async Task TearDown() => await DataSetsHelper.WipeDataInSequence();
 
         [Test]
         public void ItemService_Constructor_Default_Should_Pass()

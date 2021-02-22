@@ -37,7 +37,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             CharacterModel data = (CharacterModel)args.SelectedItem;
             if (data == null)
@@ -82,6 +82,11 @@ namespace Game.Views
             }
 
             BindingContext = _viewModel;
+        }
+
+        public void AddItem_Clicked(object o, object o1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

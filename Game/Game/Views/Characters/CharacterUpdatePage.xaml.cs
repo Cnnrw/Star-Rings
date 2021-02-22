@@ -21,7 +21,7 @@ namespace Game.Views
     public partial class CharacterUpdatePage : ContentPage
     {
         // The Character to update
-        private readonly GenericViewModel<CharacterModel> _viewModel;
+        public readonly GenericViewModel<CharacterModel> _viewModel;
 
         // The current Item Location the user is selecting for
         private ItemLocationEnum _selectedItemLocation;
@@ -62,7 +62,7 @@ namespace Game.Views
             // this resets the Picker to the Character's level
             LevelPicker.SelectedIndex = _viewModel.Data.Level - 1;
 
-            JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
+            // JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
 
             AddItemsToDisplay();
         }
@@ -74,7 +74,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Save_Clicked(object sender, EventArgs e)
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             if (_viewModel.Data.Name.Length == 0)
             {
@@ -92,7 +92,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         // /// <summary>
         // ///     Randomizes the Character values and items
@@ -140,7 +140,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void LevelPicker_Changed(object sender, EventArgs args)
+        public void LevelPicker_Changed(object sender, EventArgs args)
         {
             // If the Picker is not set, then set it
             if (LevelPicker.SelectedIndex == -1)

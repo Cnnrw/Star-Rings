@@ -31,8 +31,8 @@ namespace UnitTests.Views
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        App      app;
-        MainPage page;
+        private App      app;
+        private MainPage page;
 
         [Test]
         public void MainPage_Constructor_Default_Should_Pass()
@@ -63,7 +63,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task MainPage_Navigate_Game_Should_Pass()
+        public async Task MainPage_Navigate_Home_Should_Pass()
         {
             // Arrange
 
@@ -105,7 +105,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task MainPage_Navigate_Game_Twice_Should_Skip()
+        public async Task MainPage_Navigate_Home_Twice_Should_Skip()
         {
             // Arrange
 
@@ -137,7 +137,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task MainPage_Navigate_Device_Android_Game_Should_Pass()
+        public async Task MainPage_Navigate_Device_Android_Home_Should_Pass()
         {
             // Arrange
             MockForms.Init(Device.Android);

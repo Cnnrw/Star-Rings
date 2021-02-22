@@ -15,7 +15,7 @@ namespace UnitTests.Views
         [SetUp]
         public void Setup()
         {
-            // Initialize Xamarin Forms
+            // Initilize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
@@ -28,11 +28,11 @@ namespace UnitTests.Views
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        App         app;
-        LandingPage page;
+        private App         app;
+        private LandingPage page;
 
         [Test]
-        public void HomePage_Constructor_Default_Should_Pass()
+        public void LandingPage_Constructor_Default_Should_Pass()
         {
             // Arrange
 
@@ -46,11 +46,11 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void HomePage_GameButton_Clicked_Default_Should_Pass()
+        public void LandingPage_GameButton_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act
-            page.StartButton_Clicked(null, null);
+            page.StartButton_OnReleased(null, null);
 
             // Reset
 

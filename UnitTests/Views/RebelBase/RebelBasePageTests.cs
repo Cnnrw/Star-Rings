@@ -9,11 +9,11 @@ using Xamarin.Forms.Mocks;
 namespace UnitTests.Views
 {
     [TestFixture]
-    public class VillagePageTests
+    public class RebelBasePageTests
     {
 
         // Base Constructor
-        //public VillagePageTests() : base(true) { }
+        //public RebelBasePageTests() : base(true) { }
 
         [SetUp]
         public void Setup()
@@ -31,11 +31,11 @@ namespace UnitTests.Views
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        App           app;
-        RebelBasePage page;
+        private App           app;
+        private RebelBasePage page;
 
         [Test]
-        public void VillagePage_Constructor_Default_Should_Pass()
+        public void RebelBasePage_Constructor_Default_Should_Pass()
         {
             // Arrange
 
@@ -49,7 +49,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void VillagePage_ItemsButton_Clicked_Default_Should_Pass()
+        public void RebelBasePage_ItemsButton_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act
@@ -62,7 +62,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void VillagePage_CharactersButton_Clicked_Default_Should_Pass()
+        public void RebelBasePage_CharactersButton_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act
@@ -75,7 +75,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void VillagePage_MonstersButton_Clicked_Default_Should_Pass()
+        public void RebelBasePage_MonstersButton_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act
@@ -88,7 +88,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void VillagePage_ScoresButton_Clicked_Default_Should_Pass()
+        public void RebelBasePage_ScoresButton_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act

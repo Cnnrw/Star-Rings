@@ -38,7 +38,7 @@ namespace UnitTests.Views
         public SettingsPageTests() : base(true) { }
 
         [Test]
-        public void AboutPage_Elements_Get_Set_Should_Pass()
+        public void SettingsPage_Elements_Get_Set_Should_Pass()
         {
             // Arrange
 
@@ -76,18 +76,41 @@ namespace UnitTests.Views
             Assert.IsNotNull((Switch)page.FindByName("DebugSettingsSwitch"));
         }
 
+        // TODO: Comment
+
         // [Test]
-        // public void AboutPage_DataSource_Toggled_Default_Should_Pass()
+        // public void SettingsPage_DatabaseSettingsSwitch_OnToggled_Default_Should_Pass()
         // {
         //     // Arrange
         //
-        //     var control = (Switch)page.FindByName("DataSourceValue");
-        //     var current = control.IsToggled;
+        //     var frame = (StackLayout)page.FindByName("DatabaseSettingsFrame");
+        //     var current = frame.IsVisible;
         //
-        //     ToggledEventArgs args = new ToggledEventArgs(current);
+        //     var args = new ToggledEventArgs(current);
+        //
         //
         //     // Act
-        //     page.DataSource_Toggled(null, args);
+        //     page.DatabaseSettingsSwitch_OnToggled(null, args);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(!current); // Got to here, so it happened...
+        // }
+        //
+        // [Test]
+        // public void SettingsPage_DebugSettingsSwitch_OnToggled_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var frame = (StackLayout)page.FindByName("DebugSettingsFrame");
+        //     var current = frame.IsVisible;
+        //
+        //     var args = new ToggledEventArgs(current);
+        //
+        //
+        //     // Act
+        //     page.DebugSettingsSwitch_OnToggled(null, args);
         //
         //     // Reset
         //
@@ -95,46 +118,65 @@ namespace UnitTests.Views
         //     Assert.IsTrue(!current); // Got to here, so it happened...
         // }
 
-        // [Test]
-        // public void AboutPage_DataSource_Toggled_False_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     var control = (Switch)page.FindByName("DataSourceValue");
-        //     var current = control.IsToggled = false;
-        //
-        //     // Act
-        //     control.IsToggled = true;
-        //
-        //     var result = control.IsToggled;
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(!current,result);
-        // }
-        //
-        // [Test]
-        // public void AboutPage_DataSource_Toggled_True_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     var control = (Switch)page.FindByName("DataSourceValue");
-        //     var current = control.IsToggled = true;
-        //
-        //     // Act
-        //     control.IsToggled = false;
-        //
-        //     var result = control.IsToggled;
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(!current, result);
-        // }
+        [Test]
+        public void SettingsPage_DataSource_Toggled_Default_Should_Pass()
+        {
+            // Arrange
+
+            var control = (Switch)page.FindByName("DataSourceValue");
+            var current = control.IsToggled;
+
+            var args = new ToggledEventArgs(current);
+
+            // Act
+            page.DataSource_Toggled(null, args);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(!current); // Got to here, so it happened...
+        }
 
         [Test]
-        public void AboutPage_WipeDataList_Clicked_Default_Should_Pass()
+        public void SettingsPage_DataSource_Toggled_False_Should_Pass()
+        {
+            // Arrange
+
+            var control = (Switch)page.FindByName("DataSourceValue");
+            var current = control.IsToggled = false;
+
+            // Act
+            control.IsToggled = true;
+
+            var result = control.IsToggled;
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(!current, result);
+        }
+
+        [Test]
+        public void SettingsPage_DataSource_Toggled_True_Should_Pass()
+        {
+            // Arrange
+
+            var control = (Switch)page.FindByName("DataSourceValue");
+            var current = control.IsToggled = true;
+
+            // Act
+            control.IsToggled = false;
+
+            var result = control.IsToggled;
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(!current, result);
+        }
+
+        [Test]
+        public void SettingsPage_WipeDataList_Clicked_Default_Should_Pass()
         {
             // Arrange
             // Act
@@ -147,7 +189,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task AboutPage_GetItemsGet_Default_Should_Pass()
+        public async Task SettingsPage_GetItemsGet_Default_Should_Pass()
         {
             // Arrange
             // Act
@@ -173,7 +215,7 @@ namespace UnitTests.Views
         //}
 
         [Test]
-        public void AboutPage_GetItemsGet_Clicked_Default_Should_Pass()
+        public void SettingsPage_GetItemsGet_Clicked_Default_Should_Pass()
         {
             // Arrange
 
@@ -187,7 +229,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void AboutPage_GetItemsPost_Clicked_Default_Should_Pass()
+        public void SettingsPage_GetItemsPost_Clicked_Default_Should_Pass()
         {
             // Arrange
 
@@ -201,12 +243,12 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void AboutPage_RunWipeData_Should_Pass()
+        public void SettingsPage_RunWipeData_Should_Pass()
         {
             // Arrange
 
             // Act
-            RunWipeData();
+            page.RunWipeData();
 
             // Reset
 
@@ -215,7 +257,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task AboutPage_GetItemsGet_BadURL_Should_Fail()
+        public async Task SettingsPage_GetItemsGet_BadURL_Should_Fail()
         {
             // Arrange
             var hold = WebGlobalsModel.WebSiteAPIURL;
@@ -232,7 +274,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task AboutPage_GetItemsGet_Neg_Should_Fail()
+        public async Task SettingsPage_GetItemsGet_Neg_Should_Fail()
         {
             // Arrange
 
@@ -248,7 +290,7 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task AboutPage_GetItemsPost_BadURL_Should_Fail()
+        public async Task SettingsPage_GetItemsPost_BadURL_Should_Fail()
         {
             // Arrange
             var hold = WebGlobalsModel.WebSiteAPIURL;
@@ -265,9 +307,11 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task AboutPage_GetItemsPost_Neg_Should_Fail()
+        public async Task SettingsPage_GetItemsPost_Neg_Should_Fail()
         {
             // Arrange
+            var hold = WebGlobalsModel.WebSiteAPIURL;
+            WebGlobalsModel.WebSiteAPIURL = "https://bogusurl";
 
             page.SetServerItemValue("-100");
 
@@ -275,6 +319,7 @@ namespace UnitTests.Views
             var result = await page.GetItemsPost();
 
             // Reset
+            WebGlobalsModel.WebSiteAPIURL = hold;
 
             // Assert
             Assert.AreEqual("No Results", result); // Got to here, so it happened...

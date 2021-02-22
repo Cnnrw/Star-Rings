@@ -23,7 +23,7 @@ namespace UnitTests.Engine.EngineBase
         {
         }
 
-        BattleEngineBase Engine;
+        private BattleEngineBase Engine;
 
         [Test]
         public void BattleEngine_Constructor_Valid_Default_Should_Pass()

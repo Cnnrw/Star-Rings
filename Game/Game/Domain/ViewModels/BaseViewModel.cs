@@ -136,7 +136,7 @@ namespace Game.ViewModels
         ///
         /// </summary>
         /// <returns></returns>
-        private async Task<bool> LoadDefaultDataAsync()
+        public async Task<bool> LoadDefaultDataAsync()
         {
             if (await _dataStore.GetNeedsInitializationAsync())
             {

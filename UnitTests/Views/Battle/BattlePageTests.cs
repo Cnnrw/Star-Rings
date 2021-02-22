@@ -20,12 +20,15 @@ namespace UnitTests.Views
         [SetUp]
         public void Setup()
         {
-            // Initialize Xamarin Forms
+            // Initilize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
             app = new App();
             Application.Current = app;
+
+            // For now, set the engine to the Koenig Engine, change when ready
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
 
             page = new BattlePage();
 
@@ -374,7 +377,7 @@ namespace UnitTests.Views
                                                           ExperienceTotal = 1,
                                                           ExperienceRemaining = 1,
                                                           Name = "Mike",
-                                                          ListOrder = 1,
+                                                          ListOrder = 1
                                                       });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
@@ -392,7 +395,7 @@ namespace UnitTests.Views
                                                         ExperienceTotal = 1,
                                                         ExperienceRemaining = 1,
                                                         Name = "Mike",
-                                                        ListOrder = 1,
+                                                        ListOrder = 1
                                                     });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
@@ -403,7 +406,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
 
             // Act
-            SetAttackerAndDefender();
+            page.SetAttackerAndDefender();
 
             // Reset
 
@@ -432,7 +435,7 @@ namespace UnitTests.Views
                                                           ExperienceTotal = 1,
                                                           ExperienceRemaining = 1,
                                                           Name = "Mike",
-                                                          ListOrder = 1,
+                                                          ListOrder = 1
                                                       });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
@@ -450,7 +453,7 @@ namespace UnitTests.Views
                                                         ExperienceTotal = 1,
                                                         ExperienceRemaining = 1,
                                                         Name = "Mike",
-                                                        ListOrder = 1,
+                                                        ListOrder = 1
                                                     });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
@@ -461,7 +464,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
 
             // Act
-            SetAttackerAndDefender();
+            page.SetAttackerAndDefender();
 
             // Reset
 
@@ -489,7 +492,7 @@ namespace UnitTests.Views
                                                           ExperienceTotal = 1,
                                                           ExperienceRemaining = 1,
                                                           Name = "Mike",
-                                                          ListOrder = 1,
+                                                          ListOrder = 1
                                                       });
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
@@ -519,7 +522,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
 
             // Act
-            SetAttackerAndDefender();
+            page.SetAttackerAndDefender();
 
             // Reset
 
@@ -547,7 +550,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = SetSelectedCharacter(new MapModelLocation());
+            var result = page.SetSelectedCharacter(new MapModelLocation());
 
             // Reset
 
@@ -561,7 +564,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = SetSelectedMonster(new MapModelLocation());
+            var result = page.SetSelectedMonster(new MapModelLocation());
 
             // Reset
 
@@ -575,7 +578,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = SetSelectedEmpty(new MapModelLocation());
+            var result = page.SetSelectedEmpty(new MapModelLocation());
 
             // Reset
 
@@ -604,7 +607,7 @@ namespace UnitTests.Views
         {
             // Get the current valute
             var name = "MapR0C0ImageButton";
-            page.MapLocationObject.TryGetValue(name, out object data);
+            page.MapLocationObject.TryGetValue(name, out var data);
             page.MapLocationObject.Remove(name);
 
             // Act
@@ -622,11 +625,11 @@ namespace UnitTests.Views
         {
             // Get the current valute
             var nameStack = "MapR0C0Stack";
-            page.MapLocationObject.TryGetValue(nameStack, out object dataStack);
+            page.MapLocationObject.TryGetValue(nameStack, out var dataStack);
             page.MapLocationObject.Remove(nameStack);
 
             var nameImage = "MapR0C0ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out object dataImage);
+            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
             page.MapLocationObject.Remove(nameImage);
 
@@ -969,8 +972,8 @@ namespace UnitTests.Views
             // Make UI Map
             page.CreateMapGridObjects();
 
-            const string nameImage = "MapR0C0ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out object dataImage);
+            var nameImage = "MapR0C0ImageButton";
+            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
             // Act
 
@@ -1000,12 +1003,12 @@ namespace UnitTests.Views
             page.CreateMapGridObjects();
 
             var nameImage = "MapR5C0ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out object dataImage);
+            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
             // Act
 
             // Force the click event to fire
-            ((ImageButton)dataImage)?.PropagateUpClicked();
+            ((ImageButton)dataImage).PropagateUpClicked();
 
             // Reset
 
@@ -1030,7 +1033,7 @@ namespace UnitTests.Views
             page.DrawMapGridInitialState();
 
             var nameImage = "MapR3C3ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out object dataImage);
+            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
             // Act
 

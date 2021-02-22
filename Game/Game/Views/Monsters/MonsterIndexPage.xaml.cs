@@ -37,7 +37,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void AddItem_Clicked(object sender, EventArgs e) =>
+        public async void AddItem_Clicked(object sender, EventArgs e) =>
             await Navigation.PushModalAsync(new NavigationPage(new MonsterCreatePage()));
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (!(e.SelectedItem is MonsterModel data))
             {

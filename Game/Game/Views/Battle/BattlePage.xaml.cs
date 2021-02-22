@@ -560,7 +560,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        protected static bool SetSelectedEmpty(MapModelLocation data) =>
+        public bool SetSelectedEmpty(MapModelLocation data) =>
             // TODO: Info
             /*
              * This gets called when the characters is clicked on
@@ -575,7 +575,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        protected static bool SetSelectedMonster(MapModelLocation data)
+        public bool SetSelectedMonster(MapModelLocation data)
         {
             // TODO: Info
 
@@ -595,7 +595,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        protected static bool SetSelectedCharacter(MapModelLocation data) =>
+        public bool SetSelectedCharacter(MapModelLocation data) =>
             // TODO: Info
             /*
              * This gets called when the characters is clicked on
@@ -781,7 +781,7 @@ namespace Game.Views
         /// <summary>
         /// Decide The Turn and who to Attack
         /// </summary>
-        public static void SetAttackerAndDefender()
+        public void SetAttackerAndDefender()
         {
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(BattleEngineViewModel.Instance.Engine.Round
                                                                                .GetNextPlayerTurn());

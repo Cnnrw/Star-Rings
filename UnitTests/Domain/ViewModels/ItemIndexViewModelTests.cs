@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
+using Game.Views;
 
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace UnitTests.ViewModels
 {
     public class ItemIndexViewModelTests
     {
-        private ItemIndexViewModel _viewModel;
+        private ItemIndexViewModel ViewModel;
 
         [SetUp]
         public void Setup()
@@ -25,13 +26,13 @@ namespace UnitTests.ViewModels
             MockForms.Init();
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
-            _viewModel = ItemIndexViewModel.Instance;
+            ViewModel = ItemIndexViewModel.Instance;
         }
 
         [TearDown]
-        public void TearDown() => _viewModel.Dataset.Clear();
+        public void TearDown() => ViewModel.Dataset.Clear();
 
         [Test]
         public async Task ItemIndexViewModel_Read_Invalid_ID_Bogus_Should_Fail()
@@ -39,7 +40,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.ReadAsync("bogus");
+            var result = await ViewModel.ReadAsync("bogus");
 
             // Reset
 
@@ -53,7 +54,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel;
+            var result = ViewModel;
 
             // Reset
 
@@ -75,7 +76,7 @@ namespace UnitTests.ViewModels
             };
 
             // Act
-            var result = _viewModel.SortDataset(dataList);
+            var result = ViewModel.SortDataset(dataList);
 
             // Reset
 
@@ -92,14 +93,14 @@ namespace UnitTests.ViewModels
 
             // Add items into the list Z ordered
             var dataTest = new ItemModel {Name = "test"};
-            await _viewModel.CreateAsync(dataTest);
+            await ViewModel.CreateAsync(dataTest);
 
-            await _viewModel.CreateAsync(new ItemModel {Name = "z"});
-            await _viewModel.CreateAsync(new ItemModel {Name = "m"});
-            await _viewModel.CreateAsync(new ItemModel {Name = "a"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "z"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "m"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "a"});
 
             // Act
-            var result = _viewModel.CheckIfExists(dataTest);
+            var result = ViewModel.CheckIfExists(dataTest);
 
             // Reset
 
@@ -113,7 +114,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel.CheckIfExists(null);
+            var result = ViewModel.CheckIfExists(null);
 
             // Reset
 
@@ -130,12 +131,12 @@ namespace UnitTests.ViewModels
             var dataTest = new ItemModel {Name = "test"};
             // Don't add it to the list await ViewModel.CreateAsync(dataTest);
 
-            await _viewModel.CreateAsync(new ItemModel {Name = "z"});
-            await _viewModel.CreateAsync(new ItemModel {Name = "m"});
-            await _viewModel.CreateAsync(new ItemModel {Name = "a"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "z"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "m"});
+            await ViewModel.CreateAsync(new ItemModel {Name = "a"});
 
             // Act
-            var result = _viewModel.CheckIfExists(dataTest);
+            var result = ViewModel.CheckIfExists(dataTest);
 
             // Reset
 
@@ -147,18 +148,18 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_Message_Delete_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel());
+            await ViewModel.CreateAsync(new ItemModel());
 
             // Get the item to delete
-            var first = _viewModel.Dataset.FirstOrDefault();
+            var first = ViewModel.Dataset.FirstOrDefault();
 
             // Make a Delete Page
-            var myPage = new Game.Views.ItemDeletePage(true);
+            var myPage = new ItemDeletePage(true);
 
             // Act
             MessagingCenter.Send(myPage, "Delete", first);
 
-            var data = await _viewModel.ReadAsync(first.Id);
+            var data = await ViewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -170,13 +171,13 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_Delete_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel());
+            await ViewModel.CreateAsync(new ItemModel());
 
-            var first = _viewModel.Dataset.FirstOrDefault();
+            var first = ViewModel.Dataset.FirstOrDefault();
 
             // Act
-            var result = await _viewModel.DeleteAsync(first);
-            var exists = await _viewModel.ReadAsync(first.Id);
+            var result = await ViewModel.DeleteAsync(first);
+            var exists = await ViewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -192,7 +193,7 @@ namespace UnitTests.ViewModels
             var data = new ItemModel {Id = "bogus"};
 
             // Act
-            var result = await _viewModel.DeleteAsync(data);
+            var result = await ViewModel.DeleteAsync(data);
 
             // Reset
 
@@ -206,7 +207,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.DeleteAsync(null);
+            var result = await ViewModel.DeleteAsync(null);
 
             // Reset
 
@@ -223,13 +224,13 @@ namespace UnitTests.ViewModels
             var data = new ItemModel();
 
             // Make a Delete Page
-            var myPage = new Game.Views.ItemCreatePage(true);
+            var myPage = new ItemCreatePage(true);
 
-            var countBefore = _viewModel.Dataset.Count();
+            var countBefore = ViewModel.Dataset.Count();
 
             // Act
             MessagingCenter.Send(myPage, "Create", data);
-            var countAfter = _viewModel.Dataset.Count();
+            var countAfter = ViewModel.Dataset.Count();
 
             // Reset
 
@@ -241,19 +242,18 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_Message_Update_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel());
+            await ViewModel.CreateAsync(new ItemModel());
 
             // Get the item to delete
-            var first = _viewModel.Dataset.FirstOrDefault();
-            Debug.Assert(first != null, nameof(first) + " != null");
+            var first = ViewModel.Dataset.FirstOrDefault();
             first.Name = "test";
 
             // Make a Delete Page
-            var myPage = new Game.Views.ItemUpdatePage(true);
+            var myPage = new ItemUpdatePage(true);
 
             // Act
             MessagingCenter.Send(myPage, "Update", first);
-            var result = await _viewModel.ReadAsync(first.Id);
+            var result = await ViewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -270,14 +270,14 @@ namespace UnitTests.ViewModels
             var data = 3000; // Non existing value
 
             // Make the page Page
-            var myPage = new Game.Views.SettingsPage(true);
+            var myPage = new SettingsPage(true);
 
             // Act
             MessagingCenter.Send(myPage, "SetDataSource", data);
-            var result = _viewModel.GetCurrentDataSource();
+            var result = ViewModel.GetCurrentDataSource();
 
             // Reset
-            await _viewModel.SetDataSource(0);
+            await ViewModel.SetDataSource(0);
 
             // Assert
             Assert.AreEqual(0, result); // Count of 0 for the load was skipped
@@ -289,14 +289,14 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Make the page Page
-            var myPage = new Game.Views.SettingsPage(true);
+            var myPage = new SettingsPage(true);
 
             var data = new ItemModel();
-            await _viewModel.CreateAsync(data);
+            await ViewModel.CreateAsync(data);
 
             // Act
             MessagingCenter.Send(myPage, "WipeDataList", true);
-            var countAfter = _viewModel.Dataset.Count();
+            var countAfter = ViewModel.Dataset.Count();
 
             // Reset
 
@@ -308,17 +308,17 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_Update_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel());
+            await ViewModel.CreateAsync(new ItemModel());
 
             // Find the First ID
-            var first = _viewModel.Dataset.FirstOrDefault();
+            var first = ViewModel.Dataset.FirstOrDefault();
 
             // Make a new item
             first.Name = "New Item";
             first.Value = 1000;
 
             // Act
-            var result = await _viewModel.UpdateAsync(first);
+            var result = await ViewModel.UpdateAsync(first);
 
             // Reset
 
@@ -337,7 +337,7 @@ namespace UnitTests.ViewModels
             var newData = new ItemModel();
 
             // Act
-            var result = await _viewModel.UpdateAsync(newData);
+            var result = await ViewModel.UpdateAsync(newData);
 
             // Reset
 
@@ -351,7 +351,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.UpdateAsync(null);
+            var result = await ViewModel.UpdateAsync(null);
 
             // Reset
 
@@ -366,7 +366,7 @@ namespace UnitTests.ViewModels
             var data = new ItemModel {Name = "New Item"};
 
             // Act
-            var result = await _viewModel.CreateAsync(data);
+            var result = await ViewModel.CreateAsync(data);
 
             // Reset
 
@@ -380,7 +380,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.CreateAsync(null);
+            var result = await ViewModel.CreateAsync(null);
 
             // Reset
 
@@ -394,37 +394,37 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Clear the Dataset, so no records
-            _viewModel.Dataset.Clear();
+            ViewModel.Dataset.Clear();
 
             // Act
-            _viewModel.LoadDatasetCommand.Execute(null);
+            ViewModel.LoadDatasetCommand.Execute(null);
 
             // Reset
 
             // Assert
-            Assert.AreEqual(true, _viewModel.Dataset.Count() > 0); // Check that there are rows of data
+            Assert.AreEqual(true, ViewModel.Dataset.Count() > 0); // Check that there are rows of data
         }
 
         [Test]
         public async Task ItemIndexViewModel_ExecuteLoadDataCommand_InValid_Exception_Should_Fail()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel());
+            await ViewModel.CreateAsync(new ItemModel());
 
-            var oldDataset = _viewModel.Dataset;
+            var oldDataset = ViewModel.Dataset;
 
             // Null dataset will throw
 
-            _viewModel.Dataset = null;
+            ViewModel.Dataset = null;
 
             // Act
-            _viewModel.LoadDatasetCommand.Execute(null);
+            ViewModel.LoadDatasetCommand.Execute(null);
 
             // Reset
-            _viewModel.Dataset = oldDataset;
+            ViewModel.Dataset = oldDataset;
 
             // Assert
-            Assert.AreEqual(true, _viewModel.Dataset.Count() > 0); // Check that there are rows of data
+            Assert.AreEqual(true, ViewModel.Dataset.Count() > 0); // Check that there are rows of data
         }
 
         [Test]
@@ -433,18 +433,18 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Setting IsBusy will have the Load skip
-            _viewModel.IsBusy = true;
+            ViewModel.IsBusy = true;
 
             // Clear the Dataset, so no records
-            _viewModel.Dataset.Clear();
+            ViewModel.Dataset.Clear();
 
             // Act
-            _viewModel.LoadDatasetCommand.Execute(null);
-            var count = _viewModel.Dataset.Count(); // Remember how many records exist
+            ViewModel.LoadDatasetCommand.Execute(null);
+            var count = ViewModel.Dataset.Count(); // Remember how many records exist
 
             // Reset
-            _viewModel.IsBusy = false;
-            _viewModel.ForceDataRefresh();
+            ViewModel.IsBusy = false;
+            ViewModel.ForceDataRefresh();
 
             // Assert
             Assert.AreEqual(0, count); // Count of 0 for the load was skipped
@@ -456,7 +456,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.SetDataSource(1);
+            var result = await ViewModel.SetDataSource(1);
 
             // Reset
 
@@ -470,7 +470,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.SetDataSource(0);
+            var result = await ViewModel.SetDataSource(0);
 
             // Reset
 
@@ -485,7 +485,7 @@ namespace UnitTests.ViewModels
             var data = new ItemModel {Name = "New Item"};
 
             // Act
-            var result = await _viewModel.CreateUpdateAsync(data);
+            var result = await ViewModel.CreateUpdateAsync(data);
 
             // Reset
 
@@ -499,12 +499,12 @@ namespace UnitTests.ViewModels
             // Arrange
             var data = new ItemModel {Name = "New Item"};
 
-            await _viewModel.CreateUpdateAsync(data);
+            await ViewModel.CreateUpdateAsync(data);
 
             data.Name = "Updated";
 
             // Act
-            var result = await _viewModel.CreateUpdateAsync(data);
+            var result = await ViewModel.CreateUpdateAsync(data);
 
             // Reset
 
@@ -518,7 +518,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.CreateUpdateAsync(null);
+            var result = await ViewModel.CreateUpdateAsync(null);
 
             // Reset
 
@@ -533,7 +533,7 @@ namespace UnitTests.ViewModels
             var data = new ItemModel {Name = "New Item"};
 
             // Act
-            var result = _viewModel.Create_Sync(data);
+            var result = ViewModel.Create_Sync(data);
 
             // Reset
 
@@ -547,7 +547,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel.Create_Sync(null);
+            var result = ViewModel.Create_Sync(null);
 
             // Reset
 
@@ -561,7 +561,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel.GetDefaultItemId(ItemLocationEnum.Unknown);
+            var result = ViewModel.GetDefaultItemId(ItemLocationEnum.Unknown);
 
             // Reset
 
@@ -573,10 +573,10 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_GetDefaultItemId_Head_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel {Location = ItemLocationEnum.PrimaryHand});
+            await ViewModel.CreateAsync(new ItemModel {Location = ItemLocationEnum.PrimaryHand});
 
             // Act
-            var result = _viewModel.GetDefaultItemId(ItemLocationEnum.PrimaryHand);
+            var result = ViewModel.GetDefaultItemId(ItemLocationEnum.PrimaryHand);
 
             // Reset
 
@@ -588,10 +588,10 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_GetDefaultItem_Unknown_Should_Fail()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel {Location = ItemLocationEnum.PrimaryHand});
+            await ViewModel.CreateAsync(new ItemModel {Location = ItemLocationEnum.PrimaryHand});
 
             // Act
-            var result = _viewModel.GetDefaultItem(ItemLocationEnum.Unknown);
+            var result = ViewModel.GetDefaultItem(ItemLocationEnum.Unknown);
 
             // Reset
 
@@ -603,10 +603,10 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_GetDefaultItem_Head_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ItemModel {Location = ItemLocationEnum.PrimaryHand});
+            await ViewModel.CreateAsync(new ItemModel {Location = ItemLocationEnum.PrimaryHand});
 
             // Act
-            var result = _viewModel.GetDefaultItem(ItemLocationEnum.PrimaryHand);
+            var result = ViewModel.GetDefaultItem(ItemLocationEnum.PrimaryHand);
 
             // Reset
 
@@ -620,7 +620,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel.GetLocationItems(ItemLocationEnum.PrimaryHand);
+            var result = ViewModel.GetLocationItems(ItemLocationEnum.PrimaryHand);
 
             // Reset
 
@@ -634,7 +634,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel.GetLocationItems(ItemLocationEnum.RightFinger);
+            var result = ViewModel.GetLocationItems(ItemLocationEnum.RightFinger);
 
             // Reset
 
@@ -648,7 +648,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel.GetLocationItems(ItemLocationEnum.LeftFinger);
+            var result = ViewModel.GetLocationItems(ItemLocationEnum.LeftFinger);
 
             // Reset
 

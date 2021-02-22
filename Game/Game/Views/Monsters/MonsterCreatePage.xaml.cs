@@ -19,7 +19,7 @@ namespace Game.Views
         /// <summary>
         ///     Internal Monster ViewModel
         /// </summary>
-        private readonly GenericViewModel<MonsterModel> _viewModel = new GenericViewModel<MonsterModel>();
+        public readonly GenericViewModel<MonsterModel> _viewModel = new GenericViewModel<MonsterModel>();
 
         /// <summary>
         ///     PopupLocationEnum holds the current location selected
@@ -76,7 +76,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Save_Clicked(object sender, EventArgs e)
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
             {
@@ -99,7 +99,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         private void UpdatePageBindingContext()
         {
@@ -120,7 +120,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RandomButton_Clicked(object sender, EventArgs e)
+        public void RandomButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Data = RandomPlayerHelper.GetRandomMonster(1);
             UpdatePageBindingContext();

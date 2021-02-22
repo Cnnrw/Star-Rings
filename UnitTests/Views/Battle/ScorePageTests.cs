@@ -1,25 +1,18 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
-using Game.Views;
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
+﻿using Game;
 using Game.Models;
 using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class ScorePageTests
     {
-        App app;
-        ScorePage page;
 
         [SetUp]
         public void Setup()
@@ -31,14 +24,17 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready 
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new ScorePage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App       app;
+        private ScorePage page;
 
         [Test]
         public void ScorePage_Constructor_Default_Should_Pass()
@@ -160,14 +156,16 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.CharacterModelDeathList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             // Draw the Monsters
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.MonsterModelDeathList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.MonsterModelDeathList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             // Draw the Items
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList.Add(new ItemModel());
-    
+
             // Act
             page.DrawOutput();
 

@@ -1,15 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
-using Game.Views;
-using Game.ViewModels;
+﻿using Game;
 using Game.Models;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
@@ -19,11 +13,7 @@ namespace UnitTests.Views
     [TestFixture]
     public class ScoreReadPageTests : ScoreReadPage
     {
-        App app;
-        ScoreReadPage page;
 
-        public ScoreReadPageTests() : base(true) { }
-        
         [SetUp]
         public void Setup()
         {
@@ -38,10 +28,12 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App           app;
+        private ScoreReadPage page;
+
+        public ScoreReadPageTests() : base(true) { }
 
         [Test]
         public void ScoreReadPage_Constructor_Default_Should_Pass()

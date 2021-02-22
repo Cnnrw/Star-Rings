@@ -1,19 +1,17 @@
-﻿using System;
-using NUnit.Framework;
-
-using Newtonsoft;
-using Newtonsoft.Json.Linq;
+﻿using System.Linq;
 
 using Game.Helpers;
-using System.Linq;
-using Game.Models;
+
+using Newtonsoft.Json.Linq;
+
+using NUnit.Framework;
 
 namespace UnitTests.Helpers
 {
     [TestFixture]
     public class JsonHelperTests
     {
-        string ExampleJson = @"
+        private readonly string ExampleJson = @"
 {
 'msg': 'Ok',
 'errorCode': 0,
@@ -36,12 +34,13 @@ namespace UnitTests.Helpers
 'ObjectItemList': [{'Value':10,'Attribute':14,'Location':20,'Name':'Strong Shield','Guid':'3a138793-7411-7c60-6b03-aee9423d3684','Description':'Enough to hide behind','ImageURI':'http://www.clipartbest.com/cliparts/4T9/LaR/4T9LaReTE.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10},{'Value':10,'Attribute':14,'Location':20,'Name':'Bow','Guid':'2e0ac680-1913-0854-de5e-294bb0e4d23a','Description':'Fast shooting bow','ImageURI':'http://cliparts.co/cliparts/di4/oAB/di4oABdbT.png','Range':10,'Damage':6,'Count':-1,'IsConsumable':false,'Category':10},{'Value':10,'Attribute':12,'Location':30,'Name':'Blue Ring of Power','Guid':'c3f4cece-b1d8-bb02-38c0-32c7a4e87160','Description':'The one to control them all','ImageURI':'http://www.clker.com/cliparts/A/E/4/t/L/1/diamond-ring-teal-hi.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10},{'Value':10,'Attribute':10,'Location':10,'Name':'Bunny Hat','Guid':'0e9f41b4-4be2-adc3-d39d-1c70ae814913','Description':'Pink hat with fluffy ears','ImageURI':'http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10}],
 'msg':'Ok','errorCode':0,'version':'1.1.1.1','data':{'ItemList':[{'Value':10,'Attribute':14,'Location':20,'Name':'Strong Shield','Guid':'3a138793-7411-7c60-6b03-aee9423d3684','Description':'Enough to hide behind','ImageURI':'http://www.clipartbest.com/cliparts/4T9/LaR/4T9LaReTE.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10},{'Value':10,'Attribute':14,'Location':20,'Name':'Bow','Guid':'2e0ac680-1913-0854-de5e-294bb0e4d23a','Description':'Fast shooting bow','ImageURI':'http://cliparts.co/cliparts/di4/oAB/di4oABdbT.png','Range':10,'Damage':6,'Count':-1,'IsConsumable':false,'Category':10},{'Value':10,'Attribute':12,'Location':30,'Name':'Blue Ring of Power','Guid':'c3f4cece-b1d8-bb02-38c0-32c7a4e87160','Description':'The one to control them all','ImageURI':'http://www.clker.com/cliparts/A/E/4/t/L/1/diamond-ring-teal-hi.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10},{'Value':10,'Attribute':10,'Location':10,'Name':'Bunny Hat','Guid':'0e9f41b4-4be2-adc3-d39d-1c70ae814913','Description':'Pink hat with fluffy ears','ImageURI':'http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10}]}}
 ";
+
         [Test]
         public void JsonHelper_GetJsonStringList_Valid_Should_Pass()
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(json, "StringList");
@@ -57,7 +56,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(json, null);
@@ -73,7 +72,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(json, "bogus");
@@ -89,7 +88,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(json, "FieldNull");
@@ -105,7 +104,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(null, "FieldNull");
@@ -121,7 +120,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(json, "TimeSpan");
@@ -137,7 +136,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonStringList(json, "ObjectList");
@@ -153,7 +152,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonString(json, "String");
@@ -169,7 +168,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonString(json, null);
@@ -185,7 +184,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonString(json, "bogus");
@@ -201,7 +200,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonString(json, "FieldNull");
@@ -217,7 +216,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonString(json, "TimeSpan");
@@ -233,7 +232,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonInteger(json, "Integer");
@@ -249,7 +248,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonInteger(json, null);
@@ -265,7 +264,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonInteger(json, "TimeSpan");
@@ -281,7 +280,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonInteger(json, "FieldNull");
@@ -297,7 +296,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonLong(json, "Long");
@@ -313,7 +312,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonLong(json, null);
@@ -329,7 +328,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonLong(json, "TimeSpan");
@@ -345,7 +344,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonLong(json, "FieldNull");
@@ -361,7 +360,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonuLong(json, "ULong");
@@ -377,7 +376,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonuLong(json, null);
@@ -393,7 +392,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonuLong(json, "TimeSpan");
@@ -409,7 +408,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonuLong(json, "FieldNull");
@@ -425,7 +424,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonDouble(json, "Double");
@@ -441,7 +440,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonDouble(json, null);
@@ -457,7 +456,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonDouble(json, "TimeSpan");
@@ -473,7 +472,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonDouble(json, "FieldNull");
@@ -489,7 +488,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonBool(json, "Bool");
@@ -505,7 +504,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonBool(json, "BoolFalse");
@@ -521,7 +520,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonBool(json, "Bogus");
@@ -537,7 +536,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonBool(json, "TimeSpan");
@@ -553,7 +552,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonBool(json, "FieldNull");
@@ -569,7 +568,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ExampleJson);
+            var json = JObject.Parse(ExampleJson);
 
             // Act
             var result = JsonHelper.GetJsonBool(json, null);

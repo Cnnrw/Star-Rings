@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Game.Engine.EngineBase;
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 
@@ -32,7 +33,7 @@ namespace UnitTests.Engine.EngineBase
         {
         }
 
-        BattleEngineBase Engine;
+        private BattleEngineBase Engine;
 
         [Test]
         public void RoundEngine_Constructor_Valid_Default_Should_Pass()
@@ -74,7 +75,7 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 100,
                 ExperienceTotal = 1000,
                 Name = "Z",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             var MonsterPlayer = new PlayerInfoModel(Monster);
@@ -121,7 +122,7 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 100,
                 ExperienceTotal = 1000,
                 Name = "Z",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             var MonsterPlayer = new PlayerInfoModel(Monster);
@@ -169,7 +170,7 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 100,
                 ExperienceTotal = 1,
                 Name = "Z",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             var MonsterPlayer = new PlayerInfoModel(Monster);
@@ -184,7 +185,7 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 2,
                 ExperienceTotal = 1,
                 Name = "C",
-                ListOrder = 10,
+                ListOrder = 10
             };
 
             var CharacterPlayer = new PlayerInfoModel(Character);
@@ -217,7 +218,7 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 1,
                 ExperienceTotal = 1,
                 Name = "A",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             var MonsterPlayer = new PlayerInfoModel(Monster);
@@ -267,7 +268,7 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 1,
                 ExperienceTotal = 1,
                 Name = "Z",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             var CharacterPlayer = new PlayerInfoModel(Character);
@@ -321,7 +322,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var item1 = new ItemModel
             {
@@ -382,7 +383,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var item1 = new ItemModel
             {
@@ -442,7 +443,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var item1 = new ItemModel
             {
@@ -502,7 +503,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var item1 = new ItemModel
             {
@@ -561,7 +562,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var item1 = new ItemModel
             {
@@ -621,7 +622,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var item1 = new ItemModel
             {
@@ -681,7 +682,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var CharacterPlayer = new PlayerInfoModel(Character);
             Engine.EngineSettings.CharacterList.Clear();
@@ -718,7 +719,7 @@ namespace UnitTests.Engine.EngineBase
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
             Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(Character));
@@ -748,11 +749,11 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 1,
                 ExperienceTotal = 1,
                 Name = "Characer",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -783,11 +784,11 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 1,
                 ExperienceTotal = 1,
                 Name = "Characer",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -820,11 +821,11 @@ namespace UnitTests.Engine.EngineBase
                 CurrentHealth = 1,
                 ExperienceTotal = 1,
                 Name = "Characer",
-                ListOrder = 1,
+                ListOrder = 1
             };
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -858,7 +859,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Mike",
-                                                              ListOrder = 1,
+                                                              ListOrder = 1
                                                           });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
@@ -869,7 +870,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Doug",
-                                                              ListOrder = 2,
+                                                              ListOrder = 2
                                                           });
 
             var CharacterPlayerSue = new PlayerInfoModel(
@@ -880,7 +881,7 @@ namespace UnitTests.Engine.EngineBase
                                                              CurrentHealth = 1,
                                                              ExperienceTotal = 1,
                                                              Name = "Sue",
-                                                             ListOrder = 3,
+                                                             ListOrder = 3
                                                          });
 
             var MonsterPlayer = new PlayerInfoModel(
@@ -891,11 +892,11 @@ namespace UnitTests.Engine.EngineBase
                                                         CurrentHealth = 1,
                                                         ExperienceTotal = 1,
                                                         Name = "Monster",
-                                                        ListOrder = 4,
+                                                        ListOrder = 4
                                                     });
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -936,7 +937,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Mike",
-                                                              ListOrder = 1,
+                                                              ListOrder = 1
                                                           });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
@@ -947,7 +948,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Doug",
-                                                              ListOrder = 2,
+                                                              ListOrder = 2
                                                           });
 
             var CharacterPlayerSue = new PlayerInfoModel(
@@ -958,7 +959,7 @@ namespace UnitTests.Engine.EngineBase
                                                              CurrentHealth = 1,
                                                              ExperienceTotal = 1,
                                                              Name = "Sue",
-                                                             ListOrder = 3,
+                                                             ListOrder = 3
                                                          });
 
             var MonsterPlayer = new PlayerInfoModel(
@@ -969,11 +970,11 @@ namespace UnitTests.Engine.EngineBase
                                                         CurrentHealth = 1,
                                                         ExperienceTotal = 1,
                                                         Name = "Monster",
-                                                        ListOrder = 4,
+                                                        ListOrder = 4
                                                     });
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -1014,7 +1015,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Mike",
-                                                              ListOrder = 1,
+                                                              ListOrder = 1
                                                           });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
@@ -1025,7 +1026,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Doug",
-                                                              ListOrder = 2,
+                                                              ListOrder = 2
                                                           });
 
             var CharacterPlayerSue = new PlayerInfoModel(
@@ -1036,7 +1037,7 @@ namespace UnitTests.Engine.EngineBase
                                                              CurrentHealth = 1,
                                                              ExperienceTotal = 1,
                                                              Name = "Sue",
-                                                             ListOrder = 3,
+                                                             ListOrder = 3
                                                          });
 
             var MonsterPlayer = new PlayerInfoModel(
@@ -1047,11 +1048,11 @@ namespace UnitTests.Engine.EngineBase
                                                         CurrentHealth = 1,
                                                         ExperienceTotal = 1,
                                                         Name = "Monster",
-                                                        ListOrder = 4,
+                                                        ListOrder = 4
                                                     });
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 
@@ -1081,7 +1082,7 @@ namespace UnitTests.Engine.EngineBase
             // Arrange
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var CharacterPlayerSue = new PlayerInfoModel(
                                                          new CharacterModel
@@ -1091,7 +1092,7 @@ namespace UnitTests.Engine.EngineBase
                                                              CurrentHealth = 1,
                                                              ExperienceTotal = 1,
                                                              Name = "Sue",
-                                                             ListOrder = 3,
+                                                             ListOrder = 3
                                                          });
 
             var MonsterPlayer = new PlayerInfoModel(
@@ -1102,7 +1103,7 @@ namespace UnitTests.Engine.EngineBase
                                                         CurrentHealth = 1,
                                                         ExperienceTotal = 1,
                                                         Name = "Monster",
-                                                        ListOrder = 4,
+                                                        ListOrder = 4
                                                     });
 
             Engine.EngineSettings.CharacterList.Clear();
@@ -1135,7 +1136,7 @@ namespace UnitTests.Engine.EngineBase
             // Arrange
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             var CharacterPlayerMike = new PlayerInfoModel(
                                                           new CharacterModel
@@ -1145,7 +1146,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Mike",
-                                                              ListOrder = 1,
+                                                              ListOrder = 1
                                                           });
 
             var CharacterPlayerDoug = new PlayerInfoModel(
@@ -1156,7 +1157,7 @@ namespace UnitTests.Engine.EngineBase
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               Name = "Doug",
-                                                              ListOrder = 2,
+                                                              ListOrder = 2
                                                           });
 
             var CharacterPlayerSue = new PlayerInfoModel(
@@ -1167,7 +1168,7 @@ namespace UnitTests.Engine.EngineBase
                                                              CurrentHealth = 1,
                                                              ExperienceTotal = 1,
                                                              Name = "Sue",
-                                                             ListOrder = 3,
+                                                             ListOrder = 3
                                                          });
 
             var MonsterPlayer = new PlayerInfoModel(
@@ -1178,11 +1179,11 @@ namespace UnitTests.Engine.EngineBase
                                                         CurrentHealth = 1,
                                                         ExperienceTotal = 1,
                                                         Name = "Monster",
-                                                        ListOrder = 4,
+                                                        ListOrder = 4
                                                     });
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             Engine.EngineSettings.CharacterList.Clear();
 

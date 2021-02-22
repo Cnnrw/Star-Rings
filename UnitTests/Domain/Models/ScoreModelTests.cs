@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Game.Enums;
@@ -21,7 +22,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.IsNotNull(result);
         }
 
@@ -35,7 +36,7 @@ namespace UnitTests.Models
 
             dataNew.BattleNumber = 100;
             dataNew.ScoreTotal = 200;
-            dataNew.GameDate = System.DateTime.MinValue;
+            dataNew.GameDate = DateTime.MinValue;
             dataNew.AutoBattle = true;
             dataNew.TurnCount = 300;
             dataNew.RoundCount = 400;
@@ -50,7 +51,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreNotEqual("oldID", result.Id);
         }
 
@@ -64,7 +65,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.IsNotNull(result.BattleNumber);
             Assert.IsNotNull(result.ScoreTotal);
             Assert.IsNotNull(result.GameDate);
@@ -92,7 +93,7 @@ namespace UnitTests.Models
             var result = new ScoreModel();
             result.BattleNumber = 100;
             result.ScoreTotal = 200;
-            result.GameDate = System.DateTime.MinValue;
+            result.GameDate = DateTime.MinValue;
             result.AutoBattle = true;
             result.TurnCount = 300;
             result.RoundCount = 400;
@@ -109,10 +110,10 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(100, result.BattleNumber);
             Assert.AreEqual(200, result.ScoreTotal);
-            Assert.AreEqual(System.DateTime.MinValue, result.GameDate);
+            Assert.AreEqual(DateTime.MinValue, result.GameDate);
             Assert.AreEqual(true, result.AutoBattle);
             Assert.AreEqual(300, result.TurnCount);
             Assert.AreEqual(400, result.RoundCount);
@@ -137,7 +138,7 @@ namespace UnitTests.Models
             var dataNew = new ScoreModel();
             dataNew.BattleNumber = 100;
             dataNew.ScoreTotal = 200;
-            dataNew.GameDate = System.DateTime.MinValue;
+            dataNew.GameDate = DateTime.MinValue;
             dataNew.AutoBattle = true;
             dataNew.TurnCount = 300;
             dataNew.RoundCount = 400;
@@ -152,10 +153,10 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(100, dataNew.BattleNumber);
             Assert.AreEqual(200, dataNew.ScoreTotal);
-            Assert.AreEqual(System.DateTime.MinValue, dataNew.GameDate);
+            Assert.AreEqual(DateTime.MinValue, dataNew.GameDate);
             Assert.AreEqual(true, dataNew.AutoBattle);
             Assert.AreEqual(300, dataNew.TurnCount);
             Assert.AreEqual(400, dataNew.RoundCount);
@@ -178,7 +179,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(false, result);
             Assert.AreEqual(2, dataOriginal.TurnCount);
         }
@@ -204,7 +205,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(true, result);
             Assert.AreNotEqual(string.Empty, dataScore.ItemsDroppedList);
         }
@@ -220,7 +221,7 @@ namespace UnitTests.Models
 
             // Reset
 
-            // Assert
+            // Assert 
             Assert.AreEqual(false, result);
         }
     }

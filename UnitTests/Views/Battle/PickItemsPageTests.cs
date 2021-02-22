@@ -1,23 +1,17 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
+﻿using Game;
+using Game.ViewModels;
 using Game.Views;
-using Xamarin.Forms.Mocks;
+
+using NUnit.Framework;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class PickItemsPageTests
     {
-        App app;
-        PickItemsPage page;
 
         [SetUp]
         public void Setup()
@@ -29,14 +23,17 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready 
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new PickItemsPage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App           app;
+        private PickItemsPage page;
 
         [Test]
         public void PickItemsPage_Constructor_Default_Should_Pass()

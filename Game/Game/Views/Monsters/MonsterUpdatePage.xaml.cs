@@ -19,7 +19,7 @@ namespace Game.Views
     public partial class MonsterUpdatePage : ContentPage
     {
         // The Monster to update
-        private readonly GenericViewModel<MonsterModel> _viewModel;
+        public readonly GenericViewModel<MonsterModel> _viewModel;
 
         private void UpdatePageBindingContext()
         {
@@ -76,7 +76,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Save_Clicked(object sender, EventArgs e)
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             if (_viewModel.Data.Name.Length == 0)
             {
@@ -93,14 +93,14 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         ///     Randomize Monster Values and Items
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RandomButton_Clicked(object sender, EventArgs e)
+        public void RandomButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
             UpdatePageBindingContext();
@@ -128,7 +128,7 @@ namespace Game.Views
         /// Look up the Item to Display
         /// </summary>
         /// <returns></returns>
-        private StackLayout GetItemToDisplay()
+        public StackLayout GetItemToDisplay()
         {
             var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem) ??
                        new ItemModel
@@ -180,7 +180,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
+        public void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (!(args.SelectedItem is ItemModel data))
             {
@@ -200,7 +200,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private bool ShowPopup(ItemModel data)
+        public bool ShowPopup(ItemModel data)
         {
             PopupItemSelector.IsVisible = true;
 
@@ -231,12 +231,12 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClosePopup_Clicked(object sender, EventArgs e) => ClosePopup();
+        public void ClosePopup_Clicked(object sender, EventArgs e) => ClosePopup();
 
         /// <summary>
         /// Close the popup
         /// </summary>
-        private void ClosePopup() => PopupItemSelector.IsVisible = false;
+        public void ClosePopup() => PopupItemSelector.IsVisible = false;
 
         #endregion UniqueItems
     }

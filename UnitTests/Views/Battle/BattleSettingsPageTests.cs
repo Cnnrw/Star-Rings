@@ -26,14 +26,14 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new BattleSettingsPage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
 
         private App                app;
         private BattleSettingsPage page;
@@ -74,7 +74,7 @@ namespace UnitTests.Views
             var control = (Switch)page.FindByName("AllowMonsterItemsSwitch");
             var current = control.IsToggled;
 
-            ToggledEventArgs args = new ToggledEventArgs(current);
+            var args = new ToggledEventArgs(current);
 
             // Act
             page.AllowMonsterItems_Toggled(null, args);
@@ -93,7 +93,7 @@ namespace UnitTests.Views
             var control = (Switch)page.FindByName("AllowMonsterItemsSwitch");
             var current = control.IsToggled;
 
-            ToggledEventArgs args = new ToggledEventArgs(current);
+            var args = new ToggledEventArgs(current);
             page.AllowMonsterItems_Toggled(null, args);
 
             control.IsToggled = true;
@@ -115,7 +115,7 @@ namespace UnitTests.Views
             var control = (Switch)page.FindByName("AllowCriticalMissSwitch");
             var current = control.IsToggled;
 
-            ToggledEventArgs args = new ToggledEventArgs(current);
+            var args = new ToggledEventArgs(current);
 
             // Act
             page.AllowCriticalMiss_Toggled(null, args);
@@ -134,7 +134,7 @@ namespace UnitTests.Views
             var control = (Switch)page.FindByName("AllowCriticalMissSwitch");
             var current = control.IsToggled;
 
-            ToggledEventArgs args = new ToggledEventArgs(current);
+            var args = new ToggledEventArgs(current);
 
             page.AllowCriticalMiss_Toggled(null, args);
 
@@ -157,7 +157,7 @@ namespace UnitTests.Views
             var control = (Switch)page.FindByName("AllowCriticalHitSwitch");
             var current = control.IsToggled;
 
-            ToggledEventArgs args = new ToggledEventArgs(current);
+            var args = new ToggledEventArgs(current);
 
             // Act
             page.AllowCriticalHit_Toggled(null, args);
@@ -176,7 +176,7 @@ namespace UnitTests.Views
             var control = (Switch)page.FindByName("AllowCriticalHitSwitch");
             var current = control.IsToggled;
 
-            ToggledEventArgs args = new ToggledEventArgs(current);
+            var args = new ToggledEventArgs(current);
             page.AllowCriticalHit_Toggled(null, args);
 
             control.IsToggled = true;

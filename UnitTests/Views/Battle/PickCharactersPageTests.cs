@@ -1,29 +1,21 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
-
 using Game;
-using Game.Views;
-using Game.ViewModels;
 using Game.Models;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class PickCharactersPageTests : PickCharactersPage
     {
-        App app;
-        PickCharactersPage page;
-
-        public PickCharactersPageTests() : base(true) { }
 
         [SetUp]
         public void Setup()
@@ -35,14 +27,19 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready 
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new PickCharactersPage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App                app;
+        private PickCharactersPage page;
+
+        public PickCharactersPageTests() : base(true) { }
 
         [Test]
         public void PickCharactersPage_Constructor_Default_Should_Pass()
@@ -57,7 +54,7 @@ namespace UnitTests.Views
             // Assert
             Assert.IsNotNull(result);
         }
-        
+
         [Test]
         public void PickCharactersPage_Constructor_UT_Default_Should_Pass()
         {
@@ -91,10 +88,12 @@ namespace UnitTests.Views
         {
             // Arrange
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList = new List<PlayerInfoModel>();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList = new List<PlayerInfoModel>();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(new PlayerInfoModel(new MonsterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
+                                 .Add(new PlayerInfoModel(new MonsterModel()));
 
             BattleEngineViewModel.Instance.PartyCharacterList = new ObservableCollection<CharacterModel>();
             BattleEngineViewModel.Instance.PartyCharacterList.Add(new CharacterModel());

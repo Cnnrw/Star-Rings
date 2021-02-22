@@ -131,6 +131,20 @@ namespace UnitTests.Helpers
         }
 
         [Test]
+        public void RandomPlayerHelper_GetItem_Unknown_Should_Return_0()
+        {
+            // Arrange
+
+            // Act
+            var result = RandomPlayerHelper.GetItem(ItemLocationEnum.Unknown);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [Test]
         public void RandomPlayerHelper_GetItem_2_Should_Return_2()
         {
             // Arrange
@@ -352,7 +366,7 @@ namespace UnitTests.Helpers
             // Arrange
 
             // Act
-            var result = RandomPlayerHelper.GetRandomMonster(1, false);
+            var result = RandomPlayerHelper.GetRandomMonster(1);
 
             // Reset
 

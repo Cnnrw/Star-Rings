@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Game.Enums;
 using Game.Helpers;
@@ -13,7 +12,7 @@ namespace UnitTests.Helpers
     [TestFixture]
     public class ItemModelJsonHelperTests
     {
-        readonly string ExampleJson = @"
+        private readonly string ExampleJson = @"
             {
                 'ItemList':
                 [
@@ -23,7 +22,7 @@ namespace UnitTests.Helpers
                     {'Value':10,'Attribute':10,'Location':10,'Name':'Bunny Hat','Guid':'0e9f41b4-4be2-adc3-d39d-1c70ae814913','Description':'Pink hat with fluffy ears','ImageURI':'http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png','Range':0,'Damage':0,'Count':-1,'IsConsumable':false,'Category':10}
                 ]
             }";
-        readonly string ExampleJsonItemListEmpty = @"
+        private readonly string ExampleJsonItemListEmpty = @"
             {
                 'msg':'Ok',
                 'errorCode':1,
@@ -93,7 +92,7 @@ namespace UnitTests.Helpers
             Assert.AreEqual(null, result);
         }
 
-        readonly String ItemJson = @"{
+        private readonly string ItemJson = @"{
                             'Value':10,
                             'Attribute':14,
                             'Location':22,
@@ -112,7 +111,7 @@ namespace UnitTests.Helpers
         {
             // Arrange
 
-            JObject json = JObject.Parse(ItemJson);
+            var json = JObject.Parse(ItemJson);
 
             // Act
             var result = ItemModelJsonHelper.ConvertFromJson(json);

@@ -1,24 +1,19 @@
-﻿using NUnit.Framework;
-
-using Game;
-using Game.Views;
+﻿using Game;
 using Game.Models;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
-using Game.ViewModels;
-using System.Threading.Tasks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class ScoreIndexPageTests : ScoreIndexPage
     {
-        App app;
-        ScoreIndexPage page;
 
-        public ScoreIndexPageTests() : base(true) { }
-        
         [SetUp]
         public void Setup()
         {
@@ -33,10 +28,12 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App            app;
+        private ScoreIndexPage page;
+
+        public ScoreIndexPageTests() : base(true) { }
 
         [Test]
         public void ScoreIndexPage_Constructor_Default_Should_Pass()
@@ -119,7 +116,7 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            ScoreIndexViewModel ViewModel = ScoreIndexViewModel.Instance;
+            var ViewModel = ScoreIndexViewModel.Instance;
 
             // Act
             OnAppearing();
@@ -136,7 +133,7 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            ScoreIndexViewModel ViewModel = ScoreIndexViewModel.Instance;
+            var ViewModel = ScoreIndexViewModel.Instance;
             ViewModel.Dataset.Clear();
 
             // Act

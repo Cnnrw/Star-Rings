@@ -19,7 +19,7 @@ namespace Game.Views
     public partial class CharacterReadPage : ContentPage
     {
         // View Model for Item
-        private readonly GenericViewModel<CharacterModel> _viewModel;
+        public readonly GenericViewModel<CharacterModel> _viewModel;
 
         // Empty Constructor for UTs
         public CharacterReadPage(bool UnitTest) { }
@@ -47,7 +47,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Update_Clicked(object sender, EventArgs e)
+        public async void Update_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new CharacterUpdatePage(_viewModel)));
             await Navigation.PopAsync();
@@ -58,7 +58,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Delete_Clicked(object sender, EventArgs e)
+        public async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new CharacterDeletePage(_viewModel)));
             await Navigation.PopAsync();
@@ -69,7 +69,7 @@ namespace Game.Views
         /// <summary>
         /// Show the Items the Character has
         /// </summary>
-        private void AddItemsToDisplay()
+        public void AddItemsToDisplay()
         {
             var FlexList = ItemBox.Children.ToList();
             foreach (var data in FlexList)
@@ -91,7 +91,7 @@ namespace Game.Views
         /// Look up the Item to Display
         /// </summary>
         /// <returns></returns>
-        private StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
+        public StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
         {
             ItemModel data = null;
 
@@ -119,18 +119,15 @@ namespace Game.Views
                 case ItemLocationEnum.Feet:
                     data = _viewModel.Data.GetItem(_viewModel.Data.Feet);
                     break;
-                default:
-                    break;
             }
 
             // If there's no Item currently in the slot, show a blank Item
-            data = data ??
-                   new ItemModel
-                   {
-                       Location = ItemLocationEnum.Unknown,
-                       ImageURI = "icon_cancel.png",
-                       Name = "No item"
-                   };
+            data ??= new ItemModel
+            {
+                Location = ItemLocationEnum.Unknown,
+                ImageURI = "icon_cancel.png",
+                Name = "No item"
+            };
 
             // Hookup the Image Button to show the Item picture
             var ItemButton = new Image

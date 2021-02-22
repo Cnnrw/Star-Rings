@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 
@@ -10,6 +12,7 @@ using NUnit.Framework;
 namespace UnitTests.Models
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class MonsterModelTests
     {
         [TearDown]
@@ -33,9 +36,7 @@ namespace UnitTests.Models
         public void MonsterModel_Constructor_New_Item_Should_Copy()
         {
             // Arrange
-            var dataNew = new MonsterModel();
-            dataNew.Attack = 2;
-            dataNew.Id = "oldID";
+            var dataNew = new MonsterModel {Attack = 2, Id = "oldID"};
 
             // Act
             var result = new MonsterModel(dataNew);
@@ -129,7 +130,8 @@ namespace UnitTests.Models
         public void MonsterModel_Update_InValid_Null_Should_Fail()
         {
             // Arrange
-            var dataOriginal = new MonsterModel {Attack = 2};
+            var dataOriginal = new MonsterModel();
+            dataOriginal.Attack = 2;
 
             // Act
             var result = dataOriginal.Update(null);
@@ -159,28 +161,26 @@ namespace UnitTests.Models
         public void MonsterModel_Set_Get_Default_Should_Pass()
         {
             // Arrange
-            var result = new MonsterModel
-            {
-                Id = "bogus",
-                ImageURI = "uri",
-                PlayerType = PlayerTypeEnum.Monster,
-                Alive = false,
-                Order = 100,
-                Guid = "guid",
-                ListOrder = 200,
-                Speed = 300,
-                Level = 400,
-                ExperienceRemaining = 500,
-                CurrentHealth = 600,
-                MaxHealth = 700,
-                ExperienceTotal = 800,
-                Defense = 900,
-                Attack = 123,
-                Head = "head",
-                Feet = "feet"
-            };
+            var result = new MonsterModel();
 
             // Act
+            result.Id = "bogus";
+            result.ImageURI = "uri";
+            result.PlayerType = PlayerTypeEnum.Monster;
+            result.Alive = false;
+            result.Order = 100;
+            result.Guid = "guid";
+            result.ListOrder = 200;
+            result.Speed = 300;
+            result.Level = 400;
+            result.ExperienceRemaining = 500;
+            result.CurrentHealth = 600;
+            result.MaxHealth = 700;
+            result.ExperienceTotal = 800;
+            result.Defense = 900;
+            result.Attack = 123;
+            result.Head = "head";
+            result.Feet = "feet";
             result.Necklace = "necklace";
             result.PrimaryHand = "primaryhand";
             result.OffHand = "offhand";
@@ -395,7 +395,7 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void MonsterModel_GetItemByLocation_Necklass_Default_Should_Pass()
+        public void MonsterModel_GetItemByLocation_Necklace_Default_Should_Pass()
         {
             // Arrange
             var data = new MonsterModel();
@@ -518,7 +518,7 @@ namespace UnitTests.Models
                 OffHand = item.Id,
                 RightFinger = item.Id,
                 LeftFinger = item.Id,
-                Feet = item.Id,
+                Feet = item.Id
             };
 
             // Act
@@ -618,7 +618,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -690,7 +690,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -762,7 +762,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -834,7 +834,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -906,7 +906,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -951,7 +951,8 @@ namespace UnitTests.Models
                 Id = "feet"
             });
 
-            var data = new MonsterModel {Level = 1};
+            var data = new MonsterModel();
+            data.Level = 1;
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
@@ -962,8 +963,8 @@ namespace UnitTests.Models
             data.AddItem(ItemLocationEnum.LeftFinger, (await ItemIndexViewModel.Instance.ReadAsync("LeftFinger")).Id);
             data.AddItem(ItemLocationEnum.Feet, (await ItemIndexViewModel.Instance.ReadAsync("feet")).Id);
 
-            Game.Helpers.DiceHelper.EnableForcedRolls();
-            Game.Helpers.DiceHelper.SetForcedRollValue(1);
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(1);
 
             // Act
 
@@ -971,7 +972,7 @@ namespace UnitTests.Models
             var result = data.GetDamageRollValue();
 
             // Reset
-            Game.Helpers.DiceHelper.DisableForcedRolls();
+            DiceHelper.DisableForcedRolls();
 
             // Assert
             Assert.AreEqual(2, result);
@@ -982,7 +983,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -992,13 +993,14 @@ namespace UnitTests.Models
                 Damage = 1
             });
 
-            var data = new MonsterModel {Level = 1};
+            var data = new MonsterModel();
+            data.Level = 1;
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
 
-            Game.Helpers.DiceHelper.EnableForcedRolls();
-            Game.Helpers.DiceHelper.SetForcedRollValue(1);
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(1);
 
             // Act
 
@@ -1006,7 +1008,7 @@ namespace UnitTests.Models
             var result = data.GetDamageItemBonus;
 
             // Reset
-            Game.Helpers.DiceHelper.DisableForcedRolls();
+            DiceHelper.DisableForcedRolls();
 
             // Assert
             Assert.AreEqual(1, result);
@@ -1017,7 +1019,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -1027,13 +1029,14 @@ namespace UnitTests.Models
                 Damage = 1
             });
 
-            var data = new MonsterModel {Level = 1};
+            var data = new MonsterModel();
+            data.Level = 1;
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
 
-            Game.Helpers.DiceHelper.EnableForcedRolls();
-            Game.Helpers.DiceHelper.SetForcedRollValue(1);
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(1);
 
             // Act
 
@@ -1041,7 +1044,7 @@ namespace UnitTests.Models
             var result = data.GetDamageItemBonusString;
 
             // Reset
-            Game.Helpers.DiceHelper.DisableForcedRolls();
+            DiceHelper.DisableForcedRolls();
 
             // Assert
             Assert.AreEqual("1D 1", result);
@@ -1052,7 +1055,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -1062,13 +1065,14 @@ namespace UnitTests.Models
                 Damage = 1
             });
 
-            var data = new MonsterModel {Level = 1};
+            var data = new MonsterModel();
+            data.Level = 1;
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
 
-            Game.Helpers.DiceHelper.EnableForcedRolls();
-            Game.Helpers.DiceHelper.SetForcedRollValue(1);
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(1);
 
             // Act
 
@@ -1076,7 +1080,7 @@ namespace UnitTests.Models
             var result = data.GetDamageTotalString;
 
             // Reset
-            Game.Helpers.DiceHelper.DisableForcedRolls();
+            DiceHelper.DisableForcedRolls();
 
             // Assert
             Assert.AreEqual("1 + 1D 1", result);

@@ -16,12 +16,12 @@ namespace Game.Views
     [DesignTimeVisible(false)]
     public partial class MonsterReadPage : ContentPage
     {
-        private readonly GenericViewModel<MonsterModel> _viewModel;
+        public readonly GenericViewModel<MonsterModel> _viewModel;
 
         #region Constructors
 
         // UnitTest Constructor
-        // public MonsterReadPage(bool unitTest) { }
+        public MonsterReadPage(bool unitTest) { }
 
         /// <summary>
         ///     Constructor called with a view model
@@ -48,7 +48,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Update_Clicked(object sender, EventArgs e)
+        public async void Update_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
             await Navigation.PopAsync();
@@ -59,7 +59,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Delete_Clicked(object sender, EventArgs e)
+        public async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(_viewModel)));
             await Navigation.PopAsync();
@@ -72,7 +72,7 @@ namespace Game.Views
         /// <summary>
         /// Show the Items the Character has
         /// </summary>
-        private void AddItemsToDisplay()
+        public void AddItemsToDisplay()
         {
             var FlexList = ItemBox.Children.ToList();
             foreach (var data in FlexList)
@@ -88,7 +88,7 @@ namespace Game.Views
         /// Look up the Item to Display
         /// </summary>
         /// <returns></returns>
-        private StackLayout GetItemToDisplay()
+        public StackLayout GetItemToDisplay()
         {
             ItemModel data = null;
 

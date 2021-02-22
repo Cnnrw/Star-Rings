@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using Game;
+
+using NUnit.Framework;
 
 using Xamarin.Forms.Mocks;
-
-using Game;
 
 namespace UnitTests.Views
 {
@@ -83,7 +83,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Initilize Xamarin Forms
-            
+
             MockForms.Init();
             var page = new App();
 

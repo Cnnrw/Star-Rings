@@ -8,7 +8,7 @@ namespace UnitTests.ViewModels
 {
     public class BattleEngineViewModelTests
     {
-        BattleEngineViewModel ViewModel;
+        private BattleEngineViewModel ViewModel;
 
         [SetUp]
         public void Setup()

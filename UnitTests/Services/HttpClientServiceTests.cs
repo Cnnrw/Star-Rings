@@ -22,7 +22,7 @@ namespace UnitTests.Services
         [SetUp]
         public void Setup() => Service = HttpClientService.Instance;
 
-        HttpClientService Service;
+        private HttpClientService Service;
 
         [Test]
         public void HttpClientService_Constructor_Default_Should_Pass()
@@ -43,7 +43,7 @@ namespace UnitTests.Services
         {
             // Arrange
 
-            HttpClient httpClient = new HttpClient();
+            var httpClient = new HttpClient();
 
             // Act
             var result = Service.SetHttpClient(httpClient);
@@ -150,12 +150,12 @@ namespace UnitTests.Services
             // Arrange
             var RestUrl = "";
 
-            int number = 0;
-            int level = 0;
-            AttributeEnum attribute = AttributeEnum.Attack;
-            ItemLocationEnum location = ItemLocationEnum.Feet;
-            int category = 0;
-            bool random = false;
+            var number = 0;
+            var level = 0;
+            var attribute = AttributeEnum.Attack;
+            var location = ItemLocationEnum.Feet;
+            var category = 0;
+            var random = false;
 
             var dict = new Dictionary<string, string>
             {
@@ -164,11 +164,11 @@ namespace UnitTests.Services
                 {"Attribute", ((int)attribute).ToString()},
                 {"Location", ((int)location).ToString()},
                 {"Random", random.ToString()},
-                {"Category", category.ToString()},
+                {"Category", category.ToString()}
             };
 
             // Convert parameters to a key value pairs to a json object
-            JObject finalContentJson = (JObject)JToken.FromObject(dict);
+            var finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Act
             var result = await Service.GetJsonPostAsync(RestUrl, finalContentJson);
@@ -185,12 +185,12 @@ namespace UnitTests.Services
             // Arrange
             var RestUrl = "bogus";
 
-            int number = 0;
-            int level = 0;
-            AttributeEnum attribute = AttributeEnum.Attack;
-            ItemLocationEnum location = ItemLocationEnum.Feet;
-            int category = 0;
-            bool random = false;
+            var number = 0;
+            var level = 0;
+            var attribute = AttributeEnum.Attack;
+            var location = ItemLocationEnum.Feet;
+            var category = 0;
+            var random = false;
 
             var dict = new Dictionary<string, string>
             {
@@ -199,11 +199,11 @@ namespace UnitTests.Services
                 {"Attribute", ((int)attribute).ToString()},
                 {"Location", ((int)location).ToString()},
                 {"Random", random.ToString()},
-                {"Category", category.ToString()},
+                {"Category", category.ToString()}
             };
 
             // Convert parameters to a key value pairs to a json object
-            JObject finalContentJson = (JObject)JToken.FromObject(dict);
+            var finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Act
             var result = await Service.GetJsonPostAsync(RestUrl, finalContentJson);
@@ -228,12 +228,12 @@ namespace UnitTests.Services
 
             ResponseMessage.SetResponseMessageStringContent(ResponseMessage.GetStringContent);
 
-            int number = 0;
-            int level = 0;
-            AttributeEnum attribute = AttributeEnum.Attack;
-            ItemLocationEnum location = ItemLocationEnum.Feet;
-            int category = 0;
-            bool random = false;
+            var number = 0;
+            var level = 0;
+            var attribute = AttributeEnum.Attack;
+            var location = ItemLocationEnum.Feet;
+            var category = 0;
+            var random = false;
 
             var dict = new Dictionary<string, string>
             {
@@ -242,11 +242,11 @@ namespace UnitTests.Services
                 {"Attribute", ((int)attribute).ToString()},
                 {"Location", ((int)location).ToString()},
                 {"Random", random.ToString()},
-                {"Category", category.ToString()},
+                {"Category", category.ToString()}
             };
 
             // Convert parameters to a key value pairs to a json object
-            JObject finalContentJson = (JObject)JToken.FromObject(dict);
+            var finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Act
             var result = await Service.GetJsonPostAsync(RestUrl, finalContentJson);
@@ -277,12 +277,12 @@ namespace UnitTests.Services
             ResponseMessage.SetResponseMessageStringContent(ResponseMessage.NullStringContent);
             ResponseMessage.SetHttpStatusCode(ResponseMessage.HttpStatusCodeBadRequest);
 
-            int number = 0;
-            int level = 0;
-            AttributeEnum attribute = AttributeEnum.Attack;
-            ItemLocationEnum location = ItemLocationEnum.Feet;
-            int category = 0;
-            bool random = false;
+            var number = 0;
+            var level = 0;
+            var attribute = AttributeEnum.Attack;
+            var location = ItemLocationEnum.Feet;
+            var category = 0;
+            var random = false;
 
             var dict = new Dictionary<string, string>
             {
@@ -291,11 +291,11 @@ namespace UnitTests.Services
                 {"Attribute", ((int)attribute).ToString()},
                 {"Location", ((int)location).ToString()},
                 {"Random", random.ToString()},
-                {"Category", category.ToString()},
+                {"Category", category.ToString()}
             };
 
             // Convert parameters to a key value pairs to a json object
-            JObject finalContentJson = (JObject)JToken.FromObject(dict);
+            var finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Act
             var result = await Service.GetJsonPostAsync(RestUrl, finalContentJson);
@@ -336,25 +336,15 @@ namespace UnitTests.Services
             public static HttpStatusCode HttpStatusCodeBadRequest = HttpStatusCode.BadRequest;
             public static HttpStatusCode HttpStatusCodeNotFound   = HttpStatusCode.NotFound;
 
-            public static void SetResponseMessageStringContent(StringContent content)
-            {
+            public static void SetResponseMessageStringContent(StringContent content) =>
                 ResponseMessageStringContent = content;
-            }
 
-            public static void ResetResponseMessageStringContent()
-            {
+            public static void ResetResponseMessageStringContent() =>
                 ResponseMessageStringContent = DefaultStringContent;
-            }
 
-            public static void SetHttpStatusCode(HttpStatusCode code)
-            {
-                HttpStatusCode = code;
-            }
+            public static void SetHttpStatusCode(HttpStatusCode code) => HttpStatusCode = code;
 
-            public static void ResetHttpStatusCode()
-            {
-                HttpStatusCode = HttpStatusCodeSuccess;
-            }
+            public static void ResetHttpStatusCode() => HttpStatusCode = HttpStatusCodeSuccess;
         }
 
         public class MockHttpMessageHandler : HttpMessageHandler
@@ -373,7 +363,7 @@ namespace UnitTests.Services
             }
         }
 
-        readonly string ExampleJson = @"
+        private readonly string ExampleJson = @"
             {
                 'msg':'Ok',
                 'errorCode':0,
@@ -389,7 +379,7 @@ namespace UnitTests.Services
                     ]
                 }
             }";
-        readonly string ExampleJsonNoVersion = @"
+        private readonly string ExampleJsonNoVersion = @"
             {
                 'msg':'Ok',
                 'errorCode':0,
@@ -405,14 +395,14 @@ namespace UnitTests.Services
                         ]
                 }
             }";
-        readonly string ExampleJsonMessageError = @"
+        private readonly string ExampleJsonMessageError = @"
             {
                 'msg':'Ok',
                 'errorCode':1,
                 'version':'1.1.1.1',
                 'data':{}
             }";
-        readonly string ExampleJsonBadJson = @"Bougus";
+        private readonly string ExampleJsonBadJson = @"Bougus";
 
         [Test]
         public async Task HttpClientService_ParseJsonResult_Valid_Should_Pass()

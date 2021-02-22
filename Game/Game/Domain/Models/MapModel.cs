@@ -349,7 +349,7 @@ namespace Game.Models
         /// <param name="x2"></param>
         /// <param name="y2"></param>
         /// <returns></returns>
-        public static int Distance(int x1, int y1, int x2, int y2) =>
+        public int Distance(int x1, int y1, int x2, int y2) =>
             (int)Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
     }
 }

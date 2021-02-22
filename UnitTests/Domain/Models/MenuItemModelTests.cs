@@ -26,7 +26,17 @@ namespace UnitTests.Models
         public void MenuItemModel_Set_Default_Should_Pass()
         {
             // Arrange
-            var result = new MenuItemModel {Id = MenuItemEnum.Village, Title = "bogus title"};
+            var result = new MenuItemModel();
+
+            // Act
+
+            // Test all the Setters
+            result.Id = MenuItemEnum.Village;
+            result.Title = "bogus title";
+
+            // Reset
+
+            // Assert
 
             // The Get is tested by retrieving it here as well.
             Assert.AreEqual("bogus title", result.Title);

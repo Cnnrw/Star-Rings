@@ -41,7 +41,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Delete_Clicked(object sender, EventArgs e)
+        public async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "Delete", _viewModel.Data);
             await Navigation.PopModalAsync();
@@ -52,7 +52,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         ///     Trap the Back Button on the Phone

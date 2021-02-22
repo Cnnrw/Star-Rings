@@ -1,6 +1,5 @@
-﻿using Game.Enums;
-using Game.Helpers;
-using Game.Helpers.Converters;
+﻿using Game.Converters;
+using Game.Enums;
 using Game.Models;
 
 using NUnit.Framework;
@@ -89,7 +88,7 @@ namespace UnitTests.Helpers
         {
             var myConverter = new IntEnumConverter();
 
-            int myObject = 40;
+            var myObject = 40;
             var Result = myConverter.ConvertBack(myObject, typeof(ItemLocationEnum), null, null);
             var Expected = "Feet";
 

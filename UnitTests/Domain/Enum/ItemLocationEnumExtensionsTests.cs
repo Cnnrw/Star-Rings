@@ -36,7 +36,7 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void ItemLocationEnumExtensionsTests_Necklass_Default_Should_Pass()
+        public void ItemLocationEnumExtensionsTests_Necklace_Default_Should_Pass()
         {
             // Arrange
 
@@ -46,7 +46,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual("Necklass", result);
+            Assert.AreEqual("Necklace", result);
         }
 
         [Test]

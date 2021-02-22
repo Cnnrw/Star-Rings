@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Enums;
 using Game.Helpers;
 using Game.Models;
+using Game.Services;
 using Game.ViewModels;
 
 using NUnit.Framework;
@@ -11,17 +13,15 @@ using NUnit.Framework;
 namespace UnitTests.Models
 {
     [TestFixture]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization",
-                                                     Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class BasePlayerModelTests
     {
         [TearDown]
-        public void TearDown()
-        {
+        public void TearDown() =>
             // For Tear down delete the Item Dataset.
             // Test that need the Item Dataset should set it
             ItemIndexViewModel.Instance.Dataset.Clear();
-        }
 
         [Test]
         public void BasePlayerModel_Constructor_Default_Should_Pass()
@@ -49,7 +49,7 @@ namespace UnitTests.Models
 
             // Assert
             Assert.IsNotNull(result.Id);
-            Assert.AreEqual(Game.Services.ItemService.DefaultImageURI, result.ImageURI);
+            Assert.AreEqual(ItemService.DefaultImageURI, result.ImageURI);
             Assert.AreEqual(PlayerTypeEnum.Unknown, result.PlayerType);
             Assert.AreEqual(true, result.Alive);
             Assert.AreEqual(0, result.Order);
@@ -127,7 +127,7 @@ namespace UnitTests.Models
             Assert.AreEqual(123, result.Attack);
             Assert.AreEqual("head", result.Head);
             Assert.AreEqual("feet", result.Feet);
-            Assert.AreEqual("necklass", result.Necklace);
+            Assert.AreEqual("necklace", result.Necklace);
             Assert.AreEqual("primaryhand", result.PrimaryHand);
             Assert.AreEqual("offhand", result.OffHand);
             Assert.AreEqual("rightfinger", result.RightFinger);
@@ -424,7 +424,7 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void BasePlayerModel_GetItemByLocation_Necklass_Default_Should_Pass()
+        public void BasePlayerModel_GetItemByLocation_Necklace_Default_Should_Pass()
         {
             // Arrange
             var data = new BasePlayerModel<CharacterModel>();
@@ -526,7 +526,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
 
             var item = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
@@ -540,7 +540,7 @@ namespace UnitTests.Models
                 OffHand = item.Id,
                 RightFinger = item.Id,
                 LeftFinger = item.Id,
-                Feet = item.Id,
+                Feet = item.Id
             };
 
             // Act
@@ -583,7 +583,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
 
             var itemOld = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
@@ -615,7 +615,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
 
             var itemOld = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
@@ -640,7 +640,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -652,7 +652,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -689,7 +689,7 @@ namespace UnitTests.Models
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -712,7 +712,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -724,7 +724,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -761,7 +761,7 @@ namespace UnitTests.Models
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -784,7 +784,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -796,7 +796,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Defense,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -833,7 +833,7 @@ namespace UnitTests.Models
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -856,7 +856,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -868,7 +868,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Speed,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -905,7 +905,7 @@ namespace UnitTests.Models
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
@@ -928,7 +928,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -940,7 +940,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -978,15 +978,15 @@ namespace UnitTests.Models
 
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
-            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklass")).Id);
+            data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
             data.AddItem(ItemLocationEnum.RightFinger, (await ItemIndexViewModel.Instance.ReadAsync("RightFinger")).Id);
             data.AddItem(ItemLocationEnum.LeftFinger, (await ItemIndexViewModel.Instance.ReadAsync("LeftFinger")).Id);
             data.AddItem(ItemLocationEnum.Feet, (await ItemIndexViewModel.Instance.ReadAsync("feet")).Id);
 
-            Game.Helpers.DiceHelper.EnableForcedRolls();
-            Game.Helpers.DiceHelper.SetForcedRollValue(1);
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(1);
 
             // Act
 
@@ -994,7 +994,7 @@ namespace UnitTests.Models
             var result = data.GetDamageRollValue();
 
             // Reset
-            Game.Helpers.DiceHelper.DisableForcedRolls();
+            DiceHelper.DisableForcedRolls();
 
             // Assert
             Assert.AreEqual(2, result);
@@ -1005,7 +1005,7 @@ namespace UnitTests.Models
         {
             // Arrange
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
             {
@@ -1021,8 +1021,8 @@ namespace UnitTests.Models
             // Add the first item
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
 
-            Game.Helpers.DiceHelper.EnableForcedRolls();
-            Game.Helpers.DiceHelper.SetForcedRollValue(1);
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(1);
 
             // Act
 
@@ -1030,7 +1030,7 @@ namespace UnitTests.Models
             var result = data.GetDamageItemBonus;
 
             // Reset
-            Game.Helpers.DiceHelper.DisableForcedRolls();
+            DiceHelper.DisableForcedRolls();
 
 
             // Assert
@@ -1122,7 +1122,7 @@ namespace UnitTests.Models
             {
                 Attribute = AttributeEnum.Attack,
                 Value = 20,
-                Id = "necklass"
+                Id = "necklace"
             });
 
             var item = ItemIndexViewModel.Instance.Dataset.FirstOrDefault();
@@ -1137,7 +1137,7 @@ namespace UnitTests.Models
                 RightFinger = item.Id,
                 LeftFinger = item.Id,
                 Feet = item.Id,
-                UniqueItem = item.Id,
+                UniqueItem = item.Id
             };
 
             // Act
@@ -1162,7 +1162,7 @@ namespace UnitTests.Models
                 RightFinger = null,
                 LeftFinger = null,
                 Feet = null,
-                UniqueItem = null,
+                UniqueItem = null
             };
 
             // Act
@@ -1196,10 +1196,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_LevelUpToValue_InValid_Same_Level_Should_Skip()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>
-            {
-                Level = 1, ExperienceTotal = 10000,
-            };
+            var data = new BasePlayerModel<CharacterModel> {Level = 1, ExperienceTotal = 10000};
 
             // Act
             var result = data.LevelUpToValue(1);
@@ -1214,10 +1211,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_LevelUpToValue_InValid_Neg_Level_Should_Skip()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>
-            {
-                Level = 1, ExperienceTotal = 10000,
-            };
+            var data = new BasePlayerModel<CharacterModel> {Level = 1, ExperienceTotal = 10000};
 
             // Act
             var result = data.LevelUpToValue(-1);
@@ -1232,10 +1226,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_LevelUpToValue_InValid_Max_Level_Should_Skip()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>
-            {
-                Level = 1, ExperienceTotal = 1000000,
-            };
+            var data = new BasePlayerModel<CharacterModel> {Level = 1, ExperienceTotal = 1000000};
 
             // Act
             var result = data.LevelUpToValue(LevelTableHelper.MaxLevel + 1);
@@ -1250,10 +1241,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_LevelUpToValue_InValid_Lower_Level_Should_Fail()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>
-            {
-                Level = 5, ExperienceTotal = 10000,
-            };
+            var data = new BasePlayerModel<CharacterModel> {Level = 5, ExperienceTotal = 10000};
 
             // Act
             var result = data.LevelUpToValue(1);
@@ -1268,10 +1256,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_LevelUp_InValid_Level_1_No_Experience_Should_Fail()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>
-            {
-                Level = 1, ExperienceTotal = -1,
-            };
+            var data = new BasePlayerModel<CharacterModel> {Level = 1, ExperienceTotal = -1};
 
             // Act
             var result = data.LevelUp();
@@ -1286,10 +1271,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_LevelUp_Valid_Level_2_Should_Pass()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>
-            {
-                Level = 1, ExperienceTotal = 301,
-            };
+            var data = new BasePlayerModel<CharacterModel> {Level = 1, ExperienceTotal = 301};
 
             // Act
             var result = data.LevelUp();

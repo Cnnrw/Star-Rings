@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Models;
 using Game.Services;
+
+using NUnit.Framework;
 
 namespace UnitTests.Services
 {
     [TestFixture]
     public class DatabaseServiceTests
     {
-        DatabaseService<ItemModel> DataStore;
 
         [SetUp]
         public void Setup()
@@ -21,10 +21,9 @@ namespace UnitTests.Services
         }
 
         [TearDown]
-        public async Task TearDown()
-        {
-            await DataStore.WipeDataListAsync();
-        }
+        public async Task TearDown() => await DataStore.WipeDataListAsync();
+
+        private DatabaseService<ItemModel> DataStore;
 
         [Test]
         public void DatabaseService_Constructor_Default_Should_Pass()
@@ -49,7 +48,7 @@ namespace UnitTests.Services
             DatabaseService<ItemModel>.initialized = false;
 
             // Act
-            DatabaseService<ItemModel> DataStore2 = new DatabaseService<ItemModel>();
+            var DataStore2 = new DatabaseService<ItemModel>();
 
             // Reset
 
@@ -68,7 +67,7 @@ namespace UnitTests.Services
             // Reset
 
             // Assert
-            Assert.AreEqual(true,result);
+            Assert.AreEqual(true, result);
         }
 
         [Test]
@@ -109,7 +108,7 @@ namespace UnitTests.Services
             var originalState = await DataStore.GetNeedsInitializationAsync();
 
             // Act
-            DataStore.NeedsInitialization=true;
+            DataStore.NeedsInitialization = true;
             var newState = await DataStore.GetNeedsInitializationAsync();
 
             // Reset
@@ -289,15 +288,9 @@ namespace UnitTests.Services
         public async Task DatabaseService_Delete_Valid_Should_Pass()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             await DataStore.CreateAsync(item2);
@@ -315,15 +308,9 @@ namespace UnitTests.Services
         public async Task DatabaseService_Delete_InValid_Should_Fail()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             await DataStore.CreateAsync(item2);
@@ -341,15 +328,9 @@ namespace UnitTests.Services
         public async Task DatabaseService_Delete_InValid_Null_Should_Fail()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             await DataStore.CreateAsync(item2);
@@ -367,10 +348,7 @@ namespace UnitTests.Services
         public async Task DatabaseService_Delete_InValid_ForceException_Should_Fail()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
             await DataStore.CreateAsync(item1);
 
@@ -390,22 +368,16 @@ namespace UnitTests.Services
         public async Task DatabaseService_Update_Valid_Should_Pass()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             await DataStore.CreateAsync(item2);
 
             // Act
             item2.Name = "c";
-            
+
             var result = await DataStore.UpdateAsync(item2);
             var name = await DataStore.ReadAsync(item2.Id);
 
@@ -420,15 +392,9 @@ namespace UnitTests.Services
         public async Task DatabaseService_Update_InValid_Null_Should_Fail()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             await DataStore.CreateAsync(item2);
@@ -446,15 +412,9 @@ namespace UnitTests.Services
         public async Task DatabaseService_Update_InValid_ID_Should_Fail()
         {
             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             //await DataStore.CreateAsync(item2);   // Don't put 2 in the list
@@ -473,16 +433,10 @@ namespace UnitTests.Services
         [Test]
         public async Task DatabaseService_Update_ForceException_Should_Fail()
         {
-             // Arrange
-            var item1 = new ItemModel
-            {
-                Name = "a"
-            };
+            // Arrange
+            var item1 = new ItemModel {Name = "a"};
 
-            var item2 = new ItemModel
-            {
-                Name = "b"
-            };
+            var item2 = new ItemModel {Name = "b"};
 
             await DataStore.CreateAsync(item1);
             await DataStore.CreateAsync(item2);

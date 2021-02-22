@@ -27,17 +27,17 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new RoundOverPage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
 
-        App           app;
-        RoundOverPage page;
+        private App           app;
+        private RoundOverPage page;
 
         [Test]
         public void RoundOverPage_Constructor_Default_Should_Pass()

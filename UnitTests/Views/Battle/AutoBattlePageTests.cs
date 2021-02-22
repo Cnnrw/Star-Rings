@@ -1,20 +1,19 @@
-﻿using NUnit.Framework;
-
-using Game;
-using Game.Views;
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
+﻿using Game;
 using Game.Helpers;
 using Game.Models;
-using Game.Engine;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class AutoBattlePageTests
     {
-        App app;
-        AutoBattlePage page;
 
         [SetUp]
         public void Setup()
@@ -26,14 +25,17 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready 
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new AutoBattlePage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App            app;
+        private AutoBattlePage page;
 
         [Test]
         public void AutoBattlePage_Constructor_Default_Should_Pass()
@@ -60,7 +62,7 @@ namespace UnitTests.Views
             DiceHelper.EnableForcedRolls();
             DiceHelper.SetForcedRollValue(3);
 
-            var data = new CharacterModel { Level = 1, MaxHealth = 10 };
+            var data = new CharacterModel {Level = 1, MaxHealth = 10};
 
             page.AutoBattle.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
             page.AutoBattle.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));

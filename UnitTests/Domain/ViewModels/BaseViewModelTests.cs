@@ -17,7 +17,7 @@ namespace UnitTests.ViewModels
         [SetUp]
         public void Setup() => ViewModel = new BaseViewModel<ItemModel>();
 
-        BaseViewModel<ItemModel> ViewModel;
+        private BaseViewModel<ItemModel> ViewModel;
 
         [Test]
         public void BaseViewModel_Constructor_Default_Should_Pass()
@@ -115,7 +115,7 @@ namespace UnitTests.ViewModels
 
             // Act
 
-            SetProperty<bool>(ref isBusy, false, "bogus", showMethod);
+            SetProperty(ref isBusy, false, "bogus", showMethod);
 
             // Reset
 
@@ -124,11 +124,14 @@ namespace UnitTests.ViewModels
         }
 
         /// <summary>
-        /// Following TestName class is used for the Action in the SetProperty test
+        ///     Following TestName class is used for the Action in the SetProperty test
         /// </summary>
-        private class TestName
+        public class TestName
         {
-            public void Display() { }
+
+            public void Display()
+            {
+            }
         }
 
         [Test]

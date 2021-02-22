@@ -15,7 +15,7 @@ namespace UnitTests.Views
         [SetUp]
         public void Setup()
         {
-            // Initialize Xamarin Forms
+            // Initilize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
@@ -30,9 +30,6 @@ namespace UnitTests.Views
 
         private App            app;
         private ItemCreatePage page;
-
-        private const double oldValue = 0.0;
-        private const double newValue = 1.0;
 
         public ItemCreatePageTests() : base(true) { }
 
@@ -113,6 +110,8 @@ namespace UnitTests.Views
             // Arrange
 
             page = new ItemCreatePage();
+            var oldValue = 0.0;
+            var newValue = 1.0;
 
             var args = new ValueChangedEventArgs(oldValue, newValue);
 
@@ -131,8 +130,8 @@ namespace UnitTests.Views
             // Arrange
 
             page = new ItemCreatePage();
-            double oldRange = 0.0;
-            double newRange = 1.0;
+            var oldRange = 0.0;
+            var newRange = 1.0;
 
             var args = new ValueChangedEventArgs(oldRange, newRange);
 
@@ -150,8 +149,8 @@ namespace UnitTests.Views
         {
             // Arrange
             page = new ItemCreatePage();
-            double oldDamage = 0.0;
-            double newDamage = 1.0;
+            var oldDamage = 0.0;
+            var newDamage = 1.0;
 
             var args = new ValueChangedEventArgs(oldDamage, newDamage);
 

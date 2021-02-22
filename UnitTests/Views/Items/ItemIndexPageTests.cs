@@ -1,24 +1,19 @@
-﻿using NUnit.Framework;
-
-using Game;
-using Game.Views;
+﻿using Game;
 using Game.Models;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
-using Game.ViewModels;
-using System.Threading.Tasks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class ItemIndexPageTests : ItemIndexPage
     {
-        App app;
-        ItemIndexPage page;
 
-        public ItemIndexPageTests() : base(true) { }
-        
         [SetUp]
         public void Setup()
         {
@@ -33,10 +28,12 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App           app;
+        private ItemIndexPage page;
+
+        public ItemIndexPageTests() : base(true) { }
 
         [Test]
         public void ItemIndexPage_Constructor_Default_Should_Pass()
@@ -120,7 +117,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Warm it up
-            ItemIndexViewModel ViewModel = ItemIndexViewModel.Instance;
+            var ViewModel = ItemIndexViewModel.Instance;
 
             // Act
             OnAppearing();
@@ -137,7 +134,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Add each model here to warm up and load it.
-            ItemIndexViewModel ViewModel = ItemIndexViewModel.Instance;
+            var ViewModel = ItemIndexViewModel.Instance;
             ViewModel.Dataset.Clear();
 
             // Act

@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
+using Game.Views;
 
 using NUnit.Framework;
 
@@ -14,7 +16,7 @@ namespace UnitTests.ViewModels
 {
     public class ScoreIndexViewModelTests
     {
-        private ScoreIndexViewModel _viewModel;
+        private ScoreIndexViewModel ViewModel;
 
         [SetUp]
         public void Setup()
@@ -23,13 +25,13 @@ namespace UnitTests.ViewModels
             MockForms.Init();
 
             // Add each model here to warm up and load it.
-            Game.Helpers.DataSetsHelper.WarmUp();
+            DataSetsHelper.WarmUp();
 
-            _viewModel = ScoreIndexViewModel.Instance;
+            ViewModel = ScoreIndexViewModel.Instance;
         }
 
         [TearDown]
-        public void TearDown() => _viewModel.Dataset.Clear();
+        public void TearDown() => ViewModel.Dataset.Clear();
 
         [Test]
         public async Task ScoreIndexViewModel_Read_Invalid_ID_Bogus_Should_Fail()
@@ -37,7 +39,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await _viewModel.ReadAsync("bogus");
+            var result = await ViewModel.ReadAsync("bogus");
 
             // Reset
 
@@ -51,7 +53,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = _viewModel;
+            var result = ViewModel;
 
             // Reset
 
@@ -73,7 +75,7 @@ namespace UnitTests.ViewModels
             };
 
             // Act
-            var result = _viewModel.SortDataset(dataList);
+            var result = ViewModel.SortDataset(dataList);
 
             // Reset
 
@@ -90,14 +92,14 @@ namespace UnitTests.ViewModels
 
             // Add Scores into the list Z ordered
             var dataTest = new ScoreModel {Name = "test"};
-            await _viewModel.CreateAsync(dataTest);
+            await ViewModel.CreateAsync(dataTest);
 
-            await _viewModel.CreateAsync(new ScoreModel {Name = "z"});
-            await _viewModel.CreateAsync(new ScoreModel {Name = "m"});
-            await _viewModel.CreateAsync(new ScoreModel {Name = "a"});
+            await ViewModel.CreateAsync(new ScoreModel {Name = "z"});
+            await ViewModel.CreateAsync(new ScoreModel {Name = "m"});
+            await ViewModel.CreateAsync(new ScoreModel {Name = "a"});
 
             // Act
-            var result = _viewModel.CheckIfScoreExists(dataTest);
+            var result = ViewModel.CheckIfScoreExists(dataTest);
 
             // Reset
 
@@ -114,12 +116,12 @@ namespace UnitTests.ViewModels
             var dataTest = new ScoreModel {Name = "test"};
             // Don't add it to the list await ViewModel.CreateAsync(dataTest);
 
-            await _viewModel.CreateAsync(new ScoreModel {Name = "z"});
-            await _viewModel.CreateAsync(new ScoreModel {Name = "m"});
-            await _viewModel.CreateAsync(new ScoreModel {Name = "a"});
+            await ViewModel.CreateAsync(new ScoreModel {Name = "z"});
+            await ViewModel.CreateAsync(new ScoreModel {Name = "m"});
+            await ViewModel.CreateAsync(new ScoreModel {Name = "a"});
 
             // Act
-            var result = _viewModel.CheckIfScoreExists(dataTest);
+            var result = ViewModel.CheckIfScoreExists(dataTest);
 
             // Reset
 
@@ -131,18 +133,18 @@ namespace UnitTests.ViewModels
         public async Task ScoreIndexViewModel_Message_Delete_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ScoreModel());
+            await ViewModel.CreateAsync(new ScoreModel());
 
             // Get the Score to delete
-            var first = _viewModel.Dataset.FirstOrDefault();
+            var first = ViewModel.Dataset.FirstOrDefault();
 
             // Make a Delete Page
-            var myPage = new Game.Views.ScoreDeletePage(true);
+            var myPage = new ScoreDeletePage(true);
 
             // Act
             MessagingCenter.Send(myPage, "Delete", first);
 
-            var data = await _viewModel.ReadAsync(first.Id);
+            var data = await ViewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -159,13 +161,13 @@ namespace UnitTests.ViewModels
             var data = new ScoreModel();
 
             // Make a Delete Page
-            var myPage = new Game.Views.ScoreCreatePage(true);
+            var myPage = new ScoreCreatePage(true);
 
-            var countBefore = _viewModel.Dataset.Count();
+            var countBefore = ViewModel.Dataset.Count();
 
             // Act
             MessagingCenter.Send(myPage, "Create", data);
-            var countAfter = _viewModel.Dataset.Count();
+            var countAfter = ViewModel.Dataset.Count();
 
             // Reset
 
@@ -177,18 +179,18 @@ namespace UnitTests.ViewModels
         public async Task ScoreIndexViewModel_Message_Update_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ScoreModel());
+            await ViewModel.CreateAsync(new ScoreModel());
 
             // Get the Score to delete
-            var first = _viewModel.Dataset.FirstOrDefault();
+            var first = ViewModel.Dataset.FirstOrDefault();
             first.Name = "test";
 
             // Make a Delete Page
-            var myPage = new Game.Views.ScoreUpdatePage(true);
+            var myPage = new ScoreUpdatePage(true);
 
             // Act
             MessagingCenter.Send(myPage, "Update", first);
-            var result = await _viewModel.ReadAsync(first.Id);
+            var result = await ViewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -205,14 +207,14 @@ namespace UnitTests.ViewModels
             var data = 3000; // Non existing value
 
             // Make the page Page
-            var myPage = new Game.Views.SettingsPage(true);
+            var myPage = new SettingsPage(true);
 
             // Act
             MessagingCenter.Send(myPage, "SetDataSource", data);
-            var result = _viewModel.GetCurrentDataSource();
+            var result = ViewModel.GetCurrentDataSource();
 
             // Reset
-            await _viewModel.SetDataSource(0);
+            await ViewModel.SetDataSource(0);
 
             // Assert
             Assert.AreEqual(0, result); // Count of 0 for the load was skipped
@@ -222,17 +224,17 @@ namespace UnitTests.ViewModels
         public async Task ScoreIndexViewModel_Message_WipeDataList_Valid_Should_Pass()
         {
             // Arrange
-            await _viewModel.CreateAsync(new ScoreModel());
+            await ViewModel.CreateAsync(new ScoreModel());
 
             // Make the page Page
-            var myPage = new Game.Views.SettingsPage(true);
+            var myPage = new SettingsPage(true);
 
             var data = new ScoreModel();
-            await _viewModel.CreateAsync(data);
+            await ViewModel.CreateAsync(data);
 
             // Act
             MessagingCenter.Send(myPage, "WipeDataList", true);
-            var countAfter = _viewModel.Dataset.Count();
+            var countAfter = ViewModel.Dataset.Count();
 
             // Reset
 

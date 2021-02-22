@@ -15,11 +15,14 @@ namespace Scenario
         [SetUp]
         public void Setup()
         {
+            // Choose which engine to run
+            EngineViewModel.SetBattleEngineToKoenig();
+
             // Put seed data into the system for all tests
-            BattleEngineViewModel.Instance.Engine.Round.ClearLists();
+            EngineViewModel.Engine.Round.ClearLists();
 
             //Start the Engine in AutoBattle Mode
-            BattleEngineViewModel.Instance.Engine.StartBattle(false);
+            EngineViewModel.Engine.StartBattle(false);
 
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Default;
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
@@ -33,32 +36,32 @@ namespace Scenario
         {
         }
 
-        readonly BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
+        private readonly BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
 
         [Test]
         public void HakathonScenario_Scenario_0_Valid_Default_Should_Pass()
         {
-            /*
-            * Scenario Number:
+            /* 
+            * Scenario Number:  
             *      #
-            *
-            * Description:
+            *      
+            * Description: 
             *      <Describe the scenario>
-            *
-            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
+            * 
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
             *      <List Files Changed>
             *      <List Classes Changed>
             *      <List Methods Changed>
-            *
+            * 
             * Test Algrorithm:
             *      <Step by step how to validate this change>
-            *
+            * 
             * Test Conditions:
             *      <List the different test conditions to make>
-            *
+            * 
             * Validation:
             *      <List how to validate this change>
-            *
+            *  
             */
 
             // Arrange
@@ -80,33 +83,33 @@ namespace Scenario
         [Test]
         public async Task HackathonScenario_Scenario_1_Valid_Default_Should_Pass()
         {
-            /*
-            * Scenario Number:
+            /* 
+            * Scenario Number:  
             *      1
-            *
-            * Description:
+            *      
+            * Description: 
             *      Make a Character called Mike, who dies in the first round
-            *
-            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
-            *      No Code changes requied
-            *
+            * 
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+            *      No Code changes requied 
+            * 
             * Test Algrorithm:
             *      Create Character named Mike
             *      Set speed to -1 so he is really slow
             *      Set Max health to 1 so he is weak
             *      Set Current Health to 1 so he is weak
-            *
+            *  
             *      Startup Battle
             *      Run Auto Battle
-            *
+            * 
             * Test Conditions:
             *      Default condition is sufficient
-            *
+            * 
             * Validation:
             *      Verify Battle Returned True
             *      Verify Mike is not in the Player List
             *      Verify Round Count is 1
-            *
+            *  
             */
 
             //Arrange
@@ -123,7 +126,7 @@ namespace Scenario
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               ExperienceRemaining = 1,
-                                                              Name = "Mike",
+                                                              Name = "Mike"
                                                           });
 
             EngineViewModel.Engine.EngineSettings.CharacterList.Add(CharacterPlayerMike);

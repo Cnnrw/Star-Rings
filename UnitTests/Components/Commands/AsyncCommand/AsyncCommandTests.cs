@@ -151,8 +151,15 @@ namespace UnitTests.Components
             var command = new AsyncCommand(NoParameterTask, commandCanExecute);
             command.CanExecuteChanged += handleCanExecuteChanged;
 
-            bool commandCanExecute(object       parameter)           => canCommandExecute;
-            void handleCanExecuteChanged(object sender, EventArgs e) => didCanExecuteChangeFire = true;
+            bool commandCanExecute(object parameter)
+            {
+                return canCommandExecute;
+            }
+
+            void handleCanExecuteChanged(object sender, EventArgs e)
+            {
+                didCanExecuteChangeFire = true;
+            }
 
             Expect(command.CanExecute(null)).To.Be.False();
 

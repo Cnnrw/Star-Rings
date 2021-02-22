@@ -28,7 +28,7 @@ namespace UnitTests.Engine.EngineKoenig
         {
         }
 
-        BattleEngine Engine;
+        private BattleEngine Engine;
 
         [Test]
         public void TurnEngine_Constructor_Valid_Default_Should_Pass()
@@ -655,7 +655,7 @@ namespace UnitTests.Engine.EngineKoenig
             var player = new CharacterModel
             {
                 Head = ItemIndexViewModel.Instance.Dataset.FirstOrDefault().Id,
-                Feet = ItemIndexViewModel.Instance.Dataset.FirstOrDefault().Id,
+                Feet = ItemIndexViewModel.Instance.Dataset.FirstOrDefault().Id
             };
 
             var PlayerInfo = new PlayerInfoModel(player);
@@ -1427,7 +1427,7 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
 
             // Get the longest range weapon in stock.
             var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
@@ -1458,7 +1458,7 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
 
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
@@ -1484,7 +1484,7 @@ namespace UnitTests.Engine.EngineKoenig
             var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
             Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
             Engine.EngineSettings.MapModel.PopulateMapModel(Engine.EngineSettings.PlayerList);
@@ -1531,7 +1531,7 @@ namespace UnitTests.Engine.EngineKoenig
         public void TurnEngine_MoveAsTurn_Invalid_Monster_InValid_Defender_Not_On_Map_Should_Fail()
         {
             // Arrange
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
             // Not on map....
@@ -1564,7 +1564,7 @@ namespace UnitTests.Engine.EngineKoenig
 
             // Add player after map is made, so player is not on the map
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
             Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
             Engine.EngineSettings.CurrentAction = ActionEnum.Unknown;

@@ -55,11 +55,13 @@ namespace UnitTests.Helpers
                 var found = false;
                 {
                     foreach (var item in myDataList)
+                    {
                         if (item == expected)
                         {
                             found = true;
                             break;
                         }
+                    }
                 }
 
                 // Assert
@@ -118,11 +120,13 @@ namespace UnitTests.Helpers
                 var found = false;
                 {
                     foreach (var item in myDataList)
+                    {
                         if (item == expected)
                         {
                             found = true;
                             break;
                         }
+                    }
                 }
 
                 // Assert

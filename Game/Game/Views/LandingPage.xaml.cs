@@ -35,7 +35,7 @@ namespace Game.Views
             StartButton.Scale = .95;
         }
 
-        private async void StartButton_OnReleased(object sender, EventArgs e)
+        public async void StartButton_OnReleased(object sender, EventArgs e)
         {
             StartButton.Source = "start_button_normal.png";
             StartButton.Scale = 1;

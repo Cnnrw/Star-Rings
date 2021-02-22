@@ -136,11 +136,12 @@ namespace Game.Enums
         /// Gets the list of Character Jobs that Characters can have.
         /// Does not include the Unknown Job.
         /// </summary>
-        public static List<string> GetListCharacterJobs
+        public static IEnumerable<string> GetListCharacterJobs
         {
             get
             {
-                var myList = Enum.GetNames(typeof(CharacterJobEnum)).ToList();
+                var myList = Enum.GetNames(typeof(CharacterJobEnum))
+                                 .ToList();
                 var myReturn = myList.Where(a =>
                                                 a.ToString() != CharacterJobEnum.Unknown.ToString()
                                            )

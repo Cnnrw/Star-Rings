@@ -1,15 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Game;
-using Game.Views;
-using Game.ViewModels;
+﻿using Game;
 using Game.Models;
+using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
@@ -19,11 +13,7 @@ namespace UnitTests.Views
     [TestFixture]
     public class ItemUpdatePageTests : ItemUpdatePage
     {
-        App app;
-        ItemUpdatePage page;
 
-        public ItemUpdatePageTests() : base(true) { }
-        
         [SetUp]
         public void Setup()
         {
@@ -38,10 +28,12 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App            app;
+        private ItemUpdatePage page;
+
+        public ItemUpdatePageTests() : base(true) { }
 
         [Test]
         public void ItemUpdatePage_Constructor_Default_Should_Pass()
@@ -122,8 +114,8 @@ namespace UnitTests.Views
             var ViewModel = new GenericViewModel<ItemModel>(data);
 
             page = new ItemUpdatePage(ViewModel);
-            double oldValue = 0.0;
-            double newValue = 1.0;
+            var oldValue = 0.0;
+            var newValue = 1.0;
 
             var args = new ValueChangedEventArgs(oldValue, newValue);
 
@@ -135,7 +127,7 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-        
+
         [Test]
         public void ItemUpdatePage_Range_OnStepperValueChanged_Default_Should_Pass()
         {
@@ -144,8 +136,8 @@ namespace UnitTests.Views
             var ViewModel = new GenericViewModel<ItemModel>(data);
 
             page = new ItemUpdatePage(ViewModel);
-            double oldRange = 0.0;
-            double newRange = 1.0;
+            var oldRange = 0.0;
+            var newRange = 1.0;
 
             var args = new ValueChangedEventArgs(oldRange, newRange);
 
@@ -166,8 +158,8 @@ namespace UnitTests.Views
             var ViewModel = new GenericViewModel<ItemModel>(data);
 
             page = new ItemUpdatePage(ViewModel);
-            double oldDamage = 0.0;
-            double newDamage = 1.0;
+            var oldDamage = 0.0;
+            var newDamage = 1.0;
 
             var args = new ValueChangedEventArgs(oldDamage, newDamage);
 

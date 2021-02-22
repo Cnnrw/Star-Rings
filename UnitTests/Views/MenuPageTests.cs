@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using Game;
 using Game.Enums;
@@ -13,6 +14,7 @@ using Xamarin.Forms.Mocks;
 namespace UnitTests.Views
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class MenuPageTests
     {
 

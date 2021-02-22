@@ -1,29 +1,24 @@
-﻿using NUnit.Framework;
-
+﻿using Game.Engine.EngineKoenig;
 using Game.Models;
-using Game.Engine.EngineKoenig;
+
+using NUnit.Framework;
 
 namespace UnitTests.Engine.EngineKoenig
 {
     [TestFixture]
     public class BattleEngineKoenigTests
     {
-        #region TestSetup
-        BattleEngine Engine;
 
         [SetUp]
-        public void Setup()
-        {
-            Engine = new BattleEngine();
-        }
+        public void Setup() => Engine = new BattleEngine();
 
         [TearDown]
         public void TearDown()
         {
         }
-        #endregion TestSetup
 
-        #region Constructor
+        private BattleEngine Engine;
+
         [Test]
         public void BattleEngine_Constructor_Valid_Default_Should_Pass()
         {
@@ -37,9 +32,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.IsNotNull(result);
         }
-        #endregion Constructor
 
-        #region StartBattle
         [Test]
         public void BattleEngine_StartBattle_Valid_AutoModel_True_Should_Pass()
         {
@@ -54,9 +47,7 @@ namespace UnitTests.Engine.EngineKoenig
             Assert.AreEqual(true, result);
             Assert.AreEqual(true, Engine.EngineSettings.BattleScore.AutoBattle);
         }
-        #endregion StartBattle
 
-        #region EndBattle
         [Test]
         public void BattleEngine_EndBattle_Valid_Default_Should_Pass()
         {
@@ -70,9 +61,7 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion EndBattle
 
-        #region PopulateCharacterList
         [Test]
         public void BattleEngine_Valid_PopulateCharacterList_Should_Pass()
         {
@@ -87,6 +76,5 @@ namespace UnitTests.Engine.EngineKoenig
             // Assert
             Assert.AreEqual(true, result);
         }
-        #endregion PopulateCharacterList
     }
 }

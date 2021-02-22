@@ -28,13 +28,10 @@ namespace UnitTests.Views
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
 
-        App             app;
-        ScoreUpdatePage page;
+        private App             app;
+        private ScoreUpdatePage page;
 
         public ScoreUpdatePageTests() : base(true) { }
 

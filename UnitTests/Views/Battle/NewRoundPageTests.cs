@@ -1,26 +1,20 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms.Mocks;
-using Xamarin.Forms;
+﻿using System.Collections.Generic;
 
 using Game;
-using Game.Views;
 using Game.Models;
 using Game.ViewModels;
+using Game.Views;
+
+using NUnit.Framework;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Mocks;
 
 namespace UnitTests.Views
 {
     [TestFixture]
     public class NewRoundPageTests
     {
-        App app;
-        NewRoundPage page;
 
         [SetUp]
         public void Setup()
@@ -32,14 +26,17 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
+            // For now, set the engine to the Koenig Engine, change when ready 
+            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+
             page = new NewRoundPage();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            Application.Current = null;
-        }
+        public void TearDown() => Application.Current = null;
+
+        private App          app;
+        private NewRoundPage page;
 
         [Test]
         public void NewRoundPage_Constructor_Default_Should_Pass()
@@ -73,7 +70,7 @@ namespace UnitTests.Views
         {
             // Arrange
             // Act
-            var result = page.CreatePlayerDisplayBox(new PlayerInfoModel(new CharacterModel { Name="test"}));
+            var result = page.CreatePlayerDisplayBox(new PlayerInfoModel(new CharacterModel {Name = "test"}));
 
             // Reset
 
@@ -101,10 +98,12 @@ namespace UnitTests.Views
             // Act
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList = new List<PlayerInfoModel>();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(new CharacterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
+                                 .Add(new PlayerInfoModel(new CharacterModel()));
 
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList = new List<PlayerInfoModel>();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(new PlayerInfoModel(new MonsterModel()));
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
+                                 .Add(new PlayerInfoModel(new MonsterModel()));
 
             var result = new NewRoundPage();
 

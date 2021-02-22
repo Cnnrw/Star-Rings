@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Game.Enums;
@@ -8,8 +9,7 @@ using NUnit.Framework;
 
 namespace UnitTests.Models
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization",
-                                                     Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
     [TestFixture]
     public class MapModelTests
     {
@@ -48,12 +48,10 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = new MapModel
-            {
-                EmptySquare = new PlayerInfoModel {PlayerType = PlayerTypeEnum.Unknown},
-                MapXAxesCount = 1,
-                MapYAxesCount = 1
-            };
+            var result = new MapModel();
+            result.EmptySquare = new PlayerInfoModel {PlayerType = PlayerTypeEnum.Unknown};
+            result.MapXAxesCount = 1;
+            result.MapYAxesCount = 1;
             result.MapGridLocation = new MapModelLocation[result.MapXAxesCount, result.MapYAxesCount];
 
             // Reset
@@ -477,7 +475,7 @@ namespace UnitTests.Models
             var map = new MapModel();
 
             // Act
-            var result = MapModel.Distance(0, 1, 1, 1);
+            var result = map.Distance(0, 1, 1, 1);
 
             // Reset
 

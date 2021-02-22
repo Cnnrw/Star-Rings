@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Game.Enums;
 using Game.Helpers;
 using Game.Services;
-using Game.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -39,7 +38,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DataSource_Toggled(object sender, EventArgs e) =>
+        public void DataSource_Toggled(object sender, EventArgs e) =>
             MessagingCenter.Send(this, "SetDataSource",
                                  DataSourceValue.IsToggled ? DataSourceEnum.SQL : DataSourceEnum.Mock);
 
@@ -60,7 +59,7 @@ namespace Game.Views
         /// <summary>
         ///
         /// </summary>
-        protected static void RunWipeData() => Task.Run(async () => await DataSetsHelper.WipeDataInSequence());
+        public void RunWipeData() => Task.Run(async () => await DataSetsHelper.WipeDataInSequence());
 
         #endregion
 
