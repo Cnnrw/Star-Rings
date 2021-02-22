@@ -1,4 +1,4 @@
-﻿using Game.Enums;
+using Game.Enums;
 using Game.Helpers;
 using Game.Models;
 
@@ -128,7 +128,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert 
-            Assert.AreEqual("This is an Item , Item Description for Unknown with Unknown+0 , Damage : 0 , Range : 0",
+            Assert.AreEqual("This is an Item , Item Description for PrimaryHand with Attack+0 , Damage : 0 , Range : 0",
                             result);
         }
 
