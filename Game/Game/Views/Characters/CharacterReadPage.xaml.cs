@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Linq;
 
 using Game.Enums;
@@ -7,15 +6,12 @@ using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     ///     Character Read Page code-behind
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterReadPage : ContentPage
     {
         // View Model for Item
