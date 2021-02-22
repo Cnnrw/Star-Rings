@@ -54,7 +54,7 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource VerticalStack}">
 
-            <StackLayout Style="{StaticResource HorizontalStack}">
+            <StackLayout x:Name="DatabaseSettingsFrame" Style="{StaticResource HorizontalStack}">
 
                 <Label Text="Database Settings"
                        Style="{DynamicResource LabelStyle}" />
