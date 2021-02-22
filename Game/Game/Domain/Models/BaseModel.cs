@@ -5,8 +5,16 @@
     /// </summary>
     public class BaseModel<T> : DefaultModel
     {
-        // Location to the image for the item.  Will come from the server as a fully qualified URI example:  https://developer.android.com/images/robot-tiny.png
+        /// <summary>
+        /// Location to the image for the item.
+        /// Will come from the server as a fully qualified URI example:  https://developer.android.com/images/robot-tiny.png
+        /// </summary>
         public string ImageURI { get; set; } = Services.ItemService.DefaultImageURI;
+
+        /// <summary>
+        /// Thumbnail icon image
+        /// </summary>
+        public string IconImageURI { get; set; }
 
         /// <summary>
         /// Update Method is virtual and changed for each class
