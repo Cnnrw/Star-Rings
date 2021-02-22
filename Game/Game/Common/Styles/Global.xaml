@@ -86,11 +86,11 @@
         <Setter Property="TextColor" Value="{StaticResource TriciaryTextColor}" />
     </Style>
 
-    <!--<Style TargetType="Label"
+    <Style TargetType="Label"
                 x:Key="MessageLargeStyle"
                 BasedOn="{StaticResource MessageStyle}">
-                <Setter Property="FontSize" Value="Large" />
-            </Style>-->
+        <Setter Property="FontSize" Value="Large" />
+    </Style>
 
     <Style TargetType="Label"
            x:Key="CenterMessageStyle"
