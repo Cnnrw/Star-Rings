@@ -90,7 +90,7 @@ namespace UnitTests.Models
             Assert.IsNotNull(result.Id);
             Assert.AreEqual(result.Id, result.Guid);
 
-            Assert.AreEqual("item.png", result.ImageURI);
+            Assert.AreEqual("jedi_icon.png", result.ImageURI);
             Assert.AreEqual(PlayerTypeEnum.Character, result.PlayerType);
 
             Assert.AreEqual(true, result.Alive);
@@ -112,7 +112,7 @@ namespace UnitTests.Models
 
             Assert.AreEqual(DifficultyEnum.Unknown, result.Difficulty);
 
-            Assert.AreEqual(CharacterJobEnum.Unknown, result.Job);
+            Assert.AreEqual(CharacterJobEnum.Jedi, result.Job);
         }
 
         [Test]
