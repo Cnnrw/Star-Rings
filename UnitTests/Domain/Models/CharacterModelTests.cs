@@ -238,7 +238,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual(3, result);
+            Assert.AreEqual(1, result);
         }
 
         [Test]
