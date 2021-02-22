@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using Game;
 using Game.Enums;
@@ -77,12 +77,12 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public async Task MainPage_Navigate_Village_Should_Pass()
+        public async Task MainPage_Navigate_RebelBase_Should_Pass()
         {
             // Arrange
 
             // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Village);
+            await page.NavigateFromMenu((int)MenuItemEnum.RebelBase);
 
             // Reset
 
