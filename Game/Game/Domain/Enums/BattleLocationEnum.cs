@@ -5,31 +5,32 @@ using System.Linq;
 namespace Game.Enums
 {
     /// <summary>
-    /// The Types of location a battle can take place in.
-    /// Used in Monster, Battles.
-    ///
-    /// <remarks>
-    ///     All possible combinations of values with FlagsAttribute:
-    ///         0 - Unknown
-    ///         1 - Shire
-    ///         2 - ElvenCity
-    ///         3 - Shire, ElvenCity
-    ///         4 - Forest
-    ///         5 - Shire, Forest
-    ///         6 - ElvenCity, Forest
-    ///         7 - Shire, ElvenCity, Forest
-    ///         8 - Dungeons
-    ///         9 - Shire, Dungeons
-    ///        10 - ElvenCity, Dungeons
-    ///        11 - Shire, ElvenCity, Dungeons
-    ///        12 - Forest, Dungeons
-    ///        13 - Shire, Forest, Dungeons
-    ///        14 - ElvenCity, Forest, Dungeons
-    ///        15 - Shire, ElvenCity, Forest, Dungeons
-    ///        16 - Mordor
-    ///        17 - Shire, Mordor
-    /// etc.
-    /// </remarks>
+    ///     <para>
+    ///         The locations Monsters may appear and Battles take place. BattleLocationEnum
+    ///         has been marked with the flag attribute, meaning bitwise operations can be
+    ///         used to specify enumerated battle location values.
+    ///     </para>
+    ///     <para/>
+    ///     Possible combinations of values with FlagsAttribute:
+    ///     <list type="number">
+    ///         <item><term>- Shire</term></item>
+    ///         <item><term>- ElvenCity</term></item>
+    ///         <item><term>- Shire, ElvenCity</term></item>
+    ///         <item><term>- Forest</term></item>
+    ///         <item><term>- Shire, Forest</term></item>
+    ///         <item><term>- ElvenCity, Forest</term></item>
+    ///         <item><term>- Shire, ElvenCity, Forest</term></item>
+    ///         <item><term>- Dungeons</term></item>
+    ///         <item><term>- Shire, Dungeons</term></item>
+    ///         <item><term>- ElvenCity, Dungeons</term></item>
+    ///         <item><term>- Shire, ElvenCity, Dungeons</term></item>
+    ///         <item><term>- Forest, Dungeons</term></item>
+    ///         <item><term>- Shire, Forest, Dungeons</term></item>
+    ///         <item><term>- ElvenCity, Forest, Dungeons</term></item>
+    ///         <item><term>- Shire, ElvenCity, Forest, Dungeons</term></item>
+    ///         <item><term>- Mordor</term></item>
+    ///     </list>
+    ///     etc.
     /// </summary>
     [Flags]
     public enum BattleLocationEnum
@@ -92,7 +93,7 @@ namespace Game.Enums
         {
             get
             {
-                var myList = System.Enum.GetNames(typeof(BattleLocationEnum)).ToList();
+                var myList = Enum.GetNames(typeof(BattleLocationEnum)).ToList();
                 var myReturn = myList.Where(a => a != BattleLocationEnum.Unknown.ToString())
                                      .OrderBy(a => a)
                                      .ToList();
@@ -106,6 +107,6 @@ namespace Game.Enums
         /// <param name="value"></param>
         /// <returns></returns>
         public static BattleLocationEnum ConvertStringToEnum(string value) =>
-            (BattleLocationEnum)System.Enum.Parse(typeof(BattleLocationEnum), value);
+            (BattleLocationEnum)Enum.Parse(typeof(BattleLocationEnum), value);
     }
 }
