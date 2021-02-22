@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,11 +6,34 @@ namespace Game.Enums
 {
     /// <summary>
     /// The Types of location a battle can take place in.
-    /// Used in Battles.
+    /// Used in Monster, Battles.
+    ///
+    /// <remarks>
+    ///     All possible combinations of values with FlagsAttribute:
+    ///         0 - Unknown
+    ///         1 - Shire
+    ///         2 - ElvenCity
+    ///         3 - Shire, ElvenCity
+    ///         4 - Forest
+    ///         5 - Shire, Forest
+    ///         6 - ElvenCity, Forest
+    ///         7 - Shire, ElvenCity, Forest
+    ///         8 - Dungeons
+    ///         9 - Shire, Dungeons
+    ///        10 - ElvenCity, Dungeons
+    ///        11 - Shire, ElvenCity, Dungeons
+    ///        12 - Forest, Dungeons
+    ///        13 - Shire, Forest, Dungeons
+    ///        14 - ElvenCity, Forest, Dungeons
+    ///        15 - Shire, ElvenCity, Forest, Dungeons
+    ///        16 - Mordor
+    ///        17 - Shire, Mordor
+    /// etc.
+    /// </remarks>
     /// </summary>
+    [Flags]
     public enum BattleLocationEnum
     {
-        // Not specified
         Unknown = 0,
 
         // Rolling hills and open fields
@@ -19,13 +43,13 @@ namespace Game.Enums
         ElvenCity = 2,
 
         // A dark, tangled forest
-        Forest = 3,
+        Forest = 4,
 
         // Underground chambers and caves
-        Dungeons = 4,
+        Dungeons = 8,
 
-        // Desolate, firey wasteland
-        Mordor = 5,
+        // Desolate, fiery wasteland
+        Mordor = 16,
     }
 
     /// <summary>
