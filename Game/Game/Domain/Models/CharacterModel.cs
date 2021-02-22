@@ -20,7 +20,8 @@ namespace Game.Models
             Name = "Crewmember";
             Description = "A crewmember aboard the Millennium Falcon";
             Level = 1;
-            ImageURI = "jedi_icon.png";
+            ImageURI = "jedi.png";
+            IconImageURI = "jedi_icon.png";
             ExperienceTotal = 0;
             ExperienceRemaining = LevelTableHelper.LevelDetailsList[Level + 1].Experience - 1;
 
@@ -52,6 +53,7 @@ namespace Game.Models
             Description = newData.Description;
             Level = newData.Level;
             ImageURI = newData.ImageURI;
+            IconImageURI = newData.IconImageURI;
 
             // Difficulty = newData.Difficulty;
 
