@@ -15,6 +15,7 @@ namespace Game.ViewModels
     /// </summary>
     public class MonsterIndexViewModel : BaseViewModel<MonsterModel>
     {
+        #region Constructor
 
         public MonsterIndexViewModel()
         {
@@ -44,11 +45,41 @@ namespace Game.ViewModels
                                                               await WipeDataListAsync());
         }
 
+        #endregion
+        #region Singleton
+
+        // Must be singleton, holds all data records in memory
+        private static volatile MonsterIndexViewModel instance;
+        private static readonly object                syncRoot = new object();
+
+        public static MonsterIndexViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new MonsterIndexViewModel();
+                            instance.Initialize();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        #endregion Singleton
+        #region DataOperations_CRUDi
+
         /// <summary>
         ///     Loads the default data
         /// </summary>
         /// <returns></returns>
-        public override List<MonsterModel> GetDefaultData() => DefaultData.LoadData(new MonsterModel());
+        public override IEnumerable<MonsterModel> GetDefaultData() => DefaultData.LoadData(new MonsterModel());
 
         /// <summary>
         /// The Sort Order for the MonsterModel
@@ -81,32 +112,6 @@ namespace Game.ViewModels
             return myList;
         }
 
-        #region Singleton
-
-        // Must be singleton, holds all data records in memory
-        private static volatile MonsterIndexViewModel instance;
-        private static readonly object                syncRoot = new object();
-
-        public static MonsterIndexViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new MonsterIndexViewModel();
-                            instance.Initialize();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
+        #endregion
     }
 }
