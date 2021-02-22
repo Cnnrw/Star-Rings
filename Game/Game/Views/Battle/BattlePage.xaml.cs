@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -120,13 +120,19 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                Style = (Style)Application.Current.Resources["PlayerBattleMediumStyle"], Source = data.ImageURI
+                //Style = (Style)Application.Current.Resources["PlayerBattleMediumStyle"],
+
+                Source = data.ImageURI
             };
 
             // Put the Image Button and Text inside a layout
             var PlayerStack = new StackLayout
             {
-                Style = (Style)Application.Current.Resources["PlayerBattleDisplayBox"], Children = {PlayerImage,},
+                //Style = (Style)Application.Current.Resources["PlayerBattleDisplayBox"],
+                Style = Application.Current.Resources.TryGetValue("PlayerBattleDisplayBox", out object stackStyle)
+                            ? (Style)stackStyle
+                            : null,
+                Children = {PlayerImage,},
             };
 
             return PlayerStack;
@@ -414,7 +420,9 @@ namespace Game.Views
             var PlayerStack = new StackLayout
             {
                 Padding = 0,
-                Style = (Style)Application.Current.Resources["BattleMapImageBox"],
+                Style = Application.Current.Resources.TryGetValue("BattleMapImageBox", out object stackStyle)
+                            ? (Style)stackStyle
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,
                 BackgroundColor = DetermineMapBackgroundColor(mapLocationModel),
@@ -426,7 +434,10 @@ namespace Game.Views
 
             var MapFrame = new Frame
             {
-                Style = (Style)Application.Current.Resources["BattleMapFrame"],
+                //Style = (Style)Application.Current.Resources["BattleMapFrame"],
+                Style = Application.Current.Resources.TryGetValue("BattleMapFrame", out object frameStyle)
+                            ? (Style)frameStyle
+                            : null,
                 Content = PlayerStack,
                 AutomationId = GetDictionaryFrameName(mapLocationModel)
             };
@@ -496,7 +507,9 @@ namespace Game.Views
         {
             var data = new ImageButton
             {
-                Style = (Style)Application.Current.Resources["BattleMapPlayerSmallStyle"],
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
+                            ? (Style)imageStyle
+                            : null,
                 Source = mapLocationModel.Player.ImageURI,
 
                 // Store the guid to identify this button
@@ -549,7 +562,9 @@ namespace Game.Views
                     break;
             }
 
-            var result = (Color)Application.Current.Resources[BattleMapBackgroundColor ?? string.Empty];
+            var result = Color.Transparent;
+
+            //var result = (Color)Application.Current.Resources[BattleMapBackgroundColor ?? string.Empty];
             return result;
         }
 
