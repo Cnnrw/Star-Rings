@@ -9,7 +9,7 @@
         /// Location to the image for the item.
         /// Will come from the server as a fully qualified URI example:  https://developer.android.com/images/robot-tiny.png
         /// </summary>
-        public string ImageURI { get; set; } = Services.ItemService.DefaultImageURI;
+        public string ImageURI { get; set; }
 
         /// <summary>
         /// Thumbnail icon image
