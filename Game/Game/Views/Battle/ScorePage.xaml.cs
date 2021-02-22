@@ -1,4 +1,4 @@
-﻿using Game.Models;
+using Game.Models;
 using Game.ViewModels;
 using System;
 using System.Linq;
@@ -73,7 +73,7 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                Style = (Style)Application.Current.Resources["ImageBattleMediumStyle"],
+                //Style = (Style)Application.Current.Resources["ImageBattleMediumStyle"],
                 Source = data.ImageURI
             };
 
@@ -81,7 +81,7 @@ namespace Game.Views
             var PlayerLevelLabel = new Label
             {
                 Text = "Level : " + data.Level,
-                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -94,7 +94,7 @@ namespace Game.Views
             // Put the Image Button and Text inside a layout
             var PlayerStack = new StackLayout
             {
-                Style = (Style)Application.Current.Resources["ScoreCharacterInfoBox"],
+                //Style = (Style)Application.Current.Resources["ScoreCharacterInfoBox"],
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
@@ -122,7 +122,7 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                Style = (Style)Application.Current.Resources["PlayerBattleSmallStyle"],
+                //Style = (Style)Application.Current.Resources["PlayerBattleSmallStyle"],
                 Source = data.ImageURI
             };
 
@@ -130,7 +130,7 @@ namespace Game.Views
             var PlayerLevelLabel = new Label
             {
                 Text = "Level : " + data.Level,
-                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -143,7 +143,7 @@ namespace Game.Views
             // Put the Image Button and Text inside a layout
             var PlayerStack = new StackLayout
             {
-                Style = (Style)Application.Current.Resources["ScoreMonsterInfoBox"],
+                //Style = (Style)Application.Current.Resources["ScoreMonsterInfoBox"],
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
@@ -171,14 +171,14 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                Style = (Style)Application.Current.Resources["ImageBattleSmallStyle"],
+                //Style = (Style)Application.Current.Resources["ImageBattleSmallStyle"],
                 Source = data.ImageURI
             };
 
             // Put the Image Button and Text inside a layout
             var PlayerStack = new StackLayout
             {
-                Style = (Style)Application.Current.Resources["ScoreItemInfoBox"],
+                //Style = (Style)Application.Current.Resources["ScoreItemInfoBox"],
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
