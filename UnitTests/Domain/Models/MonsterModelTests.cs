@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -143,7 +143,7 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void MonsterModel_FormatOuput_Default_Should_Pass()
+        public void MonsterModel_FormatOutput_Default_Should_Pass()
         {
             // Arrange
             var data = new MonsterModel();
@@ -154,7 +154,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual(true, result.Contains("Troll"));
+            Assert.AreEqual(true, result.Contains("Goblin"));
         }
 
         [Test]
@@ -302,21 +302,6 @@ namespace UnitTests.Models
 
             // Assert
             Assert.AreEqual(false, result);
-        }
-
-        [Test]
-        public void MonsterModel_FormatOutput_Default_Should_Pass()
-        {
-            // Arrange
-            var data = new MonsterModel();
-
-            // Act
-            var result = data.FormatOutput();
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(true, result.Contains("Troll"));
         }
 
         [Test]
