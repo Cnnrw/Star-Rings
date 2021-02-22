@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -301,7 +301,7 @@ namespace UnitTests.ViewModels
             // Reset
 
             // Assert
-            Assert.AreEqual(26, countAfter); // Count of 0 for the load was skipped
+            Assert.AreEqual(4, countAfter); // Count of 0 for the load was skipped
         }
 
         [Test]
