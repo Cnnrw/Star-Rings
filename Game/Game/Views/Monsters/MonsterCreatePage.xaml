@@ -54,7 +54,7 @@
                                Style="{StaticResource LabelStyle}" />
                             <Picker x:Name="BattleLocationPicker"
                                 ItemsSource="{x:Static enum:BattleLocationEnumHelper.GetListBattleLocations}"
-                                SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}" />
+                                SelectedItem="{Binding Data.BattleLocations, Converter={StaticResource StringToEnum}, Mode=TwoWay}" />
                         </StackLayout>
                     </StackLayout>
 
