@@ -1,4 +1,4 @@
-﻿using Game.Enums;
+using Game.Enums;
 using Game.Models;
 
 using NUnit.Framework;
@@ -105,7 +105,7 @@ namespace UnitTests.Models
             var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
 
             // Act
-            var result = data.IsAbilityAvailable(AbilityEnum.Heal);
+            var result = data.IsAbilityAvailable(AbilityEnum.Bandage);
 
             // Reset
 
