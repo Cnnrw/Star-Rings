@@ -65,13 +65,11 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public override List<ItemModel> SortDataset(List<ItemModel> dataset)
-        {
-            return dataset
-                    .OrderBy(a => a.Name)
-                    .ThenBy(a => a.Description)
-                    .ToList();
-        }
+        public override List<ItemModel> SortDataset(IEnumerable<ItemModel> dataset) =>
+            dataset
+                .OrderBy(a => a.Name)
+                .ThenBy(a => a.Description)
+                .ToList();
 
         #endregion SortDataSet
 
