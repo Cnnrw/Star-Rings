@@ -90,7 +90,7 @@ namespace UnitTests.Models
             Assert.IsNotNull(result.Id);
             Assert.AreEqual(result.Id, result.Guid);
 
-            Assert.AreEqual("jedi_icon.png", result.ImageURI);
+            Assert.AreEqual("jedi.png", result.ImageURI);
             Assert.AreEqual(PlayerTypeEnum.Character, result.PlayerType);
 
             Assert.AreEqual(true, result.Alive);
