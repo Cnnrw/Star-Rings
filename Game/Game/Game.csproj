@@ -5,54 +5,79 @@
 		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>portable</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
-		<None Remove="Common\Assets\star_rings_logo.png" />
-		<None Remove="Common\Assets\column.png" />
-		<None Remove="Common\Assets\magic_tree.gif" />
-		<None Remove="Common\Assets\Backgrounds\page_background.png" />
-		<None Remove="Common\Assets\Backgrounds\page_background_1.png" />
-		<None Remove="Common\Assets\Backgrounds\page_background_2.png" />
-		<None Remove="Common\Assets\Backgrounds\page_background_3.png" />
-		<None Remove="Common\Assets\Backgrounds\page_background_4.png" />
-		<None Remove="Common\Assets\Backgrounds\page_background_5.png" />
-		<None Remove="Common\Assets\Backgrounds\page_background_6.png" />
-		<None Remove="Common\Assets\UIButtonIcons\cancel_button.png" />
-		<None Remove="Common\Assets\UIButtonIcons\save_button.png" />
-		<None Remove="Common\Assets\UIButtonIcons\about_1.png" />
-		<None Remove="Common\Assets\UIButtonIcons\about_2.png" />
-		<None Remove="Common\Assets\UIButtonIcons\auto_battle.png" />
-		<None Remove="Common\Assets\UIButtonIcons\dungeon.png" />
-		<None Remove="Common\Assets\UIButtonIcons\eye.png" />
-		<None Remove="Common\Assets\UIButtonIcons\rebel_base_1.png" />
-		<None Remove="Common\Assets\UIButtonIcons\rebel_base_2.png" />
-		<None Remove="Common\Assets\UIButtonIcons\start_button_normal.png" />
-		<None Remove="Common\Assets\UIButtonIcons\start_button_pressed.png" />
-		<None Remove="Common\Assets\UIButtonIcons\stats.png" />
-		<None Remove="Common\Assets\UIButtonIcons\warrior.png" />
-		<None Remove="Common\Assets\CharacterIcons\jedi_icon.png" />
-		<None Remove="Common\Assets\CharacterIcons\jedi_princess_icon.png" />
-		<None Remove="Common\Assets\CharacterIcons\smuggler_icon.png" />
-		<None Remove="Common\Assets\CharacterIcons\wookie_icon.png" />
-		<None Remove="Common\Assets\CharacterIcons\astromech_icon.png" />
-		<None Remove="Common\Assets\CharacterIcons\protocol_droid_icon.png" />
+		<None Remove="Common\Images\star_rings_logo.png" />
+		<None Remove="Common\Images\column.png" />
+		<None Remove="Common\Images\magic_tree.gif" />
 	</ItemGroup>
-
+	
+	<ItemGroup>
+		<None Remove="Common\Images\Backgrounds\page_background.png" />
+		<None Remove="Common\Images\Backgrounds\page_background_1.png" />
+		<None Remove="Common\Images\Backgrounds\page_background_2.png" />
+		<None Remove="Common\Images\Backgrounds\page_background_3.png" />
+		<None Remove="Common\Images\Backgrounds\page_background_4.png" />
+		<None Remove="Common\Images\Backgrounds\page_background_5.png" />
+		<None Remove="Common\Images\Backgrounds\page_background_6.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Remove="Common\Images\UIButtonIcons\cancel_button.png" />
+		<None Remove="Common\Images\UIButtonIcons\save_button.png" />
+		<None Remove="Common\Images\UIButtonIcons\about_1.png" />
+		<None Remove="Common\Images\UIButtonIcons\about_2.png" />
+		<None Remove="Common\Images\UIButtonIcons\auto_battle.png" />
+		<None Remove="Common\Images\UIButtonIcons\dungeon.png" />
+		<None Remove="Common\Images\UIButtonIcons\eye.png" />
+		<None Remove="Common\Images\UIButtonIcons\rebel_base_1.png" />
+		<None Remove="Common\Images\UIButtonIcons\rebel_base_2.png" />
+		<None Remove="Common\Images\UIButtonIcons\start_button_normal.png" />
+		<None Remove="Common\Images\UIButtonIcons\start_button_pressed.png" />
+		<None Remove="Common\Images\UIButtonIcons\stats.png" />
+		<None Remove="Common\Images\UIButtonIcons\warrior.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Remove="Common\Images\Characters\CharacterIcons\jedi_icon.png" />
+		<None Remove="Common\Images\Characters\CharacterIcons\jedi_princess_icon.png" />
+		<None Remove="Common\Images\Characters\CharacterIcons\smuggler_icon.png" />
+		<None Remove="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
+		<None Remove="Common\Images\Characters\CharacterIcons\astromech_icon.png" />
+		<None Remove="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\2h_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Body_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Cape_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Feet_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Head_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Legs_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Neck_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Ring_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Shield_slot.png" />
+		<None Remove="Common\Images\Characters\EquippedSlots\Weapon_slot.png" />
+		<None Remove="Common\Images\Characters\astromech.png" />
+		<None Remove="Common\Images\Characters\jedi.png" />
+		<None Remove="Common\Images\Characters\jedi_princess.png" />
+		<None Remove="Common\Images\Characters\protocol_droid.png" />
+		<None Remove="Common\Images\Characters\smuggler.png" />
+		<None Remove="Common\Images\Characters\wookie.png" />
+	</ItemGroup>
+	
 	<!-- Fonts -->
 	<ItemGroup>
 		<EmbeddedResource Include="Common\Fonts\gamefont.ttf" />
 		<EmbeddedResource Include="Common\Fonts\gamefont_bold.ttf" />
 		<EmbeddedResource Include="Common\Fonts\rpgawesome.ttf" />
 	</ItemGroup>
-
+	
 	<!-- NuGet Packages -->
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -158,6 +183,31 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<SharedImage Include="Common\Images\Characters\CharacterIcons\astromech_icon.png" />
+		<SharedImage Include="Common\Images\Characters\CharacterIcons\jedi_icon.png" />
+		<SharedImage Include="Common\Images\Characters\CharacterIcons\jedi_princess_icon.png" />
+		<SharedImage Include="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
+		<SharedImage Include="Common\Images\Characters\CharacterIcons\smuggler_icon.png" />
+		<SharedImage Include="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\2h_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Body_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Cape_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Feet_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Head_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Legs_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Neck_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Ring_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Shield_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Weapon_slot.png" />
+		<SharedImage Include="Common\Images\Characters\astromech.png" />
+		<SharedImage Include="Common\Images\Characters\jedi.png" />
+		<SharedImage Include="Common\Images\Characters\jedi_princess.png" />
+		<SharedImage Include="Common\Images\Characters\protocol_droid.png" />
+		<SharedImage Include="Common\Images\Characters\smuggler.png" />
+		<SharedImage Include="Common\Images\Characters\wookie.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<SharedImage BaseSize="204,275" Include="Common\Images\Backgrounds\page_background.png" />
 		<SharedImage BaseSize="204,275" Include="Common\Images\Backgrounds\page_background_1.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_2.png" />
@@ -165,15 +215,6 @@
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_4.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_5.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_6.png" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<SharedImage BaseSize="128,128" Include="Common\Images\CharacterIcons\jedi_icon.png" />
-		<SharedImage BaseSize="128,128" Include="Common\Images\CharacterIcons\jedi_princess_icon.png" />
-		<SharedImage BaseSize="128,128" Include="Common\Images\CharacterIcons\smuggler_icon.png" />
-		<SharedImage BaseSize="128,128" Include="Common\Images\CharacterIcons\wookie_icon.png" />
-		<SharedImage BaseSize="128,128" Include="Common\Images\CharacterIcons\astromech_icon.png" />
-		<SharedImage BaseSize="128,128" Include="Common\Images\CharacterIcons\protocol_droid_icon.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -202,5 +243,4 @@
 		<SharedImage BaseSize="150,150" Include="Common\Images\ItemIcons\lembas.png" />
 		<SharedImage BaseSize="150,150" Include="Common\Images\ItemIcons\light_saber.png" />
 	</ItemGroup>
-
 </Project>
