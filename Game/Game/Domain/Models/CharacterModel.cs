@@ -20,10 +20,6 @@ namespace Game.Models
             Name = "Crewmember";
             Description = "A crewmember aboard the Millennium Falcon";
             Level = 1;
-            MaxHealth = 1;
-            Attack = 1;
-            Defense = 1;
-            Speed = 1;
             ImageURI = "jedi_icon.png";
             ExperienceTotal = 0;
             ExperienceRemaining = LevelTableHelper.LevelDetailsList[Level + 1].Experience - 1;
