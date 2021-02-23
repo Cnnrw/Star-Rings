@@ -118,5 +118,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("jedi_icon.png", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_Princess_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Princess.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("jedi_princess_icon.png", result);
+        }
     }
 }
