@@ -102,10 +102,22 @@ namespace Game.Views
                 return result;
             }
 
-            return dataList.Count == 0
-                       ? result
-                       : dataList.Aggregate("", (current, itemModel) =>
-                           current + itemModel.FormatOutput() + "\n");
+            if (dataList.Count == 0)
+            {
+                return result;
+            }
+
+            // reset the output
+            result = "";
+
+            foreach (var ItemModel in dataList)
+            {
+                // Add them line by line, use \n to force new line for output display.
+                // Build up the output string by adding formatted ItemModel Output
+                result += ItemModel.FormatOutput() + "\n";
+            }
+
+            return result;
         }
 
         /// <summary>
