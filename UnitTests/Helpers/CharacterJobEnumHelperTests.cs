@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 using Game.Enums;
 
@@ -21,6 +21,20 @@ namespace UnitTests.Helpers
             Assert.AreEqual(6, result.Count());
 
             // Assert
+        }
+
+        [Test]
+        public void CharacterJobEnumHelper_ConvertStringToEnum_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnumHelper.ConvertStringToEnum("Jedi");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(CharacterJobEnum.Jedi, result);
         }
     }
 }
