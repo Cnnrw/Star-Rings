@@ -16,8 +16,13 @@ namespace Game.Models
     /// </summary>
     public class PlayerInfoModel : BasePlayerModel<PlayerInfoModel>
     {
-        // Track the Abilities in the Battle
-        // The Ability will be the List of Abilities per Job, and a count of how many times they can use it per round
+        /// <summary>
+        /// Track the Abilities in the Battle.
+        ///
+        ///     <remarks>
+        ///         The Ability will be the List of Abilities per Job, and a count of how many times they can use it per round
+        ///     </remarks>
+        /// </summary>
         public readonly Dictionary<AbilityEnum, int> AbilityTracker = new Dictionary<AbilityEnum, int>();
 
         /// <summary>
@@ -106,7 +111,7 @@ namespace Game.Models
 
             Job = data.Job;
 
-            // Give the copy a differet quid, so it can be used in the battles as a copy
+            // Give the copy a different quid, so it can be used in the battles as a copy
             Guid = System.Guid.NewGuid().ToString();
 
             // Set current experience to be 1 above minimum.
@@ -258,7 +263,7 @@ namespace Game.Models
                                  where data != AbilityEnum.Bandage
                                  select data)
             {
-                var result = AbilityTracker.TryGetValue(data, out var remaining);
+                var unused = AbilityTracker.TryGetValue(data, out var remaining);
                 if (remaining > 0)
                 {
                     // Got one so can prepare it to be used
