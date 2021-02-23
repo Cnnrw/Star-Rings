@@ -1,4 +1,4 @@
-﻿using Game.Enums;
+using Game.Enums;
 
 using NUnit.Framework;
 
@@ -33,6 +33,20 @@ namespace UnitTests.Models
 
             // Assert
             Assert.AreEqual("Jedi", result);
+        }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_Princess_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Princess.ToMessage();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("Princess", result);
         }
 
         [Test]
