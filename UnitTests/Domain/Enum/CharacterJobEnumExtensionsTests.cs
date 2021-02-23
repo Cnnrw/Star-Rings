@@ -132,5 +132,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("jedi_princess_icon.png", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_Smuggler_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Smuggler.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("smuggler_icon.png", result);
+        }
     }
 }
