@@ -121,7 +121,7 @@ namespace UnitTests.Models
             var message = new BattleMessagesModel();
 
             // Act
-            var result = message.GetHTMLBlankMessage();
+            var result = message.GetHtmlBlankMessage();
 
             // Reset
 
@@ -136,7 +136,7 @@ namespace UnitTests.Models
             var message = new BattleMessagesModel();
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
@@ -152,7 +152,7 @@ namespace UnitTests.Models
             message.PlayerType = PlayerTypeEnum.Monster;
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
@@ -168,7 +168,7 @@ namespace UnitTests.Models
             message.PlayerType = PlayerTypeEnum.Character;
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
@@ -184,7 +184,7 @@ namespace UnitTests.Models
             message.HitStatus = HitStatusEnum.Miss;
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
@@ -200,7 +200,7 @@ namespace UnitTests.Models
             message.HitStatus = HitStatusEnum.Hit;
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
@@ -216,7 +216,7 @@ namespace UnitTests.Models
             message.HitStatus = HitStatusEnum.CriticalHit;
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
@@ -233,7 +233,7 @@ namespace UnitTests.Models
             message.HitStatus = HitStatusEnum.CriticalMiss;
 
             // Act
-            var result = message.GetHTMLFormattedTurnMessage();
+            var result = message.GetHtmlFormattedTurnMessage();
 
             // Reset
 
