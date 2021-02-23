@@ -26,13 +26,11 @@ namespace UnitTests.Models
         public void MenuItemModel_Set_Default_Should_Pass()
         {
             // Arrange
-            var result = new MenuItemModel();
+            var result = new MenuItemModel {Id = MenuItemEnum.Home, Title = "bogus title"};
 
             // Act
 
             // Test all the Setters
-            result.Id = MenuItemEnum.Village;
-            result.Title = "bogus title";
 
             // Reset
 
@@ -40,7 +38,7 @@ namespace UnitTests.Models
 
             // The Get is tested by retrieving it here as well.
             Assert.AreEqual("bogus title", result.Title);
-            Assert.AreEqual(MenuItemEnum.Village, result.Id);
+            Assert.AreEqual(MenuItemEnum.Home, result.Id);
         }
     }
 }
