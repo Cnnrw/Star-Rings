@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -491,6 +491,21 @@ namespace UnitTests.Models
 
             // Act
             var result = data.GetItemByLocation(ItemLocationEnum.LeftFinger);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetItemByLocation_Finger_Default_Should_Pass()
+        {
+            // Arrange
+            var data = new BasePlayerModel<CharacterModel>();
+
+            // Act
+            var result = data.GetItemByLocation(ItemLocationEnum.Finger);
 
             // Reset
 
