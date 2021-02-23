@@ -160,5 +160,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("wookie_icon.png", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_AstroDroid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.AstroDroid.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("astromech_icon.png", result);
+        }
     }
 }
