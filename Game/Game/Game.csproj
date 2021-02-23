@@ -15,6 +15,9 @@
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
 		<None Remove="Common\Fonts\rpgawesome.ttf" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<None Remove="Common\Images\Characters\EquippedSlots\offhand_slot.png" />
 		<None Remove="Common\Images\star_rings_logo.png" />
 		<None Remove="Common\Images\column.png" />
@@ -48,21 +51,25 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Body_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Cape_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Feet_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Head_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Legs_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Neck_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\offhand_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Ring_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Shield_slot.png" />
+		<None Remove="Common\Images\UIButtonIcons\EquippedSlots\Weapon_slot.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<None Remove="Common\Images\Characters\CharacterIcons\jedi_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\jedi_princess_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\smuggler_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\astromech_icon.png" />
 		<None Remove="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Body_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Cape_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Feet_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Head_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Legs_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Neck_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Ring_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Shield_slot.png" />
-		<None Remove="Common\Images\Characters\EquippedSlots\Weapon_slot.png" />
 		<None Remove="Common\Images\Characters\astromech.png" />
 		<None Remove="Common\Images\Characters\jedi.png" />
 		<None Remove="Common\Images\Characters\jedi_princess.png" />
@@ -70,6 +77,28 @@
 		<None Remove="Common\Images\Characters\smuggler.png" />
 		<None Remove="Common\Images\Characters\wookie.png" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<None Remove="Common\Images\Monsters\MonsterIcons\dark_elf_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\dead_king_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\nazgul_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\oliphant_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\orc_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\smeagol_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\spider_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\troll_icon.png" />
+		<None Remove="Common\Images\Monsters\MonsterIcons\warg_rider_icon.png" />
+		<None Remove="Common\Images\Monsters\dark_elf.png" />
+		<None Remove="Common\Images\Monsters\dead_king.png" />
+		<None Remove="Common\Images\Monsters\nazgul.png" />
+		<None Remove="Common\Images\Monsters\oliphant.png" />
+		<None Remove="Common\Images\Monsters\orc.png" />
+		<None Remove="Common\Images\Monsters\smeagol.png" />
+		<None Remove="Common\Images\Monsters\spider.png" />
+		<None Remove="Common\Images\Monsters\troll.png" />
+		<None Remove="Common\Images\Monsters\warg_rider.png" />
+	</ItemGroup>
+	
 	
 	<!-- Fonts -->
 	<ItemGroup>
@@ -183,28 +212,38 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<SharedImage Include="Common\Images\Characters\CharacterIcons\astromech_icon.png" />
-		<SharedImage Include="Common\Images\Characters\CharacterIcons\jedi_icon.png" />
-		<SharedImage Include="Common\Images\Characters\CharacterIcons\jedi_princess_icon.png" />
-		<SharedImage Include="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
-		<SharedImage Include="Common\Images\Characters\CharacterIcons\smuggler_icon.png" />
-		<SharedImage Include="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\offhand_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Body_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Cape_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Feet_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Head_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Legs_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Neck_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Ring_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Shield_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\EquippedSlots\Weapon_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\CharacterIcons\astromech_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\CharacterIcons\jedi_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\CharacterIcons\jedi_princess_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\CharacterIcons\protocol_droid_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\CharacterIcons\smuggler_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Characters\CharacterIcons\wookie_icon.png" />
 		<SharedImage Include="Common\Images\Characters\astromech.png" />
 		<SharedImage Include="Common\Images\Characters\jedi.png" />
 		<SharedImage Include="Common\Images\Characters\jedi_princess.png" />
 		<SharedImage Include="Common\Images\Characters\protocol_droid.png" />
 		<SharedImage Include="Common\Images\Characters\smuggler.png" />
 		<SharedImage Include="Common\Images\Characters\wookie.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\dark_elf_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\dead_king_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\nazgul_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\oliphant_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\orc_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\smeagol_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\spider_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\troll_icon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\Monsters\MonsterIcons\warg_rider_icon.png" />
+		<SharedImage Include="Common\Images\Monsters\dark_elf.png" />
+		<SharedImage Include="Common\Images\Monsters\dead_king.png" />
+		<SharedImage Include="Common\Images\Monsters\nazgul.png" />
+		<SharedImage Include="Common\Images\Monsters\oliphant.png" />
+		<SharedImage Include="Common\Images\Monsters\orc.png" />
+		<SharedImage Include="Common\Images\Monsters\smeagol.png" />
+		<SharedImage Include="Common\Images\Monsters\spider.png" />
+		<SharedImage Include="Common\Images\Monsters\troll.png" />
+		<SharedImage Include="Common\Images\Monsters\warg_rider.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -218,21 +257,34 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Body_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Cape_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Feet_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Head_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Legs_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Neck_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\offhand_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Ring_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Shield_slot.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\EquippedSlots\Weapon_slot.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\save_button.png" />
 		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\cancel_button.png" />
-		<SharedImage BaseSize="150,100" Include="Common\Images\UIButtonIcons\start_button_normal.png" />
-		<SharedImage BaseSize="150,100" Include="Common\Images\UIButtonIcons\start_button_pressed.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\auto_battle.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\about_1.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\about_2.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\dungeon.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\eye.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\rebel_base_1.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\rebel_base_2.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\ring.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\settings.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\stats.png" />
-		<SharedImage BaseSize="150,150" Include="Common\Images\UIButtonIcons\warrior.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\start_button_normal.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\start_button_pressed.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\auto_battle.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\about_1.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\about_2.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\dungeon.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\eye.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\rebel_base_1.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\rebel_base_2.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\ring.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\settings.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\stats.png" />
+		<SharedImage BaseSize="36,36" Include="Common\Images\UIButtonIcons\warrior.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
