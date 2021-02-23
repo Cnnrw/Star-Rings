@@ -131,7 +131,7 @@ namespace Game.Engine.EngineKoenig
             //}
 
             //If there are not enough will add random ones
-            for (int i = Battle.EngineSettings.CharacterList.Count();
+            for (var i = Battle.EngineSettings.CharacterList.Count();
                  i < Battle.EngineSettings.MaxNumberPartyCharacters;
                  i++)
             {
