@@ -26,8 +26,6 @@ namespace Game.Models
         {
             PlayerType = PlayerTypeEnum.Monster;
             Guid = Id;
-
-            ExperienceRemaining = 299;
         }
 
         /// <summary>
