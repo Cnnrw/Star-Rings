@@ -37,12 +37,12 @@ namespace UnitTests.Helpers
         }
 
         [Test]
-        public void AbilityEnumHelper_GetListCleric_Should_Pass()
+        public void AbilityEnumHelper_GetListWookie_Should_Pass()
         {
             // Arrange
 
             // Act
-            var result = AbilityEnumHelper.GetListCleric;
+            var result = AbilityEnumHelper.GetListWookie;
 
             // Assert
             Assert.AreEqual(5, result.Count());
