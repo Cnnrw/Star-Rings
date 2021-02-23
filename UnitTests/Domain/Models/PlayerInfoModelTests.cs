@@ -269,5 +269,21 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual(AbilityEnum.Unknown, result);
         }
+
+        [Test]
+        public void PlayerInfoModel_UseAbility_Unknown_Should_Pass()
+        {
+            // Arrange
+            var data = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Wookie });
+            data.AbilityTracker[AbilityEnum.Unknown] = 1;
+
+            // Act
+            var result = data.UseAbility(AbilityEnum.Unknown);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
     }
 }
