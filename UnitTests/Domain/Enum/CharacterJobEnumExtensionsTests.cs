@@ -174,5 +174,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("astromech_icon.png", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_ProtocolDroid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.ProtocolDroid.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("protocol_droid_icon.png", result);
+        }
     }
 }
