@@ -1,4 +1,4 @@
-﻿using Game.Models;
+using Game.Models;
 
 using NUnit.Framework;
 
@@ -18,7 +18,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual("This is an Item", result.Name);
+            Assert.IsNull(result.Name);
         }
 
         [Test]
