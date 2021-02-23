@@ -111,9 +111,9 @@ namespace UnitTests.Views
         {
             // Arrange
             var data = new ItemModel();
-            var ViewModel = new GenericViewModel<ItemModel>(data);
+            var viewModel = new GenericViewModel<ItemModel>(data);
 
-            page = new ItemUpdatePage(ViewModel);
+            page = new ItemUpdatePage(viewModel);
             var oldValue = 0.0;
             var newValue = 1.0;
 
@@ -133,9 +133,9 @@ namespace UnitTests.Views
         {
             // Arrange
             var data = new ItemModel();
-            var ViewModel = new GenericViewModel<ItemModel>(data);
+            var viewModel = new GenericViewModel<ItemModel>(data);
 
-            page = new ItemUpdatePage(ViewModel);
+            page = new ItemUpdatePage(viewModel);
             var oldRange = 0.0;
             var newRange = 1.0;
 
@@ -155,9 +155,9 @@ namespace UnitTests.Views
         {
             // Arrange
             var data = new ItemModel();
-            var ViewModel = new GenericViewModel<ItemModel>(data);
+            var viewModel = new GenericViewModel<ItemModel>(data);
 
-            page = new ItemUpdatePage(ViewModel);
+            page = new ItemUpdatePage(viewModel);
             var oldDamage = 0.0;
             var newDamage = 1.0;
 
