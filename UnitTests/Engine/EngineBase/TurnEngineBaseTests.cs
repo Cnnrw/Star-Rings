@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Game.Engine.EngineBase;
@@ -13,6 +14,7 @@ using NUnit.Framework;
 namespace UnitTests.Engine.EngineBase
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class TurnEngineBaseTests
     {
 
@@ -1430,14 +1432,18 @@ namespace UnitTests.Engine.EngineBase
         {
             // Arrange
 
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
+            var characterPlayer = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Jedi});
 
             // Get the longest range weapon in stock.
-            var weapon = ItemIndexViewModel.Instance.Dataset.Where(m => m.Range > 1).ToList()
-                                           .OrderByDescending(m => m.Range).FirstOrDefault();
-            CharacterPlayer.PrimaryHand = weapon.Id;
+            var weapon = ItemIndexViewModel.Instance.Dataset
+                                           .Where(m => m.Range > 1)
+                                           .ToList()
+                                           .OrderByDescending(m => m.Range)
+                                           .FirstOrDefault();
 
-            Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+            characterPlayer.PrimaryHand = weapon.Id;
+
+            Engine.EngineSettings.PlayerList.Add(characterPlayer);
 
             Engine.EngineSettings.MapModel.PopulateMapModel(Engine.EngineSettings.PlayerList);
 
@@ -1446,8 +1452,9 @@ namespace UnitTests.Engine.EngineBase
 
             DiceHelper.EnableForcedRolls();
             DiceHelper.SetForcedRollValue(2);
+
             // Act
-            var result = Engine.Round.Turn.ChooseToUseAbility(CharacterPlayer);
+            var result = Engine.Round.Turn.ChooseToUseAbility(characterPlayer);
 
             // Reset
             DiceHelper.DisableForcedRolls();
