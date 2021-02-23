@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Game.Enums;
 using Game.Helpers;
 using Game.Models;
-using Game.Services;
 using Game.ViewModels;
 
 using NUnit.Framework;
@@ -13,7 +12,6 @@ using NUnit.Framework;
 namespace UnitTests.Models
 {
     [TestFixture]
-    [SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>")]
     [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class BasePlayerModelTests
     {
@@ -49,7 +47,8 @@ namespace UnitTests.Models
 
             // Assert
             Assert.IsNotNull(result.Id);
-            Assert.AreEqual(ItemService.DefaultImageURI, result.ImageURI);
+            Assert.That(result.ImageURI, Is.Null);
+            Assert.That(result.IconImageURI, Is.Null);
             Assert.AreEqual(PlayerTypeEnum.Unknown, result.PlayerType);
             Assert.AreEqual(true, result.Alive);
             Assert.AreEqual(0, result.Order);
