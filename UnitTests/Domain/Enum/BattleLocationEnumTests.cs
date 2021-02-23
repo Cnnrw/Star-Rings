@@ -106,7 +106,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            //Assert.AreEqual("Mordor", );
+            Assert.AreEqual(5, result.Count);
         }
     }
 }
