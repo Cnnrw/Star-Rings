@@ -23,7 +23,12 @@ namespace Game.Models
         /// Default ItemModel
         /// Establish the Default Image Path
         /// </summary>
-        public ItemModel() => ImageURI = ItemService.DefaultImageURI;
+        public ItemModel()
+        {
+            Name = "Item";
+            Description = "A shiny new item";
+            ImageURI = ItemService.DefaultImageURI;
+        }
 
         /// <summary>
         /// Constructor to create an item based on what is passed in
