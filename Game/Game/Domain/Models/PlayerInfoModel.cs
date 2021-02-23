@@ -115,6 +115,20 @@ namespace Game.Models
             // TODO: Mike, Refactor this, so it is in a helper, and call it on level up as well.
             switch (Job)
             {
+                case CharacterJobEnum.Wookie:
+                    foreach (var item in AbilityEnumHelper.GetListWookie)
+                    {
+                        AbilityTracker.Add(AbilityEnumHelper.ConvertStringToEnum(item), Level);
+                    }
+                    break;
+
+                case CharacterJobEnum.Jedi:
+                    foreach (var item in AbilityEnumHelper.GetListJedi)
+                    {
+                        AbilityTracker.Add(AbilityEnumHelper.ConvertStringToEnum(item), Level);
+                    }
+                    break;
+
                 default:
                     foreach (var item in AbilityEnumHelper.GetListOthers)
                     {
