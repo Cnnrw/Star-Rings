@@ -86,16 +86,16 @@ namespace Game.Models
         public int Level { get; set; } = 1;
 
         // Current Health
-        public int CurrentHealth { get; set; }
+        public int CurrentHealth { get; set; } = 0;
 
         // Max Health
-        public int MaxHealth { get; set; }
+        public int MaxHealth { get; set; } = 0;
 
         // Total Experience Earned
-        public int ExperienceTotal { get; set; }
+        public int ExperienceTotal { get; set; } = 0;
 
         // The Experience available to given up
-        public int ExperienceRemaining { get; set; }
+        public int ExperienceRemaining { get; set; } = 0;
 
         // Total speed, including level and items
         public int Speed { get; set; }
@@ -384,8 +384,6 @@ namespace Game.Models
             Guid = Id;
             Name = "Player";
             Description = "Player description";
-            ImageURI = "item.png";
-
         }
 
         /// <summary>
@@ -849,9 +847,6 @@ namespace Game.Models
                     break;
 
                 case ItemLocationEnum.Unknown:
-                    break;
-
-                default:
                     break;
             }
 
