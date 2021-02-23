@@ -76,5 +76,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("Wookie", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_AstroDroid_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.AstroDroid.ToMessage();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("Astro Droid", result);
+        }
     }
 }
