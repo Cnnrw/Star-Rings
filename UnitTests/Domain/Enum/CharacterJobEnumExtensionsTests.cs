@@ -50,6 +50,20 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterJobEnumExtensionsTests_Smuggler_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Smuggler.ToMessage();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("Smuggler", result);
+        }
+
+        [Test]
         public void CharacterJobEnumExtensionsTests_Wookie_Default_Should_Pass()
         {
             // Arrange
