@@ -379,7 +379,14 @@ namespace Game.Models
         /// <summary>
         /// Constructor for BasePlayer
         /// </summary>
-        public BasePlayerModel() => Guid = Id;
+        public BasePlayerModel()
+        {
+            Guid = Id;
+            Name = "Player";
+            Description = "Player description";
+            ImageURI = "item.png";
+
+        }
 
         /// <summary>
         /// Format Output
