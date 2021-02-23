@@ -15,106 +15,100 @@
              BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
-        <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel"/>
+        <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel" />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:StringEnumConverter x:Key="StringToEnum" />
-        </ResourceDictionary>
+        <converters:StringEnumConverter x:Key="StringToEnum" />
     </ContentPage.Resources>
 
-    <ContentPage.Content>
+    <FlexLayout JustifyContent="Center"
+                Padding="40">
 
-        <FlexLayout JustifyContent="Center"
-                    Padding="40">
-
-            <ScrollView>
-                <StackLayout Style="{StaticResource OuterBoxStack}"
+        <ScrollView>
+            <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10">
 
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout>
-                            <Image Source="{Binding Data.ImageURI}"
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Image Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
-                            <Label Text="Image"
+                        <Label Text="Image"
                                Style="{StaticResource LabelStyle}" />
-                            <Entry Text="{Binding Data.ImageURI, Mode=TwoWay}"
-                                   Style="{StaticResource EntryStyle}" />
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Name" Style="{StaticResource LabelStyle}" />
-                            <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
+                        <Entry Text="{Binding Data.ImageURI, Mode=TwoWay}"
+                               Style="{StaticResource EntryStyle}" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelStyle}" />
+                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
 
-                            <Label Text="Description" Style="{StaticResource LabelStyle}" />
-                            <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}" />
+                        <Label Text="Description" Style="{StaticResource LabelStyle}" />
+                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}" />
 
-                            <Label Text="Battle location"
+                        <Label Text="Battle location"
                                Style="{StaticResource LabelStyle}" />
-                            <Picker x:Name="BattleLocationPicker"
+                        <Picker x:Name="BattleLocationPicker"
                                 ItemsSource="{x:Static enum:BattleLocationEnumHelper.GetListBattleLocations}"
                                 SelectedItem="{Binding Data.BattleLocations, Converter={StaticResource StringToEnum}, Mode=TwoWay}" />
-                        </StackLayout>
                     </StackLayout>
+                </StackLayout>
 
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout>
-                            <Label Text="Attack"
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Label Text="Attack"
                                Style="{StaticResource LabelStyle}" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="AttackValueLabel"
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="AttackValueLabel"
                                    Text="{Binding Data.Attack}" />
-                                <Stepper x:Name="AttackStepper"
+                            <Stepper x:Name="AttackStepper"
                                      Value="{Binding Data.Attack, Mode=TwoWay}"
                                      ValueChanged="OnAttackStepperValueChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
-                            </StackLayout>
                         </StackLayout>
+                    </StackLayout>
 
-                        <StackLayout>
-                            <Label Text="Defense" Style="{StaticResource LabelStyle}" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="DefenseValueLabel"
+                    <StackLayout>
+                        <Label Text="Defense" Style="{StaticResource LabelStyle}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="DefenseValueLabel"
                                    Text="{Binding Data.Defense}" />
-                                <Stepper x:Name="DefenseStepper"
+                            <Stepper x:Name="DefenseStepper"
                                      Value="{Binding Data.Defense, Mode=TwoWay}"
                                      ValueChanged="OnDefenseStepperValueChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
-                            </StackLayout>
                         </StackLayout>
+                    </StackLayout>
 
-                        <StackLayout>
-                            <Label Text="Speed" Style="{StaticResource LabelStyle}" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="SpeedValueLabel"
+                    <StackLayout>
+                        <Label Text="Speed" Style="{StaticResource LabelStyle}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="SpeedValueLabel"
                                    Text="{Binding Data.Speed}" />
-                                <Stepper x:Name="SpeedStepper"
+                            <Stepper x:Name="SpeedStepper"
                                      Value="{Binding Data.Speed, Mode=TwoWay}"
                                      ValueChanged="OnSpeedStepperValueChanged"
                                      Minimum="1"
                                      Maximum="10"
                                      Increment="1" />
-                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
+                </StackLayout>
 
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Cancel" Clicked="Cancel_Clicked" />
-                        <Button Text="Save" Clicked="Save_Clicked" />
-                        <Button x:Name="Randomize"
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel" Clicked="Cancel_Clicked" />
+                    <Button Text="Save" Clicked="Save_Clicked" />
+                    <Button x:Name="Randomize"
                             Text="Random"
                             Clicked="RandomButton_Clicked" />
-                    </StackLayout>
                 </StackLayout>
-            </ScrollView>
+            </StackLayout>
+        </ScrollView>
 
-        </FlexLayout>
-
-    </ContentPage.Content>
+    </FlexLayout>
 
 </ContentPage>
