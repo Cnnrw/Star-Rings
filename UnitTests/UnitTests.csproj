@@ -23,8 +23,6 @@
   </ItemGroup>
 	
 	<ItemGroup>
-		<Folder Include="Components\Controls" />
-		<Folder Include="Components\Exceptions" />
 		<Folder Include="Domain" />
 	</ItemGroup>
 
