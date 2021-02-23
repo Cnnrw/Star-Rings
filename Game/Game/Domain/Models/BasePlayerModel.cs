@@ -844,12 +844,15 @@ namespace Game.Models
 
                 case ItemLocationEnum.Feet:
                     return GetItem(Feet);
-                case ItemLocationEnum.Unknown:
-                    break;
+
                 case ItemLocationEnum.Finger:
                     break;
+
+                case ItemLocationEnum.Unknown:
+                    break;
+
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(itemLocation), itemLocation, null);
+                    break;
             }
 
             return null;
