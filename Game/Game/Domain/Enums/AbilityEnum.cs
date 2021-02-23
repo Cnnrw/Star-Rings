@@ -142,13 +142,13 @@ namespace Game.Enums
         }
 
         /// <summary>
-        /// Returns a list of strings of the enum for Cleric
+        /// Returns a list of strings of the enum for Wookie
         /// </summary>
-        public static List<string> GetListCleric
+        public static IEnumerable<string> GetListWookie
         {
             get
             {
-                List<string> AbilityList = new List<string>
+                var abilityList = new List<string>
                 {
                     AbilityEnum.Quick.ToString(),
                     AbilityEnum.Barrier.ToString(),
@@ -156,8 +156,8 @@ namespace Game.Enums
                     AbilityEnum.Heal.ToString()
                 };
 
-                AbilityList.AddRange(GetListOthers);
-                return AbilityList;
+                abilityList.AddRange(GetListOthers);
+                return abilityList;
             }
         }
 
