@@ -40,7 +40,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public void DataSource_Toggled(object sender, EventArgs e) =>
             MessagingCenter.Send(this, "SetDataSource",
-                                 DataSourceValue.IsToggled ? DataSourceEnum.SQL : DataSourceEnum.Mock);
+                DataSourceValue.IsToggled ? DataSourceEnum.SQL : DataSourceEnum.Mock);
 
         /// <summary>
         /// Button to delete the data store
@@ -92,7 +92,7 @@ namespace Game.Views
             // The ServerItemValue Code stands for the batch of items to get
             // as the group to request.  1, 2, 3, 100 (All), or if not specified All
 
-            const string result = "No Results";
+            var result = "No Results";
 
             var value = Convert.ToInt32(ServerItemValue.Text);
             var dataList = await ItemService.GetItemsFromServerGetAsync(value);
@@ -105,9 +105,7 @@ namespace Game.Views
             return dataList.Count == 0
                        ? result
                        : dataList.Aggregate("", (current, itemModel) =>
-                                                current + itemModel.FormatOutput() + "\n");
-
-            // Reset the output
+                           current + itemModel.FormatOutput() + "\n");
         }
 
         /// <summary>
@@ -147,7 +145,7 @@ namespace Game.Views
             // will return shoes value 10 of speed.
             // Example  result = await ItemsController.Instance.GetItemsFromGame(1, 10, AttributeEnum.Speed, ItemLocationEnum.Feet, false, true);
             var dataList = await ItemService.GetItemsFromServerPostAsync(number, level, attribute, location, category,
-                                                                         random, updateDataBase);
+                               random, updateDataBase);
 
             // Null not possible, returns empty instead
             //if (dataList == null)
