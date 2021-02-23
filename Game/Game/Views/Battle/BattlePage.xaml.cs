@@ -877,7 +877,7 @@ namespace Game.Views
         {
             BattleMessages.Text = "";
             htmlSource.Html = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel
-                                                   .GetHTMLBlankMessage();
+                                                   .GetHtmlBlankMessage();
             //HtmlBox.Source = htmlSource;
         }
 
