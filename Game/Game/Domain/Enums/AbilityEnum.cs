@@ -4,8 +4,7 @@ using System.Linq;
 namespace Game.Enums
 {
     /// <summary>
-    /// The Types of s a Ability can have
-    /// Used in Ability Crudi, and in Battles.
+    /// The Types of Abilities players can have, used in Ability CRUDi and Battles.
     /// </summary>
     public enum AbilityEnum
     {
@@ -58,49 +57,44 @@ namespace Game.Enums
         public static string ToMessage(this AbilityEnum value)
         {
             // Default String
-            var Message = "None";
+            var message = "None";
 
             switch (value)
             {
                 case AbilityEnum.Bandage:
-                    Message = "Apply Bandages";
+                    message = "Apply Bandages";
                     break;
 
                 case AbilityEnum.Nimble:
-                    Message = "React Quickly";
+                    message = "React Quickly";
                     break;
 
                 case AbilityEnum.Toughness:
-                    Message = "Toughen Up";
+                    message = "Toughen Up";
                     break;
 
                 case AbilityEnum.Focus:
-                    Message = "Mental Focus";
+                    message = "Mental Focus";
                     break;
 
                 case AbilityEnum.Quick:
-                    Message = "Anticipate";
+                    message = "Anticipate";
                     break;
 
                 case AbilityEnum.Barrier:
-                    Message = "Barrier Defense";
+                    message = "Barrier Defense";
                     break;
 
                 case AbilityEnum.Curse:
-                    Message = "Shout Curse";
+                    message = "Shout Curse";
                     break;
 
                 case AbilityEnum.Heal:
-                    Message = "Heal Self";
-                    break;
-
-                case AbilityEnum.None:
-                case AbilityEnum.Unknown:
-                default:
+                    message = "Heal Self";
                     break;
             }
 
-            return Message;
+            return message;
         }
     }
 
@@ -111,9 +105,10 @@ namespace Game.Enums
     {
         /// <summary>
         /// Returns a list of strings of the enum for Ability
-        /// Removes the Abilitys that are not changable by Items such as Unknown, MaxHealth
+        /// Removes the Abilities that are not changeable by Items
+        /// such as Unknown, MaxHealth
         /// </summary>
-        public static List<string> GetFullList
+        public static IEnumerable<string> GetFullList
         {
             get
             {
@@ -123,7 +118,7 @@ namespace Game.Enums
         }
 
         /// <summary>
-        /// Returns a list of strings of the enum for Fighter
+        /// Returns a list of strings of the enum for Jedi
         /// </summary>
         public static IEnumerable<string> GetListJedi
         {
@@ -164,13 +159,13 @@ namespace Game.Enums
         /// <summary>
         /// Returns a list of strings of the enum of not Cleric or Fighter
         /// </summary>
-        public static List<string> GetListOthers
+        public static IEnumerable<string> GetListOthers
         {
             get
             {
-                List<string> AbilityList = new List<string> {AbilityEnum.Bandage.ToString(),};
+                var abilityList = new List<string> {AbilityEnum.Bandage.ToString()};
 
-                return AbilityList;
+                return abilityList;
             }
         }
 
