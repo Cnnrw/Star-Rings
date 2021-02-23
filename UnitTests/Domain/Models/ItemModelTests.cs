@@ -131,7 +131,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert 
-            Assert.AreEqual("This is an Item , Item Description for PrimaryHand with Attack+0 , Damage : 0 , Range : 0",
+            Assert.AreEqual("Item , A shiny new item for PrimaryHand with Attack+0 , Damage : 0 , Range : 0",
                             result);
         }
 
