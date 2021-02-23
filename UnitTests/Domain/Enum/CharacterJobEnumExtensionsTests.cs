@@ -146,5 +146,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("smuggler_icon.png", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_Wookie_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Wookie.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("wookie_icon.png", result);
+        }
     }
 }
