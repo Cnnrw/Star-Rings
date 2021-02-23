@@ -90,5 +90,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("Astro Droid", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ProtocolDroid_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.ProtocolDroid.ToMessage();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("Protocol Droid", result);
+        }
     }
 }
