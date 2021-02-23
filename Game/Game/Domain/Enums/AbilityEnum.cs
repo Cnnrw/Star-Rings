@@ -125,19 +125,19 @@ namespace Game.Enums
         /// <summary>
         /// Returns a list of strings of the enum for Fighter
         /// </summary>
-        public static List<string> GetListFighter
+        public static IEnumerable<string> GetListJedi
         {
             get
             {
-                List<string> AbilityList = new List<string>
+                var abilityList = new List<string>
                 {
                     AbilityEnum.Nimble.ToString(),
                     AbilityEnum.Toughness.ToString(),
                     AbilityEnum.Focus.ToString()
                 };
 
-                AbilityList.AddRange(GetListOthers);
-                return AbilityList;
+                abilityList.AddRange(GetListOthers);
+                return abilityList;
             }
         }
 
