@@ -75,8 +75,9 @@ namespace Game.Enums
 
                 case CharacterJobEnum.Unknown:
                     break;
+
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
+                    break;
             }
 
             return Message;
