@@ -16,7 +16,10 @@ namespace UnitTests.Models
     public class MonsterModelTests
     {
         [TearDown]
-        public void TearDown() => ItemIndexViewModel.Instance.Dataset.Clear();
+        public void TearDown()
+        {
+            ItemIndexViewModel.Instance.Dataset.Clear();
+        }
 
         [Test]
         public void MonsterModel_Constructor_Default_Should_Pass()
@@ -86,14 +89,14 @@ namespace UnitTests.Models
             Assert.IsNotNull(result.Id);
             Assert.AreEqual(result.Id, result.Guid);
 
-            Assert.AreEqual("item.png", result.ImageURI);
+            Assert.That(result.ImageURI, Is.Null);
             Assert.AreEqual(PlayerTypeEnum.Monster, result.PlayerType);
 
             Assert.AreEqual(true, result.Alive);
             Assert.AreEqual(0, result.Order);
             Assert.AreEqual(0, result.ListOrder);
             Assert.AreEqual(1, result.Level);
-            Assert.AreEqual(299, result.ExperienceRemaining);
+            Assert.AreEqual(0, result.ExperienceRemaining);
             Assert.AreEqual(0, result.CurrentHealth);
             Assert.AreEqual(0, result.MaxHealth);
             Assert.AreEqual(0, result.ExperienceTotal);
@@ -118,7 +121,7 @@ namespace UnitTests.Models
             var dataNew = new MonsterModel {Attack = 2};
 
             // Act
-            var result = dataOriginal.Update(dataNew);
+            var unused = dataOriginal.Update(dataNew);
 
             // Reset
 
@@ -134,7 +137,7 @@ namespace UnitTests.Models
             dataOriginal.Attack = 2;
 
             // Act
-            var result = dataOriginal.Update(null);
+            var unused = dataOriginal.Update(null);
 
             // Reset
 
