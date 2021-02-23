@@ -7,6 +7,7 @@ using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Enums;
 using Game.Helpers;
+using Game.ViewModels;
 
 namespace Game.Engine.EngineKoenig
 {
@@ -117,18 +118,18 @@ namespace Game.Engine.EngineKoenig
 
             // To use your own characters, populate the List before calling RunAutoBattle
 
-            //// Will first pull from existing characters
-            //foreach (var data in CharacterIndexViewModel.Instance.Dataset)
-            //{
-            //    if (Battle.EngineSettings.CharacterList.Count() >= Battle.EngineSettings.MaxNumberPartyCharacters)
-            //    {
-            //        break;
-            //    }
+            // Will first pull from existing characters
+            foreach (var data in CharacterIndexViewModel.Instance.Dataset)
+            {
+                if (Battle.EngineSettings.CharacterList.Count() >= Battle.EngineSettings.MaxNumberPartyCharacters)
+                {
+                    break;
+                }
 
-            //    // Start off with max health if adding a character in
-            //    data.CurrentHealth = data.GetMaxHealthTotal;
-            //    Battle.PopulateCharacterList(data);
-            //}
+                // Start off with max health if adding a character in
+                data.CurrentHealth = data.GetMaxHealthTotal;
+                Battle.PopulateCharacterList(data);
+            }
 
             //If there are not enough will add random ones
             for (var i = Battle.EngineSettings.CharacterList.Count();
