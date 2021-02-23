@@ -18,7 +18,7 @@ namespace Game.Views
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter",
-                                                     Justification = "<Pending>")]
+        Justification = "<Pending>")]
     public partial class BattlePage : ContentPage
     {
 
@@ -562,10 +562,9 @@ namespace Game.Views
                     break;
             }
 
-            var result = Color.Transparent;
-
-            //var result = (Color)Application.Current.Resources[BattleMapBackgroundColor ?? string.Empty];
-            return result;
+            return Application.Current.Resources.TryGetValue(BattleMapBackgroundColor ?? string.Empty, out object val)
+                       ? (Color)val
+                       : Color.Transparent;
         }
 
         #region MapEvents
@@ -675,7 +674,7 @@ namespace Game.Views
             AttackerAttack.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.PreviousAction.ToImageURI();
 
             var item = ItemIndexViewModel.Instance.GetItem(BattleEngineViewModel.Instance.Engine.EngineSettings
-                                                               .CurrentAttacker.PrimaryHand);
+                .CurrentAttacker.PrimaryHand);
             if (item != null)
             {
                 AttackerAttack.Source = item.ImageURI;
@@ -799,7 +798,7 @@ namespace Game.Views
         public void SetAttackerAndDefender()
         {
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(BattleEngineViewModel.Instance.Engine.Round
-                                                                               .GetNextPlayerTurn());
+                .GetNextPlayerTurn());
 
             switch (BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PlayerType)
             {
@@ -883,7 +882,6 @@ namespace Game.Views
         }
 
         #endregion MessageHandelers
-
         #region PageHandelers
 
         /// <summary>
