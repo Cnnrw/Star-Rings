@@ -98,9 +98,9 @@ namespace Game.Models
         /// Returns a blank HTML page, used for clearing the output window
         /// </summary>
         /// <returns></returns>
-        public string GetHTMLBlankMessage()
+        public string GetHtmlBlankMessage()
         {
-            var myResult = htmlHead + htmlTail;
+            const string myResult = htmlHead + htmlTail;
             return myResult;
         }
 
@@ -108,31 +108,31 @@ namespace Game.Models
         /// Output the Turn as a HTML string
         /// </summary>
         /// <returns></returns>
-        public string GetHTMLFormattedTurnMessage()
+        public string GetHtmlFormattedTurnMessage()
         {
-            var AttackerStyle = @"<span style=""color:blue"">";
-            var DefenderStyle = @"<span style=""color:green"">";
+            var attackerStyle = @"<span style=""color:blue"">";
+            var defenderStyle = @"<span style=""color:green"">";
 
             if (PlayerType == PlayerTypeEnum.Monster)
             {
                 // If monster, swap the colors
-                DefenderStyle = @"<span style=""color:blue"">";
-                AttackerStyle = @"<span style=""color:green"">";
+                defenderStyle = @"<span style=""color:blue"">";
+                attackerStyle = @"<span style=""color:green"">";
             }
 
-            string SwingResult = null;
+            string swingResult = null;
             switch (HitStatus)
             {
                 case HitStatusEnum.Miss:
-                    SwingResult = @"<span style=""color:yellow"">";
+                    swingResult = @"<span style=""color:yellow"">";
                     break;
 
                 case HitStatusEnum.CriticalMiss:
-                    SwingResult = @"<span bold style=""color:yellow; font-weight:bold;"">";
+                    swingResult = @"<span bold style=""color:yellow; font-weight:bold;"">";
                     break;
 
                 case HitStatusEnum.CriticalHit:
-                    SwingResult = @"<span bold style=""color:red; font-weight:bold;"">";
+                    swingResult = @"<span bold style=""color:red; font-weight:bold;"">";
                     break;
 
                 case HitStatusEnum.Unknown:
@@ -142,14 +142,14 @@ namespace Game.Models
                 case HitStatusEnum.Hit:
                     break;
                 default:
-                    SwingResult = @"<span style=""color:red"">";
+                    swingResult = @"<span style=""color:red"">";
                     break;
             }
 
             var htmlBody = string.Empty;
-            htmlBody += $@"{AttackerStyle}{AttackerName}</span>";
-            htmlBody += $@"{SwingResult}{GetSwingResult()}</span>";
-            htmlBody += $@"{DefenderStyle}{TargetName}</span>";
+            htmlBody += $@"{attackerStyle}{AttackerName}</span>";
+            htmlBody += $@"{swingResult}{GetSwingResult()}</span>";
+            htmlBody += $@"{defenderStyle}{TargetName}</span>";
             htmlBody += $@"<span>{TurnMessageSpecial}</span>";
 
             var myResult = htmlHead + htmlBody + htmlTail;
