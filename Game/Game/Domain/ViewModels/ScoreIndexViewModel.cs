@@ -94,6 +94,12 @@ namespace Game.ViewModels
         #region DataOperations_CRUDi
 
         /// <summary>
+        ///     Loads the default data
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<ScoreModel> GetDefaultData() => DefaultData.Scores;
+
+        /// <summary>
         /// The Sort Order for the ScoreModel
         /// </summary>
         /// <param name="dataset"></param>
@@ -118,12 +124,6 @@ namespace Game.ViewModels
 
             return myList;
         }
-
-        /// <summary>
-        /// Load the Default Data
-        /// </summary>
-        /// <returns></returns>
-        public override IEnumerable<ScoreModel> GetDefaultData() => new List<ScoreModel>();
 
         #endregion DataOperations_CRUDi
     }

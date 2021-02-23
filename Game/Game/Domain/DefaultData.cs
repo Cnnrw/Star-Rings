@@ -313,5 +313,28 @@ namespace Game.Models
                 Range = 0,
             }
         };
+
+        /// <summary>
+        /// Default Scores
+        /// </summary>
+        public static readonly IEnumerable<ScoreModel> Scores = new[]
+        {
+            new ScoreModel
+            {
+                Name = "Score 1",
+                TurnCount = 12,
+                RoundCount = 3,
+                ExperienceGainedTotal = 1205,
+                MonsterSlainNumber = 9
+            },
+            new ScoreModel
+            {
+                Name = "Score 2",
+                TurnCount = 23,
+                RoundCount = 7,
+                ExperienceGainedTotal = 8420,
+                MonsterSlainNumber = 17
+            },
+        };
     }
 }
