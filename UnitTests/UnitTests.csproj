@@ -21,9 +21,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Game\Game\Game.csproj" />
   </ItemGroup>
-	
-	<ItemGroup>
-		<Folder Include="Domain" />
-	</ItemGroup>
 
 </Project>
