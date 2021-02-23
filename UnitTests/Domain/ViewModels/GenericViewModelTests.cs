@@ -1,4 +1,4 @@
-﻿using Game.Models;
+using Game.Models;
 using Game.ViewModels;
 
 using NUnit.Framework;
@@ -49,6 +49,21 @@ namespace UnitTests.ViewModels
 
             // Assert
             Assert.AreEqual(null, result.Data.Name);
+        }
+
+        [Test]
+        public void GenericViewModel_Constructor_Invalid_Data_String_Should_Pass()
+        {
+            // Arrange
+            var data = "Test";
+
+            // Act
+            var result = new GenericViewModel<string>(data);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("Test", result.Data);
         }
     }
 }
