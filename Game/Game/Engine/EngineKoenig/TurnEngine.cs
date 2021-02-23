@@ -125,8 +125,8 @@ namespace Game.Engine.EngineKoenig
                 var openSquare = EngineSettings.MapModel.ReturnClosestEmptyLocation(locationDefender);
 
                 Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name,
-                                              locationAttacker.Column, locationAttacker.Row, openSquare.Column,
-                                              openSquare.Row));
+                    locationAttacker.Column, locationAttacker.Row, openSquare.Column,
+                    openSquare.Row));
 
                 EngineSettings.BattleMessagesModel.TurnMessage =
                     Attacker.Name + " moves closer to " + EngineSettings.CurrentDefender.Name;
