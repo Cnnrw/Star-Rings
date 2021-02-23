@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,9 +15,11 @@ namespace Game.Helpers
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static int GetHealth(int level) =>
+        public static int GetHealth(int level)
+        {
             // Roll the Dice and reset the Health
-            DiceHelper.RollDice(level, 10);
+            return DiceHelper.RollDice(level, 10);
+        }
 
         /// <summary>
         /// Get A Random Difficulty
@@ -25,8 +28,14 @@ namespace Game.Helpers
         public static string GetMonsterUniqueItem()
         {
             var itemIndex = DiceHelper.RollDice(1, ItemIndexViewModel.Instance.Dataset.Count()) - 1;
-            var result = ItemIndexViewModel.Instance.Dataset.ElementAt(itemIndex).Id;
 
+            // Check to see if there are enough items, if not, then just use the first one...
+            var result = ItemIndexViewModel.Instance.Dataset.First().Id;
+
+            if (itemIndex < ItemIndexViewModel.Instance.Dataset.Count)
+            {
+                result = ItemIndexViewModel.Instance.Dataset.ElementAt(itemIndex).Id;
+            }
             return result;
         }
 
@@ -51,17 +60,17 @@ namespace Game.Helpers
         /// <returns></returns>
         public static string GetMonsterImage()
         {
-            List<string> FirstNameList = new List<string>
-            {
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png"
-            };
 
-            var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
+            List<String> StringList = new List<String> { "item.png", "item.png", "item.png", "item.png", "item.png", "item.png" };
+
+            var index = DiceHelper.RollDice(1, StringList.Count()) - 1;
+
+            var result = StringList.First();
+
+            if (index < StringList.Count)
+            {
+                result = StringList.ElementAt(index);
+            }
 
             return result;
         }
@@ -72,25 +81,23 @@ namespace Game.Helpers
         /// <returns></returns>
         public static string GetCharacterImage()
         {
-            List<string> FirstNameList = new List<string>
-            {
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png"
-            };
+            List<String> StringList = new List<String> { "item.png", "item.png", "item.png", "item.png", "item.png", "item.png", "item.png" };
 
-            var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
+            var index = DiceHelper.RollDice(1, StringList.Count()) - 1;
+
+            var result = StringList.First();
+
+            if (index < StringList.Count)
+            {
+                result = StringList.ElementAt(index);
+            }
 
             return result;
         }
 
         /// <summary>
         /// Get Name
-        ///
+        /// 
         /// Return a Random Name
         /// </summary>
         /// <returns></returns>
@@ -118,7 +125,7 @@ namespace Game.Helpers
 
         /// <summary>
         /// Get Description
-        ///
+        /// 
         /// Return a random description
         /// </summary>
         /// <returns></returns>
@@ -138,85 +145,46 @@ namespace Game.Helpers
         }
 
         /// <summary>
-        /// Get Monster Battle Location
-        ///
-        /// Return a random BattleLocation
-        /// </summary>
-        /// <returns></returns>
-        private static BattleLocationEnum GetMonsterBattleLocation()
-        {
-            var BattleLocationList = BattleLocationEnumHelper.GetListBattleLocations;
-
-            var RandomBattleLocation =
-                BattleLocationList.ElementAt(DiceHelper.RollDice(1, BattleLocationList.Count()) - 1);
-
-            var result = BattleLocationEnumHelper.ConvertStringToEnum(RandomBattleLocation);
-
-            return result;
-        }
-
-        /// <summary>
         /// Get Name
-        ///
+        /// 
         /// Return a Random Name
         /// </summary>
         /// <returns></returns>
         public static string GetCharacterName()
         {
-            List<string> FirstNameList = new List<string>
-            {
-                "Mike",
-                "Doug",
-                "Jea",
-                "Sue",
-                "Tim",
-                "Daren",
-                "Dani",
-                "Mami",
-                "Mari",
-                "Ryu",
-                "Hucky",
-                "Peanut",
-                "Sumi",
-                "Apple",
-                "Ami",
-                "Honami",
-                "Sonomi",
-                "Pat",
-                "Sakue",
-                "Isamu"
-            };
 
-            var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
+            List<String> StringList = new List<String> { "Mike", "Doug", "Jea", "Sue", "Tim", "Daren", "Dani", "Mami", "Mari", "Ryu", "Hucky", "Peanut", "Sumi", "Apple", "Ami", "Honami", "Sonomi", "Pat", "Sakue", "Isamu" };
+
+            var index = DiceHelper.RollDice(1, StringList.Count()) - 1;
+
+            var result = StringList.First();
+
+            if (index < StringList.Count)
+            {
+                result = StringList.ElementAt(index);
+            }
 
             return result;
         }
 
         /// <summary>
         /// Get Description
-        ///
+        /// 
         /// Return a random description
         /// </summary>
         /// <returns></returns>
         public static string GetCharacterDescription()
         {
-            List<string> StringList = new List<string>
-            {
-                "the terrible",
-                "the awesome",
-                "the lost",
-                "the old",
-                "the younger",
-                "the quiet",
-                "the loud",
-                "the helpless",
-                "the happy",
-                "the sleepy",
-                "the angry",
-                "the clever"
-            };
+            List<String> StringList = new List<String> { "the terrible", "the awesome", "the lost", "the old", "the younger", "the quiet", "the loud", "the helpless", "the happy", "the sleepy", "the angry", "the clever" };
 
-            var result = StringList.ElementAt(DiceHelper.RollDice(1, StringList.Count()) - 1);
+            var index = DiceHelper.RollDice(1, StringList.Count()) - 1;
+
+            var result = StringList.First();
+
+            if (index < StringList.Count)
+            {
+                result = StringList.ElementAt(index);
+            }
 
             return result;
         }
@@ -225,21 +193,25 @@ namespace Game.Helpers
         /// Get Random Ability Number
         /// </summary>
         /// <returns></returns>
-        public static int GetAbilityValue() =>
+        public static int GetAbilityValue()
+        {
             // 0 to 9, not 1-10
-            DiceHelper.RollDice(1, 10) - 1;
+            return DiceHelper.RollDice(1, 10) - 1;
+        }
 
         /// <summary>
         /// Get a Random Level
         /// </summary>
         /// <returns></returns>
-        public static int GetLevel() =>
+        public static int GetLevel()
+        {
             // 1-20
-            DiceHelper.RollDice(1, 20);
+            return DiceHelper.RollDice(1, 20);
+        }
 
         /// <summary>
         /// Get a Random Item for the Location
-        ///
+        /// 
         /// Return the String for the ID
         /// </summary>
         /// <param name="location"></param>
@@ -253,9 +225,16 @@ namespace Game.Helpers
             }
 
             // Add None to the list
-            ItemList.Add(new ItemModel {Id = null, Name = "None"});
+            ItemList.Add(new ItemModel { Id = null, Name = "None" });
 
-            var result = ItemList.ElementAt(DiceHelper.RollDice(1, ItemList.Count()) - 1).Id;
+            var result = ItemList.First().Id;
+
+            var index = DiceHelper.RollDice(1, ItemList.Count()) - 1;
+            if (index < ItemList.Count)
+            {
+                result = ItemList.ElementAt(index).Id;
+            }
+
             return result;
         }
 
@@ -266,7 +245,7 @@ namespace Game.Helpers
         /// <returns></returns>
         public static CharacterModel GetRandomCharacter(int MaxLevel)
         {
-            var result = new CharacterModel
+            var result = new CharacterModel()
             {
                 Level = DiceHelper.RollDice(1, MaxLevel),
 
@@ -287,10 +266,11 @@ namespace Game.Helpers
                 RightFinger = GetItem(ItemLocationEnum.Finger),
                 LeftFinger = GetItem(ItemLocationEnum.Finger),
                 Feet = GetItem(ItemLocationEnum.Feet),
-                ImageURI = GetCharacterImage(),
-                MaxHealth = DiceHelper.RollDice(MaxLevel, 10)
+
+                ImageURI = GetCharacterImage()
             };
 
+            result.MaxHealth = DiceHelper.RollDice(MaxLevel, 10);
 
             // Level up to the new level
             result.LevelUpToValue(result.Level);
@@ -302,16 +282,15 @@ namespace Game.Helpers
         }
 
         /// <summary>
-        /// Create Random Monster for the battle
+        /// Create Random Character for the battle
         /// </summary>
-        /// <param name="maxLevel"></param>
-        /// <param name="items"></param>
+        /// <param name="MaxLevel"></param>
         /// <returns></returns>
-        public static MonsterModel GetRandomMonster(int maxLevel, bool items = false)
+        public static MonsterModel GetRandomMonster(int MaxLevel, bool Items = false)
         {
             var result = new MonsterModel()
             {
-                Level = DiceHelper.RollDice(1, maxLevel),
+                Level = DiceHelper.RollDice(1, MaxLevel),
 
                 // Randomize Name
                 Name = GetMonsterName(),
@@ -321,8 +300,9 @@ namespace Game.Helpers
                 Attack = GetAbilityValue(),
                 Speed = GetAbilityValue(),
                 Defense = GetAbilityValue(),
+
                 ImageURI = GetMonsterImage(),
-                BattleLocations = GetMonsterBattleLocation(),
+
                 Difficulty = GetMonsterDifficultyValue()
             };
 
@@ -352,18 +332,16 @@ namespace Game.Helpers
             result.CurrentHealth = result.MaxHealth;
 
             // Monsters can have weapons too....
-            if (!items)
+            if (Items)
             {
-                return result;
+                result.Head = GetItem(ItemLocationEnum.Head);
+                result.Necklace = GetItem(ItemLocationEnum.Necklace);
+                result.PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand);
+                result.OffHand = GetItem(ItemLocationEnum.OffHand);
+                result.RightFinger = GetItem(ItemLocationEnum.Finger);
+                result.LeftFinger = GetItem(ItemLocationEnum.Finger);
+                result.Feet = GetItem(ItemLocationEnum.Feet);
             }
-
-            result.Head = GetItem(ItemLocationEnum.Head);
-            result.Necklace = GetItem(ItemLocationEnum.Necklace);
-            result.PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand);
-            result.OffHand = GetItem(ItemLocationEnum.OffHand);
-            result.RightFinger = GetItem(ItemLocationEnum.Finger);
-            result.LeftFinger = GetItem(ItemLocationEnum.Finger);
-            result.Feet = GetItem(ItemLocationEnum.Feet);
 
             return result;
         }
