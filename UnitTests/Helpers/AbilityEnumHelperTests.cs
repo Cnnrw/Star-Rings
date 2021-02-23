@@ -25,12 +25,12 @@ namespace UnitTests.Helpers
         }
 
         [Test]
-        public void AbilityEnumHelper_GetListFighter_Should_Pass()
+        public void AbilityEnumHelper_GetListJedi_Should_Pass()
         {
             // Arrange
 
             // Act
-            var result = AbilityEnumHelper.GetListFighter;
+            var result = AbilityEnumHelper.GetListJedi;
 
             // Assert
             Assert.AreEqual(4, result.Count());
