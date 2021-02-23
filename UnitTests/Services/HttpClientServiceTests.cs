@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -402,6 +402,12 @@ namespace UnitTests.Services
                 'version':'1.1.1.1',
                 'data':{}
             }";
+        private readonly string ExampleJsonNullData = @"
+            {
+                'msg':'Ok',
+                'errorCode':0,
+                'version':'1.1.1.1'
+            }";
         private readonly string ExampleJsonBadJson = @"Bougus";
 
         [Test]
@@ -544,6 +550,27 @@ namespace UnitTests.Services
 
             // Assert
             Assert.AreEqual(null, result);
+        }
+
+        [Test]
+        public async Task HttpClientService_ParseJsonResult_Data_Null_Should_Fail()
+        {
+            // Arrange
+
+            var messageContent = ExampleJsonNullData;
+
+            var responseMessage = new HttpResponseMessage(ResponseMessage.HttpStatusCode)
+            {
+                Content = new StringContent(messageContent)
+            };
+
+            // Act
+            var result = await Service.JsonParseResult(responseMessage);
+
+            // Reset
+
+            // Assert
+            Assert.IsNull(result);
         }
     }
 }
