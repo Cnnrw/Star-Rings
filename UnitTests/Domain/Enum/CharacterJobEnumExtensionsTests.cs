@@ -104,5 +104,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("Protocol Droid", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_Jedi_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Jedi.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("jedi_icon.png", result);
+        }
     }
 }
