@@ -188,5 +188,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("protocol_droid_icon.png", result);
         }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToIconImageURI_Unknown_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Unknown.ToIconImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("item.png", result);
+        }
     }
 }
