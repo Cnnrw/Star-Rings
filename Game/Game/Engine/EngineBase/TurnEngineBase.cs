@@ -182,9 +182,8 @@ namespace Game.Engine.EngineBase
                 // Get the Open Locations
                 var openSquare = EngineSettings.MapModel.ReturnClosestEmptyLocation(locationDefender);
 
-                Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name,
-                                              locationAttacker.Column, locationAttacker.Row, openSquare.Column,
-                                              openSquare.Row));
+                Debug.WriteLine(
+                    $"{locationAttacker.Player.Name} moves from {locationAttacker.Column},{locationAttacker.Row} to {openSquare.Column},{openSquare.Row}");
 
                 EngineSettings.BattleMessagesModel.TurnMessage =
                     Attacker.Name + " moves closer to " + EngineSettings.CurrentDefender.Name;
@@ -214,23 +213,17 @@ namespace Game.Engine.EngineBase
 
             // If not needed, then role dice to see if other ability should be used
             // <30% chance
-            if (DiceHelper.RollDice(1, 10) < 3)
-            {
-                EngineSettings.CurrentActionAbility = Attacker.SelectAbilityToUse();
-
-                if (EngineSettings.CurrentActionAbility != AbilityEnum.Unknown)
-                {
-                    // Ability can , switch to unknown to exit
-                    EngineSettings.CurrentAction = ActionEnum.Ability;
-                    return true;
-                }
-
-                // No ability available
+            if (DiceHelper.RollDice(1, 10) >= 3)
                 return false;
-            }
 
-            // Don't try
-            return false;
+            EngineSettings.CurrentActionAbility = Attacker.SelectAbilityToUse();
+
+            if (EngineSettings.CurrentActionAbility == AbilityEnum.Unknown)
+                return false;
+
+            // Ability can , switch to unknown to exit
+            EngineSettings.CurrentAction = ActionEnum.Ability;
+            return true;
         }
 
         /// <summary>
@@ -290,7 +283,6 @@ namespace Game.Engine.EngineBase
                 case PlayerTypeEnum.Monster:
                     return SelectCharacterToAttack();
 
-                case PlayerTypeEnum.Character:
                 default:
                     return SelectMonsterToAttack();
             }
@@ -354,9 +346,7 @@ namespace Game.Engine.EngineBase
         /// // MonsterModel Attacks CharacterModel
         /// </summary>
         /// <param name="Attacker"></param>
-        /// <param name="AttackScore"></param>
         /// <param name="Target"></param>
-        /// <param name="DefenseScore"></param>
         /// <returns></returns>
         public virtual bool TurnAsAttack(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
@@ -470,8 +460,6 @@ namespace Game.Engine.EngineBase
                     EngineSettings.BattleMessagesModel.AttackStatus = " somehow Critical Missed ";
                     return HitStatusEnum.CriticalMiss;
 
-                case HitStatusEnum.Unknown:
-                case HitStatusEnum.Default:
                 default:
                     // Return what it was
                     return EngineSettings.BattleMessagesModel.HitStatus;
@@ -516,16 +504,16 @@ namespace Game.Engine.EngineBase
         /// Calculate Experience
         /// Level up if needed
         /// </summary>
-        /// <param name="Attacker"></param>
-        /// <param name="Target"></param>
-        public virtual bool CalculateExperience(PlayerInfoModel Attacker, PlayerInfoModel Target)
+        /// <param name="attacker"></param>
+        /// <param name="target"></param>
+        public virtual bool CalculateExperience(PlayerInfoModel attacker, PlayerInfoModel target)
         {
-            if (Attacker.PlayerType == PlayerTypeEnum.Character)
+            if (attacker.PlayerType == PlayerTypeEnum.Character)
             {
                 var points = " points";
 
                 var experienceEarned =
-                    Target.CalculateExperienceEarned(EngineSettings.BattleMessagesModel.DamageAmount);
+                    target.CalculateExperienceEarned(EngineSettings.BattleMessagesModel.DamageAmount);
 
                 if (experienceEarned == 1)
                 {
@@ -534,12 +522,12 @@ namespace Game.Engine.EngineBase
 
                 EngineSettings.BattleMessagesModel.ExperienceEarned = " Earned " + experienceEarned + points;
 
-                var LevelUp = Attacker.AddExperience(experienceEarned);
+                var LevelUp = attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
                     EngineSettings.BattleMessagesModel.LevelUpMessage =
-                        Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " +
-                        Attacker.GetMaxHealthTotal;
+                        attacker.Name + " is now Level " + attacker.Level + " With Health Max of " +
+                        attacker.GetMaxHealthTotal;
                     Debug.WriteLine(EngineSettings.BattleMessagesModel.LevelUpMessage);
                 }
 
@@ -576,8 +564,6 @@ namespace Game.Engine.EngineBase
         /// <param name="Target"></param>
         public virtual bool TargetDied(PlayerInfoModel Target)
         {
-            bool found;
-
             // Mark Status in output
             EngineSettings.BattleMessagesModel.TurnMessageSpecial = " and causes death. ";
 
@@ -597,16 +583,13 @@ namespace Game.Engine.EngineBase
 
                     DropItems(Target);
 
-                    found =
-                        EngineSettings.CharacterList.Remove(EngineSettings.CharacterList
-                                                                          .Find(m => m.Guid.Equals(Target.Guid)));
-                    found =
-                        EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
-                                                                       .Find(m => m.Guid.Equals(Target.Guid)));
+                    EngineSettings.CharacterList.Remove(EngineSettings.CharacterList
+                                                                      .Find(m => m.Guid.Equals(Target.Guid)));
+                    EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
+                                                                   .Find(m => m.Guid.Equals(Target.Guid)));
 
                     return true;
 
-                case PlayerTypeEnum.Monster:
                 default:
                     // Add one to the monsters killed count...
                     EngineSettings.BattleScore.MonsterSlainNumber++;
@@ -618,12 +601,10 @@ namespace Game.Engine.EngineBase
 
                     DropItems(Target);
 
-                    found =
-                        EngineSettings.MonsterList.Remove(EngineSettings.MonsterList
-                                                                        .Find(m => m.Guid.Equals(Target.Guid)));
-                    found =
-                        EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
-                                                                       .Find(m => m.Guid.Equals(Target.Guid)));
+                    EngineSettings.MonsterList.Remove(EngineSettings.MonsterList
+                                                                    .Find(m => m.Guid.Equals(Target.Guid)));
+                    EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
+                                                                   .Find(m => m.Guid.Equals(Target.Guid)));
 
                     return true;
             }
