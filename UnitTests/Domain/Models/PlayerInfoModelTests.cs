@@ -235,6 +235,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
+            Assert.That(result, Is.Not.Null);
         }
 
         [Test]
@@ -274,7 +275,7 @@ namespace UnitTests.Models
         public void PlayerInfoModel_UseAbility_Unknown_Should_Pass()
         {
             // Arrange
-            var data = new PlayerInfoModel(new CharacterModel { Job = CharacterJobEnum.Wookie });
+            var data = new PlayerInfoModel(new CharacterModel {Job = CharacterJobEnum.Wookie});
             data.AbilityTracker[AbilityEnum.Unknown] = 1;
 
             // Act
