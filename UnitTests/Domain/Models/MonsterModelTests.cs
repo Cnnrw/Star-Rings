@@ -154,7 +154,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual(true, result.Contains("Orc"));
+            Assert.AreEqual(true, result.Contains("Player"));
         }
 
         [Test]
