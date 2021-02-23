@@ -50,9 +50,9 @@ namespace UnitTests.Components
             throw new NullReferenceException();
         }
 
-        protected bool CanExecuteTrue(object    parameter)        => true;
-        protected bool CanExecuteFalse(object   parameter)        => false;
-        protected bool CanExecuteDynamic(object booleanParameter) => (bool)booleanParameter;
+        private static bool CanExecuteTrue(object    parameter)        => true;
+        private static bool CanExecuteFalse(object   parameter)        => false;
+        protected      bool CanExecuteDynamic(object booleanParameter) => (bool)booleanParameter;
 
         [Test]
         public void AsyncCommand_UsingICommand() =>
@@ -62,15 +62,17 @@ namespace UnitTests.Components
         [Test]
         public void AsyncCommand_NullExecuteParameter() =>
             // Assert
-            Expect(() => new AsyncCommand(null)).To.Throw<ArgumentNullException>();
+            Expect(() => new AsyncCommand(null))
+                .To.Throw<ArgumentNullException>();
 
         [Test]
         public void AsyncCommandT_NullExecuteParameter() =>
             // Assert
-            Expect(() => new AsyncCommand<object>(null)).To.Throw<ArgumentNullException>();
+            Expect(() => new AsyncCommand<object>(null))
+                .To.Throw<ArgumentNullException>();
 
         [Test]
-        public async Task AsyncCommand_ExecuteAsync_IntParameter_Test()
+        public async Task AsyncCommand_Execute_Async_Int_Parameter_Test()
         {
             // Arrange
             var command = new AsyncCommand<int>(IntParameterTask);
@@ -81,7 +83,7 @@ namespace UnitTests.Components
         }
 
         [Test]
-        public async Task AsyncCommand_ExecuteAsync_StringParameter_Test()
+        public async Task AsyncCommand_Execute_Async_String_Parameter_Test()
         {
             // Arrange
             var command = new AsyncCommand<string>(StringParameterTask);
@@ -94,7 +96,7 @@ namespace UnitTests.Components
         }
 
         [Test]
-        public void AsyncCommand_Parameter_CanExecuteTrue_Test()
+        public void AsyncCommand_Parameter_CanExecute_True_Test()
         {
             // Arrange
             var command = new AsyncCommand<int>(IntParameterTask, CanExecuteTrue);
@@ -102,11 +104,12 @@ namespace UnitTests.Components
             // Act
 
             // Assert
-            Expect(command.CanExecute(null)).To.Be.True();
+            Expect(command.CanExecute(null))
+                .To.Be.True();
         }
 
         [Test]
-        public void AsyncCommand_Parameter_CanExecuteFalse_Test()
+        public void AsyncCommand_Parameter_CanExecute_False_Test()
         {
             // Arrange
             var command = new AsyncCommand<int>(IntParameterTask, CanExecuteFalse);
@@ -114,11 +117,12 @@ namespace UnitTests.Components
             // Act
 
             // Assert
-            Expect(command.CanExecute(null)).To.Be.False();
+            Expect(command.CanExecute(null))
+                .To.Be.False();
         }
 
         [Test]
-        public void AsyncCommand_NoParameter_CanExecuteTrue_Test()
+        public void AsyncCommand_No_Parameter_CanExecute_True_Test()
         {
             // Arrange
             var command = new AsyncCommand(NoParameterTask, CanExecuteTrue);
@@ -130,7 +134,7 @@ namespace UnitTests.Components
         }
 
         [Test]
-        public void AsyncCommand_NoParameter_CanExecuteFalse_Test()
+        public void AsyncCommand_No_Parameter_CanExecute_False_Test()
         {
             // Arrange
             var command = new AsyncCommand(NoParameterTask, CanExecuteFalse);
@@ -142,7 +146,7 @@ namespace UnitTests.Components
         }
 
         [Test]
-        public void AsyncCommand_CanExecuteChanged_Test()
+        public void AsyncCommand_CanExecute_Changed_Test()
         {
             // Arrange
             var canCommandExecute = false;
@@ -161,21 +165,26 @@ namespace UnitTests.Components
                 didCanExecuteChangeFire = true;
             }
 
-            Expect(command.CanExecute(null)).To.Be.False();
+            Expect(command.CanExecute(null))
+                .To.Be.False();
 
             // Act
             canCommandExecute = true;
 
             // Assert
-            Expect(command.CanExecute(null)).To.Be.True();
-            Expect(didCanExecuteChangeFire).To.Be.False();
+            Expect(command.CanExecute(null))
+                .To.Be.True();
+            Expect(didCanExecuteChangeFire)
+                .To.Be.False();
 
             // Act
             command.RaiseCanExecuteChanged();
 
             // Assert
-            Expect(didCanExecuteChangeFire).To.Be.True();
-            Expect(command.CanExecute(null)).To.Be.True();
+            Expect(didCanExecuteChangeFire)
+                .To.Be.True();
+            Expect(command.CanExecute(null))
+                .To.Be.True();
         }
     }
 }
