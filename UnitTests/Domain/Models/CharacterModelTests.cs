@@ -242,10 +242,40 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterModel_GetAttack_Wookie_Should_Pass()
+        {
+            // ArDefense
+            var data = new CharacterModel { Job = CharacterJobEnum.Wookie };
+
+            // Act
+            var result = data.GetAttack();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
         public void CharacterModel_GetDefense_Jedi_Should_Pass()
         {
             // ArDefense
             var data = new CharacterModel {Job = CharacterJobEnum.Jedi};
+
+            // Act
+            var result = data.GetDefense();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
+        public void CharacterModel_GetDefense_Wookie_Should_Pass()
+        {
+            // Arrange
+            var data = new CharacterModel { Job = CharacterJobEnum.Wookie };
 
             // Act
             var result = data.GetDefense();
@@ -264,36 +294,6 @@ namespace UnitTests.Models
 
             // Act
             var result = data.GetSpeed();
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(1, result);
-        }
-
-        [Test]
-        public void CharacterModel_GetAttack_Wookie_Should_Pass()
-        {
-            // ArDefense
-            var data = new CharacterModel {Job = CharacterJobEnum.Wookie};
-
-            // Act
-            var result = data.GetAttack();
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(1, result);
-        }
-
-        [Test]
-        public void CharacterModel_GetDefense_Wookie_Should_Pass()
-        {
-            // Arrange
-            var data = new CharacterModel {Job = CharacterJobEnum.Wookie};
-
-            // Act
-            var result = data.GetDefense();
 
             // Reset
 
