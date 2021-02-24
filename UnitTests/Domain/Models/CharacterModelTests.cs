@@ -362,6 +362,21 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterModel_GetSpeed_Princess_Should_Pass()
+        {
+            // ArDefense
+            var data = new CharacterModel { Job = CharacterJobEnum.Princess };
+
+            // Act
+            var result = data.GetSpeed();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
         public void CharacterModel_GetSpeed_Wookie_Should_Pass()
         {
             // ArDefense
