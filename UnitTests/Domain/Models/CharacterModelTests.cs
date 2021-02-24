@@ -302,6 +302,21 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterModel_GetAttack_ProtocolDroid_Should_Pass()
+        {
+            // ArDefense
+            var data = new CharacterModel { Job = CharacterJobEnum.ProtocolDroid };
+
+            // Act
+            var result = data.GetAttack();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
         public void CharacterModel_GetDefense_Jedi_Should_Pass()
         {
             // ArDefense
