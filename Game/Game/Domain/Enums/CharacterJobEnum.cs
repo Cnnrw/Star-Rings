@@ -75,9 +75,6 @@ namespace Game.Enums
 
                 case CharacterJobEnum.Unknown:
                     break;
-
-                default:
-                    break;
             }
 
             return Message;
