@@ -6,7 +6,7 @@ using Android.Views;
 
 namespace Game.Droid
 {
-    [Activity(Label = "Game", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true,
+    [Activity(Label = "StarRings", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true,
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
