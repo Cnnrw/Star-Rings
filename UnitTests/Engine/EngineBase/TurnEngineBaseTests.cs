@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -1306,8 +1306,10 @@ namespace UnitTests.Engine.EngineBase
         public void TurnEngine_DetermineActionChoice_Valid_Character_Range_Should_Return_Attack()
         {
             // Arrange
-
             var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
+
+            // Clear the abilities, so the attack is the choice
+            CharacterPlayer.AbilityTracker.Clear();
 
             // Get the longest range weapon in stock.
             var weapon = ItemIndexViewModel.Instance.Dataset
