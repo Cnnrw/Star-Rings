@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,25 +19,27 @@ namespace Game.Engine.EngineKoenig
     /// </summary>
     public class AutoBattleEngine : AutoBattleEngineBase, IAutoBattleInterface
     {
-
+        /// <summary>
+        /// Get and set the battle variable.
+        /// </summary>
         public new IBattleEngineInterface Battle
         {
-            get => base.Battle ?? (base.Battle = new BattleEngine());
-            set
+            get
             {
-                if (value == null)
+                if (base.Battle == null)
                 {
-                    throw new ArgumentNullException(nameof(value));
+                    base.Battle = new BattleEngine();
                 }
-                base.Battle = Battle;
+                return base.Battle;
             }
+            set { base.Battle = Battle; }
         }
 
         /// <summary>
         /// Run Auto Battle
         /// </summary>
         /// <returns></returns>
-        #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public override async Task<bool> RunAutoBattle()
             #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
