@@ -4,6 +4,10 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 		<LangVersion>latest</LangVersion>
+		<Company>BinaryBoomers</Company>
+		<Product>StarRings</Product>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
