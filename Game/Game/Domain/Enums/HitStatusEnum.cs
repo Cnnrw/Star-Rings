@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -59,12 +59,12 @@ namespace Game.Enums
                 case HitStatusEnum.CriticalMiss:
                     Message = " misses really badly";
                     break;
+
                 case HitStatusEnum.Unknown:
                     break;
+
                 case HitStatusEnum.Default:
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
 
             return Message;
