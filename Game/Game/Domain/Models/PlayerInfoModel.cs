@@ -326,12 +326,6 @@ namespace Game.Models
                 case AbilityEnum.Nimble:
                     BuffSpeed();
                     break;
-                case AbilityEnum.Unknown:
-                    break;
-                case AbilityEnum.None:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(ability), ability, null);
             }
 
             // Reduce the count
