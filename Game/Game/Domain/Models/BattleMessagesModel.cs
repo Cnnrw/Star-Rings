@@ -120,7 +120,7 @@ namespace Game.Models
                 attackerStyle = @"<span style=""color:green"">";
             }
 
-            string swingResult = null;
+            var swingResult = string.Empty;
             switch (HitStatus)
             {
                 case HitStatusEnum.Miss:
@@ -135,12 +135,7 @@ namespace Game.Models
                     swingResult = @"<span bold style=""color:red; font-weight:bold;"">";
                     break;
 
-                case HitStatusEnum.Unknown:
-                    break;
-                case HitStatusEnum.Default:
-                    break;
                 case HitStatusEnum.Hit:
-                    break;
                 default:
                     swingResult = @"<span style=""color:red"">";
                     break;
