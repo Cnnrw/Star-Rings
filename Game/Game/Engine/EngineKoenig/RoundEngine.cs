@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,14 +30,7 @@ namespace Game.Engine.EngineKoenig
                 }
                 return base.Turn;
             }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-                base.Turn = Turn;
-            }
+            set { base.Turn = Turn; }
         }
 
         /// <summary>
