@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -96,10 +96,9 @@ namespace Game.Enums
                 case ItemLocationEnum.Feet:
                     Message = "Feet";
                     break;
+
                 case ItemLocationEnum.Unknown:
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
             return Message;
         }
