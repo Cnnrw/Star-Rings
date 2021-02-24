@@ -892,10 +892,6 @@ namespace Game.Models
                     LeftFinger = itemId;
                     break;
 
-                case ItemLocationEnum.Unknown:
-                    break;
-                case ItemLocationEnum.Finger:
-                    break;
                 default:
                     myReturn = null;
                     break;
