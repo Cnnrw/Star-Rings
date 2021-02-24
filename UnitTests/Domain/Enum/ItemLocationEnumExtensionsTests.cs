@@ -1,4 +1,4 @@
-﻿using Game.Enums;
+using Game.Enums;
 
 using NUnit.Framework;
 
@@ -27,12 +27,12 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = ItemLocationEnum.PrimaryHand.ToMessage();
+            var result = ItemLocationEnum.Head.ToMessage();
 
             // Reset
 
             // Assert
-            Assert.AreEqual("Primary Hand", result);
+            Assert.AreEqual("Head", result);
         }
 
         [Test]
