@@ -347,6 +347,21 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterModel_GetDefense_Smuggler_Should_Pass()
+        {
+            // Arrange
+            var data = new CharacterModel { Job = CharacterJobEnum.Smuggler };
+
+            // Act
+            var result = data.GetDefense();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
         public void CharacterModel_GetDefense_Wookie_Should_Pass()
         {
             // Arrange
