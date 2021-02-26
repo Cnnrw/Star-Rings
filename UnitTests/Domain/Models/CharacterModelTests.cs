@@ -377,6 +377,21 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterModel_GetDefense_AstroDroid_Should_Pass()
+        {
+            // Arrange
+            var data = new CharacterModel { Job = CharacterJobEnum.AstroDroid };
+
+            // Act
+            var result = data.GetDefense();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
         public void CharacterModel_GetSpeed_Jedi_Should_Pass()
         {
             // ArDefense
