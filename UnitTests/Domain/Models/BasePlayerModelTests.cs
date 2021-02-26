@@ -702,7 +702,7 @@ namespace UnitTests.Models
             var data = new BasePlayerModel<CharacterModel>();
 
             // Add the first item
-            data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
+            data.AddItem(ItemLocationEnum.Head, (await ItemIndexViewModel.Instance.ReadAsync("head")).Id);
             data.AddItem(ItemLocationEnum.Necklace, (await ItemIndexViewModel.Instance.ReadAsync("necklace")).Id);
             data.AddItem(ItemLocationEnum.PrimaryHand, (await ItemIndexViewModel.Instance.ReadAsync("PrimaryHand")).Id);
             data.AddItem(ItemLocationEnum.OffHand, (await ItemIndexViewModel.Instance.ReadAsync("OffHand")).Id);
