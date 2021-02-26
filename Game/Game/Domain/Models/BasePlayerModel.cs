@@ -235,8 +235,6 @@ namespace Game.Models
                         break;
                     case CharacterJobEnum.Unknown:
                         break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
                 return result;
             }
