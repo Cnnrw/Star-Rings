@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.NewRoundPage">
+             x:Class="Game.Views.NewRoundPage"
+             BackgroundImageSource="page_background.png"
+             Padding="30">
 
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
-
             <StackLayout Style="{StaticResource VerticalStack}">
+                <Label Text="Enemy encounter!" Style="{StaticResource CenterMessageLargeStyle}"/>
 
-                <Label Text="Beginning a Round" Style="{StaticResource CenterMessageLargeStyle}"/>
+                <Label Text="While traveling, your party encounters a group of monsters!"
+                       Style="{StaticResource CenterMessageStyle}"
+                       FontSize="20"
+                       LineBreakMode="WordWrap"/>
 
                 <Label Text="Characters" Style="{StaticResource MessageLargeStyle}"/>
 
@@ -27,7 +32,6 @@
                 <StackLayout Padding="1"></StackLayout>
 
                 <Button Clicked="BeginButton_Clicked" Text="Begin"/>
-                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
