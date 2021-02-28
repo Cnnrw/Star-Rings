@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Game;
@@ -102,6 +102,20 @@ namespace UnitTests.Views
 
             // Act
             page.GetItemToDisplay(ItemLocationEnum.Feet);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void CharacterReadPage_GetItemToDisplay_Finger_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            page.GetItemToDisplay(ItemLocationEnum.Finger);
 
             // Reset
 
