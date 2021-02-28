@@ -5,7 +5,13 @@
              >
 
     <ContentPage.Content>
-        <Label Text="Battle Home Page"
+        <StackLayout Style="{StaticResource VerticalStack}"
+                     HorizontalOptions="CenterAndExpand">
+            <Label Text="Battle Home Page"
                Style="{StaticResource CenterMessageStyle}"/>
+
+            <Button Text="AutoBattle"
+                    Clicked="AutoBattle_Clicked"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
