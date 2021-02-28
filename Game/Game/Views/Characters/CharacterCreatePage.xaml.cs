@@ -99,12 +99,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Save_Clicked(object sender, EventArgs e)
         {
-            //TODO: Create entry validator to attach to xaml control
-            if (_viewModel.Data.Name.Length == 0)
-            {
-                await DisplayAlert("Hold up!", "Please give your character a name", "OK");
-            }
-            else
+            if (_viewModel.Data.Name.Length > 0)
             {
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
                 await Navigation.PopModalAsync();
