@@ -16,6 +16,9 @@
 
             <Button Text="Pick characters"
                     Clicked="PickCharacters_Clicked"/>
+
+            <Button Text="New round"
+                    Clicked="NewRound_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
