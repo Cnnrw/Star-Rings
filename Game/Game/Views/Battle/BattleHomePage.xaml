@@ -12,6 +12,9 @@
 
             <Button Text="AutoBattle"
                     Clicked="AutoBattle_Clicked"/>
+
+            <Button Text="Pick characters"
+                    Clicked="PickCharacters_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
