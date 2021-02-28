@@ -10,16 +10,18 @@
              BackgroundImageSource="page_background.png">
 
     <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Style="{StaticResource OuterBoxStack}">
+      
+            <StackLayout Style="{StaticResource OuterBoxStack}"
+                         Padding="30">
 
                 <Label Text="Choose Your Party" Style="{StaticResource CenterMessageLargeStyle}"/>
 
-                <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand">
+                <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand"
+                             HeightRequest="500">
 
                     <StackLayout HorizontalOptions="Start">
 
-                        <Label Text="Characters" Style="{StaticResource CenterMessageStyle}"/>
+                        <Label Text="Characters" Style="{StaticResource CenterMessageLargeStyle}"/>
 
                         <ListView 
                                 x:Name="CharactersListView" 
@@ -59,26 +61,8 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-    <!--
-                    <StackLayout HorizontalOptions="CenterAndExpand">
 
-                        <Label Text="Count" Style="{StaticResource CenterMessageStyle}"/>
-
-                        <Label Style="{StaticResource CenterMessageStyle}" 
-                            x:Name="PartyCountLabel"
-                            Text="0"/>
-
-                        <Button 
-                            x:Name="BeginBattleButton"
-                            Clicked="BattleButton_Clicked" 
-                            Text="Begin"
-                            IsEnabled="False"/>
-
-                    </StackLayout>
-                    -->
-
-                    <StackLayout HorizontalOptions="End">
-
+                <StackLayout HorizontalOptions="End">
                         <Label Text="Party" Style="{StaticResource CenterMessageStyle}"/>
 
                         <ListView 
@@ -98,30 +82,43 @@
                                         <Grid>
                                             <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                                     Source="{Binding ImageURI}"
-                                                    Style="{StaticResource ImageMediumStyle}"/>
+                                                    Style="{StaticResource ImageMediumStyle}"
+                                                    Aspect="AspectFit"/>
 
-                                            <Label Grid.Column="1" Grid.Row="0"
+                                            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
                                                    Text="{Binding Name}" 
                                                    Style="{StaticResource ListStyle}"
                                                    FontAttributes="Bold"/>
 
-                                            <Label Grid.Column="1" Grid.Row="1"
+                                            <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
                                                    Text="{Binding Path=Level, StringFormat='Level {0:G}'}" 
                                                    Style="{StaticResource ListStyle}"/>
 
-                                            <Label Grid.Column="1" Grid.Row="2"
+                                            <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
                                                     Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
                                                     Style="{StaticResource ListStyle}"/>
-
-                                        </Grid>
+                                    </Grid>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
                 </StackLayout>
+<!--
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Label Text="Count" Style="{StaticResource CenterMessageStyle}"/>
 
+                    <Label Style="{StaticResource CenterMessageStyle}" 
+                            x:Name="PartyCountLabel"
+                            Text="0"/>
+
+                    <Button 
+                            x:Name="BeginBattleButton"
+                            Clicked="BattleButton_Clicked" 
+                            Text="Begin"
+                            IsEnabled="False"/>
+                </StackLayout>
+                -->
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
