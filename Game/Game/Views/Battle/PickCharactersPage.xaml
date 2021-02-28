@@ -40,18 +40,19 @@
                                             <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                                     Source="{Binding ImageURI}"
                                                     Style="{StaticResource ImageMediumStyle}"
-                                                    Aspect="AspectFit"/>
+                                                    Aspect="AspectFit"
+                                                    BackgroundColor="Red"/>
 
-                                            <Label Grid.Column="1" Grid.Row="0"
+                                            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
                                                    Text="{Binding Name}" 
                                                    Style="{StaticResource ListStyle}"
                                                    FontAttributes="Bold"/>
 
-                                            <Label Grid.Column="1" Grid.Row="1"
+                                            <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
                                                    Text="{Binding Path=Level, StringFormat='Level {0:G}'}" 
                                                    Style="{StaticResource ListStyle}"/>
 
-                                            <Label Grid.Column="1" Grid.Row="2"
+                                            <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
                                                     Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
                                                     Style="{StaticResource ListStyle}"/>
 
@@ -61,7 +62,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-
+    <!--
                     <StackLayout HorizontalOptions="CenterAndExpand">
 
                         <Label Text="Count" Style="{StaticResource CenterMessageStyle}"/>
@@ -77,6 +78,7 @@
                             IsEnabled="False"/>
 
                     </StackLayout>
+                    -->
 
                     <StackLayout HorizontalOptions="End">
 

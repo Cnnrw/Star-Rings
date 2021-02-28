@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 
 using Xamarin.Forms;
@@ -105,6 +105,7 @@ namespace Game.Views
         /// </summary>
         public void UpdateNextButtonState()
         {
+            /*
             // If no characters disable Next button
             BeginBattleButton.IsEnabled = true;
 
@@ -115,6 +116,7 @@ namespace Game.Views
             }
 
             PartyCountLabel.Text = currentCount.ToString();
+            */
         }
 
         /// <summary>
