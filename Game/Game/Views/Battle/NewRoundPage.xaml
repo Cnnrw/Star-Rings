@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.NewRoundPage">
@@ -9,8 +9,6 @@
             <StackLayout Style="{StaticResource VerticalStack}">
 
                 <Label Text="Beginning a Round" Style="{StaticResource CenterMessageLargeStyle}"/>
-
-                <Button Clicked="BeginButton_Clicked" Text="Begin"/>
 
                 <Label Text="Characters" Style="{StaticResource MessageLargeStyle}"/>
 
