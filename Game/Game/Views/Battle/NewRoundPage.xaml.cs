@@ -25,18 +25,11 @@ namespace Game.Views
 		{
 			InitializeComponent ();
 
-			// Draw the Characters
-			foreach (var data in EngineViewModel.Engine.EngineSettings.CharacterList)
-			{
-                PartyListFrame.Children.Add(CreatePlayerDisplayBox(data));
-			}
-
 			// Draw the Monsters
 			foreach (var data in EngineViewModel.Engine.EngineSettings.MonsterList)
 			{
 				MonsterListFrame.Children.Add(CreatePlayerDisplayBox(data));
 			}
-
 		}
 
 		/// <summary>

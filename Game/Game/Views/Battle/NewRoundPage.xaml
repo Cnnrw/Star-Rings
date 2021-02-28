@@ -8,19 +8,14 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
             <StackLayout Style="{StaticResource VerticalStack}">
-                <Label Text="Enemy encounter!" Style="{StaticResource CenterMessageLargeStyle}"/>
+                <Label Text="Enemy encounter!"
+                       Style="{StaticResource CenterMessageLargeStyle}"
+                       Margin="0,0,0,30"/>
 
                 <Label Text="While traveling, your party encounters a group of monsters!"
                        Style="{StaticResource CenterMessageStyle}"
                        FontSize="20"
                        LineBreakMode="WordWrap"/>
-
-                <Label Text="Characters" Style="{StaticResource MessageLargeStyle}"/>
-
-                <FlexLayout x:Name="PartyListFrame"
-                                    JustifyContent="Start"
-                                    AlignContent="Start"
-                                    Wrap="Wrap"/>
 
                 <Label Text="Monsters" Style="{StaticResource MessageLargeStyle}"/>
 
