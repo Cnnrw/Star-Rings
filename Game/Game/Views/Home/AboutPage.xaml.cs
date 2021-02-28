@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,9 +17,6 @@ namespace Game.Views
         public AboutPage()
         {
             InitializeComponent();
-
-            // Set to the current date and time
-            CurrentDateTime.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
 
             NavigationPage.SetHasNavigationBar(this, false);
         }

@@ -32,7 +32,6 @@
                 <Label Text="Jack Witt" />
                 <Label Text="Connor Wilding" />
                 <Label Text="Soleil Cababa" />
-                <Label x:Name="CurrentDateTime" Style="{StaticResource MessageStyle}" />
 
             </StackLayout>
         </Grid>
