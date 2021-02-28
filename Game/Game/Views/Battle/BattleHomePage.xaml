@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.BattleHomePage"
-             >
+             BackgroundImageSource="page_background.png">
 
     <ContentPage.Content>
         <StackLayout Style="{StaticResource VerticalStack}"
-                     HorizontalOptions="CenterAndExpand">
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="40">
             <Label Text="Battle Home Page"
                Style="{StaticResource CenterMessageStyle}"/>
 
