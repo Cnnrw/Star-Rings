@@ -50,7 +50,8 @@
                                 <Image Grid.Column="0" Grid.Row="0"
                                        Source="{Binding IconImageURI}"
                                        Style="{StaticResource ImageMediumStyle}"
-                                       VerticalOptions="CenterAndExpand" />
+                                       VerticalOptions="CenterAndExpand"
+                                       Aspect="AspectFit"/>
 
                                 <StackLayout Grid.Column="1" Grid.Row="0"
                                              Orientation="Vertical">
