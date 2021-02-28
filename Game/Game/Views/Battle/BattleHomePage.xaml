@@ -5,5 +5,7 @@
              >
 
     <ContentPage.Content>
+        <Label Text="Battle Home Page"
+               Style="{StaticResource CenterMessageStyle}"/>
     </ContentPage.Content>
 </ContentPage>
