@@ -36,12 +36,10 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <Grid>
-
-                                            <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                    Source="{Binding ImageURI}"
-                                                    Style="{StaticResource ImageMediumStyle}"
-                                                    Aspect="AspectFit"
-                                                    BackgroundColor="Red"/>
+                                            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                   Source="{Binding ImageURI}"
+                                                   Style="{StaticResource ImageMediumStyle}"
+                                                   Aspect="AspectFit"/>
 
                                             <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
                                                    Text="{Binding Name}" 
@@ -53,9 +51,8 @@
                                                    Style="{StaticResource ListStyle}"/>
 
                                             <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
-                                                    Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
-                                                    Style="{StaticResource ListStyle}"/>
-
+                                                   Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
+                                                   Style="{StaticResource ListStyle}"/>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
