@@ -163,8 +163,9 @@
     <Style TargetType="Image"
            x:Key="PlayerBattleMediumStyle"
            BasedOn="{StaticResource ImageLargeStyle}">
-        <Setter Property="HeightRequest" Value="75" />
-        <Setter Property="WidthRequest" Value="75" />
+        <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="Aspect" Value="AspectFit" />
     </Style>
 
     <Style TargetType="Image"
