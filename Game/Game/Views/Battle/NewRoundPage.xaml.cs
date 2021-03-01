@@ -57,21 +57,21 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                //Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"],
                 Style = Application.Current.Resources.TryGetValue("ImageBattleLargeStyle", out object imageStyle)
                             ? (Style)imageStyle
                             : null,
                 Source = data.ImageURI
             };
 
+            var ValueStyleMicro = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle1)
+                ? (Style)valueStyle1
+                : null;
+
             // Add the Level
             var PlayerLevelLabel = new Label
             {
-                Text = "Level : "+data.Level,
-                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
-                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle1)
-                            ? (Style)valueStyle1
-                            : null,
+                Text = "Level: "+data.Level,
+                Style = ValueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -84,11 +84,8 @@ namespace Game.Views
             // Add the HP
             var PlayerHPLabel = new Label
             {
-                Text = "HP : "+ data.GetCurrentHealthTotal,
-                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
-                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle2)
-                            ? (Style)valueStyle2
-                            : null,
+                Text = "HP: "+ data.GetCurrentHealthTotal,
+                Style = ValueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -101,10 +98,7 @@ namespace Game.Views
             var PlayerNameLabel = new Label()
             {
                 Text = data.Name,
-                //Style = (Style)Application.Current.Resources["ValueStyle"],
-                Style = Application.Current.Resources.TryGetValue("ValueStyle", out object valueStyle3)
-                            ? (Style)valueStyle3
-                            : null,
+                Style = ValueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
