@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.Enums;
 using Game.Helpers;
 using Game.Models;
+using Game.ViewModels;
 
 namespace Game.Engine.EngineGame
 {
@@ -54,11 +55,11 @@ namespace Game.Engine.EngineGame
             // End the existing round
             EndRound();
 
-            // Choose where the new round will take place
-            ChooseRoundLocation();
-
             // Remove Character Buffs
             RemoveCharacterBuffs();
+
+            // Choose where the new round will take place
+            ChooseRoundLocation();
 
             // Populate New Monsters..
             AddMonstersToRound();
@@ -81,7 +82,7 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// Chooses a random location for the next round to take place in.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The chosen location</returns>
         public BattleLocationEnum ChooseRoundLocation()
         {
             Array roundLocations = Enum.GetValues(typeof(BattleLocationEnum));
@@ -108,7 +109,20 @@ namespace Game.Engine.EngineGame
          *
          */
         // TODO: Teams, You need to implement your own Logic can not use mine.
-        public override int AddMonstersToRound() => throw new NotImplementedException();
+        public override int AddMonstersToRound()
+        {
+            ObservableCollection<MonsterModel> AllMonsters = MonsterIndexViewModel.Instance.Dataset;
+
+            int TargetLevel = 1;
+            var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
+
+            // Help identify which Monster it is
+            data.Name += " " + EngineSettings.MonsterList.Count + 1;
+
+            EngineSettings.MonsterList.Add(new PlayerInfoModel(data));
+
+            return EngineSettings.MonsterList.Count;
+        }
 
         /// <summary>
         /// At the end of the round
@@ -145,61 +159,50 @@ namespace Game.Engine.EngineGame
         /// Starts the Turn
         ///
         /// </summary>
-        public override RoundEnum RoundNextTurn() =>
-            throw
-                // No characters, game is over..
-                // Check if round is over
-                // If in Auto Battle pick the next attacker
-                // Do the turn..
-                new NotImplementedException();
+        public override RoundEnum RoundNextTurn()
+        {
+            return base.RoundNextTurn();
+        }
 
         /// <summary>
         /// Get the Next Player to have a turn
         /// </summary>
-        public override PlayerInfoModel GetNextPlayerTurn() =>
-            throw
-                // Remove the Dead
-                // Get Next Player
-                new NotImplementedException();
+        public override PlayerInfoModel GetNextPlayerTurn()
+        {
+            return base.GetNextPlayerInList();
+        }
 
         /// <summary>
         /// Remove Dead Players from the List
         /// </summary>
-        public override List<PlayerInfoModel> RemoveDeadPlayersFromList() => throw new NotImplementedException();
+        public override List<PlayerInfoModel> RemoveDeadPlayersFromList()
+        {
+            return base.RemoveDeadPlayersFromList();
+        }
 
         /// <summary>
         /// Order the Players in Turn Sequence
         /// </summary>
-        public override List<PlayerInfoModel> OrderPlayerListByTurnOrder() =>
-            throw
-                // TODO Teams: Implement the order
-                new NotImplementedException();
+        public override List<PlayerInfoModel> OrderPlayerListByTurnOrder()
+        {
+            return base.OrderPlayerListByTurnOrder();
+        }
 
         /// <summary>
         /// Who is Playing this round?
         /// </summary>
-        public override List<PlayerInfoModel> MakePlayerList() =>
-            throw
-                // Start from a clean list of players
-                // Remember the Insert order, used for Sorting
-                // Add the Characters
-                // Add the Monsters
-                new NotImplementedException();
-
+        public override List<PlayerInfoModel> MakePlayerList()
+        {
+            return base.MakePlayerList();
+        }
+            
         /// <summary>
         /// Get the Information about the Player
         /// </summary>
-        public override PlayerInfoModel GetNextPlayerInList() =>
-            throw
-                // Walk the list from top to bottom
-                // If Player is found, then see if next player exist, if so return that.
-                // If not, return first player (looped)
-                // If List is empty, return null
-                // No current player, so set the first one
-                // Find current player in the list
-                // If at the end of the list, return the first element
-                // Return the next element
-                new NotImplementedException();
+        public override PlayerInfoModel GetNextPlayerInList()
+        {
+            return base.GetNextPlayerInList();
+        } 
 
         /// <summary>
         /// Pickup Items Dropped
@@ -230,6 +233,9 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// For all characters in player list, remove their buffs
         /// </summary>
-        public override bool RemoveCharacterBuffs() => throw new NotImplementedException();
+        public override bool RemoveCharacterBuffs()
+        {
+            return base.RemoveCharacterBuffs();
+        }
     }
 }
