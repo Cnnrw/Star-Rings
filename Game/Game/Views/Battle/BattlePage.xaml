@@ -85,14 +85,27 @@
                                 <Label Text="Level"/>
                                 <Label Text="HP"/>
                             </StackLayout>
+
+                            <StackLayout>
+                                <Button x:Name="AttackButton"
+                                        Text="Attack"
+                                        Clicked="AttackButton_Clicked"
+                                        IsVisible="False"/>
+
+                                <Button x:Name="BlockButton"
+                                        Text="Block"
+                                        IsVisible="False"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand">
+<!--
                         <Button x:Name="AttackButton"
                                 Text="Next Attack"
                                 Clicked="AttackButton_Clicked"
                                 IsVisible="False"/>
+                        -->
                         
                         <Button x:Name="NextRoundButton"
                                 Text="Next Round"

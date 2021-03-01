@@ -228,6 +228,7 @@ namespace Game.Views
                     //BattlePlayerInfomationBox.IsVisible = true;
                     MessageDisplayBox.IsVisible = true;
                     AttackButton.IsVisible = true;
+                    BlockButton.IsVisible = true;
                     break;
 
                 // Based on the State disable buttons
