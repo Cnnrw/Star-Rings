@@ -52,7 +52,8 @@
 
                     <!-- A list of monster images -->
                     <FlexLayout x:Name="MonsterListBox"
-                                JustifyContent="Center"/>
+                                JustifyContent="Center"
+                                BackgroundColor="#40000000"/>
                 </StackLayout>
 
             
@@ -64,7 +65,8 @@
                     <StackLayout x:Name="BottomCharactersDisplay">
                         <!-- A list of character images -->
                         <FlexLayout x:Name="CharacterListBox"
-                                JustifyContent="Center"/>
+                                    JustifyContent="Center"
+                                    BackgroundColor="#40000000"/>
 
                         <!-- A box for the selected character info -->
                         <StackLayout x:Name="SelectedCharacterBox"
@@ -75,7 +77,8 @@
                                Source="jedi_icon.png"
                                WidthRequest="100"
                                HeightRequest="100"
-                               Aspect="AspectFit"/>
+                               Aspect="AspectFit"
+                                   Opacity="1.0"/>
 
                             <StackLayout>
                                 <Label Text="Name"/>
