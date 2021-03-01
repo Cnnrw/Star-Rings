@@ -54,5 +54,15 @@ namespace Game.Views
         {
             await Navigation.PushAsync(new NewRoundPage());
         }
+
+        /// <summary>
+        /// Navigate to the new round page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public async void PickItems_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PickItemsPage());
+        }
     }
 }
