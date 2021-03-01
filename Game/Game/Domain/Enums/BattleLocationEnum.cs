@@ -89,7 +89,7 @@ namespace Game.Enums
             // Default String
             var Result = value switch
             {
-                BattleLocationEnum.Shire => "The Shire",
+                BattleLocationEnum.Shire => "the Shire",
                 BattleLocationEnum.ElvenCity => "an Elven city",
                 BattleLocationEnum.Forest => "the forest",
                 BattleLocationEnum.Dungeons => "a dungeon",
