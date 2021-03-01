@@ -242,12 +242,12 @@
 		<SharedImage Include="Common\Images\Characters\protocol_droid.png" />
 		<SharedImage Include="Common\Images\Characters\smuggler.png" />
 		<SharedImage Include="Common\Images\Characters\wookie.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Characters\Icons\astromech_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Characters\Icons\jedi_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Characters\Icons\jedi_princess_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Characters\Icons\protocol_droid_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Characters\Icons\smuggler_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Characters\Icons\wookie_icon.png" />
+    <SharedImage Include="Common\Images\Characters\Icons\astromech_icon.png" />
+    <SharedImage Include="Common\Images\Characters\Icons\jedi_icon.png" />
+    <SharedImage Include="Common\Images\Characters\Icons\jedi_princess_icon.png" />
+    <SharedImage Include="Common\Images\Characters\Icons\protocol_droid_icon.png" />
+    <SharedImage Include="Common\Images\Characters\Icons\smuggler_icon.png" />
+    <SharedImage Include="Common\Images\Characters\Icons\wookie_icon.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<SharedImage Include="Common\Images\Monsters\dark_elf.png" />
@@ -259,15 +259,15 @@
 		<SharedImage Include="Common\Images\Monsters\spider.png" />
 		<SharedImage Include="Common\Images\Monsters\troll.png" />
 		<SharedImage Include="Common\Images\Monsters\warg_rider.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\dark_elf_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\dead_king_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\nazgul_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\oliphant_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\orc_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\smeagol_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\spider_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\troll_icon.png" />
-    <SharedImage BaseSize="36,36" Include="Common\Images\Monsters\Icons\warg_rider_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\dark_elf_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\dead_king_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\nazgul_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\oliphant_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\orc_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\smeagol_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\spider_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\troll_icon.png" />
+    <SharedImage Include="Common\Images\Monsters\Icons\warg_rider_icon.png" />
   </ItemGroup>
 	
 	<ItemGroup>
