@@ -57,14 +57,11 @@ namespace Game.Views
             // Set the background image to match the round location
             SetBackgroundImage();
 
-            // Populate the UI Map
-            DrawMapGridInitialState();
-
             // Ask the Game engine to select who goes first
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
 
             // Add Players to Display
-            DrawGameAttackerDefenderBoard();
+            //DrawGameAttackerDefenderBoard();
 
             // Set the Battle Mode
             ShowBattleMode();
@@ -169,7 +166,6 @@ namespace Game.Views
             StartBattleButton.IsVisible = false;
             AttackButton.IsVisible = false;
             MessageDisplayBox.IsVisible = false;
-            BattlePlayerInfomationBox.IsVisible = false;
         }
 
         /// <summary>
@@ -207,20 +203,20 @@ namespace Game.Views
             {
                 case BattleStateEnum.Starting:
                     //GameUIDisplay.IsVisible = false;
-                    AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
+                    //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
                     StartBattleButton.IsVisible = true;
                     break;
 
                 case BattleStateEnum.NewRound:
                     UpdateMapGrid();
-                    AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
+                    //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
                     NextRoundButton.IsVisible = true;
                     break;
 
                 case BattleStateEnum.GameOver:
                     // Hide the Game Board
                     GameUIDisplay.IsVisible = false;
-                    AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
+                    //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
 
                     // Show the Game Over Display
                     GameOverDisplay.IsVisible = true;
@@ -229,7 +225,7 @@ namespace Game.Views
                 case BattleStateEnum.RoundOver:
                 case BattleStateEnum.Battling:
                     GameUIDisplay.IsVisible = true;
-                    BattlePlayerInfomationBox.IsVisible = true;
+                    //BattlePlayerInfomationBox.IsVisible = true;
                     MessageDisplayBox.IsVisible = true;
                     AttackButton.IsVisible = true;
                     break;
@@ -249,12 +245,12 @@ namespace Game.Views
                 case BattleModeEnum.MapFull:
                 case BattleModeEnum.MapNext:
                     //GamePlayersTopDisplay.IsVisible = false;
-                    BattleMapDisplay.IsVisible = true;
+                    //BattleMapDisplay.IsVisible = true;
                     break;
 
                 default:
                     //GamePlayersTopDisplay.IsVisible = true;
-                    BattleMapDisplay.IsVisible = false;
+                    //BattleMapDisplay.IsVisible = false;
                     break;
             }
         }
@@ -272,27 +268,6 @@ namespace Game.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.ClearMapGrid();
 
             return true;
-        }
-
-        /// <summary>
-        /// Draw the Map Grid
-        /// Add the Players to the Map
-        ///
-        /// Need to have Players in the Engine first, to then put on the Map
-        ///
-        /// The Map Objects are all created with the map background image first
-        ///
-        /// Then the actual characters are added to the map
-        /// </summary>
-        public void DrawMapGridInitialState()
-        {
-            // Create the Map in the Game Engine
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
-                .Instance.Engine.EngineSettings.PlayerList);
-
-            CreateMapGridObjects();
-
-            UpdateMapGrid();
         }
 
         /// <summary>
@@ -368,38 +343,6 @@ namespace Game.Views
         private static string GetDictionaryImageButtonName(MapModelLocation data) =>
             // Look up the Frame in the Dictionary
             $"MapR{data.Row}C{data.Column}ImageButton";
-
-        /// <summary>
-        /// Populate the Map
-        ///
-        /// For each map position in the Engine
-        /// Create a grid object to hold the Stack for that grid cell.
-        /// </summary>
-        /// <returns></returns>
-        public bool CreateMapGridObjects()
-        {
-            // Make a frame for each location on the map
-            // Populate it with a new Frame Object that is unique
-            // Then updating will be easier
-
-            foreach (var location in BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation)
-            {
-                var data = MakeMapGridBox(location);
-
-                // Add the Box to the UI
-
-                MapGrid.Children.Add(data, location.Column, location.Row);
-            }
-
-            // Set the Height for the MapGrid based on the number of rows * the height of the BattleMapFrame
-
-            var height = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapXAxesCount * 60;
-
-            BattleMapDisplay.MinimumHeightRequest = height;
-            BattleMapDisplay.HeightRequest = height;
-
-            return true;
-        }
 
         /// <summary>
         /// Get the Frame from the Dictionary
@@ -634,95 +577,7 @@ namespace Game.Views
 
         #endregion BattleMapMode
 
-        #region BasicBattleMode
-
-        /// <summary>
-        /// Draw the UI for
-        ///
-        /// Attacker vs Defender Mode
-        ///
-        /// </summary>
-        public void DrawGameAttackerDefenderBoard()
-        {
-            // Clear the current UI
-            DrawGameBoardClear();
-
-            // Show Characters across the Top
-            DrawPlayerBoxes();
-
-            // Draw the Map
-            UpdateMapGrid();
-
-            // Show the Attacker and Defender
-            DrawGameBoardAttackerDefenderSection();
-        }
-
-        /// <summary>
-        /// Draws the Game Board Attacker and Defender
-        /// </summary>
-        private void DrawGameBoardAttackerDefenderSection()
-        {
-            BattlePlayerBoxVersus.Text = "";
-
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker == null)
-            {
-                return;
-            }
-
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender == null)
-            {
-                return;
-            }
-
-            AttackerImage.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.ImageURI;
-            AttackerName.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.Name;
-            AttackerHealth.Text =
-                BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.GetCurrentHealthTotal.ToString() +
-                " / " +
-                BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.GetMaxHealthTotal.ToString();
-
-            // Show what action the Attacker used
-            AttackerAttack.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.PreviousAction.ToImageURI();
-
-            var item = ItemIndexViewModel.Instance.GetItem(BattleEngineViewModel.Instance.Engine.EngineSettings
-                .CurrentAttacker.PrimaryHand);
-            if (item != null)
-            {
-                AttackerAttack.Source = item.ImageURI;
-            }
-
-            DefenderImage.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender.ImageURI;
-            DefenderName.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender.Name;
-            DefenderHealth.Text =
-                BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender.GetCurrentHealthTotal.ToString() +
-                " / " +
-                BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender.GetMaxHealthTotal.ToString();
-
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender.Alive == false)
-            {
-                UpdateMapGrid();
-                DefenderImage.BackgroundColor = Color.Red;
-            }
-
-            BattlePlayerBoxVersus.Text = "vs";
-        }
-
-        /// <summary>
-        /// Draws the Game Board Attacker and Defender areas to be null
-        /// </summary>
-        private void DrawGameBoardClear()
-        {
-            AttackerImage.Source = string.Empty;
-            AttackerName.Text = string.Empty;
-            AttackerHealth.Text = string.Empty;
-
-            DefenderImage.Source = string.Empty;
-            DefenderName.Text = string.Empty;
-            DefenderHealth.Text = string.Empty;
-            DefenderImage.BackgroundColor = Color.Transparent;
-
-            BattlePlayerBoxVersus.Text = string.Empty;
-        }
+        #region BasicBattleMode        
 
         /// <summary>
         /// Attack Action
@@ -765,7 +620,7 @@ namespace Game.Views
             GameMessage();
 
             // Show the outcome on the Board
-            DrawGameAttackerDefenderBoard();
+            //DrawGameAttackerDefenderBoard();
 
             switch (RoundCondition)
             {

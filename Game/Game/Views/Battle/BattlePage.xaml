@@ -55,85 +55,35 @@
                                 JustifyContent="Center"/>
                 </StackLayout>
 
-                <!-- The bottom of the screen shows character info -->
-                <StackLayout x:Name="BottomCharactersDisplay">
-                    <!-- A list of character images -->
-                    <FlexLayout x:Name="CharacterListBox"
+            
+
+                <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
+                <StackLayout x:Name="BattleBottomBox" Style="{StaticResource BattleUiBottomBox}">
+
+                    <!-- The bottom of the screen shows character info -->
+                    <StackLayout x:Name="BottomCharactersDisplay">
+                        <!-- A list of character images -->
+                        <FlexLayout x:Name="CharacterListBox"
                                 JustifyContent="Center"/>
 
-                    <!-- A box for the selected character info -->
-                    <StackLayout x:Name="SelectedCharacterBox"
+                        <!-- A box for the selected character info -->
+                        <StackLayout x:Name="SelectedCharacterBox"
                                  Orientation="Horizontal"
                                  Padding="10"
                                  BackgroundColor="LightGray">
-                        <Image x:Name="SelectedCharacterIcon"
+                            <Image x:Name="SelectedCharacterIcon"
                                Source="jedi_icon.png"
                                WidthRequest="100"
                                HeightRequest="100"
                                Aspect="AspectFit"/>
 
-                        <StackLayout>
-                            <Label Text="Name"/>
-                            <Label Text="Level"/>
-                            <Label Text="HP"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-
-                <!--The Top of the Battle UI Holds the List of Players
-                <StackLayout VerticalOptions="Start" x:Name="TopPlayerDisplay">
-                    <StackLayout Style="{StaticResource VerticalStack}"
-                        x:Name="GamePlayersTopDisplay"
-                        IsVisible="true"
-                        VerticalOptions="Start"
-                        HorizontalOptions="CenterAndExpand">
-
-                        <Label Text="Characters" Style="{StaticResource CenterMessageStyle}" HorizontalOptions="CenterAndExpand"/>
-                        <StackLayout x:Name="CharacterBox" Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand"/>
-
-                        <Label Text="Monsters" Style="{StaticResource CenterMessageStyle}" HorizontalOptions="CenterAndExpand"/>
-                        <StackLayout x:Name="MonsterBox" Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand"/>
-                    </StackLayout>
-                </StackLayout>
-                -->
-
-                <!--The Battle Map Display -->
-                <StackLayout x:Name="BattleMapDisplay" Style="{StaticResource BattleMapBox}"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-                    <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Image Source="item.png" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="Fill"/>
-                        <Grid x:Name="MapGrid" HorizontalOptions="Center" VerticalOptions="Start" ColumnSpacing="0" RowSpacing="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
-                    </AbsoluteLayout>
-                </StackLayout>
-
-                <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
-                <StackLayout x:Name="BattleBottomBox" Style="{StaticResource BattleUiBottomBox}">
-
-                    <Frame x:Name="BattlePlayerInfomationBox"
-                                Style="{StaticResource PlayerBattleOuterFrame}"
-                                IsVisible="False">
-
-                        <StackLayout x:Name="BattlePlayerBox" Style="{StaticResource PlayerBattleOuterBox}">
-
-                            <StackLayout x:Name="AttackerBox" Style="{StaticResource PlayerBattleInfoBox}" HorizontalOptions="Start">
-                                <Image x:Name="AttackerImage" Source="item.png" Style="{StaticResource ImageBattleMediumStyle}"/>
-                                <Label x:Name="AttackerName" Text="" Style="{StaticResource ValueStyleBattleMicro}"/>
-                                <Label x:Name="AttackerHealth" Text="" Style="{StaticResource ValueStyleBattleMicro}"/>
-                            </StackLayout>
-
-                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label x:Name="BattlePlayerBoxVersus" Text="vs" Style="{StaticResource ValueStyleBattleMicro}"
-                                    Padding="0,5,0,0"
-                                    VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                <Image x:Name="AttackerAttack" Source="mapcell.png" Style="{StaticResource ImageSmallStyle}"/>
-                            </StackLayout>
-
-                            <StackLayout x:Name="DefenderBox" Style="{StaticResource PlayerBattleInfoBox}" HorizontalOptions="End">
-                                <Image x:Name="DefenderImage" Source="item.png" Style="{StaticResource ImageBattleMediumStyle}"/>
-                                <Label x:Name="DefenderName" Text="" Style="{StaticResource ValueStyleBattleMicro}"/>
-                                <Label x:Name="DefenderHealth" Text="" Style="{StaticResource ValueStyleBattleMicro}"/>
+                            <StackLayout>
+                                <Label Text="Name"/>
+                                <Label Text="Level"/>
+                                <Label Text="HP"/>
                             </StackLayout>
                         </StackLayout>
-                    </Frame>
+                    </StackLayout>
 
                     <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand">
                         <Button x:Name="AttackButton"
