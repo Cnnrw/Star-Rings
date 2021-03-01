@@ -158,7 +158,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Dark Elf",
-                Description = "",
+                Description = "An elf, but like...an evil one.",
                 ImageURI = "dark_elf.png",
                 IconImageURI = "dark_elf_icon.png",
                 UniqueItem = string.Empty,
@@ -174,7 +174,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Dead King",
-                Description = "",
+                Description = "A ghastly apparition.",
                 ImageURI = "dead_king.png",
                 IconImageURI = "dead_king_icon.png",
                 UniqueItem = string.Empty,
@@ -190,7 +190,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Nazgul",
-                Description = "",
+                Description = "A ring-servant of Sauron",
                 ImageURI = "nazgul.png",
                 IconImageURI = "nazgul_icon.png",
                 UniqueItem = string.Empty,
@@ -206,7 +206,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Oliphant",
-                Description = "",
+                Description = "A colossal, elephant-like beast.",
                 ImageURI = "oliphant.png",
                 IconImageURI = "oliphant_icon.png",
                 UniqueItem = string.Empty,
@@ -222,7 +222,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Orc",
-                Description = "",
+                Description = "A standard minion of Sauron.",
                 ImageURI = "orc.png",
                 IconImageURI = "orc_icon.png",
                 UniqueItem = string.Empty,
@@ -238,7 +238,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Smeagol",
-                Description = "",
+                Description = "A Hobbit that was transformed by the power of the One Ring into a vile, cave-dwelling creature.",
                 ImageURI = "smeagol.png",
                 IconImageURI = "smeagol_icon.png",
                 UniqueItem = string.Empty,
@@ -253,8 +253,8 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Spider",
-                Description = "",
+                Name = "Tree Spider",
+                Description = "A giant spider that spins its webs in the forest of Mirkwood.",
                 ImageURI = "spider.png",
                 IconImageURI = "spider_icon.png",
                 UniqueItem = string.Empty,
@@ -270,7 +270,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Mountain Troll",
-                Description = "",
+                Description = "A big, lumbering oaf that roams the Misty Mountains.",
                 ImageURI = "troll.png",
                 IconImageURI = "troll_icon.png",
                 UniqueItem = string.Empty,
@@ -286,7 +286,7 @@ namespace Game.Models
             new MonsterModel
             {
                 Name = "Warg Rider",
-                Description = "",
+                Description = "An orc riding a warg.",
                 ImageURI = "warg_rider.png",
                 IconImageURI = "warg_rider_icon.png",
                 UniqueItem = string.Empty,
