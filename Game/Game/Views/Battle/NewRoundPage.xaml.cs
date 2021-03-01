@@ -58,6 +58,9 @@ namespace Game.Views
             var PlayerImage = new Image
             {
                 //Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"],
+                Style = Application.Current.Resources.TryGetValue("ImageBattleLargeStyle", out object imageStyle)
+                            ? (Style)imageStyle
+                            : null,
                 Source = data.ImageURI
             };
 
@@ -66,6 +69,9 @@ namespace Game.Views
             {
                 Text = "Level : "+data.Level,
                 //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle1)
+                            ? (Style)valueStyle1
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -80,6 +86,9 @@ namespace Game.Views
             {
                 Text = "HP : "+ data.GetCurrentHealthTotal,
                 //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle2)
+                            ? (Style)valueStyle2
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -93,6 +102,9 @@ namespace Game.Views
             {
                 Text = data.Name,
                 //Style = (Style)Application.Current.Resources["ValueStyle"],
+                Style = Application.Current.Resources.TryGetValue("ValueStyle", out object valueStyle3)
+                            ? (Style)valueStyle3
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -106,6 +118,9 @@ namespace Game.Views
             var PlayerStack = new StackLayout
             {
                 //Style = (Style)Application.Current.Resources["PlayerInfoBox"],
+                Style = Application.Current.Resources.TryGetValue("PlayerInfoBox", out object boxStyle)
+                            ? (Style)boxStyle
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
