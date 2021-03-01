@@ -27,7 +27,8 @@
                         <StackLayout>
                             <Image Source="{Binding Data.ImageURI}"
                                    Style="{StaticResource ImageLargeStyle}"
-                                   HorizontalOptions="CenterAndExpand" />
+                                   HorizontalOptions="CenterAndExpand"
+                                   Aspect="AspectFit"/>
                             <Label Text="Job:"
                                    Style="{StaticResource LabelStyle}" />
                             <Label Text="{Binding Data.Job}"
