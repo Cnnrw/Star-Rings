@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
@@ -82,9 +83,14 @@ namespace Game.Engine.EngineGame
         /// <returns>The chosen location</returns>
         public BattleLocationEnum ChooseRoundLocation()
         {
-            Array roundLocations = Enum.GetValues(typeof(BattleLocationEnum));
-            int index = DiceHelper.RollDice(1, roundLocations.Length) - 1;
-            BattleLocationEnum chosenLocation = (BattleLocationEnum) roundLocations.GetValue(index);
+            // TODO: Don't choose a location that has no Monsters for it
+            // For instance, if the user doesn't create any monsters that spawn
+            // in the Shire, then don't choose the Shire for the round location.
+            var validLocations = BattleLocationEnumHelper.GetListBattleLocations;
+
+            int index = DiceHelper.RollDice(1, validLocations.Count()) - 1;
+            string chosenLocationName = validLocations[index];
+            BattleLocationEnum chosenLocation = BattleLocationEnumHelper.ConvertStringToEnum(chosenLocationName);
 
             RoundLocation = chosenLocation;
 
@@ -110,7 +116,20 @@ namespace Game.Engine.EngineGame
         {
             ObservableCollection<MonsterModel> AllMonsters = MonsterIndexViewModel.Instance.Dataset;
 
+            /*
+            var MonstersInLocation = (from Monster in AllMonsters
+                                      where Monster.BattleLocation == RoundLocation
+                                      select Monster);
+            */
+
             int TargetLevel = 1;
+
+            // Set target level to the highest level of the characters
+            if (EngineSettings.CharacterList.Count() > 0)
+            {
+                TargetLevel = Convert.ToInt32(EngineSettings.CharacterList.Max(m => m.Level));
+            }
+
             var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
 
             // Help identify which Monster it is
