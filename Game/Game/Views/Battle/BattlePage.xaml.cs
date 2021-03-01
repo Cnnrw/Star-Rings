@@ -54,6 +54,9 @@ namespace Game.Views
             // Start the Battle Engine
             BattleEngineViewModel.Instance.Engine.StartBattle(false);
 
+            // Set the background image to match the round location
+            SetBackgroundImage();
+
             // Populate the UI Map
             DrawMapGridInitialState();
 
@@ -948,6 +951,15 @@ namespace Game.Views
         {
             ShowBattleMode();
             await Navigation.PushModalAsync(new BattleSettingsPage());
+        }
+
+        public string SetBackgroundImage()
+        {
+            BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.Round.RoundLocation;
+            string imageUri = BattleLocationEnumExtensions.ToImageUri(roundLocation);
+            ContentPageElement.BackgroundImageSource = imageUri;
+
+            return imageUri;
         }
 
         #endregion PageHandelers

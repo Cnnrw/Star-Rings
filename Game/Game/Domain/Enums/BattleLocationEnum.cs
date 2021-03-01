@@ -99,6 +99,27 @@ namespace Game.Enums
 
             return Result;
         }
+
+        /// <summary>
+        /// Gets the background image file name for a battle location
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToImageUri(this BattleLocationEnum value)
+        {
+            // Default String
+            var Result = value switch
+            {
+                BattleLocationEnum.Shire => "page_background_4.png",
+                BattleLocationEnum.ElvenCity => "page_background_2.png",
+                BattleLocationEnum.Forest => "page_background_3.png",
+                BattleLocationEnum.Dungeons => "page_background_2.png",
+                BattleLocationEnum.Mordor => "page_background_5.png",
+                _ => "item.png"
+            };
+
+            return Result;
+        }
     }
 
     /// <summary>
