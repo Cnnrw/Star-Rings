@@ -6,7 +6,9 @@
              >
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}">
+        <StackLayout Style="{StaticResource VerticalStack}"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="40" >
             <Label Text="Pick Items Page"
                Style="{StaticResource CenterMessageStyle}"/>
 
