@@ -134,7 +134,7 @@ namespace Game.Engine.EngineGame
                 MonsterModel chosenMonster = validMonsters[index];
 
                 // Help identify which Monster it is
-                chosenMonster.Name += " " + EngineSettings.MonsterList.Count + 1;
+                chosenMonster.Name += " " + (EngineSettings.MonsterList.Count + 1);
 
                 EngineSettings.MonsterList.Add(new PlayerInfoModel(chosenMonster));
 
