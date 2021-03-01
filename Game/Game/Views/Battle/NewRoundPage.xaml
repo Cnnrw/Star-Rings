@@ -15,12 +15,11 @@
                 <Label Text="While traveling, your party encounters a group of monsters!"
                        Style="{StaticResource CenterMessageStyle}"
                        FontSize="20"
-                       LineBreakMode="WordWrap"/>
-
-                <Label Text="Monsters" Style="{StaticResource MessageLargeStyle}"/>
+                       LineBreakMode="WordWrap"
+                       Margin="0,0,0,50"/>
 
                 <FlexLayout x:Name="MonsterListFrame"
-                                    JustifyContent="Start"
+                                    JustifyContent="Center"
                                     AlignContent="Start"
                                     Wrap="Wrap"/>
 
