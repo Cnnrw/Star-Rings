@@ -1,15 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.PickItemsPage"
+             BackgroundImageSource="page_background.png"
              >
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}">
-            <Label Text="Pick Items Page..."></Label>
+        <ScrollView>
+            <StackLayout Style="{StaticResource VerticalStack}"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="40" >
+                <Label Text="Pick Items Page" Style="{StaticResource HeaderStyle}"/>
 
-            <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
-        </StackLayout>
-        
+                <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
+
+                <Button Clicked="DistributeItems_Clicked" Text="Distribute"></Button>
+                
+                <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
+
+
+
+                <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

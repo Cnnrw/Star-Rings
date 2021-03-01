@@ -19,6 +19,9 @@
 
             <Button Text="New round"
                     Clicked="NewRound_Clicked"/>
+
+            <Button Text="Pick Items"
+                    Clicked="PickItems_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
