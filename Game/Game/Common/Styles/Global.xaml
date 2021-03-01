@@ -184,8 +184,8 @@
     <Style TargetType="Image"
            x:Key="ImageBattleLargeStyle"
            BasedOn="{StaticResource ImageLargeStyle}">
-        <Setter Property="HeightRequest" Value="75" />
-        <Setter Property="WidthRequest" Value="75" />
+        <Setter Property="HeightRequest" Value="125" />
+        <Setter Property="WidthRequest" Value="125" />
     </Style>
 
     <Style TargetType="Image"
@@ -267,7 +267,7 @@
     <Style TargetType="StackLayout"
            x:Key="PlayerInfoBox"
            BasedOn="{StaticResource CardImageTextBox}">
-        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="WidthRequest" Value="150" />
         <Setter Property="Spacing" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0" />
