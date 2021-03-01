@@ -61,9 +61,9 @@
                                        Text="{Binding Description}"
                                        Style="{StaticResource ListStyle}"/>
 
-                                <!-- <Label Grid.Column="1" Grid.Row="2" -->
-                                <!--        Text="{Binding BattleLocations}" -->
-                                <!--        Style="{StaticResource ListStyle}"/> -->
+                                <Label Grid.Column="1" Grid.Row="2"
+                                       Text="{Binding BattleLocation}"
+                                       Style="{StaticResource ListStyle}"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
