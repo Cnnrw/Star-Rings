@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 
 namespace Game.Engine.EngineGame
@@ -17,6 +18,9 @@ namespace Game.Engine.EngineGame
     {
         // Hold the BaseEngine
         private readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+
+        // The location the round takes place in
+        public BattleLocationEnum RoundLocation;
 
         // The Turn Engine
         public new ITurnEngineInterface Turn
@@ -50,6 +54,9 @@ namespace Game.Engine.EngineGame
             // End the existing round
             EndRound();
 
+            // Choose where the new round will take place
+            ChooseRoundLocation();
+
             // Remove Character Buffs
             RemoveCharacterBuffs();
 
@@ -69,6 +76,21 @@ namespace Game.Engine.EngineGame
             EngineSettings.BattleScore.RoundCount++;
 
             return true;
+        }
+
+        /// <summary>
+        /// Chooses a random location for the next round to take place in.
+        /// </summary>
+        /// <returns></returns>
+        public BattleLocationEnum ChooseRoundLocation()
+        {
+            Array roundLocations = Enum.GetValues(typeof(BattleLocationEnum));
+            int index = DiceHelper.RollDice(1, roundLocations.Length) - 1;
+            BattleLocationEnum chosenLocation = (BattleLocationEnum) roundLocations.GetValue(index);
+
+            RoundLocation = chosenLocation;
+
+            return chosenLocation;
         }
 
         /// <summary>
