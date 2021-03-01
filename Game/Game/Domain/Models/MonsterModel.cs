@@ -13,7 +13,7 @@ namespace Game.Models
         /// <summary>
         /// The locations where the monster can appear
         /// </summary>
-        public BattleLocationEnum BattleLocations { get; set; }
+        public BattleLocationEnum BattleLocation { get; set; }
 
         #endregion
         #region Constructors
@@ -81,7 +81,7 @@ namespace Game.Models
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
 
-            BattleLocations = newData.BattleLocations;
+            BattleLocation = newData.BattleLocation;
 
             return true;
         }

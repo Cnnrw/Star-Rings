@@ -162,7 +162,7 @@ namespace Game.Models
                 ImageURI = "dark_elf.png",
                 IconImageURI = "dark_elf_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.ElvenCity,
+                BattleLocation = BattleLocationEnum.ElvenCity,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -178,8 +178,7 @@ namespace Game.Models
                 ImageURI = "dead_king.png",
                 IconImageURI = "dead_king_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Dungeons &
-                                  BattleLocationEnum.Mordor,
+                BattleLocation = BattleLocationEnum.ElvenCity,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -195,9 +194,7 @@ namespace Game.Models
                 ImageURI = "nazgul.png",
                 IconImageURI = "nazgul_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Mordor &
-                                  BattleLocationEnum.ElvenCity &
-                                  BattleLocationEnum.Shire,
+                BattleLocation = BattleLocationEnum.ElvenCity,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -213,7 +210,7 @@ namespace Game.Models
                 ImageURI = "oliphant.png",
                 IconImageURI = "oliphant_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Mordor,
+                BattleLocation = BattleLocationEnum.Mordor,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -229,8 +226,7 @@ namespace Game.Models
                 ImageURI = "orc.png",
                 IconImageURI = "orc_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Mordor &
-                                  BattleLocationEnum.Dungeons,
+                BattleLocation = BattleLocationEnum.Mordor,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -246,11 +242,7 @@ namespace Game.Models
                 ImageURI = "smeagol.png",
                 IconImageURI = "smeagol_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Forest &
-                                  BattleLocationEnum.Dungeons &
-                                  BattleLocationEnum.Mordor &
-                                  BattleLocationEnum.Shire &
-                                  BattleLocationEnum.ElvenCity,
+                BattleLocation = BattleLocationEnum.Dungeons,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -266,9 +258,7 @@ namespace Game.Models
                 ImageURI = "spider.png",
                 IconImageURI = "spider_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Dungeons &
-                                  BattleLocationEnum.Forest &
-                                  BattleLocationEnum.ElvenCity,
+                BattleLocation = BattleLocationEnum.Forest,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -284,9 +274,7 @@ namespace Game.Models
                 ImageURI = "troll.png",
                 IconImageURI = "troll_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Dungeons &
-                                  BattleLocationEnum.Forest &
-                                  BattleLocationEnum.Mordor,
+                BattleLocation = BattleLocationEnum.Dungeons,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,
@@ -302,8 +290,7 @@ namespace Game.Models
                 ImageURI = "warg_rider.png",
                 IconImageURI = "warg_rider_icon.png",
                 UniqueItem = string.Empty,
-                BattleLocations = BattleLocationEnum.Forest &
-                                  BattleLocationEnum.Mordor,
+                BattleLocation = BattleLocationEnum.Forest,
                 Level = 0,
                 Difficulty = DifficultyEnum.Hard,
                 MaxHealth = 0,

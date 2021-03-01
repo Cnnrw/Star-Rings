@@ -32,7 +32,7 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
-            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocations.ToString();
+            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
 
             AddItemsToDisplay();
         }
