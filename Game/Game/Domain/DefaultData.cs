@@ -330,7 +330,7 @@ namespace Game.Models
                 Defense = 0,
                 Attack = 0,
                 Range = 0,
-            }
+            },
             new MonsterModel
             {
                 Name = "Kruug",
