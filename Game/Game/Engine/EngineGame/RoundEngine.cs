@@ -99,28 +99,24 @@ namespace Game.Engine.EngineGame
 
         /// <summary>
         /// Add Monsters to the Round
-        ///
-        /// Because Monsters can be duplicated, will add 1, 2, 3 to their name
-        ///
+        /// Because Monsters can be duplicated, this will add 1, 2, 3 to their name
         /// </summary>
         /// <returns></returns>
-        /*
-         * Hint:
-         * I don't have crudi monsters yet so will add 6 new ones..
-         * If you have crudi monsters, then pick from the list
-         * Consdier how you will scale the monsters up to be appropriate for the characters to fight
-         *
-         */
         // TODO: Teams, You need to implement your own Logic can not use mine.
         public override int AddMonstersToRound()
         {
             ObservableCollection<MonsterModel> AllMonsters = MonsterIndexViewModel.Instance.Dataset;
 
-            /*
-            var MonstersInLocation = (from Monster in AllMonsters
-                                      where Monster.BattleLocation == RoundLocation
-                                      select Monster);
-            */
+            // Identify all monsters that can spawn in the current round location
+            List<MonsterModel> MonstersInLocation = new List<MonsterModel>();
+
+            foreach(MonsterModel Monster in AllMonsters)
+            {
+                if (Monster.BattleLocation == RoundLocation)
+                {
+                    MonstersInLocation.Add(Monster);
+                }
+            }
 
             int TargetLevel = 1;
 
@@ -130,7 +126,8 @@ namespace Game.Engine.EngineGame
                 TargetLevel = Convert.ToInt32(EngineSettings.CharacterList.Max(m => m.Level));
             }
 
-            var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
+            //var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
+            var data = MonstersInLocation[0];
 
             // Help identify which Monster it is
             data.Name += " " + EngineSettings.MonsterList.Count + 1;
