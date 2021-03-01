@@ -75,37 +75,44 @@ namespace Game.Views
         /// </summary>
         public void DrawPlayerBoxes()
         {
-            var CharacterBoxList = CharacterBox.Children.ToList();
-            foreach (var data in CharacterBoxList)
+            // Clear the character list box
+            var Characters = CharacterListBox.Children.ToList();
+            foreach (var data in Characters)
             {
-                CharacterBox.Children.Remove(data);
+                CharacterListBox.Children.Remove(data);
             }
 
             // Draw the Characters
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
                                                       .Where(m => m.PlayerType == PlayerTypeEnum.Character).ToList())
             {
-                CharacterBox.Children.Add(PlayerInfoDisplayBox(data));
+                CharacterListBox.Children.Add(PlayerInfoDisplayBox(data));
             }
 
-            var MonsterBoxList = MonsterBox.Children.ToList();
-            foreach (var data in MonsterBoxList)
+            var Monsters = MonsterListBox.Children.ToList();
+            foreach (var data in Monsters)
             {
-                MonsterBox.Children.Remove(data);
+                MonsterListBox.Children.Remove(data);
             }
 
             // Draw the Monsters
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
                                                       .Where(m => m.PlayerType == PlayerTypeEnum.Monster).ToList())
             {
-                MonsterBox.Children.Add(PlayerInfoDisplayBox(data));
+                MonsterListBox.Children.Add(PlayerInfoDisplayBox(data));
             }
 
-            // Add one black PlayerInfoDisplayBox to hold space in case the list is empty
-            CharacterBox.Children.Add(PlayerInfoDisplayBox(null));
+            // Add one blank PlayerInfoDisplayBox to hold space in case the character list is empty
+            if (BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Count() == 0)
+            {
+                CharacterListBox.Children.Add(PlayerInfoDisplayBox(null));
+            }
 
-            // Add one black PlayerInfoDisplayBox to hold space incase the list is empty
-            MonsterBox.Children.Add(PlayerInfoDisplayBox(null));
+            // Add one blank PlayerInfoDisplayBox to hold space in case the monster list is empty
+            if (BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Count() == 0)
+            {
+                MonsterListBox.Children.Add(PlayerInfoDisplayBox(null));
+            }
         }
 
         /// <summary>
@@ -123,9 +130,10 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                //Style = (Style)Application.Current.Resources["PlayerBattleMediumStyle"],
-
-                Source = data.ImageURI
+                Source = data.ImageURI,
+                Style = Application.Current.Resources.TryGetValue("PlayerBattleMediumStyle", out object imageStyle)
+                            ? (Style)imageStyle
+                            : null
             };
 
             // Put the Image Button and Text inside a layout
@@ -240,12 +248,12 @@ namespace Game.Views
                 case BattleModeEnum.MapAbility:
                 case BattleModeEnum.MapFull:
                 case BattleModeEnum.MapNext:
-                    GamePlayersTopDisplay.IsVisible = false;
+                    //GamePlayersTopDisplay.IsVisible = false;
                     BattleMapDisplay.IsVisible = true;
                     break;
 
                 default:
-                    GamePlayersTopDisplay.IsVisible = true;
+                    //GamePlayersTopDisplay.IsVisible = true;
                     BattleMapDisplay.IsVisible = false;
                     break;
             }
