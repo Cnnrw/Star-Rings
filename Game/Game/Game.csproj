@@ -35,6 +35,8 @@
 		<None Remove="Common\Images\Backgrounds\page_background_4.png" />
 		<None Remove="Common\Images\Backgrounds\page_background_5.png" />
 		<None Remove="Common\Images\Backgrounds\page_background_6.png" />
+    <None Remove="Common\Images\Backgrounds\dungeon_background.png" />
+    <None Remove="Common\Images\Backgrounds\forest_background.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -275,6 +277,8 @@
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_4.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_5.png" />
 		<SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\page_background_6.png" />
+    <SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\dungeon_background.png" />
+    <SharedImage BaseSize="390,844" Include="Common\Images\Backgrounds\forest_background.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
