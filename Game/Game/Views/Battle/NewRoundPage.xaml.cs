@@ -23,7 +23,9 @@ namespace Game.Views
 		/// </summary>
 		public NewRoundPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
+
+            RoundDetailsLabel.Text = "While traveling through " + EngineViewModel.Engine.Round.RoundLocation + ", your party encounters a group of monsters!";
 
 			// Draw the Monsters
 			foreach (var data in EngineViewModel.Engine.EngineSettings.MonsterList)

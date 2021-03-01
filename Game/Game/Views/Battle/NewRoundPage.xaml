@@ -12,7 +12,7 @@
                        Style="{StaticResource CenterMessageLargeStyle}"
                        Margin="0,0,0,30"/>
 
-                <Label Text="While traveling, your party encounters a group of monsters!"
+                <Label x:Name="RoundDetailsLabel"
                        Style="{StaticResource CenterMessageStyle}"
                        FontSize="20"
                        LineBreakMode="WordWrap"

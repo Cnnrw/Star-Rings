@@ -20,9 +20,6 @@ namespace Game.Engine.EngineGame
         // Hold the BaseEngine
         private readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
-        // The location the round takes place in
-        public BattleLocationEnum RoundLocation;
-
         // The Turn Engine
         public new ITurnEngineInterface Turn
         {
