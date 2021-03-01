@@ -105,19 +105,6 @@ namespace Game.Engine.EngineGame
         // TODO: Teams, You need to implement your own Logic can not use mine.
         public override int AddMonstersToRound()
         {
-            ObservableCollection<MonsterModel> AllMonsters = MonsterIndexViewModel.Instance.Dataset;
-
-            // Identify all monsters that can spawn in the current round location
-            List<MonsterModel> MonstersInLocation = new List<MonsterModel>();
-
-            foreach(MonsterModel Monster in AllMonsters)
-            {
-                if (Monster.BattleLocation == RoundLocation)
-                {
-                    MonstersInLocation.Add(Monster);
-                }
-            }
-
             int TargetLevel = 1;
 
             // Set target level to the highest level of the characters
@@ -126,13 +113,34 @@ namespace Game.Engine.EngineGame
                 TargetLevel = Convert.ToInt32(EngineSettings.CharacterList.Max(m => m.Level));
             }
 
-            //var data = RandomPlayerHelper.GetRandomMonster(TargetLevel, EngineSettings.BattleSettingsModel.AllowMonsterItems);
-            var data = MonstersInLocation[0];
+            // Identify all monsters that can spawn in the current round location
+            List<MonsterModel> validMonsters = new List<MonsterModel>();
+            ObservableCollection<MonsterModel> allMonsters = MonsterIndexViewModel.Instance.Dataset;
 
-            // Help identify which Monster it is
-            data.Name += " " + EngineSettings.MonsterList.Count + 1;
+            foreach (MonsterModel Monster in allMonsters)
+            {
+                if (Monster.BattleLocation == RoundLocation)
+                {
+                    validMonsters.Add(Monster);
+                }
+            }
 
-            EngineSettings.MonsterList.Add(new PlayerInfoModel(data));
+            // Add a random number of valid monsters to the round
+            int encounteredMonsterCount = DiceHelper.RollDice(1, validMonsters.Count());
+
+            for (int i = 0; i < encounteredMonsterCount; i++)
+            {
+                int index = DiceHelper.RollDice(1, validMonsters.Count()) - 1;
+                MonsterModel chosenMonster = validMonsters[index];
+
+                // Help identify which Monster it is
+                chosenMonster.Name += " " + EngineSettings.MonsterList.Count + 1;
+
+                EngineSettings.MonsterList.Add(new PlayerInfoModel(chosenMonster));
+
+                // Remove the chosen monster from the pool of valid monsters
+                validMonsters.RemoveAt(index);
+            }
 
             return EngineSettings.MonsterList.Count;
         }
