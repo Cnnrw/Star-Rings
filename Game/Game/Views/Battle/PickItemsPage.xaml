@@ -6,14 +6,20 @@
              >
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}"
+        <ScrollView>
+            <StackLayout Style="{StaticResource VerticalStack}"
                      HorizontalOptions="CenterAndExpand"
                      Padding="40" >
-            <Label Text="Pick Items Page"
-               Style="{StaticResource CenterMessageStyle}"/>
+                <Label Text="Pick Items Page" Style="{StaticResource HeaderStyle}"/>
 
-            <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
-        </StackLayout>
-        
+                <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
+
+                <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
+
+
+
+                <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
