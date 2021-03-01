@@ -13,8 +13,9 @@
                 <Label Text="Pick Items Page" Style="{StaticResource HeaderStyle}"/>
 
                 <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
-
+<!--
                 <Button Clicked="DistributeItems_Clicked" Text="Distribute"></Button>
+                -->
                 
                 <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
 
