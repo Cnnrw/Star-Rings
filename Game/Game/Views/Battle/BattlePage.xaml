@@ -89,11 +89,13 @@
                                 <Button x:Name="AttackButton"
                                         Text="Attack"
                                         Clicked="AttackButton_Clicked"
-                                        IsVisible="False"/>
+                                        IsVisible="False"
+                                        IsEnabled="False"/>
 
                                 <Button x:Name="BlockButton"
                                         Text="Block"
-                                        IsVisible="False"/>
+                                        IsVisible="False"
+                                        IsEnabled="False"/>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
