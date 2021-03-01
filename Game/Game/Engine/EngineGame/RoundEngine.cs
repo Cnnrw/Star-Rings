@@ -105,23 +105,23 @@ namespace Game.Engine.EngineGame
         // TODO: Teams, You need to implement your own Logic can not use mine.
         public override int AddMonstersToRound()
         {
-            int TargetLevel = 1;
+            int targetLevel = 1;
 
             // Set target level to the highest level of the characters
             if (EngineSettings.CharacterList.Count() > 0)
             {
-                TargetLevel = Convert.ToInt32(EngineSettings.CharacterList.Max(m => m.Level));
+                targetLevel = Convert.ToInt32(EngineSettings.CharacterList.Max(m => m.Level));
             }
 
             // Identify all monsters that can spawn in the current round location
             List<MonsterModel> validMonsters = new List<MonsterModel>();
             ObservableCollection<MonsterModel> allMonsters = MonsterIndexViewModel.Instance.Dataset;
 
-            foreach (MonsterModel Monster in allMonsters)
+            foreach (MonsterModel monster in allMonsters)
             {
-                if (Monster.BattleLocation == RoundLocation)
+                if (monster.BattleLocation == RoundLocation)
                 {
-                    validMonsters.Add(Monster);
+                    validMonsters.Add(monster);
                 }
             }
 
@@ -135,6 +135,34 @@ namespace Game.Engine.EngineGame
 
                 // Help identify which Monster it is
                 chosenMonster.Name += " " + (EngineSettings.MonsterList.Count + 1);
+
+                // Choose level
+                chosenMonster.Level = DiceHelper.RollDice(1, targetLevel);
+
+                // Adjust values based on Difficulty
+                chosenMonster.Attack = chosenMonster.Difficulty.ToModifier(chosenMonster.Attack);
+                chosenMonster.Defense = chosenMonster.Difficulty.ToModifier(chosenMonster.Defense);
+                chosenMonster.Speed = chosenMonster.Difficulty.ToModifier(chosenMonster.Speed);
+                chosenMonster.Level = chosenMonster.Difficulty.ToModifier(chosenMonster.Level);
+
+                // Get the new Max Health
+                chosenMonster.MaxHealth = DiceHelper.RollDice(chosenMonster.Level, 10);
+
+                // Adjust the health, If the new Max Health is above the rule for the level, use the original
+                var MaxHealthAdjusted = chosenMonster.Difficulty.ToModifier(chosenMonster.MaxHealth);
+                if (MaxHealthAdjusted < chosenMonster.Level * 10)
+                {
+                    chosenMonster.MaxHealth = MaxHealthAdjusted;
+                }
+
+                // Level up to the new level
+                chosenMonster.LevelUpToValue(chosenMonster.Level);
+
+                // Set ExperienceRemaining so Monsters can both use this method
+                chosenMonster.ExperienceRemaining = LevelTableHelper.LevelDetailsList[chosenMonster.Level + 1].Experience;
+
+                // Enter Battle at full health
+                chosenMonster.CurrentHealth = chosenMonster.MaxHealth;
 
                 EngineSettings.MonsterList.Add(new PlayerInfoModel(chosenMonster));
 
