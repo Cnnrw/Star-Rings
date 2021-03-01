@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 
 using Game.Models;
 using Game.ViewModels;
+using Game.Enums;
 
 namespace Game.Views
 {
@@ -25,7 +26,8 @@ namespace Game.Views
 		{
 			InitializeComponent();
 
-            RoundDetailsLabel.Text = "While traveling through " + EngineViewModel.Engine.Round.RoundLocation + ", your party encounters a group of monsters!";
+            string roundLocationName = BattleLocationEnumExtensions.ToMessageWithArticle(EngineViewModel.Engine.Round.RoundLocation);
+            RoundDetailsLabel.Text = "Your party is ambushed while traveling through " + roundLocationName + "!";
 
 			// Draw the Monsters
 			foreach (var data in EngineViewModel.Engine.EngineSettings.MonsterList)
