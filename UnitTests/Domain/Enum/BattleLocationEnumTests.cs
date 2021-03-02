@@ -96,6 +96,76 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void BattleLocationEnumTests_ToMessageWithArticle_Dungeons_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Dungeons.ToMessageWithArticle();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("a dungeon", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToMessageWithArticle_Forest_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Forest.ToMessageWithArticle();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("the forest", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToMessageWithArticle_ElvenCity_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.ElvenCity.ToMessageWithArticle();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("an Elven city", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToMessageWithArticle_Mordor_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Mordor.ToMessageWithArticle();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("Mordor", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToMessageWithArticle_Shire_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Shire.ToMessageWithArticle();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("the Shire", result);
+        }
+
+        [Test]
         public void BattleLocationEnumTests_ToImageUri_Shire_Should_Pass()
         {
             // Arrange
