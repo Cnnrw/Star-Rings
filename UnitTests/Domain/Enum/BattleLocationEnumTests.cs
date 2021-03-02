@@ -96,6 +96,48 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void BattleLocationEnumTests_ToImageUri_Shire_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Shire.ToImageUri();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("shire_background.png", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToImageUri_Dungeons_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Dungeons.ToImageUri();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("dungeon_background.png", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToImageUri_Forest_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Forest.ToImageUri();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("forest_background.png", result);
+        }
+
+        [Test]
         public void BattleLocationEnumTests_GetListBattleLocations_Should_Pass()
         {
             // Arrange
