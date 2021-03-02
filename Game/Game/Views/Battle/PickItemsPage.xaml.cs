@@ -1,6 +1,12 @@
 using System;
+using System.ComponentModel;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using Game.Models;
+using Game.ViewModels;
+using System.Linq;
 
 namespace Game.Views
 {
@@ -10,12 +16,20 @@ namespace Game.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PickItemsPage : ContentPage
     {
+        // Empty Constructor for UTs
+        public PickItemsPage(bool UnitTest) { }
+
         /// <summary>
         /// Constructor
         /// </summary>
         public PickItemsPage()
         {
             InitializeComponent();
+
+            BindingContext = BattleEngineViewModel.Instance;
+            //BindingContext = BattleEngineViewModel.Instance;
+
+            // UpdateNextButtonState();
         }
 
         /// <summary>
