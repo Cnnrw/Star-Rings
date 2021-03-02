@@ -4,10 +4,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       xmlns:m="clr-namespace:Game.Models;assembly=Game"
       x:Class="Game.Views.Templates.Data.CharacterCell"
-      ColumnDefinitions="auto,*"
-      RowDefinitions="auto,auto,auto"
-      ColumnSpacing="5"
-      RowSpacing="1"
+      ColumnDefinitions="auto, *"
+      RowDefinitions="auto, auto, auto"
       x:DataType="m:CharacterModel">
 
     <Grid.Resources>
@@ -23,7 +21,8 @@
            VerticalOptions="CenterAndExpand" />
 
     <Label Grid.Column="1"
-           Text="{Binding Name}" />
+           Text="{Binding Name}"
+           TextColor="{StaticResource PrimaryTextColor}"/>
     <Label Grid.Column="1" Grid.Row="1"
            Text="{Binding Level, StringFormat='Level {0}'}" />
 
