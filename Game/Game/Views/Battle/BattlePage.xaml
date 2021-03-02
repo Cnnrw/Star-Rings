@@ -35,7 +35,7 @@
                     <StackLayout x:Name="SelectedMonsterBox"
                                  Orientation="Horizontal"
                                  Padding="10"
-                                 BackgroundColor="DarkSlateGray">
+                                 BackgroundColor="DimGray">
                         <Image x:Name="SelectedMonsterIcon"
                                Source="orc_icon.png"
                                WidthRequest="100"
@@ -80,8 +80,7 @@
 
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
                 <StackLayout x:Name="BattleBottomBox"
-                             VerticalOptions="EndAndExpand"
-                             BackgroundColor="red">
+                             VerticalOptions="EndAndExpand">
                     <!-- The bottom of the screen shows character info -->
                     <StackLayout x:Name="BottomCharactersDisplay">
                         <!-- A list of character images -->
@@ -93,7 +92,7 @@
                         <StackLayout x:Name="SelectedCharacterBox"
                                  Orientation="Horizontal"
                                  Padding="10"
-                                 BackgroundColor="DarkSlateGray">
+                                 BackgroundColor="DimGray">
                             <Image x:Name="SelectedCharacterIcon"
                                Source="jedi_icon.png"
                                WidthRequest="100"
@@ -125,20 +124,20 @@
                         </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Style="{StaticResource VerticalStack}"
-                                 Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="30,15,30,15"
                                  HeightRequest="100"
-                                 
-                                 BackgroundColor="Yellow">
-                        <Label x:Name="BattleMessages"
-                               Text="Obi-Wan attacks Grog\nGrog's HP falls to 12"
-                                    HorizontalOptions="FillAndExpand"
-                                    LineBreakMode="WordWrap"
-                                    MaxLines="3"
-                                    LineHeight="1"
-                                    CharacterSpacing="1"
-                                    Style="{StaticResource LabelStyle}"
-                                    FontSize="Micro"/>
+                                 BackgroundColor="DimGray">
+                        <StackLayout x:Name="MessageDisplayBox"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label x:Name="BattleMessages"
+                                   Text="Obi-Wan moves to attack Grog 01!&#10;Grog is hit and their HP falls to 4!"
+                                   Style="{StaticResource LabelStyle}"
+                                   LineBreakMode="WordWrap"
+                                   MaxLines="3"
+                                   LineHeight="1"
+                                   CharacterSpacing="1"/>
+                        </StackLayout>
                     </StackLayout>
                     <!--
                     <StackLayout Style="{StaticResource VerticalStack}"
