@@ -24,7 +24,7 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
-            // For now, set the engine to the Koenig Engine, change when ready 
+            // For now, set the engine to the Koenig Engine, change when ready
             BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
 
             page = new ScorePage();
@@ -51,27 +51,13 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void ScorePage_CloseButton_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            page.CloseButton_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
         public void ScorePage_CreateCharacterBox_Default_Should_Pass()
         {
             // Arrange
             var data = new PlayerInfoModel(new CharacterModel());
 
             // Act
-            page.CreateCharacterDisplayBox(data);
+            ScorePage.CreateCharacterDisplayBox(data);
 
             // Reset
 
@@ -85,7 +71,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.CreateCharacterDisplayBox(null);
+            ScorePage.CreateCharacterDisplayBox(null);
 
             // Reset
 
@@ -100,7 +86,7 @@ namespace UnitTests.Views
             var data = new PlayerInfoModel(new MonsterModel());
 
             // Act
-            page.CreateMonsterDisplayBox(data);
+            ScorePage.CreateMonsterDisplayBox(data);
 
             // Reset
 
@@ -114,7 +100,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.CreateMonsterDisplayBox(null);
+            ScorePage.CreateMonsterDisplayBox(null);
 
             // Reset
 
@@ -129,7 +115,7 @@ namespace UnitTests.Views
             var data = new ItemModel();
 
             // Act
-            page.CreateItemDisplayBox(data);
+            ScorePage.CreateItemDisplayBox(data);
 
             // Reset
 
@@ -143,7 +129,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.CreateItemDisplayBox(null);
+            ScorePage.CreateItemDisplayBox(null);
 
             // Reset
 
