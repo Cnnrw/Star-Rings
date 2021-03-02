@@ -14,6 +14,34 @@ namespace Game.ViewModels
     /// </summary>
     public class CharacterIndexViewModel : BaseViewModel<CharacterModel>
     {
+        #region Singleton
+
+        // Make this a singleton so it only exist one time because it holds all
+        // the character data records in memory
+        private static volatile CharacterIndexViewModel instance;
+        private static readonly object                  syncRoot = new object();
+
+        public static CharacterIndexViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new CharacterIndexViewModel();
+                            instance.Initialize();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        #endregion Singleton
         #region Constructor
 
         /// <summary>
@@ -68,34 +96,6 @@ namespace Game.ViewModels
                    .ToList();
 
         #endregion SortDataSet
-        #region Singleton
-
-        // Make this a singleton so it only exist one time because it holds all
-        // the character data records in memory
-        private static volatile CharacterIndexViewModel instance;
-        private static readonly object                  syncRoot = new object();
-
-        public static CharacterIndexViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new CharacterIndexViewModel();
-                            instance.Initialize();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
         #region DataOperations_CRUDi
 
         /// <summary>
