@@ -3,7 +3,7 @@ using Game.Views.Templates.Data;
 
 using Xamarin.Forms;
 
-namespace Game.Views.Templates
+namespace Game.Templates
 {
     public class ListTemplateSelector : DataTemplateSelector
     {
