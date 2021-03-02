@@ -1,67 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.ScorePage">
+<page_template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:page_template="clr-namespace:Game.Templates.Pages;assembly=Game"
+                         x:Class="Game.Views.ScorePage">
 
-        <ScrollView HorizontalScrollBarVisibility="Never"
-                    VerticalScrollBarVisibility="Never">
-            <StackLayout Style="{StaticResource VerticalStack}">
+    <ScrollView HorizontalScrollBarVisibility="Never"
+                VerticalScrollBarVisibility="Never">
 
-                <Label Text="Score Page"
-                       Style="{StaticResource CenterMessageLargeStyle}" />
+        <StackLayout Style="{StaticResource VerticalStack}"
+                     Margin="25,0, 25, 15" >
 
-                <Button Text="Close"
-                        Clicked="CloseButton_Clicked" />
+            <Label Text="Score Page"
+                   FontSize="48"
+                   Style="{StaticResource CenterMessageLargeStyle}" />
 
-                <StackLayout Style="{StaticResource HorizontalStack}">
-                    <Label Text="Score : "
-                           Style="{StaticResource MessageStyle}" />
-
-                    <Label Text="0"
-                           x:Name="TotalScore"
-                           Style="{StaticResource MessageStyle}" />
-                </StackLayout>
-
-                <Label Text="Characters"
-                       Style="{StaticResource MessageStyle}" />
-                <FlexLayout x:Name="CharacterListFrame"
-                            JustifyContent="Start"
-                            AlignContent="Start"
-                            Wrap="Wrap" />
-
-                <Label Text="Monsters"
-                       Style="{StaticResource MessageStyle}" />
-
-                <StackLayout Style="{StaticResource HorizontalStack}">
-                    <Label Text="Killed : "
-                           Style="{StaticResource LabelStyle}" />
-                    <Label Text="0"
-                           x:Name="TotalKilled"
-                           Style="{StaticResource ValueStyle}" />
-                </StackLayout>
-
-                <FlexLayout x:Name="MonsterListFrame"
-                            JustifyContent="Start"
-                            AlignContent="Start"
-                            Wrap="Wrap" />
-
-                <Label Text="Items"
-                       Style="{StaticResource MessageStyle}" />
-                <StackLayout Style="{StaticResource HorizontalStack}">
-                    <Label Text="Collected : "
-                           Style="{StaticResource LabelStyle}" />
-                    <Label Text="0"
-                           x:Name="TotalCollected"
-                           Style="{StaticResource ValueStyle}" />
-                </StackLayout>
-
-                <FlexLayout x:Name="ItemListFrame"
-                            JustifyContent="Start"
-                            AlignContent="Start"
-                            Wrap="Wrap" />
-
-                <Button Clicked="CloseButton_Clicked" Text="Close" />
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Score : "
+                       Style="{StaticResource MessageStyle}"
+                       TextColor="{StaticResource PrimaryTextColor}"/>
+                <Label Text="0"
+                       x:Name="TotalScore"
+                       Style="{StaticResource LabelStyle}" />
             </StackLayout>
-        </ScrollView>
-</ContentPage>
+
+    <!-- Characters -->
+            <Label Text="Characters"
+                   Style="{StaticResource MessageStyle}"
+                   TextColor="{StaticResource PrimaryTextColor}"/>
+            <FlexLayout x:Name="CharacterListFrame"
+                        JustifyContent="Start"
+                        AlignContent="Start"
+                        Wrap="Wrap" />
+
+    <!-- Monsters -->
+            <Label Text="Monsters"
+                   Style="{StaticResource MessageStyle}"
+                   TextColor="{StaticResource PrimaryTextColor}"/>
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Killed : "
+                       Style="{StaticResource LabelStyle}" />
+                <Label Text="0"
+                       x:Name="TotalKilled"
+                       Style="{StaticResource ValueStyle}" />
+            </StackLayout>
+            <FlexLayout x:Name="MonsterListFrame"
+                        JustifyContent="Start"
+                        AlignContent="Start"
+                        Wrap="Wrap" />
+
+
+    <!-- Items -->
+            <Label Text="Items"
+                   Style="{StaticResource MessageStyle}"
+                   TextColor="{StaticResource PrimaryTextColor}"/>
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Collected : "
+                       Style="{StaticResource LabelStyle}" />
+                <Label Text="0"
+                       x:Name="TotalCollected"
+                       Style="{StaticResource ValueStyle}" />
+            </StackLayout>
+            <FlexLayout x:Name="ItemListFrame"
+                        JustifyContent="Start"
+                        AlignContent="Start"
+                        Wrap="Wrap" />
+
+        </StackLayout>
+    </ScrollView>
+</page_template:ModalPage>
