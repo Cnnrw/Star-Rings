@@ -1,11 +1,9 @@
 using System;
-using System.ComponentModel;
 
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
@@ -13,8 +11,6 @@ namespace Game.Views
     ///     Character Read Page
     ///     Shows a detailed view of a character
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterDeletePage : ContentPage
     {
         private readonly GenericViewModel<CharacterModel> _viewModel;
