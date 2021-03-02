@@ -58,11 +58,9 @@
                                 BackgroundColor="#40000000"/>
                 </StackLayout>
 
-            
-
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
-                <StackLayout x:Name="BattleBottomBox" Style="{StaticResource BattleUiBottomBox}">
-
+                <StackLayout x:Name="BattleBottomBox"
+                             VerticalOptions="EndAndExpand">
                     <!-- The bottom of the screen shows character info -->
                     <StackLayout x:Name="BottomCharactersDisplay">
                         <!-- A list of character images -->
@@ -82,7 +80,7 @@
                                Aspect="AspectFit"
                                    Opacity="1.0"/>
 
-                            <StackLayout>
+                            <StackLayout HorizontalOptions="FillAndExpand">
                                 <Label Text="Name"
                                        Style="{StaticResource LabelStyle}"/>
                                 <Label Text="Level"
@@ -91,7 +89,7 @@
                                        Style="{StaticResource LabelStyle}"/>
                             </StackLayout>
 
-                            <StackLayout>
+                            <StackLayout HorizontalOptions="End">
                                 <Button x:Name="AttackButton"
                                         Text="Attack"
                                         Clicked="AttackButton_Clicked"
@@ -127,7 +125,8 @@
 
                     <StackLayout Style="{StaticResource VerticalStack}"
                                  HeightRequest="100"
-                                 HorizontalOptions="CenterAndExpand">
+                                 HorizontalOptions="CenterAndExpand"
+                                 BackgroundColor="Yellow">
                         <StackLayout x:Name="MessageDisplayBox"
                                      IsVisible="false"
                                      Style="{StaticResource VerticalStack}"
@@ -142,6 +141,10 @@
                                     Style="{StaticResource LabelStyle}"
                                     FontSize="Micro"/>
                         </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="Yellow">
+                        <Label Text="Hello"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
