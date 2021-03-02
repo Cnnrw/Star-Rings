@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+      x:Class="Game.Views.Templates.Data.CharacterCell"
+      ColumnDefinitions="auto,*"
+      RowDefinitions="auto,auto,auto"
+      ColumnSpacing="5"
+      RowSpacing="1"
+      x:DataType="m:CharacterModel">
+
+    <Grid.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Style"
+                    Value="{StaticResource LabelStyle}" />
+        </Style>
+    </Grid.Resources>
+
+    <Image Grid.RowSpan="3"
+           Source="{Binding IconImageURI}"
+           Style="{StaticResource ImageMediumStyle}"
+           VerticalOptions="CenterAndExpand" />
+
+    <Label Grid.Column="1"
+           Text="{Binding Name}" />
+    <Label Grid.Column="1" Grid.Row="1"
+           Text="{Binding Level, StringFormat='Level {0}'}" />
+
+</Grid>
