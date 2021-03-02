@@ -33,6 +33,16 @@ namespace Game.Views
         }
 
         /// <summary>
+        /// Handles the select event for dropped items for that round
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void OnItemInPoolSelected(object sender, EventArgs e)
+        {
+            // TODO: implement
+        }
+
+        /// <summary>
         /// Automatically distribute items amongst the character party
         /// </summary>
         /// <param name="sender"></param>
