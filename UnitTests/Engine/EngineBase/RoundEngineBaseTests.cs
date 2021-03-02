@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Engine.EngineBase;
@@ -62,6 +62,21 @@ namespace UnitTests.Engine.EngineBase
 
             // Assert
             Assert.IsNotNull(result.Turn);
+        }
+
+        [Test]
+        public void RoundEngine_Valid_RoundLocation_Set_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = new RoundEngineBase();
+            result.RoundLocation = BattleLocationEnum.Dungeons;
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result.RoundLocation);
         }
 
         [Test]
