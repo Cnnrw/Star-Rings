@@ -129,39 +129,19 @@
                     <StackLayout Orientation="Horizontal"
                                  Padding="30,15,30,15"
                                  HeightRequest="100"
-                                 BackgroundColor="DimGray">
+                                 BackgroundColor="Tan">
                         <StackLayout x:Name="MessageDisplayBox"
                                      HorizontalOptions="FillAndExpand">
                             <Label x:Name="BattleMessages"
-                                   Text="Obi-Wan moves to attack Grog 01!&#10;Grog is hit and their HP falls to 4!"
+                                   Text="Obi-Wan moves to attack Grog!&#10;Grog is hit and their HP falls to 4!"
                                    Style="{StaticResource LabelStyle}"
                                    LineBreakMode="WordWrap"
                                    MaxLines="3"
                                    LineHeight="1"
-                                   CharacterSpacing="1"/>
+                                   CharacterSpacing="1"
+                                   TextColor="Black"/>
                         </StackLayout>
                     </StackLayout>
-                    <!--
-                    <StackLayout Style="{StaticResource VerticalStack}"
-                                 HeightRequest="100"
-                                 HorizontalOptions="CenterAndExpand"
-                                 BackgroundColor="Yellow">
-                        <StackLayout x:Name="MessageDisplayBox"
-                                     IsVisible="true"
-                                     Style="{StaticResource VerticalStack}"
-                                     VerticalOptions="StartAndExpand"
-                                     HorizontalOptions="CenterAndExpand">
-                            <Label x:Name="BattleMessages"
-                                    HorizontalOptions="FillAndExpand"
-                                    LineBreakMode="WordWrap"
-                                    MaxLines="3"
-                                    LineHeight="1"
-                                    CharacterSpacing="1"
-                                    Style="{StaticResource LabelStyle}"
-                                    FontSize="Micro"/>
-                        </StackLayout>
-                    </StackLayout>
-                    -->
                 </StackLayout>
             </StackLayout>
 
