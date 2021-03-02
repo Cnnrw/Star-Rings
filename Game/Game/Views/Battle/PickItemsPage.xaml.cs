@@ -1,5 +1,5 @@
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,6 +19,8 @@ namespace Game.Views
         // Empty Constructor for UTs
         public PickItemsPage(bool UnitTest) { }
 
+        public List<ItemModel> ItemsDroppedList;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -29,7 +31,7 @@ namespace Game.Views
             BindingContext = BattleEngineViewModel.Instance;
             //BindingContext = BattleEngineViewModel.Instance;
 
-            // UpdateNextButtonState();
+            ItemsDroppedList = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList;
         }
 
         /// <summary>
