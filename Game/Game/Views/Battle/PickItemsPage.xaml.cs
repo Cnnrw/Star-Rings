@@ -43,6 +43,16 @@ namespace Game.Views
         }
 
         /// <summary>
+        /// Handles the select event for party members
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void OnPartyMemberSelected(object sender, EventArgs e)
+        {
+            // TODO: implement
+        }
+
+        /// <summary>
         /// Quit the Battle
         /// 
         /// Quitting out
