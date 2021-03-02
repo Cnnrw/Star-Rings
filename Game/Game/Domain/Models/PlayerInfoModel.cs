@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -53,6 +52,7 @@ namespace Game.Models
             MaxHealth = data.MaxHealth;
             CurrentHealth = data.CurrentHealth;
 
+            IconImageURI = data.IconImageURI;
             ImageURI = data.ImageURI;
 
             // Set the strings for the items
@@ -95,6 +95,7 @@ namespace Game.Models
             MaxHealth = data.MaxHealth;
             CurrentHealth = data.CurrentHealth;
 
+            IconImageURI = data.IconImageURI;
             ImageURI = data.ImageURI;
 
             // Set the strings for the items
@@ -158,9 +159,11 @@ namespace Game.Models
             Name = data.Name;
             Description = data.Description;
             Speed = data.GetSpeed();
-            ImageURI = data.ImageURI;
             MaxHealth = data.GetMaxHealthTotal;
             CurrentHealth = data.GetCurrentHealthTotal;
+
+            IconImageURI = data.IconImageURI;
+            ImageURI = data.ImageURI;
 
             // Set the Base Attributes
             Speed = data.Speed;
