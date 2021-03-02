@@ -1,58 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.RebelBasePage"
-             BackgroundImageSource="page_background.png">
+<template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:template="clr-namespace:Game.Templates.Pages;assembly=Game"
+                    x:Class="Game.Views.RebelBasePage"
+                    Title="Rebel Base">
 
-    <ContentPage.Content>
-        <ScrollView Orientation="Vertical"
-                    HorizontalScrollBarVisibility="Never"
-                    VerticalScrollBarVisibility="Never"
-                    Padding="10">
+    <FlexLayout Wrap="Wrap"
+                JustifyContent="SpaceAround"
+                AlignContent="SpaceAround"
+                Padding="40">
 
-            <FlexLayout Wrap="Wrap"
-                        JustifyContent="SpaceAround"
-                        AlignContent="SpaceAround"
-                        Padding="40">
-
-                <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="warrior.png"
-                                 Style="{StaticResource ImageLargeStyle}"
-                                 Clicked="CharactersButton_Clicked" />
-                    <Label Text="Characters"
-                           Style="{StaticResource CenterMessageStyle}" />
-                </StackLayout>
-
-                <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="eye.png"
-                                 Style="{StaticResource ImageLargeStyle}"
-                                 Clicked="MonstersButton_Clicked" />
-                    <Label Text="Monsters"
-                           Style="{StaticResource CenterMessageStyle}" />
-                </StackLayout>
+        <StackLayout Style="{StaticResource CardImageTextBox}">
+            <ImageButton Source="warrior.png"
+                         Style="{StaticResource ImageLargeStyle}"
+                         Clicked="CharactersButton_Clicked" />
+            <Label Text="Characters"
+                   Style="{StaticResource CenterMessageStyle}" />
+        </StackLayout>
 
 
-                <StackLayout Style="{StaticResource CardImageTextBox}">
+        <StackLayout Style="{StaticResource CardImageTextBox}">
+            <ImageButton Source="eye.png"
+                         Style="{StaticResource ImageLargeStyle}"
+                         Clicked="MonstersButton_Clicked" />
+            <Label Text="Monsters"
+                   Style="{StaticResource CenterMessageStyle}" />
+        </StackLayout>
 
-                    <ImageButton Source="ring.png"
-                                 Style="{StaticResource ImageLargeStyle}"
-                                 Clicked="ItemsButton_Clicked" />
-                    <Label Text="Items"
-                           Style="{StaticResource CenterMessageStyle}" />
-                </StackLayout>
+
+        <StackLayout Style="{StaticResource CardImageTextBox}">
+
+            <ImageButton Source="ring.png"
+                         Style="{StaticResource ImageLargeStyle}"
+                         Clicked="ItemsButton_Clicked" />
+            <Label Text="Items"
+                   Style="{StaticResource CenterMessageStyle}" />
+        </StackLayout>
 
 
-                <StackLayout Style="{StaticResource CardImageTextBox}">
-                    <ImageButton Source="stats.png"
-                                 Style="{StaticResource ImageLargeStyle}"
-                                 Clicked="ScoresButton_Clicked" />
-                    <Label Text="Scores"
-                           Style="{StaticResource CenterMessageStyle}" />
+        <StackLayout Style="{StaticResource CardImageTextBox}">
+            <ImageButton Source="stats.png"
+                         Style="{StaticResource ImageLargeStyle}"
+                         Clicked="ScoresButton_Clicked" />
+            <Label Text="Scores"
+                   Style="{StaticResource CenterMessageStyle}" />
 
-                </StackLayout>
+        </StackLayout>
 
-            </FlexLayout>
-        </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </FlexLayout>
+</template:ModalPage>

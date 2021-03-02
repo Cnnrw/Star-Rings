@@ -1,15 +1,13 @@
 using System;
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Game.Templates.Pages;
 
 namespace Game.Views
 {
     /// <summary>
     ///     The Main Game Page
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RebelBasePage : ContentPage
+    public partial class RebelBasePage : ModalPage
     {
         /// <summary>
         ///     Constructor
@@ -17,8 +15,6 @@ namespace Game.Views
         public RebelBasePage()
         {
             InitializeComponent();
-            // Remove the nav bar on the home page
-            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         /// <summary>
