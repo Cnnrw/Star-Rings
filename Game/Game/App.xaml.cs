@@ -1,14 +1,12 @@
 ﻿using Game.Views;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game
 {
     /// <summary>
     /// Main Application entry point
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         /// <summary>
