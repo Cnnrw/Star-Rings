@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 
 using Game.Models;
+using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -10,13 +12,13 @@ namespace Game.Views
     /// <summary>
     /// Index Page
     /// </summary>
-    public partial class ScoreIndexPage : ContentPage
+    public partial class ScoreIndexPage : ModalPage
     {
         // The view model, used for data binding
-        readonly ScoreIndexViewModel ViewModel = ScoreIndexViewModel.Instance;
+        readonly ScoreIndexViewModel _viewModel = ScoreIndexViewModel.Instance;
 
         // Empty Constructor for UTs
-        public ScoreIndexPage(bool UnitTest) { }
+        internal ScoreIndexPage(bool unitTest) { }
 
         /// <summary>
         /// Constructor for Index Page
@@ -27,7 +29,7 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
 
         /// <summary>
@@ -35,16 +37,16 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        public async void OnScoreSelected(object sender, SelectionChangedEventArgs args)
         {
-            if (!(args.SelectedItem is ScoreModel data))
+            if (!(args.CurrentSelection.FirstOrDefault() is ScoreModel data))
                 return;
 
             // Open the Read Page
             await Navigation.PushAsync(new ScoreReadPage(new GenericViewModel<ScoreModel>(data)));
 
             // Manually deselect item.
-            DataListView.SelectedItem = null;
+            ScoreList.SelectedItem = null;
         }
 
         /// <summary>
@@ -66,18 +68,18 @@ namespace Game.Views
             BindingContext = null;
 
             // If no data, then set it for needing refresh
-            if (ViewModel.Dataset.Count == 0)
+            if (_viewModel.Dataset.Count == 0)
             {
-                ViewModel.SetNeedsRefresh(true);
+                _viewModel.SetNeedsRefresh(true);
             }
 
             // If the needs Refresh flag is set update it
-            if (ViewModel.NeedsRefresh())
+            if (_viewModel.NeedsRefresh())
             {
-                ViewModel.LoadDatasetCommand.Execute(null);
+                _viewModel.LoadDatasetCommand.Execute(null);
             }
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
     }
 }
