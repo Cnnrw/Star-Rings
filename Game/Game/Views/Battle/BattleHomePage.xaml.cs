@@ -38,5 +38,13 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void PickItems_Clicked(object sender, EventArgs e) =>
             await Navigation.PushAsync(new PickItemsPage());
+
+        /// <summary>
+        /// Navigate to the score page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public async void ScorePage_Clicked(object sender, EventArgs e) =>
+            await Navigation.PushAsync(new ScorePage());
     }
 }
