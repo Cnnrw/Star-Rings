@@ -11,6 +11,7 @@ namespace Game.Templates
         DataTemplate _item;
         DataTemplate _character;
         DataTemplate _monster;
+        DataTemplate _score;
 
         /// <summary>
         /// Matches an item by its base model and returns the data template that
@@ -25,6 +26,7 @@ namespace Game.Templates
                 ItemModel _      => _item ??= new DataTemplate(typeof(ItemCell)),
                 CharacterModel _ => _character ??= new DataTemplate(typeof(CharacterCell)),
                 MonsterModel _   => _monster ??= new DataTemplate(typeof(MonsterCell)),
+                ScoreModel _     => _score ??= new DataTemplate(typeof(ScoreCell)),
                 _                => null
             };
     }
