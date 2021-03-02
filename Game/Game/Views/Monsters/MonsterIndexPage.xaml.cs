@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Linq;
 
 using Game.Models;
 using Game.ViewModels;
@@ -11,15 +12,14 @@ namespace Game.Views
     /// <summary>
     ///     Monster Index Page
     /// </summary>
-    [DesignTimeVisible(false)]
     public partial class MonsterIndexPage : ContentPage
     {
 
         // view model used for data binding
-        private readonly MonsterIndexViewModel _viewModel = MonsterIndexViewModel.Instance;
+        readonly MonsterIndexViewModel _viewModel = MonsterIndexViewModel.Instance;
 
         // Empty Constructor for UTs
-        public MonsterIndexPage(bool unitTest) { }
+        internal MonsterIndexPage(bool unitTest) { }
 
         /// <summary>
         ///     Default constructor for Monster Index Page.
@@ -44,19 +44,17 @@ namespace Game.Views
         ///     The row selected from the list
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        /// <param name="args"></param>
+        public async void OnMonsterSelected(object sender, SelectionChangedEventArgs args)
         {
-            if (!(e.SelectedItem is MonsterModel data))
-            {
+            if (!(args.CurrentSelection.FirstOrDefault() is MonsterModel data))
                 return;
-            }
 
             // Open the Read Page
             await Navigation.PushAsync(new MonsterReadPage(new GenericViewModel<MonsterModel>(data)));
 
             // Manually deselect item
-            MonstersListView.SelectedItem = null;
+            MonsterList.SelectedItem = null;
         }
 
         /// <summary>
