@@ -60,7 +60,8 @@
 
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
                 <StackLayout x:Name="BattleBottomBox"
-                             VerticalOptions="EndAndExpand">
+                             VerticalOptions="EndAndExpand"
+                             BackgroundColor="red">
                     <!-- The bottom of the screen shows character info -->
                     <StackLayout x:Name="BottomCharactersDisplay">
                         <!-- A list of character images -->
@@ -124,11 +125,27 @@
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource VerticalStack}"
+                                 Orientation="Horizontal"
+                                 HeightRequest="100"
+                                 
+                                 BackgroundColor="Yellow">
+                        <Label x:Name="BattleMessages"
+                               Text="Obi-Wan attacks Grog\nGrog's HP falls to 12"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="WordWrap"
+                                    MaxLines="3"
+                                    LineHeight="1"
+                                    CharacterSpacing="1"
+                                    Style="{StaticResource LabelStyle}"
+                                    FontSize="Micro"/>
+                    </StackLayout>
+                    <!--
+                    <StackLayout Style="{StaticResource VerticalStack}"
                                  HeightRequest="100"
                                  HorizontalOptions="CenterAndExpand"
                                  BackgroundColor="Yellow">
                         <StackLayout x:Name="MessageDisplayBox"
-                                     IsVisible="false"
+                                     IsVisible="true"
                                      Style="{StaticResource VerticalStack}"
                                      VerticalOptions="StartAndExpand"
                                      HorizontalOptions="CenterAndExpand">
@@ -142,10 +159,7 @@
                                     FontSize="Micro"/>
                         </StackLayout>
                     </StackLayout>
-
-                    <StackLayout BackgroundColor="Yellow">
-                        <Label Text="Hello"/>
-                    </StackLayout>
+                    -->
                 </StackLayout>
             </StackLayout>
 

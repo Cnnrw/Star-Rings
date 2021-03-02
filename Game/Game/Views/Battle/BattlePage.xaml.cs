@@ -165,7 +165,7 @@ namespace Game.Views
             NextRoundButton.IsVisible = false;
             StartBattleButton.IsVisible = false;
             AttackButton.IsVisible = false;
-            MessageDisplayBox.IsVisible = false;
+            //MessageDisplayBox.IsVisible = false;
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Game.Views
                 case BattleStateEnum.Battling:
                     GameUIDisplay.IsVisible = true;
                     //BattlePlayerInfomationBox.IsVisible = true;
-                    MessageDisplayBox.IsVisible = true;
+                    //MessageDisplayBox.IsVisible = true;
                     AttackButton.IsVisible = true;
                     BlockButton.IsVisible = true;
                     break;
@@ -721,16 +721,16 @@ namespace Game.Views
         public void GameMessage()
         {
             // Output The Message that happened.
-            BattleMessages.Text =
-                $"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage} \n{BattleMessages.Text}";
+            //BattleMessages.Text =
+                //$"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage} \n{BattleMessages.Text}";
 
-            Debug.WriteLine(BattleMessages.Text);
+            //Debug.WriteLine(BattleMessages.Text);
 
             if (!string.IsNullOrEmpty(BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel
                                                            .LevelUpMessage))
             {
-                BattleMessages.Text =
-                    $"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.LevelUpMessage} \n{BattleMessages.Text}";
+                //BattleMessages.Text =
+                    //$"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.LevelUpMessage} \n{BattleMessages.Text}";
             }
 
             //htmlSource.Html = BattleEngineViewModel.Instance.Engine.BattleMessagesModel.GetHTMLFormattedTurnMessage();
@@ -742,7 +742,7 @@ namespace Game.Views
         /// </summary>
         public void ClearMessages()
         {
-            BattleMessages.Text = "";
+            //BattleMessages.Text = "";
             htmlSource.Html = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel
                                                    .GetHtmlBlankMessage();
             //HtmlBox.Source = htmlSource;
