@@ -986,64 +986,64 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got Here
         }
 
-        [Test]
-        public void BattleSettingsPage_MapIcon_Clicked_Monster_Should_Pass()
-        {
-            // Arrange
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+        //[Test]
+        //public void BattleSettingsPage_MapIcon_Clicked_Monster_Should_Pass()
+        //{
+        //    // Arrange
+        //    var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
-            var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+        //    var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
-                .Instance.Engine.EngineSettings.PlayerList);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+        //        .Instance.Engine.EngineSettings.PlayerList);
 
-            // Make UI Map
-            //page.CreateMapGridObjects();
+        //    // Make UI Map
+        //    //page.CreateMapGridObjects();
 
-            var nameImage = "MapR5C0ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
+        //    var nameImage = "MapR5C0ImageButton";
+        //    page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
-            // Act
+        //    // Act
 
-            // Force the click event to fire
-            ((ImageButton)dataImage).PropagateUpClicked();
+        //    // Force the click event to fire
+        //    ((ImageButton)dataImage).PropagateUpClicked();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
-        [Test]
-        public void BattleSettingsPage_MapIcon_Clicked_Empty_Should_Pass()
-        {
-            // Arrange
-            var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+    //    [Test]
+    //    public void BattleSettingsPage_MapIcon_Clicked_Empty_Should_Pass()
+    //    {
+    //        // Arrange
+    //        var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
+    //        BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
-            var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+    //        var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
+    //        BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
-                .Instance.Engine.EngineSettings.PlayerList);
+    //        BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+    //            .Instance.Engine.EngineSettings.PlayerList);
 
-            // Make UI Map
-            //page.DrawMapGridInitialState();
+    //        // Make UI Map
+    //        //page.DrawMapGridInitialState();
 
-            var nameImage = "MapR3C3ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
+    //        var nameImage = "MapR3C3ImageButton";
+    //        page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
-            // Act
+    //        // Act
 
-            // Force the click event to fire
-            ((ImageButton)dataImage)?.PropagateUpClicked();
+    //        // Force the click event to fire
+    //        ((ImageButton)dataImage)?.PropagateUpClicked();
 
-            // Reset
+    //        // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+    //        // Assert
+    //        Assert.IsTrue(true); // Got Here
+    //    }
     }
 }
