@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using Game;
 using Game.Enums;
@@ -209,105 +209,105 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        [Test]
-        public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_Null_CurrentDefender_Null_Should_Pass()
-        {
-            // Arrange
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(null);
+        //[Test]
+        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_Null_CurrentDefender_Null_Should_Pass()
+        //{
+        //    // Arrange
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(null);
 
-            // Act
-            page.DrawGameAttackerDefenderBoard();
+        //    // Act
+        //    page.DrawGameAttackerDefenderBoard();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_InValid_Null_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_InValid_Null_Should_Pass()
+        //{
+        //    // Arrange
 
-            var PlayerInfo = new PlayerInfoModel(new CharacterModel());
+        //    var PlayerInfo = new PlayerInfoModel(new CharacterModel());
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(PlayerInfo);
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(null);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(PlayerInfo);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(null);
 
-            // Act
-            page.DrawGameAttackerDefenderBoard();
+        //    // Act
+        //    page.DrawGameAttackerDefenderBoard();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_DrawGameBoardAttackerDefender_CurrentDefender_InValid_Null_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentDefender_InValid_Null_Should_Pass()
+        //{
+        //    // Arrange
 
-            var PlayerInfo = new PlayerInfoModel(new CharacterModel());
+        //    var PlayerInfo = new PlayerInfoModel(new CharacterModel());
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(PlayerInfo);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(PlayerInfo);
 
-            // Act
-            page.DrawGameAttackerDefenderBoard();
+        //    // Act
+        //    page.DrawGameAttackerDefenderBoard();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_DrawGameBoardAttackerDefender_CurrentDefender_Valid_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentDefender_Valid_Should_Pass()
+        //{
+        //    // Arrange
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
-            {
-                Alive = false
-            }));
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
+        //    {
+        //        Alive = false
+        //    }));
 
-            // Act
-            page.DrawGameAttackerDefenderBoard();
+        //    // Act
+        //    page.DrawGameAttackerDefenderBoard();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_DrawGameBoardAttackerDefender_Invalid_AttackerSource_Null_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_DrawGameBoardAttackerDefender_Invalid_AttackerSource_Null_Should_Pass()
+        //{
+        //    // Arrange
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
-            {
-                Alive = false
-            }));
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
+        //    {
+        //        Alive = false
+        //    }));
 
-            var oldItem = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand;
+        //    var oldItem = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand;
 
-            var item = ItemIndexViewModel.Instance.GetDefaultItem(ItemLocationEnum.PrimaryHand);
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand = item.Id;
+        //    var item = ItemIndexViewModel.Instance.GetDefaultItem(ItemLocationEnum.PrimaryHand);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand = item.Id;
 
-            // Act
-            page.DrawGameAttackerDefenderBoard();
+        //    // Act
+        //    page.DrawGameAttackerDefenderBoard();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand = oldItem;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand = oldItem;
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
         [Test]
         public void BattlePage_NextAttackExample_NextRound_Should_Pass()
@@ -666,7 +666,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.AutoBattle = true;
 
             // Make UI Map
-            page.CreateMapGridObjects();
+            //page.CreateMapGridObjects();
             page.UpdateMapGrid();
 
             // Move Character in Engine
@@ -970,7 +970,7 @@ namespace UnitTests.Views
                 .Instance.Engine.EngineSettings.PlayerList);
 
             // Make UI Map
-            page.CreateMapGridObjects();
+            //page.CreateMapGridObjects();
 
             var nameImage = "MapR0C0ImageButton";
             page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
@@ -1000,7 +1000,7 @@ namespace UnitTests.Views
                 .Instance.Engine.EngineSettings.PlayerList);
 
             // Make UI Map
-            page.CreateMapGridObjects();
+            //page.CreateMapGridObjects();
 
             var nameImage = "MapR5C0ImageButton";
             page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
@@ -1030,7 +1030,7 @@ namespace UnitTests.Views
                 .Instance.Engine.EngineSettings.PlayerList);
 
             // Make UI Map
-            page.DrawMapGridInitialState();
+            //page.DrawMapGridInitialState();
 
             var nameImage = "MapR3C3ImageButton";
             page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
