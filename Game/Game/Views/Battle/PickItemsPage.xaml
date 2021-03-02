@@ -16,7 +16,48 @@
 
                 <Button Clicked="DistributeButton_Clicked" Text="Distribute"></Button>
 
-                <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
+
+                <StackLayout HorizontalOptions="Start">
+                    <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
+
+                    <ListView 
+                                x:Name="CharactersListView" 
+                                ItemsSource="{Binding PartyCharacterList}"
+                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                RefreshCommand="{Binding LoadItemsCommand}"
+                                CachingStrategy="RecycleElement"
+                                ItemSelected="OnPartyMemberSelected"
+                                HasUnevenRows="true"
+                                Margin="5,0,5,0"
+                                RowHeight="80">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                   Source="{Binding ImageURI}"
+                                                   Style="{StaticResource ImageMediumStyle}"
+                                                   Aspect="AspectFit"/>
+
+                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+                                                   Text="{Binding Name}" 
+                                                   Style="{StaticResource ListStyle}"
+                                                   FontAttributes="Bold"/>
+
+                                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
+                                                   Text="{Binding Path=Level, StringFormat='Level {0:G}'}" 
+                                                   Style="{StaticResource ListStyle}"/>
+
+                                        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
+                                                   Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
+                                                   Style="{StaticResource ListStyle}"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
 
                 <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
             </StackLayout>
