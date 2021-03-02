@@ -1,30 +1,50 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.BattleHomePage"
-             BackgroundImageSource="page_background.png">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}"
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="40">
+<page_template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:page_template="clr-namespace:Game.Templates.Pages;assembly=Game"
+                         x:Class="Game.Views.BattleHomePage">
+
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="Margin"
+                    Value="15" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize"
+                    Value="18" />
+            <Setter Property="HorizontalOptions"
+                    Value="FillAndExpand" />
+            <Setter Property="VerticalOptions"
+                    Value="FillAndExpand"/>
+            <Setter Property="Padding"
+                    Value="10"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="3*, 2*"
+          HorizontalOptions="FillAndExpand">
+
+        <StackLayout>
             <Label Text="Battle Home Page"
-               Style="{StaticResource CenterMessageStyle}"/>
+                   TextColor="{StaticResource PrimaryTextColor}"
+                   Style="{StaticResource CenterMessageStyle}" />
 
             <Label Text="Navigate to 'New Round' and 'Battle' pages through the 'Pick Characters' page"
                    Style="{StaticResource LabelStyle}"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
-                   LineBreakMode="WordWrap"/>
-
-            <Button Text="AutoBattle"
-                    Clicked="AutoBattle_Clicked"/>
-
-            <Button Text="Pick characters"
-                    Clicked="PickCharacters_Clicked"/>
-
-            <Button Text="Pick Items"
-                    Clicked="PickItems_Clicked"/>
+                   LineBreakMode="WordWrap" />
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+
+        <StackLayout Grid.Row="1">
+            <Button Text="AutoBattle"
+                    Clicked="AutoBattle_Clicked" />
+            <Button Text="Pick characters"
+                    Clicked="PickCharacters_Clicked" />
+            <Button Text="Pick Items"
+                    Clicked="PickItems_Clicked" />
+        </StackLayout>
+
+    </Grid>
+</page_template:ModalPage>
