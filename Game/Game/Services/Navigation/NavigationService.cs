@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace Game.Services.Navigation
+namespace Game.Services
 {
     public class ViewNavigationService : INavigationService
     {
