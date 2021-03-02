@@ -35,7 +35,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        async void OnCharacterSelected(object sender, SelectionChangedEventArgs args)
+        internal async void OnCharacterSelected(object sender, SelectionChangedEventArgs args)
         {
             if (!(args.CurrentSelection.FirstOrDefault() is CharacterModel data))
                 return;
