@@ -14,7 +14,7 @@ namespace Game.Views
     /// </summary>
     public partial class CharacterIndexPage : ModalPage
     {
-        private readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
+        readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
 
         // Empty Constructor for UTs
         internal CharacterIndexPage(bool unitTest) { }
