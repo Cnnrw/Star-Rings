@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+      x:Class="Game.Views.Templates.Data.ScoreCell"
+      RowDefinitions="4, *, 1"
+      x:DataType="m:ScoreModel">
+
+    <Grid.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Style"
+                    Value="{StaticResource ListStyle}" />
+        </Style>
+    </Grid.Resources>
+
+    <StackLayout Grid.Row="1">
+
+        <Label Text="{Binding Name}"
+               FontSize="18"
+               TextColor="{StaticResource PrimaryTextColor}"
+               LineBreakMode="TailTruncation" />
+
+        <Label Text="{Binding RoundCount, StringFormat='Rounds: {0}'}"
+               FontSize="Medium" />
+
+        <Label Text="{Binding ScoreTotal, StringFormat='Score: {0}'}"
+               FontSize="Medium" />
+
+    </StackLayout>
+
+</Grid>
