@@ -10,7 +10,7 @@
             <StackLayout Style="{StaticResource VerticalStack}"
                      HorizontalOptions="CenterAndExpand"
                      Padding="40" >
-                <Label Text="Pick Items Page" Style="{StaticResource HeaderStyle}"/>
+                <Label Text="Gather Loot" Style="{StaticResource HeaderStyle}" HorizontalOptions="Center"/>
 
                 <StackLayout>
                     <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
