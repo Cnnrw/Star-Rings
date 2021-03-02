@@ -214,6 +214,9 @@
 			<DependentUpon>LandingPage.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Views\Templates\Pages\ModalPage.xaml.cs">
+		  <DependentUpon>ModalPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 	
 	<ItemGroup>
