@@ -10,8 +10,6 @@ namespace Game.Engine.EngineModels
     /// </summary>
     public class EngineSettingsModel
     {
-
-
         // Holds the official ScoreModel
         public ScoreModel BattleScore { get; set; } = new ScoreModel();
 
