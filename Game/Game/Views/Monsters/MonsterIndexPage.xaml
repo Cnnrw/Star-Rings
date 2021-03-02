@@ -19,8 +19,8 @@
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding LoadDatasetCommand}"
-                 Command="{Binding IsBusy, Mode=OneWay}"
+    <RefreshView Command="{Binding LoadDatasetCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                  Padding="20, 0">
         <CollectionView x:Name="MonsterList"
                         ItemsSource="{Binding Dataset}"
