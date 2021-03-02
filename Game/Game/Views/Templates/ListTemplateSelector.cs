@@ -1,4 +1,5 @@
 using Game.Models;
+using Game.Templates.Data;
 using Game.Views.Templates.Data;
 
 using Xamarin.Forms;
@@ -7,6 +8,7 @@ namespace Game.Templates
 {
     public class ListTemplateSelector : DataTemplateSelector
     {
+        DataTemplate _item;
         DataTemplate _character;
 
         /// <summary>
@@ -19,6 +21,7 @@ namespace Game.Templates
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) =>
             item switch
             {
+                ItemModel _      => _item ??= new DataTemplate(typeof(ItemCell)),
                 CharacterModel _ => _character ??= new DataTemplate(typeof(CharacterCell)),
                 _                => null
             };
