@@ -586,102 +586,102 @@ namespace UnitTests.Views
             Assert.AreEqual(true, result); // Got to here, so it happened...
         }
 
-        [Test]
-        public void BattlePage_UpdateMapGrid_InValid_Bogus_Image_Should_Fail()
-        {
-            // Make the Row Bogus
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation[0, 0].Row = -1;
+        //[Test]
+        //public void BattlePage_UpdateMapGrid_InValid_Bogus_Image_Should_Fail()
+        //{
+        //    // Make the Row Bogus
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation[0, 0].Row = -1;
 
-            // Act
-            var result = page.UpdateMapGrid();
+        //    // Act
+        //    var result = page.UpdateMapGrid();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation[0, 0].Row = 0;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation[0, 0].Row = 0;
 
-            // Assert
-            Assert.AreEqual(false, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(false, result); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_UpdateMapGrid_InValid_Bogus_ImageButton_Should_Fail()
-        {
-            // Get the current valute
-            var name = "MapR0C0ImageButton";
-            page.MapLocationObject.TryGetValue(name, out var data);
-            page.MapLocationObject.Remove(name);
+        //[Test]
+        //public void BattlePage_UpdateMapGrid_InValid_Bogus_ImageButton_Should_Fail()
+        //{
+        //    // Get the current valute
+        //    var name = "MapR0C0ImageButton";
+        //    page.MapLocationObject.TryGetValue(name, out var data);
+        //    page.MapLocationObject.Remove(name);
 
-            // Act
-            var result = page.UpdateMapGrid();
+        //    // Act
+        //    var result = page.UpdateMapGrid();
 
-            // Reset
-            page.MapLocationObject.Add(name, data);
+        //    // Reset
+        //    page.MapLocationObject.Add(name, data);
 
-            // Assert
-            Assert.AreEqual(false, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(false, result); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_UpdateMapGrid_InValid_Bogus_Stack_Should_Fail()
-        {
-            // Get the current valute
-            var nameStack = "MapR0C0Stack";
-            page.MapLocationObject.TryGetValue(nameStack, out var dataStack);
-            page.MapLocationObject.Remove(nameStack);
+        //[Test]
+        //public void BattlePage_UpdateMapGrid_InValid_Bogus_Stack_Should_Fail()
+        //{
+        //    // Get the current valute
+        //    var nameStack = "MapR0C0Stack";
+        //    page.MapLocationObject.TryGetValue(nameStack, out var dataStack);
+        //    page.MapLocationObject.Remove(nameStack);
 
-            var nameImage = "MapR0C0ImageButton";
-            page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
+        //    var nameImage = "MapR0C0ImageButton";
+        //    page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
-            page.MapLocationObject.Remove(nameImage);
+        //    page.MapLocationObject.Remove(nameImage);
 
-            var dataImageBogus = new ImageButton {AutomationId = "bogus"};
-            page.MapLocationObject.Add(nameImage, dataImageBogus);
+        //    var dataImageBogus = new ImageButton {AutomationId = "bogus"};
+        //    page.MapLocationObject.Add(nameImage, dataImageBogus);
 
-            // Act
-            var result = page.UpdateMapGrid();
+        //    // Act
+        //    var result = page.UpdateMapGrid();
 
-            // Reset
-            page.MapLocationObject.Remove(nameImage);
-            page.MapLocationObject.Add(nameImage, dataImage);
-            page.MapLocationObject.Add(nameStack, dataStack);
+        //    // Reset
+        //    page.MapLocationObject.Remove(nameImage);
+        //    page.MapLocationObject.Add(nameImage, dataImage);
+        //    page.MapLocationObject.Add(nameStack, dataStack);
 
-            // Assert
-            Assert.AreEqual(false, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(false, result); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_UpdateMapGrid_Valid_Stack_Should_Pass()
-        {
-            // Need to build out a valid MapGrid with Engine MapGridLocation
+        //[Test]
+        //public void BattlePage_UpdateMapGrid_Valid_Stack_Should_Pass()
+        //{
+        //    // Need to build out a valid MapGrid with Engine MapGridLocation
 
-            // Make Map in Engine
+        //    // Make Map in Engine
 
-            var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
+        //    var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
-                .Instance.Engine.EngineSettings.PlayerList);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+        //        .Instance.Engine.EngineSettings.PlayerList);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Unknown;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.AutoBattle = true;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Unknown;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.AutoBattle = true;
 
-            // Make UI Map
-            //page.CreateMapGridObjects();
-            page.UpdateMapGrid();
+        //    // Make UI Map
+        //    //page.CreateMapGridObjects();
+        //    page.UpdateMapGrid();
 
-            // Move Character in Engine
-            var result = BattleEngineViewModel.Instance.Engine.Round.Turn.MoveAsTurn(MonsterPlayer);
+        //    // Move Character in Engine
+        //    var result = BattleEngineViewModel.Instance.Engine.Round.Turn.MoveAsTurn(MonsterPlayer);
 
-            // Act
+        //    // Act
 
-            // Call for UpateMap
-            page.UpdateMapGrid();
+        //    // Call for UpateMap
+        //    page.UpdateMapGrid();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.AreEqual(true, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(true, result); // Got to here, so it happened...
+        //}
 
         [Test]
         public async Task BattlePage_ShowBattleSettingsPage_Default_Should_Pass()
@@ -711,26 +711,26 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        [Test]
-        public void BattleSettingsPage_MakeMapGridBox_InValid_Should_Fail()
-        {
-            // Arrange
-            var data = new MapModelLocation
-            {
-                Player = null,
-                Column = 0,
-                Row = 0
-            };
+        //[Test]
+        //public void BattleSettingsPage_MakeMapGridBox_InValid_Should_Fail()
+        //{
+        //    // Arrange
+        //    var data = new MapModelLocation
+        //    {
+        //        Player = null,
+        //        Column = 0,
+        //        Row = 0
+        //    };
 
-            // Act
-            var result = page.MakeMapGridBox(data);
+        //    // Act
+        //    var result = page.MakeMapGridBox(data);
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.AreEqual(HitStatusEnum.Default,
-                            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
-        }
+        //    // Assert
+        //    Assert.AreEqual(HitStatusEnum.Default,
+        //                    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum);
+        //}
 
         [Test]
         public void BattleSettingsPage_ShowBattleMode_Default_Should_Pass()

@@ -208,7 +208,7 @@ namespace Game.Views
                     break;
 
                 case BattleStateEnum.NewRound:
-                    UpdateMapGrid();
+                    //UpdateMapGrid();
                     //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
                     NextRoundButton.IsVisible = true;
                     break;
@@ -277,50 +277,50 @@ namespace Game.Views
         /// Update only those that need change
         /// </summary>
         /// <returns></returns>
-        public bool UpdateMapGrid()
-        {
-            foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation)
-            {
-                // Use the ImageButton from the dictionary because that represents the player object
-                object MapObject = GetMapGridObject(GetDictionaryImageButtonName(data));
-                if (MapObject == null)
-                {
-                    return false;
-                }
+        //public bool UpdateMapGrid()
+        //{
+        //    foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation)
+        //    {
+        //        // Use the ImageButton from the dictionary because that represents the player object
+        //        object MapObject = GetMapGridObject(GetDictionaryImageButtonName(data));
+        //        if (MapObject == null)
+        //        {
+        //            return false;
+        //        }
 
-                var imageObject = (ImageButton)MapObject;
+        //        var imageObject = (ImageButton)MapObject;
 
-                // Check automation ID on the Image, That should match the Player, if not a match, the cell is now different need to update
-                if (imageObject.AutomationId.Equals(data.Player.Guid))
-                {
-                    continue;
-                }
-                // The Image is different, so need to re-create the Image Object and add it to the Stack
-                // That way the correct monster is in the box.
+        //        // Check automation ID on the Image, That should match the Player, if not a match, the cell is now different need to update
+        //        if (imageObject.AutomationId.Equals(data.Player.Guid))
+        //        {
+        //            continue;
+        //        }
+        //        // The Image is different, so need to re-create the Image Object and add it to the Stack
+        //        // That way the correct monster is in the box.
 
-                MapObject = GetMapGridObject(GetDictionaryStackName(data));
-                if (MapObject == null)
-                {
-                    return false;
-                }
+        //        MapObject = GetMapGridObject(GetDictionaryStackName(data));
+        //        if (MapObject == null)
+        //        {
+        //            return false;
+        //        }
 
-                var stackObject = (StackLayout)MapObject;
+        //        var stackObject = (StackLayout)MapObject;
 
-                // Remove the ImageButton
-                stackObject.Children.RemoveAt(0);
+        //        // Remove the ImageButton
+        //        stackObject.Children.RemoveAt(0);
 
-                var PlayerImageButton = DetermineMapImageButton(data);
+        //        var PlayerImageButton = DetermineMapImageButton(data);
 
-                stackObject.Children.Add(PlayerImageButton);
+        //        stackObject.Children.Add(PlayerImageButton);
 
-                // Update the Image in the Datastructure
-                MapGridObjectAddImage(PlayerImageButton, data);
+        //        // Update the Image in the Datastructure
+        //        MapGridObjectAddImage(PlayerImageButton, data);
 
-                stackObject.BackgroundColor = DetermineMapBackgroundColor(data);
-            }
+        //        stackObject.BackgroundColor = DetermineMapBackgroundColor(data);
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         /// <summary>
         /// Convert the Stack to a name for the dictionary to lookup
@@ -363,42 +363,42 @@ namespace Game.Views
         /// </summary>
         /// <param name="mapLocationModel"></param>
         /// <returns></returns>
-        public Frame MakeMapGridBox(MapModelLocation mapLocationModel)
-        {
-            if (mapLocationModel.Player == null)
-            {
-                mapLocationModel.Player = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.EmptySquare;
-            }
+        //public Frame MakeMapGridBox(MapModelLocation mapLocationModel)
+        //{
+        //    if (mapLocationModel.Player == null)
+        //    {
+        //        mapLocationModel.Player = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.EmptySquare;
+        //    }
 
-            var PlayerImageButton = DetermineMapImageButton(mapLocationModel);
+        //    var PlayerImageButton = DetermineMapImageButton(mapLocationModel);
 
-            var PlayerStack = new StackLayout
-            {
-                Padding = 0,
-                Style = Application.Current.Resources.TryGetValue("BattleMapImageBox", out object stackStyle)
-                            ? (Style)stackStyle
-                            : null,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center,
-                BackgroundColor = DetermineMapBackgroundColor(mapLocationModel),
-                Children = {PlayerImageButton},
-            };
+        //    var PlayerStack = new StackLayout
+        //    {
+        //        Padding = 0,
+        //        Style = Application.Current.Resources.TryGetValue("BattleMapImageBox", out object stackStyle)
+        //                    ? (Style)stackStyle
+        //                    : null,
+        //        HorizontalOptions = LayoutOptions.Center,
+        //        VerticalOptions = LayoutOptions.Center,
+        //        BackgroundColor = DetermineMapBackgroundColor(mapLocationModel),
+        //        Children = {PlayerImageButton},
+        //    };
 
-            MapGridObjectAddImage(PlayerImageButton, mapLocationModel);
-            MapGridObjectAddStack(PlayerStack, mapLocationModel);
+        //    MapGridObjectAddImage(PlayerImageButton, mapLocationModel);
+        //    MapGridObjectAddStack(PlayerStack, mapLocationModel);
 
-            var MapFrame = new Frame
-            {
-                //Style = (Style)Application.Current.Resources["BattleMapFrame"],
-                Style = Application.Current.Resources.TryGetValue("BattleMapFrame", out object frameStyle)
-                            ? (Style)frameStyle
-                            : null,
-                Content = PlayerStack,
-                AutomationId = GetDictionaryFrameName(mapLocationModel)
-            };
+        //    var MapFrame = new Frame
+        //    {
+        //        //Style = (Style)Application.Current.Resources["BattleMapFrame"],
+        //        Style = Application.Current.Resources.TryGetValue("BattleMapFrame", out object frameStyle)
+        //                    ? (Style)frameStyle
+        //                    : null,
+        //        Content = PlayerStack,
+        //        AutomationId = GetDictionaryFrameName(mapLocationModel)
+        //    };
 
-            return MapFrame;
-        }
+        //    return MapFrame;
+        //}
 
         /// <summary>
         /// This add the ImageButton to the stack to kep track of
@@ -406,22 +406,22 @@ namespace Game.Views
         /// <param name="data"></param>
         /// <param name="mapModel"></param>
         /// <returns></returns>
-        private bool MapGridObjectAddImage(ImageButton data, MapModelLocation mapModel)
-        {
-            var name = GetDictionaryImageButtonName(mapModel);
+        //private bool MapGridObjectAddImage(ImageButton data, MapModelLocation mapModel)
+        //{
+        //    var name = GetDictionaryImageButtonName(mapModel);
 
-            // First check to see if it has data, if so update rather than add
-            if (MapLocationObject.ContainsKey(name))
-            {
-                // Update it
-                MapLocationObject[name] = data;
-                return true;
-            }
+        //    // First check to see if it has data, if so update rather than add
+        //    if (MapLocationObject.ContainsKey(name))
+        //    {
+        //        // Update it
+        //        MapLocationObject[name] = data;
+        //        return true;
+        //    }
 
-            MapLocationObject.Add(name, data);
+        //    MapLocationObject.Add(name, data);
 
-            return true;
-        }
+        //    return true;
+        //}
 
         /// <summary>
         /// This adds the Stack into the Dictionary to keep track of
@@ -429,21 +429,21 @@ namespace Game.Views
         /// <param name="data"></param>
         /// <param name="mapModel"></param>
         /// <returns></returns>
-        private bool MapGridObjectAddStack(StackLayout data, MapModelLocation mapModel)
-        {
-            var name = GetDictionaryStackName(mapModel);
+        //private bool MapGridObjectAddStack(StackLayout data, MapModelLocation mapModel)
+        //{
+        //    var name = GetDictionaryStackName(mapModel);
 
-            // First check to see if it has data, if so update rather than add
-            if (MapLocationObject.ContainsKey(name))
-            {
-                // Update it
-                MapLocationObject[name] = data;
-                return true;
-            }
+        //    // First check to see if it has data, if so update rather than add
+        //    if (MapLocationObject.ContainsKey(name))
+        //    {
+        //        // Update it
+        //        MapLocationObject[name] = data;
+        //        return true;
+        //    }
 
-            MapLocationObject.Add(name, data);
-            return true;
-        }
+        //    MapLocationObject.Add(name, data);
+        //    return true;
+        //}
 
         /// <summary>
         /// Set the Image onto the map
@@ -458,39 +458,39 @@ namespace Game.Views
         /// </summary>
         /// <param name="mapLocationModel"></param>
         /// <returns></returns>
-        private ImageButton DetermineMapImageButton(MapModelLocation mapLocationModel)
-        {
-            var data = new ImageButton
-            {
-                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
-                            ? (Style)imageStyle
-                            : null,
-                Source = mapLocationModel.Player.ImageURI,
+        //private ImageButton DetermineMapImageButton(MapModelLocation mapLocationModel)
+        //{
+        //    var data = new ImageButton
+        //    {
+        //        Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
+        //                    ? (Style)imageStyle
+        //                    : null,
+        //        Source = mapLocationModel.Player.ImageURI,
 
-                // Store the guid to identify this button
-                AutomationId = mapLocationModel.Player.Guid
-            };
+        //        // Store the guid to identify this button
+        //        AutomationId = mapLocationModel.Player.Guid
+        //    };
 
-            switch (mapLocationModel.Player.PlayerType)
-            {
-                case PlayerTypeEnum.Character:
-                    data.Clicked += (sender, args) => SetSelectedCharacter(mapLocationModel);
-                    break;
-                case PlayerTypeEnum.Monster:
-                    data.Clicked += (sender, args) => SetSelectedMonster(mapLocationModel);
-                    break;
-                case PlayerTypeEnum.Unknown:
-                    break;
-                default:
-                    data.Clicked += (sender, args) => SetSelectedEmpty(mapLocationModel);
+        //    switch (mapLocationModel.Player.PlayerType)
+        //    {
+        //        case PlayerTypeEnum.Character:
+        //            data.Clicked += (sender, args) => SetSelectedCharacter(mapLocationModel);
+        //            break;
+        //        case PlayerTypeEnum.Monster:
+        //            data.Clicked += (sender, args) => SetSelectedMonster(mapLocationModel);
+        //            break;
+        //        case PlayerTypeEnum.Unknown:
+        //            break;
+        //        default:
+        //            data.Clicked += (sender, args) => SetSelectedEmpty(mapLocationModel);
 
-                    // Use the blank cell
-                    data.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.EmptySquare.ImageURI;
-                    break;
-            }
+        //            // Use the blank cell
+        //            data.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.EmptySquare.ImageURI;
+        //            break;
+        //    }
 
-            return data;
-        }
+        //    return data;
+        //}
 
         /// <summary>
         /// Set the Background color for the tile.
