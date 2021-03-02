@@ -31,6 +31,7 @@
                LineBreakMode="WordWrap"
                MaxLines="2"
                FontSize="Medium" />
+
     </StackLayout>
 
 </Grid>
