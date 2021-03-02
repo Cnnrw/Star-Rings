@@ -1,11 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 using Game.Models;
 using Game.Engine.EngineInterfaces;
-using Game.Engine.EngineModels;
-using Game.Engine.EngineBase;
 
 namespace Game.ViewModels
 {
@@ -72,7 +69,6 @@ namespace Game.ViewModels
         //// Have the Database Character List point to the Character View Model List
         public ObservableCollection<CharacterModel> DatabaseCharacterList { get; set; } = CharacterIndexViewModel.Instance.Dataset;
 
-     
         #region Constructor
 
         /// <summary>
