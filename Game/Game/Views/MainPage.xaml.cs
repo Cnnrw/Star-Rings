@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 using Game.Enums;
@@ -11,7 +10,6 @@ namespace Game.Views
     /// <summary>
     ///     Main Page
     /// </summary>
-    [DesignTimeVisible(false)]
     public partial class MainPage : FlyoutPage
     {
         // Collection of Navigation Pages
