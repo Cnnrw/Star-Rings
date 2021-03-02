@@ -42,13 +42,14 @@
                                HeightRequest="100"
                                Aspect="AspectFit"/>
 
-                        <StackLayout>
-                            <Label Text="Name"
-                                   Style="{StaticResource LabelStyle}"/>
-                            <Label Text="Level"
-                                   Style="{StaticResource LabelStyle}"/>
-                            <Label Text="HP"
-                                   Style="{StaticResource LabelStyle}"/>
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label Text="Grog"
+                                       Style="{StaticResource MessageStyle}"
+                                       TextColor="White"/>
+                            <Label Text="Level 2"
+                                       Style="{StaticResource LabelStyle}"/>
+                            <Label Text="HP: 4"
+                                       Style="{StaticResource LabelStyle}"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -101,11 +102,12 @@
                                    Opacity="1.0"/>
 
                             <StackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="Name"
+                                <Label Text="Obi-Wan"
+                                       Style="{StaticResource MessageStyle}"
+                                       TextColor="White"/>
+                                <Label Text="Level 4"
                                        Style="{StaticResource LabelStyle}"/>
-                                <Label Text="Level"
-                                       Style="{StaticResource LabelStyle}"/>
-                                <Label Text="HP"
+                                <Label Text="HP: 12"
                                        Style="{StaticResource LabelStyle}"/>
                             </StackLayout>
 
