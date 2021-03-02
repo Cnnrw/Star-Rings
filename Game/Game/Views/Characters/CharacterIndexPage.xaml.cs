@@ -1,6 +1,7 @@
 using System;
 
 using Game.Models;
+using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -10,7 +11,7 @@ namespace Game.Views
   /// <summary>
   ///     Character Index Page
   /// </summary>
-  public partial class CharacterIndexPage : ContentPage
+  public partial class CharacterIndexPage : ModalPage
   {
     private readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
 
@@ -35,7 +36,7 @@ namespace Game.Views
     /// <param name="args"></param>
     public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
     {
-      CharacterModel data = (CharacterModel)args.SelectedItem;
+      var data = (CharacterModel)args.SelectedItem;
       if (data == null)
       {
         return;
