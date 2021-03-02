@@ -9,34 +9,31 @@ using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
-    /// The Main Game Page
+    ///     The Main Game Page
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter",
-        Justification = "<Pending>")]
     public partial class BattlePage : ContentPage
     {
 
         // Wait time before proceeding
-        private const int WaitTime = 1500;
+        const int WaitTime = 1500;
         // HTML Formatting for message output box
-        private readonly HtmlWebViewSource htmlSource = new HtmlWebViewSource();
+        readonly HtmlWebViewSource _htmlSource = new HtmlWebViewSource();
 
         // Hold the Map Objects, for easy access to update them
-        public readonly Dictionary<string, object> MapLocationObject = new Dictionary<string, object>();
-
+        readonly Dictionary<string, object> _mapLocationObject = new Dictionary<string, object>();
 
         // Empty Constructor for UTs
-        private readonly bool UnitTestSetting;
-        protected BattlePage(bool unitTest) => UnitTestSetting = unitTest;
+        readonly bool _unitTestSetting;
+
+        protected BattlePage(bool unitTest) =>
+            _unitTestSetting = unitTest;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public BattlePage()
         {
@@ -68,82 +65,65 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Dray the Player Boxes
+        ///     Dray the Player Boxes
         /// </summary>
         public void DrawPlayerBoxes()
         {
             // Clear the character list box
             var Characters = CharacterListBox.Children.ToList();
-            foreach (var data in Characters)
-            {
-                CharacterListBox.Children.Remove(data);
-            }
+            foreach (var data in Characters) CharacterListBox.Children.Remove(data);
 
             // Draw the Characters
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
                                                       .Where(m => m.PlayerType == PlayerTypeEnum.Character).ToList())
-            {
                 CharacterListBox.Children.Add(PlayerInfoDisplayBox(data));
-            }
 
-            var Monsters = MonsterListBox.Children.ToList();
-            foreach (var data in Monsters)
-            {
-                MonsterListBox.Children.Remove(data);
-            }
+            var monsters = MonsterListBox.Children.ToList();
+            foreach (var data in monsters) MonsterListBox.Children.Remove(data);
 
             // Draw the Monsters
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
                                                       .Where(m => m.PlayerType == PlayerTypeEnum.Monster).ToList())
-            {
                 MonsterListBox.Children.Add(PlayerInfoDisplayBox(data));
-            }
 
             // Add one blank PlayerInfoDisplayBox to hold space in case the character list is empty
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Count() == 0)
-            {
                 CharacterListBox.Children.Add(PlayerInfoDisplayBox(null));
-            }
 
             // Add one blank PlayerInfoDisplayBox to hold space in case the monster list is empty
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Count() == 0)
-            {
                 MonsterListBox.Children.Add(PlayerInfoDisplayBox(null));
-            }
         }
 
         /// <summary>
-        /// Put the Player into a Display Box
+        ///     Put the Player into a Display Box
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public StackLayout PlayerInfoDisplayBox(PlayerInfoModel data)
         {
-            if (data == null)
-            {
-                data = new PlayerInfoModel {ImageURI = ""};
-            }
+            data ??= new PlayerInfoModel {ImageURI = ""};
 
             // Hookup the image
-            var PlayerImage = new Image
+            var playerImage = new Image
             {
                 Source = data.ImageURI,
-                Style = Application.Current.Resources.TryGetValue("PlayerBattleMediumStyle", out object imageStyle)
+                Style = Application.Current.Resources.TryGetValue("PlayerBattleMediumStyle", out var imageStyle)
                             ? (Style)imageStyle
                             : null
             };
 
             // Put the Image Button and Text inside a layout
-            var PlayerStack = new StackLayout
+            var playerStack = new StackLayout
             {
                 //Style = (Style)Application.Current.Resources["PlayerBattleDisplayBox"],
-                Style = Application.Current.Resources.TryGetValue("PlayerBattleDisplayBox", out object stackStyle)
+                Style = Application.Current.Resources.TryGetValue("PlayerBattleDisplayBox", out var stackStyle)
                             ? (Style)stackStyle
                             : null,
-                Children = {PlayerImage,},
+                Children = {playerImage}
             };
 
-            return PlayerStack;
+            return playerStack;
         }
 
         protected override void OnAppearing()
@@ -154,13 +134,10 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///
-        /// Hide the differnt button states
-        ///
-        /// Hide the message display box
-        ///
+        ///     Hide the different button states
+        ///     Hide the message display box
         /// </summary>
-        public void HideUIElements()
+        public void HideUiElements()
         {
             NextRoundButton.IsVisible = false;
             StartBattleButton.IsVisible = false;
@@ -169,17 +146,14 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Show the proper Battle Mode
+        ///     Show the proper Battle Mode
         /// </summary>
         public void ShowBattleMode()
         {
             // If running in UT mode,
-            if (UnitTestSetting)
-            {
-                return;
-            }
+            if (_unitTestSetting) return;
 
-            HideUIElements();
+            HideUiElements();
 
             ClearMessages();
 
@@ -191,13 +165,13 @@ namespace Game.Views
 
             ShowBattleModeDisplay();
 
-            ShowBattleModeUIElements();
+            ShowBattleModeUiElements();
         }
 
         /// <summary>
-        /// Control the UI Elements to display
+        ///     Control the UI Elements to display
         /// </summary>
-        public void ShowBattleModeUIElements()
+        public void ShowBattleModeUiElements()
         {
             switch (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum)
             {
@@ -236,7 +210,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Control the Map Mode or Simple
+        ///     Control the Map Mode or Simple
         /// </summary>
         public void ShowBattleModeDisplay()
         {
@@ -248,20 +222,14 @@ namespace Game.Views
                     //GamePlayersTopDisplay.IsVisible = false;
                     //BattleMapDisplay.IsVisible = true;
                     break;
-
-                default:
-                    //GamePlayersTopDisplay.IsVisible = true;
-                    //BattleMapDisplay.IsVisible = false;
-                    break;
             }
         }
 
         #region BattleMapMode
 
         /// <summary>
-        /// Create the Initial Map Grid
-        ///
-        /// All lcoations are empty
+        ///     Create the Initial Map Grid
+        ///     All locations are empty
         /// </summary>
         /// <returns></returns>
         public bool InitializeMapGrid()
@@ -271,12 +239,12 @@ namespace Game.Views
             return true;
         }
 
-        /// <summary>
-        /// Walk the current grid
-        /// check each cell to see if it matches the engine map
-        /// Update only those that need change
-        /// </summary>
-        /// <returns></returns>
+        // /// <summary>
+        // /// Walk the current grid
+        // /// check each cell to see if it matches the engine map
+        // /// Update only those that need change
+        // /// </summary>
+        // /// <returns></returns>
         //public bool UpdateMapGrid()
         //{
         //    foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation)
@@ -323,46 +291,48 @@ namespace Game.Views
         //}
 
         /// <summary>
-        /// Convert the Stack to a name for the dictionary to lookup
+        ///     Convert the Stack to a name for the dictionary to lookup
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private static string GetDictionaryFrameName(MapModelLocation data) => $"MapR{data.Row}C{data.Column}Frame";
+        static string GetDictionaryFrameName(MapModelLocation data) =>
+            $"MapR{data.Row}C{data.Column}Frame";
 
         /// <summary>
-        /// Convert the Stack to a name for the dictionary to lookup
+        ///     Convert the Stack to a name for the dictionary to lookup
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private static string GetDictionaryStackName(MapModelLocation data) => $"MapR{data.Row}C{data.Column}Stack";
+        static string GetDictionaryStackName(MapModelLocation data) =>
+            $"MapR{data.Row}C{data.Column}Stack";
 
         /// <summary>
-        /// Covert the player map location to a name for the dictionary to lookup
+        ///     Covert the player map location to a name for the dictionary to lookup
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private static string GetDictionaryImageButtonName(MapModelLocation data) =>
+        static string GetDictionaryImageButtonName(MapModelLocation data) =>
             // Look up the Frame in the Dictionary
             $"MapR{data.Row}C{data.Column}ImageButton";
 
         /// <summary>
-        /// Get the Frame from the Dictionary
+        ///     Get the Frame from the Dictionary
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        private object GetMapGridObject(string name)
+        object GetMapGridObject(string name)
         {
-            MapLocationObject.TryGetValue(name, out object data);
+            _mapLocationObject.TryGetValue(name, out var data);
             return data;
         }
 
-        /// <summary>
-        /// Make the Game Map Frame
-        /// Place the Character or Monster on the frame
-        /// If empty, place Empty
-        /// </summary>
-        /// <param name="mapLocationModel"></param>
-        /// <returns></returns>
+        // /// <summary>
+        // /// Make the Game Map Frame
+        // /// Place the Character or Monster on the frame
+        // /// If empty, place Empty
+        // /// </summary>
+        // /// <param name="mapLocationModel"></param>
+        // /// <returns></returns>
         //public Frame MakeMapGridBox(MapModelLocation mapLocationModel)
         //{
         //    if (mapLocationModel.Player == null)
@@ -400,12 +370,12 @@ namespace Game.Views
         //    return MapFrame;
         //}
 
-        /// <summary>
-        /// This add the ImageButton to the stack to kep track of
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="mapModel"></param>
-        /// <returns></returns>
+        // /// <summary>
+        // /// This add the ImageButton to the stack to kep track of
+        // /// </summary>
+        // /// <param name="data"></param>
+        // /// <param name="mapModel"></param>
+        // /// <returns></returns>
         //private bool MapGridObjectAddImage(ImageButton data, MapModelLocation mapModel)
         //{
         //    var name = GetDictionaryImageButtonName(mapModel);
@@ -423,12 +393,12 @@ namespace Game.Views
         //    return true;
         //}
 
-        /// <summary>
-        /// This adds the Stack into the Dictionary to keep track of
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="mapModel"></param>
-        /// <returns></returns>
+        // /// <summary>
+        // /// This adds the Stack into the Dictionary to keep track of
+        // /// </summary>
+        // /// <param name="data"></param>
+        // /// <param name="mapModel"></param>
+        // /// <returns></returns>
         //private bool MapGridObjectAddStack(StackLayout data, MapModelLocation mapModel)
         //{
         //    var name = GetDictionaryStackName(mapModel);
@@ -445,19 +415,19 @@ namespace Game.Views
         //    return true;
         //}
 
-        /// <summary>
-        /// Set the Image onto the map
-        /// The Image represents the player
-        ///
-        /// So a charcter is the character Image for that character
-        ///
-        /// The Automation ID equals the guid for the player
-        /// This makes it easier to identify when checking the map to update thigns
-        ///
-        /// The button action is set per the type, so Characters events are differnt than monster events
-        /// </summary>
-        /// <param name="mapLocationModel"></param>
-        /// <returns></returns>
+        // /// <summary>
+        // /// Set the Image onto the map
+        // /// The Image represents the player
+        // ///
+        // /// So a charcter is the character Image for that character
+        // ///
+        // /// The Automation ID equals the guid for the player
+        // /// This makes it easier to identify when checking the map to update thigns
+        // ///
+        // /// The button action is set per the type, so Characters events are differnt than monster events
+        // /// </summary>
+        // /// <param name="mapLocationModel"></param>
+        // /// <returns></returns>
         //private ImageButton DetermineMapImageButton(MapModelLocation mapLocationModel)
         //{
         //    var data = new ImageButton
@@ -493,31 +463,31 @@ namespace Game.Views
         //}
 
         /// <summary>
-        /// Set the Background color for the tile.
-        /// Monsters and Characters have different colors
-        /// Empty cells are transparent
+        ///     Set the Background color for the tile.
+        ///     Monsters and Characters have different colors
+        ///     Empty cells are transparent
         /// </summary>
-        /// <param name="MapModel"></param>
+        /// <param name="mapModel"></param>
         /// <returns></returns>
-        private static Color DetermineMapBackgroundColor(MapModelLocation MapModel)
+        static Color DetermineMapBackgroundColor(MapModelLocation mapModel)
         {
-            string BattleMapBackgroundColor = null;
-            switch (MapModel.Player.PlayerType)
+            string battleMapBackgroundColor = null;
+            switch (mapModel.Player.PlayerType)
             {
                 case PlayerTypeEnum.Character:
-                    BattleMapBackgroundColor = "BattleMapCharacterColor";
+                    battleMapBackgroundColor = "BattleMapCharacterColor";
                     break;
                 case PlayerTypeEnum.Monster:
-                    BattleMapBackgroundColor = "BattleMapMonsterColor";
+                    battleMapBackgroundColor = "BattleMapMonsterColor";
                     break;
                 case PlayerTypeEnum.Unknown:
                     break;
                 default:
-                    BattleMapBackgroundColor = "BattleMapTransparentColor";
+                    battleMapBackgroundColor = "BattleMapTransparentColor";
                     break;
             }
 
-            return Application.Current.Resources.TryGetValue(BattleMapBackgroundColor ?? string.Empty, out object val)
+            return Application.Current.Resources.TryGetValue(battleMapBackgroundColor ?? string.Empty, out var val)
                        ? (Color)val
                        : Color.Transparent;
         }
@@ -525,11 +495,12 @@ namespace Game.Views
         #region MapEvents
 
         /// <summary>
-        /// Event when an empty location is clicked on
+        ///     Event when an empty location is clicked on
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool SetSelectedEmpty(MapModelLocation data) =>
+        public bool SetSelectedEmpty(MapModelLocation data)
+        {
             // TODO: Info
             /*
              * This gets called when the characters is clicked on
@@ -537,10 +508,11 @@ namespace Game.Views
              *
              * For Mike's simple battle grammar there is no selection of action so I just return true
              */
-            true;
+            return true;
+        }
 
         /// <summary>
-        /// Event when a Monster is clicked on
+        ///     Event when a Monster is clicked on
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -560,11 +532,12 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Event when a Character is clicked on
+        ///     Event when a Character is clicked on
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool SetSelectedCharacter(MapModelLocation data) =>
+        public bool SetSelectedCharacter(MapModelLocation data)
+        {
             // TODO: Info
             /*
              * This gets called when the characters is clicked on
@@ -572,40 +545,39 @@ namespace Game.Views
              *
              * For Mike's simple battle grammar there is no selection of action so I just return true
              */
-            true;
+            return true;
+        }
 
         #endregion MapEvents
 
         #endregion BattleMapMode
 
-        #region BasicBattleMode        
+        #region BasicBattleMode
 
         /// <summary>
-        /// Attack Action
+        ///     Attack Action
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void AttackButton_Clicked(object sender, EventArgs e) => NextAttackExample();
+        public void AttackButton_Clicked(object sender, EventArgs e)
+        {
+            NextAttackExample();
+        }
 
         /// <summary>
-        /// Settings Page
+        ///     Settings Page
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Setttings_Clicked(object sender, EventArgs e) => await ShowBattleSettingsPage();
+        public async void Settings_Clicked(object sender, EventArgs e) => await ShowBattleSettingsPage();
 
         /// <summary>
-        /// Next Attack Example
-        ///
-        /// This code example follows the rule of
-        ///
-        /// Auto Select Attacker
-        /// Auto Select Defender
-        ///
-        /// Do the Attack and show the result
-        ///
-        /// So the pattern is Click Next, Next, Next until game is over
-        ///
+        ///     Next Attack Example
+        ///     This code example follows the rule of
+        ///     Auto Select Attacker
+        ///     Auto Select Defender
+        ///     Do the Attack and show the result
+        ///     So the pattern is Click Next, Next, Next until game is over
         /// </summary>
         public void NextAttackExample()
         {
@@ -615,7 +587,7 @@ namespace Game.Views
             SetAttackerAndDefender();
 
             // Hold the current state
-            var RoundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
+            var roundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
 
             // Output the Message of what happened.
             GameMessage();
@@ -623,7 +595,7 @@ namespace Game.Views
             // Show the outcome on the Board
             //DrawGameAttackerDefenderBoard();
 
-            switch (RoundCondition)
+            switch (roundCondition)
             {
                 case RoundEnum.NewRound:
                     BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
@@ -660,12 +632,12 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Decide The Turn and who to Attack
+        ///     Decide The Turn and who to Attack
         /// </summary>
         public void SetAttackerAndDefender()
         {
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(BattleEngineViewModel.Instance.Engine.Round
-                .GetNextPlayerTurn());
+                                                                               .GetNextPlayerTurn());
 
             switch (BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PlayerType)
             {
@@ -691,16 +663,11 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Game is over
-        ///
-        /// Show Buttons
-        ///
-        /// Clean up the Engine
-        ///
-        /// Show the Score
-        ///
-        /// Clear the Board
-        ///
+        ///     Game is over
+        ///     Show Buttons
+        ///     Clean up the Engine
+        ///     Show the Score
+        ///     Clear the Board
         /// </summary>
         public void GameOver()
         {
@@ -716,13 +683,13 @@ namespace Game.Views
         #region MessageHandelers
 
         /// <summary>
-        /// Builds up the output message
+        ///     Builds up the output message
         /// </summary>
         public void GameMessage()
         {
             // Output The Message that happened.
             //BattleMessages.Text =
-                //$"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage} \n{BattleMessages.Text}";
+            //$"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage} \n{BattleMessages.Text}";
 
             //Debug.WriteLine(BattleMessages.Text);
 
@@ -730,7 +697,7 @@ namespace Game.Views
                                                            .LevelUpMessage))
             {
                 //BattleMessages.Text =
-                    //$"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.LevelUpMessage} \n{BattleMessages.Text}";
+                //$"{BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.LevelUpMessage} \n{BattleMessages.Text}";
             }
 
             //htmlSource.Html = BattleEngineViewModel.Instance.Engine.BattleMessagesModel.GetHTMLFormattedTurnMessage();
@@ -738,13 +705,13 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///  Clears the messages on the UX
+        ///     Clears the messages on the UX
         /// </summary>
         public void ClearMessages()
         {
             //BattleMessages.Text = "";
-            htmlSource.Html = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel
-                                                   .GetHtmlBlankMessage();
+            _htmlSource.Html = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel
+                                                    .GetHtmlBlankMessage();
             //HtmlBox.Source = htmlSource;
         }
 
@@ -752,16 +719,19 @@ namespace Game.Views
         #region PageHandelers
 
         /// <summary>
-        /// Battle Over, so Exit Button
-        /// Need to show this for the user to click on.
-        /// The Quit does a prompt, exit just exits
+        ///     Battle Over, so Exit Button
+        ///     Need to show this for the user to click on.
+        ///     The Quit does a prompt, exit just exits
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ExitButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
 
         /// <summary>
-        /// The Next Round Button
+        ///     The Next Round Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -773,7 +743,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// The Start Button
+        ///     The Start Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -786,7 +756,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Show the Game Over Screen
+        ///     Show the Game Over Screen
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -797,10 +767,8 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Show the Round Over page
-        ///
-        /// Round Over is where characters get items
-        ///
+        ///     Show the Round Over page
+        ///     Round Over is where characters get items
         /// </summary>
         public async void ShowModalRoundOverPage()
         {
@@ -809,7 +777,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Show Settings
+        ///     Show Settings
         /// </summary>
         public async Task ShowBattleSettingsPage()
         {
@@ -819,8 +787,8 @@ namespace Game.Views
 
         public string SetBackgroundImage()
         {
-            BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.Round.RoundLocation;
-            string imageUri = BattleLocationEnumExtensions.ToImageUri(roundLocation);
+            var roundLocation = BattleEngineViewModel.Instance.Engine.Round.RoundLocation;
+            var imageUri = roundLocation.ToImageUri();
             ContentPageElement.BackgroundImageSource = imageUri;
 
             return imageUri;
