@@ -1,24 +1,24 @@
 ﻿using System;
+using System.Linq;
 
 using Game.Models;
+using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     /// Index Page
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemIndexPage : ContentPage
+    public partial class ItemIndexPage : ModalPage
     {
         // The view model, used for data binding
-        private readonly ItemIndexViewModel _viewModel = ItemIndexViewModel.Instance;
+        readonly ItemIndexViewModel _viewModel = ItemIndexViewModel.Instance;
 
         // Empty Constructor for UTs
-        public ItemIndexPage(bool UnitTest) { }
+        internal ItemIndexPage(bool unitTest) { }
 
         /// <summary>
         /// Constructor for Index Page
@@ -37,19 +37,16 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        public async void OnItemSelected(object sender, SelectionChangedEventArgs args)
         {
-            ItemModel data = args.SelectedItem as ItemModel;
-            if (data == null)
-            {
+            if (!(args.CurrentSelection.FirstOrDefault() is ItemModel data))
                 return;
-            }
 
             // Open the Read Page
             await Navigation.PushAsync(new ItemReadPage(new GenericViewModel<ItemModel>(data)));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            ItemList.SelectedItem = null;
         }
 
         /// <summary>
