@@ -12,10 +12,39 @@
                      Padding="40" >
                 <Label Text="Pick Items Page" Style="{StaticResource HeaderStyle}"/>
 
-                <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
+                <StackLayout>
+                    <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
 
-                <Button Clicked="DistributeButton_Clicked" Text="Distribute"></Button>
+                    <ListView 
+                                x:Name="ItemDroppedListView" 
+                                ItemsSource="{Binding ItemsDroppedList}"
+                                ItemSelected="OnItemInPoolSelected"
+                                HasUnevenRows="true"
+                                Margin="5,0,5,0"
+                                RowHeight="80"
+                                HeightRequest="100">
 
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                   Source="{Binding ImageURI}"
+                                                   Style="{StaticResource ImageMediumStyle}"
+                                                   Aspect="AspectFit"/>
+
+                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+                                                   Text="{Binding Name}" 
+                                                   Style="{StaticResource ListStyle}"
+                                                   FontAttributes="Bold"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button Clicked="DistributeButton_Clicked" Text="Distribute"></Button>
+                </StackLayout>
 
                 <StackLayout HorizontalOptions="Start">
                     <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
