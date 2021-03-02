@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
+<page_template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
-                    xmlns:template="clr-namespace:Game.Templates.Pages;assembly=Game"
+                    xmlns:template="clr-namespace:Game.Templates;assembly=Game"
+                    xmlns:page_template="clr-namespace:Game.Templates.Pages;assembly=Game"
                     mc:Ignorable="d"
                     x:Class="Game.Views.CharacterIndexPage"
                     Title="{Binding Title}">
@@ -18,52 +19,27 @@
         <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" IconImageSource="icon_add.png" />
     </ContentPage.ToolbarItems>
 
+    <RefreshView Command="{Binding LoadDatasetCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 Padding="20, 0">
+        <CollectionView x:Name="CharacterList"
+                        ItemsSource="{Binding Dataset}"
+                        ItemSizingStrategy="MeasureFirstItem"
+                        SelectionMode="Single"
+                        SelectionChanged="OnCharacterSelected"
+                        VerticalOptions="FillAndExpand"
+                        Margin="10,35">
 
-    <FlexLayout JustifyContent="Center"
-                Padding="40">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="1"
+                                 VerticalItemSpacing="25"/>
+            </CollectionView.ItemsLayout>
 
-        <ListView x:Name="CharactersListView"
-                  ItemsSource="{Binding Dataset}"
-                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                  RefreshCommand="{Binding LoadDatasetCommand}"
-                  CachingStrategy="RecycleElement"
-                  ItemSelected="OnItemSelected"
-                  HasUnevenRows="true"
-                  RowHeight="80">
+            <CollectionView.ItemTemplate>
+                <template:ListTemplateSelector />
+            </CollectionView.ItemTemplate>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid ColumnSpacing="5"
-                              RowSpacing="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Image Grid.Column="0" Grid.Row="0"
-                                   Source="{Binding IconImageURI}"
-                                   Style="{StaticResource ImageMediumStyle}"
-                                   VerticalOptions="CenterAndExpand"
-                                   Aspect="AspectFit" />
-
-                            <StackLayout Grid.Column="1" Grid.Row="0"
-                                         Orientation="Vertical">
-                                <Label Text="{Binding Name}"
-                                       Style="{StaticResource ListStyle}" />
-
-                                <Label Text="{Binding Level, StringFormat='Level {0}'}"
-                                       Style="{StaticResource ListStyle}" />
-                            </StackLayout>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-    </FlexLayout>
-</template:ModalPage>
+        </CollectionView>
+    </RefreshView>
+</page_template:ModalPage>
