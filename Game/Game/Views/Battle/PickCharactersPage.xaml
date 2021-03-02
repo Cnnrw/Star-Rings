@@ -1,123 +1,108 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Name="BrowseItemsPage"
-             x:Class="Game.Views.PickCharactersPage"
-             Title="{Binding Title}"
-             BackgroundImageSource="page_background.png">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <ContentPage.Content>
-      
-            <StackLayout Style="{StaticResource OuterBoxStack}"
-                         Padding="30">
+<page_template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:m="clr-namespace:Game.Models;assembly=Game"
+                         xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                         xmlns:page_template="clr-namespace:Game.Templates.Pages;assembly=Game"
+                         mc:Ignorable="d"
+                         x:Class="Game.Views.PickCharactersPage">
 
-                <Label Text="Choose Your Party" Style="{StaticResource CenterMessageLargeStyle}"/>
+    <ContentPage.BindingContext>
+        <vm:BattleEngineViewModel />
+    </ContentPage.BindingContext>
 
-            <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand"
-                             HeightRequest="500">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="CharacterTemplate"
+                          x:DataType="m:CharacterModel">
+                <Grid ColumnDefinitions="*, 3*"
+                      RowDefinitions="4, *, 1">
 
-                <StackLayout HorizontalOptions="Start">
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Style"
+                                    Value="{StaticResource ListStyle}" />
+                        </Style>
+                    </Grid.Resources>
 
-                    <Label Text="Characters" Style="{StaticResource CenterMessageLargeStyle}"/>
+                    <Image Grid.RowSpan="3"
+                           Source="{Binding IconImageURI}"
+                           Style="{StaticResource ImageMediumStyle}"
+                           VerticalOptions="Center" />
 
-                    <ListView 
-                                x:Name="CharactersListView" 
-                                ItemsSource="{Binding DatabaseCharacterList}"
-                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                                RefreshCommand="{Binding LoadItemsCommand}"
-                                CachingStrategy="RecycleElement"
-                                ItemSelected="OnDatabaseCharacterItemSelected"
-                                HasUnevenRows="true"
-                                Margin="5,0,5,0"
-                                RowHeight="80">
+                    <StackLayout Grid.Column="1" Grid.Row="1">
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                   Source="{Binding ImageURI}"
-                                                   Style="{StaticResource ImageMediumStyle}"
-                                                   Aspect="AspectFit"/>
+                        <Label Text="{Binding Name}"
+                               FontFamily="8bit_bold"
+                               TextColor="{StaticResource PrimaryTextColor}"
+                               LineBreakMode="TailTruncation" />
 
-                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
-                                                   Text="{Binding Name}" 
-                                                   Style="{StaticResource ListStyle}"
-                                                   FontAttributes="Bold"/>
+                        <Label Text="{Binding Level, StringFormat='Level: {0:G}'}" />
 
-                                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
-                                                   Text="{Binding Path=Level, StringFormat='Level {0:G}'}" 
-                                                   Style="{StaticResource ListStyle}"/>
+                        <Label Text="{Binding Path=MaxHealth, StringFormat= 'HP: {0:G}'}" />
 
-                                        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
-                                                   Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
-                                                   Style="{StaticResource ListStyle}"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-                <StackLayout HorizontalOptions="End">
-                    <Label Text="Party" Style="{StaticResource CenterMessageStyle}"/>
+    <Grid ColumnDefinitions="*, *"
+          RowDefinitions="35,25,4*,*"
+          Padding="15, 0">
 
-                    <ListView 
-                                x:Name="PartyListView" 
-                                ItemsSource="{Binding PartyCharacterList}"
-                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                                RefreshCommand="{Binding LoadItemsCommand}"
-                                CachingStrategy="RecycleElement"
-                                ItemSelected="OnPartyCharacterItemSelected"
-                                HasUnevenRows="true"
-                                Margin="5,0,5,0"
-                                RowHeight="80">
+        <Label Grid.ColumnSpan="2"
+               Text="Choose Your Party"
+               Style="{StaticResource CenterMessageLargeStyle}" />
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                    Source="{Binding ImageURI}"
-                                                    Style="{StaticResource ImageMediumStyle}"
-                                                    Aspect="AspectFit"/>
+        <!-- Selectable Characters -->
+        <Label Grid.Row="1"
+               Text="Characters"
+               Style="{StaticResource CenterMessageLargeStyle}" />
 
-                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
-                                                   Text="{Binding Name}" 
-                                                   Style="{StaticResource ListStyle}"
-                                                   FontAttributes="Bold"/>
+        <CollectionView Grid.Column="0"
+                        Grid.Row="2"
+                        x:Name="CharacterList"
+                        ItemsSource="{Binding DatabaseCharacterList}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnCharacterSelected"
+                        ItemSizingStrategy="MeasureFirstItem"
+                        VerticalOptions="FillAndExpand"
+                        ItemTemplate="{StaticResource CharacterTemplate}"/>
 
-                                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
-                                                   Text="{Binding Path=Level, StringFormat='Level {0:G}'}" 
-                                                   Style="{StaticResource ListStyle}"/>
+        <!-- Selected Characters -->
+        <Label Grid.Column="1" Grid.Row="1"
+               Text="Party"
+               Style="{StaticResource CenterMessageStyle}" />
 
-                                        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
-                                                    Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
-                                                    Style="{StaticResource ListStyle}"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-            </StackLayout>
+        <CollectionView Grid.Column="1"
+                        Grid.Row="2"
+                        x:Name="PartyList"
+                        ItemsSource="{Binding PartyCharacterList}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnPartyCharacterSelected"
+                        ItemSizingStrategy="MeasureFirstItem"
+                        VerticalOptions="FillAndExpand"
+                        ItemTemplate="{StaticResource CharacterTemplate}" />
+                        <!-- SelectionChanged="OnPartyCharacterSelected" -->
 
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Label Text="Count" Style="{StaticResource CenterMessageStyle}"/>
+        <!-- Selected Character count -->
+        <StackLayout Grid.ColumnSpan="2" Grid.Row="3"
+                     HorizontalOptions="CenterAndExpand">
 
-                <Label Style="{StaticResource CenterMessageStyle}" 
-                            x:Name="PartyCountLabel"
-                            Text="0"/>
+            <Label Text="Count"
+                   Style="{StaticResource CenterMessageStyle}" />
 
-                <Button 
-                            x:Name="BeginBattleButton"
-                            Clicked="BattleButton_Clicked" 
-                            Text="Begin"
-                            IsEnabled="False"/>
-            </StackLayout>
+            <Label x:Name="PartyCountLabel"
+                   Style="{StaticResource CenterMessageStyle}" />
+
+            <Button x:Name="BeginBattleButton"
+                    Text="Begin"
+                    Clicked="BattleButton_Clicked"
+                    IsEnabled="False" />
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </Grid>
+</page_template:ModalPage>

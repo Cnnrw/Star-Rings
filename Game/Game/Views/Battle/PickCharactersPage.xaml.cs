@@ -1,18 +1,17 @@
 using System;
-using System.ComponentModel;
+using System.Linq;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using Game.Models;
 using Game.ViewModels;
-using System.Linq;
+using Game.Templates.Pages;
 
 namespace Game.Views
 {
     /// <summary>
     /// Selecting Characters for the Game
-    /// 
+    ///
     /// TODO: Team
     /// Mike's game allows duplicate characters in a party (6 Mikes can all fight)
     /// If you do not allow duplicates, change the code below
@@ -21,29 +20,29 @@ namespace Game.Views
     /// Have select from the party list remove it from the party list and add it to the database list
     ///
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0019:Use pattern matching", Justification = "<Pending>")]
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PickCharactersPage : ContentPage
+    public partial class PickCharactersPage : ModalPage
     {
+        internal readonly BattleEngineViewModel ViewModel = BattleEngineViewModel.Instance;
 
-        // Empty Constructor for UTs
-        public PickCharactersPage(bool UnitTest) { }
+        /// <summary>
+        /// Empty Constructor for UTs
+        /// </summary>
+        /// <param name="unitTest"></param>
+        internal PickCharactersPage(bool unitTest) { }
 
         /// <summary>
         /// Constructor for Index Page
-        /// 
+        ///
         /// Get the CharacterIndexView Model
         /// </summary>
         public PickCharactersPage()
         {
             InitializeComponent();
 
-            BindingContext = BattleEngineViewModel.Instance;
-            //BindingContext = BattleEngineViewModel.Instance;
+            BindingContext = ViewModel;
 
             // Clear the Database List and the Party List to start
-            BattleEngineViewModel.Instance.PartyCharacterList.Clear();
+            ViewModel.PartyCharacterList.Clear();
 
             UpdateNextButtonState();
         }
@@ -53,22 +52,17 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public void OnDatabaseCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
+        internal void OnCharacterSelected(object sender, SelectionChangedEventArgs args)
         {
-            CharacterModel data = args.SelectedItem as CharacterModel;
-            if (data == null)
-            {
+            if (!(args.CurrentSelection.FirstOrDefault() is CharacterModel data))
                 return;
-            }
 
             // Manually deselect Character.
-            CharactersListView.SelectedItem = null;
+            CharacterList.SelectedItem = null;
 
             // Don't add more than the party max
-            if (BattleEngineViewModel.Instance.PartyCharacterList.Count() < BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters)
-            {
-                BattleEngineViewModel.Instance.PartyCharacterList.Add(data);
-            }
+            if (ViewModel.PartyCharacterList.Count() < ViewModel.Engine.EngineSettings.MaxNumberPartyCharacters)
+                ViewModel.PartyCharacterList.Add(data);
 
             UpdateNextButtonState();
         }
@@ -78,48 +72,36 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public void OnPartyCharacterItemSelected(object sender, SelectedItemChangedEventArgs args)
+        internal void OnPartyCharacterSelected(object sender, SelectionChangedEventArgs args)
         {
-            CharacterModel data = args.SelectedItem as CharacterModel;
-            if (data == null)
-            {
+            if (!(args.CurrentSelection.FirstOrDefault() is CharacterModel data))
                 return;
-            }
 
             // Manually deselect Character.
-            PartyListView.SelectedItem = null;
+            PartyList.SelectedItem = null;
 
             // Remove the character from the list
-            BattleEngineViewModel.Instance.PartyCharacterList.Remove(data);
+            ViewModel.PartyCharacterList.Remove(data);
 
             UpdateNextButtonState();
         }
 
         /// <summary>
         /// Next Button is based on the count
-        /// 
+        ///
         /// If no selected characters, disable
-        /// 
+        ///
         /// Show the Count of the party
-        /// 
         /// </summary>
         public void UpdateNextButtonState()
         {
-            // If no characters disable Next button
-            BeginBattleButton.IsEnabled = true;
-
-            var currentCount = BattleEngineViewModel.Instance.PartyCharacterList.Count();
-            if (currentCount == 0)
-            {
-              BeginBattleButton.IsEnabled = false;
-            }
-
-            PartyCountLabel.Text = currentCount.ToString();
+            BeginBattleButton.IsEnabled = (ViewModel.PartyCharacterList != null) && (ViewModel.PartyCharacterList.Any());
+            PartyCountLabel.Text = (ViewModel.PartyCharacterList ?? Enumerable.Empty<CharacterModel>()).Count().ToString();
         }
 
         /// <summary>
         /// Jump to the Battle
-        /// 
+        ///
         /// Its Modal because don't want user to come back...
         /// </summary>
         /// <param name="sender"></param>
@@ -128,7 +110,6 @@ namespace Game.Views
         {
             CreateEngineCharacterList();
 
-            //await Navigation.PushModalAsync(new NavigationPage(new BattlePage()));
             await Navigation.PushModalAsync(new NavigationPage(new BattlePage()));
             await Navigation.PopAsync();
         }
@@ -136,16 +117,16 @@ namespace Game.Views
         /// <summary>
         /// Clear out the old list and make the new list
         /// </summary>
-        public void CreateEngineCharacterList()
+        internal void CreateEngineCharacterList()
         {
-            // Clear the currett list
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+            // Clear the current list
+            ViewModel.Engine.EngineSettings.CharacterList.Clear();
 
             // Load the Characters into the Engine
-            foreach (var data in BattleEngineViewModel.Instance.PartyCharacterList)
+            foreach (var data in ViewModel.PartyCharacterList)
             {
                 data.CurrentHealth = data.GetMaxHealthTotal;
-                BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+                ViewModel.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
             }
         }
     }
