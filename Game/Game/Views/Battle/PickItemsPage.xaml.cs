@@ -17,6 +17,17 @@ namespace Game.Views
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Automatically distribute items amongst the character party
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void DistributeButton_Clicked(object sender, EventArgs e)
+        {
+            // TODO: implement distribution
+        }
+
         /// <summary>
         /// Quit the Battle
         /// 
