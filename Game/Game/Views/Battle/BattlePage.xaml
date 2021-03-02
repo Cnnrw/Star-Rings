@@ -58,6 +58,26 @@
                                 BackgroundColor="#40000000"/>
                 </StackLayout>
 
+                <StackLayout Style="{StaticResource HorizontalStack}"
+                             HorizontalOptions="CenterAndExpand">
+                    <!--
+                        <Button x:Name="AttackButton"
+                                Text="Next Attack"
+                                Clicked="AttackButton_Clicked"
+                                IsVisible="False"/>
+                        -->
+
+                    <Button x:Name="NextRoundButton"
+                                Text="Next Round"
+                                Clicked="NextRoundButton_Clicked"
+                                IsVisible="False"/>
+
+                    <Button x:Name="StartBattleButton"
+                                Text="Start Battle"
+                                Clicked="StartButton_Clicked"
+                                IsVisible="False"/>
+                </StackLayout>
+
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
                 <StackLayout x:Name="BattleBottomBox"
                              VerticalOptions="EndAndExpand"
@@ -103,25 +123,6 @@
                                         IsEnabled="False"/>
                             </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand">
-<!--
-                        <Button x:Name="AttackButton"
-                                Text="Next Attack"
-                                Clicked="AttackButton_Clicked"
-                                IsVisible="False"/>
-                        -->
-                        
-                        <Button x:Name="NextRoundButton"
-                                Text="Next Round"
-                                Clicked="NextRoundButton_Clicked"
-                                IsVisible="False"/>
-                        
-                        <Button x:Name="StartBattleButton"
-                                Text="Start Battle"
-                                Clicked="StartButton_Clicked"
-                                IsVisible="False"/>
                     </StackLayout>
 
                     <StackLayout Style="{StaticResource VerticalStack}"
