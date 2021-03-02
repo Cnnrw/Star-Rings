@@ -11,6 +11,12 @@
             <Label Text="Battle Home Page"
                Style="{StaticResource CenterMessageStyle}"/>
 
+            <Label Text="Navigate to 'New Round' and 'Battle' pages through the 'Pick Characters' page"
+                   Style="{StaticResource LabelStyle}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"/>
+
             <Button Text="AutoBattle"
                     Clicked="AutoBattle_Clicked"/>
 
