@@ -15,8 +15,7 @@ namespace UnitTests.Services
         [SetUp]
         public void Setup()
         {
-            //DatabaseService<ItemModel>.TestMode = true;
-            DatabaseService<ItemModel>.TestMode = true;
+            DatabaseService<ItemModel>._testMode = true;
             DataStore = DatabaseService<ItemModel>.Instance;
         }
 
@@ -45,7 +44,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Make a second instance
-            DatabaseService<ItemModel>.initialized = false;
+            DatabaseService<ItemModel>.Initialized = false;
 
             // Act
             var DataStore2 = new DatabaseService<ItemModel>();
