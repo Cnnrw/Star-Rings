@@ -12,11 +12,11 @@ namespace Game.Engine.EngineBase
     {
 
         // Track if the Battle is Running or Not
-        public bool BattleRunning = false;
+        internal bool BattleRunning;
         // The Round
-        public IRoundEngineInterface Round { get; set; } = null;
+        public IRoundEngineInterface Round { get; set; }
 
-        // Engine Sttings
+        // Engine Settings
         public EngineSettingsModel EngineSettings { get; } = EngineSettingsModel.Instance;
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Game.Engine.EngineBase
         /// <summary>
         /// Set the Battle State
         /// </summary>
-        public virtual bool SetBattleStateEnum(BattleStateEnum data)
+        public bool SetBattleStateEnum(BattleStateEnum data)
         {
             EngineSettings.BattleStateEnum = data;
 
