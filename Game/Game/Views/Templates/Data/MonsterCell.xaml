@@ -18,7 +18,8 @@
     <Image Grid.RowSpan="3"
            Source="{Binding IconImageURI}"
            Style="{StaticResource ImageMediumStyle}"
-           VerticalOptions="Center" />
+           VerticalOptions="Center"
+           Aspect="AspectFit"/>
 
     <StackLayout Grid.Column="1" Grid.Row="1">
 
