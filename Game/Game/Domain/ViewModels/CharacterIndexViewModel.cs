@@ -18,26 +18,26 @@ namespace Game.ViewModels
 
         // Make this a singleton so it only exist one time because it holds all
         // the character data records in memory
-        private static volatile CharacterIndexViewModel instance;
-        private static readonly object                  syncRoot = new object();
+        private static volatile CharacterIndexViewModel _instance;
+        private static readonly object                  SyncRoot = new object();
 
         public static CharacterIndexViewModel Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (SyncRoot)
                     {
-                        if (instance == null)
+                        if (_instance == null)
                         {
-                            instance = new CharacterIndexViewModel();
-                            instance.Initialize();
+                            _instance = new CharacterIndexViewModel();
+                            _instance.Initialize();
                         }
                     }
                 }
 
-                return instance;
+                return _instance;
             }
         }
 
@@ -63,7 +63,6 @@ namespace Game.ViewModels
             {
                 // Have the character update itself
                 data.Update(data);
-
                 await UpdateAsync(data);
             });
 
@@ -83,19 +82,6 @@ namespace Game.ViewModels
         }
 
         #endregion Constructor
-        #region SortDataSet
-
-        /// <summary>
-        /// The Sort Order for the CharacterModel
-        /// </summary>
-        /// <param name="dataset"></param>
-        /// <returns></returns>
-        public override List<CharacterModel> SortDataset(IEnumerable<CharacterModel> dataset) =>
-            dataset.OrderBy(a => a.Name)
-                   .ThenBy(a => a.Description)
-                   .ToList();
-
-        #endregion SortDataSet
         #region DataOperations_CRUDi
 
         /// <summary>
@@ -105,6 +91,16 @@ namespace Game.ViewModels
         public override IEnumerable<CharacterModel> GetDefaultData() => DefaultData.Characters;
 
         /// <summary>
+        ///     The Sort Order for the CharacterModel
+        /// </summary>
+        /// <param name="dataset"></param>
+        /// <returns></returns>
+        public override List<CharacterModel> SortDataset(IEnumerable<CharacterModel> dataset) =>
+            dataset.OrderBy(a => a.Name)
+                   .ThenBy(a => a.Description)
+                   .ToList();
+
+        /// <summary>
         ///     Returns the character passed in
         /// </summary>
         /// <param name="data"></param>
@@ -112,10 +108,7 @@ namespace Game.ViewModels
         public override CharacterModel CheckIfExists(CharacterModel data)
         {
             if (data == null)
-            {
-                // it's not a match, return false;
                 return null;
-            }
 
             // This will walk the Scores and find if there is one that is the same.
             // If so, it returns the Score...

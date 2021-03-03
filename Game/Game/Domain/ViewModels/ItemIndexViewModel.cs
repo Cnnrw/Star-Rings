@@ -15,13 +15,39 @@ namespace Game.ViewModels
     /// </summary>
     public class ItemIndexViewModel : BaseViewModel<ItemModel>
     {
+        #region Singleton
 
+        // Make this a singleton so it only exist one time because holds all
+        // the item data records in memory
+        private static volatile ItemIndexViewModel _instance;
+        private static readonly object             SyncRoot = new object();
+
+        public static ItemIndexViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (SyncRoot)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new ItemIndexViewModel();
+                            _instance.Initialize();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+        #endregion Singleton
         #region Constructor
 
         /// <summary>
-        /// Constructor
-        ///
-        /// The constructor subscribes message listeners for crudi operations
+        ///     Constructor
+        ///     The constructor subscribes message listeners for crudi operations
         /// </summary>
         public ItemIndexViewModel()
         {
@@ -36,7 +62,8 @@ namespace Game.ViewModels
             // Register the Update Message
             MessagingCenter.Subscribe<ItemUpdatePage, ItemModel>(this, "Update", async (obj, data) =>
             {
-                data.Update(data); // Have the item update itself
+                // Have the item update itself
+                data.Update(data);
                 await UpdateAsync(data);
             });
 
@@ -56,21 +83,48 @@ namespace Game.ViewModels
         }
 
         #endregion Constructor
-
-        #region SortDataSet
+        #region DataOperations_CRUDi
 
         /// <summary>
-        /// The Sort Order for the ItemModel
+        ///     Load the Default Data
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<ItemModel> GetDefaultData() => DefaultData.Items;
+
+        /// <summary>
+        ///     The Sort Order for the ItemModel
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
         public override List<ItemModel> SortDataset(IEnumerable<ItemModel> dataset) =>
-            dataset
-                .OrderBy(a => a.Name)
-                .ThenBy(a => a.Description)
-                .ToList();
+            dataset.OrderBy(a => a.Name)
+                   .ThenBy(a => a.Description)
+                   .ToList();
 
-        #endregion SortDataSet
+        /// <summary>
+        ///     Returns the item passed in
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public override ItemModel CheckIfExists(ItemModel data)
+        {
+            if (data == null)
+                return null;
+
+            // This will walk the items and find if there is one that is the same.
+            // If so, it returns the item...
+            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
+                                                     a.Description == data.Description &&
+                                                     a.Damage == data.Damage &&
+                                                     a.Attribute == data.Attribute &&
+                                                     a.Location == data.Location &&
+                                                     a.Range == data.Range &&
+                                                     a.Value == data.Value);
+
+            return myList; // use null propagation
+        }
+
+        #endregion DataOperations_CRUDi
 
         /// <summary>
         /// Takes an item string ID and looks it up and returns the item
@@ -145,75 +199,5 @@ namespace Game.ViewModels
 
             return data;
         }
-
-        #region Singleton
-
-        // Make this a singleton so it only exist one time because holds all the data records in memory
-        private static volatile ItemIndexViewModel instance;
-        private static readonly object             syncRoot = new object();
-
-        public static ItemIndexViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new ItemIndexViewModel();
-                            instance.Initialize();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
-
-        #region DataOperations_CRUDi
-
-        /// <summary>
-        /// Returns the item passed in
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public override ItemModel CheckIfExists(ItemModel data)
-        {
-            if (data == null)
-            {
-                return null;
-            }
-
-            // This will walk the items and find if there is one that is the same.
-            // If so, it returns the item...
-
-            var myList = Dataset.FirstOrDefault(a => a.Name == data.Name &&
-                                                     a.Description == data.Description &&
-                                                     a.Damage == data.Damage &&
-                                                     a.Attribute == data.Attribute &&
-                                                     a.Location == data.Location &&
-                                                     a.Range == data.Range &&
-                                                     a.Value == data.Value);
-
-            // if (myList == null)
-            // {
-            //     // it's not a match, return false;
-            //     return null;
-            // }
-
-            return myList; // use null propagation
-        }
-
-        /// <summary>
-        /// Load the Default Data
-        /// </summary>
-        /// <returns></returns>
-        public override IEnumerable<ItemModel> GetDefaultData() => DefaultData.Items;
-
-        #endregion DataOperations_CRUDi
     }
 }
