@@ -5,11 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Game.Components;
 using Game.Helpers;
 using Game.Models;
 using Game.Services;
 
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Game.ViewModels
@@ -40,10 +40,10 @@ namespace Game.ViewModels
         #region Static Variables
 
         // The Mock DataStore
-        private static IDataStore<T> _dataSource_Mock => MockDataStore<T>.Instance;
+        private static IDataStore<T> DataSourceMock => MockDataStore<T>.Instance;
 
         // The SQL DataStore
-        private static IDataStore<T> _dataSource_SQL => DatabaseService<T>.Instance;
+        private static IDataStore<T> DataSourceSQL => DatabaseService<T>.Instance;
 
         #endregion
         #region Instance Variables
@@ -70,23 +70,23 @@ namespace Game.ViewModels
         /// <summary>
         /// Mark if the view model is busy loading or done loading
         /// </summary>
-        private bool isBusy;
+        private bool _isBusy;
 
         public bool IsBusy
         {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
         /// <summary>
         /// The String to show on the page
         /// </summary>
-        private string title = string.Empty;
+        private string _title = string.Empty;
 
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         #endregion Attributes
@@ -101,12 +101,12 @@ namespace Game.ViewModels
         {
             if (isSQL == 1)
             {
-                _dataStore = _dataSource_SQL;
+                _dataStore = DataSourceSQL;
                 _currentDataSource = 1;
             }
             else
             {
-                _dataStore = _dataSource_Mock;
+                _dataStore = DataSourceMock;
                 _currentDataSource = 0;
             }
 
