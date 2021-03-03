@@ -2,7 +2,8 @@
 
 namespace Game.ViewModels
 {
-    public class GenericViewModel<T> : BaseViewModel<DefaultModel> where T : class
+    public class GenericViewModel<T> : BaseViewModel<DefaultModel>
+        where T : class
     {
         #region Ctors
 
@@ -31,16 +32,16 @@ namespace Game.ViewModels
         /// <summary>
         ///     Data being bound to
         /// </summary>
-        private T bindingData { get; set; }
+        private T BindingData { get; set; }
 
         public T Data
         {
-            get => bindingData;
+            get => BindingData;
             set
             {
-                var data = bindingData;
+                var data = BindingData;
                 SetProperty(ref data, value);
-                bindingData = data;
+                BindingData = data;
             }
         }
 
