@@ -18,7 +18,6 @@
 	<ItemGroup>
 		<None Remove="Common\Fonts\gamefont.ttf" />
 		<None Remove="Common\Fonts\gamefont_bold.ttf" />
-		<None Remove="Common\Fonts\rpgawesome.ttf" />
 	</ItemGroup>
 	
 	<ItemGroup>
