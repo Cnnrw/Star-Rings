@@ -17,15 +17,15 @@
     <StackLayout Grid.Row="1">
 
         <Label Text="{Binding Name}"
-               FontSize="18"
+               FontSize="Medium"
                TextColor="{StaticResource PrimaryTextColor}"
                LineBreakMode="TailTruncation" />
 
         <Label Text="{Binding RoundCount, StringFormat='Rounds: {0}'}"
-               FontSize="Medium" />
+               FontSize="Small" />
 
         <Label Text="{Binding ScoreTotal, StringFormat='Score: {0}'}"
-               FontSize="Medium" />
+               FontSize="Small" />
 
     </StackLayout>
 

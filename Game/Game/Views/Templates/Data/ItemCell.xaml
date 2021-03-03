@@ -24,14 +24,14 @@
     <StackLayout Grid.Column="1" Grid.Row="1">
 
         <Label Text="{Binding Name}"
-               FontSize="18"
+               FontSize="Medium"
                TextColor="{StaticResource PrimaryTextColor}"
                LineBreakMode="TailTruncation" />
 
         <Label Text="{Binding Description}"
                LineBreakMode="WordWrap"
                MaxLines="2"
-               FontSize="Medium" />
+               FontSize="Small" />
 
     </StackLayout>
 
