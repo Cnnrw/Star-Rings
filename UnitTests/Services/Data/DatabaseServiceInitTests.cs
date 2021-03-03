@@ -18,12 +18,12 @@ namespace UnitTests.Services
     {
 
         [SetUp]
-        public void Setup() => DataStore = DatabaseService<ItemModel>.Instance;
+        public void Setup() => _dataStore = DatabaseService<ItemModel>.Instance;
 
         [TearDown]
-        public async Task TearDown() => await DataStore.WipeDataListAsync();
+        public async Task TearDown() => await _dataStore.WipeDataListAsync();
 
-        private DatabaseService<ItemModel> DataStore;
+        private DatabaseService<ItemModel> _dataStore;
 
         [Test]
         public void DatabaseService_Constructor_Default_Should_Pass()
@@ -31,7 +31,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Act
-            var result = DataStore;
+            var result = _dataStore;
 
             // Reset
 
