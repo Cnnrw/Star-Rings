@@ -57,13 +57,15 @@
     <Style TargetType="Label"
            x:Key="LabelStyle"
            BasedOn="{StaticResource LabelBaseStyle}">
-        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="TextColor" Value="Yellow" />
     </Style>
 
     <Style TargetType="Label"
            x:Key="ValueStyle"
            BasedOn="{StaticResource LabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="White" />
     </Style>
 
     <Style TargetType="Label"
