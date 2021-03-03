@@ -12,47 +12,75 @@ using SQLite;
 namespace Game.Services
 {
     /// <summary>
-    /// Database Services
-    /// Will write to the local data store
+    ///     Database Services
+    ///     Will write to the local data store
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DatabaseService<T> : IDataStore<T> where T : new()
+    public class DatabaseService<T> : IDataStore<T>
+        where T : new()
     {
+        static volatile DatabaseService<T> _instance;
+        static readonly object             SyncRoot = new object();
 
-        private static volatile DatabaseService<T> instance;
-        private static readonly object             syncRoot = new object();
         /// <summary>
-        /// Set the class to load on demand
-        /// Saves app boot time
+        ///     Set the class to load on demand
+        ///     Saves app boot time
         /// </summary>
-        private static readonly Lazy<SQLiteAsyncConnection> lazyInitializer =
-            new Lazy<SQLiteAsyncConnection>(GetDataConnection);
+        static readonly Lazy<SQLiteAsyncConnection> LazyInitializer = new Lazy<SQLiteAsyncConnection>(GetDataConnection);
 
-        public static bool TestMode = false;
+        internal static bool _testMode = false;
 
         // Track if Initialized or Not
-        public static bool initialized;
+        public static bool Initialized;
 
-        private static readonly object WipeLock = new object();
+        static readonly object WipeLock = new object();
 
         // Semaphore to track transactions
-        private readonly SemaphoreSlim semaphoreSlim          = new SemaphoreSlim(1);
-        public           int           ForceExceptionOnNumber = -1;
+        readonly SemaphoreSlim _semaphoreSlim         = new SemaphoreSlim(1);
+        public   int           ForceExceptionOnNumber = -1;
 
         // Set Needs Init to False, so toggles to true
         public bool NeedsInitialization = true;
 
         /// <summary>
-        /// Constructor
-        /// All the database to start up
+        ///     Constructor
+        ///     All the database to start up
         /// </summary>
-        public DatabaseService() => InitializeAsync().SafeFireAndForget();
+        public DatabaseService()
+        {
+            InitializeAsync().SafeFireAndForget();
+        }
 
         // Lazy Connection
-        private static SQLiteAsyncConnection Database => lazyInitializer.Value;
+        static SQLiteAsyncConnection Database => LazyInitializer.Value;
+
+        #region Singleton
+
+        // Make this a singleton so it only exist one time because holds all the data records in memory
+
+
+
+        public static DatabaseService<T> Instance
+        {
+            get
+            {
+                if (_instance != null)
+                    return _instance;
+
+                lock (SyncRoot)
+                {
+                    if (_instance == null)
+                        _instance = new DatabaseService<T>();
+                }
+
+                return _instance;
+            }
+        }
+
+        #endregion Singleton
 
         /// <summary>
-        /// First time toggled, returns true.
+        ///     First time toggled, returns true.
         /// </summary>
         /// <returns></returns>
         public async Task<bool> GetNeedsInitializationAsync()
@@ -66,14 +94,11 @@ namespace Game.Services
         }
 
         /// <summary>
-        /// Wipe Data List
-        /// Drop the tables and create new ones
-        ///
-        /// Put a Lock on the Call, so it must complete
-        /// Then others can wipe
-        ///
-        /// This prevents two attempts to wipe the database at the same time
-        ///
+        ///     Wipe Data List
+        ///     Drop the tables and create new ones
+        ///     Put a Lock on the Call, so it must complete
+        ///     Then others can wipe
+        ///     This prevents two attempts to wipe the database at the same time
         /// </summary>
         public async Task<bool> WipeDataListAsync()
         {
@@ -89,6 +114,7 @@ namespace Game.Services
 
                     Database.DropTableAsync<T>().Wait();
                     Database.CreateTablesAsync(CreateFlags.None, typeof(T)).Wait();
+
                     result = true;
                 }
                 catch (Exception e)
@@ -101,16 +127,13 @@ namespace Game.Services
         }
 
         /// <summary>
-        /// Create a new record for the data passed in
+        ///     Create a new record for the data passed in
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public async Task<bool> CreateAsync(T data)
         {
-            if (data == null)
-            {
-                return false;
-            }
+            if (data == null) return false;
 
             try
             {
@@ -127,7 +150,7 @@ namespace Game.Services
         }
 
         /// <summary>
-        /// Return the record for the ID passed in
+        ///     Return the record for the ID passed in
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -135,10 +158,7 @@ namespace Game.Services
         {
             T data;
 
-            if (string.IsNullOrEmpty(id))
-            {
-                return default(T);
-            }
+            if (string.IsNullOrEmpty(id)) return default;
 
             try
             {
@@ -151,29 +171,23 @@ namespace Game.Services
             catch (Exception e)
             {
                 Debug.WriteLine("Read Failed " + e.Message);
-                data = default(T);
+                data = default;
             }
 
             return data;
         }
 
         /// <summary>
-        /// Update the record passed in if it exists
+        ///     Update the record passed in if it exists
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public async Task<bool> UpdateAsync(T data)
         {
-            if (data == null)
-            {
-                return false;
-            }
+            if (data == null) return false;
 
             var myRead = await ReadAsync(((BaseModel<T>)(object)data).Id);
-            if (myRead == null)
-            {
-                return false;
-            }
+            if (myRead == null) return false;
 
             int result;
             try
@@ -192,22 +206,16 @@ namespace Game.Services
         }
 
         /// <summary>
-        /// Delete the record of the ID passed in
+        ///     Delete the record of the ID passed in
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<bool> DeleteAsync(string id)
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                return false;
-            }
+            if (string.IsNullOrEmpty(id)) return false;
 
             var data = await ReadAsync(id);
-            if (data == null)
-            {
-                return false;
-            }
+            if (data == null) return false;
 
             int result;
             try
@@ -226,7 +234,7 @@ namespace Game.Services
         }
 
         /// <summary>
-        /// Return all records in the database
+        ///     Return all records in the database
         /// </summary>
         /// <returns></returns>
         public async Task<List<T>> IndexAsync()
@@ -247,20 +255,22 @@ namespace Game.Services
             return result;
         }
 
-        public static SQLiteAsyncConnection GetDataConnection() =>
-            TestMode
-                ? new SQLiteAsyncConnection(":memory:", Constants.Flags)
-                : new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        public static SQLiteAsyncConnection GetDataConnection()
+        {
+            return _testMode
+                       ? new SQLiteAsyncConnection(":memory:", Constants.Flags)
+                       : new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        }
 
         /// <summary>
-        /// Create the Table if it does not exist
+        ///     Create the Table if it does not exist
         /// </summary>
         /// <returns></returns>
-        private static async Task InitializeAsync()
+        static async Task InitializeAsync()
         {
-            if (!initialized)
+            if (!Initialized)
             {
-                initialized = true;
+                Initialized = true;
 
                 // Check if the Data Table Already exists
                 if (Database.TableMappings.Any(m => m.MappedType.Name == typeof(T).Name))
@@ -271,10 +281,10 @@ namespace Game.Services
         }
 
         /// <summary>
-        /// Keeps track of the Forced exception Count
+        ///     Keeps track of the Forced exception Count
         /// </summary>
         /// <returns></returns>
-        private int GetForceExceptionCount()
+        int GetForceExceptionCount()
         {
             if (ForceExceptionOnNumber <= 0)
                 return ForceExceptionOnNumber;
@@ -284,32 +294,5 @@ namespace Game.Services
 
             return ForceExceptionOnNumber--;
         }
-
-        #region Singleton
-
-        // Make this a singleton so it only exist one time because holds all the data records in memory
-
-
-
-        public static DatabaseService<T> Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new DatabaseService<T>();
-                        }
-                    }
-                }
-
-                return instance;
-            }
-        }
-
-        #endregion Singleton
     }
 }

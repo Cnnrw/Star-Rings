@@ -12,7 +12,7 @@ namespace Game.Services
 {
 
     /// <summary>
-    /// Helps Manage the ItemModel Services
+    ///     Helps Manage the ItemModel Services
     /// </summary>
     public static class ItemService
     {
@@ -34,28 +34,24 @@ namespace Game.Services
 
             // Needs to get items from the server
 
-            const string URLComponent = "GetItemList/";
+            const string URL_COMPONENT = "GetItemList/";
 
-            var DataResult =
-                await HttpClientService.Instance.GetJsonGetAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent +
-                                                                 parameter);
+            var dataResult = await HttpClientService.Instance.GetJsonGetAsync(WebGlobalsModel.WebSiteAPIURL +
+                                                                              URL_COMPONENT +
+                                                                              parameter);
 
             // Parse them
-            var myList = ItemModelJsonHelper.ParseJson(DataResult);
+            var myList = ItemModelJsonHelper.ParseJson(dataResult);
             if (myList == null)
-            {
                 // Error, no results
                 return null;
-            }
 
             // Then update the database
 
             // Use a foreach on myList
-            foreach (var ItemModel in myList)
-            {
+            foreach (var itemModel in myList)
                 // Call to the View Model (that is where the datasource is set, and have it then save
-                await ItemIndexViewModel.Instance.CreateUpdateAsync(ItemModel);
-            }
+                await ItemIndexViewModel.Instance.CreateUpdateAsync(itemModel);
 
             // When foreach is done, call to the items view model to set needs refresh to true, so it can refetch the list...
             ItemIndexViewModel.Instance.SetNeedsRefresh(true);
@@ -70,8 +66,10 @@ namespace Game.Services
         // Attribute is a filter to return only items for that attribute, else unknown is used for any
         // Location is a filter to return only items for that location, else unknown is used for any
         public static async Task<List<ItemModel>> GetItemsFromServerPostAsync(
-            int  number, int level, AttributeEnum attribute, ItemLocationEnum location, int category, bool random,
-            bool updateDataBase)
+            int           number,    int              level,
+            AttributeEnum attribute, ItemLocationEnum location,
+            int           category,  bool             random,
+            bool          updateDataBase)
         {
             // Needs to get items from the server
             // Parse them
@@ -82,7 +80,7 @@ namespace Game.Services
 
             // Needs to get items from the server
 
-            var URLComponent = "GetItemListPost";
+            const string URL_COMPONENT = "GetItemListPost";
 
             var dict = new Dictionary<string, string>
             {
@@ -91,39 +89,35 @@ namespace Game.Services
                 {"Attribute", ((int)attribute).ToString()},
                 {"Location", ((int)location).ToString()},
                 {"Random", random.ToString()},
-                {"Category", category.ToString()},
+                {"Category", category.ToString()}
             };
 
             // Convert parameters from  key value pairs to a json object
-            JObject finalContentJson = (JObject)JToken.FromObject(dict);
+            var finalContentJson = (JObject)JToken.FromObject(dict);
 
             // Make a call to the helper.  URL and Parameters
-            var DataResult =
-                await HttpClientService.Instance.GetJsonPostAsync(WebGlobalsModel.WebSiteAPIURL + URLComponent,
+            var dataResult =
+                await HttpClientService.Instance.GetJsonPostAsync(WebGlobalsModel.WebSiteAPIURL + URL_COMPONENT,
                                                                   finalContentJson);
 
             // Parse them
-            var myList = ItemModelJsonHelper.ParseJson(DataResult);
+            var myList = ItemModelJsonHelper.ParseJson(dataResult);
             if (myList == null)
-            {
                 // Error, no results, return empty list.
                 return new List<ItemModel>();
-            }
 
             // Then update the database
 
             // Use a foreach on myList
-            if (updateDataBase)
-            {
-                foreach (var ItemModel in myList)
-                {
-                    // Call to the View Model (that is where the datasource is set, and have it then save
-                    await ItemIndexViewModel.Instance.CreateUpdateAsync(ItemModel);
-                }
+            if (!updateDataBase) 
+                return myList;
+            
+            foreach (var itemModel in myList)
+                // Call to the View Model (that is where the datasource is set, and have it then save
+                await ItemIndexViewModel.Instance.CreateUpdateAsync(itemModel);
 
-                // When foreach is done, call to the items view model to set needs refresh to true, so it can refetch the list...
-                ItemIndexViewModel.Instance.SetNeedsRefresh(true);
-            }
+            // When foreach is done, call to the items view model to set needs refresh to true, so it can refetch the list...
+            ItemIndexViewModel.Instance.SetNeedsRefresh(true);
 
             return myList;
         }
