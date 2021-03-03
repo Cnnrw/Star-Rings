@@ -5,7 +5,7 @@
       xmlns:m="clr-namespace:Game.Models;assembly=Game"
       x:Class="Game.Views.Templates.Data.MonsterCell"
       ColumnDefinitions="*, 3*"
-      RowDefinitions="4, *, 1"
+      RowDefinitions="4, *, *"
       x:DataType="m:MonsterModel">
 
     <Grid.Resources>
