@@ -34,7 +34,7 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
-            // JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
+            JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
 
             _viewModel.Title = "Create";
         }
@@ -46,10 +46,10 @@ namespace Game.Views
         /// <param name="e"></param>
         private void OnJobPickerChanged(object sender, EventArgs e)
         {
-            var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
+            var iconImageURI = _viewModel.Data.Job.ToImageURI();
 
             _viewModel.Data.ImageURI = iconImageURI;
-            // JobImage.Source = iconImageURI;
+            JobImage.Source = iconImageURI;
         }
 
         /// <summary>

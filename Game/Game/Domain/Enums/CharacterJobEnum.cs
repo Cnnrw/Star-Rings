@@ -81,6 +81,50 @@ namespace Game.Enums
         }
 
         /// <summary>
+        /// Convert the Job to its corresponding image
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToImageURI(this CharacterJobEnum value)
+        {
+            // Default String
+            var ImageURI = "item.png";
+
+            switch (value)
+            {
+                case CharacterJobEnum.Jedi:
+                    ImageURI = "jedi.png";
+                    break;
+
+                case CharacterJobEnum.Princess:
+                    ImageURI = "jedi_princess.png";
+                    break;
+
+                case CharacterJobEnum.Smuggler:
+                    ImageURI = "smuggler.png";
+                    break;
+
+                case CharacterJobEnum.Wookie:
+                    ImageURI = "wookie.png";
+                    break;
+
+                case CharacterJobEnum.ProtocolDroid:
+                    ImageURI = "protocol_droid.png";
+                    break;
+
+                case CharacterJobEnum.AstroDroid:
+                    ImageURI = "astromech.png";
+                    break;
+
+                case CharacterJobEnum.Unknown:
+                default:
+                    break;
+            }
+
+            return ImageURI;
+        }
+
+        /// <summary>
         /// Convert the Job to its corresponding icon image
         /// </summary>
         /// <param name="value"></param>

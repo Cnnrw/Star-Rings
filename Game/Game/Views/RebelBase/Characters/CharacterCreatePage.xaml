@@ -7,20 +7,21 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:m="clr-namespace:Game.Models;assembly=Game"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+             xmlns:models="clr-namespace:Game.Models;assembly=Game"
+             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
              xmlns:converters="clr-namespace:Game.Converters;assembly=Game"
              xmlns:controls="clr-namespace:Game.Controls;assembly=Game"
+             xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
              BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
+        <viewModels:GenericViewModel x:TypeArguments="models:CharacterModel" />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!-- <converters:StringEnumConverter x:Key="StringToEnum" /> -->
+            <converters:StringEnumConverter x:Key="StringToEnum" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -32,19 +33,19 @@
                          Spacing="10">
 
                 <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Image x:Name="JobImage" 
+                               Source="{Binding Data.ImageURI}"
+                               Style="{StaticResource ImageLargeStyle}"
+                               HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Job"
+                               Style="{StaticResource LabelStyle}" />
 
-                    <!-- <StackLayout> -->
-                    <!--     <Image x:Name="JobImage" -->
-                    <!--            Source="{Binding Data.ImageURI}" -->
-                    <!--            Style="{StaticResource ImageLargeStyle}" -->
-                    <!--            HorizontalOptions="CenterAndExpand" /> -->
-                    <!--     <Label Text="Job" -->
-                    <!--            Style="{StaticResource LabelStyle}" /> -->
-                    <!--     <Picker x:Name="JobPicker" -->
-                    <!--             ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}" -->
-                    <!--             SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}" -->
-                    <!--             SelectedIndexChanged="OnJobPickerChanged" /> -->
-                    <!-- </StackLayout> -->
+                        <Picker x:Name="JobPicker"
+                                ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}"
+                                SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
+                                SelectedIndexChanged="OnJobPickerChanged"/>
+                    </StackLayout>
 
                     <StackLayout>
                         <controls:FormEntry Title="Name"
