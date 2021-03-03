@@ -18,7 +18,7 @@ namespace Game.Views
         public readonly GenericViewModel<CharacterModel> _viewModel;
 
         // Empty Constructor for UTs
-        public CharacterReadPage(bool UnitTest) { }
+        internal CharacterReadPage(bool unitTest) { }
 
         /// <summary>
         /// Constructor is called with the CharacterModel of the
