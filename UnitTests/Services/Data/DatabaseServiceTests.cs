@@ -16,13 +16,13 @@ namespace UnitTests.Services
         public void Setup()
         {
             DatabaseService<ItemModel>._testMode = true;
-            DataStore = DatabaseService<ItemModel>.Instance;
+            _dataStore = DatabaseService<ItemModel>.Instance;
         }
 
         [TearDown]
-        public async Task TearDown() => await DataStore.WipeDataListAsync();
+        public async Task TearDown() => await _dataStore.WipeDataListAsync();
 
-        private DatabaseService<ItemModel> DataStore;
+        private DatabaseService<ItemModel> _dataStore;
 
         [Test]
         public void DatabaseService_Constructor_Default_Should_Pass()
@@ -30,7 +30,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Act
-            var result = DataStore;
+            var result = _dataStore;
 
             // Reset
 
@@ -47,7 +47,7 @@ namespace UnitTests.Services
             DatabaseService<ItemModel>.Initialized = false;
 
             // Act
-            var DataStore2 = new DatabaseService<ItemModel>();
+            var dataStore2 = new DatabaseService<ItemModel>();
 
             // Reset
 
@@ -61,7 +61,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Act
-            var result = await DataStore.WipeDataListAsync();
+            var result = await _dataStore.WipeDataListAsync();
 
             // Reset
 
@@ -74,13 +74,13 @@ namespace UnitTests.Services
         {
             // Arrange
 
-            DataStore.ForceExceptionOnNumber = 1;
+            _dataStore.ForceExceptionOnNumber = 1;
 
             // Act
-            var result = await DataStore.WipeDataListAsync();
+            var result = await _dataStore.WipeDataListAsync();
 
             // Reset
-            DataStore.ForceExceptionOnNumber = 0;
+            _dataStore.ForceExceptionOnNumber = 0;
 
             // Assert
             Assert.AreEqual(false, result);
@@ -104,16 +104,16 @@ namespace UnitTests.Services
         public async Task DatabaseService_SetNeedsRefresh_Valid_True_Should_Pass()
         {
             // Arrange
-            var originalState = await DataStore.GetNeedsInitializationAsync();
+            var originalState = await _dataStore.GetNeedsInitializationAsync();
 
             // Act
-            DataStore.NeedsInitialization = true;
-            var newState = await DataStore.GetNeedsInitializationAsync();
+            _dataStore.NeedsInitialization = true;
+            var newState = await _dataStore.GetNeedsInitializationAsync();
 
             // Reset
 
             // Turn it back to the original state
-            DataStore.NeedsInitialization = originalState;
+            _dataStore.NeedsInitialization = originalState;
 
             // Assert
             Assert.AreEqual(true, newState);
@@ -123,17 +123,17 @@ namespace UnitTests.Services
         public async Task DatabaseService_SetNeedsRefresh_Twice_True_Should_Pass()
         {
             // Arrange
-            var originalState = await DataStore.GetNeedsInitializationAsync();
+            var originalState = await _dataStore.GetNeedsInitializationAsync();
 
             // Act
-            DataStore.NeedsInitialization = true;
-            var newState = await DataStore.GetNeedsInitializationAsync();
-            var newState2 = await DataStore.GetNeedsInitializationAsync();
+            _dataStore.NeedsInitialization = true;
+            var newState = await _dataStore.GetNeedsInitializationAsync();
+            var newState2 = await _dataStore.GetNeedsInitializationAsync();
 
             // Reset
 
             // Turn it back to the original state
-            DataStore.NeedsInitialization = originalState;
+            _dataStore.NeedsInitialization = originalState;
 
             // Assert
             Assert.AreEqual(false, newState2);
@@ -145,7 +145,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Act
-            var newState = await DataStore.WipeDataListAsync();
+            var newState = await _dataStore.WipeDataListAsync();
 
             // Reset
 
@@ -161,7 +161,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Act
-            var result = await DataStore.CreateAsync(new ItemModel());
+            var result = await _dataStore.CreateAsync(new ItemModel());
 
             // Reset
 
@@ -175,7 +175,7 @@ namespace UnitTests.Services
             // Arrange
 
             // Act
-            var result = await DataStore.CreateAsync(null);
+            var result = await _dataStore.CreateAsync(null);
 
             // Reset
 
@@ -187,13 +187,13 @@ namespace UnitTests.Services
         public async Task DatabaseService_CreateAsync_InValid_ForceException_Should_Fail()
         {
             // Arrange
-            DataStore.ForceExceptionOnNumber = 1;
+            _dataStore.ForceExceptionOnNumber = 1;
 
             // Act
-            var result = await DataStore.CreateAsync(new ItemModel());
+            var result = await _dataStore.CreateAsync(new ItemModel());
 
             // Reset
-            DataStore.ForceExceptionOnNumber = 0;
+            _dataStore.ForceExceptionOnNumber = 0;
 
             // Assert
             Assert.AreEqual(false, result);
@@ -204,10 +204,10 @@ namespace UnitTests.Services
         {
             // Arrange
             var item = new ItemModel();
-            await DataStore.CreateAsync(item);
+            await _dataStore.CreateAsync(item);
 
             // Act
-            var result = await DataStore.ReadAsync(item.Id);
+            var result = await _dataStore.ReadAsync(item.Id);
 
             // Reset
 
@@ -220,10 +220,10 @@ namespace UnitTests.Services
         {
             // Arrange
             var item = new ItemModel();
-            await DataStore.CreateAsync(item);
+            await _dataStore.CreateAsync(item);
 
             // Act
-            var result = await DataStore.ReadAsync(null);
+            var result = await _dataStore.ReadAsync(null);
 
             // Reset
 
@@ -236,14 +236,14 @@ namespace UnitTests.Services
         {
             // Arrange
             var item = new ItemModel();
-            await DataStore.CreateAsync(item);
+            await _dataStore.CreateAsync(item);
 
-            DataStore.ForceExceptionOnNumber = 1;
+            _dataStore.ForceExceptionOnNumber = 1;
             // Act
-            var result = await DataStore.ReadAsync(item.Id);
+            var result = await _dataStore.ReadAsync(item.Id);
 
             // Reset
-            DataStore.ForceExceptionOnNumber = 0;
+            _dataStore.ForceExceptionOnNumber = 0;
 
             // Assert
             Assert.AreEqual(null, result);
@@ -254,10 +254,10 @@ namespace UnitTests.Services
         {
             // Arrange
             var item = new ItemModel();
-            await DataStore.CreateAsync(item);
+            await _dataStore.CreateAsync(item);
 
             // Act
-            var result = await DataStore.IndexAsync();
+            var result = await _dataStore.IndexAsync();
 
             // Reset
 
@@ -270,14 +270,14 @@ namespace UnitTests.Services
         {
             // Arrange
             var item = new ItemModel();
-            await DataStore.CreateAsync(item);
+            await _dataStore.CreateAsync(item);
 
-            DataStore.ForceExceptionOnNumber = 1;
+            _dataStore.ForceExceptionOnNumber = 1;
             // Act
-            var result = await DataStore.IndexAsync();
+            var result = await _dataStore.IndexAsync();
 
             // Reset
-            DataStore.ForceExceptionOnNumber = 0;
+            _dataStore.ForceExceptionOnNumber = 0;
 
             // Assert
             Assert.AreEqual(null, result);
@@ -291,11 +291,11 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
-            await DataStore.CreateAsync(item2);
+            await _dataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item2);
 
             // Act
-            var result = await DataStore.DeleteAsync(item1.Id);
+            var result = await _dataStore.DeleteAsync(item1.Id);
 
             // Reset
 
@@ -311,11 +311,11 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
-            await DataStore.CreateAsync(item2);
+            await _dataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item2);
 
             // Act
-            var result = await DataStore.DeleteAsync("bogus");
+            var result = await _dataStore.DeleteAsync("bogus");
 
             // Reset
 
@@ -331,11 +331,11 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
-            await DataStore.CreateAsync(item2);
+            await _dataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item2);
 
             // Act
-            var result = await DataStore.DeleteAsync(null);
+            var result = await _dataStore.DeleteAsync(null);
 
             // Reset
 
@@ -349,15 +349,15 @@ namespace UnitTests.Services
             // Arrange
             var item1 = new ItemModel {Name = "a"};
 
-            await DataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item1);
 
-            DataStore.ForceExceptionOnNumber = 3; // Read, Delete
+            _dataStore.ForceExceptionOnNumber = 3; // Read, Delete
 
             // Act
-            var result = await DataStore.DeleteAsync(item1.Id);
+            var result = await _dataStore.DeleteAsync(item1.Id);
 
             // Reset
-            DataStore.ForceExceptionOnNumber = 0;
+            _dataStore.ForceExceptionOnNumber = 0;
 
             // Assert
             Assert.AreEqual(false, result);
@@ -371,14 +371,14 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
-            await DataStore.CreateAsync(item2);
+            await _dataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item2);
 
             // Act
             item2.Name = "c";
 
-            var result = await DataStore.UpdateAsync(item2);
-            var name = await DataStore.ReadAsync(item2.Id);
+            var result = await _dataStore.UpdateAsync(item2);
+            var name = await _dataStore.ReadAsync(item2.Id);
 
             // Reset
 
@@ -395,11 +395,11 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
-            await DataStore.CreateAsync(item2);
+            await _dataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item2);
 
             // Act
-            var result = await DataStore.UpdateAsync(null);
+            var result = await _dataStore.UpdateAsync(null);
 
             // Reset
 
@@ -415,12 +415,12 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item1);
             //await DataStore.CreateAsync(item2);   // Don't put 2 in the list
 
             // Act
-            var result = await DataStore.UpdateAsync(item2);
-            var name = await DataStore.ReadAsync(item1.Id);
+            var result = await _dataStore.UpdateAsync(item2);
+            var name = await _dataStore.ReadAsync(item1.Id);
 
             // Reset
 
@@ -437,19 +437,19 @@ namespace UnitTests.Services
 
             var item2 = new ItemModel {Name = "b"};
 
-            await DataStore.CreateAsync(item1);
-            await DataStore.CreateAsync(item2);
+            await _dataStore.CreateAsync(item1);
+            await _dataStore.CreateAsync(item2);
 
             // Act
             item2.Name = "c";
 
-            DataStore.ForceExceptionOnNumber = 3; // Read, then update
+            _dataStore.ForceExceptionOnNumber = 3; // Read, then update
 
             // Act
-            var result = await DataStore.UpdateAsync(item1);
+            var result = await _dataStore.UpdateAsync(item1);
 
             // Reset
-            DataStore.ForceExceptionOnNumber = 0;
+            _dataStore.ForceExceptionOnNumber = 0;
 
             // Assert
             Assert.AreEqual(false, result);
