@@ -15,7 +15,7 @@
         </Style>
     </Grid.Resources>
 
-    <Image Grid.RowSpan="3"
+    <Image Grid.RowSpan="2"
            Source="{Binding IconImageURI}"
            Style="{StaticResource ImageMediumStyle}"
            VerticalOptions="Center"
