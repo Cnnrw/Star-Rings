@@ -90,7 +90,8 @@ namespace Game.Engine.EngineGame
 
             int index = DiceHelper.RollDice(1, validLocations.Count()) - 1;
             string chosenLocationName = validLocations[index];
-            BattleLocationEnum chosenLocation = BattleLocationEnumHelper.ConvertStringToEnum(chosenLocationName);
+            //BattleLocationEnum chosenLocation = BattleLocationEnumHelper.ConvertStringToEnum(chosenLocationName);
+            BattleLocationEnum chosenLocation = BattleLocationEnum.Dungeons;
 
             RoundLocation = chosenLocation;
 
