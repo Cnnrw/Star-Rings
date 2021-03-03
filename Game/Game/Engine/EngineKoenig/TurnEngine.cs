@@ -21,7 +21,7 @@ namespace Game.Engine.EngineKoenig
     {
 
         // Hold the BaseEngine
-        public new EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+        public EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         /// <summary>
         /// CharacterModel Attacks...
@@ -124,9 +124,7 @@ namespace Game.Engine.EngineKoenig
                 // Get the Open Locations
                 var openSquare = EngineSettings.MapModel.ReturnClosestEmptyLocation(locationDefender);
 
-                Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name,
-                    locationAttacker.Column, locationAttacker.Row, openSquare.Column,
-                    openSquare.Row));
+                Debug.WriteLine($"{locationAttacker.Player.Name} moves from {locationAttacker.Column},{locationAttacker.Row} to {openSquare.Column},{openSquare.Row}");
 
                 EngineSettings.BattleMessagesModel.TurnMessage =
                     Attacker.Name + " moves closer to " + EngineSettings.CurrentDefender.Name;
@@ -309,56 +307,49 @@ namespace Game.Engine.EngineKoenig
         ///
         /// Returns the count of items dropped at death
         /// </summary>
-        public override bool TargetDied(PlayerInfoModel Target)
+        public override bool TargetDied(PlayerInfoModel target)
         {
-            bool found;
-
             // Mark Status in output
             EngineSettings.BattleMessagesModel.TurnMessageSpecial = " and causes death. ";
 
             // Removing the
-            EngineSettings.MapModel.RemovePlayerFromMap(Target);
+            EngineSettings.MapModel.RemovePlayerFromMap(target);
 
             // INFO: Teams, Hookup your Boss if you have one...
 
             // Using a switch so in the future additional PlayerTypes can be added (Boss...)
-            switch (Target.PlayerType)
+            switch (target.PlayerType)
             {
                 case PlayerTypeEnum.Character:
                     // Add the Character to the killed list
-                    EngineSettings.BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
+                    EngineSettings.BattleScore.CharacterAtDeathList += target.FormatOutput() + "\n";
 
-                    EngineSettings.BattleScore.CharacterModelDeathList.Add(Target);
+                    EngineSettings.BattleScore.CharacterModelDeathList.Add(target);
 
-                    DropItems(Target);
+                    DropItems(target);
 
-                    found =
-                        EngineSettings.CharacterList.Remove(EngineSettings.CharacterList
-                                                                          .Find(m => m.Guid.Equals(Target.Guid)));
-                    found =
-                        EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
-                                                                       .Find(m => m.Guid.Equals(Target.Guid)));
+                    EngineSettings.CharacterList.Remove(EngineSettings.CharacterList
+                                                                      .Find(m => m.Guid.Equals(target.Guid)));
+                    EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
+                                                                   .Find(m => m.Guid.Equals(target.Guid)));
 
                     return true;
 
-                case PlayerTypeEnum.Monster:
                 default:
                     // Add one to the monsters killed count...
                     EngineSettings.BattleScore.MonsterSlainNumber++;
 
                     // Add the MonsterModel to the killed list
-                    EngineSettings.BattleScore.MonstersKilledList += Target.FormatOutput() + "\n";
+                    EngineSettings.BattleScore.MonstersKilledList += target.FormatOutput() + "\n";
 
-                    EngineSettings.BattleScore.MonsterModelDeathList.Add(Target);
+                    EngineSettings.BattleScore.MonsterModelDeathList.Add(target);
 
-                    DropItems(Target);
+                    DropItems(target);
 
-                    found =
-                        EngineSettings.MonsterList.Remove(EngineSettings.MonsterList
-                                                                        .Find(m => m.Guid.Equals(Target.Guid)));
-                    found =
-                        EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
-                                                                       .Find(m => m.Guid.Equals(Target.Guid)));
+                    EngineSettings.MonsterList.Remove(EngineSettings.MonsterList
+                                                                    .Find(m => m.Guid.Equals(target.Guid)));
+                    EngineSettings.PlayerList.Remove(EngineSettings.PlayerList
+                                                                   .Find(m => m.Guid.Equals(target.Guid)));
 
                     return true;
             }
@@ -369,7 +360,7 @@ namespace Game.Engine.EngineKoenig
         /// </summary>
         public override int DropItems(PlayerInfoModel Target)
         {
-            var DroppedMessage = "\nItems Dropped : \n";
+            var droppedMessage = "\nItems Dropped : \n";
 
             // Drop Items to ItemModel Pool
             var myItemList = Target.DropAllItems();
@@ -379,20 +370,20 @@ namespace Game.Engine.EngineKoenig
             myItemList.AddRange(GetRandomMonsterItemDrops(EngineSettings.BattleScore.RoundCount));
 
             // Add to ScoreModel
-            foreach (var ItemModel in myItemList)
+            foreach (var itemModel in myItemList)
             {
-                EngineSettings.BattleScore.ItemsDroppedList += ItemModel.FormatOutput() + "\n";
-                DroppedMessage += ItemModel.Name + "\n";
+                EngineSettings.BattleScore.ItemsDroppedList += itemModel.FormatOutput() + "\n";
+                droppedMessage += itemModel.Name + "\n";
             }
 
             EngineSettings.ItemPool.AddRange(myItemList);
 
             if (myItemList.Count == 0)
             {
-                DroppedMessage = " Nothing dropped. ";
+                droppedMessage = " Nothing dropped. ";
             }
 
-            EngineSettings.BattleMessagesModel.DroppedMessage = DroppedMessage;
+            EngineSettings.BattleMessagesModel.DroppedMessage = droppedMessage;
 
             EngineSettings.BattleScore.ItemModelDropList.AddRange(myItemList);
 
@@ -462,11 +453,11 @@ namespace Game.Engine.EngineKoenig
 
             // The Number drop can be Up to the Round Count, but may be less.
             // Negative results in nothing dropped
-            var NumberToDrop = (DiceHelper.RollDice(1, round + 1) - 1);
+            var numberToDrop = (DiceHelper.RollDice(1, round + 1) - 1);
 
             var result = new List<ItemModel>();
 
-            for (var i = 0; i < NumberToDrop; i++)
+            for (var i = 0; i < numberToDrop; i++)
             {
                 // Get a random Unique Item
                 var data = ItemIndexViewModel.Instance.GetItem(RandomPlayerHelper.GetMonsterUniqueItem());
@@ -531,9 +522,9 @@ namespace Game.Engine.EngineKoenig
         /// Calculate Experience
         /// Level up if needed
         /// </summary>
-        public override bool CalculateExperience(PlayerInfoModel Attacker, PlayerInfoModel Target)
+        public override bool CalculateExperience(PlayerInfoModel attacker, PlayerInfoModel Target)
         {
-            return base.CalculateExperience(Attacker, Target);
+            return base.CalculateExperience(attacker, Target);
         }
 
         /// <summary>
