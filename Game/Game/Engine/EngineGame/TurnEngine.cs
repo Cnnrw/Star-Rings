@@ -27,7 +27,7 @@ namespace Game.Engine.EngineGame
     {
 
         // Hold the BaseEngine
-        public new EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
+        public EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         /// <summary>
         /// CharacterModel Attacks...

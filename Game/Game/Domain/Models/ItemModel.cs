@@ -69,7 +69,10 @@ namespace Game.Models
             Location = newData.Location;
             Name = newData.Name;
             Description = newData.Description;
+
+            IconImageURI = newData.IconImageURI;
             ImageURI = newData.ImageURI;
+
             Range = newData.Range;
             Damage = newData.Damage;
 
@@ -103,10 +106,7 @@ namespace Game.Models
         public int ScaleLevel(int level)
         {
             if (DiceHelper.ForceRollsToNotRandom)
-            {
-                // Use the level as the value
-                Value = level;
-            }
+                Value = level;                      // Use the level as the value
 
             // Roll a dice of up to the Level
             Value = DiceHelper.RollDice(1, level);

@@ -268,7 +268,6 @@
     <Style TargetType="StackLayout"
            x:Key="PlayerInfoBox"
            BasedOn="{StaticResource CardImageTextBox}">
-        <Setter Property="WidthRequest" Value="150" />
         <Setter Property="HeightRequest" Value="190" />
         <Setter Property="Spacing" Value="0" />
         <Setter Property="Padding" Value="0" />
