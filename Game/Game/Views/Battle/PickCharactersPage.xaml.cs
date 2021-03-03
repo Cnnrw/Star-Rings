@@ -62,8 +62,12 @@ namespace Game.Views
 
             // Don't add more than the party max
             if (ViewModel.PartyCharacterList.Count() < ViewModel.Engine.EngineSettings.MaxNumberPartyCharacters)
+            {
+                // Remove the character from the database list and add it to the party list
+                ViewModel.DatabaseCharacterList.Remove(data);
                 ViewModel.PartyCharacterList.Add(data);
-
+            }
+                
             UpdateNextButtonState();
         }
 
@@ -80,8 +84,9 @@ namespace Game.Views
             // Manually deselect Character.
             PartyList.SelectedItem = null;
 
-            // Remove the character from the list
+            // Remove the character from the party list and add it back to the database list
             ViewModel.PartyCharacterList.Remove(data);
+            ViewModel.DatabaseCharacterList.Add(data);
 
             UpdateNextButtonState();
         }
