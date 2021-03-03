@@ -5,7 +5,7 @@
       xmlns:m="clr-namespace:Game.Models;assembly=Game"
       x:Class="Game.Templates.Data.ItemCell"
       ColumnDefinitions="*, 3*"
-      RowDefinitions="4, *, 1"
+      RowDefinitions="4, *, *"
       x:DataType="m:ItemModel">
 
     <Grid.Resources>
