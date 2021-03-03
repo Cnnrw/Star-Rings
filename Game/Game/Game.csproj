@@ -152,53 +152,8 @@
     <Compile Update="Views\Battle\AutoBattlePage.xaml.cs">
       <DependentUpon>AutoBattlePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Characters\CharacterCreatePage.xaml.cs">
-      <DependentUpon>CharacterCreatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Characters\CharacterDeletePage.xaml.cs">
-      <DependentUpon>CharacterDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Characters\CharacterIndexPage.xaml.cs">
-      <DependentUpon>CharacterIndexPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Characters\CharacterReadPage.xaml.cs">
-      <DependentUpon>CharacterReadPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Characters\CharacterUpdatePage.xaml.cs">
-      <DependentUpon>CharacterUpdatePage.xaml</DependentUpon>
-    </Compile>
-		<Compile Update="Views\Monsters\MonsterCreatePage.xaml.cs">
-			<DependentUpon>MonsterCreatePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Monsters\MonsterDeletePage.xaml.cs">
-      <DependentUpon>MonsterDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Monsters\MonsterUpdatePage.xaml.cs">
-      <DependentUpon>MonsterUpdatePage.xaml</DependentUpon>
-    </Compile>
-		<Compile Update="Views\Monsters\MonstersIndexPage.xaml.cs">
-			<DependentUpon>MonsterIndexPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Monsters\MonsterReadPage.xaml.cs">
-			<DependentUpon>MonsterReadPage.xaml</DependentUpon>
-		</Compile>
 		<Compile Update="Views\RebelBase\RebelBasePage.xaml.cs">
 			<DependentUpon>RebelBasePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Score\ScoreCreatePage.xaml.cs">
-			<DependentUpon>ScoreCreatePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Score\ScoreDeletePage.xaml.cs">
-			<DependentUpon>ScoreDeletePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Score\ScoreIndexPage.xaml.cs">
-			<DependentUpon>ScoreIndexPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Score\ScoreReadPage.xaml.cs">
-			<DependentUpon>ScoreReadPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\Score\ScoreUpdatePage.xaml.cs">
-			<DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Common\Styles\DefaultTheme.xaml.cs">
 			<DependentUpon>DefaultTheme.xaml</DependentUpon>
