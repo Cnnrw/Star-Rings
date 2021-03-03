@@ -37,9 +37,11 @@
                         <Image x:Name="JobImage" 
                                Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
-                               HorizontalOptions="CenterAndExpand" />
+                               HorizontalOptions="CenterAndExpand"
+                               Aspect="AspectFit"/>
+                        
                         <Label Text="Job"
-                               Style="{StaticResource LabelStyle}" />
+                               Style="{StaticResource LabelStyle}"/>
 
                         <Picker x:Name="JobPicker"
                                 ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}"
