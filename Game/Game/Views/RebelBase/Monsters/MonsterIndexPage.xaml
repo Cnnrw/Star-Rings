@@ -31,7 +31,7 @@
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
-                                 VerticalItemSpacing="25" />
+                                 VerticalItemSpacing="0" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
