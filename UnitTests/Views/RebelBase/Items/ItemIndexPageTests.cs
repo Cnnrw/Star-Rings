@@ -17,7 +17,7 @@ namespace UnitTests.Views
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.

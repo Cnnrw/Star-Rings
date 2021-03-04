@@ -14,7 +14,7 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             // Act
@@ -31,7 +31,7 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             // Act
