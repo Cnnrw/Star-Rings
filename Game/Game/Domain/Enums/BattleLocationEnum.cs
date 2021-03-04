@@ -63,21 +63,18 @@ namespace Game.Enums
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToMessage(this BattleLocationEnum value)
-        {
+        public static string ToMessage(this BattleLocationEnum value) =>
             // Default String
-            var Result = value switch
-                         {
-                             BattleLocationEnum.Shire     => "The Shire",
-                             BattleLocationEnum.ElvenCity => "Elven City",
-                             BattleLocationEnum.Forest    => "Forest",
-                             BattleLocationEnum.Dungeons  => "Dungeons",
-                             BattleLocationEnum.Mordor    => "Mordor",
-                             _                            => "Battle location"
-                         };
+            value switch
+            {
+                BattleLocationEnum.Shire     => "The Shire",
+                BattleLocationEnum.ElvenCity => "Elven City",
+                BattleLocationEnum.Forest    => "Forest",
+                BattleLocationEnum.Dungeons  => "Dungeons",
+                BattleLocationEnum.Mordor    => "Mordor",
+                _                            => "Battle location"
+            };
 
-            return Result;
-        }
 
         /// <summary>
         /// Display a String for the Enums with an appropriate article
