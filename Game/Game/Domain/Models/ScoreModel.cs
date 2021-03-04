@@ -7,22 +7,22 @@ namespace Game.Models
 {
     /// <summary>
     /// Item for the Game
-    /// 
+    ///
     /// The Items that a character can use, a Monster may drop, or may be randomly available.
     /// The items are stored in the DB, and during game time a random item is selected.
     /// The system supports CRUDi operatoins on the items
     /// When in test mode, a test set of items is loaded
     /// When in run mode the items from from the database
     /// When in online mode, the items come from an api call to a webservice
-    /// 
+    ///
     /// When characters or monsters die, they drop items into the Items Pool for the Battle
-    /// 
+    ///
     /// </summary>
     public class ScoreModel : BaseModel<ScoreModel>
     {
 
         /// <summary>
-        /// Instantiate new Score 
+        /// Instantiate new Score
         /// </summary>
         public ScoreModel()
         {
@@ -71,15 +71,15 @@ namespace Game.Models
         // The total experience points all the characters received during the battle
         public int ExperienceGainedTotal { get; set; }
 
-        // A list of all the characters at the time of death and their stats.  
+        // A list of all the characters at the time of death and their stats.
         // Only use Get only, set will be done by the Add feature.
         public string CharacterAtDeathList { get; set; } = string.Empty;
 
-        // All of the monsters killed and their stats. 
+        // All of the monsters killed and their stats.
         // Only use Get only, set will be done by the Add feature.
         public string MonstersKilledList { get; set; } = string.Empty;
 
-        // All of the items dropped and their stats. 
+        // All of the items dropped and their stats.
         // Only use Get only, set will be done by the Add feature.
         public string ItemsDroppedList { get; set; } = string.Empty;
 
@@ -96,10 +96,10 @@ namespace Game.Models
         [Ignore] public List<ItemModel> ItemModelSelectList { get; set; } = new List<ItemModel>();
 
         /// <summary>
-        /// Update the score based on the passed in values. 
+        /// Update the score based on the passed in values.
         /// </summary>
         /// <param name="newData"></param>
-        public override bool Update(ScoreModel newData)
+        public sealed override bool Update(ScoreModel newData)
         {
             if (newData == null)
             {

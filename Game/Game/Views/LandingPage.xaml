@@ -2,7 +2,6 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BackgroundColor="Black"
              x:Class="Game.Views.LandingPage">
 
     <Grid>
@@ -11,20 +10,15 @@
                Aspect="AspectFill"
                IsAnimationPlaying="true" />
 
-        <Grid RowDefinitions="3*, *, 1*">
-            <Image Grid.Row="0"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   Source="star_rings_logo.png" />
+        <Grid RowDefinitions="2*, 2*, *">
+            <Image Source="star_rings_logo.png"
+                   VerticalOptions="End"/>
 
             <Label Grid.Row="1"
-                   Text="The Millennium Falcon has been sucked into a wormhole and teleported to Middle Earth! Help the Rebel crew battle their way across the land in search of a magical portal to take them home!"
-                   Style="{StaticResource LabelStyle}"
-                   HorizontalOptions="Center"
+                   Style="{StaticResource TextTitle}"
+                   VerticalOptions="End"
                    HorizontalTextAlignment="Center"
-                   Margin="20, 0"
-                   FontSize="20"
-                   LineBreakMode="WordWrap" />
+                   Text="The Millennium Falcon has been sucked into a wormhole and teleported to Middle Earth!&#10;&#10;Help the Rebel crew battle their way across the land in search of a magical portal to take them home!"/>
 
             <ImageButton Grid.Row="2"
                          x:Name="StartButton"

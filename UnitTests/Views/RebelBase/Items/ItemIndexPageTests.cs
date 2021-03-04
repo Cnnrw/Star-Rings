@@ -21,17 +21,17 @@ namespace UnitTests.Views
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
-            app = new App();
-            Application.Current = app;
+            _app = new App();
+            Application.Current = _app;
 
-            page = new ItemIndexPage();
+            _page = new ItemIndexPage();
         }
 
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        private App           app;
-        private ItemIndexPage page;
+        private App           _app;
+        private ItemIndexPage _page;
 
         public ItemIndexPageTests() : base(true) { }
 
@@ -41,7 +41,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page;
+            var result = _page;
 
             // Reset
 
@@ -55,7 +55,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.AddItem_Clicked(null, null);
+            _page.AddItem_Clicked(null, null);
 
             // Reset
 
@@ -119,7 +119,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Warm it up
-            var ViewModel = ItemIndexViewModel.Instance;
+            var unused = ItemIndexViewModel.Instance;
 
             // Act
             OnAppearing();
