@@ -14,6 +14,28 @@ namespace Game.Controls
     {
         public ImgButton() => InitializeComponent();
 
+        #region StackLayout Style
+
+        static readonly BindableProperty StackStyleProperty = BindableProperty.Create(propertyName: "StackStyle",
+                                                                                      returnType: typeof(Style),
+                                                                                      declaringType: typeof(ImgButton),
+                                                                                      defaultBindingMode: BindingMode.OneWay,
+                                                                                      propertyChanged: StackStylePropertyChanged);
+
+        public Style StackStyle
+        {
+            get => (Style)GetValue(StackStyleProperty);
+            set => SetValue(StackStyleProperty, value);
+        }
+
+        static void StackStylePropertyChanged(BindableObject bo, object o, object n)
+        {
+            var control = (ImgButton)bo;
+            control.ButtonStack.Style = (Style)n;
+        }
+
+
+        #endregion StackLayout Style
         #region ImageSource
 
         public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(propertyName: "Source",
