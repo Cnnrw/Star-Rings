@@ -2,13 +2,15 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Templates.Pages.ModalPage">
+             x:Class="Game.Templates.Pages.BasePage"
+             NavigationPage.HasNavigationBar="False">
+
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <Grid>
-                <Image Source="{TemplateBinding pageBackground}"
+                <Image Source="{TemplateBinding PageBackground}"
                        Opacity=".8"
-                       Aspect="Fill"/>
+                       Aspect="Fill" />
 
                     <Grid ColumnDefinitions="*, 3*"
                           RowDefinitions="*, 9*">
