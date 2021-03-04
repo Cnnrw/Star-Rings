@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Frame xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       x:Class="Game.Controls.ImgButton"
-       x:Name="ButtonFrame"
-       HasShadow="False"
-       BackgroundColor="{StaticResource TransparentColor}">
-    <StackLayout>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game.Controls.ImgButton"
+             x:Name="ButtonStack"
+             Style="{StaticResource CardImageTextBox}">
         <Image x:Name="ButtonImage"
-               Aspect="AspectFill"/>
-        <Label x:Name="ButtonText" />
-    </StackLayout>
-</Frame>
+               Style="{StaticResource ImageMediumStyle}" />
+        <Label x:Name="ButtonText"
+               Style="{StaticResource CenterMessageStyle}" />
+</StackLayout>

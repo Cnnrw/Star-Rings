@@ -10,7 +10,7 @@ namespace Game.Controls
     ///     image and attaches a TapGestureRecognizer to the entire
     ///     button, including the text.
     /// </summary>
-    public partial class ImgButton : Frame
+    public partial class ImgButton : StackLayout
     {
         public ImgButton() => InitializeComponent();
 
@@ -102,49 +102,6 @@ namespace Game.Controls
         }
 
         #endregion
-        #region BackgroundColour
-
-        public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(propertyName: "BackgroundColor",
-                                                                                                      returnType: typeof(Color),
-                                                                                                      declaringType: typeof(ImgButton),
-                                                                                                      defaultBindingMode: BindingMode.TwoWay,
-                                                                                                      propertyChanged: BackgroundColorPropertyChanged);
-
-        public new Color BackgroundColor
-        {
-            get => (Color)GetValue(BackgroundColorProperty);
-            set => SetValue(BackgroundColorProperty, value);
-        }
-
-        static void BackgroundColorPropertyChanged(BindableObject bo, object o, object n)
-        {
-            var control = (ImgButton)bo;
-            control.ButtonFrame.BackgroundColor = (Color)n;
-        }
-
-        #endregion BackgroundColour
-        #region CornerRadius
-
-        public new static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(propertyName: "CornerRadius",
-                                                                                                   returnType: typeof(int),
-                                                                                                   declaringType: typeof(ImgButton),
-                                                                                                   defaultValue: 0,
-                                                                                                   defaultBindingMode: BindingMode.TwoWay,
-                                                                                                   propertyChanged: CornerRadiusPropertyChanged);
-
-        public new int CornerRadius
-        {
-            get => (int)GetValue(CornerRadiusProperty);
-            set => SetValue(CornerRadiusProperty, value);
-        }
-
-        private static void CornerRadiusPropertyChanged(BindableObject bo, object o, object n)
-        {
-            var control = (ImgButton)bo;
-            control.ButtonFrame.CornerRadius = (int)n;
-        }
-
-        #endregion CornerRadius
         #region ImageHeightWidth
 
         #region ImageHeightRequest
@@ -207,7 +164,7 @@ namespace Game.Controls
             var control = (ImgButton)bo;
 
             // this gesture recognizer will invoke the command event wherever it is used
-            control.ButtonFrame.GestureRecognizers.Add(new TapGestureRecognizer
+            control.ButtonStack.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = (Command)n,
                 CommandParameter = control.CommandParameter
