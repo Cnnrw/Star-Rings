@@ -84,42 +84,32 @@ namespace Game.Enums
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToMessageWithArticle(this BattleLocationEnum value)
-        {
-            // Default String
-            var Result = value switch
+        public static string ToMessageWithArticle(this BattleLocationEnum value) =>
+            value switch
             {
-                BattleLocationEnum.Shire => "the Shire",
+                BattleLocationEnum.Shire     => "the Shire",
                 BattleLocationEnum.ElvenCity => "an Elven city",
-                BattleLocationEnum.Forest => "the forest",
-                BattleLocationEnum.Dungeons => "a dungeon",
-                BattleLocationEnum.Mordor => "Mordor",
-                _ => "Battle location"
+                BattleLocationEnum.Forest    => "the forest",
+                BattleLocationEnum.Dungeons  => "a dungeon",
+                BattleLocationEnum.Mordor    => "Mordor",
+                _                            => "Battle location"
             };
-
-            return Result;
-        }
 
         /// <summary>
         /// Gets the background image file name for a battle location
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToImageUri(this BattleLocationEnum value)
-        {
-            // Default String
-            var Result = value switch
+        public static string ToImageUri(this BattleLocationEnum value) =>
+            value switch
             {
-                BattleLocationEnum.Shire => "shire_background.png",
+                BattleLocationEnum.Shire     => "shire_background.png",
                 BattleLocationEnum.ElvenCity => "page_background_2.png",
-                BattleLocationEnum.Forest => "forest_background.png",
-                BattleLocationEnum.Dungeons => "dungeon_background.png",
-                BattleLocationEnum.Mordor => "page_background_5.png",
-                _ => "item.png"
+                BattleLocationEnum.Forest    => "forest_background.png",
+                BattleLocationEnum.Dungeons  => "dungeon_background.png",
+                BattleLocationEnum.Mordor    => "page_background_5.png",
+                _                            => "item.png"
             };
-
-            return Result;
-        }
     }
 
     /// <summary>
