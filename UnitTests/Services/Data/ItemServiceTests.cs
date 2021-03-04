@@ -61,7 +61,7 @@ namespace UnitTests.Services
             Assert.AreEqual("Strong Shield", result[0].Name);
         }
 
-        [Test, Timeout(2000)]
+        [Test, Timeout(5000)]
         public async Task ItemService_GetItemsFromServerPostAsync_Valid_1_Should_Pass()
         {
             // Arrange
