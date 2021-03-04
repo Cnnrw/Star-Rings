@@ -15,6 +15,12 @@ using Xamarin.Forms;
 namespace Game.ViewModels
 {
     /// <summary>
+    ///     Non-generic BaseViewModel
+    /// </summary>
+    public class BaseViewModel : BaseViewModel<DefaultModel>
+    { }
+
+    /// <summary>
     /// Base View Model for Data
     /// </summary>
     public class BaseViewModel<T> : ObservableObject
