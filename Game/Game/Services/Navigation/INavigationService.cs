@@ -34,10 +34,13 @@ namespace Game.Services
         Task GoBack();
 
         /// <summary>
-        ///
+        ///     Modal navigation leaves the current navigation stack and displays
+        ///     a page on its own. If you want to navigate from a modal root page
+        ///     via push to a child page the modal root page has to be in a
+        ///     <c>NavigationPage</c> itself.
         /// </summary>
-        /// <param name="pageKey"></param>
-        /// <param name="animated"></param>
+        /// <param name="pageKey"><c>key</c> of the page to navigate to</param>
+        /// <param name="animated">default <c>true</c>; whether to animate page transition</param>
         /// <returns></returns>
         Task NavigateModalAsync(string pageKey, bool animated = true);
 
