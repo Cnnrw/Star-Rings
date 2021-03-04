@@ -86,16 +86,16 @@ namespace Game.Models
         public int Level { get; set; } = 1;
 
         // Current Health
-        public int CurrentHealth { get; set; } = 0;
+        public int CurrentHealth { get; set; }
 
         // Max Health
-        public int MaxHealth { get; set; } = 0;
+        public int MaxHealth { get; set; }
 
         // Total Experience Earned
-        public int ExperienceTotal { get; set; } = 0;
+        public int ExperienceTotal { get; set; }
 
         // The Experience available to given up
-        public int ExperienceRemaining { get; set; } = 0;
+        public int ExperienceRemaining { get; set; }
 
         // Total speed, including level and items
         public int Speed { get; set; }
