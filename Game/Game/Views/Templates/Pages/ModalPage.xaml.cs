@@ -10,9 +10,11 @@ namespace Game.Templates.Pages
     /// </summary>
     public partial class ModalPage : ContentPage
     {
-        static readonly BindableProperty PageBackgroundProperty =
-            BindableProperty.Create(nameof(pageBackground), typeof(ImageSource), typeof(ModalPage), (ImageSource)"page_background.png");
-        public ImageSource pageBackground => (ImageSource)GetValue(PageBackgroundProperty);
+        static readonly BindableProperty PageBackgroundProperty = BindableProperty.Create(nameof(PageBackground),
+                                                                                          typeof(ImageSource),
+                                                                                          typeof(ModalPage),
+                                                                                          (ImageSource)"page_background.png");
+        public ImageSource PageBackground => (ImageSource)GetValue(PageBackgroundProperty);
 
         public ModalPage()
         {

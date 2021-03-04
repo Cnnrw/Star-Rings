@@ -324,10 +324,10 @@ namespace Game.ViewModels
                 return false;
             }
 
-            var BaseDataId = ((BaseModel<T>)(object)data).Id;
+            var baseDataId = ((BaseModel<T>)(object)data).Id;
 
             // Check that the record exists, if it does not, then exit with false
-            var record = await ReadAsync(BaseDataId);
+            var record = await ReadAsync(baseDataId);
             if (record == null)
             {
                 return false;
@@ -353,10 +353,10 @@ namespace Game.ViewModels
                 return false;
             }
 
-            var BaseDataId = ((BaseModel<T>)(object)data).Id;
+            var baseDataId = ((BaseModel<T>)(object)data).Id;
 
             // Check that the record exists, if it does not, then exit with false
-            var record = await ReadAsync(BaseDataId);
+            var record = await ReadAsync(baseDataId);
             if (record == null)
             {
                 return false;

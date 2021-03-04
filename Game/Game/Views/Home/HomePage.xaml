@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.HomePage">
+
     <Grid>
 
         <!-- Page background -->
@@ -12,13 +13,11 @@
 
         <Grid ColumnDefinitions="*, 5*, *">
 
-            <Image Grid.Column="0"
-                   Aspect="Fill"
+            <Image Aspect="Fill"
                    Source="column.png" />
 
             <FlexLayout Grid.Column="1"
                         Wrap="Wrap"
-                        Margin="0, 30"
                         JustifyContent="SpaceAround"
                         AlignContent="SpaceAround">
 
