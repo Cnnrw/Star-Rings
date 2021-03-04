@@ -5,25 +5,61 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Sizes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Pages -->
     <Style TargetType="NavigationPage">
         <Setter Property="BarTextColor" Value="{StaticResource SecondaryTextColor}" />
-        <Setter Property="BarBackgroundColor" Value="Black" />
+        <Setter Property="BarBackgroundColor" Value="{StaticResource NavBarBackground}" />
     </Style>
 
     <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="Black" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
+        <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
     </Style>
 
-    <!--Global Styles for Views-->
-
     <!-- Scroll View -->
-
     <Style TargetType="ScrollView">
         <Setter Property="VerticalScrollBarVisibility" Value="Never" />
         <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+    </Style>
+
+    <!-- Text / Label -->
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="8bit"/>
+        <Setter Property="FontSize" Value="{StaticResource SizeTextBody}"/>
+        <Setter Property="TextColor" Value="{StaticResource ColorSecondaryText}"/>
+    </Style>
+
+    <Style x:Key="BaseLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="8bit"/>
+        <Setter Property="TextColor" Value="{StaticResource ColorPrimaryText}"/>
+    </Style>
+
+    <Style x:Key="TextTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontFamily" Value="8bit_bold"/>
+        <Setter Property="FontSize" Value="{StaticResource SizeTextTitle}"/>
+        <Setter Property="TextColor" Value="{StaticResource ColorSecondaryText}"/>
+    </Style>
+
+    <Style x:Key="TextSubTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource SizeTextSubTitle}"/>
+    </Style>
+
+    <Style x:Key="TextBody" TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource SizeTextBody}"/>
+    </Style>
+
+    <!-- Image Button -->
+    <Style x:Key="MenuButton" TargetType="Frame">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="HasShadow" Value="False"/>
+        <Setter Property="BorderColor" Value="{StaticResource TransparentColor}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}"/>
     </Style>
 
     <!-- Label -->
@@ -58,7 +94,6 @@
            x:Key="LabelStyle"
            BasedOn="{StaticResource LabelBaseStyle}">
         <Setter Property="FontSize" Value="Medium" />
-        <Setter Property="TextColor" Value="Yellow" />
     </Style>
 
     <Style TargetType="Label"
@@ -138,7 +173,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="Aspect" Value="Fill" />
+        <Setter Property="Aspect" Value="AspectFill" />
     </Style>
 
     <Style TargetType="Image"
