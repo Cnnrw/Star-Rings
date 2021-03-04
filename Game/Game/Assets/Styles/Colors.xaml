@@ -1,66 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xaml-comp compile="true" ?>
-
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-<!--     <Color x:Key="ThemePrimary"></Color> -->
-<!--     <Color x:Key="ThemeLighterAlt"></Color> -->
-<!--     <Color x:Key="ThemeLighter"></Color> -->
-<!--     <Color x:Key="ThemeTertiary"></Color> -->
-<!--     <Color x:Key="ThemeSecondary"></Color> -->
-<!--     <Color x:Key="ThemeDarkAlt"></Color> -->
-<!--     <Color x:Key="ThemeDark"></Color> -->
-<!--     <Color x:Key="ThemeDarker"></Color> -->
-<!-- -->
-<!--     <Color x:Key="NeutralLighterAlt">#f8f8f8</Color> -->
-<!--     <Color x:Key="NeutralLighter">#f4f4f4</Color> -->
-<!--     <Color x:Key="NeutralLight">#eaeaea</Color> -->
-<!--     <Color x:Key="NeutralQuaternaryAlt">#dadada</Color> -->
-<!--     <Color x:Key="NeutralQuaternary">#d0d0d0</Color> -->
-<!--     <Color x:Key="NeutralTertiaryAlt">#c8c8c8</Color> -->
-<!--     <Color x:Key="NeutralTertiary">#bab8b7</Color> -->
-<!--     <Color x:Key="NeutralSecondaryAlt">#a3a2a0</Color> -->
-<!--     <Color x:Key="NeutralSecondary">#a3a2a0</Color> -->
-<!--     <Color x:Key="NeutralPrimaryAlt">#8d8b8a</Color> -->
-<!--     <Color x:Key="NeutralPrimary">#323130</Color> -->
-<!--     <Color x:Key="NeutralDark">#605e5d</Color> -->
-<!--     <Color x:Key="Black">#494847</Color> -->
-<!--     <Color x:Key="White">#ffffff</Color> -->
-<!-- -->
-<!--     ~1~ THEME COLORS @1@ -->
-<!--     <Color x:Key="BackgroundColorDark">#2c2c2c</Color> -->
-<!--     <Color x:Key="BackgroundColorLight">#f6f6f6</Color> -->
-<!--     <Color x:Key="TextPrimaryColorDark">#FFFFFF</Color> -->
-<!--     <Color x:Key="TextPrimaryColorLight">#323130</Color> -->
-<!--     <Color x:Key="TextSecondaryColorDark">#FFFFFF</Color> -->
-<!--     <Color x:Key="TextSecondaryColorLight">#a3a2a0</Color> -->
-<!-- -->
-<!--     ~1~ SEMANTIC COLORS @1@ -->
-<!--     <Color x:Key="Success">#FF3300</Color> -->
-<!--     <Color x:Key="Info">#ffded6</Color> -->
-<!--     <Color x:Key="Warning">#ff4b1f</Color> -->
-<!-- -->
-<!--     <Color x:Key="FlyoutGradientStart">#FF017ED8</Color> -->
-<!--     <Color x:Key="FlyoutGradientEnd">#FF14D9D9</Color> -->
-<!--     <Color x:Key="NavBarTitleColor">#FFFFFF</Color> -->
-<!-- -->
-<!--     <Color x:Key="TitleColor">#FFFFFF</Color> -->
+    <Color x:Key="TransparentColor">Transparent</Color>
 
-    <Color x:Key="PageBackgroundColor">Pink</Color>
-    <Color x:Key="ViewBackgroundColor">green</Color>
-    <Color x:Key="NavigationBarColor">orange</Color>
+    <Color x:Key="NavBarBackground">Black</Color>
 
+    <!-- Page -->
+    <Color x:Key="PageBackgroundColor">Black</Color>
+
+    <!-- View -->
     <Color x:Key="PrimaryBackgroundColor">#BCB4AA</Color>
     <Color x:Key="SecondaryBackgroundColor">gray</Color>
     <Color x:Key="TriciaryBackgroundColor">lightgray</Color>
     <Color x:Key="LightBackgroundColor">#E0D5C6</Color>
 
+    <!-- Text -->
     <Color x:Key="PrimaryTextColor">White</Color>
     <Color x:Key="SecondaryTextColor">Yellow</Color>
     <Color x:Key="TriciaryTextColor">darkgreen</Color>
 
-    <Color x:Key="TransparentColor">Transparent</Color>
+    <Color x:Key="ColorPrimaryText">Yellow</Color>
+    <Color x:Key="ColorSecondaryText">White</Color>
 
     <Color x:Key="BlockingColor">
         <x:Arguments>
