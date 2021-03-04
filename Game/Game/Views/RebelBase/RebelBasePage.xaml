@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:template="clr-namespace:Game.Templates.Pages;assembly=Game"
-                    x:Class="Game.Views.RebelBasePage"
-                    Title="Rebel Base">
+<page:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:c="clr-namespace:Game.Controls;assembly=Game"
+               xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+               xmlns:page="clr-namespace:Game.Templates.Pages;assembly=Game"
+               x:Class="Game.Views.RebelBasePage"
+               x:DataType="vm:RebelBaseViewModel">
 
     <FlexLayout Wrap="Wrap"
                 JustifyContent="SpaceAround"
@@ -49,4 +51,4 @@
         </StackLayout>
 
     </FlexLayout>
-</template:ModalPage>
+</page:BasePage>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<page_template:ModalPage xmlns="http://xamarin.com/schemas/2014/forms"
-                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                         xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
-                         xmlns:template="clr-namespace:Game.Templates;assembly=Game"
-                         xmlns:page_template="clr-namespace:Game.Templates.Pages;assembly=Game"
-                         mc:Ignorable="d"
-                         x:Class="Game.Views.CharacterIndexPage"
-                         Title="{Binding Title}">
+<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                xmlns:template="clr-namespace:Game.Templates;assembly=Game"
+                xmlns:pages="clr-namespace:Game.Templates.Pages;assembly=Game"
+                mc:Ignorable="d"
+                x:Class="Game.Views.CharacterIndexPage"
+                Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:CharacterIndexViewModel />
@@ -41,4 +41,4 @@
 
         </CollectionView>
     </RefreshView>
-</page_template:ModalPage>
+</pages:BasePage>

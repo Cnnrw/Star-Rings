@@ -7,7 +7,7 @@ namespace Game.Views
     /// <summary>
     ///     The Main Game Page
     /// </summary>
-    public partial class RebelBasePage : ModalPage
+    public partial class RebelBasePage : BasePage
     {
         /// <summary>
         ///     Constructor

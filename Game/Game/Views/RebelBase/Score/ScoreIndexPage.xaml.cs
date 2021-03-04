@@ -12,7 +12,7 @@ namespace Game.Views
     /// <summary>
     /// Index Page
     /// </summary>
-    public partial class ScoreIndexPage : ModalPage
+    public partial class ScoreIndexPage : BasePage
     {
         // The view model, used for data binding
         readonly ScoreIndexViewModel _viewModel = ScoreIndexViewModel.Instance;

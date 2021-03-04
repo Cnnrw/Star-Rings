@@ -12,7 +12,7 @@ namespace Game.Views
     /// <summary>
     ///     Monster Index Page
     /// </summary>
-    public partial class MonsterIndexPage : ModalPage
+    public partial class MonsterIndexPage : BasePage
     {
 
         // view model used for data binding

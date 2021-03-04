@@ -12,7 +12,7 @@ namespace Game.Views
     /// <summary>
     ///     Character Index Page
     /// </summary>
-    public partial class CharacterIndexPage : ModalPage
+    public partial class CharacterIndexPage : BasePage
     {
         readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
 

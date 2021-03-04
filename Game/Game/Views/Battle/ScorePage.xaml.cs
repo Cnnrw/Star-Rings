@@ -12,7 +12,7 @@ namespace Game.Views
     /// <summary>
     ///     The Main Game Page
     /// </summary>
-    public partial class ScorePage : ModalPage
+    public partial class ScorePage : BasePage
     {
         // This uses the Instance so it can be shared with other Battle Pages as needed
         readonly BattleEngineViewModel _engineViewModel = BattleEngineViewModel.Instance;
@@ -216,13 +216,5 @@ namespace Game.Views
 
             return playerStack;
         }
-
-        // /// <summary>
-        // ///     Close the Page
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        // public async void CloseButton_Clicked(object sender, EventArgs e) =>
-        //     await Navigation.PopModalAsync();
     }
 }

@@ -20,7 +20,7 @@ namespace Game.Views
     /// Have select from the party list remove it from the party list and add it to the database list
     ///
     /// </summary>
-    public partial class PickCharactersPage : ModalPage
+    public partial class PickCharactersPage : BasePage
     {
         internal readonly BattleEngineViewModel ViewModel = BattleEngineViewModel.Instance;
 
@@ -67,7 +67,7 @@ namespace Game.Views
                 ViewModel.DatabaseCharacterList.Remove(data);
                 ViewModel.PartyCharacterList.Add(data);
             }
-                
+
             UpdateNextButtonState();
         }
 
@@ -100,8 +100,10 @@ namespace Game.Views
         /// </summary>
         public void UpdateNextButtonState()
         {
-            BeginBattleButton.IsEnabled = (ViewModel.PartyCharacterList != null) && (ViewModel.PartyCharacterList.Any());
-            PartyCountLabel.Text = (ViewModel.PartyCharacterList ?? Enumerable.Empty<CharacterModel>()).Count().ToString();
+            BeginBattleButton.IsEnabled = ViewModel.PartyCharacterList != null &&
+                                          ViewModel.PartyCharacterList.Any();
+            PartyCountLabel.Text = (ViewModel.PartyCharacterList ?? Enumerable.Empty<CharacterModel>()).Count()
+                                                                                                       .ToString();
         }
 
         /// <summary>
