@@ -6,9 +6,7 @@ namespace Game.Engine.EngineGame
 {
     /// <summary>
     /// AutoBattle Engine
-    /// 
     /// Runs the engine simulation with no user interaction
-    /// 
     /// </summary>
     public class AutoBattleEngine : AutoBattleEngineBase, IAutoBattleInterface
     {
@@ -31,15 +29,8 @@ namespace Game.Engine.EngineGame
 
         public new IBattleEngineInterface Battle
         {
-            get
-            {
-                if (base.Battle == null)
-                {
-                    base.Battle = new BattleEngine();
-                }
-                return base.Battle;
-            }
-            set { base.Battle = Battle; }
+            get => base.Battle ?? (base.Battle = new BattleEngine());
+            set => base.Battle = Battle;
         }
 
         public override bool CreateCharacterParty()
