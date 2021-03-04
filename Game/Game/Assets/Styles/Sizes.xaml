@@ -8,16 +8,22 @@
     <x:Double x:Key="SpacingMedium">10</x:Double>
     <x:Double x:Key="SpacingLarge">15</x:Double>
 
-    <OnPlatform x:TypeArguments="GridLength"
-                x:Key="GridLengthNavigationBarHeight">
-        <On Platform="iOS" Value="44" />
-        <On Platform="Android, UWP" Value="56" />
-    </OnPlatform>
-
     <x:Double x:Key="NavigationBar">15</x:Double>
 
-    <Color x:Key="TextPrimaryColor">#B000000</Color>
-    <Color x:Key="TextSecondaryColor">#8000000</Color>
-    <Color x:Key="TextTernaryColor">#C8C8C8</Color>
+    <x:Double x:Key="TextSizeTitle">28</x:Double>
+    <x:Double x:Key="TextSizeSubTitle">18</x:Double>
+    <x:Double x:Key="TextSizeBody">14</x:Double>
+    <x:Double x:Key="TextList">12</x:Double>
+
+    <x:Double x:Key="TextSizeCaption">12</x:Double>
+    <x:Double x:Key="TextSizeSmallCaption">11</x:Double>
+
+    <x:Double x:Key="SizeTextTitle">28</x:Double>
+    <x:Double x:Key="SizeTextSubTitle">24</x:Double>
+    <x:Double x:Key="SizeTextBody">14</x:Double>
+    <x:Double x:Key="SizeTextList">12</x:Double>
+
+    <x:Double x:Key="SizeTextCaption">12</x:Double>
+    <x:Double x:Key="SizeTextSmallCaption">11</x:Double>
 
 </ResourceDictionary>
