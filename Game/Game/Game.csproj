@@ -147,9 +147,6 @@
     <Compile Update="Views\Battle\BattlePage.xaml.cs">
       <DependentUpon>BattlePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Battle\AutoBattlePage.xaml.cs">
-      <DependentUpon>AutoBattlePage.xaml</DependentUpon>
-    </Compile>
 		<Compile Update="Views\RebelBase\RebelBasePage.xaml.cs">
 			<DependentUpon>RebelBasePage.xaml</DependentUpon>
 		</Compile>
@@ -171,7 +168,10 @@
 		<Compile Update="Views\Templates\Pages\ModalPage.xaml.cs">
 		  <DependentUpon>ModalPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Remove="obj\**" />
+		<Compile Update="Views\Home\AutoBattlePage.xaml.cs">
+		  <DependentUpon>AutoBattlePage.xaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
