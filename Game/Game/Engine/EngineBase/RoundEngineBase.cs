@@ -21,15 +21,15 @@ namespace Game.Engine.EngineBase
         // Hold the turn
         public ITurnEngineInterface Turn { get; set; }
 
-        public BattleLocationEnum RoundLocation { get; set; } 
+        public BattleLocationEnum RoundLocation { get; set; }
 
         /// <summary>
         /// Clear the List between Rounds
         /// </summary>
         public virtual bool ClearLists()
         {
-            EngineSettings.ItemPool.Clear();
-            EngineSettings.MonsterList.Clear();
+            _engineSettings.ItemPool.Clear();
+            _engineSettings.MonsterList.Clear();
             return true;
         }
 
@@ -38,7 +38,7 @@ namespace Game.Engine.EngineBase
         /// </summary>
         public virtual bool SetCurrentAttacker(PlayerInfoModel player)
         {
-            EngineSettings.CurrentAttacker = player;
+            _engineSettings.CurrentAttacker = player;
 
             return true;
         }
@@ -48,7 +48,7 @@ namespace Game.Engine.EngineBase
         /// </summary>
         public virtual bool SetCurrentDefender(PlayerInfoModel player)
         {
-            EngineSettings.CurrentDefender = player;
+            _engineSettings.CurrentDefender = player;
 
             return true;
         }
@@ -75,19 +75,14 @@ namespace Game.Engine.EngineBase
             OrderPlayerListByTurnOrder();
 
             // Populate BaseEngine.MapModel with Characters and Monsters
-            EngineSettings.MapModel.PopulateMapModel(EngineSettings.PlayerList);
+            _engineSettings.MapModel.PopulateMapModel(_engineSettings.PlayerList);
 
             // Update Score for the RoundCount
-            EngineSettings.BattleScore.RoundCount++;
+            _engineSettings.BattleScore.RoundCount++;
 
             return true;
         }
 
-        /// <summary>
-        /// Add Monsters to the Round
-        ///
-        /// Because Monsters can be duplicated, will add 1, 2, 3 to their name
-        ///
         /*
             * Hint:
             * I don't have crudi monsters yet so will add 6 new ones...
@@ -102,26 +97,23 @@ namespace Game.Engine.EngineBase
         {
             // TODO: Teams, You need to implement your own Logic can not use mine.
 
-            int TargetLevel = 1;
+            var targetLevel = 1;
 
-            if (EngineSettings.CharacterList.Any())
-            {
-                // Get the Min Character Level (linq is soo cool....)
-                TargetLevel = Convert.ToInt32(EngineSettings.CharacterList.Min(m => m.Level));
-            }
+            // min character level
+            if (_engineSettings.CharacterList.Any())
+                targetLevel = Convert.ToInt32(_engineSettings.CharacterList.Min(m => m.Level));
 
-            for (var i = 0; i < EngineSettings.MaxNumberPartyMonsters; i++)
+            for (var i = 0; i < _engineSettings.MaxNumberPartyMonsters; i++)
             {
-                var data = RandomPlayerHelper.GetRandomMonster(TargetLevel,
-                                                               EngineSettings.BattleSettingsModel.AllowMonsterItems);
+                var data = RandomPlayerHelper.GetRandomMonster(targetLevel, _engineSettings.BattleSettingsModel.AllowMonsterItems);
 
                 // Help identify which Monster it is
-                data.Name += " " + EngineSettings.MonsterList.Count() + 1;
+                data.Name += " " + _engineSettings.MonsterList.Count() + 1;
 
-                EngineSettings.MonsterList.Add(new PlayerInfoModel(data));
+                _engineSettings.MonsterList.Add(new PlayerInfoModel(data));
             }
 
-            return EngineSettings.MonsterList.Count();
+            return _engineSettings.MonsterList.Count();
         }
 
         /// <summary>
@@ -172,37 +164,37 @@ namespace Game.Engine.EngineBase
         public virtual RoundEnum RoundNextTurn()
         {
             // No characters, game is over...
-            if (EngineSettings.CharacterList.Count < 1)
+            if (_engineSettings.CharacterList.Count < 1)
             {
                 // Game Over
-                EngineSettings.RoundStateEnum = RoundEnum.GameOver;
-                return EngineSettings.RoundStateEnum;
+                _engineSettings.RoundStateEnum = RoundEnum.GameOver;
+                return _engineSettings.RoundStateEnum;
             }
 
             // Check if round is over
-            if (EngineSettings.MonsterList.Count < 1)
+            if (_engineSettings.MonsterList.Count < 1)
             {
                 // If over, New Round
-                EngineSettings.RoundStateEnum = RoundEnum.NewRound;
+                _engineSettings.RoundStateEnum = RoundEnum.NewRound;
                 return RoundEnum.NewRound;
             }
 
-            if (EngineSettings.BattleScore.AutoBattle)
+            if (_engineSettings.BattleScore.AutoBattle)
             {
                 // Decide Who gets next turn
                 // Remember who just went...
-                EngineSettings.CurrentAttacker = GetNextPlayerTurn();
+                _engineSettings.CurrentAttacker = GetNextPlayerTurn();
 
                 // Only Attack for now
-                EngineSettings.CurrentAction = ActionEnum.Attack;
+                _engineSettings.CurrentAction = ActionEnum.Attack;
             }
 
             // Do the turn....
-            Turn.TakeTurn(EngineSettings.CurrentAttacker);
+            Turn.TakeTurn(_engineSettings.CurrentAttacker);
 
-            EngineSettings.RoundStateEnum = RoundEnum.NextTurn;
+            _engineSettings.RoundStateEnum = RoundEnum.NextTurn;
 
-            return EngineSettings.RoundStateEnum;
+            return _engineSettings.RoundStateEnum;
         }
 
         /// <summary>
@@ -226,8 +218,8 @@ namespace Game.Engine.EngineBase
         /// <returns></returns>
         public virtual List<PlayerInfoModel> RemoveDeadPlayersFromList()
         {
-            EngineSettings.PlayerList = EngineSettings.PlayerList.Where(m => m.Alive).ToList();
-            return EngineSettings.PlayerList;
+            _engineSettings.PlayerList = _engineSettings.PlayerList.Where(m => m.Alive).ToList();
+            return _engineSettings.PlayerList;
         }
 
         /// <summary>
@@ -251,7 +243,7 @@ namespace Game.Engine.EngineBase
                                                       .ThenBy(a => a.ListOrder)
                                                       .ToList();
 
-            return EngineSettings.PlayerList;
+            return _engineSettings.PlayerList;
         }
 
         /// <summary>
@@ -260,23 +252,23 @@ namespace Game.Engine.EngineBase
         public virtual List<PlayerInfoModel> MakePlayerList()
         {
             // Start from a clean list of players
-            EngineSettings.PlayerList.Clear();
+            _engineSettings.PlayerList.Clear();
 
             // Remember the Insert order, used for Sorting
-            var ListOrder = 0;
+            var listOrder = 0;
 
             foreach (var data in EngineSettings.CharacterList)
             {
                 if (data.Alive)
                 {
-                    EngineSettings.PlayerList.Add(
-                                                  new PlayerInfoModel(data)
-                                                  {
-                                                      // Remember the order
-                                                      ListOrder = ListOrder
-                                                  });
+                    _engineSettings.PlayerList.Add(
+                                                   new PlayerInfoModel(data)
+                                                   {
+                                                       // Remember the order
+                                                       ListOrder = listOrder
+                                                   });
 
-                    ListOrder++;
+                    listOrder++;
                 }
             }
 
@@ -291,11 +283,11 @@ namespace Game.Engine.EngineBase
                                                       ListOrder = ListOrder
                                                   });
 
-                    ListOrder++;
+                    listOrder++;
                 }
             }
 
-            return EngineSettings.PlayerList;
+            return _engineSettings.PlayerList;
         }
 
         /// <summary>
@@ -304,10 +296,10 @@ namespace Game.Engine.EngineBase
         public virtual List<PlayerInfoModel> PlayerList()
         {
             // Start from a clean list of players
-            EngineSettings.PlayerList.Clear();
+            _engineSettings.PlayerList.Clear();
 
             // Remember the Insert order, used for Sorting
-            var ListOrder = 0;
+            var listOrder = 0;
 
             foreach (var data in EngineSettings.CharacterList)
             {
@@ -320,26 +312,23 @@ namespace Game.Engine.EngineBase
                                                       ListOrder = ListOrder
                                                   });
 
-                    ListOrder++;
+                    listOrder++;
                 }
             }
 
-            foreach (var data in EngineSettings.MonsterList)
+            foreach (var data in _engineSettings.MonsterList.Where(data => data.Alive))
             {
-                if (data.Alive)
-                {
-                    EngineSettings.PlayerList.Add(
-                                                  new PlayerInfoModel(data)
-                                                  {
-                                                      // Remember the order
-                                                      ListOrder = ListOrder
-                                                  });
+                _engineSettings.PlayerList.Add(
+                                               new PlayerInfoModel(data)
+                                               {
+                                                   // Remember the order
+                                                   ListOrder = listOrder
+                                               });
 
-                    ListOrder++;
-                }
+                listOrder++;
             }
 
-            return EngineSettings.PlayerList;
+            return _engineSettings.PlayerList;
         }
 
         /// <summary>
@@ -365,7 +354,7 @@ namespace Game.Engine.EngineBase
             }
 
             // Find current player in the list
-            var index = EngineSettings.PlayerList.FindIndex(m => m.Guid.Equals(EngineSettings.CurrentAttacker.Guid));
+            var index = _engineSettings.PlayerList.FindIndex(m => m.Guid.Equals(_engineSettings.CurrentAttacker.Guid));
 
             // If at the end of the list, return the first element
             if (index == EngineSettings.PlayerList.Count() - 1)
@@ -374,7 +363,7 @@ namespace Game.Engine.EngineBase
             }
 
             // Return the next element
-            return EngineSettings.PlayerList[index + 1];
+            return _engineSettings.PlayerList[index + 1];
         }
 
         /// <summary>
@@ -468,10 +457,10 @@ namespace Game.Engine.EngineBase
             var droppedItem = character.AddItem(setLocation, PoolItem.Id);
 
             // Add the PoolItem to the list of selected items
-            EngineSettings.BattleScore.ItemModelSelectList.Add(PoolItem);
+            _engineSettings.BattleScore.ItemModelSelectList.Add(PoolItem);
 
             // Remove the ItemModel just put on from the pool
-            EngineSettings.ItemPool.Remove(PoolItem);
+            _engineSettings.ItemPool.Remove(PoolItem);
 
             if (droppedItem != null)
             {
