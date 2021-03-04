@@ -13,53 +13,36 @@ namespace Game.Converters
     public class StringEnumConverter : IValueConverter
     {
         /// <summary>
-        /// Converts a value to the String
+        ///     Converts a value to a string
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is Enum)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+            value switch
             {
-                return (int)value;
-            }
-
-            if (value is string)
-            {
-                var aa = targetType;
-                var myReturn = Enum.Parse((targetType), value.ToString());
-                return myReturn;
-            }
-
-            return 0;
-        }
+                Enum _   => (int)value,
+                string _ => Enum.Parse(targetType, value.ToString()),
+                _        => 0
+            };
 
         /// <summary>
-        /// Converts a String to the Value
+        ///     Converts a String to the Value
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is int)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+            value switch
             {
-                var myReturn = Enum.ToObject(targetType, value);
-                return myReturn.ToString();
-            }
-
-            if (value is string)
-            {
-                var aa = targetType;
-                var myReturn = Enum.Parse((targetType), value.ToString());
-                return myReturn;
-            }
-            return 0;
-        }
+                int _    => Enum.ToObject(targetType, value)
+                                .ToString(),
+                string _ => Enum.Parse(targetType, value.ToString()),
+                _        => 0
+            };
     }
 }
