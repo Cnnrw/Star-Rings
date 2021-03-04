@@ -27,7 +27,7 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
-            // For now, set the engine to the Koenig Engine, change when ready 
+            // For now, set the engine to the Koenig Engine, change when ready
             BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
 
             page = new PickCharactersPage();
@@ -147,72 +147,72 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        [Test]
-        public void PickCharactersPage_OnPartyCharacterItemSelected_Default_Should_Pass()
-        {
-            // Arrange
-
-            var selectedCharacter = new CharacterModel();
-
-            var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(selectedCharacter, 0);
-
-            // Act
-            page.OnPartyCharacterItemSelected(null, selectedCharacterChangedEventArgs);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void PickCharactersPage_OnPartyCharacterItemSelected_InValid_Should_Pass()
-        {
-            // Arrange
-
-            var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
-
-            // Act
-            page.OnPartyCharacterItemSelected(null, selectedCharacterChangedEventArgs);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void PickCharactersPage_OnDatabaseCharacterItemSelected_Default_Should_Pass()
-        {
-            // Arrange
-
-            var selectedCharacter = new CharacterModel();
-
-            var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(selectedCharacter, 0);
-
-            // Act
-            page.OnDatabaseCharacterItemSelected(null, selectedCharacterChangedEventArgs);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void PickCharactersPage_OnDatabaseCharacterItemSelected_InValid_Should_Pass()
-        {
-            // Arrange
-
-            var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
-
-            // Act
-            page.OnDatabaseCharacterItemSelected(null, selectedCharacterChangedEventArgs);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        // [Test]
+        // public void PickCharactersPage_OnPartyCharacterItemSelected_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var selectedCharacter = new CharacterModel();
+        //
+        //     var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(selectedCharacter, 0);
+        //
+        //     // Act
+        //     page.OnPartyCharacterItemSelected(null, selectedCharacterChangedEventArgs);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
+        //
+        // [Test]
+        // public void PickCharactersPage_OnPartyCharacterItemSelected_InValid_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
+        //
+        //     // Act
+        //     page.OnPartyCharacterItemSelected(null, selectedCharacterChangedEventArgs);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
+        //
+        // [Test]
+        // public void PickCharactersPage_OnDatabaseCharacterItemSelected_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var selectedCharacter = new CharacterModel();
+        //
+        //     var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(selectedCharacter, 0);
+        //
+        //     // Act
+        //     page.OnDatabaseCharacterItemSelected(null, selectedCharacterChangedEventArgs);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
+        //
+        // [Test]
+        // public void PickCharactersPage_OnDatabaseCharacterItemSelected_InValid_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     var selectedCharacterChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
+        //
+        //     // Act
+        //     page.OnDatabaseCharacterItemSelected(null, selectedCharacterChangedEventArgs);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
     }
 }
