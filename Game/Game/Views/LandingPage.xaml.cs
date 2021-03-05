@@ -15,9 +15,6 @@ namespace Game.Views
         public LandingPage()
         {
             InitializeComponent();
-
-            // Remove the nav bar on the home page
-            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         /// <summary>
@@ -41,7 +38,7 @@ namespace Game.Views
             StartButton.Source = "start_button_normal.png";
             StartButton.Scale = 1;
 
-            await Navigation.PushAsync(new HomePage());
+            await Navigation.PushAsync(new Page());
         }
     }
 }
