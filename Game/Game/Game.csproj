@@ -34,8 +34,12 @@
 		<None Remove="Assets\Images\Backgrounds\page_background_4.png" />
 		<None Remove="Assets\Images\Backgrounds\page_background_5.png" />
 		<None Remove="Assets\Images\Backgrounds\page_background_6.png" />
+    <None Remove="Assets\Images\Backgrounds\home_background.png" />
+    <None Remove="Assets\Images\Backgrounds\loading_background.png" />
     <None Remove="Assets\Images\Backgrounds\dungeon_background.png" />
     <None Remove="Assets\Images\Backgrounds\forest_background.png" />
+    <None Remove="Assets\Images\Backgrounds\mordor_background.png" />
+    <None Remove="Assets\Images\Backgrounds\rivendell_background.png" />
     <None Remove="Assets\Images\Backgrounds\shire_background.png" />
 	</ItemGroup>
 	
@@ -238,8 +242,12 @@
 		<SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\page_background_4.png" />
 		<SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\page_background_5.png" />
 		<SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\page_background_6.png" />
+    <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\home_background.png" />
+    <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\loading_background.png" />
     <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\dungeon_background.png" />
     <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\forest_background.png" />
+    <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\mordor_background.png" />
+    <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\rivendell_background.png" />
     <SharedImage BaseSize="390,844" Include="Assets\Images\Backgrounds\shire_background.png" />
 	</ItemGroup>
 
