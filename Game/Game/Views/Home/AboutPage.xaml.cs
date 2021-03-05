@@ -1,13 +1,12 @@
 using Game.Services;
-
-using Xamarin.Forms;
+using Game.Templates.Pages;
 
 namespace Game.Views
 {
     /// <summary>
     ///     About Page
     /// </summary>
-    public partial class AboutPage : ContentPage
+    public partial class AboutPage : BasePage
     {
         readonly INavigationService _navigationService;
 
