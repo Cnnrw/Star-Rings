@@ -1,79 +1,33 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Game.Enums;
+using Game.Services;
+using Game.ViewModels;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace Game.Views
 {
     /// <summary>
     ///     Main Page
     /// </summary>
-    public partial class MainPage : FlyoutPage
+    public partial class MainPage : ContentPage
     {
-        // Collection of Navigation Pages
-        public readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
-
         /// <summary>
-        ///     Constructor setups the behavior and menu pages
+        ///     Unit test c'tor
         /// </summary>
-        public MainPage()
+        /// <param name="unitTests"></param>
+        internal MainPage(bool unitTests) { }
+
+        public MainPage() : this(App.NavigationService)
+        { }
+
+        public MainPage(INavigationService navigationService)
         {
             InitializeComponent();
 
-            FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
-        }
+            On<iOS>().SetUseSafeArea(true);
 
-        /// <summary>
-        ///     Process the Menu Selected item
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task NavigateFromMenu(int id)
-        {
-            // See if the Page is in memory, if not load it
-            if (!MenuPages.ContainsKey(id))
-            {
-                switch (id)
-                {
-                    case (int)MenuItemEnum.RebelBase:
-                        MenuPages.Add(id, new NavigationPage(new RebelBasePage()));
-                        break;
-
-                    case (int)MenuItemEnum.Battle:
-                        MenuPages.Add(id, new NavigationPage(new PickCharactersPage()));
-                        break;
-
-                    case (int)MenuItemEnum.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
-
-                    case (int)MenuItemEnum.Home:
-                        MenuPages.Add(id, new NavigationPage(new HomePage()));
-                        break;
-
-                    case (int)MenuItemEnum.Settings:
-                        MenuPages.Add(id, new NavigationPage(new SettingsPage()));
-                        break;
-                }
-            }
-
-            // Switch to the Page
-            var newPage = MenuPages[id];
-
-            if (newPage != null && Detail != newPage)
-            {
-                Detail = newPage;
-
-                // Android needs a deal, iOS and UWP does not
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await Task.Delay(100);
-                }
-
-                IsPresented = false;
-            }
+            BindingContext = new MainViewModel(navigationService);
         }
     }
 }
