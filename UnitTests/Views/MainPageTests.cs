@@ -1,7 +1,4 @@
-using System.Threading.Tasks;
-
 using Game;
-using Game.Enums;
 using Game.Views;
 
 using NUnit.Framework;
@@ -14,25 +11,24 @@ namespace UnitTests.Views
     [TestFixture]
     public class MainPageTests
     {
-
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
-            app = new App();
-            Application.Current = app;
+            _app = new App();
+            Application.Current = _app;
 
-            page = new MainPage();
+            _page = new MainPage();
         }
 
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        private App      app;
-        private MainPage page;
+        private App      _app;
+        private MainPage _page;
 
         [Test]
         public void MainPage_Constructor_Default_Should_Pass()
@@ -40,7 +36,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page;
+            var result = _page;
 
             // Reset
 
@@ -48,109 +44,43 @@ namespace UnitTests.Views
             Assert.IsNotNull(result);
         }
 
-        [Test]
-        public async Task MainPage_Navigate_About_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.About);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public async Task MainPage_Navigate_Home_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Home);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public async Task MainPage_Navigate_RebelBase_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.RebelBase);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public async Task MainPage_Navigate_Battle_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Battle);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public async Task MainPage_Navigate_Home_Twice_Should_Skip()
-        {
-            // Arrange
-
-            await page.NavigateFromMenu((int)MenuItemEnum.Home);
-
-            // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Home);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public async Task MainPage_Navigate_Invalid_ID_100_Should_Skip()
-        {
-            // Arrange
-
-            page.MenuPages.Add(100, null);
-
-            // Act
-            await page.NavigateFromMenu(100);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public async Task MainPage_Navigate_Device_Android_Home_Should_Pass()
-        {
-            // Arrange
-            MockForms.Init(Device.Android);
-
-            await page.NavigateFromMenu((int)MenuItemEnum.Home);
-
-            // Act
-            await page.NavigateFromMenu((int)MenuItemEnum.Home);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true);
-        }
+        // [Test]
+        // public void MainPage_DungeonButton_Clicked_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //     // Act
+        //     page.DungeonButton_Clicked(null, null);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
+        //
+        // [Test]
+        // public void MainPage_VillageButton_Clicked_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //     // Act
+        //     page.RebelBaseButton_Clicked(null, null);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
+        //
+        // [Test]
+        // public void MainPage_AutoBattleButton_Clicked_Default_Should_Pass()
+        // {
+        //     // Arrange
+        //     // Act
+        //     page.AutobattleButton_Clicked(null, null);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
     }
 }
