@@ -44,6 +44,7 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
+            // Set pickers' initially selected items
             ImagePicker.SelectedItem = "orc.png";
             BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
         }

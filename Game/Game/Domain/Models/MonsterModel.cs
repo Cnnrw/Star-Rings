@@ -16,6 +16,9 @@ namespace Game.Models
         /// </summary>
         public BattleLocationEnum BattleLocation { get; set; }
 
+        /// <summary>
+        /// All the possible image files for monsters
+        /// </summary>
         public static List<string> ImagesURIs = new List<string>
         {
             "dark_elf.png",
