@@ -46,10 +46,13 @@ namespace Game.Views
         /// <param name="e"></param>
         private void OnJobPickerChanged(object sender, EventArgs e)
         {
-            var iconImageURI = _viewModel.Data.Job.ToImageURI();
+            var imageURI = _viewModel.Data.Job.ToImageURI();
+            var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
 
-            _viewModel.Data.ImageURI = iconImageURI;
-            JobImage.Source = iconImageURI;
+            _viewModel.Data.ImageURI = imageURI;
+            _viewModel.Data.IconImageURI = iconImageURI;
+
+            JobImage.Source = imageURI;
         }
 
         /// <summary>
