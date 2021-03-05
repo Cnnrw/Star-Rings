@@ -1,4 +1,5 @@
 using Game.Enums;
+using System.Collections.Generic;
 
 namespace Game.Models
 {
@@ -14,6 +15,19 @@ namespace Game.Models
         /// The locations where the monster can appear
         /// </summary>
         public BattleLocationEnum BattleLocation { get; set; }
+
+        public static List<string> ImagesURIs = new List<string>
+        {
+            "dark_elf.png",
+            "dead_king.png",
+            "nazgul.png",
+            "oliphant.png",
+            "orc.png",
+            "smeagol.png",
+            "spider.png",
+            "troll.png",
+            "warg_rider.png"
+        };
 
         #endregion
         #region Constructors

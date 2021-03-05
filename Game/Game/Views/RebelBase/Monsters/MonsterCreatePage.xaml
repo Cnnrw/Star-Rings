@@ -31,13 +31,18 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Image Source="{Binding Data.ImageURI}"
+                        <Image x:Name="Image"
+                               Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand" />
+                        
                         <Label Text="Image"
                                Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.ImageURI, Mode=TwoWay}"
-                               Style="{StaticResource EntryStyle}" />
+
+                        <Picker x:Name="ImagePicker"
+                                ItemsSource="{x:Static models:MonsterModel.ImagesURIs}"
+                                SelectedItem="{Binding Data.ImageURI, Mode=TwoWay}"
+                                SelectedIndexChanged="OnImagePickerChanged" />
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Name" Style="{StaticResource LabelStyle}" />

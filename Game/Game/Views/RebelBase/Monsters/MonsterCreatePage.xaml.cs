@@ -44,7 +44,21 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
+            ImagePicker.SelectedItem = "orc.png";
             BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
+        }
+
+        /// <summary>
+        /// Update the page's image source according to the Monster's ImageURI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnImagePickerChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+
+            Image.Source = MonsterModel.ImagesURIs[selectedIndex];
         }
 
         /// <summary>
