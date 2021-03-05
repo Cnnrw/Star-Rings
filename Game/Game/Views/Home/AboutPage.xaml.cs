@@ -1,24 +1,35 @@
-using System;
+using Game.Services;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
-    /// About Page
+    ///     About Page
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
     {
+        readonly INavigationService _navigationService;
+
+        internal AboutPage(bool unitTests) { }
+
         /// <summary>
-        /// Constructor for About Page
+        ///     Constructor for About Page
         /// </summary>
-        public AboutPage()
+        public AboutPage() : this(App.NavigationService)
+        { }
+
+        public AboutPage(INavigationService navigationService)
         {
             InitializeComponent();
 
-            NavigationPage.SetHasNavigationBar(this, false);
+            _navigationService = navigationService;
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            _navigationService.GoBack();
+            return true;
         }
     }
 }
