@@ -9,7 +9,9 @@
              mc:Ignorable="d"
              x:Class="Game.Views.MainPage"
              x:DataType="vm:MainViewModel">
-    <Grid>
+
+    <Grid HorizontalOptions="FillAndExpand">
+
         <!-- Page background -->
         <Image Source="page_background_3.png"
                Opacity=".3"
