@@ -16,8 +16,7 @@
 
             <Button Text="Start"
                     Clicked="AutobattleButton_Clicked"
-                    HorizontalOptions="Center"
-                    IsEnabled="False"/>
+                    HorizontalOptions="Center"/>
 
             <StackLayout Style="{StaticResource CardImageTextBox}">
                 <Label 
