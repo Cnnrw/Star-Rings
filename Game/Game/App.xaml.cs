@@ -1,49 +1,48 @@
-﻿using Game.Views;
+﻿using Game.Services;
 
 using Xamarin.Forms;
 
 namespace Game
 {
     /// <summary>
-    /// Main Application entry point
+    ///     Main Application entry point
     /// </summary>
     public partial class App : Application
     {
+        internal static INavigationService NavigationService { get; } = new ViewNavigationService();
+
         /// <summary>
-        /// Default App Constructor
+        ///     Default App Constructor
         /// </summary>
         public App()
         {
             InitializeComponent();
 
-            // Add each model here to warm up and load it.
-            Helpers.DataSetsHelper.WarmUp();
+            NavigationService.Configure("MainPage", typeof(Views.MainPage));
 
             // Call the Landing Page to open
-            MainPage = new MainPage();
+            MainPage = ((ViewNavigationService)NavigationService).SetRootPage("MainPage");
         }
 
-        public static double ScreenWidth => Device.Info.ScaledScreenSize.Width;
-
         /// <summary>
-        /// On Startup code if needed
+        ///     On Startup code if needed
         /// </summary>
         protected override void OnStart()
         {
+            // Add each model here to warm up and load it.
+            Helpers.DataSetsHelper.WarmUp();
         }
 
         /// <summary>
-        /// On Sleep code if needed
+        ///     On Sleep code if needed
         /// </summary>
         protected override void OnSleep()
-        {
-        }
+        { }
 
         /// <summary>
-        /// On App Resume code if needed
+        ///     On App Resume code if needed
         /// </summary>
         protected override void OnResume()
-        {
-        }
+        { }
     }
 }
