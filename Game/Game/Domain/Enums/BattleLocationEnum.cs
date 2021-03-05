@@ -101,10 +101,10 @@ namespace Game.Enums
             value switch
             {
                 BattleLocationEnum.Shire     => "shire_background.png",
-                BattleLocationEnum.ElvenCity => "page_background_2.png",
+                BattleLocationEnum.ElvenCity => "rivendell_background.png",
                 BattleLocationEnum.Forest    => "forest_background.png",
                 BattleLocationEnum.Dungeons  => "dungeon_background.png",
-                BattleLocationEnum.Mordor    => "page_background_5.png",
+                BattleLocationEnum.Mordor    => "mordor_background.png",
                 _                            => "item.png"
             };
     }
