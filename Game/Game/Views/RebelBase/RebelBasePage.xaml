@@ -12,43 +12,21 @@
                 JustifyContent="SpaceAround"
                 AlignContent="SpaceAround"
                 Padding="40">
-
-        <StackLayout Style="{StaticResource CardImageTextBox}">
-            <ImageButton Source="warrior.png"
-                         Style="{StaticResource ImageLargeStyle}"
-                         Clicked="CharactersButton_Clicked" />
-            <Label Text="Characters"
-                   Style="{StaticResource CenterMessageStyle}" />
-        </StackLayout>
-
-
-        <StackLayout Style="{StaticResource CardImageTextBox}">
-            <ImageButton Source="eye.png"
-                         Style="{StaticResource ImageLargeStyle}"
-                         Clicked="MonstersButton_Clicked" />
-            <Label Text="Monsters"
-                   Style="{StaticResource CenterMessageStyle}" />
-        </StackLayout>
-
-
-        <StackLayout Style="{StaticResource CardImageTextBox}">
-
-            <ImageButton Source="ring.png"
-                         Style="{StaticResource ImageLargeStyle}"
-                         Clicked="ItemsButton_Clicked" />
-            <Label Text="Items"
-                   Style="{StaticResource CenterMessageStyle}" />
-        </StackLayout>
-
-
-        <StackLayout Style="{StaticResource CardImageTextBox}">
-            <ImageButton Source="stats.png"
-                         Style="{StaticResource ImageLargeStyle}"
-                         Clicked="ScoresButton_Clicked" />
-            <Label Text="Scores"
-                   Style="{StaticResource CenterMessageStyle}" />
-
-        </StackLayout>
-
+        <c:ImgButton Text="Characters"
+                     Source="warrior.png"
+                     Command="{Binding CharacterPageCommand}"
+                     ImageStyle="{StaticResource ImageLargeStyle}" />
+        <c:ImgButton Text="Monsters"
+                     Source="eye.png"
+                     Command="{Binding MonsterPageCommand}"
+                     ImageStyle="{StaticResource ImageLargeStyle}" />
+        <c:ImgButton Text="Items"
+                     Source="ring.png"
+                     Command="{Binding ItemsPageCommand}"
+                     ImageStyle="{StaticResource ImageLargeStyle}" />
+        <c:ImgButton Text="Scores"
+                     Source="stats.png"
+                     Command="{Binding ScoresPageCommand}"
+                     ImageStyle="{StaticResource ImageLargeStyle}" />
     </FlexLayout>
 </page:BasePage>
