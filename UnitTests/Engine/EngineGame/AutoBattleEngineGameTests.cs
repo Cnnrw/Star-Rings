@@ -1,6 +1,9 @@
-﻿using Game.Engine.EngineGame;
-
+using Game.Engine.EngineGame;
+using Game.Models;
+using Game.ViewModels;
 using NUnit.Framework;
+using System.Linq;
+using System.Threading.Tasks;
 
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -48,6 +51,7 @@ namespace UnitTests.Engine.EngineGame
             // Assert
             Assert.IsNotNull(result);
         }
+
         //[Test]
         //public async Task AutoBattleEngine_RunAutoBattle_Valid_Default_Should_Pass()
         //{
@@ -108,34 +112,35 @@ namespace UnitTests.Engine.EngineGame
         //    //Assert
         //    Assert.AreEqual(true, result);
         //}
-        //[Test]
-        //public async Task AutoBattleEngine_CreateCharacterParty_Valid_Characters_Should_Assign_6()
-        //{
-        //    //Arrange
-        //    AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyCharacters = 6;
 
-        //    CharacterIndexViewModel.Instance.Dataset.Clear();
+        [Test]
+        public async Task AutoBattleEngine_CreateCharacterParty_Valid_Characters_Should_Assign_6()
+        {
+            // Arrange
+            AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyCharacters = 6;
 
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "1" });
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "2" });
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "3" });
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "4" });
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "5" });
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "6" });
-        //    await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "7" });
+            CharacterIndexViewModel.Instance.Dataset.Clear();
 
-        //    //Act
-        //    var result = AutoBattleEngine.CreateCharacterParty();
-        //    var count = AutoBattleEngine.Battle.EngineSettings.CharacterList.Count();
-        //    var name = AutoBattleEngine.Battle.EngineSettings.CharacterList.ElementAt(5).Name;
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "1" });
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "2" });
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "3" });
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "4" });
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "5" });
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "6" });
+            await CharacterIndexViewModel.Instance.CreateAsync(new CharacterModel { Name = "7" });
 
-        //    //Reset
-        //    CharacterIndexViewModel.Instance.ForceDataRefresh();
+            // Act
+            var result = AutoBattleEngine.CreateCharacterParty();
+            var count = AutoBattleEngine.Battle.EngineSettings.CharacterList.Count();
+            var name = AutoBattleEngine.Battle.EngineSettings.CharacterList.ElementAt(5).Name;
 
-        //    //Assert
-        //    Assert.AreEqual(6, count);
-        //    Assert.AreEqual("6", name);
-        //}
+            // Reset
+            CharacterIndexViewModel.Instance.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual(6, count);
+            Assert.AreEqual("6", name);
+        }
 
         //[Test]
         //public void AutoBattleEngine_CreateCharacterParty_Valid_Characters_CharacterIndex_None_Should_Create_6()
