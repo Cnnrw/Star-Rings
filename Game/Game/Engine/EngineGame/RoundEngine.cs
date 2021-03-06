@@ -258,11 +258,10 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// Pickup Items Dropped
         /// </summary>
-        public override bool PickupItemsFromPool(PlayerInfoModel character) =>
-            throw
-                // TODO: Teams, You need to implement your own Logic if not using auto apply
-                // I use the same logic for Auto Battle as I do for Manual Battle
-                new NotImplementedException();
+        public override bool PickupItemsFromPool(PlayerInfoModel character)
+        {
+            return base.PickupItemsFromPool(character);
+        }
 
         /// <summary>
         /// Swap out the item if it is better
