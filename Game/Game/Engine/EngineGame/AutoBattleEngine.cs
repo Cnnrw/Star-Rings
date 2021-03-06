@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 
@@ -40,7 +40,7 @@ namespace Game.Engine.EngineGame
 
         public override bool DetectInfinateLoop()
         {
-            throw new System.NotImplementedException();
+            return base.DetectInfinateLoop();
         }
 
         public override Task<bool> RunAutoBattle()
