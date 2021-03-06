@@ -166,20 +166,6 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void BattleLocationEnumTests_ToImageUri_Shire_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            var result = BattleLocationEnum.Shire.ToImageUri();
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual("shire_background.png", result);
-        }
-
-        [Test]
         public void BattleLocationEnumTests_ToImageUri_Dungeons_Should_Pass()
         {
             // Arrange
@@ -194,6 +180,20 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void BattleLocationEnumTests_ToImageUri_ElvenCity_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.ElvenCity.ToImageUri();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("rivendell_background.png", result);
+        }
+
+        [Test]
         public void BattleLocationEnumTests_ToImageUri_Forest_Should_Pass()
         {
             // Arrange
@@ -205,6 +205,34 @@ namespace UnitTests.Models
 
             // Assert
             Assert.AreEqual("forest_background.png", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToImageUri_Mordor_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Mordor.ToImageUri();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("mordor_background.png", result);
+        }
+
+        [Test]
+        public void BattleLocationEnumTests_ToImageUri_Shire_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = BattleLocationEnum.Shire.ToImageUri();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("shire_background.png", result);
         }
 
         [Test]
