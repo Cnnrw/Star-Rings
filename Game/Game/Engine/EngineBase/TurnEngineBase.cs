@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -55,15 +55,11 @@ namespace Game.Engine.EngineBase
             }
 
             var result = _engineSettings.CurrentAction switch
-                         {
-                             //case ActionEnum.Unknown:
-                             //    // Action already happened
-                             //    break;
-                             ActionEnum.Attack  => Attack(attacker),
-                             ActionEnum.Ability => UseAbility(attacker),
-                             ActionEnum.Move    => MoveAsTurn(attacker),
-                             _                  => false
-                         };
+            {
+                ActionEnum.Attack  => Attack(attacker),
+                ActionEnum.Ability => UseAbility(attacker),
+                ActionEnum.Move    => MoveAsTurn(attacker),
+            };
 
             _engineSettings.BattleScore.TurnCount++;
 
