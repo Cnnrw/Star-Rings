@@ -195,10 +195,16 @@ namespace Game.Engine.EngineGame
         /// For each character pickup the items
         /// </summary>
         // In Auto Battle this happens and the characters get their items
-        // When called manualy, make sure to do the character pickup before calling EndRound
+        // When called manually, make sure to do the character pickup before calling EndRound
         public override void PickupItemsForAllCharacters()
         {
-            base.PickupItemsForAllCharacters();
+            // Order characters by lowest level so the weak ones have first pick
+            var orderedCharacterList = EngineSettings.CharacterList.OrderBy(a => a.Level);
+
+            foreach (var character in orderedCharacterList)
+            {
+                PickupItemsFromPool(character);
+            }
         }
 
         /// <summary>
@@ -268,8 +274,10 @@ namespace Game.Engine.EngineGame
         ///
         /// Uses Value to determine
         /// </summary>
-        public override bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation) =>
-            throw new NotImplementedException();
+        public override bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation)
+        {
+            return base.GetItemFromPoolIfBetter(character, setLocation);
+        }
 
         /// <summary>
         /// Swap the Item the character has for one from the pool
