@@ -115,10 +115,6 @@ namespace Game.Enums
                 case CharacterJobEnum.AstroDroid:
                     ImageURI = "astromech.png";
                     break;
-
-                case CharacterJobEnum.Unknown:
-                default:
-                    break;
             }
 
             return ImageURI;
