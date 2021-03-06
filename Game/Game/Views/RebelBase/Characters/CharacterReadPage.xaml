@@ -7,6 +7,7 @@
              xmlns:m="clr-namespace:Game.Models;assembly=Game"
              xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
              mc:Ignorable="d"
+             BackgroundImageSource="page_background.png">
              x:Class="Game.Views.CharacterReadPage">
 
     <ContentPage.BindingContext>
