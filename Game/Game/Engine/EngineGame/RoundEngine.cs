@@ -196,7 +196,10 @@ namespace Game.Engine.EngineGame
         /// </summary>
         // In Auto Battle this happens and the characters get their items
         // When called manualy, make sure to do the character pickup before calling EndRound
-        public override void PickupItemsForAllCharacters() => throw new NotImplementedException();
+        public override void PickupItemsForAllCharacters()
+        {
+            base.PickupItemsForAllCharacters();
+        }
 
         /// <summary>
         /// Manage Next Turn
