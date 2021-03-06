@@ -1,6 +1,8 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
+using Game.ViewModels;
 
 namespace Game.Engine.EngineGame
 {
@@ -35,7 +37,20 @@ namespace Game.Engine.EngineGame
 
         public override bool CreateCharacterParty()
         {
-            throw new System.NotImplementedException();
+            // Will first pull from existing characters
+            foreach (var data in CharacterIndexViewModel.Instance.Dataset)
+            {
+                if (Battle.EngineSettings.CharacterList.Count() >= Battle.EngineSettings.MaxNumberPartyCharacters)
+                {
+                    break;
+                }
+
+                // Start off with max health if adding a character in
+                data.CurrentHealth = data.GetMaxHealthTotal;
+                Battle.PopulateCharacterList(data);
+            }
+
+            return true;
         }
 
         public override bool DetectInfinateLoop()
