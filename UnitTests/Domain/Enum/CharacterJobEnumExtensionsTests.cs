@@ -106,6 +106,90 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void CharacterJobEnumExtensionsTests_ToImageURI_Jedi_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Jedi.ToImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("jedi.png", result);
+        }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToImageURI_Princess_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Princess.ToImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("jedi_princess.png", result);
+        }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToImageURI_Smuggler_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Smuggler.ToImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("smuggler.png", result);
+        }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToImageURI_Wookie_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.Wookie.ToImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("wookie.png", result);
+        }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToImageURI_AstroDroid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.AstroDroid.ToImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("astromech.png", result);
+        }
+
+        [Test]
+        public void CharacterJobEnumExtensionsTests_ToImageURI_ProtocolDroid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = CharacterJobEnum.ProtocolDroid.ToImageURI();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual("protocol_droid.png", result);
+        }
+
+        [Test]
         public void CharacterJobEnumExtensionsTests_ToIconImageURI_Jedi_Should_Pass()
         {
             // Arrange
