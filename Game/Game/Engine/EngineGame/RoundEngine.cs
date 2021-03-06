@@ -102,7 +102,6 @@ namespace Game.Engine.EngineGame
         /// Because Monsters can be duplicated, this will add 1, 2, 3 to their name
         /// </summary>
         /// <returns></returns>
-        // TODO: Teams, You need to implement your own Logic can not use mine.
         public override int AddMonstersToRound()
         {
             int targetLevel = 1;
