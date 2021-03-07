@@ -41,10 +41,24 @@ namespace Game.Views
 
             BindingContext = ViewModel;
 
-            // Clear the Database List and the Party List to start
+            PopulateCharacterPool();
+
             ViewModel.PartyCharacterList.Clear();
 
             UpdateNextButtonState();
+        }
+
+        /// <summary>
+        /// Copies Characters from the database into a modifiable Character pool list
+        /// </summary>
+        private void PopulateCharacterPool()
+        {
+            ViewModel.PoolCharacterList.Clear();
+
+            foreach(CharacterModel Character in ViewModel.DatabaseCharacterList)
+            {
+                ViewModel.PoolCharacterList.Add(Character);
+            }
         }
 
         /// <summary>
@@ -63,8 +77,8 @@ namespace Game.Views
             // Don't add more than the party max
             if (ViewModel.PartyCharacterList.Count() < ViewModel.Engine.EngineSettings.MaxNumberPartyCharacters)
             {
-                // Remove the character from the database list and add it to the party list
-                ViewModel.DatabaseCharacterList.Remove(data);
+                // Remove the character from the pool list and add it to the party list
+                ViewModel.PoolCharacterList.Remove(data);
                 ViewModel.PartyCharacterList.Add(data);
             }
 
@@ -84,9 +98,9 @@ namespace Game.Views
             // Manually deselect Character.
             PartyList.SelectedItem = null;
 
-            // Remove the character from the party list and add it back to the database list
+            // Remove the character from the party list and add it back to the pool list
             ViewModel.PartyCharacterList.Remove(data);
-            ViewModel.DatabaseCharacterList.Add(data);
+            ViewModel.PoolCharacterList.Add(data);
 
             UpdateNextButtonState();
         }

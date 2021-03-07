@@ -60,6 +60,9 @@ namespace Game.ViewModels
 
         #endregion BattleEngineSelection
 
+        // Hold the list of Characters available to be put in a party
+        public ObservableCollection<CharacterModel> PoolCharacterList { get; set; } = new ObservableCollection<CharacterModel>();
+
         // Hold the Proposed List of Characters for the Battle to Use
         public ObservableCollection<CharacterModel> PartyCharacterList { get; set; } = new ObservableCollection<CharacterModel>();
 

@@ -67,7 +67,7 @@
         <CollectionView Grid.Column="0"
                         Grid.Row="2"
                         x:Name="CharacterList"
-                        ItemsSource="{Binding DatabaseCharacterList}"
+                        ItemsSource="{Binding PoolCharacterList}"
                         SelectionMode="Single"
                         SelectionChanged="OnCharacterSelected"
                         ItemSizingStrategy="MeasureFirstItem"
