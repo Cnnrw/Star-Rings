@@ -342,8 +342,10 @@ namespace Game.Engine.EngineGame
         /// Drop the current item back into the Pool
         /// </summary>
         public override ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation,
-                                                    ItemModel       PoolItem) =>
-            throw new NotImplementedException();
+                                                    ItemModel       PoolItem)
+        {
+            return base.SwapCharacterItem(character, setLocation, PoolItem);
+        }
 
         /// <summary>
         /// For all characters in player list, remove their buffs
