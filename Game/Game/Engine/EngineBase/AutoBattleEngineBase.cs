@@ -44,7 +44,7 @@ namespace Game.Engine.EngineBase
             do
             {
                 // Check for excessive duration.
-                if (DetectInfinateLoop())
+                if (DetectInfiniteLoop())
                 {
                     Debug.WriteLine("Aborting, More than Max Rounds");
                     Battle.EndBattle();
@@ -80,7 +80,7 @@ namespace Game.Engine.EngineBase
         ///
         /// </summary>
         /// <returns></returns>
-        public virtual bool DetectInfinateLoop()
+        public virtual bool DetectInfiniteLoop()
         {
             if (Battle.EngineSettings.BattleScore.RoundCount > Battle.EngineSettings.MaxRoundCount)
             {

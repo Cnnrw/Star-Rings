@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,7 +59,7 @@ namespace Game.Engine.EngineKoenig
             do
             {
                 // Check for excessive duration.
-                if (DetectInfinateLoop())
+                if (DetectInfiniteLoop())
                 {
                     Debug.WriteLine("Aborting, More than Max Rounds");
                     Battle.EndBattle();
@@ -96,7 +95,7 @@ namespace Game.Engine.EngineKoenig
         ///
         /// </summary>
         /// <returns></returns>
-        public override bool DetectInfinateLoop()
+        public override bool DetectInfiniteLoop()
         {
             if (Battle.EngineSettings.BattleScore.RoundCount > Battle.EngineSettings.MaxRoundCount)
             {

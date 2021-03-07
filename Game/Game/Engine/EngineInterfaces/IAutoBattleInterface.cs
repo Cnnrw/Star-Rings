@@ -7,7 +7,7 @@ namespace Game.Engine.EngineInterfaces
         IBattleEngineInterface Battle { get;}
 
         Task<bool> RunAutoBattle();
-        bool DetectInfinateLoop();
+        bool DetectInfiniteLoop();
         bool CreateCharacterParty();
     }
 }

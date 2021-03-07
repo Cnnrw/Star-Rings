@@ -1,5 +1,6 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.ViewModels;
@@ -53,9 +54,9 @@ namespace Game.Engine.EngineGame
             return true;
         }
 
-        public override bool DetectInfinateLoop()
+        public override bool DetectInfiniteLoop()
         {
-            return base.DetectInfinateLoop();
+            return base.DetectInfiniteLoop();
         }
 
         public override Task<bool> RunAutoBattle()

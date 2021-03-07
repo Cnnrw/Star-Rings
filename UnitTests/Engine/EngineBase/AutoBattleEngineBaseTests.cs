@@ -185,7 +185,7 @@ namespace UnitTests.Engine.EngineBase
                 AutoBattleEngine.Battle.EngineSettings.MaxRoundCount + 1;
 
             // Act
-            var result = AutoBattleEngine.DetectInfinateLoop();
+            var result = AutoBattleEngine.DetectInfiniteLoop();
 
             // Reset
 
@@ -201,7 +201,7 @@ namespace UnitTests.Engine.EngineBase
                 AutoBattleEngine.Battle.EngineSettings.MaxTurnCount + 1;
 
             // Act
-            var result = AutoBattleEngine.DetectInfinateLoop();
+            var result = AutoBattleEngine.DetectInfiniteLoop();
 
             // Reset
 
@@ -219,7 +219,7 @@ namespace UnitTests.Engine.EngineBase
                 AutoBattleEngine.Battle.EngineSettings.MaxRoundCount - 1;
 
             // Act
-            var result = AutoBattleEngine.DetectInfinateLoop();
+            var result = AutoBattleEngine.DetectInfiniteLoop();
 
             // Reset
 
