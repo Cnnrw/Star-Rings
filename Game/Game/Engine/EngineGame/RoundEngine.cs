@@ -272,11 +272,68 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// Swap out the item if it is better
         ///
-        /// Uses Value to determine
+        /// Prefer the item with higher damage
+        /// Break ties with higher value, then higher range
         /// </summary>
         public override bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation)
         {
-            return base.GetItemFromPoolIfBetter(character, setLocation);
+            var thisLocation = setLocation;
+            if (setLocation == ItemLocationEnum.RightFinger)
+            {
+                thisLocation = ItemLocationEnum.Finger;
+            }
+
+            if (setLocation == ItemLocationEnum.LeftFinger)
+            {
+                thisLocation = ItemLocationEnum.Finger;
+            }
+
+            var ItemPool = EngineSettings.ItemPool.Where(a => a.Location == thisLocation)
+                .OrderByDescending(a => a.Damage)
+                .ThenByDescending(a => a.Value)
+                .ThenByDescending(a => a.Range)
+                .ToList();
+
+            // If no items in the list, return...
+            if (!ItemPool.Any())
+            {
+                return false;
+            }
+
+            var CharacterItem = character.GetItemByLocation(setLocation);
+            if (CharacterItem == null)
+            {
+                SwapCharacterItem(character, setLocation, ItemPool.FirstOrDefault());
+                return true;
+            }
+
+            foreach (var PoolItem in ItemPool)
+            {
+                // Swap for PoolItem if it has higher damage
+                if (PoolItem.Damage > CharacterItem.Damage)
+                {
+                    SwapCharacterItem(character, setLocation, PoolItem);
+                    return true;
+                } else if (PoolItem.Value == CharacterItem.Value)
+                {
+                    // If damage is equal, swap for PoolItem if it has more value 
+                    if (PoolItem.Value > CharacterItem.Value)
+                    {
+                        SwapCharacterItem(character, setLocation, PoolItem);
+                        return true;
+                    } else if (PoolItem.Value == CharacterItem.Value)
+                    {
+                        // If value is also equal, swap for PoolItem if it has a longer range
+                        if (PoolItem.Range > CharacterItem.Range)
+                        {
+                            SwapCharacterItem(character, setLocation, PoolItem);
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
