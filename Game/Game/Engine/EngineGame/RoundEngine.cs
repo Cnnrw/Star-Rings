@@ -22,17 +22,9 @@ namespace Game.Engine.EngineGame
         private readonly EngineSettingsModel EngineSettings = EngineSettingsModel.Instance;
 
         // The Turn Engine
-        public new ITurnEngineInterface Turn
+        public RoundEngine()
         {
-            get => base.Turn ?? (base.Turn = new TurnEngine());
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-                base.Turn = Turn;
-            }
+            Turn = new TurnEngine();
         }
 
         /// <summary>
