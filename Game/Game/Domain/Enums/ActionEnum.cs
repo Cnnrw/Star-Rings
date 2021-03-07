@@ -1,4 +1,4 @@
-﻿namespace Game.Enums
+namespace Game.Enums
 {
     /// <summary>
     /// The Types of s a Action can have
@@ -11,6 +11,9 @@
 
         // Attack
         Attack = 1,
+
+        // Block
+        Block = 5,
 
         // Move
         Move = 10,
@@ -38,6 +41,10 @@
             {
                 case ActionEnum.Attack:
                     Message = " Attacks ";
+                    break;
+
+                case ActionEnum.Block:
+                    Message = " Blocks ";
                     break;
 
                 case ActionEnum.Move:
