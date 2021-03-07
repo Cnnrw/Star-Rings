@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
@@ -140,9 +140,11 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// Use the Ability
         /// </summary>
-        public override bool UseAbility(PlayerInfoModel Attacker)
+        /// <param name="ActivePlayer"></param>
+        /// <returns></returns>
+        public override bool UseAbility(PlayerInfoModel ActivePlayer)
         {
-            throw new System.NotImplementedException();
+            return base.UseAbility(ActivePlayer);
         }
 
         /// <summary>
