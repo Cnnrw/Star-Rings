@@ -170,11 +170,13 @@ namespace Game.Engine.EngineGame
         }
 
         /// <summary>
-        /// Decide which to attack
+        /// Decide which Player to attack
         /// </summary>
-        public override PlayerInfoModel AttackChoice(PlayerInfoModel data)
+        /// <param name="AttackingPlayer">The Player who is currently attacking</param>
+        /// <returns></returns>
+        public override PlayerInfoModel AttackChoice(PlayerInfoModel AttackingPlayer)
         {
-            throw new System.NotImplementedException();
+            return base.AttackChoice(AttackingPlayer);
         }
 
         /// <summary>
