@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using Game.Engine.EngineKoenig;
 using Game.Helpers;
@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Scenario
 {
     [TestFixture]
-    public class AutoBattleEngineScenarioTests
+    public class KoenigAutoBattleEngineScenarioTests
     {
 
         [SetUp]
@@ -33,7 +33,7 @@ namespace Scenario
         private AutoBattleEngine AutoBattle;
 
         [Test]
-        public void AutoBattleEngine_Constructor_Default_Should_Pass()
+        public void KoenigAutoBattleEngine_Constructor_Default_Should_Pass()
         {
             // Arrange
 
@@ -47,7 +47,7 @@ namespace Scenario
         }
 
         [Test]
-        public async Task AutoBattleEngine_RunAutoBattle_Monsters_1_Should_Pass()
+        public async Task KoenigAutoBattleEngine_RunAutoBattle_Monsters_1_Should_Pass()
         {
             //Arrange
 
@@ -137,7 +137,7 @@ namespace Scenario
         //}
 
         [Test]
-        public async Task AutoBattleEngine_RunAutoBattle_GameOver_Round_1_Should_Pass()
+        public async Task KoenigAutoBattleEngine_RunAutoBattle_GameOver_Round_1_Should_Pass()
         {
             /* 
              * 
@@ -183,7 +183,7 @@ namespace Scenario
         }
 
         [Test]
-        public async Task AutoBattleEngine_RunAutoBattle_InValid_Round_Loop_Should_Fail()
+        public async Task KoenigAutoBattleEngine_RunAutoBattle_InValid_Round_Loop_Should_Fail()
         {
             /* 
              * Test infinate rounds.  
@@ -261,7 +261,7 @@ namespace Scenario
         }
 
         [Test]
-        public async Task AutoBattleEngine_RunAutoBattle_InValid_Trun_Loop_Should_Fail()
+        public async Task KoenigAutoBattleEngine_RunAutoBattle_InValid_Trun_Loop_Should_Fail()
         {
             /* 
              * Test infinate turn.  
