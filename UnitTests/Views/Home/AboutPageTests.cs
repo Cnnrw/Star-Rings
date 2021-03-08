@@ -28,5 +28,7 @@ namespace UnitTests.Views
         private App app;
         private AboutPage page;
 
+        public AboutPageTests() : base(true) { }
+
     }
 }
