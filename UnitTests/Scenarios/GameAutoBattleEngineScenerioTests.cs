@@ -32,5 +32,18 @@ namespace Scenario
 
         private AutoBattleEngine AutoBattle;
 
+        [Test]
+        public void AutoBattleEngine_Constructor_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = AutoBattle;
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
