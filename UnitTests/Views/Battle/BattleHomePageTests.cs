@@ -67,12 +67,27 @@ namespace UnitTests.Views
             Assert.IsNotNull(result);
         }
 
+        [Test]
         public void BattleHomePage_AutoBattle_Clicked_Default_Should_Pass()
         {
             // Arrange
 
             // Act
             page.AutoBattle_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void BattleHomePage_PickCharacters_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            page.PickCharacters_Clicked(null, null);
 
             // Reset
 
