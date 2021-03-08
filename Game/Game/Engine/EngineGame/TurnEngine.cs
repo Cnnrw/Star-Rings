@@ -232,12 +232,23 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel SelectMonsterToAttack()
         {
-            // Select first one to hit in the list for now...
-            // Attack the Weakness (lowest HP) MonsterModel first
+            if (EngineSettings.PlayerList == null)
+            {
+                return null;
+            }
 
-            // TODO: Teams, You need to implement your own Logic can not use mine.
+            if (EngineSettings.PlayerList.Count < 1)
+            {
+                return null;
+            }
 
-            throw new System.NotImplementedException();
+            // Select the Monster with the lowest Level (that is still alive)
+            var Defender = EngineSettings.PlayerList
+                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
+                .OrderBy(m => m.Level)
+                .FirstOrDefault();
+
+            return Defender;
         }
 
         /// <summary>
