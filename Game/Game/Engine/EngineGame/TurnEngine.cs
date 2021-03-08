@@ -367,14 +367,30 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override int DropItems(PlayerInfoModel Target)
         {
-            // Drop Items to ItemModel Pool
+            var DroppedMessage = "\nItems Dropped: \n";
 
-            // I feel generous, even when characters die, random drops happen :-)
-            // If Random drops are enabled, then add some....
+            // Drop Items into an Item Pool
+            var ItemPool = Target.DropAllItems();
 
             // Add to ScoreModel
+            foreach (var ItemModel in ItemPool)
+            {
+                EngineSettings.BattleScore.ItemsDroppedList += ItemModel.FormatOutput() + "\n";
+                DroppedMessage += ItemModel.Name + "\n";
+            }
 
-            throw new System.NotImplementedException();
+            EngineSettings.ItemPool.AddRange(ItemPool);
+
+            if (ItemPool.Count == 0)
+            {
+                DroppedMessage = " Nothing. ";
+            }
+
+            EngineSettings.BattleMessagesModel.DroppedMessage = DroppedMessage;
+
+            EngineSettings.BattleScore.ItemModelDropList.AddRange(ItemPool);
+
+            return ItemPool.Count();
         }
 
         /// <summary>
