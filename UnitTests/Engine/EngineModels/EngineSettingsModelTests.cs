@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Game.Engine.EngineModels;
 using Game.Enums;
@@ -36,6 +36,7 @@ namespace UnitTests.Engine.EngineModels
             result.BattleScore = new ScoreModel();
             result.BattleMessagesModel = new BattleMessagesModel();
             result.ItemPool = new List<ItemModel>();
+            result.RoundLocation = BattleLocationEnum.Dungeons;
             result.MonsterList = new List<PlayerInfoModel>();
             result.CharacterList = new List<PlayerInfoModel>();
             result.CurrentAttacker = new PlayerInfoModel();
@@ -63,6 +64,7 @@ namespace UnitTests.Engine.EngineModels
             Assert.IsNotNull(result.BattleScore);
             Assert.IsNotNull(result.BattleMessagesModel);
             Assert.IsNotNull(result.ItemPool);
+            Assert.IsNotNull(result.RoundLocation);
             Assert.IsNotNull(result.MonsterList);
             Assert.IsNotNull(result.CharacterList);
             Assert.IsNotNull(result.CurrentAction);
