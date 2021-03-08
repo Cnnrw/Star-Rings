@@ -302,7 +302,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool CalculateExperience(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
-            throw new System.NotImplementedException();
+            return base.CalculateExperience(Attacker, Target);
         }
 
         /// <summary>
