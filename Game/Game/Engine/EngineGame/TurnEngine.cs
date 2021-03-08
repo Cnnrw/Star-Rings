@@ -154,24 +154,6 @@ namespace Game.Engine.EngineGame
         }
 
         /// <summary>
-        /// Decide to use an Ability or not
-        ///
-        /// Set the Ability
-        /// </summary>
-        public override bool ChooseToUseAbility(PlayerInfoModel Attacker)
-        {
-            // See if healing is needed.
-
-            // If not needed, then role dice to see if other ability should be used
-            // Choose the % chance
-            // Select the ability
-
-            // Don't try
-
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
         /// Use the Ability
         /// </summary>
         /// <param name="ActivePlayer"></param>
