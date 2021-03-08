@@ -281,7 +281,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override int ApplyDamage(PlayerInfoModel Target)
         {
-            throw new System.NotImplementedException();
+            return base.ApplyDamage(Target);
         }
 
         /// <summary>
