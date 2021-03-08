@@ -17,6 +17,9 @@ namespace UnitTests.Views
     public class BattleHomePageTests : BattlePage
     {
 
+        private App app;
+        private BattlePage page;
+
         [SetUp]
         public void Setup()
         {
