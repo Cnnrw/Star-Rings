@@ -306,7 +306,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool RemoveIfDead(PlayerInfoModel Target)
         {
-            throw new System.NotImplementedException();
+            return base.RemoveIfDead(Target);
         }
 
         /// <summary>
