@@ -21,5 +21,9 @@ namespace UnitTests.Views
             // Initilize Xamarin Forms
             MockForms.Init();
         }
+
+        private App app;
+        private AboutPage page;
+
     }
 }
