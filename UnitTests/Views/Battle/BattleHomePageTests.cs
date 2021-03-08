@@ -51,6 +51,6 @@ namespace UnitTests.Views
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        
+        public BattleHomePageTests() : base(true) { }
     }
 }
