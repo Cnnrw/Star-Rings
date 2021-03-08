@@ -20,6 +20,12 @@ namespace UnitTests.Views
         {
             // Initilize Xamarin Forms
             MockForms.Init();
+
+            //This is your App.xaml and App.xaml.cs, which can have resources, etc.
+            app = new App();
+            Application.Current = app;
+
+            page = new AboutPage();
         }
 
         [TearDown]
