@@ -291,7 +291,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override HitStatusEnum CalculateAttackStatus(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
-            throw new System.NotImplementedException();
+            return base.CalculateAttackStatus(Attacker, Target);
         }
 
         /// <summary>
