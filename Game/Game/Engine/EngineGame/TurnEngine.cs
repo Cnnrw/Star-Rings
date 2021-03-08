@@ -54,8 +54,9 @@ namespace Game.Engine.EngineGame
                     break;
 
                 case ActionEnum.Block:
-                    //result = Block(ActivePlayer);
-                    //break;
+                    // TODO: implement Block(ActivePlayer)
+                    result = Attack(ActivePlayer);
+                    break;
 
                 case ActionEnum.Ability:
                     result = UseAbility(ActivePlayer);
