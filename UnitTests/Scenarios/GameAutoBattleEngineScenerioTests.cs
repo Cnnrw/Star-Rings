@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Game.Engine.EngineGame;
@@ -81,21 +82,7 @@ namespace Scenario
             // Need to set the Monster count to 1, so the battle goes to Next Round Faster
             AutoBattle.Battle.EngineSettings.MaxNumberPartyMonsters = 1;
 
-            var MonsterPlayer = new PlayerInfoModel(
-                new MonsterModel
-                {
-                    Speed = -1,
-                    Level = 1,
-                    CurrentHealth = 1,
-                    ExperienceTotal = 1,
-                    ExperienceRemaining = 1,
-                    Name = "Grog",
-                    BattleLocation = BattleLocationEnum.Mordor,
-                    ListOrder = 1
-                }
-            );
-
-            AutoBattle.Battle.EngineSettings.MonsterList.Add(MonsterPlayer);
+            AutoBattle.Battle.EngineSettings.MonsterList.AddRange(GetListOfMonstersForEachLocation());
 
             //Act
             var result = await AutoBattle.RunAutoBattle();
@@ -104,6 +91,79 @@ namespace Scenario
 
             //Assert
             Assert.AreEqual(true, result);
+        }
+
+        public List<PlayerInfoModel> GetListOfMonstersForEachLocation()
+        {
+            List<PlayerInfoModel> myList = new List<PlayerInfoModel> {
+                new PlayerInfoModel(
+                    new MonsterModel
+                    {
+                        Speed = -1,
+                        Level = 1,
+                        CurrentHealth = 1,
+                        ExperienceTotal = 1,
+                        ExperienceRemaining = 1,
+                        Name = "Shire Monster",
+                        BattleLocation = BattleLocationEnum.Shire,
+                        ListOrder = 2
+                    }
+                ),
+                new PlayerInfoModel(
+                    new MonsterModel
+                    {
+                        Speed = -1,
+                        Level = 1,
+                        CurrentHealth = 1,
+                        ExperienceTotal = 1,
+                        ExperienceRemaining = 1,
+                        Name = "ElvenCity Monster",
+                        BattleLocation = BattleLocationEnum.ElvenCity,
+                        ListOrder = 3
+                    }
+                ),
+                new PlayerInfoModel(
+                    new MonsterModel
+                    {
+                        Speed = -1,
+                        Level = 1,
+                        CurrentHealth = 1,
+                        ExperienceTotal = 1,
+                        ExperienceRemaining = 1,
+                        Name = "Forest Monster",
+                        BattleLocation = BattleLocationEnum.Forest,
+                        ListOrder = 4
+                    }
+                ),
+                new PlayerInfoModel(
+                    new MonsterModel
+                    {
+                        Speed = -1,
+                        Level = 1,
+                        CurrentHealth = 1,
+                        ExperienceTotal = 1,
+                        ExperienceRemaining = 1,
+                        Name = "Dungeon Monster",
+                        BattleLocation = BattleLocationEnum.Dungeons,
+                        ListOrder = 5
+                    }
+                ),
+                new PlayerInfoModel(
+                    new MonsterModel
+                    {
+                        Speed = -1,
+                        Level = 1,
+                        CurrentHealth = 1,
+                        ExperienceTotal = 1,
+                        ExperienceRemaining = 1,
+                        Name = "Mordor Monster",
+                        BattleLocation = BattleLocationEnum.Mordor,
+                        ListOrder = 6
+                    }
+                )
+            };
+
+            return myList;
         }
     }
 }
