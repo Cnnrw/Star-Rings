@@ -325,6 +325,87 @@ namespace Game.Models
         // Return the Damage value, it is 25% of the Level rounded up
         public int GetDamageLevelBonus => Convert.ToInt32(Math.Ceiling(Level * .25));
 
+        // Add a damage bonus depending on the Character's Job and where they're fighting
+        public int GetDamageRoundLocationBonus(BattleLocationEnum RoundLocation)
+        {
+            // Only Character Players get location bonuses
+            if (PlayerType != PlayerTypeEnum.Character) return 0;
+
+            switch (Job)
+            {
+                // Jedi location bonuses
+                case CharacterJobEnum.Jedi:
+                    switch (RoundLocation)
+                    {
+                        case BattleLocationEnum.Mordor:
+                            return 3;
+                        case BattleLocationEnum.Forest:
+                            return 2;
+                    }
+                    break;
+                // Princess location bonuses
+                case CharacterJobEnum.Princess:
+                    switch (RoundLocation)
+                    {
+                        case BattleLocationEnum.ElvenCity:
+                            return 3;
+                        case BattleLocationEnum.Shire:
+                            return 2;
+                    }
+                    break;
+                // Smuggler location bonuses
+                case CharacterJobEnum.Smuggler:
+                    switch (RoundLocation)
+                    {
+                        case BattleLocationEnum.ElvenCity:
+                            return 2;
+                        case BattleLocationEnum.Dungeons:
+                            return 2;
+                        case BattleLocationEnum.Shire:
+                            return 1;
+                    }
+                    break;
+                // Wookie location bonuses
+                case CharacterJobEnum.Wookie:
+                    switch (RoundLocation)
+                    {
+                        case BattleLocationEnum.Dungeons:
+                            return 1;
+                        case BattleLocationEnum.Forest:
+                            return 3;
+                        case BattleLocationEnum.Shire:
+                            return 1;
+                    }
+                    break;
+                // Astro droid location bonuses
+                case CharacterJobEnum.AstroDroid:
+                    switch (RoundLocation)
+                    {
+                        case BattleLocationEnum.Dungeons:
+                            return 2;
+                        case BattleLocationEnum.ElvenCity:
+                            return 2;
+                        case BattleLocationEnum.Mordor:
+                            return 1;
+                    }
+                    break;
+                // Protocol droid location bonuses
+                case CharacterJobEnum.ProtocolDroid:
+                    switch (RoundLocation)
+                    {
+                        case BattleLocationEnum.Dungeons:
+                            return 1;
+                        case BattleLocationEnum.Mordor:
+                            return 2;
+                        case BattleLocationEnum.Shire:
+                            return 2;
+                    }
+                    break;
+            }
+
+            return 0;
+        }
+
         [Ignore]
         // Return the Damage with Item Bonus
         public int GetDamageItemBonus
