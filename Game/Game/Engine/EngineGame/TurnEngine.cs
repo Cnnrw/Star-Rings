@@ -390,7 +390,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool DetermineCriticalMissProblem(PlayerInfoModel attacker)
         {
-            throw new System.NotImplementedException();
+            return base.DetermineCriticalMissProblem(attacker);
         }
 
         #region Algrorithm
