@@ -358,7 +358,7 @@ namespace Game.Engine.EngineGame
         /// <param name="DefenseScore"></param>
         public override HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
-            throw new System.NotImplementedException();
+            return base.RollToHitTarget(AttackScore, DefenseScore);
         }
 
         /// <summary>
