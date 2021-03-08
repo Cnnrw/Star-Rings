@@ -62,6 +62,32 @@ namespace Game.Models
                 Attribute = AttributeEnum.Speed,
                 Category = ItemCategories.AreaEffect,
                 IsConsumable = true
+            },
+                        new ItemModel
+            {
+                Name = "Lightsaber",
+                Description = "A blade made from plasma energy.",
+                ImageURI = "light_saber.png",
+                Range = 1,
+                Damage = 5,
+                Value = 8,
+                Location = ItemLocationEnum.PrimaryHand,
+                Attribute = AttributeEnum.Attack,
+                Category = ItemCategories.Weapon,
+                IsConsumable = false
+            },
+            new ItemModel
+            {
+                Name = "Laser Blaster",
+                Description = "A standard gun used by the Rebels",
+                ImageURI = "blaster.png",
+                Range = 4,
+                Damage = 3,
+                Value = 5,
+                Location = ItemLocationEnum.PrimaryHand,
+                Attribute = AttributeEnum.Attack,
+                Category = ItemCategories.Weapon,
+                IsConsumable = false
             }
         };
 
