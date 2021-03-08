@@ -1,4 +1,4 @@
-﻿using Game.Enums;
+using Game.Enums;
 
 using NUnit.Framework;
 
@@ -47,6 +47,20 @@ namespace UnitTests.Models
 
             // Assert
             Assert.AreEqual(" Uses Ability ", result);
+        }
+
+        [Test]
+        public void ActionEnumExtensionsTests_Block_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = ActionEnum.Block.ToMessage();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(" Blocks ", result);
         }
 
         [Test]
