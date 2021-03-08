@@ -68,6 +68,20 @@ namespace UnitTests.Views
         }
 
         [Test]
+        public void BattleHomePage_Constructor_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = new BattleHomePage();
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
         public void BattleHomePage_AutoBattle_Clicked_Default_Should_Pass()
         {
             // Arrange
