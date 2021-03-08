@@ -12,7 +12,7 @@ using Xamarin.Forms.Mocks;
 namespace UnitTests.Views
 {
     [TestFixture]
-    public class AboutPageTests : SettingsPage
+    public class AboutPageTests : AboutPage
     {
 
         [SetUp]
