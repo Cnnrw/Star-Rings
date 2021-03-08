@@ -47,5 +47,10 @@ namespace UnitTests.Views
                                  .Add(new PlayerInfoModel(new MonsterModel()));
             BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
         }
+
+        [TearDown]
+        public void TearDown() => Application.Current = null;
+
+        
     }
 }
