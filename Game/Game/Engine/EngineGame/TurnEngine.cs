@@ -34,23 +34,53 @@ namespace Game.Engine.EngineGame
         /// </summary>
         /// <param name="Attacker"></param>
         /// <returns></returns>
-        public override bool TakeTurn(PlayerInfoModel Attacker)
+        public override bool TakeTurn(PlayerInfoModel ActivePlayer)
         {
-            // Choose Action.  Such as Move, Attack etc.
+            bool result = false;
 
-            // INFO: Teams, if you have other actions they would go here.
+            // If the action is not set, then try to set it or just attack
+            if (EngineSettings.CurrentAction == ActionEnum.Unknown)
+            {
+                // Set the action if one is not set
+                EngineSettings.CurrentAction = DetermineActionChoice(ActivePlayer);
 
-            // If the action is not set, then try to set it or use Attact
+                // When in doubt, attack...
+                if (EngineSettings.CurrentAction == ActionEnum.Unknown)
+                {
+                    EngineSettings.CurrentAction = ActionEnum.Attack;
+                }
+            }
 
-            // Based on the current action...
+            // Act based on the Current Action
+            switch (EngineSettings.CurrentAction)
+            {
+                case ActionEnum.Attack:
+                    result = Attack(ActivePlayer);
+                    break;
+
+                case ActionEnum.Block:
+                    //result = Block(ActivePlayer);
+                    //break;
+
+                case ActionEnum.Ability:
+                    result = UseAbility(ActivePlayer);
+                    break;
+
+                case ActionEnum.Move:
+                    result = MoveAsTurn(ActivePlayer);
+                    break;
+            }
 
             // Increment Turn Count so you know what turn number
+            EngineSettings.BattleScore.TurnCount++;
 
             // Save the Previous Action off
+            EngineSettings.PreviousAction = EngineSettings.CurrentAction;
 
             // Reset the Action to unknown for next time
+            EngineSettings.CurrentAction = ActionEnum.Unknown;
 
-            throw new System.NotImplementedException();
+            return result;
         }
 
         /// <summary>
