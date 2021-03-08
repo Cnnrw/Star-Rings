@@ -91,22 +91,26 @@ namespace Game.Engine.EngineGame
         public override ActionEnum DetermineActionChoice(PlayerInfoModel Attacker)
         {
             // If it is the characters turn, and NOT auto battle, use what was sent into the engine
+            if (Attacker.PlayerType == PlayerTypeEnum.Character)
+            {
+                if (EngineSettings.BattleScore.AutoBattle == false)
+                {
+                    return EngineSettings.CurrentAction;
+                }
+            }
 
             /*
              * The following is Used for Monsters, and Auto Battle Characters
-             *
+             * 
              * Order of Priority
-             * If can attack Then Attack
-             * Next use Ability or Move
+             * If player ... then Attack,
+             * otherwise ... Block
              */
 
-            // Assume Move if nothing else happens
+            // TODO: Team implementation
+            EngineSettings.CurrentAction = ActionEnum.Attack;
 
-            // Check to see if ability is avaiable
-
-            // See if Desired Target is within Range, and if so attack away
-
-            throw new System.NotImplementedException();
+            return EngineSettings.CurrentAction;
         }
 
         /// <summary>
