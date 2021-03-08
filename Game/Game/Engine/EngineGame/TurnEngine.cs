@@ -273,9 +273,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override HitStatusEnum BattleSettingsOverrideHitStatusEnum(HitStatusEnum myEnum)
         {
-            // Based on the Hit Status, establish a message
-
-            throw new System.NotImplementedException();
+            return base.BattleSettingsOverrideHitStatusEnum(myEnum);
         }
 
         /// <summary>
