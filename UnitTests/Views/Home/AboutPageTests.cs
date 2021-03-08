@@ -22,6 +22,9 @@ namespace UnitTests.Views
             MockForms.Init();
         }
 
+        [TearDown]
+        public void TearDown() => Application.Current = null;
+
         private App app;
         private AboutPage page;
 
