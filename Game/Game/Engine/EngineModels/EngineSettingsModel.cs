@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Game.Enums;
 using Game.Models;
@@ -24,6 +24,9 @@ namespace Game.Engine.EngineModels
 
         // List of Characters
         public List<PlayerInfoModel> CharacterList { get; set; } = new List<PlayerInfoModel>();
+
+        // Location of the current round
+        public BattleLocationEnum RoundLocation { get; set; } = BattleLocationEnum.Unknown;
 
         // Current Player who is the attacker
         public PlayerInfoModel CurrentAttacker { get; set; }
