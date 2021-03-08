@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -505,9 +505,9 @@ namespace Game.Engine.EngineKoenig
         /// <summary>
         /// Apply the Damage to the Target
         /// </summary>
-        public override void ApplyDamage(PlayerInfoModel Target)
+        public override int ApplyDamage(PlayerInfoModel Target)
         {
-            base.ApplyDamage(Target);
+            return base.ApplyDamage(Target);
         }
 
         /// <summary>

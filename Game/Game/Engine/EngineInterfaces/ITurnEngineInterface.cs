@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Game.Enums;
 using Game.Models;
@@ -19,7 +19,7 @@ namespace Game.Engine.EngineInterfaces
         bool            TurnAsAttack(PlayerInfoModel                      Attacker, PlayerInfoModel Target);
         HitStatusEnum   BattleSettingsOverride(PlayerInfoModel            Attacker);
         HitStatusEnum   BattleSettingsOverrideHitStatusEnum(HitStatusEnum myEnum);
-        void            ApplyDamage(PlayerInfoModel                       Target);
+        int            ApplyDamage(PlayerInfoModel                       Target);
         HitStatusEnum   CalculateAttackStatus(PlayerInfoModel             Attacker, PlayerInfoModel Target);
         bool            CalculateExperience(PlayerInfoModel               Attacker, PlayerInfoModel Target);
         bool            RemoveIfDead(PlayerInfoModel                      Target);

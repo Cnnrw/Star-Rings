@@ -405,13 +405,15 @@ namespace Game.Engine.EngineBase
         }
 
         /// <summary>
-        ///     Apply the Damage to the Target
+        /// Apply the Damage to the Target
         /// </summary>
         /// <param name="Target"></param>
-        public virtual void ApplyDamage(PlayerInfoModel Target)
+        public virtual int ApplyDamage(PlayerInfoModel Target)
         {
             Target.TakeDamage(_engineSettings.BattleMessagesModel.DamageAmount);
             _engineSettings.BattleMessagesModel.CurrentHealth = Target.GetCurrentHealthTotal;
+
+            return _engineSettings.BattleMessagesModel.DamageAmount;
         }
 
         /// <summary>
