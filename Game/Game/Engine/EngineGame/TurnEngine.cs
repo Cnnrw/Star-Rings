@@ -4,6 +4,7 @@ using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 
 namespace Game.Engine.EngineGame
@@ -43,12 +44,6 @@ namespace Game.Engine.EngineGame
             {
                 // Set the action if one is not set
                 EngineSettings.CurrentAction = DetermineActionChoice(ActivePlayer);
-
-                // When in doubt, attack...
-                if (EngineSettings.CurrentAction == ActionEnum.Unknown)
-                {
-                    EngineSettings.CurrentAction = ActionEnum.Attack;
-                }
             }
 
             // Act based on the Current Action
@@ -107,8 +102,15 @@ namespace Game.Engine.EngineGame
              * otherwise ... Block
              */
 
-            // TODO: Team implementation
-            EngineSettings.CurrentAction = ActionEnum.Attack;
+            int RollResult = DiceHelper.RollDice(1, 2);
+
+            if (RollResult == 1)
+            {
+                EngineSettings.CurrentAction = ActionEnum.Attack;
+            } else
+            {
+                EngineSettings.CurrentAction = ActionEnum.Block;
+            }
 
             return EngineSettings.CurrentAction;
         }
