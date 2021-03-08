@@ -256,31 +256,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool TurnAsAttack(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
-            // Set Messages to empty
-
-            // Do the Attack
-
-            // Hackathon
-            // ?? Hackathon Scenario ??
-
-            // See if the Battle Settings Overrides the Roll
-
-            // Based on the Hit Status, what to do...
-            // It's a Miss
-
-            // It's a Hit
-
-            //Calculate Damage
-
-            // Apply the Damage
-
-            // Check if Dead and Remove
-
-            // If it is a character apply the experience earned
-
-            // Battle Message
-
-            throw new System.NotImplementedException();
+            return base.TurnAsAttack(Attacker, Target);
         }
 
         /// <summary>
