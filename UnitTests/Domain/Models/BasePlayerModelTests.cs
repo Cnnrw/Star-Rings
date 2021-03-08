@@ -227,8 +227,7 @@ namespace UnitTests.Models
         public void BasePlayerModel_GetDamageRollValue_Default_Should_Pass()
         {
             // Arrange
-            var data = new BasePlayerModel<CharacterModel>();
-            data.Level = 1;
+            var data = new BasePlayerModel<CharacterModel> {Level = 1};
 
             // Act
             var result = data.GetDamageRollValue();
