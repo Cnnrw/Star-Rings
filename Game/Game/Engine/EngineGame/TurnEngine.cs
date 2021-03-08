@@ -318,20 +318,44 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool TargetDied(PlayerInfoModel Target)
         {
+            bool found;
+
             // Mark Status in output
-
-            // Removing the
-
-            // INFO: Teams, Hookup your Boss if you have one...
+            EngineSettings.BattleMessagesModel.TurnMessageSpecial = " and kills! ";
 
             // Using a switch so in the future additional PlayerTypes can be added (Boss...)
-            // Add the Character to the killed list
+            switch (Target.PlayerType)
+            {
+                case PlayerTypeEnum.Character:
+                    // Add the Character to the killed list
+                    EngineSettings.BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
 
-            // Add one to the monsters killed count...
+                    EngineSettings.BattleScore.CharacterModelDeathList.Add(Target);
 
-            // Add the MonsterModel to the killed list
+                    DropItems(Target);
 
-            throw new System.NotImplementedException();
+                    found = EngineSettings.CharacterList.Remove(EngineSettings.CharacterList.Find(m => m.Guid.Equals(Target.Guid)));
+                    found = EngineSettings.PlayerList.Remove(EngineSettings.PlayerList.Find(m => m.Guid.Equals(Target.Guid)));
+
+                    return true;
+
+                case PlayerTypeEnum.Monster:
+                default:
+                    // Add one to the monsters killed count...
+                    EngineSettings.BattleScore.MonsterSlainNumber++;
+
+                    // Add the MonsterModel to the killed list
+                    EngineSettings.BattleScore.MonstersKilledList += Target.FormatOutput() + "\n";
+
+                    EngineSettings.BattleScore.MonsterModelDeathList.Add(Target);
+
+                    DropItems(Target);
+
+                    found = EngineSettings.MonsterList.Remove(EngineSettings.MonsterList.Find(m => m.Guid.Equals(Target.Guid)));
+                    found = EngineSettings.PlayerList.Remove(EngineSettings.PlayerList.Find(m => m.Guid.Equals(Target.Guid)));
+
+                    return true;
+            }
         }
 
         /// <summary>
