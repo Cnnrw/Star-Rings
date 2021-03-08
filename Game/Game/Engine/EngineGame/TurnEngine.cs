@@ -404,21 +404,6 @@ namespace Game.Engine.EngineGame
         }
 
         /// <summary>
-        /// Will drop between 1 and 4 items from the ItemModel set...
-        /// </summary>
-        public override List<ItemModel> GetRandomMonsterItemDrops(int round)
-        {
-            // TODO: Teams, You need to implement your own modification to the Logic cannot use mine as is.
-
-            // You decide how to drop monster items, level, etc.
-
-            // The Number drop can be Up to the Round Count, but may be less.
-            // Negative results in nothing dropped
-
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
         /// Critical Miss Problem
         /// </summary>
         public override bool DetermineCriticalMissProblem(PlayerInfoModel attacker)
