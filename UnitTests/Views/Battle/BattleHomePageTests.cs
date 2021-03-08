@@ -52,5 +52,19 @@ namespace UnitTests.Views
         public void TearDown() => Application.Current = null;
 
         public BattleHomePageTests() : base(true) { }
+
+        [Test]
+        public void BattleHomePage_Constructor_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = page;
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
