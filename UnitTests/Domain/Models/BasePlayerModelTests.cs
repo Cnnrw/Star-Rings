@@ -1123,6 +1123,442 @@ namespace UnitTests.Models
         }
 
         [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Monster_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Monster
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Mordor);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Jedi_Mordor_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Jedi
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Mordor);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(3, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Jedi_Forest_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Jedi
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Forest);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Jedi_Shire_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Jedi
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Shire);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Princess_ElvenCity_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Princess
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.ElvenCity);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(3, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Princess_Shire_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Princess
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Shire);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Princess_Mordor_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Princess
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Mordor);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Smuggler_ElvenCity_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Smuggler
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.ElvenCity);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Smuggler_Dungeons_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Smuggler
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Dungeons);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Smuggler_Shire_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Smuggler
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Shire);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Smuggler_Forest_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Smuggler
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Forest);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Wookie_Dungeons_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Wookie
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Dungeons);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Wookie_Forest_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Wookie
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Forest);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(3, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Wookie_Shire_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Wookie
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Shire);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_Wookie_ElvenCity_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.Wookie
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.ElvenCity);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_AstroDroid_Dungeons_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.AstroDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Dungeons);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_AstroDroid_ElvenCity_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.AstroDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.ElvenCity);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_AstroDroid_Mordor_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.AstroDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Mordor);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_AstroDroid_Forest_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.AstroDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Forest);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_ProtocolDroid_Dungeons_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.ProtocolDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Dungeons);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(1, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_ProtocolDroid_Mordor_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.ProtocolDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Mordor);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_ProtocolDroid_Shire_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.ProtocolDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Shire);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(2, bonus);
+        }
+
+        [Test]
+        public void BasePlayerModel_GetDamageRoundLocationBonus_ProtocolDroid_Forest_Should_Pass()
+        {
+            // Arrange
+            var player = new BasePlayerModel<CharacterModel>
+            {
+                PlayerType = PlayerTypeEnum.Character,
+                Job = CharacterJobEnum.ProtocolDroid
+            };
+
+            // Act
+            var bonus = player.GetDamageRoundLocationBonus(BattleLocationEnum.Forest);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(0, bonus);
+        }
+
+        [Test]
         public async Task BasePlayerModel_ItemSlotsFormatOutput_Full_Should_Pass()
         {
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel
