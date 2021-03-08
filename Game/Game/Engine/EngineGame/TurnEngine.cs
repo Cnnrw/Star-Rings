@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+using System.Linq;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
 using Game.Engine.EngineModels;
@@ -208,11 +208,23 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel SelectCharacterToAttack()
         {
-            // Select first in the list
+            if (EngineSettings.PlayerList == null)
+            {
+                return null;
+            }
 
-            // TODO: Teams, You need to implement your own Logic can not use mine.
+            if (EngineSettings.PlayerList.Count < 1)
+            {
+                return null;
+            }
 
-            throw new System.NotImplementedException();
+            // Select the Character with the lowest Current Health (that is still alive)
+            var Defender = EngineSettings.PlayerList
+                .Where(c => c.Alive && c.PlayerType == PlayerTypeEnum.Character)
+                .OrderBy(c => c.CurrentHealth)
+                .FirstOrDefault();
+
+            return Defender;
         }
 
         /// <summary>
