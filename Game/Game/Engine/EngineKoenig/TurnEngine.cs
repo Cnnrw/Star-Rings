@@ -267,7 +267,7 @@ namespace Game.Engine.EngineKoenig
                     // It's a Hit
 
                     //Calculate Damage
-                    EngineSettings.BattleMessagesModel.DamageAmount = Attacker.GetDamageRollValue();
+                    EngineSettings.BattleMessagesModel.DamageAmount = Attacker.GetDamageRollValue(BattleLocationEnum.Unknown);
 
                     // If critical Hit, double the damage
                     if (EngineSettings.BattleMessagesModel.HitStatus == HitStatusEnum.CriticalHit)

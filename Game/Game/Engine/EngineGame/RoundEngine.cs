@@ -85,6 +85,7 @@ namespace Game.Engine.EngineGame
             BattleLocationEnum chosenLocation = BattleLocationEnumHelper.ConvertStringToEnum(chosenLocationName);
 
             RoundLocation = chosenLocation;
+            EngineSettings.RoundLocation = chosenLocation;
 
             return chosenLocation;
         }
@@ -110,7 +111,7 @@ namespace Game.Engine.EngineGame
 
             foreach (MonsterModel monster in allMonsters)
             {
-                if (monster.BattleLocation == RoundLocation)
+                if (monster.BattleLocation == EngineSettings.RoundLocation)
                 {
                     validMonsters.Add(monster);
                 }

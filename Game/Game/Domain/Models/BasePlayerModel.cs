@@ -630,7 +630,7 @@ namespace Game.Models
         /// Roll the Damage Dice, and add to the Damage
         /// </summary>
         /// <returns></returns>
-        public int GetDamageRollValue()
+        public int GetDamageRollValue(BattleLocationEnum RoundLocation)
         {
             var myReturn = 0;
 
@@ -643,6 +643,9 @@ namespace Game.Models
 
             // Add in the Level as extra damage per game rules
             myReturn += GetDamageLevelBonus;
+
+            // Add the Player's bonus for this location
+            myReturn += GetDamageRoundLocationBonus(RoundLocation);
 
             return myReturn;
         }
