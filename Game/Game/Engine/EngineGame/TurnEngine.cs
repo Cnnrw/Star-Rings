@@ -188,15 +188,9 @@ namespace Game.Engine.EngineGame
         /// Do the Attack
         ///
         /// </summary>
-        public override bool Attack(PlayerInfoModel Attacker)
+        public override bool Attack(PlayerInfoModel ActivePlayer)
         {
-            // INFO: Teams, AttackChoice will auto pick the target, good for auto battle
-
-            // Manage autobattle
-
-            // Do Attack
-
-            throw new System.NotImplementedException();
+            return base.Attack(ActivePlayer);
         }
 
         /// <summary>
