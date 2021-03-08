@@ -224,7 +224,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel GetNextPlayerTurn()
         {
-            return base.GetNextPlayerInList();
+            return base.GetNextPlayerTurn();
         }
 
         /// <summary>
