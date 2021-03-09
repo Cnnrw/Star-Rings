@@ -310,7 +310,7 @@ namespace Game.Engine.EngineGame
             bool found;
 
             // Mark Status in output
-            EngineSettings.BattleMessagesModel.TurnMessageSpecial = " and kills! ";
+            EngineSettings.BattleMessagesModel.TurnMessageSpecial = " and deals a deadly blow! ";
 
             // Using a switch so in the future additional PlayerTypes can be added (Boss...)
             switch (Target.PlayerType)
