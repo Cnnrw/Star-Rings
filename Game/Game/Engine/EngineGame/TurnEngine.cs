@@ -195,16 +195,6 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel SelectCharacterToAttack()
         {
-            if (EngineSettings.PlayerList == null)
-            {
-                return null;
-            }
-
-            if (EngineSettings.PlayerList.Count < 1)
-            {
-                return null;
-            }
-
             // Select the Character with the lowest Current Health (that is still alive)
             var Defender = EngineSettings.PlayerList
                 .Where(c => c.Alive && c.PlayerType == PlayerTypeEnum.Character)
@@ -219,16 +209,6 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel SelectMonsterToAttack()
         {
-            if (EngineSettings.PlayerList == null)
-            {
-                return null;
-            }
-
-            if (EngineSettings.PlayerList.Count < 1)
-            {
-                return null;
-            }
-
             // Select the Monster with the lowest Level (that is still alive)
             var Defender = EngineSettings.PlayerList
                 .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
@@ -256,8 +236,6 @@ namespace Game.Engine.EngineGame
             {
                 // Choose who to block
                 EngineSettings.CurrentDefender = BlockChoice(Blocker);
-
-                if (EngineSettings.CurrentDefender == null) return false;
             }
 
             // Perform block
@@ -289,10 +267,6 @@ namespace Game.Engine.EngineGame
         /// <returns></returns>
         public virtual PlayerInfoModel SelectCharacterToBlock()
         {
-            if (EngineSettings.PlayerList == null) return null;
-
-            if (EngineSettings.PlayerList.Count < 1) return null;
-
             // Monsters are dumb, so they only Block the first Character in the list
             var BlockedCharacter = EngineSettings.PlayerList
                 .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Character)
@@ -308,10 +282,6 @@ namespace Game.Engine.EngineGame
         /// <returns></returns>
         public virtual PlayerInfoModel SelectMonsterToBlock()
         {
-            if (EngineSettings.PlayerList == null) return null;
-
-            if (EngineSettings.PlayerList.Count < 1) return null;
-
             // Block the Monster with the highest Attack
             var BlockedMonster = EngineSettings.PlayerList
                 .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
@@ -329,10 +299,6 @@ namespace Game.Engine.EngineGame
         /// <returns></returns>
         public virtual bool TurnAsBlock(PlayerInfoModel Blocker, PlayerInfoModel Target)
         {
-            if (Blocker == null) return false;
-
-            if (Target == null) return false;
-
             // Set Messages to empty
             EngineSettings.BattleMessagesModel.ClearMessages();
 
