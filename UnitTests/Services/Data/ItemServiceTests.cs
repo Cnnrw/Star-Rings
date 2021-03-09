@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Game.Enums;
@@ -61,25 +61,23 @@ namespace UnitTests.Services
             Assert.AreEqual("Strong Shield", result[0].Name);
         }
 
-        [Test, Timeout(5000)]
+        [Test]
         public async Task ItemService_GetItemsFromServerPostAsync_Valid_1_Should_Pass()
         {
             // Arrange
             var number = 1;
 
-            var level = 6;                           // Max Value of 6
-            var attribute = AttributeEnum.Unknown;   // Any Attribute
-            var location = ItemLocationEnum.Unknown; // Any Location
-            var random = true;                       // Random between 1 and Level
-            var updateDataBase = true;               // Add them to the DB
-            var category = 0;                        // What category to filter down to, 0 is all
+            var level = 6;  // Max Value of 6
+            var attribute = AttributeEnum.Unknown;  // Any Attribute
+            var location = ItemLocationEnum.Unknown;    // Any Location
+            var random = true;  // Random between 1 and Level
+            var updateDataBase = true;  // Add them to the DB
+            var category = 0;   // What category to filter down to, 0 is all
 
             // will return shoes value 10 of speed.
 
             // Act
-            var result =
-                await ItemService.GetItemsFromServerPostAsync(number, level, attribute, location, category, random,
-                    updateDataBase);
+            var result = await ItemService.GetItemsFromServerPostAsync(number, level, attribute, location, category, random, updateDataBase);
 
             // Reset
 
