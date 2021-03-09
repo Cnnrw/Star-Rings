@@ -103,9 +103,9 @@ namespace Game.Models
                 Job = CharacterJobEnum.Jedi,
                 ImageURI = "jedi.png",
                 IconImageURI = "jedi_icon.png",
-                Level = 7,
+                Level = 5,
                 MaxHealth = 8,
-                Attack = 5,
+                Attack = 7,
                 Defense = 3,
                 Speed = 4
             },
@@ -117,9 +117,9 @@ namespace Game.Models
                 ImageURI = "jedi_princess.png",
                 IconImageURI = "jedi_princess_icon.png",
                 Level = 3,
-                MaxHealth = 7,
+                MaxHealth = 6,
                 Attack = 6,
-                Defense = 3,
+                Defense = 4,
                 Speed = 5
             },
             new CharacterModel
@@ -130,8 +130,8 @@ namespace Game.Models
                 ImageURI = "smuggler.png",
                 IconImageURI = "smuggler_icon.png",
                 Level = 2,
-                MaxHealth = 4,
-                Attack = 6,
+                MaxHealth = 7,
+                Attack = 7,
                 Defense = 2,
                 Speed = 2
             },
@@ -143,7 +143,7 @@ namespace Game.Models
                 ImageURI = "wookie.png",
                 IconImageURI = "wookie_icon.png",
                 Level = 6,
-                MaxHealth = 7,
+                MaxHealth = 8,
                 Attack = 6,
                 Defense = 5,
                 Speed = 4
@@ -156,7 +156,7 @@ namespace Game.Models
                 ImageURI = "protocol_droid.png",
                 IconImageURI = "protocol_droid_icon.png",
                 Level = 4,
-                MaxHealth = 2,
+                MaxHealth = 4,
                 Attack = 2,
                 Defense = 1,
                 Speed = 1
@@ -168,8 +168,8 @@ namespace Game.Models
                 ImageURI = "astromech.png",
                 IconImageURI = "astromech_icon.png",
                 Job = CharacterJobEnum.AstroDroid,
-                Level = 4,
-                MaxHealth = 2,
+                Level = 6,
+                MaxHealth = 5,
                 Attack = 2,
                 Defense = 1,
                 Speed = 1
