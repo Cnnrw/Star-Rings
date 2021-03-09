@@ -127,9 +127,6 @@ namespace Game.Engine.EngineGame
                 int index = DiceHelper.RollDice(1, validMonsters.Count()) - 1;
                 MonsterModel chosenMonster = validMonsters[index];
 
-                // Help identify which Monster it is
-                chosenMonster.Name += " " + (EngineSettings.MonsterList.Count + 1);
-
                 // Choose level
                 chosenMonster.Level = DiceHelper.RollDice(1, targetLevel);
 
