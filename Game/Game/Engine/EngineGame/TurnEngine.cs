@@ -107,56 +107,6 @@ namespace Game.Engine.EngineGame
         }
 
         /// <summary>
-        /// Find a Desired Target
-        /// Move close to them
-        /// Get to move the number of Speed
-        /// </summary>
-        public override bool MoveAsTurn(PlayerInfoModel Attacker)
-        {
-            /*
-             * TODO: TEAMS Work out your own move logic if you are implementing move
-             *
-             * Mike's Logic
-             * The monster or charcter will move to a different square if one is open
-             * Find the Desired Target
-             * Jump to the closest space near the target that is open
-             *
-             * If no open spaces, return false
-             *
-             */
-
-            // If the Monster the calculate the options
-            if (Attacker.PlayerType == PlayerTypeEnum.Monster)
-            {
-                // For Attack, Choose Who
-
-                // Get X, Y for Defender
-
-                // Get X, Y for the Attacker
-
-                // Find Location Nearest to Defender that is Open.
-
-                // Get the Open Locations
-
-                // Format a message to show
-
-                throw new System.NotImplementedException();
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Use the Ability
-        /// </summary>
-        /// <param name="ActivePlayer"></param>
-        /// <returns></returns>
-        public override bool UseAbility(PlayerInfoModel ActivePlayer)
-        {
-            return base.UseAbility(ActivePlayer);
-        }
-
-        /// <summary>
         /// Attack as a Turn
         ///
         /// Pick who to go after
