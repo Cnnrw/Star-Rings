@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -46,7 +46,6 @@ namespace Game.Engine.EngineBase
                 // Check for excessive duration.
                 if (DetectInfiniteLoop())
                 {
-                    Debug.WriteLine("Aborting, More than Max Rounds");
                     Battle.EndBattle();
                     return false;
                 }
@@ -84,11 +83,13 @@ namespace Game.Engine.EngineBase
         {
             if (Battle.EngineSettings.BattleScore.RoundCount > Battle.EngineSettings.MaxRoundCount)
             {
+                Debug.WriteLine("Aborting, More than Max Rounds");
                 return true;
             }
 
             if (Battle.EngineSettings.BattleScore.TurnCount > Battle.EngineSettings.MaxTurnCount)
             {
+                Debug.WriteLine("Aborting, More than Max Turns");
                 return true;
             }
 
