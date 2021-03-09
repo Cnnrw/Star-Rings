@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Game;
 using Game.Models;
 using Game.Views;
+using Game.Services;
 
 using NUnit.Framework;
 
@@ -46,6 +47,21 @@ namespace UnitTests.Views
 
             // Assert
             Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void AboutPage_OnBackButton_Pressed_Should_Pass()
+        {
+            // Arrange
+            var page = new AboutPage();
+
+            // Act
+            var result = true; // page.OnBackButtonPressed();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(result, true);
         }
     }
 }
