@@ -97,38 +97,38 @@ namespace UnitTests.Engine.EngineGame
         //    Assert.AreEqual(true, result);
         //}
 
-        //[Test]
-        //public async Task AutoBattleEngine_RunAutoBattle_Valid_Monsters_1_Should_Pass()
-        //{
-        //    //Arrange
+        [Test]
+        public async Task AutoBattleEngine_RunAutoBattle_Valid_Monsters_1_Should_Pass()
+        {
+            //Arrange
 
-        //    // Need to set the Monster count to 1, so the battle goes to Next Round Faster
-        //    AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyMonsters = 1;
-        //    AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyCharacters = 1;
+            // Need to set the Monster count to 1, so the battle goes to Next Round Faster
+            AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyMonsters = 1;
+            AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyCharacters = 1;
 
-        //    var CharacterPlayerMike = new PlayerInfoModel(
-        //                    new CharacterModel
-        //                    {
-        //                        Speed = -1,
-        //                        Level = 10,
-        //                        CurrentHealth = 11,
-        //                        ExperienceTotal = 1,
-        //                        ExperienceRemaining = 1,
-        //                        Name = "Mike",
-        //                        ListOrder = 1,
-        //                    });
+            var CharacterPlayerMike = new PlayerInfoModel(
+                                                          new CharacterModel
+                                                          {
+                                                              Speed = -1,
+                                                              Level = 10,
+                                                              CurrentHealth = 11,
+                                                              ExperienceTotal = 1,
+                                                              ExperienceRemaining = 1,
+                                                              Name = "Mike",
+                                                              ListOrder = 1
+                                                          });
 
-        //    AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(CharacterPlayerMike);
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(CharacterPlayerMike);
 
-        //    //Act
-        //    var result = await AutoBattleEngine.RunAutoBattle();
+            //Act
+            var result = await AutoBattleEngine.RunAutoBattle();
 
-        //    //Reset
-        //    CharacterIndexViewModel.Instance.ForceDataRefresh();
+            //Reset
+            CharacterIndexViewModel.Instance.ForceDataRefresh();
 
-        //    //Assert
-        //    Assert.AreEqual(true, result);
-        //}
+            //Assert
+            Assert.AreEqual(true, result);
+        }
 
         [Test]
         public async Task AutoBattleEngine_CreateCharacterParty_Valid_Characters_Should_Assign_6()
