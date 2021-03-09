@@ -59,7 +59,10 @@ namespace Game.Views
             var picker = (Picker)sender;
             int selectedIndex = picker.SelectedIndex;
 
-            Image.Source = MonsterModel.ImagesURIs[selectedIndex];
+            if (selectedIndex >= 0)
+            {
+                Image.Source = MonsterModel.ImagesURIs[selectedIndex];
+            }
         }
 
         /// <summary>
