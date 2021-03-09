@@ -36,5 +36,16 @@ namespace UnitTests.Views
 
         public AboutPageTests() : base(true) { }
 
+        [Test]
+        public void AboutPage_Default_Constructor_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = new AboutPage();
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
