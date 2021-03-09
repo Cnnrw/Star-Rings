@@ -52,6 +52,23 @@ namespace UnitTests.Engine.EngineGame
             Assert.IsNotNull(result);
         }
 
+        [Test]
+        public void AutoBattleEngine_Constructor_Valid_Battle_Round_Turn_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = AutoBattleEngine;
+            result.Battle = new BattleEngine();
+            result.Battle.Round = new RoundEngine();
+            result.Battle.Round.Turn = new TurnEngine();
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
         //[Test]
         //public async Task AutoBattleEngine_RunAutoBattle_Valid_Default_Should_Pass()
         //{
