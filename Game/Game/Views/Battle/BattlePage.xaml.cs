@@ -469,7 +469,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="mapModel"></param>
         /// <returns></returns>
-        static Color DetermineMapBackgroundColor(MapModelLocation mapModel)
+        internal static Color DetermineMapBackgroundColor(MapModelLocation mapModel)
         {
             string battleMapBackgroundColor = null;
             switch (mapModel.Player.PlayerType)
