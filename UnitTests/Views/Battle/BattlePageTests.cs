@@ -1016,34 +1016,61 @@ namespace UnitTests.Views
         //    Assert.IsTrue(true); // Got Here
         //}
 
-    //    [Test]
-    //    public void BattleSettingsPage_MapIcon_Clicked_Empty_Should_Pass()
-    //    {
-    //        // Arrange
-    //        var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
-    //        BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+        //    [Test]
+        //    public void BattleSettingsPage_MapIcon_Clicked_Empty_Should_Pass()
+        //    {
+        //        // Arrange
+        //        var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
+        //        BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
 
-    //        var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
-    //        BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+        //        var MonsterPlayer = new PlayerInfoModel(new MonsterModel());
+        //        BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-    //        BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
-    //            .Instance.Engine.EngineSettings.PlayerList);
+        //        BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.PopulateMapModel(BattleEngineViewModel
+        //            .Instance.Engine.EngineSettings.PlayerList);
 
-    //        // Make UI Map
-    //        //page.DrawMapGridInitialState();
+        //        // Make UI Map
+        //        //page.DrawMapGridInitialState();
 
-    //        var nameImage = "MapR3C3ImageButton";
-    //        page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
+        //        var nameImage = "MapR3C3ImageButton";
+        //        page.MapLocationObject.TryGetValue(nameImage, out var dataImage);
 
-    //        // Act
+        //        // Act
 
-    //        // Force the click event to fire
-    //        ((ImageButton)dataImage)?.PropagateUpClicked();
+        //        // Force the click event to fire
+        //        ((ImageButton)dataImage)?.PropagateUpClicked();
 
-    //        // Reset
+        //        // Reset
 
-    //        // Assert
-    //        Assert.IsTrue(true); // Got Here
-    //    }
+        //        // Assert
+        //        Assert.IsTrue(true); // Got Here
+        //    }
+
+        [Test]
+        public void BattleSettingsPage_DetermineMapBackgroundColor_Should_Pass()
+        {
+            // Arrange
+            MapModelLocation character = new MapModelLocation();
+            character.Player.PlayerType = PlayerTypeEnum.Character;
+            MapModelLocation monster = new MapModelLocation();
+            monster.Player.PlayerType = PlayerTypeEnum.Monster;
+            MapModelLocation unknown = new MapModelLocation();
+            unknown.Player.PlayerType = PlayerTypeEnum.Unknown;
+            MapModelLocation defaultCase = new MapModelLocation();
+
+            // Act
+            var characterColor = BattlePage.DetermineMapBackgroundColor(character);
+            var monsterColor = BattlePage.DetermineMapBackgroundColor(monster);
+            var unknownColor = BattlePage.DetermineMapBackgroundColor(unknown);
+            var defaultColor = BattlePage.DetermineMapBackgroundColor(defaultCase);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(characterColor, Color.Purple); 
+            Assert.AreEqual(monsterColor, Color.Lavender); 
+            Assert.AreEqual(unknownColor, Color.Transparent); 
+            Assert.AreEqual(defaultColor, Color.Transparent);
+        }
     }
 }
