@@ -54,16 +54,8 @@ namespace Game.Engine.EngineGame
                     result = Attack(ActivePlayer);
                     break;
 
-                case ActionEnum.Block:
+                default:
                     result = Block(ActivePlayer);
-                    break;
-
-                case ActionEnum.Ability:
-                    result = UseAbility(ActivePlayer);
-                    break;
-
-                case ActionEnum.Move:
-                    result = MoveAsTurn(ActivePlayer);
                     break;
             }
 
