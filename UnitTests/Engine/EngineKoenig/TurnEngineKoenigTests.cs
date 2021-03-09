@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using Game.Engine.EngineKoenig;
@@ -1303,6 +1303,9 @@ namespace UnitTests.Engine.EngineKoenig
         {
             // Arrange
 
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(6);
+
             var CharacterPlayer = new PlayerInfoModel(new CharacterModel());
 
             // Get the longest range weapon in stock.
@@ -1324,6 +1327,7 @@ namespace UnitTests.Engine.EngineKoenig
             var result = Engine.Round.Turn.DetermineActionChoice(CharacterPlayer);
 
             // Reset
+            DiceHelper.DisableForcedRolls();
 
             // Assert
             Assert.AreEqual(ActionEnum.Attack, result);
