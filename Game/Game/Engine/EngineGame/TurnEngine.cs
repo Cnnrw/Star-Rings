@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
@@ -54,8 +55,7 @@ namespace Game.Engine.EngineGame
                     break;
 
                 case ActionEnum.Block:
-                    // TODO: implement Block(ActivePlayer)
-                    result = Attack(ActivePlayer);
+                    result = Block(ActivePlayer);
                     break;
 
                 case ActionEnum.Ability:
@@ -98,9 +98,7 @@ namespace Game.Engine.EngineGame
             /*
              * The following is Used for Monsters, and Auto Battle Characters
              * 
-             * Order of Priority
-             * If player ... then Attack,
-             * otherwise ... Block
+             * Randomly choose between attacking and blocking
              */
 
             int RollResult = DiceHelper.RollDice(1, 2);
@@ -246,6 +244,132 @@ namespace Game.Engine.EngineGame
         public override bool TurnAsAttack(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
             return base.TurnAsAttack(Attacker, Target);
+        }
+
+        /// <summary>
+        /// Block incoming attacks by raising defense
+        /// </summary>
+        /// <returns></returns>
+        public bool Block(PlayerInfoModel Blocker)
+        {
+            if (EngineSettings.BattleScore.AutoBattle)
+            {
+                // Choose who to block
+                EngineSettings.CurrentDefender = BlockChoice(Blocker);
+
+                if (EngineSettings.CurrentDefender == null) return false;
+            }
+
+            // Perform block
+            TurnAsBlock(Blocker, EngineSettings.CurrentDefender);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Decide who to block
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public virtual PlayerInfoModel BlockChoice(PlayerInfoModel Blocker)
+        {
+            switch (Blocker.PlayerType)
+            {
+                case PlayerTypeEnum.Monster:
+                    return SelectCharacterToBlock();
+
+                default:
+                    return SelectMonsterToBlock();
+            }
+        }
+
+        /// <summary>
+        /// Pick the Character to Block
+        /// </summary>
+        /// <returns></returns>
+        public virtual PlayerInfoModel SelectCharacterToBlock()
+        {
+            if (EngineSettings.PlayerList == null) return null;
+
+            if (EngineSettings.PlayerList.Count < 1) return null;
+
+            // Monsters are dumb, so they only Block the first Character in the list
+            var BlockedCharacter = EngineSettings.PlayerList
+                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Character)
+                .OrderBy(m => m.ListOrder)
+                .FirstOrDefault();
+
+            return BlockedCharacter;
+        }
+
+        /// <summary>
+        /// Pick the Monster to Block
+        /// </summary>
+        /// <returns></returns>
+        public virtual PlayerInfoModel SelectMonsterToBlock()
+        {
+            if (EngineSettings.PlayerList == null) return null;
+
+            if (EngineSettings.PlayerList.Count < 1) return null;
+
+            // Block the Monster with the highest Attack
+            var BlockedMonster = EngineSettings.PlayerList
+                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
+                .OrderBy(m => m.Attack)
+                .FirstOrDefault();
+
+            return BlockedMonster;
+        }
+
+        /// <summary>
+        /// Player Blocks Player
+        /// </summary>
+        /// <param name="Blocker"></param>
+        /// <param name="Target"></param>
+        /// <returns></returns>
+        public virtual bool TurnAsBlock(PlayerInfoModel Blocker, PlayerInfoModel Target)
+        {
+            if (Blocker == null) return false;
+
+            if (Target == null) return false;
+
+            // Set Messages to empty
+            EngineSettings.BattleMessagesModel.ClearMessages();
+
+            
+            int RollResult = DiceHelper.RollDice(1, 10);
+
+            EngineSettings.BattleMessagesModel.TurnMessage =
+                Blocker.Name +
+                " tries to block " +
+                Target.Name +
+                " but misses";
+
+            // Apply the Block on the target's Attack
+            if (RollResult <= 3)
+            {
+                EngineSettings.BattleMessagesModel.TurnMessage =
+                    Blocker.Name +
+                    " considers blocking " +
+                    Target.Name +
+                    " but sees they're already weak";
+
+                if (Target.Attack > 1)
+                {
+                    Target.Attack -= 1;
+
+                    EngineSettings.BattleMessagesModel.TurnMessage =
+                        Blocker.Name +
+                        " blocks " +
+                        Target.Name +
+                        " and drops their attack to " +
+                        Target.Attack;
+                }
+            }
+
+            Debug.WriteLine(EngineSettings.BattleMessagesModel.TurnMessage);
+
+            return true;
         }
 
         /// <summary>
