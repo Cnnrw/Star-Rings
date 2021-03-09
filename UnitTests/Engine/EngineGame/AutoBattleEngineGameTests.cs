@@ -1,4 +1,5 @@
 using Game.Engine.EngineGame;
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 using NUnit.Framework;
@@ -96,6 +97,31 @@ namespace UnitTests.Engine.EngineGame
         //    //Assert
         //    Assert.AreEqual(true, result);
         //}
+
+        [Test]
+        public async Task AutoBattleEngine_RunAutoBattle_Valid_Default_Should_Pass()
+        {
+            //Arrange
+
+            var data = new CharacterModel { Level = 1, MaxHealth = 10 };
+
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+            AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+
+            //Act
+            var result = await AutoBattleEngine.RunAutoBattle();
+
+            //Reset
+            DiceHelper.DisableForcedRolls();
+            CharacterIndexViewModel.Instance.ForceDataRefresh();
+
+            //Assert
+            Assert.AreEqual(true, result);
+        }
 
         [Test]
         public async Task AutoBattleEngine_RunAutoBattle_Valid_Monsters_1_Should_Pass()
