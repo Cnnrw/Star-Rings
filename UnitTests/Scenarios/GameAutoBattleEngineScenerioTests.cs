@@ -93,21 +93,6 @@ namespace Scenario
             Assert.AreEqual(true, result);
         }
 
-        [Test]
-        public async Task SelectCharacterToAttack_Null_Player_List_Returns_Null()
-        {
-            // Arrange
-            AutoBattle.Battle.EngineSettings.PlayerList = null;
-
-            // Act
-            var result = AutoBattle.Battle.Round.Turn.SelectCharacterToAttack();
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(null, result);
-        }
-
         public List<PlayerInfoModel> GetListOfMonstersForEachLocation()
         {
             List<PlayerInfoModel> myList = new List<PlayerInfoModel> {

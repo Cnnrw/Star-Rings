@@ -1,4 +1,4 @@
-﻿using Game.Engine.EngineGame;
+using Game.Engine.EngineGame;
 
 using NUnit.Framework;
 
@@ -36,6 +36,37 @@ namespace UnitTests.Engine.EngineGame
 
             // Assert
             Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void SelectCharacterToAttack_Null_Player_List_Returns_Null()
+        {
+            // Arrange
+            Engine.EngineSettings.PlayerList = null;
+            
+
+            // Act
+            var result = Engine.Round.Turn.SelectCharacterToAttack();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [Test]
+        public void SelectCharacterToAttack_Empty_Player_List_Returns_Null()
+        {
+            // Arrange
+            Engine.EngineSettings.PlayerList.Clear();
+
+            // Act
+            var result = Engine.Round.Turn.SelectCharacterToAttack();
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(null, result);
         }
     }
 }
