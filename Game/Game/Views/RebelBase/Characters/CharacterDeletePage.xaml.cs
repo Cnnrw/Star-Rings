@@ -49,13 +49,5 @@ namespace Game.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
-
-        /// <summary>
-        ///     Trap the Back Button on the Phone
-        /// </summary>
-        /// <returns></returns>
-        protected override bool OnBackButtonPressed() =>
-            // TODO: Add your code here...
-            true;
     }
 }
