@@ -7,8 +7,11 @@
              xmlns:c="clr-namespace:Game.Controls;assembly=Game"
              xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
              mc:Ignorable="d"
-             x:Class="Game.Views.MainPage"
-             x:DataType="vm:MainViewModel">
+             x:Class="Game.Views.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
 
     <Grid HorizontalOptions="FillAndExpand">
 
