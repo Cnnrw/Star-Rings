@@ -15,13 +15,8 @@ namespace Game.Views
     {
         readonly INavigationService _navigationService;
 
-        // ReSharper disable once NotAccessedField.Local
-        IList<View> _toolbarButtons;
-
-        public IList<View> ToolbarButtons
-        {
-            set => _toolbarButtons = value;
-        }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        public IList<View> ToolbarButtons { get; set; }
 
         #region Constructors
 
