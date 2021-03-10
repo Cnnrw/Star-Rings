@@ -1,26 +1,22 @@
 ﻿using System;
-using System.ComponentModel;
 
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     /// The Read Page
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemReadPage : ContentPage
+    public partial class ItemReadPage : BaseContentPage
     {
         // View Model for Item
-        public readonly GenericViewModel<ItemModel> _viewModel;
+        readonly GenericViewModel<ItemModel> _viewModel;
 
         // Empty Constructor for UTs
-        public ItemReadPage(bool UnitTest) { }
+        internal ItemReadPage(bool unitTest) { }
 
         /// <summary>
         /// Constructor called with a view model
