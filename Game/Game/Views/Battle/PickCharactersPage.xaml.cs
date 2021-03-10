@@ -1,11 +1,10 @@
 using System;
 using System.Linq;
 
-using Xamarin.Forms;
-
 using Game.Models;
 using Game.ViewModels;
-using Game.Templates.Pages;
+
+using Xamarin.Forms;
 
 namespace Game.Views
 {
@@ -20,7 +19,7 @@ namespace Game.Views
     /// Have select from the party list remove it from the party list and add it to the database list
     ///
     /// </summary>
-    public partial class PickCharactersPage : BasePage
+    public partial class PickCharactersPage : BaseContentPage
     {
         internal readonly BattleEngineViewModel ViewModel = BattleEngineViewModel.Instance;
 
@@ -55,7 +54,7 @@ namespace Game.Views
         {
             ViewModel.PoolCharacterList.Clear();
 
-            foreach(CharacterModel Character in ViewModel.DatabaseCharacterList)
+            foreach (CharacterModel Character in ViewModel.DatabaseCharacterList)
             {
                 ViewModel.PoolCharacterList.Add(Character);
             }
