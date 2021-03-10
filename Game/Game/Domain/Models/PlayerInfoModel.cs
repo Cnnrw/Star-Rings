@@ -69,6 +69,8 @@ namespace Game.Models
 
             Job = data.Job;
 
+            LandedAttacksCount = data.LandedAttacksCount;
+
             AbilityTracker = data.AbilityTracker;
         }
 
@@ -111,6 +113,8 @@ namespace Game.Models
             Difficulty = data.Difficulty;
 
             Job = data.Job;
+
+            LandedAttacksCount = data.LandedAttacksCount;
 
             // Give the copy a different quid, so it can be used in the battles as a copy
             Guid = System.Guid.NewGuid().ToString();
