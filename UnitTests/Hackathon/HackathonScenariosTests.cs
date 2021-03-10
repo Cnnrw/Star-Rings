@@ -1,4 +1,5 @@
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 using NUnit.Framework;
@@ -182,7 +183,6 @@ namespace Scenario
             *      Default condition is sufficient
             * 
             * Validation:
-            *      Verify Battle Returned True
             *      Verify Bob's LandedAttacksCount == 0
             *      Verify Luke's LandedAttacksCount > 0
             */
@@ -195,9 +195,9 @@ namespace Scenario
 
             var CharacterBob = new CharacterModel
                 {
-                    Speed = 15,
-                    Level = 5,
-                    CurrentHealth = 50,
+                    Speed = 4,
+                    Level = 3,
+                    MaxHealth = 12,
                     ExperienceTotal = 1,
                     ExperienceRemaining = 1,
                     Name = "Bob"
@@ -205,9 +205,9 @@ namespace Scenario
 
             var CharacterLuke = new CharacterModel
             {
-                Speed = 15,
-                Level = 5,
-                CurrentHealth = 50,
+                Speed = 4,
+                Level = 3,
+                MaxHealth = 12,
                 ExperienceTotal = 1,
                 ExperienceRemaining = 1,
                 Name = "Luke"
@@ -223,11 +223,10 @@ namespace Scenario
 
             // Reset
 
+            // Assert
             var FinalBob = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Bob"));
             var FinalLuke = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Luke"));
 
-            // Assert
-            Assert.AreEqual(true, result);
             Assert.AreEqual(0, FinalBob.LandedAttacksCount);
             Assert.AreEqual(true, FinalLuke.LandedAttacksCount > 0);
         }
