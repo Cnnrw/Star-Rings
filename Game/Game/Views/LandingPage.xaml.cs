@@ -1,5 +1,7 @@
 using System;
 
+using Game.Services;
+
 using Xamarin.Forms;
 
 namespace Game.Views
@@ -33,12 +35,13 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void StartButton_OnReleased(object sender, EventArgs e)
+        public void StartButton_OnReleased(object sender, EventArgs e)
         {
             StartButton.Source = "start_button_normal.png";
             StartButton.Scale = 1;
 
-            await Navigation.PushAsync(new Page());
+            if (App.NavigationService is ViewNavigationService navigationService)
+                Application.Current.MainPage = navigationService.SetRootPage(nameof(MainPage));
         }
     }
 }
