@@ -15,9 +15,10 @@
         <vm:ItemIndexViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" IconImageSource="icon_add.png" />
-    </ContentPage.ToolbarItems>
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="AddItem_Clicked"
+                     Source="icon_add.png" />
+    </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
