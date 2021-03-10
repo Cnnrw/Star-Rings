@@ -115,6 +115,9 @@ namespace Game.Models
         // The Job for the Player
         public CharacterJobEnum Job { get; set; } = CharacterJobEnum.Unknown;
 
+        // How many attacks this Player has landed
+        public int LandedAttacksCount { get; set; } = 0;
+
         #endregion PlayerAttributes
 
         #endregion Attributes
