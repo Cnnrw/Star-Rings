@@ -186,9 +186,19 @@
     <Style TargetType="Image"
            x:Key="ImageSmallStyle"
            BasedOn="{StaticResource ImageLargeStyle}">
-        <Setter Property="HeightRequest" Value="30" />
-        <Setter Property="WidthRequest" Value="30" />
+        <Setter Property="HeightRequest" Value="35" />
+        <Setter Property="WidthRequest" Value="35" />
     </Style>
+
+    <Style TargetType="Image"
+           x:Key="ImageMenuButtonStyle">
+        <Setter Property="HeightRequest" Value="35"/>
+        <Setter Property="WidthRequest" Value="35"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Aspect" Value="AspectFit"/>
+    </Style>
+
 
     <Style TargetType="Image"
            x:Key="PlayerBattleSmallStyle"
