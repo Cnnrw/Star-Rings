@@ -1,34 +1,18 @@
-using Game.Services;
-using Game.Templates.Pages;
-
 namespace Game.Views
 {
     /// <summary>
     ///     About Page
     /// </summary>
-    public partial class AboutPage : BasePage
+    public partial class AboutPage : BaseContentPage
     {
-        readonly INavigationService _navigationService;
-
         internal AboutPage(bool unitTests) { }
 
         /// <summary>
         ///     Constructor for About Page
         /// </summary>
-        public AboutPage() : this(App.NavigationService)
-        { }
-
-        public AboutPage(INavigationService navigationService)
+        public AboutPage()
         {
             InitializeComponent();
-
-            _navigationService = navigationService;
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            _navigationService.GoBack();
-            return true;
         }
     }
 }
