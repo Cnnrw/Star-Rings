@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ContentPage Title="{Binding Title}"
-             x:Class="Game.Views.CharacterCreatePage"
-             x:Name="Create"
-             mc:Ignorable="d"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:models="clr-namespace:Game.Models;assembly=Game"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
-             xmlns:converters="clr-namespace:Game.Converters;assembly=Game"
-             xmlns:controls="clr-namespace:Game.Controls;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
-             BackgroundImageSource="page_background.png">
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
+                      xmlns:conv="clr-namespace:Game.Converters;assembly=Game"
+                      xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
+                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      mc:Ignorable="d"
+                      x:Class="Game.Views.CharacterCreatePage"
+                      Title="{Binding Title}"
+                      BackgroundImageSource="page_background.png">
 
     <ContentPage.BindingContext>
-        <viewModels:GenericViewModel x:TypeArguments="models:CharacterModel" />
+        <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:StringEnumConverter x:Key="StringToEnum" />
+            <conv:StringEnumConverter x:Key="StringToEnum" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -34,26 +34,26 @@
 
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
-                        <Image x:Name="JobImage" 
+                        <Image x:Name="JobImage"
                                Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
                                HorizontalOptions="CenterAndExpand"
-                               Aspect="AspectFit"/>
-                        
+                               Aspect="AspectFit" />
+
                         <Label Text="Job"
-                               Style="{StaticResource LabelStyle}"/>
+                               Style="{StaticResource LabelStyle}" />
 
                         <Picker x:Name="JobPicker"
                                 ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}"
                                 SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}"
-                                SelectedIndexChanged="OnJobPickerChanged"/>
+                                SelectedIndexChanged="OnJobPickerChanged" />
                     </StackLayout>
 
                     <StackLayout>
-                        <controls:FormEntry Title="Name"
-                                            Text="{Binding Data.Name}" />
-                        <controls:FormEntry Title="Description"
-                                            Text="{Binding Data.Description}" />
+                        <c:FormEntry Title="Name"
+                                     Text="{Binding Data.Name}" />
+                        <c:FormEntry Title="Description"
+                                     Text="{Binding Data.Description}" />
 
                         <StackLayout>
                             <Label Text="Level"
@@ -148,4 +148,4 @@
         </ScrollView>
     </FlexLayout>
 
-</ContentPage>
+</page:BaseContentPage>
