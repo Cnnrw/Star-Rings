@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ContentPage Title="Binding Title"
-             x:Class="Game.Views.MonsterCreatePage"
-             x:Name="Create"
-             mc:Ignorable="d"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:models="clr-namespace:Game.Models;assembly=Game"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
-             xmlns:converters="clr-namespace:Game.Converters;assembly=Game"
-             xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
-             BackgroundImageSource="page_background.png">
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:conv="clr-namespace:Game.Converters;assembly=Game"
+                      xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      mc:Ignorable="d"
+                      x:Class="Game.Views.MonsterCreatePage"
+                      Title="{Binding Title}">
 
     <ContentPage.BindingContext>
-        <viewModels:GenericViewModel x:TypeArguments="models:MonsterModel" />
+        <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
-        <converters:StringEnumConverter x:Key="StringToEnum" />
+        <conv:StringEnumConverter x:Key="StringToEnum" />
     </ContentPage.Resources>
 
     <FlexLayout JustifyContent="Center"
@@ -34,16 +33,17 @@
                         <Image x:Name="Image"
                                Source="{Binding Data.ImageURI}"
                                Style="{StaticResource ImageLargeStyle}"
-                               HorizontalOptions="CenterAndExpand" />
-                        
+                               HorizontalOptions="Center" />
+
                         <Label Text="Image"
                                Style="{StaticResource LabelStyle}" />
 
                         <Picker x:Name="ImagePicker"
-                                ItemsSource="{x:Static models:MonsterModel.ImagesURIs}"
+                                ItemsSource="{x:Static m:MonsterModel.ImagesURIs}"
                                 SelectedItem="{Binding Data.ImageURI, Mode=TwoWay}"
                                 SelectedIndexChanged="OnImagePickerChanged" />
                     </StackLayout>
+
                     <StackLayout>
                         <Label Text="Name" Style="{StaticResource LabelStyle}" />
                         <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
@@ -107,13 +107,10 @@
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Cancel" Clicked="Cancel_Clicked" />
                     <Button Text="Save" Clicked="Save_Clicked" />
-                    <Button x:Name="Randomize"
-                            Text="Random"
+                    <Button Text="Random"
                             Clicked="RandomButton_Clicked" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>
-
     </FlexLayout>
-
-</ContentPage>
+</page:BaseContentPage>

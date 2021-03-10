@@ -1,7 +1,5 @@
 using System;
-using System.ComponentModel;
 
-using Game.Enums;
 using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
@@ -13,33 +11,36 @@ namespace Game.Views
     /// <summary>
     ///     Monster create page
     /// </summary>
-    [DesignTimeVisible(false)]
-    public partial class MonsterCreatePage : ContentPage
+    public partial class MonsterCreatePage : BaseContentPage
     {
         /// <summary>
         ///     Internal Monster ViewModel
         /// </summary>
-        public readonly GenericViewModel<MonsterModel> _viewModel = new GenericViewModel<MonsterModel>();
+        internal readonly GenericViewModel<MonsterModel> _viewModel;
 
-        /// <summary>
-        ///     PopupLocationEnum holds the current location selected
-        /// </summary>
-        public ItemLocationEnum PopupLocationEnum = ItemLocationEnum.Unknown;
+        // /// <summary>
+        // ///     PopupLocationEnum holds the current location selected
+        // /// </summary>
+        // internal ItemLocationEnum PopupLocationEnum = ItemLocationEnum.Unknown;
 
         /// <summary>
         ///     Empty Constructor for UTs
         /// </summary>
         /// <param name="unitTest"></param>
-        public MonsterCreatePage(bool unitTest) { }
+        internal MonsterCreatePage(bool unitTest) { }
 
         /// <summary>
         ///     Constructor for Create makes a new model
         /// </summary>
-        public MonsterCreatePage()
+        public MonsterCreatePage(GenericViewModel<MonsterModel> viewModel = null)
         {
             InitializeComponent();
 
-            _viewModel.Data = RandomPlayerHelper.GetRandomMonster(1);
+            _viewModel = viewModel ?? new GenericViewModel<MonsterModel>
+            {
+                Data = RandomPlayerHelper.GetRandomMonster(1)
+            };
+
             _viewModel.Title = _viewModel.Data.Name;
 
             BindingContext = _viewModel;
@@ -51,13 +52,15 @@ namespace Game.Views
 
         /// <summary>
         /// Update the page's image source according to the Monster's ImageURI
+        ///
+        /// TODO: this throws an index out of range exception
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnImagePickerChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
-            int selectedIndex = picker.SelectedIndex;
+            var selectedIndex = picker.SelectedIndex;
 
             if (selectedIndex >= 0)
             {
@@ -97,14 +100,10 @@ namespace Game.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
-            {
                 _viewModel.Data.ImageURI = new MonsterModel().ImageURI;
-            }
 
             if (_viewModel.Data.Name.Length == 0)
-            {
                 await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
-            }
             else
             {
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
@@ -117,7 +116,8 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) =>
+            await Navigation.PopModalAsync();
 
         private void UpdatePageBindingContext()
         {
