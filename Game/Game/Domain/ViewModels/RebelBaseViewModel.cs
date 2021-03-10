@@ -1,51 +1,44 @@
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Game.Views;
 
-using Xamarin.Forms;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Game.ViewModels
 {
     public class RebelBaseViewModel : BaseViewModel
     {
-        INavigation Navigation { get; }
+        ICommand _characterCommand;
+        ICommand _monsterCommand;
+        ICommand _itemsCommand;
+        ICommand _scoresCommand;
 
-        public RebelBaseViewModel(INavigation navigation)
+        public RebelBaseViewModel()
         {
-            Navigation = navigation;
-
-            CharacterPageCommand = new Command(async () => await GoTo_Page(new CharacterIndexPage()));
-            MonsterPageCommand = new Command( async () => await GoTo_Page(new MonsterIndexPage()));
-            ItemsPageCommand = new Command(async () => await GoTo_Page(new ItemIndexPage()));
-            ScoresPageCommand = new Command(async () => await GoTo_Page(new ScoreIndexPage()));
+            CharacterPageCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(CharacterIndexPage)));
+            MonsterPageCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(MonsterIndexPage)));
+            ItemsPageCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(ItemIndexPage)));
+            ScoresPageCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(ScoreIndexPage)));
         }
 
-        async Task GoTo_Page(Page page) =>
-            await Navigation.PushAsync(page);
-
-        ICommand _characterCommand;
         public ICommand CharacterPageCommand
         {
             get => _characterCommand;
             set => SetProperty(ref _characterCommand, value);
         }
 
-        ICommand _monsterCommand;
         public ICommand MonsterPageCommand
         {
             get => _monsterCommand;
             set => SetProperty(ref _monsterCommand, value);
         }
 
-        ICommand _itemsCommand;
         public ICommand ItemsPageCommand
         {
             get => _itemsCommand;
             set => SetProperty(ref _itemsCommand, value);
         }
 
-        ICommand _scoresCommand;
         public ICommand ScoresPageCommand
         {
             get => _scoresCommand;
