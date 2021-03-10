@@ -1,36 +1,37 @@
 using System;
-using System.ComponentModel;
 
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
-    /// Create Item
+    ///     Create Item
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemCreatePage : ContentPage
+    public partial class ItemCreatePage : BaseContentPage
     {
         // The item to create
-        public readonly GenericViewModel<ItemModel> _viewModel = new GenericViewModel<ItemModel>();
+        public readonly GenericViewModel<ItemModel> _viewModel;
 
         // Empty Constructor for UTs
-        public ItemCreatePage(bool UnitTest) { }
+        internal ItemCreatePage(bool unitTest) { }
 
         /// <summary>
-        /// Constructor for Create makes a new model
+        ///     Constructor for ItemCreatePage
+        ///     Lets a user create a new Item.
         /// </summary>
-        public ItemCreatePage()
+        /// <param name="viewModel"></param>
+        public ItemCreatePage(GenericViewModel<ItemModel> viewModel = null)
         {
             InitializeComponent();
 
-            _viewModel.Title = "Create";
-            _viewModel.Data = new ItemModel();
+            _viewModel = viewModel ?? new GenericViewModel<ItemModel>
+            {
+                Title = "Create",
+                Data = new ItemModel()
+            };
 
             BindingContext = _viewModel;
 
@@ -48,14 +49,10 @@ namespace Game.Views
         {
             // If the image in the data box is empty, use the default one..
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
-            {
                 _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
-            }
 
             if (_viewModel.Data.Name.Length == 0)
-            {
                 await DisplayAlert("Hold up!", "Please give your item a name", "OK");
-            }
             else
             {
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
@@ -68,7 +65,8 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) =>
+            await Navigation.PopModalAsync();
 
         /// <summary>
         /// Catch the change to the Stepper for Range
