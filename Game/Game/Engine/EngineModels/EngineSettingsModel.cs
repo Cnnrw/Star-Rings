@@ -28,6 +28,11 @@ namespace Game.Engine.EngineModels
         // Location of the current round
         public BattleLocationEnum RoundLocation { get; set; } = BattleLocationEnum.Unknown;
 
+        // HACKATHON #10
+        // Determines if MiracleMax can revive a character
+        // Set at beginning of round, and during a round if a character is dealt lethal dmg
+        public bool MiracleMaxCanRevive = false;
+
         // Current Player who is the attacker
         public PlayerInfoModel CurrentAttacker { get; set; }
 
