@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using Game.Helpers;
 using Game.Models;
@@ -18,7 +19,20 @@ namespace Game.ViewModels
     ///     Non-generic BaseViewModel
     /// </summary>
     public class BaseViewModel : BaseViewModel<DefaultModel>
-    { }
+    {
+        ICommand                    _goBackCommand;
+
+        public BaseViewModel() : this(App.NavigationService) { }
+
+        BaseViewModel(INavigationService navigationService)
+        {
+            NavigationService = navigationService;
+        }
+
+        protected INavigationService NavigationService { get; }
+
+        public ICommand GoBackCommand => _goBackCommand ??= new AsyncCommand(() => NavigationService.GoBack());
+    }
 
     /// <summary>
     /// Base View Model for Data
