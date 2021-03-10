@@ -47,6 +47,12 @@
         <Setter Property="FontSize" Value="{StaticResource SizeTextSubTitle}"/>
     </Style>
 
+    <Style x:Key="TextPageTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource SizeTextSubTitle}"/>
+        <Setter Property="TextColor" Value="{StaticResource ColorSecondaryText}"/>
+        <Setter Property="LineBreakMode" Value="NoWrap"/>
+    </Style>
+
     <Style x:Key="TextBody" TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource SizeTextBody}"/>
     </Style>
