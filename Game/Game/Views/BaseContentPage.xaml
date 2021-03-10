@@ -9,9 +9,9 @@
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
-            <Grid RowDefinitions="56, *" RowSpacing="0"
-                  VerticalOptions="FillAndExpand"
-                  HorizontalOptions="FillAndExpand">
+            <Grid RowDefinitions="60, *" RowSpacing="0"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Fill">
 
                 <!-- Page Background -->
                 <Image Grid.RowSpan="2"
@@ -21,7 +21,7 @@
 
                 <!-- Title Bar Grid -->
                 <Grid ColumnDefinitions="*, Auto, *" ColumnSpacing="0"
-                      Padding="12, 2"
+                      Margin="20, 20, 20, 0"
                       VerticalOptions="FillAndExpand">
 
                     <!-- Back Button -->
