@@ -34,7 +34,6 @@ namespace Game.Controls
             control.ButtonStack.Style = (Style)n;
         }
 
-
         #endregion StackLayout Style
         #region ImageSource
 
@@ -188,7 +187,7 @@ namespace Game.Controls
             // this gesture recognizer will invoke the command event wherever it is used
             control.ButtonStack.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = (Command)n,
+                Command = (ICommand)n,
                 CommandParameter = control.CommandParameter
             });
         }

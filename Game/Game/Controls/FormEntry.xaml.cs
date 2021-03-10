@@ -42,15 +42,5 @@ namespace Game.Controls
             Text = e.NewTextValue;
 
         #endregion
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-
-            if (propertyName == TitleProperty.PropertyName)
-                ControlTitle.Text = Title;
-            else if (propertyName == TextProperty.PropertyName)
-                ControlEntry.Text = Text;
-        }
     }
 }
