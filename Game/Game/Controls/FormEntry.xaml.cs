@@ -50,6 +50,26 @@ namespace Game.Controls
         void OnTextChanged(object sender, TextChangedEventArgs e) =>
             Text = e.NewTextValue;
 
+        #endregion Text
+        #region Placeholder
+
+        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(propertyName: nameof(Placeholder),
+                                                                                       returnType: typeof(string),
+                                                                                       declaringType: typeof(FormEntry),
+                                                                                       defaultValue: string.Empty,
+                                                                                       propertyChanged: PlaceholderPropertyChanged);
+        public string Placeholder
+        {
+            get => (string)GetValue(PlaceholderProperty);
+            set => SetValue(PlaceholderProperty, value);
+        }
+
+        static void PlaceholderPropertyChanged(BindableObject bo, object o, object n)
+        {
+            var control = (FormEntry)bo;
+            control.ControlEntry.Placeholder = n.ToString();
+        }
+
         #endregion
     }
 }
