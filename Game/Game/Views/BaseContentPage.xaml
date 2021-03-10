@@ -20,7 +20,8 @@
                        Aspect="Fill" />
 
                 <!-- Title Bar Grid -->
-                <Grid ColumnDefinitions="*, Auto, *" ColumnSpacing="0"
+                <Grid ColumnDefinitions="*, Auto, *"
+                      ColumnSpacing="0"
                       Margin="20, 20, 20, 0"
                       VerticalOptions="FillAndExpand">
 
@@ -29,15 +30,13 @@
                                  IsVisible="{TemplateBinding IsBackButtonVisible}"
                                  Clicked="CloseButton_OnClick"
                                  HeightRequest="35" WidthRequest="35"
-                                 HorizontalOptions="Start"
-                                 VerticalOptions="Center"
+                                 HorizontalOptions="Start" VerticalOptions="Center"
                                  Aspect="AspectFit" />
 
                     <!-- Title -->
                     <Label Grid.Column="1"
-                           x:Name="PageTitleT"
                            Text="{TemplateBinding PageTitle}"
-                           Style="{StaticResource TextTitle}"
+                           Style="{StaticResource TextPageTitle}"
                            HorizontalOptions="Center" VerticalOptions="Center"  />
 
                     <!-- Additional Buttons -->
