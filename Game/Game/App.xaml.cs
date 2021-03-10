@@ -1,4 +1,5 @@
 ﻿using Game.Services;
+using Game.Views;
 
 using Xamarin.Forms;
 
@@ -9,7 +10,7 @@ namespace Game
     /// </summary>
     public partial class App : Application
     {
-        internal static INavigationService NavigationService { get; } = new ViewNavigationService();
+        internal static INavigationService NavigationService { get; private set; }
 
         /// <summary>
         ///     Default App Constructor
@@ -18,10 +19,38 @@ namespace Game
         {
             InitializeComponent();
 
-            NavigationService.Configure("MainPage", typeof(Views.MainPage));
+            // Create NavigationService Instance
+            var navigationService = new ViewNavigationService();
 
-            // Call the Landing Page to open
-            MainPage = ((ViewNavigationService)NavigationService).SetRootPage("MainPage");
+            AddPagesToNavigation(navigationService);
+
+            MainPage = navigationService.SetRootPage(nameof(LandingPage));
+
+            NavigationService = navigationService;
+        }
+
+        static void AddPagesToNavigation(INavigationService navigationService)
+        {
+            // Landing
+            navigationService.Configure(nameof(LandingPage), typeof(LandingPage));
+
+            // MainPage
+            navigationService.Configure(nameof(MainPage), typeof(MainPage));
+            navigationService.Configure(nameof(SettingsPage), typeof(SettingsPage));
+            navigationService.Configure(nameof(AboutPage), typeof(AboutPage));
+
+            // Rebel Base Pages
+            navigationService.Configure(nameof(RebelBasePage), typeof(RebelBasePage));
+            navigationService.Configure(nameof(CharacterIndexPage), typeof(CharacterIndexPage));
+            navigationService.Configure(nameof(MonsterIndexPage), typeof(MonsterIndexPage));
+            navigationService.Configure(nameof(ItemIndexPage), typeof(ItemIndexPage));
+            navigationService.Configure(nameof(ScoreIndexPage), typeof(ScoreIndexPage));
+
+            // Dungeon Pages
+            navigationService.Configure("DungeonPage", typeof(BattleHomePage));
+
+            // AutoBattle
+            navigationService.Configure(nameof(AutoBattlePage), typeof(AutoBattlePage));
         }
 
         /// <summary>
