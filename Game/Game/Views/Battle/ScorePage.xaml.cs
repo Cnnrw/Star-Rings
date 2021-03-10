@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Models;
-using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -12,7 +11,7 @@ namespace Game.Views
     /// <summary>
     ///     The Main Game Page
     /// </summary>
-    public partial class ScorePage : BasePage
+    public partial class ScorePage : BaseContentPage
     {
         // This uses the Instance so it can be shared with other Battle Pages as needed
         readonly BattleEngineViewModel _engineViewModel = BattleEngineViewModel.Instance;
