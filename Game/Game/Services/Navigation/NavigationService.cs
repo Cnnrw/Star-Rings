@@ -139,7 +139,7 @@ namespace Game.Services
             await CurrentNavigationPage.Navigation.PushAsync(page, animated);
         }
 
-        private Page GetPage(string pageKey, object parameter = null)
+        Page GetPage(string pageKey, object parameter = null)
         {
             lock (_sync)
             {
