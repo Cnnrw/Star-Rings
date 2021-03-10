@@ -15,9 +15,10 @@
         <vm:CharacterIndexViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" IconImageSource="icon_add.png" />
-    </ContentPage.ToolbarItems>
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Source="icon_add.png"
+                     Clicked="AddCharacter_Clicked"/>
+    </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
