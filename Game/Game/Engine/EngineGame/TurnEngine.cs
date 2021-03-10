@@ -93,7 +93,7 @@ namespace Game.Engine.EngineGame
              * Randomly choose between attacking and blocking
              */
 
-            int RollResult = DiceHelper.RollDice(1, 2);
+            int RollResult = DiceHelper.RollDice(1, 5);
 
             if (RollResult == 1)
             {
