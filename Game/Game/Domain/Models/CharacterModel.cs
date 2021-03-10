@@ -78,6 +78,8 @@ namespace Game.Models
             // Update the Job
             Job = newData.Job;
 
+            LandedAttacksCount = newData.LandedAttacksCount;
+
             return true;
         }
 
