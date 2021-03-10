@@ -18,10 +18,12 @@
         <vm:GenericViewModel x:TypeArguments="m:ItemModel" />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" IconImageSource="icon_cancel.png" />
-        <ToolbarItem Text="Save" Clicked="Save_Clicked" IconImageSource="icon_save.png" />
-    </ContentPage.ToolbarItems>
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="Cancel_Clicked"
+                     Source="cancel_button.png" />
+        <ImageButton Clicked="Save_Clicked"
+                     Source="save_button.png" />
+    </page:BaseContentPage.ToolbarButtons>
 
     <ContentPage.Resources>
         <ResourceDictionary>
