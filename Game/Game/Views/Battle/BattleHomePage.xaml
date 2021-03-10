@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                xmlns:pages="clr-namespace:Game.Templates.Pages;assembly=Game"
-                PageBackground="page_background_1.png"
-                x:Class="Game.Views.BattleHomePage">
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      x:Class="Game.Views.BattleHomePage"
+                      PageBackground="page_background_1.png">
 
     <ContentPage.Resources>
         <Style TargetType="StackLayout">
@@ -40,4 +40,4 @@
         </StackLayout>
 
     </Grid>
-</pages:BasePage>
+</page:BaseContentPage>

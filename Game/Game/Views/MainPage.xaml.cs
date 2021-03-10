@@ -1,9 +1,4 @@
-using Game.Services;
-using Game.ViewModels;
-
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace Game.Views
 {
@@ -18,16 +13,9 @@ namespace Game.Views
         /// <param name="unitTests"></param>
         internal MainPage(bool unitTests) { }
 
-        public MainPage() : this(App.NavigationService)
-        { }
-
-        public MainPage(INavigationService navigationService)
+        public MainPage()
         {
             InitializeComponent();
-
-            On<iOS>().SetUseSafeArea(true);
-
-            BindingContext = new MainViewModel(navigationService);
         }
     }
 }

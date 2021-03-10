@@ -1,13 +1,11 @@
 using System;
 
-using Game.Templates.Pages;
-
 namespace Game.Views
 {
 	/// <summary>
 	/// The Main Game Page
 	/// </summary>
-	public partial class BattleHomePage : BasePage
+	public partial class BattleHomePage : BaseContentPage
 	{
 		/// <summary>
 		/// Constructor
