@@ -14,14 +14,23 @@ namespace Game.Controls
         }
 
         #region Title
+
         public static readonly BindableProperty TitleProperty = BindableProperty.Create(propertyName: nameof(Title),
                                                                                         returnType: typeof(string),
                                                                                         declaringType: typeof(FormEntry),
-                                                                                        defaultValue: default(string));
+                                                                                        defaultValue: string.Empty,
+                                                                                        defaultBindingMode: BindingMode.OneWay,
+                                                                                        propertyChanged: TitlePropertyChanged);
         public string Title
         {
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
+        }
+
+        static void TitlePropertyChanged(BindableObject bo, object o, object n)
+        {
+            var control = (FormEntry)bo;
+            control.ControlTitle.Text = $"{n}: ";
         }
 
         #endregion Title

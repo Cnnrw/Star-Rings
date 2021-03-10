@@ -3,8 +3,12 @@
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       x:Class="Game.Controls.FormEntry"
-      HorizontalOptions="FillAndExpand"
-      RowDefinitions="*">
-    <Label x:Name="ControlTitle" FontAttributes="Bold"  />
-    <Entry x:Name="ControlEntry" />
+      ColumnDefinitions="Auto, *"
+      HorizontalOptions="Fill">
+
+    <Label x:Name="ControlTitle"
+           Style="{StaticResource LabelStyle}" />
+    <Entry Grid.Column="1"
+           x:Name="ControlEntry" />
+
 </Grid>
