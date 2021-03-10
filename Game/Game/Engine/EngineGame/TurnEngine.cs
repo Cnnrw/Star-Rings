@@ -165,7 +165,67 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override bool TurnAsAttack(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
-            return base.TurnAsAttack(Attacker, Target);
+            if (Attacker == null) return false;
+
+            if (Target == null) return false;
+
+            // Set Messages to empty
+            EngineSettings.BattleMessagesModel.ClearMessages();
+
+            // Do the Attack
+            CalculateAttackStatus(Attacker, Target);
+
+            // See if the Battle Settings Overrides the Roll
+            EngineSettings.BattleMessagesModel.HitStatus = BattleSettingsOverride(Attacker);
+
+            switch (EngineSettings.BattleMessagesModel.HitStatus)
+            {
+                case HitStatusEnum.Miss:
+                    // It's a Miss
+
+                    break;
+
+                case HitStatusEnum.CriticalMiss:
+                    // It's a Critical Miss, so Bad things may happen
+                    DetermineCriticalMissProblem(Attacker);
+
+                    break;
+
+                case HitStatusEnum.CriticalHit:
+                case HitStatusEnum.Hit:
+                    // It's a Hit
+
+                    Attacker.LandedAttacksCount++;
+
+                    // Calculate Damage
+                    EngineSettings.BattleMessagesModel.DamageAmount = Attacker.GetDamageRollValue(EngineSettings.RoundLocation);
+
+                    // If critical Hit, double the damage
+                    if (EngineSettings.BattleMessagesModel.HitStatus == HitStatusEnum.CriticalHit) EngineSettings.BattleMessagesModel.DamageAmount *= 2;
+
+                    // Apply the Damage
+                    ApplyDamage(Target);
+
+                    EngineSettings.BattleMessagesModel.TurnMessageSpecial =
+                        EngineSettings.BattleMessagesModel.GetCurrentHealthMessage();
+
+                    // Check if Dead and Remove
+                    RemoveIfDead(Target);
+
+                    // If it is a character apply the experience earned
+                    CalculateExperience(Attacker, Target);
+
+                    break;
+            }
+
+            EngineSettings.BattleMessagesModel.TurnMessage = Attacker.Name +
+                                                              EngineSettings.BattleMessagesModel.AttackStatus +
+                                                              Target.Name +
+                                                              EngineSettings.BattleMessagesModel.TurnMessageSpecial +
+                                                              EngineSettings.BattleMessagesModel.ExperienceEarned;
+            Debug.WriteLine(EngineSettings.BattleMessagesModel.TurnMessage);
+
+            return true;
         }
 
         /// <summary>
@@ -310,7 +370,20 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override HitStatusEnum CalculateAttackStatus(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
-            return base.CalculateAttackStatus(Attacker, Target);
+            // Remember Current Player
+            EngineSettings.BattleMessagesModel.PlayerType = PlayerTypeEnum.Monster;
+
+            // Choose who to attack
+            EngineSettings.BattleMessagesModel.TargetName = Target.Name;
+            EngineSettings.BattleMessagesModel.AttackerName = Attacker.Name;
+
+            // Set Attack and Defense
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = Target.GetDefense() + Target.Level;
+
+            EngineSettings.BattleMessagesModel.HitStatus = RollToHitTarget(Attacker, Target, AttackScore, DefenseScore);
+
+            return EngineSettings.BattleMessagesModel.HitStatus;
         }
 
         /// <summary>
@@ -413,11 +486,63 @@ namespace Game.Engine.EngineGame
         /// <summary>
         /// Roll To Hit
         /// </summary>
+        /// <param name="Attacker">The player that is trying to hit</param>
+        /// <param name="Target">The attacker's target</param>
         /// <param name="AttackScore"></param>
         /// <param name="DefenseScore"></param>
-        public override HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
+        public HitStatusEnum RollToHitTarget(PlayerInfoModel Attacker, PlayerInfoModel Target, int AttackScore, int DefenseScore)
         {
-            return base.RollToHitTarget(AttackScore, DefenseScore);
+            var d20 = DiceHelper.RollDice(1, 20);
+
+            if (Attacker.Name.Equals("Bob"))
+            {
+                d20 = 1;
+            }
+
+            if (d20 == 1)
+            {
+                EngineSettings.BattleMessagesModel.HitStatus = HitStatusEnum.Miss;
+                EngineSettings.BattleMessagesModel.AttackStatus = " rolls 1 to miss ";
+
+                if (EngineSettings.BattleSettingsModel.AllowCriticalMiss)
+                {
+                    EngineSettings.BattleMessagesModel.AttackStatus = " rolls 1 to completly miss ";
+                    EngineSettings.BattleMessagesModel.HitStatus = HitStatusEnum.CriticalMiss;
+                }
+
+                return EngineSettings.BattleMessagesModel.HitStatus;
+            }
+
+            if (d20 == 20)
+            {
+                EngineSettings.BattleMessagesModel.AttackStatus = " rolls 20 for hit ";
+                EngineSettings.BattleMessagesModel.HitStatus = HitStatusEnum.Hit;
+
+                if (EngineSettings.BattleSettingsModel.AllowCriticalHit)
+                {
+                    EngineSettings.BattleMessagesModel.AttackStatus = " rolls 20 for lucky hit ";
+                    EngineSettings.BattleMessagesModel.HitStatus = HitStatusEnum.CriticalHit;
+                }
+                return EngineSettings.BattleMessagesModel.HitStatus;
+            }
+
+            var ToHitScore = d20 + AttackScore;
+            if (ToHitScore < DefenseScore)
+            {
+                EngineSettings.BattleMessagesModel.AttackStatus = " rolls " + d20 + " and misses ";
+
+                // Miss
+                EngineSettings.BattleMessagesModel.HitStatus = HitStatusEnum.Miss;
+                EngineSettings.BattleMessagesModel.DamageAmount = 0;
+                return EngineSettings.BattleMessagesModel.HitStatus;
+            }
+
+            EngineSettings.BattleMessagesModel.AttackStatus = " rolls " + d20 + " and hits ";
+
+            // Hit
+            EngineSettings.BattleMessagesModel.HitStatus = HitStatusEnum.Hit;
+
+            return EngineSettings.BattleMessagesModel.HitStatus;
         }
 
         /// <summary>
