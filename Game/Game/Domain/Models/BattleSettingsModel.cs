@@ -1,4 +1,4 @@
-﻿using Game.Enums;
+using Game.Enums;
 
 namespace Game.Models
 {
@@ -24,5 +24,10 @@ namespace Game.Models
 
         // Monster always Hit or Miss or Default
         public HitStatusEnum MonsterHitEnum = HitStatusEnum.Default;
+
+        // HACKATHON #10
+        // Controls if MiracleMax can revive a character
+        // Set at beginning of round, and during a round if a character is dealt lethal dmg
+        public bool MiracleMaxCanRevive = false;
     }
 }
