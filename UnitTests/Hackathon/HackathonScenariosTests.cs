@@ -1,10 +1,8 @@
-using System.Threading.Tasks;
-
 using Game.Enums;
 using Game.Models;
 using Game.ViewModels;
-
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace Scenario
 {
@@ -149,6 +147,89 @@ namespace Scenario
             Assert.AreEqual(true, result);
             Assert.AreEqual(null, EngineViewModel.Engine.EngineSettings.PlayerList.Find(m => m.Name.Equals("Mike")));
             Assert.AreEqual(1, EngineViewModel.Engine.EngineSettings.BattleScore.RoundCount);
+        }
+
+        [Test]
+        public async Task HackathonScenario_Scenario_2_Valid_Default_Should_Pass()
+        {
+            /* 
+            * Scenario Number:  
+            *      2
+            *      
+            * Description: 
+            *      Make a Character called Bob, who always misses when he attacks
+            * 
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
+            *       BasePlayerModel.cs
+            *           Add property LandedAttacksCount to track how many attacks a player has landed
+            *       PlayerInfoModel.cs
+            *           Add LandedAttacksCount assignment in copy constructors
+            *       Game.TurnEngine.cs
+            *           CalculateAttackStatus()
+            *               Add the attacker as a param to RollToHitTarget()
+            *           RollToHitTarget()
+            *               Add the attacker as a param
+            *               If attacker's name is Bob, force d20 to roll 1, resulting in a miss
+            *           TurnAsAttack()
+            *               On a successful hit, increment the attacker's LandedHitsCount by 1
+            * 
+            * Test Algorithm:
+            *      Create 2 long-lasting Characters (so they'll attack a few times). One named 'Bob' and the other 'Luke'
+            *      Startup Battle
+            *      Run Auto Battle
+            * 
+            * Test Conditions:
+            *      Default condition is sufficient
+            * 
+            * Validation:
+            *      Verify Battle Returned True
+            *      Verify Bob's LandedAttacksCount == 0
+            *      Verify Luke's LandedAttacksCount > 0
+            */
+
+            // Arrange
+
+            // Set Character Conditions
+
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 2;
+
+            var CharacterBob = new CharacterModel
+                {
+                    Speed = 15,
+                    Level = 5,
+                    CurrentHealth = 50,
+                    ExperienceTotal = 1,
+                    ExperienceRemaining = 1,
+                    Name = "Bob"
+                };
+
+            var CharacterLuke = new CharacterModel
+            {
+                Speed = 15,
+                Level = 5,
+                CurrentHealth = 50,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Luke"
+            };
+
+            // Autobattle uses Characters from the Character index, so add Bob and Luke to the start of the
+            // list so they're sure to be included in the party
+            CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterBob);
+            CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterLuke);
+
+            // Act
+            var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
+
+            // Reset
+
+            var FinalBob = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Bob"));
+            var FinalLuke = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Luke"));
+
+            // Assert
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(0, FinalBob.LandedAttacksCount);
+            Assert.AreEqual(true, FinalLuke.LandedAttacksCount > 0);
         }
     }
 }
