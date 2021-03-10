@@ -190,6 +190,8 @@ namespace Game.Models
 
             Difficulty = data.Difficulty;
 
+            LandedAttacksCount = data.LandedAttacksCount;
+
             Job = data.Job;
 
             // Give the copy a differet quid, so it can be used in the battles as a copy
