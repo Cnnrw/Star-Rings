@@ -100,6 +100,8 @@ namespace Game.Models
 
             BattleLocation = newData.BattleLocation;
 
+            LandedAttacksCount = newData.LandedAttacksCount;
+
             return true;
         }
 
