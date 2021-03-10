@@ -22,14 +22,14 @@ namespace Game.ViewModels
     {
         ICommand                    _goBackCommand;
 
-        public BaseViewModel() : this(App.NavigationService) { }
+        protected BaseViewModel() : this(App.NavigationService) { }
 
         BaseViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
         }
 
-        protected INavigationService NavigationService { get; }
+        internal INavigationService NavigationService { get; }
 
         public ICommand GoBackCommand => _goBackCommand ??= new AsyncCommand(() => NavigationService.GoBack());
     }
