@@ -1,24 +1,20 @@
 using System;
-using System.ComponentModel;
 
 using Game.Enums;
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     /// Character creation page
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CharacterCreatePage : ContentPage
+    public partial class CharacterCreatePage : BaseContentPage
     {
         // The Character to create
-        public readonly GenericViewModel<CharacterModel> _viewModel = new GenericViewModel<CharacterModel>();
+        internal readonly GenericViewModel<CharacterModel> _viewModel;
 
         // Empty Constructor for UTs
         public CharacterCreatePage(bool unitTest) { }
@@ -26,17 +22,19 @@ namespace Game.Views
         /// <summary>
         /// Constructor makes a new model
         /// </summary>
-        public CharacterCreatePage()
+        public CharacterCreatePage(GenericViewModel<CharacterModel> viewModel = null)
         {
             InitializeComponent();
 
-            _viewModel.Data = new CharacterModel();
+            _viewModel = viewModel ?? new GenericViewModel<CharacterModel>
+            {
+                Title = "Create",
+                Data = new CharacterModel()
+            };
 
             BindingContext = _viewModel;
 
             JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
-
-            _viewModel.Title = "Create";
         }
 
         /// <summary>
@@ -114,6 +112,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) =>
+            await Navigation.PopModalAsync();
     }
 }
