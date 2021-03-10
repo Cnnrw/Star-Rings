@@ -2,7 +2,7 @@
 
 namespace Game.ViewModels
 {
-    public class GenericViewModel<T> : BaseViewModel<DefaultModel>
+    public class GenericViewModel<T> : BaseViewModel
         where T : class
     {
         #region Ctors
