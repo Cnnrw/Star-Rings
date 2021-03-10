@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 
 using Game.Models;
-using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -12,7 +11,7 @@ namespace Game.Views
     /// <summary>
     ///     Character Index Page
     /// </summary>
-    public partial class CharacterIndexPage : BasePage
+    public partial class CharacterIndexPage : BaseContentPage
     {
         readonly CharacterIndexViewModel _viewModel = CharacterIndexViewModel.Instance;
 
