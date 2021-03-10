@@ -1,65 +1,52 @@
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Game.Services;
+using Game.Views;
 
-using Xamarin.Forms;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Game.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        readonly INavigationService _navigation;
+        ICommand _rebelBaseCommand;
+        ICommand _dungeonCommand;
+        ICommand _autoBattleCommand;
+        ICommand _settingsCommand;
+        ICommand _aboutCommand;
 
-        public MainViewModel(INavigationService navigation)
+        public MainViewModel()
         {
-            _navigation = navigation;
-
-            _navigation.Configure("RebelBasePage", typeof(Views.RebelBasePage));
-            _navigation.Configure("DungeonPage", typeof(Views.BattleHomePage));
-            _navigation.Configure("AutoBattlePage", typeof(Views.AutoBattlePage));
-            _navigation.Configure("SettingsPage", typeof(Views.SettingsPage));
-            _navigation.Configure("AboutPage", typeof(Views.AboutPage));
-
-            RebelBaseCommand = new Command( async () => await GoTo_Page("RebelBasePage"));
-            DungeonCommand = new Command(async () => await GoTo_Page("DungeonPage"));
-            AutoBattleCommand = new Command(async () => await GoTo_Page("AutoBattlePage"));
-            SettingsCommand = new Command(async () => await GoTo_Page("SettingsPage"));
-            AboutCommand = new Command(async () => await _navigation.NavigateModalAsync("AboutPage", false));
+            RebelBaseCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(RebelBasePage)));
+            DungeonCommand = new AsyncCommand(() => NavigationService.NavigateAsync("DungeonPage"));
+            AutoBattleCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(AutoBattlePage)));
+            SettingsCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(SettingsPage)));
+            AboutCommand = new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(AboutPage)));
         }
 
-        async Task GoTo_Page(string page) =>
-            await _navigation.NavigateAsync(page);
-
-        ICommand _rebelBaseCommand;
         public ICommand RebelBaseCommand
         {
             get => _rebelBaseCommand;
             set => SetProperty(ref _rebelBaseCommand, value);
         }
 
-        ICommand _dungeonCommand;
         public ICommand DungeonCommand
         {
             get => _dungeonCommand;
             set => SetProperty(ref _dungeonCommand, value);
         }
 
-        ICommand _autoBattleCommand;
         public ICommand AutoBattleCommand
         {
             get => _autoBattleCommand;
             set => SetProperty(ref _autoBattleCommand, value);
         }
 
-        ICommand _settingsCommand;
         public ICommand SettingsCommand
         {
             get => _settingsCommand;
             set => SetProperty(ref _settingsCommand, value);
         }
 
-        ICommand _aboutCommand;
         public ICommand AboutCommand
         {
             get => _aboutCommand;
