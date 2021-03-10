@@ -21,18 +21,24 @@
         <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
-    <!-- <ContentPage.Resources> -->
-    <!--     <ResourceDictionary> -->
-    <!--         <conv:StringEnumConverter x:Key="StringToEnum" /> -->
-    <!--     </ResourceDictionary> -->
-    <!-- </ContentPage.Resources> -->
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="30">
+        <StackLayout Style="{StaticResource OuterBoxStack}"
+                     Spacing="10">
 
-    <FlexLayout JustifyContent="Center"
-                Padding="40">
-        <ScrollView>
-            <StackLayout Style="{StaticResource OuterBoxStack}"
-                         Spacing="10">
+            <Grid RowDefinitions="*,*,*"
+                  ColumnDefinitions="Auto,*"
+                  RowSpacing="5" ColumnSpacing="1"
+                  VerticalOptions="Center">
+
                 <!-- Character Image Picker -->
+                <Image Grid.RowSpan="3"
+                       x:Name="CharacterImage"
+                       Source="{Binding Data.ImageURI}"
+                       Style="{StaticResource ImageLargeStyle}"
+                       Aspect="AspectFit" />
+
                 <!-- <StackLayout Orientation="Horizontal"> -->
                 <!-- <StackLayout> -->
                 <!--     <Image x:Name="JobImage" -->
@@ -49,99 +55,139 @@
                 <!-- -->
                 <!-- </StackLayout> -->
 
-                <Grid RowDefinitions="Auto,*,*,*,*"
-                      ColumnDefinitions="Auto,*"
-                      RowSpacing="1" ColumnSpacing="1"
-                      VerticalOptions="Center">
+                <c:FormEntry Grid.Column="1"
+                             Title="Name"
+                             Placeholder="{Binding Data.Name}"
+                             Text="{Binding Data.Name}" />
 
-                    <c:FormEntry Grid.Row="1" Grid.ColumnSpan="2"
-                                 Title="Name"
-                                 Text="{Binding Data.Name}" />
+                <c:FormEntry Grid.Row="1" Grid.Column="1"
+                             Title="Description"
+                             Placeholder="{Binding Data.Description}"
+                             Text="{Binding Data.Description}" />
 
-                    <c:FormEntry Grid.Row="2" Grid.ColumnSpan="2"
-                                 Title="Description"
-                                 Text="{Binding Data.Description}" />
-
-                    <Label Grid.Row="3"
-                           Text="Level" Style="{StaticResource LabelStyle}" />
-                    <Picker Grid.Row="3" Grid.Column="1"
-                            x:Name="LevelPicker"
+                <StackLayout Grid.Row="2" Grid.Column="1"
+                             HorizontalOptions="FillAndExpand"
+                             Style="{StaticResource HorizontalStack}">
+                    <Label Text="Level" Style="{StaticResource LabelStyle}" />
+                    <Picker x:Name="LevelPicker"
                             SelectedItem="{Binding Data.Level}"
-                            SelectedIndexChanged="LevelPicker_Changed" />
-                </Grid>
-
-                <StackLayout Style="{StaticResource VerticalStack}"
-                             HorizontalOptions="FillAndExpand">
-                    <StackLayout.Resources>
-                        <Style TargetType="StackLayout">
-                            <Setter Property="Style" Value="{StaticResource HorizontalStack}" />
-                        </Style>
-                    </StackLayout.Resources>
-
-                    <Label Text="Max Health" Style="{StaticResource LabelStyle}" />
-                    <StackLayout>
-                        <Label x:Name="MaxHealthValueLabel"
-                               Text="{Binding Data.MaxHealth}"
-                               Style="{StaticResource ValueStyle}" />
-                        <Stepper x:Name="MaxHealthStepper"
-                                 Value="{Binding Data.MaxHealth, Mode=TwoWay}"
-                                 ValueChanged="OnMaxHealthStepperChanged"
-                                 Minimum="1" Maximum="10"
-                                 Increment="1" />
-                    </StackLayout>
-
-                    <Label Text="Attack" Style="{StaticResource LabelStyle}" />
-                    <StackLayout>
-                        <Label x:Name="AttackValueLabel"
-                               Text="{Binding Data.Attack}"
-                               Style="{StaticResource ValueStyle}" />
-                        <Stepper x:Name="AttackStepper"
-                                 Value="{Binding Data.Attack, Mode=TwoWay}"
-                                 ValueChanged="OnAttackStepperChanged"
-                                 Minimum="1" Maximum="10"
-                                 Increment="1" />
-                    </StackLayout>
-
-                    <Label Text="Defense" Style="{StaticResource LabelStyle}" />
-                    <StackLayout>
-                        <Label x:Name="DefenseValueLabel"
-                               Text="{Binding Data.Defense}"
-                               Style="{StaticResource ValueStyle}" />
-                        <Stepper x:Name="DefenseStepper"
-                                 Value="{Binding Data.Defense, Mode=TwoWay}"
-                                 ValueChanged="OnDefenseStepperChanged"
-                                 Minimum="1" Maximum="10"
-                                 Increment="1" />
-                    </StackLayout>
-
-                    <Label Text="Speed" Style="{StaticResource LabelStyle}" />
-                    <StackLayout>
-                        <Label x:Name="SpeedValueLabel"
-                               Text="{Binding Data.Speed}"
-                               Style="{StaticResource ValueStyle}" />
-                        <Stepper x:Name="SpeedStepper"
-                                 Value="{Binding Data.Speed, Mode=TwoWay}"
-                                 ValueChanged="OnSpeedStepperChanged"
-                                 Minimum="1" Maximum="10"
-                                 Increment="1" />
-                    </StackLayout>
+                            SelectedIndexChanged="LevelPicker_Changed"
+                            Margin="10,0,0,0"
+                            HorizontalOptions="FillAndExpand" />
                 </StackLayout>
+            </Grid>
 
-                <!-- Equipped Items -->
-                <FlexLayout x:Name="ItemBox"
-                            Padding="5"
-                            Wrap="Wrap"
-                            JustifyContent="SpaceAround"
-                            AlignContent="SpaceAround" />
+            <!-- Space -->
+            <BoxView BackgroundColor="{StaticResource TransparentColor}"
+                     HeightRequest="10" />
 
-            </StackLayout>
-        </ScrollView>
+            <Grid RowDefinitions="*,*,*,*,*"
+                  ColumnDefinitions="Auto,*,Auto">
+
+                <Label Text="Image"
+                       Style="{StaticResource LabelStyle}"
+                       VerticalOptions="Center" HorizontalOptions="Start" />
+                <Image Grid.Column="1"
+                       Source="{Binding Data.IconImageURI}"
+                       Style="{StaticResource ImageSmallStyle}"
+                       Aspect="AspectFit" />
+                <Entry Grid.Column="2"
+                       Placeholder="{Binding Data.IconImageURI}"
+                       Text="{Binding Data.IconImageURI, Mode=TwoWay}"
+                       VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+
+                <Label Grid.Row="1"
+                       Text="Max Health"
+                       Style="{StaticResource LabelStyle}"
+                       VerticalOptions="Center" HorizontalOptions="Start" />
+                <Label Grid.Row="1" Grid.Column="1"
+                       x:Name="MaxHealthValueLabel"
+                       Text="{Binding Data.MaxHealth}"
+                       Style="{StaticResource ValueStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="1" Grid.Column="2"
+                         Value="{Binding Data.MaxHealth, Mode=TwoWay}"
+                         ValueChanged="OnMaxHealthStepperChanged"
+                         Minimum="1" Maximum="10"
+                         Increment="1"
+                         VerticalOptions="Center"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="2"
+                       Text="Attack"
+                       Style="{StaticResource LabelStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start" />
+                <Label Grid.Row="2" Grid.Column="1"
+                       x:Name="AttackValueLabel"
+                       Text="{Binding Data.Attack}"
+                       Style="{StaticResource ValueStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="2" Grid.Column="2"
+                         Value="{Binding Data.Attack, Mode=TwoWay}"
+                         ValueChanged="OnAttackStepperChanged"
+                         Minimum="1" Maximum="10"
+                         Increment="1"
+                         VerticalOptions="Center"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="3"
+                       Text="Defense"
+                       Style="{StaticResource LabelStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start" />
+                <Label Grid.Row="3" Grid.Column="1"
+                       x:Name="DefenseValueLabel"
+                       Text="{Binding Data.Defense}"
+                       Style="{StaticResource ValueStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="3" Grid.Column="2"
+                         Value="{Binding Data.Defense, Mode=TwoWay}"
+                         ValueChanged="OnDefenseStepperChanged"
+                         Minimum="1" Maximum="10"
+                         Increment="1"
+                         VerticalOptions="Center"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="4"
+                       Text="Speed"
+                       Style="{StaticResource LabelStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start" />
+                <Label Grid.Row="4" Grid.Column="1"
+                       x:Name="SpeedValueLabel"
+                       Text="{Binding Data.Speed}"
+                       Style="{StaticResource ValueStyle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="4" Grid.Column="2"
+                         Value="{Binding Data.Speed, Mode=TwoWay}"
+                         ValueChanged="OnSpeedStepperChanged"
+                         Minimum="1" Maximum="10"
+                         Increment="1"
+                         VerticalOptions="Center"
+                         HorizontalOptions="End" />
+            </Grid>
+
+            <!-- Equipped Items -->
+            <FlexLayout x:Name="ItemBox"
+                        Padding="5"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceAround"
+                        AlignContent="SpaceAround" />
+
+        </StackLayout>
 
         <!--The Item Popup-->
         <StackLayout x:Name="PopupItemSelector"
                      x:DataType="m:ItemModel"
                      BackgroundColor="Transparent"
-                     IsVisible="false">
+                     IsVisible="false"
+                     AbsoluteLayout.LayoutBounds=".8,.8,.8,.8"
+                     AbsoluteLayout.LayoutFlags="All">
 
             <StackLayout VerticalOptions="CenterAndExpand"
                          HorizontalOptions="CenterAndExpand"
@@ -208,5 +254,5 @@
                 </Frame>
             </StackLayout>
         </StackLayout>
-    </FlexLayout>
+    </AbsoluteLayout>
 </page:BaseContentPage>
