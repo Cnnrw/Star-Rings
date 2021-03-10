@@ -40,9 +40,9 @@ namespace Game.Helpers
 
                 return myData;
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                Debug.WriteLine(Ex.ToString());
+                Debug.WriteLine(ex.ToString());
                 return null;
             }
         }
