@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 
 using Game.Models;
-using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -12,7 +11,7 @@ namespace Game.Views
     /// <summary>
     ///     Monster Index Page
     /// </summary>
-    public partial class MonsterIndexPage : BasePage
+    public partial class MonsterIndexPage : BaseContentPage
     {
 
         // view model used for data binding
