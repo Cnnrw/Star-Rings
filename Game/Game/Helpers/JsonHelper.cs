@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Game.Helpers
 {
@@ -31,12 +31,7 @@ namespace Game.Helpers
             try
             {
                 var tempJsonObject = json[field].ToString();
-                if (string.IsNullOrEmpty(tempJsonObject))
-                {
-                    return null;
-                }
-
-                return tempJsonObject;
+                return string.IsNullOrEmpty(tempJsonObject) ? null : tempJsonObject;
             }
             catch (Exception ex)
             {
@@ -67,12 +62,7 @@ namespace Game.Helpers
                     return false;
                 }
 
-                if (tempJsonObject == "True")
-                {
-                    return true;
-                }
-
-                return false;
+                return tempJsonObject == "True";
             }
             catch (Exception ex)
             {
