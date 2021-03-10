@@ -231,5 +231,49 @@ namespace Scenario
             Assert.AreEqual(0, FinalBob.LandedAttacksCount);
             Assert.AreEqual(true, FinalLuke.LandedAttacksCount > 0);
         }
+
+        [Test]
+        public void HakathonScenario_MostlyDeadIsNotEntirelyDead_Should_Pass()
+        {
+            /* 
+            * Scenario Number:  
+            *      # 10
+            *      
+            * Description: 
+            *      A monster has dealt a killing blow to one of our characters, but fortunately Miracle
+            *      Max steps in to revive them to their full health. This can only happen once per Battle, so
+            *      the next hero to die is permadead.
+            * 
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+            *      <List Files Changed>
+            *      <List Classes Changed>
+            *      <List Methods Changed>
+            * 
+            * Test Algrorithm:
+            *      <Step by step how to validate this change>
+            * 
+            * Test Conditions:
+            *      <List the different test conditions to make>
+            * 
+            * Validation:
+            *      <List how to validate this change>
+            *  
+            */
+
+            // Arrange
+
+            // Act
+
+            // Assert
+
+
+            // Act
+            var result = EngineViewModel;
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
