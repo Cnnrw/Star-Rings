@@ -169,9 +169,6 @@
 			<DependentUpon>LandingPage.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Update="Views\Templates\Pages\BasePage.xaml.cs">
-		  <DependentUpon>ModalPage.xaml</DependentUpon>
-		</Compile>
 		<Compile Update="Views\Home\AutoBattlePage.xaml.cs">
 		  <DependentUpon>AutoBattlePage.xaml</DependentUpon>
 		  <SubType>Code</SubType>
