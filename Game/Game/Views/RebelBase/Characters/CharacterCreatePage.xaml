@@ -12,8 +12,7 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterCreatePage"
-                      Title="{Binding Title}"
-                      BackgroundImageSource="page_background.png">
+                      Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
