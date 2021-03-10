@@ -58,50 +58,20 @@ namespace Game.Enums
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToMessage(this ItemLocationEnum value)
-        {
-            // Default String
-            var Message = "Unknown";
-
-            switch (value)
+        public static string ToMessage(this ItemLocationEnum value) =>
+            value switch
             {
-                case ItemLocationEnum.Head:
-                    Message = "Head";
-                    break;
-
-                case ItemLocationEnum.Necklace:
-                    Message = "Necklace";
-                    break;
-
-                case ItemLocationEnum.PrimaryHand:
-                    Message = "Primary Hand";
-                    break;
-
-                case ItemLocationEnum.OffHand:
-                    Message = "Off Hand";
-                    break;
-
-                case ItemLocationEnum.RightFinger:
-                    Message = "Right Finger";
-                    break;
-
-                case ItemLocationEnum.LeftFinger:
-                    Message = "Left Finger";
-                    break;
-
-                case ItemLocationEnum.Finger:
-                    Message = "Any Finger";
-                    break;
-
-                case ItemLocationEnum.Feet:
-                    Message = "Feet";
-                    break;
-
-                case ItemLocationEnum.Unknown:
-                    break;
-            }
-            return Message;
-        }
+                ItemLocationEnum.Head        => "Head",
+                ItemLocationEnum.Unknown     => "Unknown",
+                ItemLocationEnum.Necklace    => "Necklace",
+                ItemLocationEnum.PrimaryHand => "Primary Hand",
+                ItemLocationEnum.OffHand     => "Off Hand",
+                ItemLocationEnum.Finger      => "Any Finger",
+                ItemLocationEnum.RightFinger => "Right Finger",
+                ItemLocationEnum.LeftFinger  => "Left Finger",
+                ItemLocationEnum.Feet        => "Feet",
+                _                            => "Unknown"
+            };
     }
 
     /// <summary>
@@ -159,35 +129,21 @@ namespace Game.Enums
 
         /// <summary>
         /// If asked for a position number, return a location.  Head as 1 etc.
-        /// This compsenstates for the enum #s not being sequential, but allows for calls to the postion for random allocation etc (roll 1-7 dice and pick a item to equipt), etc...
+        /// This compensates for the enum #s not being sequential, but allows for calls to the position for random allocation etc (roll 1-7 dice and pick a item to equipped), etc...
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
-        public static ItemLocationEnum GetLocationByPosition(int position)
-        {
-            switch (position)
+        public static ItemLocationEnum GetLocationByPosition(int position) =>
+            position switch
             {
-                case 1:
-                    return ItemLocationEnum.Head;
-
-                case 2:
-                    return ItemLocationEnum.Necklace;
-
-                case 3:
-                    return ItemLocationEnum.PrimaryHand;
-
-                case 4:
-                    return ItemLocationEnum.OffHand;
-
-                case 5:
-                    return ItemLocationEnum.RightFinger;
-
-                case 6:
-                    return ItemLocationEnum.LeftFinger;
-
-                default:
-                    return ItemLocationEnum.Feet;
-            }
-        }
+                1 => ItemLocationEnum.Head,
+                2 => ItemLocationEnum.Necklace,
+                3 => ItemLocationEnum.PrimaryHand,
+                4 => ItemLocationEnum.OffHand,
+                5 => ItemLocationEnum.RightFinger,
+                6 => ItemLocationEnum.LeftFinger,
+                7 => ItemLocationEnum.Feet,
+                _ => ItemLocationEnum.Unknown
+            };
     }
 }
