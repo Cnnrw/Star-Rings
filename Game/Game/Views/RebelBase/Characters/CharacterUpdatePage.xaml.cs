@@ -14,16 +14,16 @@ namespace Game.Views
     /// <summary>
     ///     Update a character
     /// </summary>
-    public partial class CharacterUpdatePage : ContentPage
+    public partial class CharacterUpdatePage : BaseContentPage
     {
         // The Character to update
-        public readonly GenericViewModel<CharacterModel> _viewModel;
+        internal readonly GenericViewModel<CharacterModel> _viewModel;
 
         // The current Item Location the user is selecting for
-        private ItemLocationEnum _selectedItemLocation;
+        ItemLocationEnum _selectedItemLocation;
 
         // Empty Constructor for UTs
-        public CharacterUpdatePage(bool unitTest) { }
+        internal CharacterUpdatePage(bool unitTest) { }
 
         /// <summary>
         ///     Constructor that takes and existing data item
@@ -32,7 +32,7 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = data;
+            _viewModel = data;
 
             LoadLevelPickerValues();
 
@@ -59,6 +59,9 @@ namespace Game.Views
             LevelPicker.SelectedIndex = _viewModel.Data.Level - 1;
 
             // JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
+
+            // Update Page Title
+            PageTitle = $"Update {data.Name}";
 
             AddItemsToDisplay();
         }
@@ -121,12 +124,10 @@ namespace Game.Views
         /// <summary>
         ///     Propagates the values for the character level picker
         /// </summary>
-        private void LoadLevelPickerValues()
+        void LoadLevelPickerValues()
         {
             for (var i = 1; i <= LevelTableHelper.MaxLevel; i++)
-            {
                 LevelPicker.Items.Add(i.ToString());
-            }
 
             LevelPicker.SelectedIndex = -1;
         }
@@ -136,7 +137,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public void LevelPicker_Changed(object sender, EventArgs args)
+        void LevelPicker_Changed(object sender, EventArgs args)
         {
             // If the Picker is not set, then set it
             if (LevelPicker.SelectedIndex == -1)
@@ -174,32 +175,28 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MaxHealthValueLabel.Text = $"{e.NewValue}";
+        void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) => MaxHealthValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes Attack attribute of a Character
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) =>
-            AttackValueLabel.Text = $"{e.NewValue}";
+        void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) => AttackValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes Defense attribute of a Character
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) =>
-            DefenseValueLabel.Text = $"{e.NewValue}";
+        void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) => DefenseValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes Speed attribute of a Character
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) =>
-            SpeedValueLabel.Text = $"{e.NewValue}";
+        void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) => SpeedValueLabel.Text = $"{e.NewValue}";
 
         #endregion
 
@@ -208,13 +205,11 @@ namespace Game.Views
         /// <summary>
         /// Show the Items the Character has
         /// </summary>
-        private void AddItemsToDisplay()
+        void AddItemsToDisplay()
         {
-            var FlexList = ItemBox.Children.ToList();
-            foreach (var data in FlexList)
-            {
+            var flexList = ItemBox.Children.ToList();
+            foreach (var data in flexList)
                 ItemBox.Children.Remove(data);
-            }
 
             // Add an item display box for each Item Location
             ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Head));
@@ -230,35 +225,20 @@ namespace Game.Views
         /// Look up the Item to Display
         /// </summary>
         /// <returns></returns>
-        private StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
+        StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
         {
-            ItemModel data = null;
-
             // Get the current Item in this ItemLocation
-            switch (itemLocation)
-            {
-                case ItemLocationEnum.Head:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.Head);
-                    break;
-                case ItemLocationEnum.Necklace:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.Necklace);
-                    break;
-                case ItemLocationEnum.PrimaryHand:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.PrimaryHand);
-                    break;
-                case ItemLocationEnum.OffHand:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.OffHand);
-                    break;
-                case ItemLocationEnum.LeftFinger:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.LeftFinger);
-                    break;
-                case ItemLocationEnum.RightFinger:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.RightFinger);
-                    break;
-                case ItemLocationEnum.Feet:
-                    data = _viewModel.Data.GetItem(_viewModel.Data.Feet);
-                    break;
-            }
+            var data = itemLocation switch
+                       {
+                           ItemLocationEnum.Head        => _viewModel.Data.GetItem(_viewModel.Data.Head),
+                           ItemLocationEnum.Necklace    => _viewModel.Data.GetItem(_viewModel.Data.Necklace),
+                           ItemLocationEnum.PrimaryHand => _viewModel.Data.GetItem(_viewModel.Data.PrimaryHand),
+                           ItemLocationEnum.OffHand     => _viewModel.Data.GetItem(_viewModel.Data.OffHand),
+                           ItemLocationEnum.LeftFinger  => _viewModel.Data.GetItem(_viewModel.Data.LeftFinger),
+                           ItemLocationEnum.RightFinger => _viewModel.Data.GetItem(_viewModel.Data.RightFinger),
+                           ItemLocationEnum.Feet        => _viewModel.Data.GetItem(_viewModel.Data.Feet),
+                           _                            => null
+                       };
 
             // If there's no Item currently in the slot, show a blank Item
             data ??= new ItemModel
@@ -269,7 +249,7 @@ namespace Game.Views
             };
 
             // Hookup the Image Button to show the Item picture
-            var ItemButton = new ImageButton
+            var itemButton = new ImageButton
             {
                 Source = data.ImageURI,
                 Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object buttonStyle)
@@ -278,14 +258,14 @@ namespace Game.Views
             };
 
             // Add a event so the user can click the item and see more
-            ItemButton.Clicked += (sender, args) =>
+            itemButton.Clicked += (sender, args) =>
             {
                 _selectedItemLocation = itemLocation;
                 ShowPopup(data);
             };
 
             // Add the Display Text for the item
-            var ItemLabel = new Label
+            var itemLabel = new Label
             {
                 Text = data.Name,
                 HorizontalOptions = LayoutOptions.Center,
@@ -296,17 +276,17 @@ namespace Game.Views
             };
 
             // Put the Image Button and Text inside a layout
-            var ItemStack = new StackLayout
+            var itemStack = new StackLayout
             {
                 Padding = 3,
                 Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object stackStyle)
                             ? (Style)stackStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = {ItemButton, ItemLabel}
+                Children = {itemButton, itemLabel}
             };
 
-            return ItemStack;
+            return itemStack;
         }
 
         /// <summary>
@@ -314,7 +294,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
+        void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (!(args.SelectedItem is ItemModel data))
             {
@@ -364,12 +344,12 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private bool ShowPopup(ItemModel data)
+        bool ShowPopup(ItemModel data)
         {
             PopupItemSelector.IsVisible = true;
 
             // Make a fake item for None
-            var NoneItem = new ItemModel
+            var noneItem = new ItemModel
             {
                 Id = null,     // will use null to clear the item
                 Guid = "None", // how to find this item amoung all of them
@@ -378,7 +358,7 @@ namespace Game.Views
                 Description = "None"
             };
 
-            List<ItemModel> itemList = new List<ItemModel> {NoneItem};
+            var itemList = new List<ItemModel> {noneItem};
 
             // Add the rest of the items to the list
             itemList.AddRange(ItemIndexViewModel.Instance.Dataset);
@@ -395,12 +375,12 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClosePopup_Clicked(object sender, EventArgs e) => ClosePopup();
+        void ClosePopup_Clicked(object sender, EventArgs e) => ClosePopup();
 
         /// <summary>
         /// Close the popup
         /// </summary>
-        private void ClosePopup() => PopupItemSelector.IsVisible = false;
+        void ClosePopup() => PopupItemSelector.IsVisible = false;
 
         #endregion EquippedItems
     }
