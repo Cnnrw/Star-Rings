@@ -2,7 +2,6 @@
 using System.Linq;
 
 using Game.Models;
-using Game.Templates.Pages;
 using Game.ViewModels;
 
 using Xamarin.Forms;
@@ -12,7 +11,7 @@ namespace Game.Views
     /// <summary>
     /// Index Page
     /// </summary>
-    public partial class ItemIndexPage : BasePage
+    public partial class ItemIndexPage : BaseContentPage
     {
         // The view model, used for data binding
         readonly ItemIndexViewModel _viewModel = ItemIndexViewModel.Instance;
