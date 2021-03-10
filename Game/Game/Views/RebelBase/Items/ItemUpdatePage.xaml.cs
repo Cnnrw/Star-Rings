@@ -1,25 +1,22 @@
 using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-using Game.ViewModels;
 using Game.Models;
+using Game.ViewModels;
+
+using Xamarin.Forms;
 
 namespace Game.Views
 {
     /// <summary>
     /// Item Update Page
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemUpdatePage : ContentPage
+    public partial class ItemUpdatePage : BaseContentPage
     {
         // View Model for Item
-        public readonly GenericViewModel<ItemModel> ViewModel;
+        internal readonly GenericViewModel<ItemModel> ViewModel;
 
         // Empty Constructor for Tests
-        public ItemUpdatePage(bool UnitTest){ }
+        internal ItemUpdatePage(bool unitTest){ }
 
         /// <summary>
         /// Constructor that takes and existing data item
@@ -28,9 +25,10 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            BindingContext = this.ViewModel = data;
+            BindingContext = ViewModel = data;
 
-            this.ViewModel.Title = "Update " + data.Title;
+            ViewModel.Title = "Update " + data.Title;
+            PageTitle = ViewModel.Title;
 
             //Need to make the SelectedItem a string, so it can select the correct item.
             LocationPicker.SelectedItem = data.Data.Location.ToString();
@@ -66,39 +64,31 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e)
-        {
+        public async void Cancel_Clicked(object sender, EventArgs e) =>
             await Navigation.PopModalAsync();
-        }
 
         /// <summary>
         /// Catch the change to the Stepper for Range
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            RangeValue.Text = String.Format("{0}", e.NewValue);
-        }
+        public void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            RangeValue.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Catch the change to the stepper for Value
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            ValueValue.Text = String.Format("{0}", e.NewValue);
-        }
+        public void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            ValueValue.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Catch the change to the stepper for Damage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Damage_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            DamageValue.Text = String.Format("{0}", e.NewValue);
-        }
+        public void Damage_OnStepperValueChanged(object sender, ValueChangedEventArgs e) =>
+            DamageValue.Text = $"{e.NewValue}";
     }
 }
