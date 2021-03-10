@@ -5,8 +5,12 @@
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
-                      x:Class="Game.Views.RebelBasePage"
-                      x:DataType="vm:RebelBaseViewModel">
+                      x:Class="Game.Views.RebelBasePage">
+
+    <ContentPage.BindingContext>
+        <vm:RebelBaseViewModel/>
+    </ContentPage.BindingContext>
+
     <FlexLayout Wrap="Wrap"
                 JustifyContent="SpaceAround"
                 AlignContent="SpaceAround"
