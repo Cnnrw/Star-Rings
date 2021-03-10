@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using Game.Enums;
 using Game.Models;
@@ -16,12 +16,13 @@ namespace Scenario
         public void Setup()
         {
             // Choose which engine to run
-            EngineViewModel.SetBattleEngineToKoenig();
+            //EngineViewModel.SetBattleEngineToKoenig();
+            EngineViewModel.SetBattleEngineToGame();
 
             // Put seed data into the system for all tests
             EngineViewModel.Engine.Round.ClearLists();
 
-            //Start the Engine in AutoBattle Mode
+            // Start the Engine in AutoBattle Mode
             EngineViewModel.Engine.StartBattle(false);
 
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Default;
