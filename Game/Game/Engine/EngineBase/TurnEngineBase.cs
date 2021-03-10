@@ -52,7 +52,8 @@ namespace Game.Engine.EngineBase
                 _engineSettings.CurrentAction = DetermineActionChoice(attacker);
 
                 // When in doubt, attack...
-                if (_engineSettings.CurrentAction == ActionEnum.Unknown) _engineSettings.CurrentAction = ActionEnum.Attack;
+                if (_engineSettings.CurrentAction == ActionEnum.Unknown)
+                    _engineSettings.CurrentAction = ActionEnum.Attack;
             }
 
             var result = _engineSettings.CurrentAction switch
@@ -60,6 +61,7 @@ namespace Game.Engine.EngineBase
                 ActionEnum.Attack  => Attack(attacker),
                 ActionEnum.Ability => UseAbility(attacker),
                 ActionEnum.Move    => MoveAsTurn(attacker),
+                _                  => false,
             };
 
             _engineSettings.BattleScore.TurnCount++;
