@@ -1,5 +1,4 @@
 using Game.Enums;
-using System.Collections.Generic;
 
 namespace Game.Models
 {
@@ -15,22 +14,6 @@ namespace Game.Models
         /// The locations where the monster can appear
         /// </summary>
         public BattleLocationEnum BattleLocation { get; set; }
-
-        /// <summary>
-        /// All the possible image files for monsters
-        /// </summary>
-        public static List<string> ImagesURIs = new List<string>
-        {
-            "dark_elf.png",
-            "dead_king.png",
-            "nazgul.png",
-            "oliphant.png",
-            "orc.png",
-            "smeagol.png",
-            "spider.png",
-            "troll.png",
-            "warg_rider.png"
-        };
 
         #endregion
         #region Constructors
@@ -110,19 +93,13 @@ namespace Game.Models
         /// easier to display the item as a string
         /// </summary>
         /// <returns></returns>
-        public override string FormatOutput()
-        {
-            var myReturn = Name;
-            myReturn += " , " + Description;
-            myReturn += " , a " + Job.ToMessage();
-            myReturn += " , Level : " + Level.ToString();
-            myReturn += " , Difficulty : " + Difficulty.ToString();
-            myReturn += " , Total Experience : " + ExperienceTotal;
-            myReturn += " , Items : " + ItemSlotsFormatOutput();
-            myReturn += " , Damage : " + GetDamageTotalString;
-
-            return myReturn;
-        }
+        public override string FormatOutput() =>
+            $"{Name}, {Description}, " +
+            $"a {Job.ToMessage()}, " +
+            $"Level: {Level}, Difficulty: {Difficulty}, " +
+            $"Experience: {ExperienceTotal}, " +
+            $"Items: {ItemSlotsFormatOutput()}, " +
+            $"Damage: {GetDamageTotalString}";
 
         #endregion
     }
