@@ -119,7 +119,7 @@ namespace Game.Engine.EngineModels
 
         // HACKATHON #17
         // Percentage chance of monsters returning as zombies after they die
-        public int ChanceForZombie = 0;
+        public int ChanceForZombie = 100;
     }
 
 }
