@@ -128,6 +128,7 @@ namespace Game.Engine.EngineGame
             for (int i = 0; i < encounteredMonsterCount; i++)
             {
                 int index = DiceHelper.RollDice(1, validMonsters.Count()) - 1;
+
                 MonsterModel chosenMonster = validMonsters[index];
 
                 // Choose level

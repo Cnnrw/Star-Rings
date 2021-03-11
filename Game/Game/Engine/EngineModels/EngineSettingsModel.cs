@@ -76,6 +76,8 @@ namespace Game.Engine.EngineModels
         // Hold the Battle State, Unknown is default
         public BattleStateEnum BattleStateEnum { get; set; } = BattleStateEnum.Unknown;
 
+        public ActionEnum ForcedPlayerAction { get; set; } = ActionEnum.Unknown;
+
         public bool EnableTimeWarpedRounds { get; set; } = false;
 
         public bool ForceTimeWarpedRounds { get; set; } = false;

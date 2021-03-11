@@ -196,9 +196,9 @@ namespace Scenario
 
             var CharacterBob = new CharacterModel
                 {
-                    Speed = 4,
-                    Level = 3,
-                    MaxHealth = 10,
+                    Speed = 200,
+                    Level = 1,
+                    MaxHealth = 5,
                     ExperienceTotal = 1,
                     ExperienceRemaining = 1,
                     Name = "Bob"
@@ -206,9 +206,9 @@ namespace Scenario
 
             var CharacterLuke = new CharacterModel
             {
-                Speed = 4,
-                Level = 3,
-                MaxHealth = 10,
+                Speed = 100,
+                Level = 1,
+                MaxHealth = 8,
                 ExperienceTotal = 1,
                 ExperienceRemaining = 1,
                 Name = "Luke"
@@ -218,6 +218,9 @@ namespace Scenario
             // list so they're sure to be included in the party
             CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterBob);
             CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterLuke);
+
+            // Force all Players to Attack
+            BattleEngineViewModel.Instance.Engine.EngineSettings.ForcedPlayerAction = ActionEnum.Attack;
 
             // Act
             var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();

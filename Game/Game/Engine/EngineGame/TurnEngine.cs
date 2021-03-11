@@ -40,6 +40,11 @@ namespace Game.Engine.EngineGame
         {
             bool result = false;
 
+            if (EngineSettings.ForcedPlayerAction != ActionEnum.Unknown)
+            {
+                EngineSettings.CurrentAction = EngineSettings.ForcedPlayerAction;
+            }
+
             // If the action is not set, then try to set it or just attack
             if (EngineSettings.CurrentAction == ActionEnum.Unknown)
             {
