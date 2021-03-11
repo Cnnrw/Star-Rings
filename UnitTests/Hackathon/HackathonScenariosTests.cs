@@ -232,7 +232,7 @@ namespace Scenario
         }
 
         [Test]
-        public void HakathonScenario_MostlyDeadIsNotEntirelyDead_Should_Pass()
+        public async Task HackathonScenario_Scenario_MostlyDeadIsNotEntirelyDead_Should_Pass()
         {
             /* 
             * Scenario Number:  
@@ -245,7 +245,8 @@ namespace Scenario
             * 
             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
             *      EngineSettingsModel.cs 
-            *           MiracleMaxCanRevive - Added a public bool 
+            *           BattleGlobals
+            *               MiracleMaxCanRevive - Added a public globals class
             *      TurnEngineBase.cs
             *           TurnAsAttack() 
             *               - Added a check to see if MiracleMaxCanRevive and if its applicable
@@ -266,19 +267,34 @@ namespace Scenario
             */
 
             // Arrange
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
+            var _Character = new PlayerInfoModel(new CharacterModel
+            {
+                Speed = -1, // Will go last...
+                Level = 1,
+                CurrentHealth = 1,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Character"
+            });
+            // Auto Battle will add the monsters, only need to add our character
+            EngineViewModel.Engine.EngineSettings.CharacterList.Add(_Character);
+            // Monsters always hit
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Hit;
+            // Characters always miss
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Miss;
 
-            // Act
+            //Act
+            var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
 
-            // Assert
+            //Reset
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
 
-
-            // Act
-            var result = EngineViewModel;
-
-            // Reset
-
-            // Assert
-            Assert.IsNotNull(result);
+            //Assert
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(null, EngineViewModel.Engine.EngineSettings.PlayerList.Find(m => m.Name.Equals("Character")));
+            Assert.AreEqual(1, EngineViewModel.Engine.EngineSettings.BattleScore.RoundCount);
         }
     }
 }
