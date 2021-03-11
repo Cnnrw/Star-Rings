@@ -81,7 +81,7 @@ namespace UnitTests.Views
         public void ItemUpdatePage_Save_Clicked_Null_Image_Should_Pass()
         {
             // Arrange
-            page.ViewModel.Data.ImageURI = null;
+            page._viewModel.Data.ImageURI = null;
 
             // Act
             page.Save_Clicked(null, null);
