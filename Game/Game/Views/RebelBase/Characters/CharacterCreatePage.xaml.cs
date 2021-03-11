@@ -1,6 +1,7 @@
 using System;
 
 using Game.Enums;
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 
@@ -17,7 +18,7 @@ namespace Game.Views
         internal readonly GenericViewModel<CharacterModel> _viewModel;
 
         // Empty Constructor for UTs
-        public CharacterCreatePage(bool unitTest) { }
+        internal CharacterCreatePage(bool unitTest) { }
 
         /// <summary>
         /// Constructor makes a new model
@@ -28,7 +29,7 @@ namespace Game.Views
 
             _viewModel = viewModel ?? new GenericViewModel<CharacterModel>
             {
-                Title = "Create",
+                Title = "Create a Character",
                 Data = new CharacterModel()
             };
 
@@ -38,11 +39,29 @@ namespace Game.Views
         }
 
         /// <summary>
+        ///
+        /// </summary>
+        void UpdatePageBindingContext()
+        {
+            var data = _viewModel.Data;
+
+            // Clear the Binding and reset
+            BindingContext = null;
+            _viewModel.Data = data;
+            _viewModel.Title = "Create a Character";
+
+            BindingContext = _viewModel;
+
+            // ImagePicker.SelectedItem = data.ImageURI;
+            JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
+        }
+
+        /// <summary>
         /// Update the Character's ImageURI and the page's image source according to the Character's Job
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnJobPickerChanged(object sender, EventArgs e)
+        void OnJobPickerChanged(object sender, EventArgs e)
         {
             var imageURI = _viewModel.Data.Job.ToImageURI();
             var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
@@ -58,47 +77,42 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
-            LevelValueLabel.Text = $"{e.NewValue}";
+        void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) => LevelValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Update the MaxHealth value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MaxHealthValueLabel.Text = $"{e.NewValue}";
+        void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) => MaxHealthValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Update the Attack value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) =>
-            AttackValueLabel.Text = $"{e.NewValue}";
+        void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) => AttackValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Update the Defense value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) =>
-            DefenseValueLabel.Text = $"{e.NewValue}";
+        void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) => DefenseValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Update the Speed value Label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) =>
-            SpeedValueLabel.Text = $"{e.NewValue}";
+        void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) => SpeedValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         /// Save the created Character
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Save_Clicked(object sender, EventArgs e)
+        internal async void Save_Clicked(object sender, EventArgs e)
         {
             if (_viewModel.Data.Name.Length > 0)
             {
