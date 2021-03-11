@@ -10,6 +10,7 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterUpdatePage"
+                      PageTitle="{Binding Title}"
                       IsBackButtonVisible="False">
 
     <ContentPage.BindingContext>

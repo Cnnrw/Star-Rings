@@ -51,7 +51,7 @@ namespace Game.Views
             // Clear the Binding and reset it
             BindingContext = null;
             _viewModel.Data = data;
-            _viewModel.Title = data.Name;
+            _viewModel.Title = $"Update {data.Name}";
 
             BindingContext = _viewModel;
 
