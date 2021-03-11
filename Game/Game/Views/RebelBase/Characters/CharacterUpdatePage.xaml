@@ -40,22 +40,6 @@
                        Style="{StaticResource ImageLargeStyle}"
                        Aspect="AspectFit" />
 
-                <!-- <StackLayout Orientation="Horizontal"> -->
-                <!-- <StackLayout> -->
-                <!--     <Image x:Name="JobImage" -->
-                <!--            Source="{Binding Data.ImageURI}" -->
-                <!--            Style="{StaticResource ImageLargeStyle}" -->
-                <!--            HorizontalOptions="CenterAndExpand" /> -->
-                <!-- -->
-                <!--     <Label Text="Job" -->
-                <!--            Style="{StaticResource LabelStyle}" /> -->
-                <!--     <Picker x:Name="JobPicker" -->
-                <!--             ItemsSource="{x:Static enum:CharacterJobEnumHelper.GetListCharacterJobs}" -->
-                <!--             SelectedItem="{Binding Data.Job, Converter={StaticResource StringToEnum}, Mode=TwoWay}" -->
-                <!--             SelectedIndexChanged="OnJobPickerChanged" /> -->
-                <!-- -->
-                <!-- </StackLayout> -->
-
                 <c:FormEntry Grid.Column="1"
                              Title="Name"
                              Placeholder="{Binding Data.Name}"
