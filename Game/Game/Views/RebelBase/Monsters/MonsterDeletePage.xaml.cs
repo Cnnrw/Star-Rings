@@ -1,35 +1,31 @@
 using System;
-using System.ComponentModel;
 
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
-    /// The Read Page
+    /// Delete Monster Page
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MonsterDeletePage : ContentPage
+    public partial class MonsterDeletePage : BaseContentPage
     {
         // View Model for Item
-        private readonly GenericViewModel<MonsterModel> _viewModel;
+        readonly GenericViewModel<MonsterModel> _viewModel;
 
         // Empty Constructor for UTs
-        public MonsterDeletePage(bool UnitTest) { }
+        internal MonsterDeletePage(bool unitTest) { }
 
         // Constructor for Delete takes a view model of what to delete
-        public MonsterDeletePage(GenericViewModel<MonsterModel> data)
+        public MonsterDeletePage(GenericViewModel<MonsterModel> monster)
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = data;
+            BindingContext = _viewModel = monster;
 
-            _viewModel.Title = "Delete " + data.Title;
+            _viewModel.Title = $"Delete {monster.Title}?";
         }
 
         /// <summary>
