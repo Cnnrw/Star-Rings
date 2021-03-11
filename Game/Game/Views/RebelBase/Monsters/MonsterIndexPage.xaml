@@ -9,15 +9,14 @@
                       xmlns:template="clr-namespace:Game.Templates;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterIndexPage"
-                      Title="{Binding Title}">
+                      PageTitle="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:MonsterIndexViewModel />
     </ContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="AddItem_Clicked"
-                     Source="icon_add.png"/>
+        <ImageButton Clicked="AddItem_Clicked" Source="icon_add.png"/>
     </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
