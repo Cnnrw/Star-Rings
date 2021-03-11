@@ -19,21 +19,21 @@ namespace UnitTests.Views
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
-            app = new App();
-            Application.Current = app;
+            _app = new App();
+            Application.Current = _app;
 
-            page = new MonsterUpdatePage(new GenericViewModel<MonsterModel>(new MonsterModel()));
+            _page = new MonsterUpdatePage(new GenericViewModel<MonsterModel>(new MonsterModel()));
         }
 
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        private App               app;
-        private MonsterUpdatePage page;
+        private App               _app;
+        private MonsterUpdatePage _page;
 
         public MonsterUpdatePageTests() : base(true) { }
 
@@ -43,7 +43,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page;
+            var result = _page;
 
             // Reset
 
@@ -57,7 +57,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.Cancel_Clicked(null, null);
+            _page.Cancel_Clicked(null, null);
 
             // Reset
 
@@ -71,7 +71,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.Save_Clicked(null, null);
+            _page.Save_Clicked(null, null);
 
             // Reset
 
@@ -83,10 +83,10 @@ namespace UnitTests.Views
         public void MonsterUpdatePage_Save_Clicked_Null_Image_Should_Pass()
         {
             // Arrange
-            page._viewModel.Data.ImageURI = null;
+            _page._viewModel.Data.ImageURI = null;
 
             // Act
-            page.Save_Clicked(null, null);
+            _page.Save_Clicked(null, null);
 
             // Reset
 
@@ -194,7 +194,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.ClosePopup();
+            _page.ClosePopup();
 
             // Reset
 
@@ -208,7 +208,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.ClosePopup_Clicked(null, null);
+            _page.ClosePopup_Clicked(null, null);
 
             // Reset
 
@@ -226,7 +226,7 @@ namespace UnitTests.Views
             var selectedMonsterChangedEventArgs = new SelectedItemChangedEventArgs(data, 0);
 
             // Act
-            page.OnPopupItemSelected(null, selectedMonsterChangedEventArgs);
+            _page.OnPopupItemSelected(null, selectedMonsterChangedEventArgs);
 
             // Reset
 
@@ -242,7 +242,7 @@ namespace UnitTests.Views
             var selectedMonsterChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
 
             // Act
-            page.OnPopupItemSelected(null, selectedMonsterChangedEventArgs);
+            _page.OnPopupItemSelected(null, selectedMonsterChangedEventArgs);
 
             // Reset
 
@@ -255,12 +255,12 @@ namespace UnitTests.Views
         {
             // Arrange
 
-            var item = page.GetItemToDisplay();
+            var item = _page.GetItemToDisplay();
 
             // Act
-            var itemButton = item.Children.FirstOrDefault(m => m.GetType().Name.Equals("Button"));
+            var unused = item.Children.FirstOrDefault(m => m.GetType().Name.Equals("Button"));
 
-            page.ShowPopup(new ItemModel());
+            _page.ShowPopup(new ItemModel());
 
             // Reset
 
@@ -272,7 +272,7 @@ namespace UnitTests.Views
         public void MonsterUpdatePage_GetItemToDisplay_Click_Button_Valid_Should_Pass()
         {
             // Arrange
-            var StackItem = page.GetItemToDisplay();
+            var StackItem = _page.GetItemToDisplay();
             var dataImage = StackItem.Children[0];
 
             // Act
@@ -471,7 +471,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.RandomButton_Clicked(null, null);
+            _page.RandomButton_Clicked(null, null);
 
             // Reset
 

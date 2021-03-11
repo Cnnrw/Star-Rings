@@ -21,21 +21,21 @@ namespace UnitTests.Views
         [SetUp]
         public void Setup()
         {
-            // Initilize Xamarin Forms
+            // Initialize Xamarin Forms
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
-            app = new App();
-            Application.Current = app;
+            _app = new App();
+            Application.Current = _app;
 
-            page = new MonsterReadPage(new GenericViewModel<MonsterModel>(new MonsterModel()));
+            _page = new MonsterReadPage(new GenericViewModel<MonsterModel>(new MonsterModel()));
         }
 
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        private App             app;
-        private MonsterReadPage page;
+        private App             _app;
+        private MonsterReadPage _page;
 
         public MonsterReadPageTests() : base(true) { }
 
@@ -45,7 +45,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page;
+            var result = _page;
 
             // Reset
 
@@ -59,7 +59,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.Update_Clicked(null, null);
+            _page.Update_Clicked(null, null);
 
             // Reset
 
@@ -73,7 +73,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.Delete_Clicked(null, null);
+            _page.Delete_Clicked(null, null);
 
             // Reset
 
@@ -101,7 +101,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.GetItemToDisplay();
+            _page.GetItemToDisplay();
 
             // Reset
 
@@ -113,10 +113,10 @@ namespace UnitTests.Views
         public void MonsterReadPage_GetItemToDisplay_Valid_Popup_Should_Have_Clickable_Button()
         {
             // Arrange
-            page._viewModel.Data.UniqueItem = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
+            _page._viewModel.Data.UniqueItem = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
 
             // Act
-            page.GetItemToDisplay();
+            _page.GetItemToDisplay();
 
             // Reset
 
@@ -128,9 +128,9 @@ namespace UnitTests.Views
         public void MonsterReadPage_GetItemToDisplay_Valid_Click_Button_Should_Open_Popup()
         {
             // Arrange
-            page._viewModel.Data.UniqueItem = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
+            _page._viewModel.Data.UniqueItem = ItemIndexViewModel.Instance.GetDefaultItemId(ItemLocationEnum.Head);
 
-            var stackView = page.GetItemToDisplay();
+            var stackView = _page.GetItemToDisplay();
 
             var imageButtonView = new ImageButton();
 
@@ -185,13 +185,13 @@ namespace UnitTests.Views
             // Arrange
 
             // Put some data into the box so it can be removed
-            var itemBox = (FlexLayout)page.Content.FindByName("ItemBox");
+            var itemBox = (FlexLayout)_page.Content.FindByName("ItemBox");
 
             itemBox.Children.Add(new Label());
             itemBox.Children.Add(new Label());
 
             // Act
-            page.AddItemsToDisplay();
+            _page.AddItemsToDisplay();
 
             // Reset
 
@@ -209,10 +209,10 @@ namespace UnitTests.Views
 
             var Monster = new MonsterModel();
             Monster.Head = ItemIndexViewModel.Instance.GetLocationItems(ItemLocationEnum.Head).First().Id;
-            page._viewModel.Data = Monster;
+            _page._viewModel.Data = Monster;
 
             // Act
-            var result = page.GetItemToDisplay();
+            var result = _page.GetItemToDisplay();
 
             // Reset
             ItemIndexViewModel.Instance.ForceDataRefresh();
@@ -229,7 +229,7 @@ namespace UnitTests.Views
             await ItemIndexViewModel.Instance.CreateAsync(new ItemModel {Location = ItemLocationEnum.Head});
 
             // Act
-            var result = page.GetItemToDisplay();
+            var result = _page.GetItemToDisplay();
 
             // Reset
             ItemIndexViewModel.Instance.ForceDataRefresh();
@@ -242,7 +242,7 @@ namespace UnitTests.Views
         public void MonsterReadPage_GetItemToDisplay_Click_Button_Valid_Should_Pass()
         {
             // Arrange
-            var StackItem = page.GetItemToDisplay();
+            var StackItem = _page.GetItemToDisplay();
             var dataImage = StackItem.Children[0];
 
             // Act
