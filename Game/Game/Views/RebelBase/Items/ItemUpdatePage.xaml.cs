@@ -13,7 +13,7 @@ namespace Game.Views
     public partial class ItemUpdatePage : BaseContentPage
     {
         // View Model for Item
-        internal readonly GenericViewModel<ItemModel> ViewModel;
+        internal readonly GenericViewModel<ItemModel> _viewModel;
 
         // Empty Constructor for Tests
         internal ItemUpdatePage(bool unitTest){ }
@@ -25,13 +25,32 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            ViewModel.Title = $"Update {data.Title}";
-            BindingContext = ViewModel = data;
+            _viewModel = data;
 
-            //Need to make the SelectedItem a string, so it can select the correct item.
-            LocationPicker.SelectedItem = data.Data.Location.ToString();
-            AttributePicker.SelectedItem = data.Data.Attribute.ToString();
+            UpdatePageBindingContext();
         }
+
+        /// <summary>
+        ///     Redo the Binding to cause a refresh
+        /// </summary>
+        /// <returns></returns>
+        void UpdatePageBindingContext()
+        {
+            // Temp store off the level
+            var data = _viewModel.Data;
+
+            // Clear the Binding and reset it
+            BindingContext = null;
+            _viewModel.Data = data;
+            _viewModel.Title = $"Update {data.Name}";
+
+            BindingContext = _viewModel;
+
+            // Update the pickers
+            LocationPicker.SelectedItem = data.Location.ToString();
+            AttributePicker.SelectedItem = data.Attribute.ToString();
+        }
+
 
         /// <summary>
         /// Save calls to Update
@@ -41,20 +60,17 @@ namespace Game.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             // If the image in the data box is empty, use the default one..
-            if (string.IsNullOrEmpty(ViewModel.Data.ImageURI))
-            {
-                ViewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
-            }
+            if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
+                _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
 
-            if (ViewModel.Data.Name.Length == 0)
+            if (_viewModel.Data.Name.Length == 0)
             {
                 await DisplayAlert("Hold up!", "Please give your item a name", "OK");
+                return;
             }
-            else
-            {
-                MessagingCenter.Send(this, "Update", ViewModel.Data);
-                await Navigation.PopModalAsync();
-            }
+
+            MessagingCenter.Send(this, "Update", _viewModel.Data);
+            await Navigation.PopModalAsync();
         }
 
         /// <summary>
