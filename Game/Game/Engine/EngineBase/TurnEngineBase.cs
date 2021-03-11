@@ -29,6 +29,7 @@ namespace Game.Engine.EngineBase
 
         // Hold the BaseEngine
         readonly EngineSettingsModel _engineSettings = EngineSettingsModel.Instance;
+        public BattleGlobals _globals = new BattleGlobals();
 
         // The Turn Engine
         public ITurnEngineInterface Turn = null;
@@ -337,12 +338,12 @@ namespace Game.Engine.EngineBase
                     if (_engineSettings.BattleMessagesModel.HitStatus == HitStatusEnum.CriticalHit) _engineSettings.BattleMessagesModel.DamageAmount *= 2;
 
                     // If MiracleMax can prevent character death, revive the character
-                    if (_engineSettings.MiracleMaxCanRevive &&
+                    if (_globals.MiracleMaxCanRevive &&
                         Target.PlayerType == PlayerTypeEnum.Character &&
                         _engineSettings.BattleMessagesModel.DamageAmount >= Target.CurrentHealth)
                     {
                         // Can only revive once per battle
-                        _engineSettings.MiracleMaxCanRevive = false;
+                        _globals.MiracleMaxCanRevive = false;
 
                         // Restore the Target to full health
                         Target.CurrentHealth = Target.MaxHealth;
