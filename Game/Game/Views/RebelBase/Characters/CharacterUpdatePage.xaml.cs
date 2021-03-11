@@ -43,7 +43,7 @@ namespace Game.Views
         ///     Redo the Binding to cause a refresh
         /// </summary>
         /// <returns></returns>
-        private void UpdatePageBindingContext()
+        void UpdatePageBindingContext()
         {
             // Temp store off the level
             var data = _viewModel.Data;
@@ -73,17 +73,16 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Save_Clicked(object sender, EventArgs e)
+        internal async void Save_Clicked(object sender, EventArgs e)
         {
             if (_viewModel.Data.Name.Length == 0)
             {
                 await DisplayAlert("Hold up!", "Please give your character a name", "OK");
+                return;
             }
-            else
-            {
-                MessagingCenter.Send(this, "Update", _viewModel.Data);
-                await Navigation.PopModalAsync();
-            }
+
+            MessagingCenter.Send(this, "Update", _viewModel.Data);
+            await Navigation.PopModalAsync();
         }
 
         /// <summary>
@@ -91,14 +90,14 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        internal async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         // /// <summary>
         // ///     Randomizes the Character values and items
         // /// </summary>
         // /// <param name="sender"></param>
         // /// <param name="e"></param>
-        private void RandomButton_Clicked(object sender, EventArgs e)
+        void RandomButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Data.Update(RandomPlayerHelper.GetRandomCharacter(20));
             UpdatePageBindingContext();
@@ -150,9 +149,7 @@ namespace Game.Views
 
             // If the level hasn't changed, don't roll for health
             if (result == _viewModel.Data.Level)
-            {
                 return;
-            }
 
             // Change character level
             _viewModel.Data.Level = result;
@@ -161,14 +158,6 @@ namespace Game.Views
         #endregion
 
         #region Steppers
-
-        // /// <summary>
-        // ///     Changes Level attribute of a Character
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        // private void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
-        //     LevelValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes Max Health attribute of a Character
@@ -252,7 +241,7 @@ namespace Game.Views
             var itemButton = new ImageButton
             {
                 Source = data.ImageURI,
-                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object buttonStyle)
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out var buttonStyle)
                             ? (Style)buttonStyle
                             : null
             };
@@ -270,7 +259,7 @@ namespace Game.Views
                 Text = data.Name,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
-                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object labelStyle)
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var labelStyle)
                             ? (Style)labelStyle
                             : null
             };
@@ -279,7 +268,7 @@ namespace Game.Views
             var itemStack = new StackLayout
             {
                 Padding = 3,
-                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object stackStyle)
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out var stackStyle)
                             ? (Style)stackStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
@@ -297,9 +286,7 @@ namespace Game.Views
         void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (!(args.SelectedItem is ItemModel data))
-            {
                 return;
-            }
 
             // Equip the Item into the selected Item Location
             switch (_selectedItemLocation)
@@ -325,12 +312,6 @@ namespace Game.Views
                 case ItemLocationEnum.Feet:
                     _viewModel.Data.Feet = data.Id;
                     break;
-                case ItemLocationEnum.Unknown:
-                    break;
-                case ItemLocationEnum.Finger:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
 
             AddItemsToDisplay();
