@@ -179,25 +179,25 @@ namespace UnitTests.Views
         //     Assert.IsTrue(true); // Got to here, so it happened...
         // }
 
-        [Test]
-        public void MonsterReadPage_AddItemsToDisplay_With_Data_Should_Remove_And_Pass()
-        {
-            // Arrange
-
-            // Put some data into the box so it can be removed
-            var itemBox = (FlexLayout)_page.Content.FindByName("ItemBox");
-
-            itemBox.Children.Add(new Label());
-            itemBox.Children.Add(new Label());
-
-            // Act
-            _page.AddItemsToDisplay();
-
-            // Reset
-
-            // Assert
-            Assert.AreEqual(1, itemBox.Children.Count()); // Got to here, so it happened...
-        }
+        // [Test]
+        // public void MonsterReadPage_AddItemsToDisplay_With_Data_Should_Remove_And_Pass()
+        // {
+        //     // Arrange
+        //
+        //     // Put some data into the box so it can be removed
+        //     var itemBox = (FlexLayout)_page.Content.FindByName("ItemBox");
+        //
+        //     itemBox.Children.Add(new Label());
+        //     itemBox.Children.Add(new Label());
+        //
+        //     // Act
+        //     _page.AddItemsToDisplay();
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.AreEqual(1, itemBox.Children.Count()); // Got to here, so it happened...
+        // }
 
         [Test]
         public async Task MonsterReadPage_GetItemToDisplay_With_Item_Should_Pass()
