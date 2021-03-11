@@ -1,51 +1,50 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage Title="{Binding Title}"
-             x:Class="Game.Views.CharacterDeletePage"
-             mc:Ignorable="d"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:models="clr-namespace:Game.Models;assembly=Game"
-             xmlns:viewModels="clr-namespace:Game.ViewModels;assembly=Game"
-             BackgroundImageSource="page_background.png">
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      mc:Ignorable="d"
+                      x:Class="Game.Views.CharacterDeletePage"
+                      PageTitle="{Binding Title}"
+                      IsBackButtonVisible="False">
 
     <ContentPage.BindingContext>
-        <viewModels:GenericViewModel x:TypeArguments="models:CharacterModel" />
+        <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
     </ContentPage.BindingContext>
 
-    <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 Margin="40,0,40,40">
 
-        <FlexLayout JustifyContent="Center"
-                    Padding="40">
+        <Image Source="{Binding Data.ImageURI}"
+               Style="{StaticResource ImageLargeStyle}"
+               VerticalOptions="FillAndExpand"
+               HorizontalOptions="FillAndExpand"
+               Aspect="AspectFit"/>
 
-            <ScrollView>
-                <StackLayout Style="{StaticResource OuterBoxStack}"
-                     Spacing="10">
-                    <Image Source="{Binding Data.ImageURI}"
-                   Style="{StaticResource ImageLargeStyle}"/>
+        <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
+               Style="{StaticResource MessageStyle}"
+               HorizontalOptions="CenterAndExpand"/>
 
-                    <StackLayout HorizontalOptions="Center"
-                         Padding="20">
-                        <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
-                       Style="{StaticResource MessageStyle}"/>
 
-                        <StackLayout Orientation="Horizontal">
-                            <Button Text="Yes"
-                            Clicked="Delete_Clicked"
-                            HorizontalOptions="Center" />
+        <StackLayout Style="{StaticResource HorizontalStack}"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End">
+            <Button Clicked="Delete_Clicked"
+                    Text="Yes"
+                    FontSize="Large"
+                    Margin="5,0"
+                    HorizontalOptions="FillAndExpand"/>
+            <Button Clicked="Cancel_Clicked"
+                    Text="No"
+                    FontSize="Large"
+                    Margin="5,0"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
 
-                            <Button Text="No"
-                            Clicked="Cancel_Clicked"
-                            HorizontalOptions="Center" />
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
-            
-        </FlexLayout>
-        
-    </ContentPage.Content>
-
-</ContentPage>
+    </StackLayout>
+</page:BaseContentPage>

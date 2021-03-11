@@ -11,12 +11,12 @@ namespace Game.Views
     ///     Character Read Page
     ///     Shows a detailed view of a character
     /// </summary>
-    public partial class CharacterDeletePage : ContentPage
+    public partial class CharacterDeletePage : BaseContentPage
     {
-        private readonly GenericViewModel<CharacterModel> _viewModel;
+        readonly GenericViewModel<CharacterModel> _viewModel;
 
         // Empty Constructor for UTs
-        public CharacterDeletePage(bool unitTest) { }
+        internal CharacterDeletePage(bool unitTest) { }
 
         /// <summary>
         ///     CharacterDeletePage Constructor
@@ -29,7 +29,7 @@ namespace Game.Views
 
             BindingContext = _viewModel = character;
 
-            _viewModel.Title = "Delete " + character.Title;
+            _viewModel.Title = $"Delete {character.Title}?";
         }
 
         /// <summary>
@@ -49,5 +49,11 @@ namespace Game.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+
+        /// <summary>
+        ///     Override back button behavior to capture user on screen
+        /// </summary>
+        /// <returns></returns>
+        protected override bool OnBackButtonPressed() => true;
     }
 }
