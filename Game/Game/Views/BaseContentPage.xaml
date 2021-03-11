@@ -36,20 +36,13 @@
                     <!-- Title -->
                     <Label Grid.Column="1"
                            Text="{TemplateBinding PageTitle}"
-                           Style="{StaticResource TextPageTitle}"
                            HorizontalOptions="Center" VerticalOptions="Center"  />
 
                     <!-- Additional Buttons -->
                     <StackLayout x:Name="Buttons" Grid.Column="2"
                                  Orientation="Horizontal"
                                  VerticalOptions="FillAndExpand"
-                                 HorizontalOptions="End">
-                        <StackLayout.Resources>
-                            <Style TargetType="ImageButton">
-                                <Setter Property="Style" Value="{StaticResource ImageMenuButtonStyle}"/>
-                            </Style>
-                        </StackLayout.Resources>
-                    </StackLayout>
+                                 HorizontalOptions="End" />
 
                 </Grid>
 
