@@ -9,7 +9,8 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterDeletePage"
-                      PageTitle="{Binding Title}">
+                      PageTitle="{Binding Title}"
+                      IsBackButtonVisible="False">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
