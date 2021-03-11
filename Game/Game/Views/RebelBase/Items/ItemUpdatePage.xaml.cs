@@ -25,10 +25,8 @@ namespace Game.Views
         {
             InitializeComponent();
 
+            ViewModel.Title = $"Update {data.Title}";
             BindingContext = ViewModel = data;
-
-            ViewModel.Title = "Update " + data.Title;
-            PageTitle = ViewModel.Title;
 
             //Need to make the SelectedItem a string, so it can select the correct item.
             LocationPicker.SelectedItem = data.Data.Location.ToString();
