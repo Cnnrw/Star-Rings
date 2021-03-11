@@ -18,7 +18,7 @@ namespace Game.Controls
         public static readonly BindableProperty TitleProperty = BindableProperty.Create(propertyName: nameof(Title),
                                                                                         returnType: typeof(string),
                                                                                         declaringType: typeof(FormEntry),
-                                                                                        defaultValue: string.Empty,
+                                                                                        defaultValue: default(string),
                                                                                         defaultBindingMode: BindingMode.OneWay,
                                                                                         propertyChanged: TitlePropertyChanged);
         public string Title
@@ -54,10 +54,10 @@ namespace Game.Controls
         #region Placeholder
 
         public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(propertyName: nameof(Placeholder),
-                                                                                       returnType: typeof(string),
-                                                                                       declaringType: typeof(FormEntry),
-                                                                                       defaultValue: string.Empty,
-                                                                                       propertyChanged: PlaceholderPropertyChanged);
+                                                                                              returnType: typeof(string),
+                                                                                              declaringType: typeof(FormEntry),
+                                                                                              defaultValue: default(string),
+                                                                                              propertyChanged: PlaceholderPropertyChanged);
         public string Placeholder
         {
             get => (string)GetValue(PlaceholderProperty);
