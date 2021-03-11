@@ -109,6 +109,10 @@ namespace Game.Engine.EngineModels
         // Determines if MiracleMax can revive a character
         // Set at beginning of battle, and updated to false during a round if a character is dealt lethal dmg
         public bool MiracleMaxCanRevive = true;
+
+        // HACKATHON #17
+        // Percentage chance of monsters returning as zombies after they die
+        public int ChanceForZombie = 0;
     }
 
 }
