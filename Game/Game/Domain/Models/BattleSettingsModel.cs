@@ -24,5 +24,8 @@ namespace Game.Models
 
         // Monster always Hit or Miss or Default
         public HitStatusEnum MonsterHitEnum = HitStatusEnum.Default;
+
+        // Enable Zombies
+        public bool ZombiesEnabled = false;
     }
 }
