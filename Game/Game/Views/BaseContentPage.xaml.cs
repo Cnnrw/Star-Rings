@@ -91,11 +91,11 @@ namespace Game.Views
         #endregion BackButton
         #region Title
 
-        static readonly BindableProperty PageTitleProperty = BindableProperty.Create(propertyName: nameof(PageTitle),
-                                                                                     returnType: typeof(string),
-                                                                                     declaringType: typeof(BaseContentPage),
-                                                                                     defaultValue: null,
-                                                                                     defaultBindingMode: BindingMode.OneWay);
+        public static readonly BindableProperty PageTitleProperty = BindableProperty.Create(propertyName: nameof(PageTitle),
+                                                                                            returnType: typeof(string),
+                                                                                            declaringType: typeof(BaseContentPage),
+                                                                                            defaultValue: null,
+                                                                                            defaultBindingMode: BindingMode.OneWay);
 
         public string PageTitle
         {
