@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 using Game.Enums;
@@ -15,12 +14,29 @@ namespace Game.Views
     /// <summary>
     ///     Update a Monster
     /// </summary>
-    [DesignTimeVisible(false)]
-    public partial class MonsterUpdatePage : ContentPage
+    public partial class MonsterUpdatePage : BaseContentPage
     {
         // The Monster to update
-        public readonly GenericViewModel<MonsterModel> _viewModel;
+        internal readonly GenericViewModel<MonsterModel> _viewModel;
 
+        // Empty Constructor for UTs
+        internal MonsterUpdatePage(bool unitTest) { }
+
+        /// <summary>
+        ///     Constructor that takes an existing monster
+        /// </summary>
+        public MonsterUpdatePage(GenericViewModel<MonsterModel> monster)
+        {
+            InitializeComponent();
+
+            _viewModel = monster;
+
+            UpdatePageBindingContext();
+        }
+
+        /// <summary>
+        ///     Updates the BindingContext to trigger a refresh
+        /// </summary>
         private void UpdatePageBindingContext()
         {
             var data = _viewModel.Data;
@@ -28,7 +44,7 @@ namespace Game.Views
             // Clear the Binding and reset
             BindingContext = null;
             _viewModel.Data = data;
-            _viewModel.Title = "Update " + data.Name;
+            _viewModel.Title = $"Update {data.Name}";
 
             BindingContext = _viewModel;
 
@@ -37,46 +53,33 @@ namespace Game.Views
             AddItemsToDisplay();
         }
 
-        #region Ctors
-
-        // Empty Constructor for UTs
-        public MonsterUpdatePage(bool unitTest) { }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) => SpeedValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
-        ///     Constructor that takes and existing data item
+        ///
         /// </summary>
-        public MonsterUpdatePage(GenericViewModel<MonsterModel> data)
-        {
-            InitializeComponent();
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) => DefenseValueLabel.Text = $"{e.NewValue}";
 
-            _viewModel = data;
-
-            UpdatePageBindingContext();
-        }
-
-        #endregion
-
-        #region Steppers
-
-        private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            SpeedValueLabel.Text = $"{e.NewValue}";
-
-        private void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            DefenseValueLabel.Text = $"{e.NewValue}";
-
-        private void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            AttackValueLabel.Text = $"{e.NewValue}";
-
-        #endregion
-
-        #region DataCRUDi
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) => AttackValueLabel.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Save by calling for Update
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Save_Clicked(object sender, EventArgs e)
+        internal async void Save_Clicked(object sender, EventArgs e)
         {
             if (_viewModel.Data.Name.Length == 0)
             {
@@ -93,20 +96,18 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        internal async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         ///     Randomize Monster Values and Items
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void RandomButton_Clicked(object sender, EventArgs e)
+        internal void RandomButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
             UpdatePageBindingContext();
         }
-
-        #endregion
 
         #region Items Popup
 
@@ -115,11 +116,9 @@ namespace Game.Views
         /// </summary>
         private void AddItemsToDisplay()
         {
-            var FlexList = ItemBox.Children.ToList();
-            foreach (var data in FlexList)
-            {
+            var flexList = ItemBox.Children.ToList();
+            foreach (var data in flexList)
                 ItemBox.Children.Remove(data);
-            }
 
             ItemBox.Children.Add(GetItemToDisplay());
         }
@@ -139,40 +138,44 @@ namespace Game.Views
                        };
 
             // Hookup the Image Button to show the Item picture
-            var ItemButton = new ImageButton
+            var itemButton = new ImageButton
             {
                 Source = data.ImageURI,
-                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object buttonStyle)
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out var buttonStyle)
                             ? (Style)buttonStyle
                             : null
             };
 
             // Add a event so the user can click the item and see more
-            ItemButton.Clicked += (sender, args) => ShowPopup(data);
+            itemButton.Clicked += (sender, args) => ShowPopup(data);
 
             // Add the Display Text for the item
-            var ItemLabel = new Label
+            var itemLabel = new Label
             {
                 Text = data.Name,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
-                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object labelStyle)
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var labelStyle)
                             ? (Style)labelStyle
                             : null
             };
 
             // Put the Image Button and Text inside a layout
-            var ItemStack = new StackLayout
+            var itemStack = new StackLayout
             {
                 Padding = 3,
-                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object stackStyle)
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out var stackStyle)
                             ? (Style)stackStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = {ItemButton, ItemLabel}
+                Children =
+                {
+                    itemButton,
+                    itemLabel
+                }
             };
 
-            return ItemStack;
+            return itemStack;
         }
 
         /// <summary>
@@ -183,9 +186,7 @@ namespace Game.Views
         public void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (!(args.SelectedItem is ItemModel data))
-            {
                 return;
-            }
 
             _viewModel.Data.UniqueItem = data.Id;
 
@@ -205,7 +206,7 @@ namespace Game.Views
             PopupItemSelector.IsVisible = true;
 
             // Make a fake item for None
-            var NoneItem = new ItemModel
+            var noneItem = new ItemModel
             {
                 Id = null,     // will use null to clear the item
                 Guid = "None", // how to find this item amoung all of them
@@ -214,7 +215,7 @@ namespace Game.Views
                 Description = "None"
             };
 
-            List<ItemModel> itemList = new List<ItemModel> {NoneItem};
+            var itemList = new List<ItemModel> {noneItem};
 
             // Add the rest of the items to the list
             itemList.AddRange(ItemIndexViewModel.Instance.Dataset);
