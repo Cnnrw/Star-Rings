@@ -9,9 +9,10 @@
                       xmlns:conv="clr-namespace:Game.Converters;assembly=Game"
                       xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      xmlns:helpers="clr-namespace:Game.Helpers;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterCreatePage"
-                      Title="{Binding Title}">
+                      PageTitle="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
@@ -21,14 +22,20 @@
         <conv:StringEnumConverter x:Key="StringToEnum" />
     </ContentPage.Resources>
 
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png" />
+        <ImageButton Clicked="RandomButton_Clicked" Source="" />
+        <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
+    </page:BaseContentPage.ToolbarButtons>
+
     <FlexLayout JustifyContent="Center"
                 Padding="40">
-
         <ScrollView>
             <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10">
 
                 <StackLayout Orientation="Horizontal">
+
                     <StackLayout>
                         <Image x:Name="Image"
                                Source="{Binding Data.ImageURI}"
@@ -39,7 +46,7 @@
                                Style="{StaticResource LabelStyle}" />
 
                         <Picker x:Name="ImagePicker"
-                                ItemsSource="{x:Static m:MonsterModel.ImagesURIs}"
+                                ItemsSource="{x:Static helpers:RandomPlayerHelper.MonsterImageURIs}"
                                 SelectedItem="{Binding Data.ImageURI, Mode=TwoWay}"
                                 SelectedIndexChanged="OnImagePickerChanged" />
                     </StackLayout>
@@ -102,13 +109,7 @@
                                      Increment="1" />
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Cancel" Clicked="Cancel_Clicked" />
-                    <Button Text="Save" Clicked="Save_Clicked" />
-                    <Button Text="Random"
-                            Clicked="RandomButton_Clicked" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

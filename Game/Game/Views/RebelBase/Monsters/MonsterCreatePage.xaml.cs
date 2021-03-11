@@ -18,11 +18,6 @@ namespace Game.Views
         /// </summary>
         internal readonly GenericViewModel<MonsterModel> _viewModel;
 
-        // /// <summary>
-        // ///     PopupLocationEnum holds the current location selected
-        // /// </summary>
-        // internal ItemLocationEnum PopupLocationEnum = ItemLocationEnum.Unknown;
-
         /// <summary>
         ///     Empty Constructor for UTs
         /// </summary>
@@ -38,15 +33,14 @@ namespace Game.Views
 
             _viewModel = viewModel ?? new GenericViewModel<MonsterModel>
             {
+                Title = "Create a Monster",
                 Data = RandomPlayerHelper.GetRandomMonster(1)
             };
-
-            _viewModel.Title = _viewModel.Data.Name;
 
             BindingContext = _viewModel;
 
             // Set pickers' initially selected items
-            ImagePicker.SelectedItem = "orc.png";
+            ImagePicker.SelectedItem = RandomPlayerHelper.GetMonsterImage();
             BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
         }
 
@@ -63,9 +57,7 @@ namespace Game.Views
             var selectedIndex = picker.SelectedIndex;
 
             if (selectedIndex >= 0)
-            {
-                Image.Source = MonsterModel.ImagesURIs[selectedIndex];
-            }
+                Image.Source = RandomPlayerHelper.MonsterImageURIs[selectedIndex]; //MonsterModel.ImagesURIs[selectedIndex];
         }
 
         /// <summary>
@@ -100,15 +92,16 @@ namespace Game.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
-                _viewModel.Data.ImageURI = new MonsterModel().ImageURI;
+                _viewModel.Data.ImageURI = RandomPlayerHelper.GetMonsterImage();
 
             if (_viewModel.Data.Name.Length == 0)
-                await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
-            else
             {
-                MessagingCenter.Send(this, "Create", _viewModel.Data);
-                await Navigation.PopModalAsync();
+                await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
+                return;
             }
+
+            MessagingCenter.Send(this, "Create", _viewModel.Data);
+            await Navigation.PopModalAsync();
         }
 
         /// <summary>
@@ -126,10 +119,11 @@ namespace Game.Views
             // Clear the Binding and reset
             BindingContext = null;
             _viewModel.Data = data;
-            _viewModel.Title = "Create " + data.Name;
+            _viewModel.Title = "Create a Monster";
 
             BindingContext = _viewModel;
 
+            ImagePicker.SelectedItem = data.ImageURI;
             BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
         }
 
