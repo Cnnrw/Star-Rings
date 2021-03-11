@@ -244,18 +244,24 @@ namespace Scenario
             *      the next hero to die is permadead.
             * 
             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
-            *      <List Files Changed>
-            *      <List Classes Changed>
-            *      <List Methods Changed>
+            *      EngineSettingsModel.cs 
+            *           MiracleMaxCanRevive - Added a public bool 
+            *      TurnEngineBase.cs
+            *           TurnAsAttack() 
+            *               - Added a check to see if MiracleMaxCanRevive and if its applicable
+            *               - If he can, prevent damage and exp and instead restore health and update
             * 
             * Test Algrorithm:
-            *      <Step by step how to validate this change>
+            *      Setup a battle where character will die after the first monster attack
+            *      Carry out attack round
+            *      Ensure the charcter that should've died is still alive
+            *      Ensure that the next character that should've died did die
             * 
             * Test Conditions:
-            *      <List the different test conditions to make>
+            *       NA, using our autobattle engine with default conditions
             * 
             * Validation:
-            *      <List how to validate this change>
+            *      One character should be prevented from dying, the rest should die when lethal damage is dealt
             *  
             */
 
