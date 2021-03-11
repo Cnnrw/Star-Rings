@@ -126,7 +126,17 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) =>
-            await Navigation.PopModalAsync();
+        internal async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+
+        /// <summary>
+        ///     Randomize Character Values and Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Data = RandomPlayerHelper.GetRandomCharacter(20);
+            UpdatePageBindingContext();
+        }
     }
 }
