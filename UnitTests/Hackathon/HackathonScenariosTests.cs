@@ -197,7 +197,7 @@ namespace Scenario
                 {
                     Speed = 4,
                     Level = 3,
-                    MaxHealth = 15,
+                    MaxHealth = 10,
                     ExperienceTotal = 1,
                     ExperienceRemaining = 1,
                     Name = "Bob"
@@ -207,7 +207,7 @@ namespace Scenario
             {
                 Speed = 4,
                 Level = 3,
-                MaxHealth = 15,
+                MaxHealth = 10,
                 ExperienceTotal = 1,
                 ExperienceRemaining = 1,
                 Name = "Luke"
