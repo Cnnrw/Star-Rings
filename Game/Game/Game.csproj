@@ -9,23 +9,23 @@
 		<AssemblyVersion>1.0.0</AssemblyVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 	</PropertyGroup>
-	
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Assets\Fonts\gamefont.ttf" />
 		<None Remove="Assets\Fonts\gamefont_bold.ttf" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
-		<None Remove="Assets\Images\star_rings_logo.png" />
+    <None Remove="Assets\Images\starrings_logo.png" />
 		<None Remove="Assets\Images\column.png" />
 		<None Remove="Assets\Images\magic_tree.gif" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Assets\Images\Backgrounds\page_background.png" />
 		<None Remove="Assets\Images\Backgrounds\page_background_1.png" />
@@ -42,7 +42,7 @@
     <None Remove="Assets\Images\Backgrounds\rivendell_background.png" />
     <None Remove="Assets\Images\Backgrounds\shire_background.png" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Assets\Images\Buttons\about_1.png" />
 		<None Remove="Assets\Images\Buttons\about_2.png" />
@@ -60,7 +60,7 @@
 		<None Remove="Assets\Images\Buttons\stats.png" />
 		<None Remove="Assets\Images\Buttons\warrior.png" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Assets\Images\EquipmentSlots\Body_slot.png" />
 		<None Remove="Assets\Images\EquipmentSlots\Cape_slot.png" />
@@ -73,7 +73,7 @@
 		<None Remove="Assets\Images\EquipmentSlots\Shield_slot.png" />
 		<None Remove="Assets\Images\EquipmentSlots\Weapon_slot.png" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Assets\Images\Characters\Icons\jedi_icon.png" />
 		<None Remove="Assets\Images\Characters\Icons\jedi_princess_icon.png" />
@@ -88,7 +88,7 @@
 		<None Remove="Assets\Images\Characters\smuggler.png" />
 		<None Remove="Assets\Images\Characters\wookie.png" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Remove="Assets\Images\Monsters\Icons\dark_elf_icon.png" />
 		<None Remove="Assets\Images\Monsters\Icons\dead_king_icon.png" />
@@ -115,7 +115,7 @@
 		<EmbeddedResource Include="Assets\Fonts\gamefont.ttf" />
 		<EmbeddedResource Include="Assets\Fonts\gamefont_bold.ttf" />
 	</ItemGroup>
-	
+
 	<!-- NuGet Packages -->
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -192,7 +192,7 @@
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\hobbit_foot.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\lembas.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\light_saber.png" />
-		<SharedImage BaseSize="200,200" Include="Assets\Images\star_rings_logo.png" />
+    <SharedImage BaseSize="527,261" Include="Assets\Images\starrings_logo.png" />
 		<SharedImage BaseSize="26,261" Include="Assets\Images\column.png" />
 	</ItemGroup>
 

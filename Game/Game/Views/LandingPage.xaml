@@ -11,7 +11,7 @@
                IsAnimationPlaying="true" />
 
         <Grid RowDefinitions="2*, 2*, *">
-            <Image Source="star_rings_logo.png"
+            <Image Source="starrings_logo.png"
                    VerticalOptions="End"/>
 
             <Label Grid.Row="1"

@@ -15460,49 +15460,52 @@ namespace Game.Droid
 			public const int splashscreen = 2131165400;
 			
 			// aapt resource value: 0x7F0700DA
-			public const int start_button_normal = 2131165402;
+			public const int starrings_logo = 2131165402;
 			
 			// aapt resource value: 0x7F0700DB
-			public const int start_button_pressed = 2131165403;
+			public const int start_button_normal = 2131165403;
+			
+			// aapt resource value: 0x7F0700DC
+			public const int start_button_pressed = 2131165404;
 			
 			// aapt resource value: 0x7F0700D9
 			public const int star_rings_logo = 2131165401;
 			
-			// aapt resource value: 0x7F0700DC
-			public const int stats = 2131165404;
-			
 			// aapt resource value: 0x7F0700DD
-			public const int test_custom_background = 2131165405;
+			public const int stats = 2131165405;
 			
 			// aapt resource value: 0x7F0700DE
-			public const int tooltip_frame_dark = 2131165406;
+			public const int test_custom_background = 2131165406;
 			
 			// aapt resource value: 0x7F0700DF
-			public const int tooltip_frame_light = 2131165407;
+			public const int tooltip_frame_dark = 2131165407;
 			
 			// aapt resource value: 0x7F0700E0
-			public const int troll = 2131165408;
+			public const int tooltip_frame_light = 2131165408;
 			
 			// aapt resource value: 0x7F0700E1
-			public const int troll_icon = 2131165409;
+			public const int troll = 2131165409;
 			
 			// aapt resource value: 0x7F0700E2
-			public const int warg_rider = 2131165410;
+			public const int troll_icon = 2131165410;
 			
 			// aapt resource value: 0x7F0700E3
-			public const int warg_rider_icon = 2131165411;
+			public const int warg_rider = 2131165411;
 			
 			// aapt resource value: 0x7F0700E4
-			public const int warrior = 2131165412;
+			public const int warg_rider_icon = 2131165412;
+			
+			// aapt resource value: 0x7F0700E5
+			public const int warrior = 2131165413;
 			
 			// aapt resource value: 0x7F07000E
 			public const int Weapon_slot = 2131165198;
 			
-			// aapt resource value: 0x7F0700E5
-			public const int wookie = 2131165413;
-			
 			// aapt resource value: 0x7F0700E6
-			public const int wookie_icon = 2131165414;
+			public const int wookie = 2131165414;
+			
+			// aapt resource value: 0x7F0700E7
+			public const int wookie_icon = 2131165415;
 			
 			static Drawable()
 			{
