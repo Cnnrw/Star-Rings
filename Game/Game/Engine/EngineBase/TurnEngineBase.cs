@@ -361,6 +361,8 @@ namespace Game.Engine.EngineBase
                         _engineSettings.BattleMessagesModel.TurnMessageSpecial =
                             _engineSettings.BattleMessagesModel.GetCurrentHealthMessage();
 
+                        // CHECK FOR ZOMBIES HERE
+
                         // Check if Dead and Remove
                         RemoveIfDead(Target);
 
