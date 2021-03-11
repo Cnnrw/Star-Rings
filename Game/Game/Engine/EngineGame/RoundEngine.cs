@@ -60,6 +60,9 @@ namespace Game.Engine.EngineGame
             // Set Order for the Round
             OrderPlayerListByTurnOrder();
 
+            // Record the ordered PlayerList in the BattleScore
+            EngineSettings.BattleScore.RoundsOrderedPlayerLists.Add(EngineSettings.PlayerList);
+
             // Populate BaseEngine.MapModel with Characters and Monsters
             EngineSettings.MapModel.PopulateMapModel(EngineSettings.PlayerList);
 
@@ -265,7 +268,47 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override List<PlayerInfoModel> OrderPlayerListByTurnOrder()
         {
-            return base.OrderPlayerListByTurnOrder();
+            // Order is based by...
+            // Order by Speed (Descending if the round is not reversed)
+            // Then by Highest level (Descending)
+            // Then by Highest Experience Points (Descending)
+            // Then by Character before MonsterModel (enum assending)
+            // Then by Alphabetic on Name (Assending)
+            // Then by First in list order (Assending
+
+            EngineSettings.PlayerList = EngineSettings.PlayerList
+                .OrderByDescending(a => a.GetSpeed())
+                .ThenByDescending(a => a.Level)
+                .ThenByDescending(a => a.ExperienceTotal)
+                .ThenByDescending(a => a.PlayerType)
+                .ThenBy(a => a.Name)
+                .ThenBy(a => a.ListOrder)
+                .ToList();
+
+            if (EngineSettings.EnableTimeWarpedRounds)
+            {
+                // Chance to reverse the order of the list so slower players move first
+                int ReverseOrderRoll = DiceHelper.RollDice(1, 100);
+
+                if (EngineSettings.ForceTimeWarpedRounds)
+                {
+                    ReverseOrderRoll = 0;
+                }
+
+                if (ReverseOrderRoll <= 5)
+                {
+                    EngineSettings.PlayerList = EngineSettings.PlayerList
+                        .OrderBy(a => a.GetSpeed())
+                        .ThenByDescending(a => a.Level)
+                        .ThenByDescending(a => a.ExperienceTotal)
+                        .ThenByDescending(a => a.PlayerType)
+                        .ThenBy(a => a.Name)
+                        .ThenBy(a => a.ListOrder)
+                        .ToList();
+                }
+            }
+
+            return EngineSettings.PlayerList;
         }
 
         /// <summary>
@@ -273,7 +316,46 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override List<PlayerInfoModel> MakePlayerList()
         {
-            return base.MakePlayerList();
+            // Start from a clean list of players
+            EngineSettings.PlayerList.Clear();
+
+            // Remember the Insert order, used for Sorting
+            var listOrder = 0;
+
+            foreach (var data in EngineSettings.CharacterList)
+                if (data.Alive)
+                {
+                    EngineSettings.PlayerList.Add(
+                        new PlayerInfoModel(data)
+                        {
+                            // Remember the order
+                            ListOrder = listOrder
+                        }
+                    );
+
+                    listOrder++;
+                }
+
+            foreach (var data in EngineSettings.MonsterList)
+                if (data.Alive)
+                {
+                    EngineSettings.PlayerList.Add(
+                        new PlayerInfoModel(data)
+                        {
+                            // Remember the order
+                            ListOrder = listOrder
+                        }
+                    );
+
+                    listOrder++;
+                }
+
+            // Roll to see if round is experiencing a time warp and should have
+            // players act in order of slowest to fastest
+            int ReverseOrderRoll = DiceHelper.RollDice(1, 100);
+
+
+            return EngineSettings.PlayerList;
         }
             
         /// <summary>
@@ -281,7 +363,24 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel GetNextPlayerInList()
         {
-            return base.GetNextPlayerInList();
+            // Walk the list from top to bottom
+            // If Player is found, then see if next player exist, if so return that.
+            // If not, return first player (looped)
+
+            // If List is empty, return null
+            if (EngineSettings.PlayerList.Count == 0) return null;
+
+            // No current player, so set the first one
+            if (EngineSettings.CurrentAttacker == null) return EngineSettings.PlayerList.FirstOrDefault();
+
+            // Find current player in the list
+            var index = EngineSettings.PlayerList.FindIndex(m => m.Guid.Equals(EngineSettings.CurrentAttacker.Guid));
+
+            // If at the end of the list, return the first element
+            if (index == EngineSettings.PlayerList.Count() - 1) return EngineSettings.PlayerList.FirstOrDefault();
+
+            // Return the next element
+            return EngineSettings.PlayerList[index + 1];
         } 
 
         /// <summary>

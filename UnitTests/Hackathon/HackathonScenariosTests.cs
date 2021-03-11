@@ -3,6 +3,7 @@ using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Scenario
@@ -295,6 +296,108 @@ namespace Scenario
             Assert.AreEqual(true, result);
             Assert.AreEqual(null, EngineViewModel.Engine.EngineSettings.PlayerList.Find(m => m.Name.Equals("Character")));
             Assert.AreEqual(1, EngineViewModel.Engine.EngineSettings.BattleScore.RoundCount);
+        }
+
+        [Test]
+        public async Task HackathonScenario_Scenario_16_Valid_Default_Should_Pass()
+        {
+            /* 
+            * Scenario Number:  
+            *      16
+            *      
+            * Description: 
+            *      Each new round has a random chance of reversing the player
+            *      order so that the slowest players act first. 
+            * 
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
+            *       RoundEngine.cs
+            * 
+            * Test Algorithm:
+            *      Create Characters with various speeds
+            *      Force every round to be time-warped
+            *      Startup Battle
+            *      Run Auto Battle
+            * 
+            * Test Conditions:
+            *      Default condition is sufficient
+            * 
+            * Validation:
+            *      Go through every Round's PlayerList and make sure they are
+            *      all ordered by ascending speed
+            */
+
+            // Arrange
+
+            // Set Character Conditions
+
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 2;
+
+            var CharacterSpeed100 = new CharacterModel
+            {
+                Speed = 100,
+                Level = 3,
+                MaxHealth = 15,
+                Attack = 0,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Bob"
+            };
+
+            var CharacterSpeed90 = new CharacterModel
+            {
+                Speed = 90,
+                Level = 3,
+                MaxHealth = 15,
+                Attack = 0,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Luke"
+            };
+
+            // Autobattle uses Characters from the Character index, so add Bob and Luke to the start of the
+            // list so they're sure to be included in the party
+            CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterSpeed100);
+            CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterSpeed90);
+
+            // Force every round to be time-warped
+            EngineViewModel.Engine.EngineSettings.EnableTimeWarpedRounds = true;
+            EngineViewModel.Engine.EngineSettings.ForceTimeWarpedRounds = true;
+
+            // Act
+            var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
+
+            // Reset
+
+            EngineViewModel.Engine.EngineSettings.EnableTimeWarpedRounds = false;
+            EngineViewModel.Engine.EngineSettings.ForceTimeWarpedRounds = false;
+
+            // Assert
+
+            // Make sure every Round had a PlayerList that was ordered by ascending speed
+            bool IsOrderedByAscendingSpeed = true;
+
+            foreach (List<PlayerInfoModel> OrderedPlayerList in EngineViewModel.Engine.EngineSettings.BattleScore.RoundsOrderedPlayerLists)
+            {
+                int LastSpeed = -99;
+
+                foreach (PlayerInfoModel Player in OrderedPlayerList)
+                {
+                    if (Player.Speed < LastSpeed)
+                    {
+                        IsOrderedByAscendingSpeed = false;
+                        break;
+                    }
+
+                    LastSpeed = Player.Speed;
+                }
+
+                if (!IsOrderedByAscendingSpeed)
+                {
+                    break;
+                }
+            }
+
+            Assert.AreEqual(true, IsOrderedByAscendingSpeed);
         }
     }
 }

@@ -75,6 +75,11 @@ namespace Game.Engine.EngineModels
 
         // Hold the Battle State, Unknown is default
         public BattleStateEnum BattleStateEnum { get; set; } = BattleStateEnum.Unknown;
+
+        public bool EnableTimeWarpedRounds { get; set; } = false;
+
+        public bool ForceTimeWarpedRounds { get; set; } = false;
+
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
