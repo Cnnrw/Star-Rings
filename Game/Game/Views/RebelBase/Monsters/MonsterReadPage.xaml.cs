@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Linq;
 
 using Game.Enums;
@@ -13,15 +12,12 @@ namespace Game.Views
     /// <summary>
     ///     Monster read page
     /// </summary>
-    [DesignTimeVisible(false)]
-    public partial class MonsterReadPage : ContentPage
+    public partial class MonsterReadPage : BaseContentPage
     {
-        public readonly GenericViewModel<MonsterModel> _viewModel;
-
-        #region Constructors
+        internal readonly GenericViewModel<MonsterModel> _viewModel;
 
         // UnitTest Constructor
-        public MonsterReadPage(bool unitTest) { }
+        internal MonsterReadPage(bool unitTest) { }
 
         /// <summary>
         ///     Constructor called with a view model
@@ -38,10 +34,6 @@ namespace Game.Views
             // Show the Monsters Items
             AddItemsToDisplay();
         }
-
-        #endregion
-
-        #region Event Handlers
 
         /// <summary>
         ///     Save calls to Update
@@ -61,24 +53,18 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Delete_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(_viewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(_viewModel)), false);
             await Navigation.PopAsync();
         }
-
-        #endregion
-
-        #region EquippedItems
 
         /// <summary>
         /// Show the Items the Character has
         /// </summary>
         public void AddItemsToDisplay()
         {
-            var FlexList = ItemBox.Children.ToList();
-            foreach (var data in FlexList)
-            {
+            var flexList = ItemBox.Children.ToList();
+            foreach (var data in flexList)
                 ItemBox.Children.Remove(data);
-            }
 
             // Add an item display box for each Item Location
             ItemBox.Children.Add(GetItemToDisplay());
@@ -90,51 +76,47 @@ namespace Game.Views
         /// <returns></returns>
         public StackLayout GetItemToDisplay()
         {
-            ItemModel data = null;
-
             // If there's no Item currently in the slot, show a blank Item
-            data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem) ??
-                   new ItemModel
-                   {
-                       Location = ItemLocationEnum.Unknown,
-                       ImageURI = "icon_cancel.png",
-                       Name = "No item"
-                   };
+            var data = _viewModel.Data.GetItem(_viewModel.Data.UniqueItem) ??
+                       new ItemModel
+                       {
+                           Location = ItemLocationEnum.Unknown,
+                           ImageURI = "icon_cancel.png",
+                           Name = "No item"
+                       };
 
             // Hookup the Image Button to show the Item picture
-            var ItemButton = new ImageButton
+            var itemButton = new ImageButton
             {
                 Source = data.ImageURI,
-                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object buttonStyle)
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out var buttonStyle)
                             ? (Style)buttonStyle
                             : null
             };
 
             // Add the Display Text for the item
-            var ItemLabel = new Label
+            var itemLabel = new Label
             {
                 Text = data.Name,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
-                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object labelStyle)
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var labelStyle)
                             ? (Style)labelStyle
                             : null
             };
 
             // Put the Image Button and Text inside a layout
-            var ItemStack = new StackLayout
+            var itemStack = new StackLayout
             {
                 Padding = 3,
-                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object stackStyle)
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out var stackStyle)
                             ? (Style)stackStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = {ItemButton, ItemLabel}
+                Children = {itemButton, itemLabel}
             };
 
-            return ItemStack;
+            return itemStack;
         }
-
-        #endregion EquippedItems
     }
 }
