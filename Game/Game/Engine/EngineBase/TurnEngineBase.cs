@@ -336,17 +336,34 @@ namespace Game.Engine.EngineBase
                     // If critical Hit, double the damage
                     if (_engineSettings.BattleMessagesModel.HitStatus == HitStatusEnum.CriticalHit) _engineSettings.BattleMessagesModel.DamageAmount *= 2;
 
-                    // Apply the Damage
-                    ApplyDamage(Target);
+                    // If MiracleMax can prevent character death, revive the character
+                    if (_engineSettings.MiracleMaxCanRevive &&
+                        Target.PlayerType == PlayerTypeEnum.Character &&
+                        _engineSettings.BattleMessagesModel.DamageAmount >= Target.CurrentHealth)
+                    {
+                        // Can only revive once per battle
+                        _engineSettings.MiracleMaxCanRevive = false;
 
-                    _engineSettings.BattleMessagesModel.TurnMessageSpecial =
-                        _engineSettings.BattleMessagesModel.GetCurrentHealthMessage();
+                        // Restore the Target to full health
+                        Target.CurrentHealth = Target.MaxHealth;
 
-                    // Check if Dead and Remove
-                    RemoveIfDead(Target);
+                        // Annouce it to the world
+                        _engineSettings.BattleMessagesModel.TurnMessageSpecial = $"Miracle Max saved {Target.Name}, restoring them to full health!";
+                    }
+                    else
+                    {
+                        // Apply the Damage
+                        ApplyDamage(Target);
 
-                    // If it is a character apply the experience earned
-                    CalculateExperience(Attacker, Target);
+                        _engineSettings.BattleMessagesModel.TurnMessageSpecial =
+                            _engineSettings.BattleMessagesModel.GetCurrentHealthMessage();
+
+                        // Check if Dead and Remove
+                        RemoveIfDead(Target);
+
+                        // If it is a character apply the experience earned
+                        CalculateExperience(Attacker, Target);
+                    }
 
                     break;
             }
