@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
-               xmlns:template="clr-namespace:Game.Templates;assembly=Game"
-               xmlns:page="clr-namespace:Game.Views;assembly=Game"
-               mc:Ignorable="d"
-               x:Class="Game.Views.ScoreIndexPage"
-               Title="{Binding Title}">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:template="clr-namespace:Game.Templates;assembly=Game"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      mc:Ignorable="d"
+                      x:Class="Game.Views.ScoreIndexPage"
+                      PageTitle="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:ScoreIndexViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddScore_Clicked" IconImageSource="icon_add.png" />
-    </ContentPage.ToolbarItems>
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="AddScore_Clicked" Source="icon_add.png" />
+    </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
