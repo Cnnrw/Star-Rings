@@ -12,7 +12,8 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterCreatePage"
-                      Title="{Binding Title}">
+                      PageTitle="{Binding Title}"
+                      IsBackButtonVisible="False">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
@@ -24,10 +25,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png" />
+        <ImageButton Clicked="RandomButton_Clicked" />
+        <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
+    </page:BaseContentPage.ToolbarButtons>
+
+
     <FlexLayout JustifyContent="Center"
                 Padding="40">
 
-        <ScrollView>
             <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10">
 
@@ -136,15 +143,6 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Cancel"
-                            Clicked="Cancel_Clicked" />
-                    <Button Text="Save"
-                            Clicked="Save_Clicked" />
-                </StackLayout>
             </StackLayout>
-        </ScrollView>
     </FlexLayout>
-
 </page:BaseContentPage>
