@@ -6,7 +6,8 @@
              x:Class="Game.Views.SettingsPage"
              x:Name="SettingsPg"
              BindingContext="{x:Reference SettingsPg}"
-             Title="Settings">
+             Title="Settings"
+             BackgroundImageSource="page_background_1.png">
 
     <ContentPage.Resources>
         <Style TargetType="ContentView">
@@ -87,7 +88,6 @@
                 <StackLayout x:Name="DebugSettingsFrame" Style="{StaticResource VerticalStack}">
                     <Label Text="Debug Settings" Style="{DynamicResource LabelStyle}" />
                     <StackLayout Style="{StaticResource VerticalStack}" Padding="5,0,0,0">
-                        <Label Text="More Debug Settings to come..." Style="{DynamicResource MessageStyle}" />
 
                         <StackLayout Style="{StaticResource VerticalStack}">
 
@@ -117,6 +117,14 @@
                                         Clicked="GetItemsPost_Command" />
                             </StackLayout>
 
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Enable Time-Warped Rounds?"
+                                   Style="{StaticResource LabelStyle}"/>
+
+                            <Switch Toggled="OnToggledTimeWarpedRounds"
+                                    BackgroundColor="White"/>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

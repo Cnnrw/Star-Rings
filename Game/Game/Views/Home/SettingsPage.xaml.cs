@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Game.Enums;
 using Game.Helpers;
 using Game.Services;
-
+using Game.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -175,5 +175,10 @@ namespace Game.Views
         }
 
         #endregion
+
+        public void OnToggledTimeWarpedRounds(object sender, ToggledEventArgs e)
+        {
+            BattleEngineViewModel.Instance.Engine.EngineSettings.EnableTimeWarpedRounds = e.Value;
+        }
     }
 }
