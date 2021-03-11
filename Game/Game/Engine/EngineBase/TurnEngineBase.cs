@@ -361,7 +361,19 @@ namespace Game.Engine.EngineBase
                         _engineSettings.BattleMessagesModel.TurnMessageSpecial =
                             _engineSettings.BattleMessagesModel.GetCurrentHealthMessage();
 
-                        // CHECK FOR ZOMBIES HERE
+                        // Check to see if zombies are enabled, then revive monster
+                        if (_engineSettings.BattleSettingsModel.ZombiesEnabled &&
+                            Target.PlayerType == PlayerTypeEnum.Monster &&
+                            !Target.Alive) 
+                        {
+                            var result = DiceHelper.RollDice(1, 10);
+                            if (result < _globals.ChanceForZombie)
+                            {
+                                Target.Alive = true;
+                                Target.CurrentHealth = (int)(Target.MaxHealth / 2);
+                                Target.Name = $"Zombie {Target.Name}";
+                            }
+                        }
 
                         // Check if Dead and Remove
                         RemoveIfDead(Target);
