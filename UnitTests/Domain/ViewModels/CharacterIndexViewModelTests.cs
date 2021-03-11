@@ -16,7 +16,7 @@ namespace UnitTests.ViewModels
 {
     public class CharacterIndexViewModelTests
     {
-        private CharacterIndexViewModel ViewModel;
+        private CharacterIndexViewModel _viewModel;
 
         [SetUp]
         public void Setup()
@@ -27,11 +27,11 @@ namespace UnitTests.ViewModels
             // Add each model here to warm up and load it.
             DataSetsHelper.WarmUp();
 
-            ViewModel = CharacterIndexViewModel.Instance;
+            _viewModel = CharacterIndexViewModel.Instance;
         }
 
         [TearDown]
-        public void TearDown() => ViewModel.Dataset.Clear();
+        public void TearDown() => _viewModel.Dataset.Clear();
 
         [Test]
         public async Task CharacterIndexViewModel_Read_Invalid_ID_Bogus_Should_Fail()
@@ -39,7 +39,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await ViewModel.ReadAsync("bogus");
+            var result = await _viewModel.ReadAsync("bogus");
 
             // Reset
 
@@ -53,7 +53,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = ViewModel;
+            var result = _viewModel;
 
             // Reset
 
@@ -75,7 +75,7 @@ namespace UnitTests.ViewModels
             };
 
             // Act
-            var result = ViewModel.SortDataset(dataList);
+            var result = _viewModel.SortDataset(dataList);
 
             // Reset
 
@@ -92,14 +92,14 @@ namespace UnitTests.ViewModels
 
             // Add Characters into the list Z ordered
             var dataTest = new CharacterModel {Name = "test"};
-            await ViewModel.CreateAsync(dataTest);
+            await _viewModel.CreateAsync(dataTest);
 
-            await ViewModel.CreateAsync(new CharacterModel {Name = "z"});
-            await ViewModel.CreateAsync(new CharacterModel {Name = "m"});
-            await ViewModel.CreateAsync(new CharacterModel {Name = "a"});
+            await _viewModel.CreateAsync(new CharacterModel {Name = "z"});
+            await _viewModel.CreateAsync(new CharacterModel {Name = "m"});
+            await _viewModel.CreateAsync(new CharacterModel {Name = "a"});
 
             // Act
-            var result = ViewModel.CheckIfExists(dataTest);
+            var result = _viewModel.CheckIfExists(dataTest);
 
             // Reset
 
@@ -116,12 +116,12 @@ namespace UnitTests.ViewModels
             var dataTest = new CharacterModel {Name = "test"};
             // Don't add it to the list await ViewModel.CreateAsync(dataTest);
 
-            await ViewModel.CreateAsync(new CharacterModel {Name = "z"});
-            await ViewModel.CreateAsync(new CharacterModel {Name = "m"});
-            await ViewModel.CreateAsync(new CharacterModel {Name = "a"});
+            await _viewModel.CreateAsync(new CharacterModel {Name = "z"});
+            await _viewModel.CreateAsync(new CharacterModel {Name = "m"});
+            await _viewModel.CreateAsync(new CharacterModel {Name = "a"});
 
             // Act
-            var result = ViewModel.CheckIfExists(dataTest);
+            var result = _viewModel.CheckIfExists(dataTest);
 
             // Reset
 
@@ -133,10 +133,10 @@ namespace UnitTests.ViewModels
         public async Task CharacterIndexViewModel_Message_Delete_Valid_Should_Pass()
         {
             // Arrange
-            await ViewModel.CreateAsync(new CharacterModel());
+            await _viewModel.CreateAsync(new CharacterModel());
 
             // Get the Character to delete
-            var first = ViewModel.Dataset.FirstOrDefault();
+            var first = _viewModel.Dataset.FirstOrDefault();
 
             // Make a Delete Page
             var myPage = new CharacterDeletePage(true);
@@ -144,7 +144,7 @@ namespace UnitTests.ViewModels
             // Act
             MessagingCenter.Send(myPage, "Delete", first);
 
-            var data = await ViewModel.ReadAsync(first.Id);
+            var data = await _viewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -158,7 +158,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = ViewModel.CheckIfExists(null);
+            var result = _viewModel.CheckIfExists(null);
 
             // Reset
 
@@ -177,11 +177,11 @@ namespace UnitTests.ViewModels
             // Make a Delete Page
             var myPage = new CharacterCreatePage(true);
 
-            var countBefore = ViewModel.Dataset.Count();
+            var countBefore = _viewModel.Dataset.Count();
 
             // Act
             MessagingCenter.Send(myPage, "Create", data);
-            var countAfter = ViewModel.Dataset.Count();
+            var countAfter = _viewModel.Dataset.Count();
 
             // Reset
 
@@ -193,10 +193,10 @@ namespace UnitTests.ViewModels
         public async Task CharacterIndexViewModel_Message_Update_Valid_Should_Pass()
         {
             // Arrange
-            await ViewModel.CreateAsync(new CharacterModel());
+            await _viewModel.CreateAsync(new CharacterModel());
 
             // Get the Character to delete
-            var first = ViewModel.Dataset.FirstOrDefault();
+            var first = _viewModel.Dataset.FirstOrDefault();
             first.Name = "test";
 
             // Make a Delete Page
@@ -204,7 +204,7 @@ namespace UnitTests.ViewModels
 
             // Act
             MessagingCenter.Send(myPage, "Update", first);
-            var result = await ViewModel.ReadAsync(first.Id);
+            var result = await _viewModel.ReadAsync(first.Id);
 
             // Reset
 
@@ -225,10 +225,10 @@ namespace UnitTests.ViewModels
 
             // Act
             MessagingCenter.Send(myPage, "SetDataSource", data);
-            var result = ViewModel.GetCurrentDataSource();
+            var result = _viewModel.GetCurrentDataSource();
 
             // Reset
-            await ViewModel.SetDataSource(0);
+            await _viewModel.SetDataSource(0);
 
             // Assert
             Assert.AreEqual(0, result); // Count of 0 for the load was skipped
@@ -238,17 +238,17 @@ namespace UnitTests.ViewModels
         public async Task CharacterIndexViewModel_Message_WipeDataList_Valid_Should_Pass()
         {
             // Arrange
-            await ViewModel.CreateAsync(new CharacterModel());
+            await _viewModel.CreateAsync(new CharacterModel());
 
             // Make the page Page
             var myPage = new SettingsPage(true);
 
             var data = new CharacterModel();
-            await ViewModel.CreateAsync(data);
+            await _viewModel.CreateAsync(data);
 
             // Act
             MessagingCenter.Send(myPage, "WipeDataList", true);
-            var countAfter = ViewModel.Dataset.Count();
+            var countAfter = _viewModel.Dataset.Count();
 
             // Reset
 
