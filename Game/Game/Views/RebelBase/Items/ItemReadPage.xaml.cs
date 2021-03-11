@@ -29,8 +29,6 @@ namespace Game.Views
             InitializeComponent();
 
             BindingContext = _viewModel = data;
-
-            PageTitle = _viewModel.Title;
         }
 
         /// <summary>

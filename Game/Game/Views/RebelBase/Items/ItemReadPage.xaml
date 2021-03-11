@@ -8,7 +8,8 @@
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
-                      x:Class="Game.Views.ItemReadPage">
+                      x:Class="Game.Views.ItemReadPage"
+                      PageTitle="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:ItemModel" />
