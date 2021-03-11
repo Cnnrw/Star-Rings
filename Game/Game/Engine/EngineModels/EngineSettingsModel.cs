@@ -30,8 +30,8 @@ namespace Game.Engine.EngineModels
 
         // HACKATHON #10
         // Determines if MiracleMax can revive a character
-        // Set at beginning of round, and during a round if a character is dealt lethal dmg
-        public bool MiracleMaxCanRevive = false;
+        // Set at beginning of bttle, and updated to false during a round if a character is dealt lethal dmg
+        public bool MiracleMaxCanRevive = true;
 
         // Current Player who is the attacker
         public PlayerInfoModel CurrentAttacker { get; set; }
