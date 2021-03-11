@@ -118,5 +118,10 @@ namespace Game.Views
 
             return itemStack;
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }
