@@ -60,9 +60,6 @@ namespace Game.Views
 
             // JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
 
-            // Update Page Title
-            PageTitle = $"Update {data.Name}";
-
             AddItemsToDisplay();
         }
 
