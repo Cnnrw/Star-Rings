@@ -3,7 +3,6 @@ using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Scenario
@@ -196,9 +195,9 @@ namespace Scenario
 
             var CharacterBob = new CharacterModel
                 {
-                    Speed = 200,
-                    Level = 1,
-                    MaxHealth = 5,
+                    Speed = 4,
+                    Level = 3,
+                    MaxHealth = 15,
                     ExperienceTotal = 1,
                     ExperienceRemaining = 1,
                     Name = "Bob"
@@ -206,9 +205,9 @@ namespace Scenario
 
             var CharacterLuke = new CharacterModel
             {
-                Speed = 100,
-                Level = 1,
-                MaxHealth = 8,
+                Speed = 4,
+                Level = 3,
+                MaxHealth = 15,
                 ExperienceTotal = 1,
                 ExperienceRemaining = 1,
                 Name = "Luke"
@@ -218,9 +217,6 @@ namespace Scenario
             // list so they're sure to be included in the party
             CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterBob);
             CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterLuke);
-
-            // Force all Players to Attack
-            BattleEngineViewModel.Instance.Engine.EngineSettings.ForcedPlayerAction = ActionEnum.Attack;
 
             // Act
             var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
@@ -302,105 +298,71 @@ namespace Scenario
         }
 
         [Test]
-        public async Task HackathonScenario_Scenario_16_Valid_Default_Should_Pass()
+        public async Task HackathonScenario_Scenario_SleeplessZombiesInSeattle_Should_Pass()
         {
             /* 
             * Scenario Number:  
-            *      16
+            *      # 17
             *      
             * Description: 
-            *      Each new round has a random chance of reversing the player
-            *      order so that the slowest players act first. 
+            *      When a monster dies, there is a chance they can return from the dead as a 'Zombie' 
+            *      and continue the battle
             * 
-            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes:
-            *       RoundEngine.cs
+            * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+            *      EngineSettingsModel.cs 
+            *           ChanceForZombie - added an int that sets the probability out of 100 
+            *                               that a monsters turns into a zombie
+            *       BattleSettingsModel.cs
+            *           ZombiesEnabled - bool to control wether zombies are enabled
+            *           
+            *       TurnEngine.cs
+            *           TurnAsAttack - added a check if zombies are enabled
             * 
-            * Test Algorithm:
-            *      Create Characters with various speeds
-            *      Force every round to be time-warped
-            *      Startup Battle
-            *      Run Auto Battle
+            * Test Algrorithm:
+            *      Setup a battle where a monster will die after the first character attack
+            *      Carry out attack round
+            *      Ensure the Monster that should've died is still alive as a zombie
             * 
             * Test Conditions:
-            *      Default condition is sufficient
+            *       ChanceForZombie set to 100, indicating 100% chance of zombies
             * 
             * Validation:
-            *      Go through every Round's PlayerList and make sure they are
-            *      all ordered by ascending speed
+            *      Monsters should never die, and the round count should be hit
             */
 
-            // Arrange
-
-            // Set Character Conditions
-
-            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 2;
-
-            var CharacterSpeed100 = new CharacterModel
+            // Arrange 
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.ZombiesEnabled = true;
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
+            EngineViewModel.Engine.EngineSettings.MaxRoundCount = 10;
+            var _Character = new PlayerInfoModel(new CharacterModel
             {
-                Speed = 100,
-                Level = 3,
-                MaxHealth = 15,
-                Attack = 0,
+                Speed = 1,
+                Level = 1,
+                Attack = 100,
+                CurrentHealth = 1,
                 ExperienceTotal = 1,
                 ExperienceRemaining = 1,
-                Name = "Bob"
-            };
+                Name = "Character"
+            });
+            // Auto Battle will add the monsters, only need to add our character
+            EngineViewModel.Engine.EngineSettings.CharacterList.Add(_Character);
+            // Monsters always miss
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Hit;
+            // Characters always miss
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Miss;
 
-            var CharacterSpeed90 = new CharacterModel
-            {
-                Speed = 90,
-                Level = 3,
-                MaxHealth = 15,
-                Attack = 0,
-                ExperienceTotal = 1,
-                ExperienceRemaining = 1,
-                Name = "Luke"
-            };
-
-            // Autobattle uses Characters from the Character index, so add Bob and Luke to the start of the
-            // list so they're sure to be included in the party
-            CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterSpeed100);
-            CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterSpeed90);
-
-            // Force every round to be time-warped
-            EngineViewModel.Engine.EngineSettings.EnableTimeWarpedRounds = true;
-            EngineViewModel.Engine.EngineSettings.ForceTimeWarpedRounds = true;
-
-            // Act
+            //Act
             var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
 
-            // Reset
+            //Reset
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.ZombiesEnabled = false;
 
-            EngineViewModel.Engine.EngineSettings.EnableTimeWarpedRounds = false;
-            EngineViewModel.Engine.EngineSettings.ForceTimeWarpedRounds = false;
-
-            // Assert
-
-            // Make sure every Round had a PlayerList that was ordered by ascending speed
-            bool IsOrderedByAscendingSpeed = true;
-
-            foreach (List<PlayerInfoModel> OrderedPlayerList in EngineViewModel.Engine.EngineSettings.BattleScore.RoundsOrderedPlayerLists)
-            {
-                int LastSpeed = -99;
-
-                foreach (PlayerInfoModel Player in OrderedPlayerList)
-                {
-                    if (Player.Speed < LastSpeed)
-                    {
-                        IsOrderedByAscendingSpeed = false;
-                        break;
-                    }
-
-                    LastSpeed = Player.Speed;
-                }
-
-                if (!IsOrderedByAscendingSpeed)
-                {
-                    break;
-                }
-            }
-
-            Assert.AreEqual(true, IsOrderedByAscendingSpeed);
+            //Assert
+            Assert.AreEqual(true, result);
+            Assert.AreNotEqual(null, EngineViewModel.Engine.EngineSettings.MonsterList);
+            Assert.AreEqual(1, EngineViewModel.Engine.EngineSettings.BattleScore.RoundCount);
         }
     }
 }
