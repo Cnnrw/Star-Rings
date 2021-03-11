@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 using Game.Engine.EngineGame;
 using Game.Enums;
-using Game.Helpers;
 using Game.Models;
 
 using NUnit.Framework;
@@ -90,7 +89,7 @@ namespace Scenario
             //Reset
 
             //Assert
-            Assert.AreEqual(true, result);
+            Assert.AreEqual(false, result);
         }
 
         public List<PlayerInfoModel> GetListOfMonstersForEachLocation()
