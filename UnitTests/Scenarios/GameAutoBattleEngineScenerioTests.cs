@@ -65,7 +65,7 @@ namespace Scenario
                 {
                     Speed = -1,
                     Level = 10,
-                    CurrentHealth = 100,
+                    MaxHealth = 10,
                     ExperienceTotal = 1,
                     ExperienceRemaining = 1,
                     Name = "Luke",
@@ -89,7 +89,7 @@ namespace Scenario
             //Reset
 
             //Assert
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(true, result);
         }
 
         public List<PlayerInfoModel> GetListOfMonstersForEachLocation()
