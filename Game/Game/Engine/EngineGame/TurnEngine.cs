@@ -98,9 +98,9 @@ namespace Game.Engine.EngineGame
              * Randomly choose between attacking and blocking
              */
 
-            int RollResult = DiceHelper.RollDice(1, 5);
+            int RollResult = DiceHelper.RollDice(1, 100);
 
-            if (RollResult == 1)
+            if (RollResult <= 10)
             {
                 EngineSettings.CurrentAction = ActionEnum.Attack;
             } else
