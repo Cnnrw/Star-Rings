@@ -122,8 +122,8 @@ namespace Game.Engine.EngineGame
                 }
             }
 
-            // Add a random number of valid monsters to the round
-            int encounteredMonsterCount = DiceHelper.RollDice(1, validMonsters.Count());
+            // Add a random number of valid monsters to the round up to max
+            int encounteredMonsterCount = DiceHelper.RollDice(1, Math.Min(validMonsters.Count(), EngineSettings.MaxNumberPartyMonsters));
 
             for (int i = 0; i < encounteredMonsterCount; i++)
             {
