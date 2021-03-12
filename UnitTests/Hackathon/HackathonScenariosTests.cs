@@ -176,7 +176,9 @@ namespace Scenario
             *               On a successful hit, increment the attacker's LandedHitsCount by 1
             * 
             * Test Algorithm:
-            *      Create 2 long-lasting Characters (so they'll attack a few times). One named 'Bob' and the other 'Luke'
+            *
+            *      Create 2 near-invincible and high-Attack Characters: 'Bob' and 'Luke'
+            *      Force Players to always Attack
             *      Startup Battle
             *      Run Auto Battle
             * 
@@ -197,8 +199,9 @@ namespace Scenario
             var CharacterBob = new CharacterModel
                 {
                     Speed = 4,
-                    Level = 3,
-                    MaxHealth = 15,
+                    Level = 10,
+                    Attack = 100,
+                    MaxHealth = 1000,
                     ExperienceTotal = 1,
                     ExperienceRemaining = 1,
                     Name = "Bob"
@@ -207,8 +210,9 @@ namespace Scenario
             var CharacterLuke = new CharacterModel
             {
                 Speed = 4,
-                Level = 3,
-                MaxHealth = 15,
+                Level = 10,
+                Attack = 100,
+                MaxHealth = 1000,
                 ExperienceTotal = 1,
                 ExperienceRemaining = 1,
                 Name = "Luke"
@@ -219,19 +223,26 @@ namespace Scenario
             CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterBob);
             CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterLuke);
 
+            // Force Players to always Attack
+            EngineViewModel.Engine.EngineSettings.ForcedPlayerAction = ActionEnum.Attack;
+
             // Act
             var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
 
             // Reset
+            EngineViewModel.Engine.EngineSettings.ForcedPlayerAction = ActionEnum.Unknown;
             EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 6;
             EngineViewModel.Engine.EngineSettings.CharacterList.Clear();
 
             // Assert
-            var FinalBob = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Bob"));
-            var FinalLuke = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Luke"));
 
-            Assert.AreEqual(0, FinalBob.LandedAttacksCount);
-            Assert.AreEqual(true, FinalLuke.LandedAttacksCount > 0);
+            // Get the Characters' status after many turns. Luke should have at least a few hits,
+            // while Bob should have none
+            PlayerInfoModel BobInfo = EngineViewModel.Engine.EngineSettings.PlayerList.Find(c => c.Name.Equals("Bob"));
+            PlayerInfoModel LukeInfo = EngineViewModel.Engine.EngineSettings.PlayerList.Find(c => c.Name.Equals("Luke"));
+
+            Assert.AreEqual(0, BobInfo.LandedAttacksCount);
+            Assert.AreEqual(true, LukeInfo.LandedAttacksCount > 0);
         }
 
         [Test]
