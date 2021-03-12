@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using Game.Engine.EngineBase;
 using Game.Helpers;
@@ -87,16 +87,17 @@ namespace UnitTests.Engine.EngineBase
             AutoBattleEngine.Battle.EngineSettings.MaxNumberPartyCharacters = 1;
 
             var CharacterPlayerMike = new PlayerInfoModel(
-                                                          new CharacterModel
-                                                          {
-                                                              Speed = -1,
-                                                              Level = 10,
-                                                              CurrentHealth = 11,
-                                                              ExperienceTotal = 1,
-                                                              ExperienceRemaining = 1,
-                                                              Name = "Mike",
-                                                              ListOrder = 1
-                                                          });
+                new CharacterModel
+                {
+                    Speed = -1,
+                    Level = 1,
+                    CurrentHealth = 1,
+                    ExperienceTotal = 1,
+                    ExperienceRemaining = 1,
+                    Name = "Mike",
+                    ListOrder = 1
+                }
+            );
 
             AutoBattleEngine.Battle.EngineSettings.CharacterList.Add(CharacterPlayerMike);
 
