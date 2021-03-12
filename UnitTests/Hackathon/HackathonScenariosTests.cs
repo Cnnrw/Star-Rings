@@ -177,7 +177,7 @@ namespace Scenario
             * 
             * Test Algorithm:
             *
-            *      Create 2 near-invincible and high-Attack Characters: 'Bob' and 'Luke'
+            *      Create 2 near-invincible and high-Attack Characters: 'Bob' and 'Luke'. Luke has a higher speed than Bob
             *      Force Players to always Attack
             *      Startup Battle
             *      Run Auto Battle
@@ -195,33 +195,22 @@ namespace Scenario
             // Set Character Conditions
 
             EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 2;
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
             var CharacterBob = new CharacterModel
-                {
-                    Speed = 4,
-                    Level = 10,
-                    Attack = 100,
-                    MaxHealth = 1000,
-                    ExperienceTotal = 1,
-                    ExperienceRemaining = 1,
-                    Name = "Bob"
-                };
-
-            var CharacterLuke = new CharacterModel
             {
-                Speed = 4,
+                Name = "Bob",
+                Speed = 200,
                 Level = 10,
                 Attack = 100,
-                MaxHealth = 1000,
+                MaxHealth = int.MaxValue,
                 ExperienceTotal = 1,
-                ExperienceRemaining = 1,
-                Name = "Luke"
+                ExperienceRemaining = 1
             };
 
             // Autobattle uses Characters from the Character index, so add Bob and Luke to the start of the
             // list so they're sure to be included in the party
             CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterBob);
-            CharacterIndexViewModel.Instance.Dataset.Insert(1, CharacterLuke);
 
             // Force Players to always Attack
             EngineViewModel.Engine.EngineSettings.ForcedPlayerAction = ActionEnum.Attack;
@@ -229,20 +218,16 @@ namespace Scenario
             // Act
             var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
 
+            // Get Bob's status after the battle
+            PlayerInfoModel BobInfo = EngineViewModel.Engine.EngineSettings.PlayerList.Find(c => c.Name.Equals("Bob"));
+
             // Reset
             EngineViewModel.Engine.EngineSettings.ForcedPlayerAction = ActionEnum.Unknown;
             EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 6;
             EngineViewModel.Engine.EngineSettings.CharacterList.Clear();
 
             // Assert
-
-            // Get the Characters' status after many turns. Luke should have at least a few hits,
-            // while Bob should have none
-            PlayerInfoModel BobInfo = EngineViewModel.Engine.EngineSettings.PlayerList.Find(c => c.Name.Equals("Bob"));
-            PlayerInfoModel LukeInfo = EngineViewModel.Engine.EngineSettings.PlayerList.Find(c => c.Name.Equals("Luke"));
-
             Assert.AreEqual(0, BobInfo.LandedAttacksCount);
-            Assert.AreEqual(true, LukeInfo.LandedAttacksCount > 0);
         }
 
         [Test]
