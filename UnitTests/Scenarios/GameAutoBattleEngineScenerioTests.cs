@@ -88,6 +88,9 @@ namespace Scenario
             var result = await AutoBattle.RunAutoBattle();
 
             //Reset
+            AutoBattle.Battle.EngineSettings.RoundLocation = BattleLocationEnum.Unknown;
+            AutoBattle.Battle.EngineSettings.MaxNumberPartyCharacters = 6;
+            AutoBattle.Battle.EngineSettings.CharacterList.Clear();
 
             //Assert
             Assert.AreEqual(false, result);

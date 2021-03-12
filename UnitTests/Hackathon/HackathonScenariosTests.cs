@@ -143,6 +143,7 @@ namespace Scenario
 
             //Reset
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.CharacterList.Clear();
 
             //Assert
             Assert.AreEqual(true, result);
@@ -222,6 +223,8 @@ namespace Scenario
             var result = await EngineViewModel.AutoBattleEngine.RunAutoBattle();
 
             // Reset
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 6;
+            EngineViewModel.Engine.EngineSettings.CharacterList.Clear();
 
             // Assert
             var FinalBob = EngineViewModel.Engine.EngineSettings.BattleScore.CharacterModelDeathList.Find(c => c.Name.Equals("Bob"));
@@ -289,7 +292,9 @@ namespace Scenario
 
             //Reset
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
-            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.BattleSettingsModel.CharacterHitEnum = HitStatusEnum.Default;
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 6;
+            EngineViewModel.Engine.EngineSettings.CharacterList.Clear();
 
             //Assert
             Assert.AreEqual(true, result);
@@ -358,6 +363,9 @@ namespace Scenario
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.MonsterHitEnum = HitStatusEnum.Default;
             EngineViewModel.Engine.EngineSettings.BattleSettingsModel.ZombiesEnabled = false;
+            EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 6;
+            EngineViewModel.Engine.EngineSettings.CharacterList.Clear();
+            EngineViewModel.Engine.EngineSettings.MaxRoundCount = 100;
 
             //Assert
             Assert.AreEqual(true, result);
