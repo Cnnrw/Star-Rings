@@ -133,7 +133,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void RandomButton_Clicked(object sender, EventArgs e)
+        void RandomButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Data = RandomPlayerHelper.GetRandomCharacter(20);
             UpdatePageBindingContext();

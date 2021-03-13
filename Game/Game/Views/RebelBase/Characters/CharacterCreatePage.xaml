@@ -12,8 +12,7 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterCreatePage"
-                      PageTitle="{Binding Title}"
-                      IsBackButtonVisible="False">
+                      PageTitle="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
@@ -26,7 +25,6 @@
     </ContentPage.Resources>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png" />
         <ImageButton Clicked="RandomButton_Clicked" />
         <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
     </page:BaseContentPage.ToolbarButtons>
