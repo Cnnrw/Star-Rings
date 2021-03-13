@@ -122,9 +122,20 @@ namespace Game.Engine.EngineGame
         /// Do the Attack
         ///
         /// </summary>
-        public override bool Attack(PlayerInfoModel ActivePlayer)
+        public override bool Attack(PlayerInfoModel Attacker)
         {
-            return base.Attack(ActivePlayer);
+            if (EngineSettings.BattleScore.AutoBattle || EngineSettings.CurrentAttacker.PlayerType == PlayerTypeEnum.Monster)
+            {
+                // For Attack, Choose Who
+                EngineSettings.CurrentDefender = AttackChoice(Attacker);
+
+                if (EngineSettings.CurrentDefender == null) return false;
+            }
+
+            // Do Attack
+            TurnAsAttack(Attacker, EngineSettings.CurrentDefender);
+
+            return true;
         }
 
         /// <summary>
@@ -142,6 +153,7 @@ namespace Game.Engine.EngineGame
         /// </summary>
         public override PlayerInfoModel SelectCharacterToAttack()
         {
+            // TODO: Maybe change this to choose a random Character that has an attribute lower than the monster's (CurrentAttacker)
             // Select the Character with the lowest Current Health (that is still alive)
             var Defender = EngineSettings.PlayerList
                 .Where(c => c.Alive && c.PlayerType == PlayerTypeEnum.Character)
