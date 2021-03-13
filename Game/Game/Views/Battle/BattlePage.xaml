@@ -32,8 +32,7 @@
                 <!-- The top of the screen shows monster info -->
                 <StackLayout x:Name="TopMonstersDisplay">
                     <!-- A box for the selected monster info -->
-                    <StackLayout x:Name="SelectedMonsterBox"
-                                 Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                  Padding="10"
                                  BackgroundColor="DimGray">
                         <Image x:Name="SelectedMonsterIconImage"
@@ -47,30 +46,39 @@
                                    Text=""
                                    Style="{StaticResource MessageStyle}"
                                    TextColor="White"/>
+
                             <Label x:Name="SelectedMonsterLevelLabel"
-                                   Text=""
-                                   Style="{StaticResource LabelStyle}"/>
-                            <Label x:Name="SelectedMonsterHealthLabel"
                                        Text=""
                                        Style="{StaticResource LabelStyle}"/>
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="SelectedMonsterHealthLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"
+                                           Margin="0,0,10,0"/>
+                                <Label x:Name="SelectedMonsterAttackLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"
+                                           Margin="0,0,10,0"/>
+                                <Label x:Name="SelectedMonsterDefenseLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"
+                                           Margin="0,0,10,0"/>
+                                <Label x:Name="SelectedMonsterSpeedLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
 
-                    <!-- A list of monster images -->
-                    <FlexLayout x:Name="MonsterListBox"
+                    <!-- A list of monster figures -->
+                    <FlexLayout x:Name="MonsterFigureArea"
                                 JustifyContent="Center"
                                 BackgroundColor="#40000000"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource HorizontalStack}"
                              HorizontalOptions="CenterAndExpand">
-                    <!--
-                        <Button x:Name="AttackButton"
-                                Text="Next Attack"
-                                Clicked="AttackButton_Clicked"
-                                IsVisible="False"/>
-                        -->
-
                     <Button x:Name="NextRoundButton"
                                 Text="Next Round"
                                 Clicked="NextRoundButton_Clicked"
@@ -85,23 +93,22 @@
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
                 <StackLayout x:Name="BattleBottomBox"
                              VerticalOptions="EndAndExpand">
-                    <!-- The bottom of the screen shows character info -->
+                    <!-- -->
                     <StackLayout x:Name="BottomCharactersDisplay">
-                        <!-- A list of character images -->
-                        <FlexLayout x:Name="CharacterListBox"
+                        <!-- A list of Character figures -->
+                        <FlexLayout x:Name="CharacterFigureArea"
                                     JustifyContent="Center"
                                     BackgroundColor="#40000000"/>
 
                         <!-- A box for the selected character info -->
-                        <StackLayout x:Name="SelectedCharacterBox"
-                                 Orientation="Horizontal"
-                                 Padding="10"
-                                 BackgroundColor="DimGray">
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="10"
+                                     BackgroundColor="DimGray">
                             <Image x:Name="SelectedCharacterIconImage"
-                               Source=""
-                               WidthRequest="100"
-                               HeightRequest="100"
-                               Aspect="AspectFit"
+                                   Source=""
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   Aspect="AspectFit"
                                    Opacity="1.0"/>
 
                             <StackLayout HorizontalOptions="FillAndExpand">
@@ -109,6 +116,7 @@
                                        Text=""
                                        Style="{StaticResource MessageStyle}"
                                        TextColor="White"/>
+                                
                                 <Label x:Name="SelectedCharacterLevelLabel"
                                        Text=""
                                        Style="{StaticResource LabelStyle}"/>

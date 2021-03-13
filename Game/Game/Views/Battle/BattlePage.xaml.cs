@@ -65,34 +65,45 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Dray the Player Boxes
+        ///     Draw the Player Boxes
         /// </summary>
         public void DrawPlayerBoxes()
         {
-            // Clear the character list box
-            var Characters = CharacterListBox.Children.ToList();
-            foreach (var data in Characters) CharacterListBox.Children.Remove(data);
+            // Clear the Character figure area
+            var CharacterFigures = CharacterFigureArea.Children.ToList();
+            foreach (var Figure in CharacterFigures)
+            {
+                CharacterFigureArea.Children.Remove(Figure);
+            }
 
-            // Draw the Characters
-            foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
-                                                      .Where(m => m.PlayerType == PlayerTypeEnum.Character).ToList())
-                CharacterListBox.Children.Add(PlayerInfoDisplayBox(data));
+            // Draw the Character figures
+            foreach (var Player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
+                .Where(m => m.PlayerType == PlayerTypeEnum.Character).ToList())
+            {
+                CharacterFigureArea.Children.Add(PlayerInfoDisplayBox(Player));
+            }
 
-            var monsters = MonsterListBox.Children.ToList();
-            foreach (var data in monsters) MonsterListBox.Children.Remove(data);
+            // Clear the Monster figure area
+            var MonsterFigures = MonsterFigureArea.Children.ToList();
+            foreach (var Figure in MonsterFigures)
+            {
+                MonsterFigureArea.Children.Remove(Figure);
+            }
 
-            // Draw the Monsters
-            foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
-                                                      .Where(m => m.PlayerType == PlayerTypeEnum.Monster).ToList())
-                MonsterListBox.Children.Add(PlayerInfoDisplayBox(data));
+            // Draw the Monster figures
+            foreach (var Player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
+                .Where(m => m.PlayerType == PlayerTypeEnum.Monster).ToList())
+            {
+                MonsterFigureArea.Children.Add(PlayerInfoDisplayBox(Player));
+            }
 
-            // Add one blank PlayerInfoDisplayBox to hold space in case the character list is empty
+            // Add one blank Figure to hold space in case the Character list is empty
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Count() == 0)
-                CharacterListBox.Children.Add(PlayerInfoDisplayBox(null));
+                CharacterFigureArea.Children.Add(PlayerInfoDisplayBox(null));
 
-            // Add one blank PlayerInfoDisplayBox to hold space in case the monster list is empty
+            // Add one blank Figure to hold space in case the Monster list is empty
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Count() == 0)
-                MonsterListBox.Children.Add(PlayerInfoDisplayBox(null));
+                MonsterFigureArea.Children.Add(PlayerInfoDisplayBox(null));
         }
 
         /// <summary>
@@ -750,6 +761,8 @@ namespace Game.Views
         public async void StartButton_Clicked(object sender, EventArgs e)
         {
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
+
+            // Show a new Round page
             ShowBattleMode();
             await Navigation.PushModalAsync(new NewRoundPage());
 
@@ -758,6 +771,8 @@ namespace Game.Views
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CurrentAttacker);
 
             UpdatePlayerDetailsBox(CurrentAttacker);
+
+            //HighlightActingPlayer();
 
             // TODO: ...
         }
@@ -787,8 +802,19 @@ namespace Game.Views
                     SelectedMonsterNameLabel.Text = Player.Name;
                     SelectedMonsterLevelLabel.Text = "Level: " + Player.Level;
                     SelectedMonsterHealthLabel.Text = "HP: " + Player.CurrentHealth;
+                    SelectedMonsterAttackLabel.Text = "ATK: " + Player.Attack;
+                    SelectedMonsterDefenseLabel.Text = "DEF: " + Player.Defense;
+                    SelectedMonsterSpeedLabel.Text = "SPD: " + Player.Speed;
                     break;
             }
+        }
+
+        /// <summary>
+        /// Highlights the gameboard image of a Player (as attacking? Pass in action param?)
+        /// </summary>
+        public void HighlightPlayerFigure(PlayerInfoModel Player)
+        {
+
         }
 
         /// <summary>
