@@ -880,8 +880,8 @@ namespace Game.Views
                 case PlayerTypeEnum.Monster:
                 default:
                     SelectedMonsterIconImage.Source = Player.IconImageURI;
-                    SelectedCharacterNameLabel.Text = Player.Name;
-                    SelectedCharacterLevelLabel.Text = "Level: " + Player.Level;
+                    SelectedMonsterNameLabel.Text = Player.Name;
+                    SelectedMonsterLevelLabel.Text = "Level: " + Player.Level;
                     SelectedMonsterHealthLabel.Text = "HP: " + Player.CurrentHealth;
                     SelectedMonsterAttackLabel.Text = "ATK: " + Player.Attack;
                     SelectedMonsterDefenseLabel.Text = "DEF: " + Player.Defense;
