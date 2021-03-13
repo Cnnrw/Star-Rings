@@ -100,7 +100,7 @@ namespace Game.Engine.EngineGame
 
             int RollResult = DiceHelper.RollDice(1, 100);
 
-            if (RollResult <= 10)
+            if (RollResult <= 80)
             {
                 EngineSettings.CurrentAction = ActionEnum.Attack;
             } else
