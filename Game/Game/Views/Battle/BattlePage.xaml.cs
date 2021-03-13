@@ -188,6 +188,23 @@ namespace Game.Views
             return PlayerFigureStackLayout;
         }
 
+        public void ClearUi()
+        {
+            // Clear Player details boxes
+            ClearPlayerDetailsBoxes();
+
+            // Redraw figures
+            DrawPlayerFigures();
+
+            // Clear battle message
+            BattleMessages.Text = "";
+
+            // Hide action buttons
+            AttackButton.IsVisible = false;
+            BlockButton.IsVisible = false;
+            NextButton.IsVisible = false;
+        }
+
         ///// <summary>
         ///// Pust the Player into a Display Box
         ///// </summary>
@@ -335,6 +352,25 @@ namespace Game.Views
                     SelectedMonsterSpeedLabel.Text = "SPD: " + Player.Speed;
                     break;
             }
+        }
+
+        public void ClearPlayerDetailsBoxes()
+        {
+            SelectedCharacterIconImage.Source = "";
+            SelectedCharacterNameLabel.Text = "";
+            SelectedCharacterLevelLabel.Text = "";
+            SelectedCharacterHealthLabel.Text = "";
+            SelectedCharacterAttackLabel.Text = "";
+            SelectedCharacterDefenseLabel.Text = "";
+            SelectedCharacterSpeedLabel.Text = "";
+
+            SelectedCharacterIconImage.Source = "";
+            SelectedCharacterNameLabel.Text = "";
+            SelectedCharacterLevelLabel.Text = "";
+            SelectedCharacterHealthLabel.Text = "";
+            SelectedCharacterAttackLabel.Text = "";
+            SelectedCharacterDefenseLabel.Text = "";
+            SelectedCharacterSpeedLabel.Text = "";
         }
 
         ///// <summary>
@@ -683,25 +719,47 @@ namespace Game.Views
         #region BasicBattleMode
 
         /// <summary>
-        /// Attack Action
+        /// Set Character attack action
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void AttackButton_Clicked(object sender, EventArgs e)
         {
-            //NextAttackExample();
-
             PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
-            BattleMessages.Text = "Who should " + CurrentPlayer.Name + " attack?";
+            BattleMessages.Text = "Who should " + CurrentPlayer.Name + " try to attack?";
 
             // Update battle state and current action
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
             BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Attack;
+
+            // Hide action buttons
+            AttackButton.IsVisible = false;
+            BlockButton.IsVisible = false;
         }
 
         /// <summary>
-        ///     Settings Page
+        /// Set Character block action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void BlockButton_Clicked(object sender, EventArgs e)
+        {
+            PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+
+            BattleMessages.Text = "Who should " + CurrentPlayer.Name + " try to block?";
+
+            // Update battle state and current action
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Block;
+
+            // Hide action buttons
+            AttackButton.IsVisible = false;
+            BlockButton.IsVisible = false;
+        }
+
+        /// <summary>
+        /// Settings Page
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -718,6 +776,14 @@ namespace Game.Views
             // Set the selected Monster as the target
             string TargetPlayerGuid = ((ImageButton)sender).BindingContext as string;
             PlayerInfoModel TargetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Find(m => m.Guid == TargetPlayerGuid);
+
+            // Don't allow the user to select a Character target
+            if (TargetMonster.PlayerType == PlayerTypeEnum.Character)
+            {
+                BattleMessages.Text = "Hey, " + TargetMonster.Name + " is on your side! Pick a monster!";
+                return;
+            }
+
             BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender = TargetMonster;
 
             // Update the Monster details box
@@ -1031,18 +1097,7 @@ namespace Game.Views
         /// </summary>
         public void StartTurn()
         {
-            // TODO: Clear Character and Monster details boxes
-
-            // Redraw figures
-            DrawPlayerFigures();
-
-            // Clear battle message
-            BattleMessages.Text = "";
-
-            // Hide/disable action buttons
-            AttackButton.IsVisible = false;
-            BlockButton.IsVisible = false;
-            NextButton.IsVisible = false;
+            ClearUi();
 
             // Determine the current Player
             PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
@@ -1077,7 +1132,7 @@ namespace Game.Views
             BattleMessages.Text = BattleMessage;
 
             // Set the BattleState to ChoosingTarget
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
+            //BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
 
             // Show/Enable action buttons
             AttackButton.IsVisible = true;

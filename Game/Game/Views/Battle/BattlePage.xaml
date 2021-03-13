@@ -157,6 +157,7 @@
 
                                 <Button x:Name="BlockButton"
                                         Text="Block"
+                                        Clicked="BlockButton_Clicked"
                                         IsEnabled="False"
                                         IsVisible="False"/>
                             </StackLayout>
