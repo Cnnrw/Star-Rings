@@ -655,7 +655,12 @@ namespace Game.Views
         public void AttackButton_Clicked(object sender, EventArgs e)
         {
             //NextAttackExample();
-            PerformAttack();
+            //PerformAttack();
+
+            PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+
+            string BattleMessage = "Who should " + CurrentPlayer.Name + " attack?";
+            BattleMessages.Text = BattleMessage;
         }
 
         /// <summary>
@@ -914,7 +919,11 @@ namespace Game.Views
                 : " They're planning their strategy...";
             BattleMessages.Text = BattleMessage;
 
-            if (CurrentPlayer.PlayerType == PlayerTypeEnum.Monster)
+            if (CurrentPlayer.PlayerType == PlayerTypeEnum.Character)
+            {
+                AttackButton.IsEnabled = true;
+                BlockButton.IsEnabled = true;
+            } else
             {
                 // TODO: Wait a second, then have them decide their action and act
             }
