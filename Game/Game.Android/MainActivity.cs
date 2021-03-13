@@ -9,7 +9,7 @@ namespace Game.Droid
     [Activity(
                  Label = "StarRings",
                  Icon = "@mipmap/icon",
-                 Theme = "@style/MainTheme.Launcher",
+                 Theme = "@style/SplashTheme",
                  MainLauncher = true,
                  ConfigurationChanges = ConfigChanges.ScreenSize |
                                         ConfigChanges.Orientation |
