@@ -6,29 +6,45 @@ using Android.Views;
 
 namespace Game.Droid
 {
-    [Activity(Label = "StarRings", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true,
-              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(
+                 Label = "StarRings",
+                 Icon = "@mipmap/icon",
+                 Theme = "@style/MainTheme.Launcher",
+                 MainLauncher = true,
+                 ConfigurationChanges = ConfigChanges.ScreenSize |
+                                        ConfigChanges.Orientation |
+                                        ConfigChanges.UiMode |
+                                        ConfigChanges.ScreenLayout |
+                                        ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            base.SetTheme(Resource.Style.MainTheme);
 
-            SetTheme(Resource.Style.MainTheme);
             base.OnCreate(savedInstanceState);
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            Window.AddFlags(WindowManagerFlags.Fullscreen);
-            Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+            //====================================
+            if (Window != null)
+            {
+                var uiOptions = (int)Window.DecorView.SystemUiVisibility;
+
+                uiOptions |= (int)SystemUiFlags.LowProfile;
+                uiOptions |= (int)SystemUiFlags.Fullscreen;
+                uiOptions |= (int)SystemUiFlags.HideNavigation;
+                uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
+
+                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+            }
+            //====================================
 
             LoadApplication(new App());
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions,
-                                                        [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int                          requestCode, string[] permissions,
+                                                        [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
