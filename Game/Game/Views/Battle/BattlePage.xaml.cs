@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Game.Enums;
 using Game.Models;
 using Game.ViewModels;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Game.Views
@@ -54,12 +51,7 @@ namespace Game.Views
             // Start the Battle Engine
             BattleEngineViewModel.Instance.Engine.StartBattle(false);
 
-            // Set the background image to match the round location
-            SetBackgroundImage();
-
-            HideBattleUIElements();
-
-            StartBattleButton.Text = "Explore " + BattleEngineViewModel.Instance.Engine.Round.RoundLocation.ToMessageWithArticle();
+            EnterNewRoundLocation();
 
             // Ask the Game engine to select who goes first
             //BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
@@ -71,14 +63,32 @@ namespace Game.Views
             //ShowBattleMode();
         }
 
+        /// <summary>
+        /// Update the page to display entry into a new Round
+        /// Hides the UI, updates the location background, and shows a button to enter 
+        /// </summary>
+        public void EnterNewRoundLocation()
+        {
+            HideBattleUIElements();
+
+            // Set the background image to match the round location
+            SetBackgroundImage();
+
+            StartBattleButton.Text = "Enter " + BattleEngineViewModel.Instance.Engine.Round.RoundLocation.ToMessageWithArticle();
+        }
+
+        /// <summary>
+        /// Hides the Monster, Character, and message boxes
+        /// </summary>
         public void HideBattleUIElements()
         {
-            //NextRoundButton.IsVisible = false;
-            //AttackButton.IsVisible = false;
             BattleBottomBox.IsVisible = false;
             TopMonstersDisplay.IsVisible = false;
         }
 
+        /// <summary>
+        /// Shows the Monster, Character, and message boxes
+        /// </summary>
         public void ShowBattleUIElements()
         {
             BattleBottomBox.IsVisible = true;
@@ -86,9 +96,9 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Draw the Player figures
+        /// Draws the Player figures
         /// </summary>
-        public void DrawPlayerFigureAreas()
+        public void DrawPlayerFigures()
         {
             PlayerFigures.Clear();
 
@@ -138,9 +148,9 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Creates a Player figure StackLayout
+        /// Creates a Player figure
         /// </summary>
-        /// <param name="Player"></param>
+        /// <param name="Player">The Player to make the figure for</param>
         /// <returns></returns>
         public StackLayout CreatePlayerFigure(PlayerInfoModel Player)
         {
@@ -175,37 +185,40 @@ namespace Game.Views
             return PlayerFigureStackLayout;
         }
 
+        ///// <summary>
+        ///// Pust the Player into a Display Box
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //public StackLayout PlayerInfoDisplayBox(PlayerInfoModel data)
+        //{
+        //    data ??= new PlayerInfoModel {ImageURI = ""};
+
+        //    // Hookup the image
+        //    var playerImage = new Image
+        //    {
+        //        Source = data.ImageURI,
+        //        Style = Application.Current.Resources.TryGetValue("PlayerBattleMediumStyle", out var imageStyle)
+        //                    ? (Style)imageStyle
+        //                    : null
+        //    };
+
+        //    // Put the Image Button and Text inside a layout
+        //    var playerStack = new StackLayout
+        //    {
+        //        //Style = (Style)Application.Current.Resources["PlayerBattleDisplayBox"],
+        //        Style = Application.Current.Resources.TryGetValue("PlayerBattleDisplayBox", out var stackStyle)
+        //                    ? (Style)stackStyle
+        //                    : null,
+        //        Children = {playerImage}
+        //    };
+
+        //    return playerStack;
+        //}
+
         /// <summary>
-        ///     Put the Player into a Display Box
+        /// Behavior just before the page appears
         /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public StackLayout PlayerInfoDisplayBox(PlayerInfoModel data)
-        {
-            data ??= new PlayerInfoModel {ImageURI = ""};
-
-            // Hookup the image
-            var playerImage = new Image
-            {
-                Source = data.ImageURI,
-                Style = Application.Current.Resources.TryGetValue("PlayerBattleMediumStyle", out var imageStyle)
-                            ? (Style)imageStyle
-                            : null
-            };
-
-            // Put the Image Button and Text inside a layout
-            var playerStack = new StackLayout
-            {
-                //Style = (Style)Application.Current.Resources["PlayerBattleDisplayBox"],
-                Style = Application.Current.Resources.TryGetValue("PlayerBattleDisplayBox", out var stackStyle)
-                            ? (Style)stackStyle
-                            : null,
-                Children = {playerImage}
-            };
-
-            return playerStack;
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -226,9 +239,9 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Show the proper Battle Mode
+        /// Shows the proper Battle Mode
         /// </summary>
-        public async void ShowBattleMode()
+        public void ShowBattleMode()
         {
             // If running in UT mode,
             if (_unitTestSetting) return;
@@ -237,7 +250,7 @@ namespace Game.Views
 
             ClearMessages();
 
-            DrawPlayerFigureAreas();
+            DrawPlayerFigures();
 
             // Update the Mode
             BattleModeValue.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
@@ -654,9 +667,8 @@ namespace Game.Views
 
         public void PerformAttack()
         {
-            //PlayerInfoModel CurrentAttacker = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-            //await DisplayAlert("Alert", "You have been alerted", "OK");
-            //PlayerFigures[CurrentAttacker.Guid].BackgroundColor = Color.Green;
+            PlayerInfoModel CurrentAttacker = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            PlayerFigures[CurrentAttacker.Guid].BackgroundColor = Color.Green;
         }
 
         ///// <summary>
@@ -844,18 +856,10 @@ namespace Game.Views
 
             await Navigation.PushModalAsync(new NewRoundPage());
 
-            // Determine the active Player
-            PlayerInfoModel ActivePlayer = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(ActivePlayer);
-
-            // Show their details in the corresponding details box
-            UpdatePlayerDetailsBox(ActivePlayer);
-
-            // Highlight their figure
-            StackLayout CurrentPlayerFigure = PlayerFigures[ActivePlayer.Guid];
-            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44a6cc7e");
-
+            // Show the Monster, Character, and Message boxes
             ShowBattleUIElements();
+
+            StartTurn();
         }
 
         /// <summary>
@@ -890,12 +894,30 @@ namespace Game.Views
             }
         }
 
-        /// <summary>
-        /// Highlights the gameboard image of a Player (as attacking? Pass in action param?)
-        /// </summary>
-        public void HighlightPlayerFigure(PlayerInfoModel Player)
+        public void StartTurn()
         {
+            // Determine the current Player
+            PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
+            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CurrentPlayer);
 
+            // Show their details in the corresponding details box
+            UpdatePlayerDetailsBox(CurrentPlayer);
+
+            // Highlight their figure
+            StackLayout CurrentPlayerFigure = PlayerFigures[CurrentPlayer.Guid];
+            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44a6cc7e");
+
+            // Show battle message stating whose turn it is
+            string BattleMessage = "It's " + CurrentPlayer.Name + "'s turn!";
+            BattleMessage += (CurrentPlayer.PlayerType == PlayerTypeEnum.Character)
+                ? " What should they do?"
+                : " They're planning their strategy...";
+            BattleMessages.Text = BattleMessage;
+
+            if (CurrentPlayer.PlayerType == PlayerTypeEnum.Monster)
+            {
+                // TODO: Wait a second, then have them decide their action and act
+            }
         }
 
         /// <summary>
