@@ -544,47 +544,47 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        [Test]
-        public void BattlePage_SetSelectedCharacter_Default_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_SetSelectedCharacter_Default_Should_Pass()
+        //{
+        //    // Arrange
 
-            // Act
-            var result = page.SetSelectedCharacter(new MapModelLocation());
+        //    // Act
+        //    var result = page.SetSelectedCharacter(new MapModelLocation());
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.AreEqual(true, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(true, result); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_SetSelectedMonster_Default_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_SetSelectedMonster_Default_Should_Pass()
+        //{
+        //    // Arrange
 
-            // Act
-            var result = page.SetSelectedMonster(new MapModelLocation());
+        //    // Act
+        //    var result = page.SetSelectedMonster(new MapModelLocation());
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.AreEqual(true, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(true, result); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_SetSelectedEmpty_Default_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_SetSelectedEmpty_Default_Should_Pass()
+        //{
+        //    // Arrange
 
-            // Act
-            var result = page.SetSelectedEmpty(new MapModelLocation());
+        //    // Act
+        //    var result = page.SetSelectedEmpty(new MapModelLocation());
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.AreEqual(true, result); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.AreEqual(true, result); // Got to here, so it happened...
+        //}
 
         //[Test]
         //public void BattlePage_UpdateMapGrid_InValid_Bogus_Image_Should_Fail()
@@ -1046,31 +1046,31 @@ namespace UnitTests.Views
         //        Assert.IsTrue(true); // Got Here
         //    }
 
-        [Test]
-        public void BattleSettingsPage_DetermineMapBackgroundColor_Should_Pass()
-        {
-            // Arrange
-            MapModelLocation character = new MapModelLocation();
-            character.Player.PlayerType = PlayerTypeEnum.Character;
-            MapModelLocation monster = new MapModelLocation();
-            monster.Player.PlayerType = PlayerTypeEnum.Monster;
-            MapModelLocation unknown = new MapModelLocation();
-            unknown.Player.PlayerType = PlayerTypeEnum.Unknown;
-            MapModelLocation defaultCase = new MapModelLocation();
+        //[Test]
+        //public void BattleSettingsPage_DetermineMapBackgroundColor_Should_Pass()
+        //{
+        //    // Arrange
+        //    MapModelLocation character = new MapModelLocation();
+        //    character.Player.PlayerType = PlayerTypeEnum.Character;
+        //    MapModelLocation monster = new MapModelLocation();
+        //    monster.Player.PlayerType = PlayerTypeEnum.Monster;
+        //    MapModelLocation unknown = new MapModelLocation();
+        //    unknown.Player.PlayerType = PlayerTypeEnum.Unknown;
+        //    MapModelLocation defaultCase = new MapModelLocation();
 
-            // Act
-            var characterColor = BattlePage.DetermineMapBackgroundColor(character);
-            var monsterColor = BattlePage.DetermineMapBackgroundColor(monster);
-            var unknownColor = BattlePage.DetermineMapBackgroundColor(unknown);
-            var defaultColor = BattlePage.DetermineMapBackgroundColor(defaultCase);
+        //    // Act
+        //    var characterColor = BattlePage.DetermineMapBackgroundColor(character);
+        //    var monsterColor = BattlePage.DetermineMapBackgroundColor(monster);
+        //    var unknownColor = BattlePage.DetermineMapBackgroundColor(unknown);
+        //    var defaultColor = BattlePage.DetermineMapBackgroundColor(defaultCase);
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.AreEqual(characterColor, Color.Purple); 
-            Assert.AreEqual(monsterColor, Color.Lavender); 
-            Assert.AreEqual(unknownColor, Color.Transparent); 
-            Assert.AreEqual(defaultColor, Color.Transparent);
-        }
+        //    // Assert
+        //    Assert.AreEqual(characterColor, Color.Purple); 
+        //    Assert.AreEqual(monsterColor, Color.Lavender); 
+        //    Assert.AreEqual(unknownColor, Color.Transparent); 
+        //    Assert.AreEqual(defaultColor, Color.Transparent);
+        //}
     }
 }

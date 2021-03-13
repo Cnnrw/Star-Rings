@@ -46,7 +46,7 @@ namespace Game.Views
             BindingContext = BattleEngineViewModel.Instance;
 
             // Create and Draw the Map
-            InitializeMapGrid();
+            //InitializeMapGrid();
 
             // Start the Battle Engine
             BattleEngineViewModel.Instance.Engine.StartBattle(false);
@@ -285,17 +285,17 @@ namespace Game.Views
 
         #region BattleMapMode
 
-        /// <summary>
-        ///     Create the Initial Map Grid
-        ///     All locations are empty
-        /// </summary>
-        /// <returns></returns>
-        public bool InitializeMapGrid()
-        {
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.ClearMapGrid();
+        ///// <summary>
+        /////     Create the Initial Map Grid
+        /////     All locations are empty
+        ///// </summary>
+        ///// <returns></returns>
+        //public bool InitializeMapGrid()
+        //{
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.ClearMapGrid();
 
-            return true;
-        }
+        //    return true;
+        //}
 
         // /// <summary>
         // /// Walk the current grid
@@ -348,41 +348,41 @@ namespace Game.Views
         //    return true;
         //}
 
-        /// <summary>
-        ///     Convert the Stack to a name for the dictionary to lookup
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        static string GetDictionaryFrameName(MapModelLocation data) =>
-            $"MapR{data.Row}C{data.Column}Frame";
+        ///// <summary>
+        /////     Convert the Stack to a name for the dictionary to lookup
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //static string GetDictionaryFrameName(MapModelLocation data) =>
+        //    $"MapR{data.Row}C{data.Column}Frame";
 
-        /// <summary>
-        ///     Convert the Stack to a name for the dictionary to lookup
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        static string GetDictionaryStackName(MapModelLocation data) =>
-            $"MapR{data.Row}C{data.Column}Stack";
+        ///// <summary>
+        /////     Convert the Stack to a name for the dictionary to lookup
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //static string GetDictionaryStackName(MapModelLocation data) =>
+        //    $"MapR{data.Row}C{data.Column}Stack";
 
-        /// <summary>
-        ///     Covert the player map location to a name for the dictionary to lookup
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        static string GetDictionaryImageButtonName(MapModelLocation data) =>
-            // Look up the Frame in the Dictionary
-            $"MapR{data.Row}C{data.Column}ImageButton";
+        ///// <summary>
+        /////     Covert the player map location to a name for the dictionary to lookup
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //static string GetDictionaryImageButtonName(MapModelLocation data) =>
+        //    // Look up the Frame in the Dictionary
+        //    $"MapR{data.Row}C{data.Column}ImageButton";
 
-        /// <summary>
-        ///     Get the Frame from the Dictionary
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        object GetMapGridObject(string name)
-        {
-            _mapLocationObject.TryGetValue(name, out var data);
-            return data;
-        }
+        ///// <summary>
+        /////     Get the Frame from the Dictionary
+        ///// </summary>
+        ///// <param name="name"></param>
+        ///// <returns></returns>
+        //object GetMapGridObject(string name)
+        //{
+        //    _mapLocationObject.TryGetValue(name, out var data);
+        //    return data;
+        //}
 
         // /// <summary>
         // /// Make the Game Map Frame
@@ -520,91 +520,91 @@ namespace Game.Views
         //    return data;
         //}
 
-        /// <summary>
-        ///     Set the Background color for the tile.
-        ///     Monsters and Characters have different colors
-        ///     Empty cells are transparent
-        /// </summary>
-        /// <param name="mapModel"></param>
-        /// <returns></returns>
-        internal static Color DetermineMapBackgroundColor(MapModelLocation mapModel)
-        {
-            string battleMapBackgroundColor = null;
-            switch (mapModel.Player.PlayerType)
-            {
-                case PlayerTypeEnum.Character:
-                    battleMapBackgroundColor = "BattleMapCharacterColor";
-                    break;
-                case PlayerTypeEnum.Monster:
-                    battleMapBackgroundColor = "BattleMapMonsterColor";
-                    break;
-                case PlayerTypeEnum.Unknown:
-                    break;
-                default:
-                    battleMapBackgroundColor = "BattleMapTransparentColor";
-                    break;
-            }
+        ///// <summary>
+        /////     Set the Background color for the tile.
+        /////     Monsters and Characters have different colors
+        /////     Empty cells are transparent
+        ///// </summary>
+        ///// <param name="mapModel"></param>
+        ///// <returns></returns>
+        //internal static Color DetermineMapBackgroundColor(MapModelLocation mapModel)
+        //{
+        //    string battleMapBackgroundColor = null;
+        //    switch (mapModel.Player.PlayerType)
+        //    {
+        //        case PlayerTypeEnum.Character:
+        //            battleMapBackgroundColor = "BattleMapCharacterColor";
+        //            break;
+        //        case PlayerTypeEnum.Monster:
+        //            battleMapBackgroundColor = "BattleMapMonsterColor";
+        //            break;
+        //        case PlayerTypeEnum.Unknown:
+        //            break;
+        //        default:
+        //            battleMapBackgroundColor = "BattleMapTransparentColor";
+        //            break;
+        //    }
 
-            return Application.Current.Resources.TryGetValue(battleMapBackgroundColor ?? string.Empty, out var val)
-                       ? (Color)val
-                       : Color.Transparent;
-        }
+        //    return Application.Current.Resources.TryGetValue(battleMapBackgroundColor ?? string.Empty, out var val)
+        //               ? (Color)val
+        //               : Color.Transparent;
+        //}
 
         #region MapEvents
 
-        /// <summary>
-        ///     Event when an empty location is clicked on
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public bool SetSelectedEmpty(MapModelLocation data)
-        {
-            // TODO: Info
-            /*
-             * This gets called when the characters is clicked on
-             * Usefull if you want to select the location to move to etc.
-             *
-             * For Mike's simple battle grammar there is no selection of action so I just return true
-             */
-            return true;
-        }
+        ///// <summary>
+        /////     Event when an empty location is clicked on
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //public bool SetSelectedEmpty(MapModelLocation data)
+        //{
+        //    // TODO: Info
+        //    /*
+        //     * This gets called when the characters is clicked on
+        //     * Usefull if you want to select the location to move to etc.
+        //     *
+        //     * For Mike's simple battle grammar there is no selection of action so I just return true
+        //     */
+        //    return true;
+        //}
 
-        /// <summary>
-        ///     Event when a Monster is clicked on
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public bool SetSelectedMonster(MapModelLocation data)
-        {
-            // TODO: Info
+        ///// <summary>
+        /////     Event when a Monster is clicked on
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //public bool SetSelectedMonster(MapModelLocation data)
+        //{
+        //    // TODO: Info
 
-            /*
-             * This gets called when the Monster is clicked on
-             * Usefull if you want to select the monster to attack etc.
-             *
-             * For Mike's simple battle grammar there is no selection of action so I just return true
-             */
+        //    /*
+        //     * This gets called when the Monster is clicked on
+        //     * Usefull if you want to select the monster to attack etc.
+        //     *
+        //     * For Mike's simple battle grammar there is no selection of action so I just return true
+        //     */
 
-            data.IsSelectedTarget = true;
-            return true;
-        }
+        //    data.IsSelectedTarget = true;
+        //    return true;
+        //}
 
-        /// <summary>
-        ///     Event when a Character is clicked on
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public bool SetSelectedCharacter(MapModelLocation data)
-        {
-            // TODO: Info
-            /*
-             * This gets called when the characters is clicked on
-             * Usefull if you want to select the character and then set state or do something
-             *
-             * For Mike's simple battle grammar there is no selection of action so I just return true
-             */
-            return true;
-        }
+        ///// <summary>
+        /////     Event when a Character is clicked on
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //public bool SetSelectedCharacter(MapModelLocation data)
+        //{
+        //    // TODO: Info
+        //    /*
+        //     * This gets called when the characters is clicked on
+        //     * Usefull if you want to select the character and then set state or do something
+        //     *
+        //     * For Mike's simple battle grammar there is no selection of action so I just return true
+        //     */
+        //    return true;
+        //}
 
         #endregion MapEvents
 
