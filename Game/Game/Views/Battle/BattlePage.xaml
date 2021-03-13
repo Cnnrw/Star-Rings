@@ -178,6 +178,15 @@
                                    CharacterSpacing="1"
                                    TextColor="Black"/>
                         </StackLayout>
+
+
+
+                        <Button x:Name="NextButton"
+                                Text="Next"
+                                Clicked="NextButton_Clicked"
+                                IsEnabled="False"
+                                IsVisible="False"
+                                HorizontalOptions="End"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

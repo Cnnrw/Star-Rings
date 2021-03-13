@@ -165,7 +165,7 @@ namespace Game.Views
                 WidthRequest = 100,
                 HeightRequest = 100,
                 Aspect = Aspect.AspectFit,
-                BindingContext = Player.Guid,
+                BindingContext = Player.Guid
             };
             PlayerFigureImageButton.Clicked += FigureButton_Clicked;
 
@@ -676,12 +676,13 @@ namespace Game.Views
 
         public void FigureButton_Clicked(object sender, EventArgs e)
         {
+            // Ignore selection if 
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingTarget)
             {
                 return;
             }
 
-            //ImageButton FigureButton = sender as ImageButton;
+            // Determine which Player was selected as the target
             string TargetPlayerGuid = ((ImageButton)sender).BindingContext as string;
 
             // Highlight their figure
@@ -882,6 +883,29 @@ namespace Game.Views
             StartTurn();
         }
 
+        public void NextButton_Clicked(object sender, EventArgs e)
+        {
+            DoMonsterTurn();
+        }
+
+        public void DoMonsterTurn()
+        {
+            PlayerInfoModel ActiveMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(ActiveMonster);
+
+            // Choose which Character to target
+            //PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.Round.Turn.SelectCharacterToAttack();
+            PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
+
+            UpdatePlayerDetailsBox(TargetCharacter);
+
+            // Highlight their figure
+            StackLayout CurrentPlayerFigure = PlayerFigures[TargetCharacter.Guid];
+            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44ff6666");
+
+            BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
+        }
+
         /// <summary>
         /// Updates the information displayed in a given Player's details box.
         /// </summary>
@@ -914,6 +938,9 @@ namespace Game.Views
             }
         }
 
+        /// <summary>
+        /// Determines the next Player and lets them act.
+        /// </summary>
         public void StartTurn()
         {
             // Determine the current Player
@@ -927,21 +954,48 @@ namespace Game.Views
             StackLayout CurrentPlayerFigure = PlayerFigures[CurrentPlayer.Guid];
             CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44a6cc7e");
 
-            // Show battle message stating whose turn it is
-            string BattleMessage = "It's " + CurrentPlayer.Name + "'s turn!";
-            BattleMessage += (CurrentPlayer.PlayerType == PlayerTypeEnum.Character)
-                ? " What should they do?"
-                : " They're planning their strategy...";
-            BattleMessages.Text = BattleMessage;
-
+            // A Character's turn action is chosen by the game player. A Monster's action is chosen automatically
             if (CurrentPlayer.PlayerType == PlayerTypeEnum.Character)
             {
-                AttackButton.IsEnabled = true;
-                BlockButton.IsEnabled = true;
+                StartCharacterTurn();
             } else
             {
-                // TODO: Wait a second, then have them decide their action and act
+                StartMonsterTurn();
             }
+        }
+
+        /// <summary>
+        /// Lets the user choose what the active Character should do.
+        /// </summary>
+        public void StartCharacterTurn()
+        {
+            PlayerInfoModel ActiveCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+
+            // Show battle message stating whose turn it is
+            string BattleMessage = "It's " + ActiveCharacter.Name + "'s turn! What should they do?";
+            BattleMessages.Text = BattleMessage;
+
+            // Set the BattleState to ChoosingTarget
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingTarget;
+
+            // Enable action buttons
+            AttackButton.IsEnabled = true;
+            BlockButton.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// Automatically determines and performs the active Monster's action.
+        /// </summary>
+        public void StartMonsterTurn()
+        {
+            PlayerInfoModel ActiveMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+
+            // Show battle message stating whose turn it is
+            string BattleMessage = "It's " + ActiveMonster.Name + "'s turn! Watch out!";
+            BattleMessages.Text = BattleMessage;
+
+            NextButton.IsVisible = true;
+            NextButton.IsEnabled = true;
         }
 
         /// <summary>
