@@ -12,10 +12,7 @@ namespace Game.Droid
                  Theme = "@style/SplashTheme",
                  MainLauncher = true,
                  ConfigurationChanges = ConfigChanges.ScreenSize |
-                                        ConfigChanges.Orientation |
-                                        ConfigChanges.UiMode |
-                                        ConfigChanges.ScreenLayout |
-                                        ConfigChanges.SmallestScreenSize)]
+                                        ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -43,8 +40,7 @@ namespace Game.Droid
             LoadApplication(new App());
         }
 
-        public override void OnRequestPermissionsResult(int                          requestCode, string[] permissions,
-                                                        [GeneratedEnum] Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
