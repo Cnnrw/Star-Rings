@@ -79,17 +79,20 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource HorizontalStack}"
-                             HorizontalOptions="CenterAndExpand">
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
                     <Button x:Name="NextRoundButton"
                                 Text="Next Round"
                                 Clicked="NextRoundButton_Clicked"
                                 IsVisible="False"/>
 
                     <Button x:Name="StartBattleButton"
-                                Text="Explore"
-                                Clicked="StartButton_Clicked"
+                            Text="Explore"
+                            Clicked="StartButton_Clicked"
+                            VerticalOptions="CenterAndExpand"
                             HeightRequest="80"
                             Padding="20"
+                            BackgroundColor="#ddaaaaaa"
                             FontSize="Large"
                             FontFamily="8bit_bold"/>
                 </StackLayout>
