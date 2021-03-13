@@ -99,8 +99,8 @@ namespace Game.Engine.EngineGame
              */
 
             int RollResult = DiceHelper.RollDice(1, 100);
-
-            if (RollResult <= 80)
+            //TODO
+            if (RollResult <= 0)
             {
                 EngineSettings.CurrentAction = ActionEnum.Attack;
             } else
@@ -251,7 +251,7 @@ namespace Game.Engine.EngineGame
         /// <returns></returns>
         public bool Block(PlayerInfoModel Blocker)
         {
-            if (EngineSettings.BattleScore.AutoBattle)
+            if (EngineSettings.BattleScore.AutoBattle || EngineSettings.CurrentAttacker.PlayerType == PlayerTypeEnum.Monster)
             {
                 // Choose who to block
                 EngineSettings.CurrentDefender = BlockChoice(Blocker);
