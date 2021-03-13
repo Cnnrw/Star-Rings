@@ -106,7 +106,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual("a dungeon", result);
+            Assert.AreEqual("the dungeon", result);
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace UnitTests.Models
             // Reset
 
             // Assert
-            Assert.AreEqual("an Elven city", result);
+            Assert.AreEqual("the Elven city", result);
         }
 
         [Test]

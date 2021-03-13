@@ -85,9 +85,9 @@ namespace Game.Enums
             value switch
             {
                 BattleLocationEnum.Shire     => "the Shire",
-                BattleLocationEnum.ElvenCity => "an Elven city",
+                BattleLocationEnum.ElvenCity => "the Elven city",
                 BattleLocationEnum.Forest    => "the forest",
-                BattleLocationEnum.Dungeons  => "a dungeon",
+                BattleLocationEnum.Dungeons  => "the dungeon",
                 BattleLocationEnum.Mordor    => "Mordor",
                 _                            => "Battle location"
             };
