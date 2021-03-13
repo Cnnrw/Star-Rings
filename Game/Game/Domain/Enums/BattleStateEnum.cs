@@ -28,6 +28,8 @@ namespace Game.Enums
 
         StartingMonsterTurn = 7,
 
-        EndingMonsterTurn = 8
+        EndingMonsterTurn = 8,
+
+        EndingCharacterTurn = 9
     }
 }
