@@ -97,6 +97,7 @@
                     <StackLayout x:Name="BottomCharactersDisplay">
                         <!-- A list of Character figures -->
                         <FlexLayout x:Name="CharacterFigureArea"
+                                    Padding="10"
                                     JustifyContent="Center"
                                     BackgroundColor="#40000000"/>
 

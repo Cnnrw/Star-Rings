@@ -80,7 +80,8 @@ namespace Game.Views
             foreach (var Player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
                 .Where(m => m.PlayerType == PlayerTypeEnum.Character).ToList())
             {
-                CharacterFigureArea.Children.Add(PlayerInfoDisplayBox(Player));
+                // CharacterFigureArea.Children.Add(PlayerInfoDisplayBox(Player));
+                CharacterFigureArea.Children.Add(CreatePlayerFigure(Player));
             }
 
             // Clear the Monster figure area
@@ -94,16 +95,62 @@ namespace Game.Views
             foreach (var Player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
                 .Where(m => m.PlayerType == PlayerTypeEnum.Monster).ToList())
             {
-                MonsterFigureArea.Children.Add(PlayerInfoDisplayBox(Player));
+                //MonsterFigureArea.Children.Add(PlayerInfoDisplayBox(Player));
+                MonsterFigureArea.Children.Add(CreatePlayerFigure(Player));
             }
 
             // Add one blank Figure to hold space in case the Character list is empty
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Count() == 0)
-                CharacterFigureArea.Children.Add(PlayerInfoDisplayBox(null));
+            {
+                //CharacterFigureArea.Children.Add(PlayerInfoDisplayBox(null));
+                CharacterFigureArea.Children.Add(CreatePlayerFigure(null));
+            }
+                
 
             // Add one blank Figure to hold space in case the Monster list is empty
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Count() == 0)
-                MonsterFigureArea.Children.Add(PlayerInfoDisplayBox(null));
+            {
+                //MonsterFigureArea.Children.Add(PlayerInfoDisplayBox(null));
+                MonsterFigureArea.Children.Add(CreatePlayerFigure(null));
+            }
+        }
+
+        /// <summary>
+        /// Creates a Player figure StackLayout
+        /// </summary>
+        /// <param name="Player"></param>
+        /// <returns></returns>
+        public StackLayout CreatePlayerFigure(PlayerInfoModel Player)
+        {
+            Player ??= new PlayerInfoModel {
+                Name = "",
+                ImageURI = ""
+            };
+
+            var PlayerFigureImageButton = new ImageButton
+            {
+                Source = Player.ImageURI,
+                WidthRequest = 100,
+                HeightRequest = 100,
+                Aspect = Aspect.AspectFit
+            };
+
+            var PlayerFigureLabel = new Label
+            {
+                Text = Player.Name,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+
+            var PlayerFigureStackLayout = new StackLayout
+            {
+                Children =
+                {
+                    PlayerFigureImageButton,
+                    PlayerFigureLabel
+                }
+            };
+
+            return PlayerFigureStackLayout;
         }
 
         /// <summary>
