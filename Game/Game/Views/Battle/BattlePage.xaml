@@ -75,7 +75,7 @@
                     <FlexLayout x:Name="MonsterFigureArea"
                                 Padding="10"
                                 JustifyContent="Center"
-                                BackgroundColor="#40000000"/>
+                                BackgroundColor="#66666666"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource HorizontalStack}"
@@ -106,7 +106,7 @@
                         <FlexLayout x:Name="CharacterFigureArea"
                                     Padding="10"
                                     JustifyContent="Center"
-                                    BackgroundColor="#40000000"/>
+                                    BackgroundColor="#66666666"/>
 
                         <!-- A box for the selected character info -->
                         <StackLayout Orientation="Horizontal"
