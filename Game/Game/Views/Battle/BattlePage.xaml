@@ -162,13 +162,13 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal"
-                                 Padding="30,15,30,15"
+                                 Padding="20,15,20,15"
                                  HeightRequest="100"
                                  BackgroundColor="Tan">
                         <StackLayout x:Name="MessageDisplayBox"
                                      HorizontalOptions="FillAndExpand">
                             <Label x:Name="BattleMessages"
-                                   Text="Obi-Wan moves to attack Grog!&#10;Grog is hit and their HP falls to 4!"
+                                   Text=""
                                    Style="{StaticResource LabelStyle}"
                                    LineBreakMode="WordWrap"
                                    MaxLines="3"
