@@ -750,9 +750,45 @@ namespace Game.Views
         public async void StartButton_Clicked(object sender, EventArgs e)
         {
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
-
             ShowBattleMode();
             await Navigation.PushModalAsync(new NewRoundPage());
+
+            // Determine the current attacker
+            PlayerInfoModel CurrentAttacker = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
+            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CurrentAttacker);
+
+            UpdatePlayerDetailsBox(CurrentAttacker);
+
+            // TODO: ...
+        }
+
+        /// <summary>
+        /// Updates the information displayed in a given Player's details box.
+        /// </summary>
+        /// <param name="Player"></param>
+        public void UpdatePlayerDetailsBox(PlayerInfoModel Player)
+        {
+            // Update either the Character details box or the Monster details box
+            switch (Player.PlayerType)
+            {
+                case PlayerTypeEnum.Character:
+                    SelectedCharacterIconImage.Source = Player.IconImageURI;
+                    SelectedCharacterNameLabel.Text = Player.Name;
+                    SelectedCharacterLevelLabel.Text = "Level: " + Player.Level;
+                    SelectedCharacterHealthLabel.Text = "HP: " + Player.CurrentHealth;
+                    SelectedCharacterAttackLabel.Text = "ATK: " + Player.Attack;
+                    SelectedCharacterDefenseLabel.Text = "DEF: " + Player.Defense;
+                    SelectedCharacterSpeedLabel.Text = "SPD: " + Player.Speed;
+                    break;
+
+                case PlayerTypeEnum.Monster:
+                default:
+                    SelectedMonsterIconImage.Source = Player.IconImageURI;
+                    SelectedMonsterNameLabel.Text = Player.Name;
+                    SelectedMonsterLevelLabel.Text = "Level: " + Player.Level;
+                    SelectedMonsterHealthLabel.Text = "HP: " + Player.CurrentHealth;
+                    break;
+            }
         }
 
         /// <summary>
