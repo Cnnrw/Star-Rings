@@ -49,8 +49,10 @@
 		<None Remove="Assets\Images\Buttons\auto_battle.png" />
     <None Remove="Assets\Images\Buttons\cancel_button.png" />
     <None Remove="Assets\Images\Buttons\close_button.png" />
+    <None Remove="Assets\Images\Buttons\delete_button.png" />
 		<None Remove="Assets\Images\Buttons\dungeon.png" />
 		<None Remove="Assets\Images\Buttons\eye.png" />
+    <None Remove="Assets\Images\Buttons\player_update_button.png" />
 		<None Remove="Assets\Images\Buttons\rebel_base_1.png" />
 		<None Remove="Assets\Images\Buttons\rebel_base_2.png" />
     <None Remove="Assets\Images\Buttons\save_button.png" />
@@ -257,8 +259,10 @@
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\auto_battle.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\about_1.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\about_2.png" />
+    <SharedImage BaseSize="14,14" Include="Assets\Images\Buttons\delete_button.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\dungeon.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\eye.png" />
+    <SharedImage BaseSize="27,27" Include="Assets\Images\Buttons\player_update_button.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\rebel_base_1.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\rebel_base_2.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\ring.png" />
