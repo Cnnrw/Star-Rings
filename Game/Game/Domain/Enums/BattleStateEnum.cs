@@ -1,4 +1,4 @@
-﻿namespace Game.Enums
+namespace Game.Enums
 {
     /// <summary>
     /// The Conditions a round can have
@@ -22,5 +22,8 @@
 
         // Game Over
         GameOver = 5,
+
+        // Choosing target
+        ChoosingTarget = 6,
     }
 }
