@@ -63,7 +63,7 @@ namespace Game.Views
         /// <summary>
         /// Show the Items the Character has
         /// </summary>
-        internal void AddItemsToDisplay()
+        void AddItemsToDisplay()
         {
             var flexList = ItemBox.Children.ToList();
             foreach (var data in flexList)
