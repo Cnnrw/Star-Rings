@@ -19,7 +19,7 @@ namespace Game.ViewModels
             RebelBaseCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(RebelBasePage)));
             DungeonCommand = new AsyncCommand(() => NavigationService.NavigateAsync("DungeonPage"));
             AutoBattleCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(AutoBattlePage)));
-            SettingsCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(SettingsPage)));
+            SettingsCommand = new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(SettingsPage), false));
             AboutCommand = new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(AboutPage)));
         }
 
