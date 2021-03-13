@@ -853,7 +853,7 @@ namespace Game.Views
 
             // Highlight their figure
             StackLayout CurrentPlayerFigure = PlayerFigures[ActivePlayer.Guid];
-            CurrentPlayerFigure.BackgroundColor = Color.Green;
+            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44a6cc7e");
 
             ShowBattleUIElements();
         }
