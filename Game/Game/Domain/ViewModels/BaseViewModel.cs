@@ -53,7 +53,7 @@ namespace Game.ViewModels
             Dataset = new ObservableCollection<T>();
             LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-            await SetDataSource(_currentDataSource); // Set to Mock to start with
+            await SetDataSource(CurrentDataSource); // Set to Mock to start with
         }
 
         #endregion Constructor
@@ -73,7 +73,7 @@ namespace Game.ViewModels
 
 
         // Tack the current data source, SQL, Mock
-        private int _currentDataSource;
+        public int CurrentDataSource { get; set; }
 
         // Track if the system needs refreshing
         private bool _needsRefresh;
@@ -122,12 +122,12 @@ namespace Game.ViewModels
             if (isSQL == 1)
             {
                 _dataStore = DataSourceSQL;
-                _currentDataSource = 1;
+                CurrentDataSource = 1;
             }
             else
             {
                 _dataStore = DataSourceMock;
-                _currentDataSource = 0;
+                CurrentDataSource = 0;
             }
 
             await LoadDefaultDataAsync();
@@ -298,7 +298,7 @@ namespace Game.ViewModels
         /// <summary>
         /// Returns the current data source
         /// </summary>
-        public int GetCurrentDataSource() => _currentDataSource;
+        public int GetCurrentDataSource() => CurrentDataSource;
 
         #endregion DataSourceManagement
         #region DataOperations_CRUDi
