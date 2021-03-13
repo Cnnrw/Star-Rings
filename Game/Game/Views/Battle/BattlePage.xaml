@@ -36,19 +36,22 @@
                                  Orientation="Horizontal"
                                  Padding="10"
                                  BackgroundColor="DimGray">
-                        <Image x:Name="SelectedMonsterIcon"
-                               Source="orc_icon.png"
+                        <Image x:Name="SelectedMonsterIconImage"
+                               Source=""
                                WidthRequest="100"
                                HeightRequest="100"
                                Aspect="AspectFit"/>
 
                         <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label Text="Grog"
-                                       Style="{StaticResource MessageStyle}"
-                                       TextColor="White"/>
-                            <Label Text="Level 2"
-                                       Style="{StaticResource LabelStyle}"/>
-                            <Label Text="HP: 4"
+                            <Label x:Name="SelectedMonsterNameLabel"
+                                   Text=""
+                                   Style="{StaticResource MessageStyle}"
+                                   TextColor="White"/>
+                            <Label x:Name="SelectedMonsterLevelLabel"
+                                   Text=""
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Label x:Name="SelectedMonsterHealthLabel"
+                                       Text=""
                                        Style="{StaticResource LabelStyle}"/>
                         </StackLayout>
                     </StackLayout>
@@ -94,21 +97,39 @@
                                  Orientation="Horizontal"
                                  Padding="10"
                                  BackgroundColor="DimGray">
-                            <Image x:Name="SelectedCharacterIcon"
-                               Source="jedi_icon.png"
+                            <Image x:Name="SelectedCharacterIconImage"
+                               Source=""
                                WidthRequest="100"
                                HeightRequest="100"
                                Aspect="AspectFit"
                                    Opacity="1.0"/>
 
                             <StackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="Obi-Wan"
+                                <Label x:Name="SelectedCharacterNameLabel"
+                                       Text=""
                                        Style="{StaticResource MessageStyle}"
                                        TextColor="White"/>
-                                <Label Text="Level 4"
+                                <Label x:Name="SelectedCharacterLevelLabel"
+                                       Text=""
                                        Style="{StaticResource LabelStyle}"/>
-                                <Label Text="HP: 12"
-                                       Style="{StaticResource LabelStyle}"/>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label x:Name="SelectedCharacterHealthLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"
+                                           Margin="0,0,10,0"/>
+                                    <Label x:Name="SelectedCharacterAttackLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"
+                                           Margin="0,0,10,0"/>
+                                    <Label x:Name="SelectedCharacterDefenseLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"
+                                           Margin="0,0,10,0"/>
+                                    <Label x:Name="SelectedCharacterSpeedLabel"
+                                           Text=""
+                                           Style="{StaticResource LabelStyle}"/>
+                                </StackLayout>
                             </StackLayout>
 
                             <StackLayout HorizontalOptions="End">
