@@ -70,13 +70,6 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Range: "
-                           Style="{StaticResource LabelStyle}" />
-                    <Label Text="{Binding Data.Range}"
-                           Style="{StaticResource ValueStyle}" />
-                </StackLayout>
-
-                <StackLayout>
                     <Label Text="Value: "
                            Style="{StaticResource LabelStyle}" />
                     <Label Text="{Binding Data.Value}"
