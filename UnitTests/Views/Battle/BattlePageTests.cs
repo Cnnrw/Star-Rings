@@ -309,226 +309,226 @@ namespace UnitTests.Views
         //    Assert.IsTrue(true); // Got to here, so it happened...
         //}
 
-        [Test]
-        public void BattlePage_NextAttackExample_NextRound_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_NextAttackExample_NextRound_Should_Pass()
+        //{
+        //    // Arrange
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
-                                 .Add(new PlayerInfoModel(new CharacterModel()));
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
+        //                         .Add(new PlayerInfoModel(new CharacterModel()));
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
 
-            BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
+        //    BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
 
-            // Has no monster, so should show next round.
+        //    // Has no monster, so should show next round.
 
-            // Act
-            page.NextAttackExample();
+        //    // Act
+        //    page.NextAttackExample();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_NextAttackExample_GameOver_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_NextAttackExample_GameOver_Should_Pass()
+        //{
+        //    // Arrange
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
-                                 .Add(new PlayerInfoModel(new MonsterModel()));
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
+        //                         .Add(new PlayerInfoModel(new MonsterModel()));
 
-            BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
+        //    BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
 
-            // Has no Character, so should show end game
+        //    // Has no Character, so should show end game
 
-            // Act
-            page.NextAttackExample();
+        //    // Act
+        //    page.NextAttackExample();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_SetAttackerAndDefender_Character_vs_Monster_Should_Pass()
-        {
-            // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
+        //[Test]
+        //public void BattlePage_SetAttackerAndDefender_Character_vs_Monster_Should_Pass()
+        //{
+        //    // Arrange
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
 
-            // Make Character
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
+        //    // Make Character
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
-            var CharacterPlayer = new PlayerInfoModel(
-                                                      new CharacterModel
-                                                      {
-                                                          Speed = 100,
-                                                          Level = 10,
-                                                          CurrentHealth = 11,
-                                                          ExperienceTotal = 1,
-                                                          ExperienceRemaining = 1,
-                                                          Name = "Mike",
-                                                          ListOrder = 1
-                                                      });
+        //    var CharacterPlayer = new PlayerInfoModel(
+        //                                              new CharacterModel
+        //                                              {
+        //                                                  Speed = 100,
+        //                                                  Level = 10,
+        //                                                  CurrentHealth = 11,
+        //                                                  ExperienceTotal = 1,
+        //                                                  ExperienceRemaining = 1,
+        //                                                  Name = "Mike",
+        //                                                  ListOrder = 1
+        //                                              });
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
-            // Make Monster
+        //    // Make Monster
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
-            var MonsterPlayer = new PlayerInfoModel(
-                                                    new MonsterModel
-                                                    {
-                                                        Speed = -1,
-                                                        Level = 10,
-                                                        CurrentHealth = 11,
-                                                        ExperienceTotal = 1,
-                                                        ExperienceRemaining = 1,
-                                                        Name = "Mike",
-                                                        ListOrder = 1
-                                                    });
+        //    var MonsterPlayer = new PlayerInfoModel(
+        //                                            new MonsterModel
+        //                                            {
+        //                                                Speed = -1,
+        //                                                Level = 10,
+        //                                                CurrentHealth = 11,
+        //                                                ExperienceTotal = 1,
+        //                                                ExperienceRemaining = 1,
+        //                                                Name = "Mike",
+        //                                                ListOrder = 1
+        //                                            });
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
 
-            // Act
-            page.SetAttackerAndDefender();
+        //    // Act
+        //    page.SetAttackerAndDefender();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_SetAttackerAndDefender_Monster_vs_Character_Should_Pass()
-        {
-            // Arrange
+        //[Test]
+        //public void BattlePage_SetAttackerAndDefender_Monster_vs_Character_Should_Pass()
+        //{
+        //    // Arrange
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
 
-            // Make Character
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
+        //    // Make Character
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
-            var CharacterPlayer = new PlayerInfoModel(
-                                                      new CharacterModel
-                                                      {
-                                                          Speed = -1,
-                                                          Level = 10,
-                                                          CurrentHealth = 11,
-                                                          ExperienceTotal = 1,
-                                                          ExperienceRemaining = 1,
-                                                          Name = "Mike",
-                                                          ListOrder = 1
-                                                      });
+        //    var CharacterPlayer = new PlayerInfoModel(
+        //                                              new CharacterModel
+        //                                              {
+        //                                                  Speed = -1,
+        //                                                  Level = 10,
+        //                                                  CurrentHealth = 11,
+        //                                                  ExperienceTotal = 1,
+        //                                                  ExperienceRemaining = 1,
+        //                                                  Name = "Mike",
+        //                                                  ListOrder = 1
+        //                                              });
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
-            // Make Monster
+        //    // Make Monster
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
-            var MonsterPlayer = new PlayerInfoModel(
-                                                    new MonsterModel
-                                                    {
-                                                        Speed = 100,
-                                                        Level = 10,
-                                                        CurrentHealth = 11,
-                                                        ExperienceTotal = 1,
-                                                        ExperienceRemaining = 1,
-                                                        Name = "Mike",
-                                                        ListOrder = 1
-                                                    });
+        //    var MonsterPlayer = new PlayerInfoModel(
+        //                                            new MonsterModel
+        //                                            {
+        //                                                Speed = 100,
+        //                                                Level = 10,
+        //                                                CurrentHealth = 11,
+        //                                                ExperienceTotal = 1,
+        //                                                ExperienceRemaining = 1,
+        //                                                Name = "Mike",
+        //                                                ListOrder = 1
+        //                                            });
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
 
-            // Act
-            page.SetAttackerAndDefender();
+        //    // Act
+        //    page.SetAttackerAndDefender();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
-        [Test]
-        public void BattlePage_SetAttackerAndDefender_Character_vs_Unknown_Should_Pass()
-        {
-            // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
+        //[Test]
+        //public void BattlePage_SetAttackerAndDefender_Character_vs_Unknown_Should_Pass()
+        //{
+        //    // Arrange
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
 
-            // Make Character
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
+        //    // Make Character
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
-            var CharacterPlayer = new PlayerInfoModel(
-                                                      new CharacterModel
-                                                      {
-                                                          Speed = -1,
-                                                          Level = 10,
-                                                          CurrentHealth = 11,
-                                                          ExperienceTotal = 1,
-                                                          ExperienceRemaining = 1,
-                                                          Name = "Mike",
-                                                          ListOrder = 1
-                                                      });
+        //    var CharacterPlayer = new PlayerInfoModel(
+        //                                              new CharacterModel
+        //                                              {
+        //                                                  Speed = -1,
+        //                                                  Level = 10,
+        //                                                  CurrentHealth = 11,
+        //                                                  ExperienceTotal = 1,
+        //                                                  ExperienceRemaining = 1,
+        //                                                  Name = "Mike",
+        //                                                  ListOrder = 1
+        //                                              });
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
 
-            // Make Monster
+        //    // Make Monster
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
 
-            var MonsterPlayer = new PlayerInfoModel(
-                                                    new MonsterModel
-                                                    {
-                                                        Speed = 100,
-                                                        Level = 10,
-                                                        CurrentHealth = 11,
-                                                        ExperienceTotal = 1,
-                                                        ExperienceRemaining = 1,
-                                                        Name = "Mike",
-                                                        ListOrder = 1,
-                                                        PlayerType = PlayerTypeEnum.Unknown
-                                                    });
+        //    var MonsterPlayer = new PlayerInfoModel(
+        //                                            new MonsterModel
+        //                                            {
+        //                                                Speed = 100,
+        //                                                Level = 10,
+        //                                                CurrentHealth = 11,
+        //                                                ExperienceTotal = 1,
+        //                                                ExperienceRemaining = 1,
+        //                                                Name = "Mike",
+        //                                                ListOrder = 1,
+        //                                                PlayerType = PlayerTypeEnum.Unknown
+        //                                            });
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
-            BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
 
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
+        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
 
-            // Act
-            page.SetAttackerAndDefender();
+        //    // Act
+        //    page.SetAttackerAndDefender();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
         [Test]
         public void BattlePage_GameOver_Default_Should_Pass()
@@ -848,113 +848,113 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got Here
         }
 
-        [Test]
-        public void BattleSettingsPage_ShowBattleModeDisplay_MapAbility_Should_Pass()
-        {
-            // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
-                BattleModeEnum.MapAbility;
+        //[Test]
+        //public void BattleSettingsPage_ShowBattleModeDisplay_MapAbility_Should_Pass()
+        //{
+        //    // Arrange
+        //    var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+        //        BattleModeEnum.MapAbility;
 
-            // Act
-            ShowBattleModeDisplay();
+        //    // Act
+        //    ShowBattleModeDisplay();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
-        [Test]
-        public void BattleSettingsPage_ShowBattleModeDisplay_MapFull_Should_Pass()
-        {
-            // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
-                BattleModeEnum.MapFull;
+        //[Test]
+        //public void BattleSettingsPage_ShowBattleModeDisplay_MapFull_Should_Pass()
+        //{
+        //    // Arrange
+        //    var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+        //        BattleModeEnum.MapFull;
 
-            // Act
-            ShowBattleModeDisplay();
+        //    // Act
+        //    ShowBattleModeDisplay();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
-        [Test]
-        public void BattleSettingsPage_ShowBattleModeDisplay_MapNext_Should_Pass()
-        {
-            // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
-                BattleModeEnum.MapNext;
+        //[Test]
+        //public void BattleSettingsPage_ShowBattleModeDisplay_MapNext_Should_Pass()
+        //{
+        //    // Arrange
+        //    var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+        //        BattleModeEnum.MapNext;
 
-            // Act
-            ShowBattleModeDisplay();
+        //    // Act
+        //    ShowBattleModeDisplay();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
-        [Test]
-        public void BattleSettingsPage_ShowBattleModeDisplay_SimpleAbility_Should_Pass()
-        {
-            // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
-                BattleModeEnum.SimpleAbility;
+        //[Test]
+        //public void BattleSettingsPage_ShowBattleModeDisplay_SimpleAbility_Should_Pass()
+        //{
+        //    // Arrange
+        //    var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+        //        BattleModeEnum.SimpleAbility;
 
-            // Act
-            ShowBattleModeDisplay();
+        //    // Act
+        //    ShowBattleModeDisplay();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
-        [Test]
-        public void BattleSettingsPage_ShowBattleModeDisplay_SimpleUnknown_Should_Pass()
-        {
-            // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
-                BattleModeEnum.Unknown;
+        //[Test]
+        //public void BattleSettingsPage_ShowBattleModeDisplay_SimpleUnknown_Should_Pass()
+        //{
+        //    // Arrange
+        //    var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+        //        BattleModeEnum.Unknown;
 
-            // Act
-            ShowBattleModeDisplay();
+        //    // Act
+        //    ShowBattleModeDisplay();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
-        [Test]
-        public void BattleSettingsPage_ShowBattleModeDisplay_SimpleNext_Should_Pass()
-        {
-            // Arrange
-            var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
-                BattleModeEnum.SimpleNext;
+        //[Test]
+        //public void BattleSettingsPage_ShowBattleModeDisplay_SimpleNext_Should_Pass()
+        //{
+        //    // Arrange
+        //    var save = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum;
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum =
+        //        BattleModeEnum.SimpleNext;
 
-            // Act
-            ShowBattleModeDisplay();
+        //    // Act
+        //    ShowBattleModeDisplay();
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum = save;
 
-            // Assert
-            Assert.IsTrue(true); // Got Here
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got Here
+        //}
 
         // [Test]
         // public void BattleSettingsPage_MapIcon_Clicked_Character_Should_Pass()
