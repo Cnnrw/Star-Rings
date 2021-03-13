@@ -19,13 +19,19 @@
                        Margin="0,0,0,50"/>
 
                 <FlexLayout x:Name="MonsterListFrame"
-                                    JustifyContent="Center"
-                                    AlignContent="Start"
-                                    Wrap="Wrap"/>
+                            JustifyContent="Center"
+                            AlignContent="Start"
+                            Wrap="Wrap"/>
 
                 <StackLayout Padding="1"></StackLayout>
 
-                <Button Clicked="BeginButton_Clicked" Text="Begin"/>
+                <Button Text="Fight"
+                        Clicked="BeginButton_Clicked"
+                        HeightRequest="50"
+                        Padding="10"
+                        BackgroundColor="#ddaaaaaa"
+                        FontSize="Medium"
+                        FontFamily="8bit_bold"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
