@@ -465,18 +465,18 @@ namespace UnitTests.Views
         //     Assert.IsTrue(true); // Got to here, so it happened...
         // }
 
-        [Test]
-        public void MonsterUpdatePage_RandomButton_Clicked_Valid_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            _page.RandomButton_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        // [Test]
+        // public void MonsterUpdatePage_RandomButton_Clicked_Valid_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     // Act
+        //     _page.RandomButton_Clicked(null, null);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsTrue(true); // Got to here, so it happened...
+        // }
     }
 }
