@@ -164,8 +164,10 @@ namespace Game.Views
                 Source = Player.ImageURI,
                 WidthRequest = 100,
                 HeightRequest = 100,
-                Aspect = Aspect.AspectFit
+                Aspect = Aspect.AspectFit,
+                BindingContext = Player.Guid,
             };
+            PlayerFigureImageButton.Clicked += FigureButton_Clicked;
 
             var PlayerFigureLabel = new Label
             {
@@ -659,8 +661,10 @@ namespace Game.Views
 
             PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
-            string BattleMessage = "Who should " + CurrentPlayer.Name + " attack?";
-            BattleMessages.Text = BattleMessage;
+            BattleMessages.Text = "Who should " + CurrentPlayer.Name + " attack?";
+
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingTarget;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Attack;
         }
 
         /// <summary>
@@ -670,10 +674,21 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Settings_Clicked(object sender, EventArgs e) => await ShowBattleSettingsPage();
 
-        public void PerformAttack()
+        public void FigureButton_Clicked(object sender, EventArgs e)
         {
-            PlayerInfoModel CurrentAttacker = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-            PlayerFigures[CurrentAttacker.Guid].BackgroundColor = Color.Green;
+            if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingTarget)
+            {
+                return;
+            }
+
+            //ImageButton FigureButton = sender as ImageButton;
+            string TargetPlayerGuid = ((ImageButton)sender).BindingContext as string;
+
+            // Highlight their figure
+            StackLayout TargetPlayerFigure = PlayerFigures[TargetPlayerGuid];
+            TargetPlayerFigure.BackgroundColor = Color.FromHex("#44ff6666");
+
+            // TODO: Perform action
         }
 
         ///// <summary>
