@@ -3,6 +3,7 @@ using Game.Models;
 using Game.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -301,6 +302,38 @@ namespace Game.Views
                     break;
 
                 // Based on the State disable buttons
+            }
+        }
+
+        /// <summary>
+        /// Updates the information displayed in a given Player's details box.
+        /// </summary>
+        /// <param name="Player"></param>
+        public void UpdatePlayerDetailsBox(PlayerInfoModel Player)
+        {
+            // Update either the Character details box or the Monster details box
+            switch (Player.PlayerType)
+            {
+                case PlayerTypeEnum.Character:
+                    SelectedCharacterIconImage.Source = Player.IconImageURI;
+                    SelectedCharacterNameLabel.Text = Player.Name;
+                    SelectedCharacterLevelLabel.Text = "Level: " + Player.Level;
+                    SelectedCharacterHealthLabel.Text = "HP: " + Player.CurrentHealth;
+                    SelectedCharacterAttackLabel.Text = "ATK: " + Player.Attack;
+                    SelectedCharacterDefenseLabel.Text = "DEF: " + Player.Defense;
+                    SelectedCharacterSpeedLabel.Text = "SPD: " + Player.Speed;
+                    break;
+
+                case PlayerTypeEnum.Monster:
+                default:
+                    SelectedMonsterIconImage.Source = Player.IconImageURI;
+                    SelectedMonsterNameLabel.Text = Player.Name;
+                    SelectedMonsterLevelLabel.Text = "Level: " + Player.Level;
+                    SelectedMonsterHealthLabel.Text = "HP: " + Player.CurrentHealth;
+                    SelectedMonsterAttackLabel.Text = "ATK: " + Player.Attack;
+                    SelectedMonsterDefenseLabel.Text = "DEF: " + Player.Defense;
+                    SelectedMonsterSpeedLabel.Text = "SPD: " + Player.Speed;
+                    break;
             }
         }
 
@@ -650,20 +683,20 @@ namespace Game.Views
         #region BasicBattleMode
 
         /// <summary>
-        ///     Attack Action
+        /// Attack Action
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void AttackButton_Clicked(object sender, EventArgs e)
         {
             //NextAttackExample();
-            //PerformAttack();
 
             PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
             BattleMessages.Text = "Who should " + CurrentPlayer.Name + " attack?";
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingTarget;
+            // Update battle state and current action
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
             BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Attack;
         }
 
@@ -677,7 +710,7 @@ namespace Game.Views
         public void FigureButton_Clicked(object sender, EventArgs e)
         {
             // Ignore selection if 
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingTarget)
+            if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingMonsterTarget)
             {
                 return;
             }
@@ -885,7 +918,17 @@ namespace Game.Views
 
         public void NextButton_Clicked(object sender, EventArgs e)
         {
-            DoMonsterTurn();
+            switch (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum)
+            {
+                case BattleStateEnum.StartingMonsterTurn:
+                    DoMonsterTurn();
+                    break;
+                case BattleStateEnum.EndingMonsterTurn:
+                    EndTurn();
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void DoMonsterTurn()
@@ -897,46 +940,63 @@ namespace Game.Views
             //PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.Round.Turn.SelectCharacterToAttack();
             PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
 
+            // Highlight the targeted Character's figure
             UpdatePlayerDetailsBox(TargetCharacter);
 
             // Highlight their figure
             StackLayout CurrentPlayerFigure = PlayerFigures[TargetCharacter.Guid];
             CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44ff6666");
 
+            // Update battle messages
             BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
+
+            // Set battle state
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
         }
 
         /// <summary>
-        /// Updates the information displayed in a given Player's details box.
+        /// Ends turn.
         /// </summary>
-        /// <param name="Player"></param>
-        public void UpdatePlayerDetailsBox(PlayerInfoModel Player)
+        public void EndTurn()
         {
-            // Update either the Character details box or the Monster details box
-            switch (Player.PlayerType)
-            {
-                case PlayerTypeEnum.Character:
-                    SelectedCharacterIconImage.Source = Player.IconImageURI;
-                    SelectedCharacterNameLabel.Text = Player.Name;
-                    SelectedCharacterLevelLabel.Text = "Level: " + Player.Level;
-                    SelectedCharacterHealthLabel.Text = "HP: " + Player.CurrentHealth;
-                    SelectedCharacterAttackLabel.Text = "ATK: " + Player.Attack;
-                    SelectedCharacterDefenseLabel.Text = "DEF: " + Player.Defense;
-                    SelectedCharacterSpeedLabel.Text = "SPD: " + Player.Speed;
-                    break;
+            var RoundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
 
-                case PlayerTypeEnum.Monster:
-                default:
-                    SelectedMonsterIconImage.Source = Player.IconImageURI;
-                    SelectedMonsterNameLabel.Text = Player.Name;
-                    SelectedMonsterLevelLabel.Text = "Level: " + Player.Level;
-                    SelectedMonsterHealthLabel.Text = "HP: " + Player.CurrentHealth;
-                    SelectedMonsterAttackLabel.Text = "ATK: " + Player.Attack;
-                    SelectedMonsterDefenseLabel.Text = "DEF: " + Player.Defense;
-                    SelectedMonsterSpeedLabel.Text = "SPD: " + Player.Speed;
-                    break;
+            if (RoundCondition == RoundEnum.NewRound)
+            {
+                BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
+
+                // Pause
+                Task.Delay(WaitTime);
+
+                // Show the Round Over, after that is cleared, it will show the New Round Dialog
+                ShowModalRoundOverPage();
+                return;
+            }
+
+            // Check for Game Over
+            if (RoundCondition == RoundEnum.GameOver)
+            {
+                BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.GameOver;
+
+                // Wrap up
+                BattleEngineViewModel.Instance.Engine.EndBattle();
+
+                // Pause
+                Task.Delay(WaitTime);
+
+                Debug.WriteLine("Game Over");
+
+                GameOver();
+                return;
+            }
+
+            if (RoundCondition == RoundEnum.NextTurn)
+            {
+                StartTurn();
             }
         }
+
+        
 
         /// <summary>
         /// Determines the next Player and lets them act.
@@ -965,7 +1025,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Lets the user choose what the active Character should do.
+        /// Start's a Character's turn.
         /// </summary>
         public void StartCharacterTurn()
         {
@@ -976,7 +1036,7 @@ namespace Game.Views
             BattleMessages.Text = BattleMessage;
 
             // Set the BattleState to ChoosingTarget
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingTarget;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
 
             // Enable action buttons
             AttackButton.IsEnabled = true;
@@ -984,10 +1044,12 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Automatically determines and performs the active Monster's action.
+        /// Starts a Monster's turn.
         /// </summary>
         public void StartMonsterTurn()
         {
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.StartingMonsterTurn;
+
             PlayerInfoModel ActiveMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
             // Show battle message stating whose turn it is

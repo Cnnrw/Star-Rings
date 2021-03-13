@@ -23,7 +23,11 @@ namespace Game.Enums
         // Game Over
         GameOver = 5,
 
-        // Choosing target
-        ChoosingTarget = 6,
+        // Choosing a target Monster
+        ChoosingMonsterTarget = 6,
+
+        StartingMonsterTurn = 7,
+
+        EndingMonsterTurn = 8
     }
 }
