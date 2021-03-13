@@ -73,6 +73,7 @@
 
                     <!-- A list of monster figures -->
                     <FlexLayout x:Name="MonsterFigureArea"
+                                Padding="10"
                                 JustifyContent="Center"
                                 BackgroundColor="#40000000"/>
                 </StackLayout>
@@ -85,9 +86,12 @@
                                 IsVisible="False"/>
 
                     <Button x:Name="StartBattleButton"
-                                Text="Start Battle"
+                                Text="Explore"
                                 Clicked="StartButton_Clicked"
-                                IsVisible="False"/>
+                            HeightRequest="80"
+                            Padding="20"
+                            FontSize="Large"
+                            FontFamily="8bit_bold"/>
                 </StackLayout>
 
                 <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
@@ -145,13 +149,11 @@
                                 <Button x:Name="AttackButton"
                                         Text="Attack"
                                         Clicked="AttackButton_Clicked"
-                                        IsVisible="False"
-                                        IsEnabled="False"/>
+                                        IsVisible="False"/>
 
                                 <Button x:Name="BlockButton"
                                         Text="Block"
-                                        IsVisible="False"
-                                        IsEnabled="False"/>
+                                        IsVisible="False"/>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
