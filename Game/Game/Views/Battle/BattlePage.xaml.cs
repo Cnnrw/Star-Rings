@@ -709,20 +709,31 @@ namespace Game.Views
 
         public void FigureButton_Clicked(object sender, EventArgs e)
         {
-            // Ignore selection if 
+            // Ignore selection if it's not time to choose
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingMonsterTarget)
             {
                 return;
             }
 
-            // Determine which Player was selected as the target
+            // Set the selected Monster as the target
             string TargetPlayerGuid = ((ImageButton)sender).BindingContext as string;
+            PlayerInfoModel TargetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Find(m => m.Guid == TargetPlayerGuid);
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender = TargetMonster;
+
+            // Update the Monster details box
+            UpdatePlayerDetailsBox(TargetMonster);
 
             // Highlight their figure
             StackLayout TargetPlayerFigure = PlayerFigures[TargetPlayerGuid];
-            TargetPlayerFigure.BackgroundColor = Color.FromHex("#44ff6666");
+            TargetPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
 
-            // TODO: Perform action
+            DoCharacterTurn();
+
+            // Show next button
+            NextButton.IsVisible = true;
+            NextButton.IsEnabled = true;
+
+            //EndTurn();
         }
 
         ///// <summary>
@@ -913,6 +924,7 @@ namespace Game.Views
             // Show the Monster, Character, and Message boxes
             ShowBattleUIElements();
 
+            // Start the first turn
             StartTurn();
         }
 
@@ -923,12 +935,30 @@ namespace Game.Views
                 case BattleStateEnum.StartingMonsterTurn:
                     DoMonsterTurn();
                     break;
+                case BattleStateEnum.EndingCharacterTurn:
                 case BattleStateEnum.EndingMonsterTurn:
                     EndTurn();
                     break;
                 default:
                     break;
             }
+        }
+
+        public void DoCharacterTurn()
+        {
+             PlayerInfoModel ActivePlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(ActivePlayer);
+
+            PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
+
+            // Highlight the targeted Character's figure
+            UpdatePlayerDetailsBox(TargetCharacter);
+
+            // Update battle messages
+            BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
+
+            // Set battle state
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
         }
 
         public void DoMonsterTurn()
@@ -945,7 +975,7 @@ namespace Game.Views
 
             // Highlight their figure
             StackLayout CurrentPlayerFigure = PlayerFigures[TargetCharacter.Guid];
-            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44ff6666");
+            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
 
             // Update battle messages
             BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
@@ -996,13 +1026,24 @@ namespace Game.Views
             }
         }
 
-        
-
         /// <summary>
         /// Determines the next Player and lets them act.
         /// </summary>
         public void StartTurn()
         {
+            // TODO: Clear Character and Monster details boxes
+
+            // Redraw figures
+            DrawPlayerFigures();
+
+            // Clear battle message
+            BattleMessages.Text = "";
+
+            // Hide/disable action buttons
+            AttackButton.IsVisible = false;
+            BlockButton.IsVisible = false;
+            NextButton.IsVisible = false;
+
             // Determine the current Player
             PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
             BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CurrentPlayer);
@@ -1012,7 +1053,7 @@ namespace Game.Views
 
             // Highlight their figure
             StackLayout CurrentPlayerFigure = PlayerFigures[CurrentPlayer.Guid];
-            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#44a6cc7e");
+            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#88a6cc7e");
 
             // A Character's turn action is chosen by the game player. A Monster's action is chosen automatically
             if (CurrentPlayer.PlayerType == PlayerTypeEnum.Character)
@@ -1038,7 +1079,10 @@ namespace Game.Views
             // Set the BattleState to ChoosingTarget
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
 
-            // Enable action buttons
+            // Show/Enable action buttons
+            AttackButton.IsVisible = true;
+            BlockButton.IsVisible = true;
+
             AttackButton.IsEnabled = true;
             BlockButton.IsEnabled = true;
         }
