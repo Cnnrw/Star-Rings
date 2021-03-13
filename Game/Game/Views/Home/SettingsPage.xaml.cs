@@ -8,16 +8,11 @@ using Game.Services;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class SettingsPage : BaseContentPage
     {
-        //public DataSourceEnum CurrentDataSource { get; set; } =
-        //    ItemIndexViewModel.Instance.GetCurrentDataSource();
-
         #region Constructors
 
         public SettingsPage()
@@ -28,7 +23,7 @@ namespace Game.Views
             SetServerItemValue("100");
         }
 
-        public SettingsPage(bool UnitTest) { }
+        internal SettingsPage(bool unitTest) { }
 
         #endregion
 
@@ -166,9 +161,12 @@ namespace Game.Views
 
         #endregion
 
-        public void OnToggledTimeWarpedRounds(object sender, ToggledEventArgs e)
-        {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnToggledTimeWarpedRounds(object sender, ToggledEventArgs e) =>
             BattleEngineViewModel.Instance.Engine.EngineSettings.EnableTimeWarpedRounds = e.Value;
-        }
     }
 }
