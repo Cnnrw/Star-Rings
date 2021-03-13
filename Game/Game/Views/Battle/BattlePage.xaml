@@ -34,7 +34,7 @@
                     <!-- A box for the selected monster info -->
                     <StackLayout Orientation="Horizontal"
                                  Padding="10"
-                                 BackgroundColor="DimGray">
+                                 BackgroundColor="#555555">
                         <Image x:Name="SelectedMonsterIconImage"
                                Source=""
                                WidthRequest="100"
@@ -75,7 +75,7 @@
                     <FlexLayout x:Name="MonsterFigureArea"
                                 Padding="10"
                                 JustifyContent="Center"
-                                BackgroundColor="#66666666"/>
+                                BackgroundColor="#bb888888"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource HorizontalStack}"
@@ -106,12 +106,12 @@
                         <FlexLayout x:Name="CharacterFigureArea"
                                     Padding="10"
                                     JustifyContent="Center"
-                                    BackgroundColor="#66666666"/>
+                                    BackgroundColor="#bb888888"/>
 
                         <!-- A box for the selected character info -->
                         <StackLayout Orientation="Horizontal"
                                      Padding="10"
-                                     BackgroundColor="DimGray">
+                                     BackgroundColor="#555555">
                             <Image x:Name="SelectedCharacterIconImage"
                                    Source=""
                                    WidthRequest="100"
@@ -152,10 +152,12 @@
                                 <Button x:Name="AttackButton"
                                         Text="Attack"
                                         Clicked="AttackButton_Clicked"
+                                        IsEnabled="False"
                                         IsVisible="False"/>
 
                                 <Button x:Name="BlockButton"
                                         Text="Block"
+                                        IsEnabled="False"
                                         IsVisible="False"/>
                             </StackLayout>
                         </StackLayout>
