@@ -98,7 +98,7 @@ namespace Game.Models
         {
             new CharacterModel
             {
-                Name = "Obi-Wan Kenobi",
+                Name = "Obi-Wan",
                 Description = "A Jedi master and teacher of Anakin",
                 Job = CharacterJobEnum.Jedi,
                 ImageURI = "jedi.png",
@@ -111,7 +111,7 @@ namespace Game.Models
             },
             new CharacterModel
             {
-                Name = "Keshmya Jungdasa",
+                Name = "Mya",
                 Description = "Leader of the Rebel unit",
                 Job = CharacterJobEnum.Princess,
                 ImageURI = "jedi_princess.png",
@@ -120,11 +120,11 @@ namespace Game.Models
                 MaxHealth = 6,
                 Attack = 6,
                 Defense = 4,
-                Speed = 5
+                Speed = 100
             },
             new CharacterModel
             {
-                Name = "Jebusa Fivilar",
+                Name = "Kaldonna",
                 Description = "Pilot of the ship",
                 Job = CharacterJobEnum.Smuggler,
                 ImageURI = "smuggler.png",
@@ -183,8 +183,8 @@ namespace Game.Models
         {
             new MonsterModel
             {
-                Name = "Dark Elf",
-                Description = "An elf, but like...an evil one.",
+                Name = "Coruco",
+                Description = "An evil elf.",
                 ImageURI = "dark_elf.png",
                 IconImageURI = "dark_elf_icon.png",
                 UniqueItem = string.Empty,
@@ -199,8 +199,8 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Dead King",
-                Description = "A ghastly apparition.",
+                Name = "Hiegr the Great",
+                Description = "A ghastly apparition of a dead king.",
                 ImageURI = "dead_king.png",
                 IconImageURI = "dead_king_icon.png",
                 UniqueItem = string.Empty,
@@ -231,7 +231,7 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Witch-King of Angmar",
+                Name = "Witch of Angmar",
                 Description = "The leader of the Nazgul.",
                 ImageURI = "nazgul.png",
                 IconImageURI = "nazgul_icon.png",
@@ -247,7 +247,7 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Oliphant",
+                Name = "Buloph",
                 Description = "A colossal, elephant-like beast.",
                 ImageURI = "oliphant.png",
                 IconImageURI = "oliphant_icon.png",
@@ -259,6 +259,22 @@ namespace Game.Models
                 Speed = 1,
                 Defense = 8,
                 Attack = 7,
+                Range = 1,
+            },
+            new MonsterModel
+            {
+                Name = "Mumbo",
+                Description = "A colossal, elephant-like beast used to attack cities.",
+                ImageURI = "oliphant.png",
+                IconImageURI = "oliphant_icon.png",
+                UniqueItem = string.Empty,
+                BattleLocation = BattleLocationEnum.ElvenCity,
+                Level = 0,
+                Difficulty = DifficultyEnum.Hard,
+                MaxHealth = 15,
+                Speed = 1,
+                Defense = 7,
+                Attack = 8,
                 Range = 1,
             },
             new MonsterModel
@@ -423,7 +439,7 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Tree Spider",
+                Name = "Bolesh",
                 Description = "A giant spider that spins its webs in the forest of Mirkwood.",
                 ImageURI = "spider.png",
                 IconImageURI = "spider_icon.png",
@@ -439,7 +455,7 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Mountain Troll",
+                Name = "Trolldorph",
                 Description = "A big, lumbering oaf that roams the Misty Mountains.",
                 ImageURI = "troll.png",
                 IconImageURI = "troll_icon.png",
@@ -503,7 +519,7 @@ namespace Game.Models
             },
             new MonsterModel
             {
-                Name = "Gutiug",
+                Name = "Gutig",
                 Description = "A warg rider roaming the outskirts of the Shire.",
                 ImageURI = "warg_rider.png",
                 IconImageURI = "warg_rider_icon.png",
