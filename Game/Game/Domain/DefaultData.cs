@@ -159,7 +159,7 @@ namespace Game.Models
                 MaxHealth = 4,
                 Attack = 2,
                 Defense = 1,
-                Speed = 1
+                Speed = 0
             },
             new CharacterModel
             {
