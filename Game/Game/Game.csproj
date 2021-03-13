@@ -42,6 +42,12 @@
     <None Remove="Assets\Images\Backgrounds\rivendell_background.png" />
     <None Remove="Assets\Images\Backgrounds\shire_background.png" />
 	</ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Assets\Images\Buttons\blank_slot.png" />
+    <None Remove="Assets\Images\Stats\stats_icon.png" />
+    <None Remove="Assets\Images\Stats\stat_background.png" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<None Remove="Assets\Images\Buttons\about_1.png" />
@@ -62,18 +68,25 @@
 		<None Remove="Assets\Images\Buttons\stats.png" />
 		<None Remove="Assets\Images\Buttons\warrior.png" />
 	</ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Assets\Images\Stats\attack.png" />
+    <None Remove="Assets\Images\Stats\defense.png" />
+    <None Remove="Assets\Images\Stats\health.png" />
+    <None Remove="Assets\Images\Stats\speed.png" />
+    <None Remove="Assets\Images\Stats\stat_background.png" />
+  </ItemGroup>
 
 	<ItemGroup>
-		<None Remove="Assets\Images\EquipmentSlots\Body_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Cape_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Feet_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Head_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Legs_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Neck_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\offhand_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Ring_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Shield_slot.png" />
-		<None Remove="Assets\Images\EquipmentSlots\Weapon_slot.png" />
+		<None Remove="Assets\Images\EquipmentSlots\body_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\cape_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\feet_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\head_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\legs_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\necklace_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\ring_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\shield_icon.png" />
+		<None Remove="Assets\Images\EquipmentSlots\weapon_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -176,24 +189,42 @@
 		  <SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
+  
+  <ItemGroup>
+    <SharedImage BaseSize="25,23" Include="Assets\Images\Buttons\blank_slot.png" />
+    <SharedImage BaseSize="25,23" Include="Assets\Images\Stats\stats_icon.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <SharedImage BaseSize="25,25" Include="Assets\Images\Stats\attack.png" />
+    <SharedImage BaseSize="17,19" Include="Assets\Images\Stats\defense.png" />
+    <SharedImage BaseSize="23,20" Include="Assets\Images\Stats\health.png" />
+    <SharedImage BaseSize="18,23" Include="Assets\Images\Stats\speed.png" />
+    <SharedImage BaseSize="62,32" Include="Assets\Images\Stats\stat_background.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <SharedImage BaseSize="28,18" Include="Assets\Images\EquipmentSlots\body_icon.png" />
+    <SharedImage BaseSize="22,30" Include="Assets\Images\EquipmentSlots\cape_icon.png" />
+    <SharedImage BaseSize="22,22" Include="Assets\Images\EquipmentSlots\feet_icon.png" />
+    <SharedImage BaseSize="31,29" Include="Assets\Images\EquipmentSlots\gloves_icon.png" />
+    <SharedImage BaseSize="20,23" Include="Assets\Images\EquipmentSlots\head_icon.png" />
+    <SharedImage BaseSize="16,29" Include="Assets\Images\EquipmentSlots\legs_icon.png" />
+    <SharedImage BaseSize="17,16" Include="Assets\Images\EquipmentSlots\necklace_icon.png" />
+    <SharedImage BaseSize="25,25" Include="Assets\Images\EquipmentSlots\weapon_icon.png" />
+    <SharedImage BaseSize="16,19" Include="Assets\Images\EquipmentSlots\ring_icon.png" />
+  </ItemGroup>
 
 	<ItemGroup>
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Body_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Cape_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Feet_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Head_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Legs_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Neck_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\offhand_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Ring_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Shield_slot.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\EquipmentSlots\Weapon_slot.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\blaster.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\fireworks.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\gimlis_axe.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\hobbit_foot.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\lembas.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Items\light_saber.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <SharedImage BaseSize="527,261" Include="Assets\Images\starrings_logo.png" />
 		<SharedImage BaseSize="26,261" Include="Assets\Images\column.png" />
 	</ItemGroup>
