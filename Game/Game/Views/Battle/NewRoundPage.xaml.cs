@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Game.Models;
 using Game.ViewModels;
 using Game.Enums;
+using System.Diagnostics;
 
 namespace Game.Views
 {
@@ -26,11 +27,11 @@ namespace Game.Views
 		{
 			InitializeComponent();
 
-            string roundLocationName = BattleLocationEnumExtensions.ToMessageWithArticle(EngineViewModel.Engine.Round.RoundLocation);
+            string roundLocationName = BattleLocationEnumExtensions.ToMessageWithArticle(BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation);
             RoundDetailsLabel.Text = "Your party is ambushed while traveling through " + roundLocationName + "!";
-
-			// Draw the Monsters
-			foreach (var data in EngineViewModel.Engine.EngineSettings.MonsterList)
+            Debug.WriteLine(BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation);
+            // Draw the Monsters
+            foreach (var data in EngineViewModel.Engine.EngineSettings.MonsterList)
 			{
 				MonsterListFrame.Children.Add(CreatePlayerDisplayBox(data));
 			}
