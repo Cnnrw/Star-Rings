@@ -78,8 +78,6 @@ namespace Game.Engine.EngineGame
         /// <returns>The chosen location</returns>
         public BattleLocationEnum ChooseRoundLocation()
         {
-            if (EngineSettings.RoundLocation != BattleLocationEnum.Unknown) return EngineSettings.RoundLocation;
-
             // TODO: Don't choose a location that has no Monsters for it
             // For instance, if the user doesn't create any monsters that spawn
             // in the Shire, then don't choose the Shire for the round location.
