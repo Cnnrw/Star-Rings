@@ -283,13 +283,12 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void CloseButton_Clicked(object sender, EventArgs e)
+        public async void CloseButton_Clicked(object sender, EventArgs e)
         {
             // Reset to a new Round
             BattleEngineViewModel.Instance.Engine.Round.NewRound();
 
-            // Show the New Round Screen
-            ShowModalNewRoundPage();
+            await Navigation.PopModalAsync();
         }
 
         /// <summary>
@@ -304,17 +303,6 @@ namespace Game.Views
 
             // Show what was picked up
             DrawItemLists();
-        }
-
-        /// <summary>
-        /// Show the Page for New Round
-        ///
-        /// Upcomming Monsters
-        ///
-        /// </summary>
-        public async void ShowModalNewRoundPage()
-        {
-            await Navigation.PopModalAsync();
         }
     }
 }
