@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-using Game.Services;
-
 using Xamarin.Forms;
 
 namespace Game.Views
@@ -11,43 +9,19 @@ namespace Game.Views
     ///     BaseContentPage adds a background image and close button that pops the
     ///     top page from the navigation stack.
     /// </summary>
+    [ContentProperty(nameof(ViewContent))]
     public partial class BaseContentPage : ContentPage
     {
-        readonly INavigationService _navigationService;
-
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public IList<View> ToolbarButtons { get; set; }
+        public IList<View> ToolbarButtons => Buttons.Children;
+        public new IList<View> ViewContent => MainContent.Children;
 
         #region Constructors
 
-        public BaseContentPage() : this(App.NavigationService) { }
-
-        BaseContentPage(INavigationService navigationService)
-        {
+        public BaseContentPage() =>
             InitializeComponent();
 
-            _navigationService = navigationService;
-        }
-
         #endregion Constructors
-        #region Overrides
-
-        /// <summary>
-        /// Retrieves the Children property of the StackLayout for additional
-        /// buttons so derived pages can add their own.
-        /// </summary>
-        protected override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            // Grab 'Buttons' StackLayout
-            var buttons = (StackLayout)GetTemplateChild("Buttons");
-
-            // Set 'ToolbarItems' to 'Buttons'
-            ToolbarButtons = buttons.Children;
-        }
-
-        #endregion Overrides
         #region PageBackground
 
         static readonly BindableProperty PageBackgroundProperty = BindableProperty.Create(propertyName: nameof(PageBackground),
@@ -64,18 +38,7 @@ namespace Game.Views
         #endregion PageBackground
         #region BackButton
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async void CloseButton_OnClick(object sender, EventArgs e) => await _navigationService.GoBack();
-
-        protected override bool OnBackButtonPressed()
-        {
-            _navigationService.GoBack();
-            return true;
-        }
+        async void CloseButton_OnClick(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(propertyName: nameof(IsBackButtonVisible),
                                                                                                returnType: typeof(bool),

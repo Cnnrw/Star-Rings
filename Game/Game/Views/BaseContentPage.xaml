@@ -4,70 +4,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              x:Class="Game.Views.BaseContentPage"
+             x:Name="ContentPage"
              ios:Page.UseSafeArea="True"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <Grid RowDefinitions="60, *" RowSpacing="0"
-                  VerticalOptions="Fill"
-                  HorizontalOptions="Fill">
+        <Grid RowDefinitions="60, *" RowSpacing="0"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill">
 
-                <!-- Page Background -->
-                <Image Grid.RowSpan="2"
-                       Source="{TemplateBinding PageBackground}"
-                       Opacity=".8"
-                       Aspect="Fill" />
+            <!-- Page Background -->
+            <Image Grid.RowSpan="2"
+                   Source="{Binding Source={x:Reference ContentPage}, Path=PageBackground}"
+                   Opacity=".8"
+                   Aspect="Fill" />
 
-                <!-- Title Bar Grid -->
-                <Grid ColumnDefinitions="*, Auto, *"
-                      ColumnSpacing="0"
-                      Margin="20, 20, 20, 0"
-                      VerticalOptions="FillAndExpand">
+            <!-- Title Bar Grid -->
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="*, Auto, *"
+                  ColumnSpacing="0"
+                  Margin="20, 20, 20, 0"
+                  VerticalOptions="FillAndExpand">
 
-                    <!-- Back Button -->
-                    <ImageButton Source="close_button.png"
-                                 IsVisible="{TemplateBinding IsBackButtonVisible}"
-                                 Clicked="CloseButton_OnClick"
-                                 HeightRequest="35" WidthRequest="35"
-                                 HorizontalOptions="Start" VerticalOptions="Center"
-                                 Aspect="AspectFit" />
+                <!-- Back Button -->
+                <ImageButton Source="close_button.png"
+                             IsVisible="{Binding Source={x:Reference ContentPage}, Path=IsBackButtonVisible}"
+                             Clicked="CloseButton_OnClick"
+                             HeightRequest="35" WidthRequest="35"
+                             HorizontalOptions="Start" VerticalOptions="Center"
+                             Aspect="AspectFit" />
 
-                    <!-- Title -->
-                    <!--
-                        For some reason using StaticResources causes UnitTests to
-                        shit the bed, so I've hard coded the styles for now - CW
-                    -->
-                    <Label Grid.Column="1"
-                           Text="{TemplateBinding PageTitle}"
-                           HorizontalOptions="Center" VerticalOptions="Center"
-                           FontFamily="8bit_bold"
-                           FontSize="24"
-                           TextColor="White"
-                           LineBreakMode="NoWrap"/>
+                <!-- Title -->
+                <!--
+                For some reason using StaticResources causes UnitTests to
+                shit the bed, so I've hard coded the styles for now - CW
+            -->
+                <Label Grid.Column="1"
+                       Text="{TemplateBinding PageTitle}"
+                       HorizontalOptions="Center" VerticalOptions="Center"
+                       FontFamily="8bit_bold"
+                       FontSize="24"
+                       TextColor="White"
+                       LineBreakMode="NoWrap" />
 
-                    <!-- Additional Buttons -->
-                    <StackLayout x:Name="Buttons" Grid.Column="2"
-                                 Orientation="Horizontal"
-                                 VerticalOptions="FillAndExpand"
-                                 HorizontalOptions="End">
-                        <StackLayout.Resources>
-                            <Style TargetType="ImageButton">
-                                <Setter Property="HeightRequest" Value="35"/>
-                                <Setter Property="WidthRequest" Value="35"/>
-                                <Setter Property="HorizontalOptions" Value="End"/>
-                                <Setter Property="VerticalOptions" Value="Center"/>
-                                <Setter Property="Aspect" Value="AspectFit"/>
-                            </Style>
-                        </StackLayout.Resources>
-                    </StackLayout>
-
-                </Grid>
-
-                <!-- Page Content -->
-                <ContentPresenter Grid.Row="1" />
+                <!-- Additional Buttons -->
+                <StackLayout x:Name="Buttons" Grid.Column="2"
+                             Orientation="Horizontal"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="End">
+                    <StackLayout.Resources>
+                        <Style TargetType="ImageButton">
+                            <Setter Property="HeightRequest" Value="35" />
+                            <Setter Property="WidthRequest" Value="35" />
+                            <Setter Property="HorizontalOptions" Value="End" />
+                            <Setter Property="VerticalOptions" Value="Center" />
+                            <Setter Property="Aspect" Value="AspectFit" />
+                        </Style>
+                    </StackLayout.Resources>
+                </StackLayout>
 
             </Grid>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
+            <Grid x:Name="MainContent"
+                  VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
+                  Grid.Row="1" />
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
