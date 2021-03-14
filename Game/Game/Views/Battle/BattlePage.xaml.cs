@@ -1,3 +1,4 @@
+using Game.Engine.EngineGame;
 using Game.Enums;
 using Game.Models;
 using Game.ViewModels;
@@ -46,36 +47,33 @@ namespace Game.Views
             // Set up the UI to Defaults
             BindingContext = BattleEngineViewModel.Instance;
 
-            // Create and Draw the Map
-            //InitializeMapGrid();
-
             // Start the Battle Engine
             BattleEngineViewModel.Instance.Engine.StartBattle(false);
 
-            EnterNewRoundLocation();
-
-            // Ask the Game engine to select who goes first
-            //BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
-
-            // Add Players to Display
-            //DrawGameAttackerDefenderBoard();
-
-            // Set the Battle Mode
-            //ShowBattleMode();
+            EnterNewRound();
         }
 
         /// <summary>
         /// Update the page to display entry into a new Round
         /// Hides the UI, updates the location background, and shows a button to enter 
         /// </summary>
-        public void EnterNewRoundLocation()
+        public void EnterNewRound()
         {
+            // Set new round location
+            var GameRound = (RoundEngine)BattleEngineViewModel.Instance.Engine.Round;
+            GameRound.ChooseRoundLocation();
+
+            // Hide battle UI
             HideBattleUIElements();
 
-            // Set the background image to match the round location
-            SetBackgroundImage();
+            // Set the background image
+            BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.Round.RoundLocation;
+            string imageUri = roundLocation.ToImageUri();
+            ContentPageElement.BackgroundImageSource = imageUri;
 
-            StartBattleButton.Text = "Enter " + BattleEngineViewModel.Instance.Engine.Round.RoundLocation.ToMessageWithArticle();
+            // Update the Start Round button
+            StartBattleButton.IsVisible = true;
+            StartBattleButton.Text = "Explore " + BattleEngineViewModel.Instance.Engine.Round.RoundLocation.ToMessageWithArticle();
         }
 
         /// <summary>
@@ -252,7 +250,6 @@ namespace Game.Views
         /// </summary>
         public void HideUiElements()
         {
-            NextRoundButton.IsVisible = false;
             StartBattleButton.IsVisible = false;
             AttackButton.IsVisible = false;
             //MessageDisplayBox.IsVisible = false;
@@ -297,7 +294,8 @@ namespace Game.Views
                 case BattleStateEnum.NewRound:
                     //UpdateMapGrid();
                     //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
-                    NextRoundButton.IsVisible = true;
+                    //NextRoundButton.IsVisible = true;
+                    StartBattleButton.IsVisible = true;
                     break;
 
                 case BattleStateEnum.GameOver:
@@ -364,13 +362,13 @@ namespace Game.Views
             SelectedCharacterDefenseLabel.Text = "";
             SelectedCharacterSpeedLabel.Text = "";
 
-            SelectedCharacterIconImage.Source = "";
-            SelectedCharacterNameLabel.Text = "";
-            SelectedCharacterLevelLabel.Text = "";
-            SelectedCharacterHealthLabel.Text = "";
-            SelectedCharacterAttackLabel.Text = "";
-            SelectedCharacterDefenseLabel.Text = "";
-            SelectedCharacterSpeedLabel.Text = "";
+            SelectedMonsterIconImage.Source = "";
+            SelectedMonsterNameLabel.Text = "";
+            SelectedMonsterLevelLabel.Text = "";
+            SelectedMonsterHealthLabel.Text = "";
+            SelectedMonsterAttackLabel.Text = "";
+            SelectedMonsterDefenseLabel.Text = "";
+            SelectedMonsterSpeedLabel.Text = "";
         }
 
         ///// <summary>
@@ -798,8 +796,6 @@ namespace Game.Views
             // Show next button
             NextButton.IsVisible = true;
             NextButton.IsEnabled = true;
-
-            //EndTurn();
         }
 
         ///// <summary>
@@ -966,28 +962,29 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void NextRoundButton_Clicked(object sender, EventArgs e)
+        public void NextRoundButton_Clicked(object sender, EventArgs e)
         {
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
-            ShowBattleMode();
-            await Navigation.PushModalAsync(new NewRoundPage());
+            //BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
+            //ShowBattleMode();
+            //await Navigation.PushModalAsync(new NewRoundPage());
+            //StartRound();
         }
 
         /// <summary>
-        ///     The Start Button
+        /// The Start Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public async void StartButton_Clicked(object sender, EventArgs e)
         {
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
-
-            // Show a new Round page
-            ShowBattleMode();
-
+            // Open a new round page
             await Navigation.PushModalAsync(new NewRoundPage());
 
-            // Show the Monster, Character, and Message boxes
+            // Set battle state to battling
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
+
+            // Show UI
+            ShowBattleMode();
             ShowBattleUIElements();
 
             // Start the first turn
@@ -1061,11 +1058,11 @@ namespace Game.Views
             {
                 BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
 
-                // Pause
-                Task.Delay(WaitTime);
-
                 // Show the Round Over, after that is cleared, it will show the New Round Dialog
                 ShowModalRoundOverPage();
+
+                EnterNewRound();
+
                 return;
             }
 
@@ -1187,15 +1184,6 @@ namespace Game.Views
         {
             ShowBattleMode();
             await Navigation.PushModalAsync(new BattleSettingsPage());
-        }
-
-        public string SetBackgroundImage()
-        {
-            var roundLocation = BattleEngineViewModel.Instance.Engine.Round.RoundLocation;
-            var imageUri = roundLocation.ToImageUri();
-            ContentPageElement.BackgroundImageSource = imageUri;
-
-            return imageUri;
         }
 
         #endregion PageHandelers
