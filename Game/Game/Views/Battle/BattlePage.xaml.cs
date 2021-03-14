@@ -60,20 +60,22 @@ namespace Game.Views
         public void EnterNewRound()
         {
             // Set new round location
-            var GameRound = (RoundEngine)BattleEngineViewModel.Instance.Engine.Round;
-            GameRound.ChooseRoundLocation();
+            //var GameRound = (RoundEngine)BattleEngineViewModel.Instance.Engine.Round;
+            //GameRound.ChooseRoundLocation();
 
             // Hide battle UI
             HideBattleUIElements();
 
             // Set the background image
-            BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.Round.RoundLocation;
+            BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation;
             string imageUri = roundLocation.ToImageUri();
             ContentPageElement.BackgroundImageSource = imageUri;
 
+            Debug.WriteLine(imageUri);
+
             // Update the Start Round button
             StartBattleButton.IsVisible = true;
-            StartBattleButton.Text = "Explore " + BattleEngineViewModel.Instance.Engine.Round.RoundLocation.ToMessageWithArticle();
+            StartBattleButton.Text = "Explore " + BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation.ToMessageWithArticle();
         }
 
         /// <summary>
@@ -203,45 +205,12 @@ namespace Game.Views
             NextButton.IsVisible = false;
         }
 
-        ///// <summary>
-        ///// Pust the Player into a Display Box
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //public StackLayout PlayerInfoDisplayBox(PlayerInfoModel data)
-        //{
-        //    data ??= new PlayerInfoModel {ImageURI = ""};
-
-        //    // Hookup the image
-        //    var playerImage = new Image
-        //    {
-        //        Source = data.ImageURI,
-        //        Style = Application.Current.Resources.TryGetValue("PlayerBattleMediumStyle", out var imageStyle)
-        //                    ? (Style)imageStyle
-        //                    : null
-        //    };
-
-        //    // Put the Image Button and Text inside a layout
-        //    var playerStack = new StackLayout
-        //    {
-        //        //Style = (Style)Application.Current.Resources["PlayerBattleDisplayBox"],
-        //        Style = Application.Current.Resources.TryGetValue("PlayerBattleDisplayBox", out var stackStyle)
-        //                    ? (Style)stackStyle
-        //                    : null,
-        //        Children = {playerImage}
-        //    };
-
-        //    return playerStack;
-        //}
-
         /// <summary>
         /// Behavior just before the page appears
         /// </summary>
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            //ShowBattleMode();
         }
 
         /// <summary>
@@ -272,8 +241,6 @@ namespace Game.Views
             // Update the Mode
             BattleModeValue.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
                 .BattleModeEnum.ToMessage();
-
-            //ShowBattleModeDisplay();
 
             ShowBattleModeUiElements();
         }
@@ -371,349 +338,6 @@ namespace Game.Views
             SelectedMonsterSpeedLabel.Text = "";
         }
 
-        ///// <summary>
-        /////     Control the Map Mode or Simple
-        ///// </summary>
-        //public void ShowBattleModeDisplay()
-        //{
-        //    switch (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel.BattleModeEnum)
-        //    {
-        //        case BattleModeEnum.MapAbility:
-        //        case BattleModeEnum.MapFull:
-        //        case BattleModeEnum.MapNext:
-        //            //GamePlayersTopDisplay.IsVisible = false;
-        //            //BattleMapDisplay.IsVisible = true;
-        //            break;
-        //    }
-        //}
-
-        #region BattleMapMode
-
-        ///// <summary>
-        /////     Create the Initial Map Grid
-        /////     All locations are empty
-        ///// </summary>
-        ///// <returns></returns>
-        //public bool InitializeMapGrid()
-        //{
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.ClearMapGrid();
-
-        //    return true;
-        //}
-
-        // /// <summary>
-        // /// Walk the current grid
-        // /// check each cell to see if it matches the engine map
-        // /// Update only those that need change
-        // /// </summary>
-        // /// <returns></returns>
-        //public bool UpdateMapGrid()
-        //{
-        //    foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.MapGridLocation)
-        //    {
-        //        // Use the ImageButton from the dictionary because that represents the player object
-        //        object MapObject = GetMapGridObject(GetDictionaryImageButtonName(data));
-        //        if (MapObject == null)
-        //        {
-        //            return false;
-        //        }
-
-        //        var imageObject = (ImageButton)MapObject;
-
-        //        // Check automation ID on the Image, That should match the Player, if not a match, the cell is now different need to update
-        //        if (imageObject.AutomationId.Equals(data.Player.Guid))
-        //        {
-        //            continue;
-        //        }
-        //        // The Image is different, so need to re-create the Image Object and add it to the Stack
-        //        // That way the correct monster is in the box.
-
-        //        MapObject = GetMapGridObject(GetDictionaryStackName(data));
-        //        if (MapObject == null)
-        //        {
-        //            return false;
-        //        }
-
-        //        var stackObject = (StackLayout)MapObject;
-
-        //        // Remove the ImageButton
-        //        stackObject.Children.RemoveAt(0);
-
-        //        var PlayerImageButton = DetermineMapImageButton(data);
-
-        //        stackObject.Children.Add(PlayerImageButton);
-
-        //        // Update the Image in the Datastructure
-        //        MapGridObjectAddImage(PlayerImageButton, data);
-
-        //        stackObject.BackgroundColor = DetermineMapBackgroundColor(data);
-        //    }
-
-        //    return true;
-        //}
-
-        ///// <summary>
-        /////     Convert the Stack to a name for the dictionary to lookup
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //static string GetDictionaryFrameName(MapModelLocation data) =>
-        //    $"MapR{data.Row}C{data.Column}Frame";
-
-        ///// <summary>
-        /////     Convert the Stack to a name for the dictionary to lookup
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //static string GetDictionaryStackName(MapModelLocation data) =>
-        //    $"MapR{data.Row}C{data.Column}Stack";
-
-        ///// <summary>
-        /////     Covert the player map location to a name for the dictionary to lookup
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //static string GetDictionaryImageButtonName(MapModelLocation data) =>
-        //    // Look up the Frame in the Dictionary
-        //    $"MapR{data.Row}C{data.Column}ImageButton";
-
-        ///// <summary>
-        /////     Get the Frame from the Dictionary
-        ///// </summary>
-        ///// <param name="name"></param>
-        ///// <returns></returns>
-        //object GetMapGridObject(string name)
-        //{
-        //    _mapLocationObject.TryGetValue(name, out var data);
-        //    return data;
-        //}
-
-        // /// <summary>
-        // /// Make the Game Map Frame
-        // /// Place the Character or Monster on the frame
-        // /// If empty, place Empty
-        // /// </summary>
-        // /// <param name="mapLocationModel"></param>
-        // /// <returns></returns>
-        //public Frame MakeMapGridBox(MapModelLocation mapLocationModel)
-        //{
-        //    if (mapLocationModel.Player == null)
-        //    {
-        //        mapLocationModel.Player = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.EmptySquare;
-        //    }
-
-        //    var PlayerImageButton = DetermineMapImageButton(mapLocationModel);
-
-        //    var PlayerStack = new StackLayout
-        //    {
-        //        Padding = 0,
-        //        Style = Application.Current.Resources.TryGetValue("BattleMapImageBox", out object stackStyle)
-        //                    ? (Style)stackStyle
-        //                    : null,
-        //        HorizontalOptions = LayoutOptions.Center,
-        //        VerticalOptions = LayoutOptions.Center,
-        //        BackgroundColor = DetermineMapBackgroundColor(mapLocationModel),
-        //        Children = {PlayerImageButton},
-        //    };
-
-        //    MapGridObjectAddImage(PlayerImageButton, mapLocationModel);
-        //    MapGridObjectAddStack(PlayerStack, mapLocationModel);
-
-        //    var MapFrame = new Frame
-        //    {
-        //        //Style = (Style)Application.Current.Resources["BattleMapFrame"],
-        //        Style = Application.Current.Resources.TryGetValue("BattleMapFrame", out object frameStyle)
-        //                    ? (Style)frameStyle
-        //                    : null,
-        //        Content = PlayerStack,
-        //        AutomationId = GetDictionaryFrameName(mapLocationModel)
-        //    };
-
-        //    return MapFrame;
-        //}
-
-        // /// <summary>
-        // /// This add the ImageButton to the stack to kep track of
-        // /// </summary>
-        // /// <param name="data"></param>
-        // /// <param name="mapModel"></param>
-        // /// <returns></returns>
-        //private bool MapGridObjectAddImage(ImageButton data, MapModelLocation mapModel)
-        //{
-        //    var name = GetDictionaryImageButtonName(mapModel);
-
-        //    // First check to see if it has data, if so update rather than add
-        //    if (MapLocationObject.ContainsKey(name))
-        //    {
-        //        // Update it
-        //        MapLocationObject[name] = data;
-        //        return true;
-        //    }
-
-        //    MapLocationObject.Add(name, data);
-
-        //    return true;
-        //}
-
-        // /// <summary>
-        // /// This adds the Stack into the Dictionary to keep track of
-        // /// </summary>
-        // /// <param name="data"></param>
-        // /// <param name="mapModel"></param>
-        // /// <returns></returns>
-        //private bool MapGridObjectAddStack(StackLayout data, MapModelLocation mapModel)
-        //{
-        //    var name = GetDictionaryStackName(mapModel);
-
-        //    // First check to see if it has data, if so update rather than add
-        //    if (MapLocationObject.ContainsKey(name))
-        //    {
-        //        // Update it
-        //        MapLocationObject[name] = data;
-        //        return true;
-        //    }
-
-        //    MapLocationObject.Add(name, data);
-        //    return true;
-        //}
-
-        // /// <summary>
-        // /// Set the Image onto the map
-        // /// The Image represents the player
-        // ///
-        // /// So a charcter is the character Image for that character
-        // ///
-        // /// The Automation ID equals the guid for the player
-        // /// This makes it easier to identify when checking the map to update thigns
-        // ///
-        // /// The button action is set per the type, so Characters events are differnt than monster events
-        // /// </summary>
-        // /// <param name="mapLocationModel"></param>
-        // /// <returns></returns>
-        //private ImageButton DetermineMapImageButton(MapModelLocation mapLocationModel)
-        //{
-        //    var data = new ImageButton
-        //    {
-        //        Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
-        //                    ? (Style)imageStyle
-        //                    : null,
-        //        Source = mapLocationModel.Player.ImageURI,
-
-        //        // Store the guid to identify this button
-        //        AutomationId = mapLocationModel.Player.Guid
-        //    };
-
-        //    switch (mapLocationModel.Player.PlayerType)
-        //    {
-        //        case PlayerTypeEnum.Character:
-        //            data.Clicked += (sender, args) => SetSelectedCharacter(mapLocationModel);
-        //            break;
-        //        case PlayerTypeEnum.Monster:
-        //            data.Clicked += (sender, args) => SetSelectedMonster(mapLocationModel);
-        //            break;
-        //        case PlayerTypeEnum.Unknown:
-        //            break;
-        //        default:
-        //            data.Clicked += (sender, args) => SetSelectedEmpty(mapLocationModel);
-
-        //            // Use the blank cell
-        //            data.Source = BattleEngineViewModel.Instance.Engine.EngineSettings.MapModel.EmptySquare.ImageURI;
-        //            break;
-        //    }
-
-        //    return data;
-        //}
-
-        ///// <summary>
-        /////     Set the Background color for the tile.
-        /////     Monsters and Characters have different colors
-        /////     Empty cells are transparent
-        ///// </summary>
-        ///// <param name="mapModel"></param>
-        ///// <returns></returns>
-        //internal static Color DetermineMapBackgroundColor(MapModelLocation mapModel)
-        //{
-        //    string battleMapBackgroundColor = null;
-        //    switch (mapModel.Player.PlayerType)
-        //    {
-        //        case PlayerTypeEnum.Character:
-        //            battleMapBackgroundColor = "BattleMapCharacterColor";
-        //            break;
-        //        case PlayerTypeEnum.Monster:
-        //            battleMapBackgroundColor = "BattleMapMonsterColor";
-        //            break;
-        //        case PlayerTypeEnum.Unknown:
-        //            break;
-        //        default:
-        //            battleMapBackgroundColor = "BattleMapTransparentColor";
-        //            break;
-        //    }
-
-        //    return Application.Current.Resources.TryGetValue(battleMapBackgroundColor ?? string.Empty, out var val)
-        //               ? (Color)val
-        //               : Color.Transparent;
-        //}
-
-        #region MapEvents
-
-        ///// <summary>
-        /////     Event when an empty location is clicked on
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //public bool SetSelectedEmpty(MapModelLocation data)
-        //{
-        //    // TODO: Info
-        //    /*
-        //     * This gets called when the characters is clicked on
-        //     * Usefull if you want to select the location to move to etc.
-        //     *
-        //     * For Mike's simple battle grammar there is no selection of action so I just return true
-        //     */
-        //    return true;
-        //}
-
-        ///// <summary>
-        /////     Event when a Monster is clicked on
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //public bool SetSelectedMonster(MapModelLocation data)
-        //{
-        //    // TODO: Info
-
-        //    /*
-        //     * This gets called when the Monster is clicked on
-        //     * Usefull if you want to select the monster to attack etc.
-        //     *
-        //     * For Mike's simple battle grammar there is no selection of action so I just return true
-        //     */
-
-        //    data.IsSelectedTarget = true;
-        //    return true;
-        //}
-
-        ///// <summary>
-        /////     Event when a Character is clicked on
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //public bool SetSelectedCharacter(MapModelLocation data)
-        //{
-        //    // TODO: Info
-        //    /*
-        //     * This gets called when the characters is clicked on
-        //     * Usefull if you want to select the character and then set state or do something
-        //     *
-        //     * For Mike's simple battle grammar there is no selection of action so I just return true
-        //     */
-        //    return true;
-        //}
-
-        #endregion MapEvents
-
-        #endregion BattleMapMode
-
         #region BasicBattleMode
 
         /// <summary>
@@ -798,97 +422,6 @@ namespace Game.Views
             NextButton.IsEnabled = true;
         }
 
-        ///// <summary>
-        /////     Next Attack Example
-        /////     This code example follows the rule of
-        /////     Auto Select Attacker
-        /////     Auto Select Defender
-        /////     Do the Attack and show the result
-        /////     So the pattern is Click Next, Next, Next until game is over
-        ///// </summary>
-        //public void NextAttackExample()
-        //{
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
-
-        //    // Get the turn, set the current player and attacker to match
-        //    SetAttackerAndDefender();
-
-        //    // Hold the current state
-        //    var roundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
-
-        //    // Output the Message of what happened.
-        //    GameMessage();
-
-        //    // Show the outcome on the Board
-        //    //DrawGameAttackerDefenderBoard();
-
-        //    switch (roundCondition)
-        //    {
-        //        case RoundEnum.NewRound:
-        //            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
-
-        //            // Pause
-        //            Task.Delay(WaitTime);
-
-        //            Debug.WriteLine("New Round");
-
-        //            // Show the Round Over, after that is cleared, it will show the New Round Dialog
-        //            ShowModalRoundOverPage();
-        //            return;
-        //        // Check for Game Over
-        //        case RoundEnum.GameOver:
-        //            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.GameOver;
-
-        //            // Wrap up
-        //            BattleEngineViewModel.Instance.Engine.EndBattle();
-
-        //            // Pause
-        //            Task.Delay(WaitTime);
-
-        //            Debug.WriteLine("Game Over");
-
-        //            GameOver();
-        //            return;
-        //        case RoundEnum.Unknown:
-        //            break;
-        //        case RoundEnum.NextTurn:
-        //            break;
-        //        default:
-        //            throw new ArgumentOutOfRangeException();
-        //    }
-        //}
-
-        ///// <summary>
-        /////     Decide The Turn and who to Attack
-        ///// </summary>
-        //public void SetAttackerAndDefender()
-        //{
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(BattleEngineViewModel.Instance.Engine.Round
-        //                                                                       .GetNextPlayerTurn());
-
-        //    switch (BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PlayerType)
-        //    {
-        //        case PlayerTypeEnum.Character:
-        //            // User would select who to attack
-
-        //            // for now just auto selecting
-        //            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(BattleEngineViewModel.Instance.Engine
-        //                .Round.Turn.AttackChoice(BattleEngineViewModel.Instance.Engine.EngineSettings
-        //                                                              .CurrentAttacker));
-        //            break;
-
-        //        case PlayerTypeEnum.Unknown:
-        //            break;
-        //        default:
-
-        //            // Monsters turn, so auto pick a Character to Attack
-        //            BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(BattleEngineViewModel.Instance.Engine
-        //                .Round.Turn.AttackChoice(BattleEngineViewModel.Instance.Engine.EngineSettings
-        //                                                              .CurrentAttacker));
-        //            break;
-        //    }
-        //}
-
         /// <summary>
         ///     Game is over
         ///     Show Buttons
@@ -958,19 +491,6 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     The Next Round Button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void NextRoundButton_Clicked(object sender, EventArgs e)
-        {
-            //BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
-            //ShowBattleMode();
-            //await Navigation.PushModalAsync(new NewRoundPage());
-            //StartRound();
-        }
-
-        /// <summary>
         /// The Start Button
         /// </summary>
         /// <param name="sender"></param>
@@ -1030,7 +550,6 @@ namespace Game.Views
             BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(ActiveMonster);
 
             // Choose which Character to target
-            //PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.Round.Turn.SelectCharacterToAttack();
             PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
 
             // Highlight the targeted Character's figure
@@ -1052,6 +571,7 @@ namespace Game.Views
         /// </summary>
         public void EndTurn()
         {
+            // TODO: Should use this instead of manually calling TakeTurn
             var RoundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
 
             if (RoundCondition == RoundEnum.NewRound)
@@ -1060,6 +580,9 @@ namespace Game.Views
 
                 // Show the Round Over, after that is cleared, it will show the New Round Dialog
                 ShowModalRoundOverPage();
+
+                // Reset to a new Round
+                BattleEngineViewModel.Instance.Engine.Round.NewRound();
 
                 EnterNewRound();
 
@@ -1127,9 +650,6 @@ namespace Game.Views
             // Show battle message stating whose turn it is
             string BattleMessage = "It's " + ActiveCharacter.Name + "'s turn! What should they do?";
             BattleMessages.Text = BattleMessage;
-
-            // Set the BattleState to ChoosingTarget
-            //BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
 
             // Show/Enable action buttons
             AttackButton.IsVisible = true;

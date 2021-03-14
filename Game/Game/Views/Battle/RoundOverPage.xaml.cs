@@ -285,9 +285,6 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void CloseButton_Clicked(object sender, EventArgs e)
         {
-            // Reset to a new Round
-            BattleEngineViewModel.Instance.Engine.Round.NewRound();
-
             await Navigation.PopModalAsync();
         }
 
