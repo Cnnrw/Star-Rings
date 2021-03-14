@@ -337,7 +337,7 @@ namespace Game.Engine.EngineGame
                     Blocker.Name +
                     " considers blocking " +
                     Target.Name +
-                    " but sees they're already weak";
+                    " but sees they're already weak.";
 
                 if (Target.Attack > 1)
                 {
@@ -395,7 +395,7 @@ namespace Game.Engine.EngineGame
             EngineSettings.BattleMessagesModel.AttackerName = Attacker.Name;
 
             // Set Attack and Defense
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var AttackScore = Attacker.GetAttack() + Attacker.Level;
             var DefenseScore = Target.GetDefense() + Target.Level;
 
             EngineSettings.BattleMessagesModel.HitStatus = RollToHitTarget(Attacker, Target, AttackScore, DefenseScore);
