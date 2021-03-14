@@ -81,11 +81,6 @@
                 <StackLayout Style="{StaticResource HorizontalStack}"
                              HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
-                    <Button x:Name="NextRoundButton"
-                                Text="Next Round"
-                                Clicked="NextRoundButton_Clicked"
-                                IsVisible="False"/>
-
                     <Button x:Name="StartBattleButton"
                             Text="Explore"
                             Clicked="StartButton_Clicked"
