@@ -21,8 +21,6 @@ namespace Game.Engine.EngineBase
         // Hold the turn
         public ITurnEngineInterface Turn { get; set; }
 
-        public BattleLocationEnum RoundLocation { get; set; }
-
         /// <summary>
         ///     Clear the List between Rounds
         /// </summary>

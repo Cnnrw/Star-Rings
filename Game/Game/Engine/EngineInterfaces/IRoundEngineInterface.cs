@@ -8,7 +8,6 @@ namespace Game.Engine.EngineInterfaces
     public interface IRoundEngineInterface
     {
         ITurnEngineInterface Turn { get; set; }
-        BattleLocationEnum RoundLocation { get; set; }
 
         bool ClearLists();
         bool NewRound();

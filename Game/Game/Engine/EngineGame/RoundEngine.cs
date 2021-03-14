@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Game.Engine.EngineBase;
 using Game.Engine.EngineInterfaces;
@@ -49,7 +50,7 @@ namespace Game.Engine.EngineGame
             RemoveCharacterBuffs();
 
             // Choose where the new round will take place
-            ChooseRoundLocation();
+            ChooseRoundLocation(); 
 
             // Populate New Monsters..
             AddMonstersToRound();
@@ -87,8 +88,7 @@ namespace Game.Engine.EngineGame
             string chosenLocationName = validLocations[index];
             BattleLocationEnum chosenLocation = BattleLocationEnumHelper.ConvertStringToEnum(chosenLocationName);
 
-            RoundLocation = chosenLocation;
-            EngineSettings.RoundLocation = chosenLocation;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation = chosenLocation;
 
             return chosenLocation;
         }
@@ -114,11 +114,13 @@ namespace Game.Engine.EngineGame
 
             foreach (MonsterModel monster in allMonsters)
             {
-                if (monster.BattleLocation == EngineSettings.RoundLocation)
+                if (monster.BattleLocation == BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation)
                 {
                     validMonsters.Add(monster);
                 }
             }
+
+            EngineSettings.MaxNumberPartyMonsters = 1;
 
             // Add a random number of valid monsters to the round up to max
             int encounteredMonsterCount = DiceHelper.RollDice(1, Math.Min(validMonsters.Count(), EngineSettings.MaxNumberPartyMonsters));
@@ -182,9 +184,6 @@ namespace Game.Engine.EngineGame
             // Reset Monster and Item Lists
             ClearLists();
 
-            // Clear the round location
-            RoundLocation = BattleLocationEnum.Unknown;
-
             return true;
         }
 
@@ -239,7 +238,10 @@ namespace Game.Engine.EngineGame
             }
 
             // Do the turn....
-            Turn.TakeTurn(EngineSettings.CurrentAttacker);
+            if (EngineSettings.BattleScore.AutoBattle)
+            {
+                Turn.TakeTurn(EngineSettings.CurrentAttacker);
+            }
 
             EngineSettings.RoundStateEnum = RoundEnum.NextTurn;
 
