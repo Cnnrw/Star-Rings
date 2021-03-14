@@ -100,7 +100,7 @@ namespace Game.Engine.EngineGame
 
             int RollResult = DiceHelper.RollDice(1, 100);
             //TODO
-            if (RollResult <= 0)
+            if (RollResult <= 80)
             {
                 EngineSettings.CurrentAction = ActionEnum.Attack;
             } else
@@ -321,27 +321,17 @@ namespace Game.Engine.EngineGame
             // Set Messages to empty
             EngineSettings.BattleMessagesModel.ClearMessages();
 
-            
-            int RollResult = DiceHelper.RollDice(1, 10);
+            int RollResult = DiceHelper.RollDice(1, 20);
 
-            EngineSettings.BattleMessagesModel.TurnMessage =
-                Blocker.Name +
-                " tries to block " +
-                Target.Name +
-                " but misses";
+            int BlockScore = Blocker.Speed + Blocker.Level + RollResult;
+            int DefenseScore = Target.Speed + Target.Level;
 
-            // Apply the Block on the target's Attack
-            if (RollResult <= 3)
+            if (BlockScore > DefenseScore)
             {
-                EngineSettings.BattleMessagesModel.TurnMessage =
-                    Blocker.Name +
-                    " considers blocking " +
-                    Target.Name +
-                    " but sees they're already weak.";
-
+                // Apply the block to the target's attack
                 if (Target.Attack > 1)
                 {
-                    Target.Attack -= 1;
+                    Target.Attack--;
 
                     EngineSettings.BattleMessagesModel.TurnMessage =
                         Blocker.Name +
@@ -349,7 +339,21 @@ namespace Game.Engine.EngineGame
                         Target.Name +
                         " and drops their attack to " +
                         Target.Attack;
+                } else
+                {
+                    EngineSettings.BattleMessagesModel.TurnMessage =
+                        Blocker.Name +
+                        " considers blocking " +
+                        Target.Name +
+                        " but sees they're already weak.";
                 }
+            } else
+            {
+                EngineSettings.BattleMessagesModel.TurnMessage =
+                    Blocker.Name +
+                    " tries to block " +
+                    Target.Name +
+                    " but misses";
             }
 
             Debug.WriteLine(EngineSettings.BattleMessagesModel.TurnMessage);
