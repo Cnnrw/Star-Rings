@@ -121,17 +121,17 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Save_Clicked(object sender, EventArgs e)
         {
+            if (_viewModel.Data.Name.Length == 0)
+            {
+                await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
+                return;
+            }
+
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
             {
                 var monsterImg = RandomPlayerHelper.GetMonsterImage();
                 _viewModel.Data.ImageURI = monsterImg.ToImageURI();
                 _viewModel.Data.IconImageURI = monsterImg.ToIconImageURI();
-            }
-
-            if (_viewModel.Data.Name.Length == 0)
-            {
-                await DisplayAlert("Hold up!", "Please give your monster a name", "OK");
-                return;
             }
 
             MessagingCenter.Send(this, "Create", _viewModel.Data);
