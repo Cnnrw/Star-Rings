@@ -240,6 +240,7 @@
            BasedOn="{StaticResource ImageLargeStyle}">
         <Setter Property="HeightRequest" Value="125" />
         <Setter Property="WidthRequest" Value="125" />
+        <Setter Property="Aspect" Value="AspectFit" />
     </Style>
 
     <Style TargetType="Image"
