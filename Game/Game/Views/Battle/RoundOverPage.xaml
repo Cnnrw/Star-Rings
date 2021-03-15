@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundImageSource="page_background.png"
@@ -24,7 +24,7 @@
                         <Button Clicked="CloseButton_Clicked" Text="Close"/>
 
                         <StackLayout Style="{StaticResource HorizontalStack}">
-                            <Label Text="Round : " Style="{StaticResource MessageStyle}"/>
+                            <Label Text="Round : " Style="{StaticResource CenterMessageLargeStyle}"/>
                             <Label Text="0" x:Name="TotalRound" Style="{StaticResource MessageStyle}"/>
                         </StackLayout>
 
