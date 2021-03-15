@@ -76,6 +76,7 @@
                         HorizontalOptions="CenterAndExpand"
                         WidthRequest="300"
                         HeightRequest="300"
+                    BackgroundColor="Transparent"
                         >
 
                     <Frame 
