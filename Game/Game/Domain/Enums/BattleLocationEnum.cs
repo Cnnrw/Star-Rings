@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Game.Enums
@@ -36,20 +37,15 @@ namespace Game.Enums
     public enum BattleLocationEnum
     {
         Unknown = 0,
-
-        // Rolling hills and open fields
+        [Display(Description = "The Shire")]
         Shire = 1,
-
-        // A magical metropolis
+        [Display(Description = "Elven City")]
         ElvenCity = 2,
-
-        // A dark, tangled forest
+        [Display(Description = "Forest")]
         Forest = 4,
-
-        // Underground chambers and caves
+        [Display(Description = "Dungeons")]
         Dungeons = 8,
-
-        // Desolate, fiery wasteland
+        [Display(Description = "Mordor")]
         Mordor = 16,
     }
 
@@ -64,7 +60,6 @@ namespace Game.Enums
         /// <param name="value"></param>
         /// <returns></returns>
         public static string ToMessage(this BattleLocationEnum value) =>
-            // Default String
             value switch
             {
                 BattleLocationEnum.Shire     => "The Shire",
@@ -97,7 +92,7 @@ namespace Game.Enums
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToImageUri(this BattleLocationEnum value) =>
+        public static string ToImageURI(this BattleLocationEnum value) =>
             value switch
             {
                 BattleLocationEnum.Shire     => "shire_background.png",
