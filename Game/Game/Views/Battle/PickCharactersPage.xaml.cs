@@ -21,7 +21,7 @@ namespace Game.Views
     /// </summary>
     public partial class PickCharactersPage : BaseContentPage
     {
-        internal readonly BattleEngineViewModel ViewModel = BattleEngineViewModel.Instance;
+        readonly BattleEngineViewModel _viewModel = BattleEngineViewModel.Instance;
 
         /// <summary>
         /// Empty Constructor for UTs
@@ -38,11 +38,11 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
 
             PopulateCharacterPool();
 
-            ViewModel.PartyCharacterList.Clear();
+            _viewModel.PartyCharacterList.Clear();
 
             UpdateNextButtonState();
         }
@@ -52,12 +52,10 @@ namespace Game.Views
         /// </summary>
         private void PopulateCharacterPool()
         {
-            ViewModel.PoolCharacterList.Clear();
+            _viewModel.PoolCharacterList.Clear();
 
-            foreach (CharacterModel Character in ViewModel.DatabaseCharacterList)
-            {
-                ViewModel.PoolCharacterList.Add(Character);
-            }
+            foreach (var character in _viewModel.DatabaseCharacterList)
+                _viewModel.PoolCharacterList.Add(character);
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        internal void OnCharacterSelected(object sender, SelectionChangedEventArgs args)
+        void OnCharacterSelected(object sender, SelectionChangedEventArgs args)
         {
             if (!(args.CurrentSelection.FirstOrDefault() is CharacterModel data))
                 return;
@@ -74,11 +72,11 @@ namespace Game.Views
             CharacterList.SelectedItem = null;
 
             // Don't add more than the party max
-            if (ViewModel.PartyCharacterList.Count() < ViewModel.Engine.EngineSettings.MaxNumberPartyCharacters)
+            if (_viewModel.PartyCharacterList.Count() < _viewModel.Engine.EngineSettings.MaxNumberPartyCharacters)
             {
                 // Remove the character from the pool list and add it to the party list
-                ViewModel.PoolCharacterList.Remove(data);
-                ViewModel.PartyCharacterList.Add(data);
+                _viewModel.PoolCharacterList.Remove(data);
+                _viewModel.PartyCharacterList.Add(data);
             }
 
             UpdateNextButtonState();
@@ -89,7 +87,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        internal void OnPartyCharacterSelected(object sender, SelectionChangedEventArgs args)
+        void OnPartyCharacterSelected(object sender, SelectionChangedEventArgs args)
         {
             if (!(args.CurrentSelection.FirstOrDefault() is CharacterModel data))
                 return;
@@ -98,8 +96,8 @@ namespace Game.Views
             PartyList.SelectedItem = null;
 
             // Remove the character from the party list and add it back to the pool list
-            ViewModel.PartyCharacterList.Remove(data);
-            ViewModel.PoolCharacterList.Add(data);
+            _viewModel.PartyCharacterList.Remove(data);
+            _viewModel.PoolCharacterList.Add(data);
 
             UpdateNextButtonState();
         }
@@ -113,10 +111,12 @@ namespace Game.Views
         /// </summary>
         public void UpdateNextButtonState()
         {
-            BeginBattleButton.IsEnabled = ViewModel.PartyCharacterList != null &&
-                                          ViewModel.PartyCharacterList.Any();
-            PartyCountLabel.Text = (ViewModel.PartyCharacterList ?? Enumerable.Empty<CharacterModel>()).Count()
-                                                                                                       .ToString();
+            BeginBattleButton.IsEnabled = _viewModel.PartyCharacterList != null &&
+                                          _viewModel.PartyCharacterList.Any();
+
+            PartyCountLabel.Text = (_viewModel.PartyCharacterList ??
+                                    Enumerable.Empty<CharacterModel>()).Count()
+                                                                       .ToString();
         }
 
         /// <summary>
@@ -140,13 +140,13 @@ namespace Game.Views
         internal void CreateEngineCharacterList()
         {
             // Clear the current list
-            ViewModel.Engine.EngineSettings.CharacterList.Clear();
+            _viewModel.Engine.EngineSettings.CharacterList.Clear();
 
             // Load the Characters into the Engine
-            foreach (var data in ViewModel.PartyCharacterList)
+            foreach (var data in _viewModel.PartyCharacterList)
             {
                 data.CurrentHealth = data.GetMaxHealthTotal;
-                ViewModel.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
+                _viewModel.Engine.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
             }
         }
     }

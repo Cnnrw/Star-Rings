@@ -8,7 +8,8 @@
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
-                      x:Class="Game.Views.PickCharactersPage">
+                      x:Class="Game.Views.PickCharactersPage"
+                      PageTitle="Choose Your Party">
 
     <ContentPage.BindingContext>
         <vm:BattleEngineViewModel />
@@ -52,20 +53,14 @@
     </ContentPage.Resources>
 
     <Grid ColumnDefinitions="*, *"
-          RowDefinitions="35,25,4*,*"
+          RowDefinitions="25,4*,*"
           Padding="15, 0">
 
-        <Label Grid.ColumnSpan="2"
-               Text="Choose Your Party"
+        <!-- Character list -->
+        <Label Text="Characters"
                Style="{StaticResource CenterMessageLargeStyle}" />
 
-        <!-- Selectable Characters -->
-        <Label Grid.Row="1"
-               Text="Characters"
-               Style="{StaticResource CenterMessageLargeStyle}" />
-
-        <CollectionView Grid.Column="0"
-                        Grid.Row="2"
+        <CollectionView Grid.Row="1"
                         x:Name="CharacterList"
                         ItemsSource="{Binding PoolCharacterList}"
                         SelectionMode="Single"
@@ -75,12 +70,11 @@
                         ItemTemplate="{StaticResource CharacterTemplate}" />
 
         <!-- Selected Characters -->
-        <Label Grid.Column="1" Grid.Row="1"
+        <Label Grid.Column="1"
                Text="Party"
                Style="{StaticResource CenterMessageStyle}" />
 
-        <CollectionView Grid.Column="1"
-                        Grid.Row="2"
+        <CollectionView Grid.Column="1" Grid.Row="1"
                         x:Name="PartyList"
                         ItemsSource="{Binding PartyCharacterList}"
                         SelectionMode="Single"
@@ -90,7 +84,7 @@
                         ItemTemplate="{StaticResource CharacterTemplate}" />
 
         <!-- Selected Character count -->
-        <StackLayout Grid.ColumnSpan="2" Grid.Row="3"
+        <StackLayout Grid.ColumnSpan="2" Grid.Row="2"
                      HorizontalOptions="CenterAndExpand">
 
             <Label Text="Count"
