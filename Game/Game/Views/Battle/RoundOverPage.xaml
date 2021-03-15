@@ -13,7 +13,8 @@
 
             <StackLayout Style="{StaticResource VerticalStack}"
                     AbsoluteLayout.LayoutBounds="1,1,1,1" 
-                    AbsoluteLayout.LayoutFlags="All">
+                    AbsoluteLayout.LayoutFlags="All"
+                    Padding="25">
 
                 <ScrollView x:Name="ScrollView">
 
