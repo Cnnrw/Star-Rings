@@ -1,95 +1,95 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.PickItemsPage"
-             BackgroundImageSource="page_background.png"
-             >
+<?xml version="1.0" encoding="utf-8"?>
 
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Style="{StaticResource VerticalStack}"
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="40" >
-                <Label Text="Gather Loot" Style="{StaticResource HeaderStyle}" HorizontalOptions="Center"/>
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      PageTitle="Gather Loot"
+                      x:Class="Game.Views.PickItemsPage">
 
-                <StackLayout>
-                    <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}"/>
+    <page:BaseContentPage.BindingContext>
+        <vm:BattleEngineViewModel />
+    </page:BaseContentPage.BindingContext>
 
-                    <ListView 
-                                x:Name="ItemDroppedListView" 
-                                ItemsSource="{Binding ItemsDroppedList}"
-                                ItemSelected="OnItemInPoolSelected"
-                                HasUnevenRows="true"
-                                Margin="5,0,5,0"
-                                RowHeight="80"
-                                HeightRequest="100">
+    <ScrollView>
+        <StackLayout Style="{StaticResource OuterBoxStack}"
+                     HorizontalOptions="CenterAndExpand">
+            <StackLayout>
+                <Label Text="Dropped Loot" Style="{StaticResource CenterMessageLargeStyle}" />
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                   Source="{Binding ImageURI}"
-                                                   Style="{StaticResource ImageMediumStyle}"
-                                                   Aspect="AspectFit"/>
+                <ListView x:Name="ItemDroppedListView"
+                          ItemsSource="{Binding Instance.ItemsDroppedList}"
+                          ItemSelected="OnItemInPoolSelected"
+                          HasUnevenRows="true"
+                          Margin="5,0,5,0"
+                          RowHeight="80"
+                          HeightRequest="100">
 
-                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
-                                                   Text="{Binding Name}" 
-                                                   Style="{StaticResource ListStyle}"
-                                                   FontAttributes="Bold"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnDefinitions="*,*">
+                                    <Image Source="{Binding ImageURI}"
+                                           Style="{StaticResource ImageMediumStyle}"
+                                           Aspect="AspectFit" />
 
-                    <Button Clicked="DistributeButton_Clicked" Text="Distribute"></Button>
-                </StackLayout>
+                                    <Label Grid.Column="1" Grid.ColumnSpan="2"
+                                           Text="{Binding Name}"
+                                           Style="{StaticResource ListStyle}"
+                                           FontAttributes="Bold" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-                <StackLayout HorizontalOptions="Start">
-                    <Label Text="Party" Style="{StaticResource CenterMessageLargeStyle}"/>
-
-                    <ListView 
-                                x:Name="CharactersListView" 
-                                ItemsSource="{Binding PartyCharacterList}"
-                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                                RefreshCommand="{Binding LoadItemsCommand}"
-                                CachingStrategy="RecycleElement"
-                                ItemSelected="OnPartyMemberSelected"
-                                HasUnevenRows="true"
-                                Margin="5,0,5,0"
-                                RowHeight="80">
-
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                   Source="{Binding ImageURI}"
-                                                   Style="{StaticResource ImageMediumStyle}"
-                                                   Aspect="AspectFit"/>
-
-                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
-                                                   Text="{Binding Name}" 
-                                                   Style="{StaticResource ListStyle}"
-                                                   FontAttributes="Bold"/>
-
-                                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
-                                                   Text="{Binding Path=Level, StringFormat='Level {0:G}'}" 
-                                                   Style="{StaticResource ListStyle}"/>
-
-                                        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
-                                                   Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}" 
-                                                   Style="{StaticResource ListStyle}"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-
-                <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
+                <Button Clicked="DistributeButton_Clicked"
+                        Text="Distribute" />
             </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+
+            <StackLayout HorizontalOptions="Start">
+                <Label Text="Party"
+                       Style="{StaticResource CenterMessageLargeStyle}" />
+
+                <ListView x:Name="CharactersListView"
+                          ItemsSource="{Binding PartyCharacterList}"
+                          ItemSelected="OnPartyMemberSelected"
+                          HasUnevenRows="true"
+                          Margin="5,0,5,0"
+                          RowHeight="80">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid RowDefinitions="*,*,*"
+                                      ColumnDefinitions="*,*">
+                                    <Image Grid.RowSpan="3"
+                                           Source="{Binding ImageURI}"
+                                           Style="{StaticResource ImageMediumStyle}"
+                                           Aspect="AspectFit" />
+
+                                    <Label Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding Name}"
+                                           Style="{StaticResource ListStyle}"
+                                           FontAttributes="Bold" />
+
+                                    <Label Grid.Column="1" Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding Path=Level, StringFormat='Level {0:G}'}"
+                                           Style="{StaticResource ListStyle}" />
+
+                                    <Label Grid.Column="1" Grid.Row="2"
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding Path=MaxHealth, StringFormat= '{0:G} hp'}"
+                                           Style="{StaticResource ListStyle}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</page:BaseContentPage>
