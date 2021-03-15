@@ -186,7 +186,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.GameMessage();
+            GameMessage();
 
             // Reset
 
@@ -201,7 +201,7 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.LevelUpMessage = "me";
 
             // Act
-            page.GameMessage();
+            GameMessage();
 
             // Reset
 
