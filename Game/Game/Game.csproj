@@ -52,6 +52,8 @@
 	<ItemGroup>
 		<None Remove="Assets\Images\Buttons\about_1.png" />
 		<None Remove="Assets\Images\Buttons\about_2.png" />
+    <None Remove="Assets\Images\Buttons\button.png" />
+    <None Remove="Assets\Images\Buttons\button_pressed.png" />
 		<None Remove="Assets\Images\Buttons\auto_battle.png" />
     <None Remove="Assets\Images\Buttons\cancel_button.png" />
     <None Remove="Assets\Images\Buttons\close_button.png" />
@@ -286,6 +288,8 @@
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\cancel_button.png" />
     <SharedImage BaseSize="16,16" Include="Assets\Images\Buttons\close_button.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\start_button_normal.png" />
+    <SharedImage BaseSize="56,22" Include="Assets\Images\Buttons\button.png" />
+    <SharedImage BaseSize="56,22" Include="Assets\Images\Buttons\button_pressed.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\start_button_pressed.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\auto_battle.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\about_1.png" />
