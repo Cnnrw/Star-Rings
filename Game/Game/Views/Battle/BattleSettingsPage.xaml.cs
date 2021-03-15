@@ -3,16 +3,12 @@
 using Game.Enums;
 using Game.ViewModels;
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace Game.Views
 {
     /// <summary>
     /// The Main Game Page
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BattleSettingsPage : ContentPage
+    public partial class BattleSettingsPage : BaseContentPage
     {
         // Empty Constructor for UTs
         // public BattleSettingsPage(bool UnitTest) { }
