@@ -1,12 +1,13 @@
-using Game.Engine.EngineGame;
-using Game.Enums;
-using Game.Models;
-using Game.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Game.Enums;
+using Game.Models;
+using Game.ViewModels;
+
 using Xamarin.Forms;
 
 namespace Game.Views
@@ -55,7 +56,7 @@ namespace Game.Views
 
         /// <summary>
         /// Update the page to display entry into a new Round
-        /// Hides the UI, updates the location background, and shows a button to enter 
+        /// Hides the UI, updates the location background, and shows a button to enter
         /// </summary>
         public void EnterNewRound()
         {
@@ -68,7 +69,7 @@ namespace Game.Views
 
             // Set the background image
             BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation;
-            string imageUri = roundLocation.ToImageUri();
+            string imageUri = roundLocation.ToImageURI();
             ContentPageElement.BackgroundImageSource = imageUri;
 
             Debug.WriteLine(imageUri);

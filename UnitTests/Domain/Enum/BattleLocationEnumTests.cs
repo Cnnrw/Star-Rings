@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using Game.Enums;
 
 using NUnit.Framework;
@@ -171,7 +167,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = BattleLocationEnum.Dungeons.ToImageUri();
+            var result = BattleLocationEnum.Dungeons.ToImageURI();
 
             // Reset
 
@@ -185,7 +181,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = BattleLocationEnum.ElvenCity.ToImageUri();
+            var result = BattleLocationEnum.ElvenCity.ToImageURI();
 
             // Reset
 
@@ -199,7 +195,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = BattleLocationEnum.Forest.ToImageUri();
+            var result = BattleLocationEnum.Forest.ToImageURI();
 
             // Reset
 
@@ -213,7 +209,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = BattleLocationEnum.Mordor.ToImageUri();
+            var result = BattleLocationEnum.Mordor.ToImageURI();
 
             // Reset
 
@@ -227,7 +223,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = BattleLocationEnum.Shire.ToImageUri();
+            var result = BattleLocationEnum.Shire.ToImageURI();
 
             // Reset
 
