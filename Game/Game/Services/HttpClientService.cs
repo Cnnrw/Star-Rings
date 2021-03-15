@@ -24,34 +24,9 @@ namespace Game.Services
         private HttpClient _httpClientInstance;
 
         // client
-        private HttpClient _httpClient
-        {
-            get
-            {
-                if (_httpClientInstance == null)
-                {
-                    _httpClientInstance = new HttpClient();
-                }
-                return _httpClientInstance;
-            }
-            //set
-            //{
-            //    _httpClientInstance = _httpClient;
-            //}
-        }
+        private HttpClient HttpClient => _httpClientInstance ??= new HttpClient();
 
-        // this instance
-        public static HttpClientService Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new HttpClientService();
-                }
-                return _instance;
-            }
-        }
+        public static HttpClientService Instance => _instance ??= new HttpClientService();
 
         /// <summary>
         /// Set the client
@@ -83,12 +58,7 @@ namespace Game.Services
             JObject json;
             string data;
 
-            if (response == null)
-            {
-                return null;
-            }
-
-            if (response.Content == null)
+            if (response?.Content == null)
             {
                 return null;
             }
@@ -136,14 +106,14 @@ namespace Game.Services
         /// <summary>
         /// Do the Post Call to the Server
         /// </summary>
-        /// <param name="RestUrl"></param>
+        /// <param name="restUrl"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public async Task<string> GetJsonPostAsync(string RestUrl, JObject jsonString)
+        public async Task<string> GetJsonPostAsync(string restUrl, JObject jsonString)
         {
             // Take the post paramaters, and add the Version and Device to it
 
-            if (string.IsNullOrEmpty(RestUrl))
+            if (string.IsNullOrEmpty(restUrl))
             {
                 return null;
             }
@@ -165,13 +135,13 @@ namespace Game.Services
             var finalPostString = finalJson.ToString();
 
             // Set the header context to say it will use json
-            var HeaderContent = new StringContent(finalPostString, Encoding.UTF8, "application/json");
+            var headerContent = new StringContent(finalPostString, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response;
 
             try
             {
-                response = await _httpClient.PostAsync(RestUrl, HeaderContent);
+                response = await HttpClient.PostAsync(restUrl, headerContent);
                 if (!response.IsSuccessStatusCode)
                 {
                     return null;
@@ -190,22 +160,20 @@ namespace Game.Services
         /// <summary>
         /// Do the Get call to the server
         /// </summary>
-        /// <param name="RestUrl"></param>
+        /// <param name="restUrl"></param>
         /// <returns></returns>
-        public async Task<string> GetJsonGetAsync(string RestUrl)
+        public async Task<string> GetJsonGetAsync(string restUrl)
         {
             // Take the post paramaters, and add the Version and Device to it
 
-            if (string.IsNullOrEmpty(RestUrl))
+            if (string.IsNullOrEmpty(restUrl))
             {
                 return null;
             }
 
-            HttpResponseMessage response;
-
             try
             {
-                response = await _httpClient.GetAsync(RestUrl);
+                var response = await HttpClient.GetAsync(restUrl);
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await JsonParseResult(response);
