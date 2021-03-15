@@ -47,7 +47,7 @@ namespace Game
             navigationService.Configure(nameof(ScoreIndexPage), typeof(ScoreIndexPage));
 
             // Dungeon Pages
-            navigationService.Configure("DungeonPage", typeof(BattleHomePage));
+            navigationService.Configure("Battle", typeof(PickCharactersPage));
 
             // AutoBattle
             navigationService.Configure(nameof(AutoBattlePage), typeof(AutoBattlePage));
