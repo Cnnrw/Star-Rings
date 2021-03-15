@@ -33,9 +33,9 @@
                 <c:ImgButton Text="Rebel Base"
                              Source="rebel_base_2.png"
                              Command="{Binding RebelBaseCommand}" />
-                <c:ImgButton Text="Dungeon"
+                <c:ImgButton Text="Battle"
                              Source="dungeon.png"
-                             Command="{Binding DungeonCommand}" />
+                             Command="{Binding BattleCommand}" />
                 <c:ImgButton Text="Auto-Battle"
                              Source="auto_battle.png"
                              Command="{Binding AutoBattleCommand}" />
