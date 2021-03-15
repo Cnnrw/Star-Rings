@@ -1,214 +1,222 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Name="ContentPageElement"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.BattlePage">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <NavigationPage.TitleView>
-        <!--Menu Bar-->
-        <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
-            <Frame Padding="10,0,0,0"/>
-            <Frame Padding="10,0,0,0"/>
-            <ImageButton Source="icon_edit.png" Clicked="Settings_Clicked" Style="{StaticResource BattleToolbarStyle}"/>
-            <ImageButton Source="icon_cancel.png" Clicked="ExitButton_Clicked" Style="{StaticResource BattleToolbarStyle}"/>
-            <Frame Padding="10,0,0,0"/>
-            <Label x:Name="BattleModeValue" Text="" Style="{StaticResource ValueStyleMicro}" HorizontalTextAlignment="Center"/>
-        </StackLayout>
-    </NavigationPage.TitleView>
+<page:BaseContentPage x:Name="ContentPageElement"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:page="clr-namespace:Game.Views"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      x:Class="Game.Views.BattlePage"
+                      IsBackButtonVisible="False">
 
-    <ContentPage.Content>
-        <AbsoluteLayout
-                IsVisible="True"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand">
+    <page:BaseContentPage.BindingContext>
+        <vm:BattleEngineViewModel />
+    </page:BaseContentPage.BindingContext>
 
-            <!--The Game UI Screen -->
-            <StackLayout VerticalOptions="FillAndExpand"
-                         x:Name="GameUIDisplay"
-                         IsVisible="True"
-                         AbsoluteLayout.LayoutBounds="1,1,1,1"
-                         AbsoluteLayout.LayoutFlags="All">
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Source="settings_toolbar_button.png"
+                     Clicked="Settings_Clicked" />
+        <ImageButton Source="cancel_button.png"
+                     Clicked="ExitButton_Clicked" />
+    </page:BaseContentPage.ToolbarButtons>
 
-                <!-- The top of the screen shows monster info -->
-                <StackLayout x:Name="TopMonstersDisplay">
-                    <!-- A box for the selected monster info -->
+    <AbsoluteLayout IsVisible="True"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+
+        <!--The Game UI Screen -->
+        <StackLayout VerticalOptions="FillAndExpand"
+                     x:Name="GameUIDisplay"
+                     IsVisible="True"
+                     AbsoluteLayout.LayoutBounds="1,1,1,1"
+                     AbsoluteLayout.LayoutFlags="All">
+
+            <!-- The top of the screen shows monster info -->
+            <StackLayout x:Name="TopMonstersDisplay">
+                <!-- A box for the selected monster info -->
+                <StackLayout Orientation="Horizontal"
+                             Padding="10"
+                             BackgroundColor="#555555">
+                    <Image x:Name="SelectedMonsterIconImage"
+                           Source=""
+                           WidthRequest="100"
+                           HeightRequest="100"
+                           Aspect="AspectFit" />
+
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Label x:Name="SelectedMonsterNameLabel"
+                               Text=""
+                               Style="{StaticResource MessageStyle}"
+                               TextColor="White" />
+
+                        <Label x:Name="SelectedMonsterLevelLabel"
+                               Text=""
+                               Style="{StaticResource LabelStyle}" />
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="SelectedMonsterHealthLabel"
+                                   Text=""
+                                   Style="{StaticResource LabelStyle}"
+                                   Margin="0,0,10,0" />
+                            <Label x:Name="SelectedMonsterAttackLabel"
+                                   Text=""
+                                   Style="{StaticResource LabelStyle}"
+                                   Margin="0,0,10,0" />
+                            <Label x:Name="SelectedMonsterDefenseLabel"
+                                   Text=""
+                                   Style="{StaticResource LabelStyle}"
+                                   Margin="0,0,10,0" />
+                            <Label x:Name="SelectedMonsterSpeedLabel"
+                                   Text=""
+                                   Style="{StaticResource LabelStyle}" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- A list of monster figures -->
+                <FlexLayout x:Name="MonsterFigureArea"
+                            Padding="10"
+                            JustifyContent="Center"
+                            BackgroundColor="#bb888888" />
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource HorizontalStack}"
+                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand">
+                <Button x:Name="StartBattleButton"
+                        Text="Explore"
+                        Clicked="StartButton_Clicked"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="80"
+                        Padding="20"
+                        BackgroundColor="#ddaaaaaa"
+                        FontSize="Large"
+                        FontFamily="8bit_bold" />
+            </StackLayout>
+
+            <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
+            <StackLayout x:Name="BattleBottomBox"
+                         VerticalOptions="EndAndExpand">
+                <!-- -->
+                <StackLayout x:Name="BottomCharactersDisplay">
+                    <!-- A list of Character figures -->
+                    <FlexLayout x:Name="CharacterFigureArea"
+                                Padding="10"
+                                JustifyContent="Center"
+                                BackgroundColor="#bb888888" />
+
+                    <!-- A box for the selected character info -->
                     <StackLayout Orientation="Horizontal"
                                  Padding="10"
                                  BackgroundColor="#555555">
-                        <Image x:Name="SelectedMonsterIconImage"
+                        <Image x:Name="SelectedCharacterIconImage"
                                Source=""
                                WidthRequest="100"
                                HeightRequest="100"
-                               Aspect="AspectFit"/>
+                               Aspect="AspectFit"
+                               Opacity="1.0" />
 
                         <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label x:Name="SelectedMonsterNameLabel"
+                            <Label x:Name="SelectedCharacterNameLabel"
                                    Text=""
                                    Style="{StaticResource MessageStyle}"
-                                   TextColor="White"/>
+                                   TextColor="White" />
 
-                            <Label x:Name="SelectedMonsterLevelLabel"
-                                       Text=""
-                                       Style="{StaticResource LabelStyle}"/>
-                            
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="SelectedMonsterHealthLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"
-                                           Margin="0,0,10,0"/>
-                                <Label x:Name="SelectedMonsterAttackLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"
-                                           Margin="0,0,10,0"/>
-                                <Label x:Name="SelectedMonsterDefenseLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"
-                                           Margin="0,0,10,0"/>
-                                <Label x:Name="SelectedMonsterSpeedLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"/>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <!-- A list of monster figures -->
-                    <FlexLayout x:Name="MonsterFigureArea"
-                                Padding="10"
-                                JustifyContent="Center"
-                                BackgroundColor="#bb888888"/>
-                </StackLayout>
-
-                <StackLayout Style="{StaticResource HorizontalStack}"
-                             HorizontalOptions="CenterAndExpand"
-                             VerticalOptions="CenterAndExpand">
-                    <Button x:Name="StartBattleButton"
-                            Text="Explore"
-                            Clicked="StartButton_Clicked"
-                            VerticalOptions="CenterAndExpand"
-                            HeightRequest="80"
-                            Padding="20"
-                            BackgroundColor="#ddaaaaaa"
-                            FontSize="Large"
-                            FontFamily="8bit_bold"/>
-                </StackLayout>
-
-                <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
-                <StackLayout x:Name="BattleBottomBox"
-                             VerticalOptions="EndAndExpand">
-                    <!-- -->
-                    <StackLayout x:Name="BottomCharactersDisplay">
-                        <!-- A list of Character figures -->
-                        <FlexLayout x:Name="CharacterFigureArea"
-                                    Padding="10"
-                                    JustifyContent="Center"
-                                    BackgroundColor="#bb888888"/>
-
-                        <!-- A box for the selected character info -->
-                        <StackLayout Orientation="Horizontal"
-                                     Padding="10"
-                                     BackgroundColor="#555555">
-                            <Image x:Name="SelectedCharacterIconImage"
-                                   Source=""
-                                   WidthRequest="100"
-                                   HeightRequest="100"
-                                   Aspect="AspectFit"
-                                   Opacity="1.0"/>
-
-                            <StackLayout HorizontalOptions="FillAndExpand">
-                                <Label x:Name="SelectedCharacterNameLabel"
-                                       Text=""
-                                       Style="{StaticResource MessageStyle}"
-                                       TextColor="White"/>
-                                
-                                <Label x:Name="SelectedCharacterLevelLabel"
-                                       Text=""
-                                       Style="{StaticResource LabelStyle}"/>
-
-                                <StackLayout Orientation="Horizontal">
-                                    <Label x:Name="SelectedCharacterHealthLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"
-                                           Margin="0,0,10,0"/>
-                                    <Label x:Name="SelectedCharacterAttackLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"
-                                           Margin="0,0,10,0"/>
-                                    <Label x:Name="SelectedCharacterDefenseLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"
-                                           Margin="0,0,10,0"/>
-                                    <Label x:Name="SelectedCharacterSpeedLabel"
-                                           Text=""
-                                           Style="{StaticResource LabelStyle}"/>
-                                </StackLayout>
-                            </StackLayout>
-
-                            <StackLayout HorizontalOptions="End">
-                                <Button x:Name="AttackButton"
-                                        Text="Attack"
-                                        Clicked="AttackButton_Clicked"
-                                        IsEnabled="False"
-                                        IsVisible="False"/>
-
-                                <Button x:Name="BlockButton"
-                                        Text="Block"
-                                        Clicked="BlockButton_Clicked"
-                                        IsEnabled="False"
-                                        IsVisible="False"/>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="20,15,20,15"
-                                 HeightRequest="100"
-                                 BackgroundColor="Tan">
-                        <StackLayout x:Name="MessageDisplayBox"
-                                     HorizontalOptions="FillAndExpand">
-                            <Label x:Name="BattleMessages"
+                            <Label x:Name="SelectedCharacterLevelLabel"
                                    Text=""
-                                   Style="{StaticResource LabelStyle}"
-                                   LineBreakMode="WordWrap"
-                                   MaxLines="3"
-                                   LineHeight="1"
-                                   CharacterSpacing="1"
-                                   TextColor="Black"/>
+                                   Style="{StaticResource LabelStyle}" />
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="SelectedCharacterHealthLabel"
+                                       Text=""
+                                       Style="{StaticResource LabelStyle}"
+                                       Margin="0,0,10,0" />
+                                <Label x:Name="SelectedCharacterAttackLabel"
+                                       Text=""
+                                       Style="{StaticResource LabelStyle}"
+                                       Margin="0,0,10,0" />
+                                <Label x:Name="SelectedCharacterDefenseLabel"
+                                       Text=""
+                                       Style="{StaticResource LabelStyle}"
+                                       Margin="0,0,10,0" />
+                                <Label x:Name="SelectedCharacterSpeedLabel"
+                                       Text=""
+                                       Style="{StaticResource LabelStyle}" />
+                            </StackLayout>
                         </StackLayout>
 
+                        <StackLayout HorizontalOptions="End">
+                            <Button x:Name="AttackButton"
+                                    Text="Attack"
+                                    Clicked="AttackButton_Clicked"
+                                    IsEnabled="False"
+                                    IsVisible="False" />
 
-
-                        <Button x:Name="NextButton"
-                                Text="Next"
-                                Clicked="NextButton_Clicked"
-                                IsEnabled="False"
-                                IsVisible="False"
-                                HorizontalOptions="End"/>
+                            <Button x:Name="BlockButton"
+                                    Text="Block"
+                                    Clicked="BlockButton_Clicked"
+                                    IsEnabled="False"
+                                    IsVisible="False" />
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
 
-            <!--The Game Over Screen -->
-            <StackLayout Style="{StaticResource VerticalStack}"
-                         AbsoluteLayout.LayoutBounds="1,1,1,1"
-                         AbsoluteLayout.LayoutFlags="All"
-                         HorizontalOptions="FillAndExpand"
-                         x:Name="GameOverDisplay"
-                         IsVisible="false">
+                <StackLayout Orientation="Horizontal"
+                             Padding="20,15,20,15"
+                             HeightRequest="100"
+                             BackgroundColor="Tan">
+                    <StackLayout x:Name="MessageDisplayBox"
+                                 HorizontalOptions="FillAndExpand">
+                        <Label x:Name="BattleMessages"
+                               Text=""
+                               Style="{StaticResource LabelStyle}"
+                               LineBreakMode="WordWrap"
+                               MaxLines="3"
+                               LineHeight="1"
+                               CharacterSpacing="1"
+                               TextColor="Black" />
+                    </StackLayout>
 
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
-                    <Label Text="Thank you for Playing" Style="{StaticResource CenterMessageLargeStyle}"/>
 
-                    <Label Text="Check your score, or click Exit and return soon" Style="{StaticResource MessageStyle}" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" MaxLines="5" Padding="20"/>
-
-                    <Button x:Name="ShowScoreButton"
-                            Clicked="ShowScoreButton_Clicked"
-                            Text="Score"
-                            WidthRequest="50"/>
-
-                    <Button x:Name="ExitButton" Clicked="ExitButton_Clicked" Text="Exit" WidthRequest="50" />
-
+                    <Button x:Name="NextButton"
+                            Text="Next"
+                            Clicked="NextButton_Clicked"
+                            IsEnabled="False"
+                            IsVisible="False"
+                            HorizontalOptions="End" />
                 </StackLayout>
             </StackLayout>
-        </AbsoluteLayout>
-    </ContentPage.Content>
-</ContentPage>
+        </StackLayout>
+
+        <!--The Game Over Screen -->
+        <StackLayout Style="{StaticResource VerticalStack}"
+                     AbsoluteLayout.LayoutBounds="1,1,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     HorizontalOptions="FillAndExpand"
+                     x:Name="GameOverDisplay"
+                     IsVisible="false">
+
+            <StackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Padding="10">
+                <Label Text="Thank you for Playing"
+                       Style="{StaticResource CenterMessageLargeStyle}" />
+
+                <Label Text="Check your score, or click Exit and return soon"
+                       Style="{StaticResource MessageStyle}"
+                       LineBreakMode="WordWrap"
+                       MaxLines="5"
+                       HorizontalTextAlignment="Center"
+                       Padding="20" />
+
+                <Button Clicked="ShowScoreButton_Clicked"
+                        Text="Score"
+                        WidthRequest="50" />
+
+                <Button Text="Exit"
+                        Clicked="ExitButton_Clicked"
+                        WidthRequest="50" />
+
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</page:BaseContentPage>

@@ -15,24 +15,20 @@ namespace Game.Views
     /// <summary>
     ///     The Main Game Page
     /// </summary>
-    public partial class BattlePage : ContentPage
+    public partial class BattlePage : BaseContentPage
     {
-
         // Wait time before proceeding
         const int WaitTime = 1500;
         // HTML Formatting for message output box
         readonly HtmlWebViewSource _htmlSource = new HtmlWebViewSource();
 
-        // Hold the Map Objects, for easy access to update them
-        //readonly Dictionary<string, object> _mapLocationObject = new Dictionary<string, object>();
-
         // Keep track of the Player Figurines on the battlefield
-        Dictionary<string, StackLayout> PlayerFigures = new Dictionary<string, StackLayout>();
+        readonly Dictionary<string, StackLayout> _playerFigures = new Dictionary<string, StackLayout>();
 
         // Empty Constructor for UTs
         readonly bool _unitTestSetting;
 
-        protected BattlePage(bool unitTest) =>
+        internal BattlePage(bool unitTest) =>
             _unitTestSetting = unitTest;
 
         /// <summary>
@@ -55,141 +51,133 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Update the page to display entry into a new Round
-        /// Hides the UI, updates the location background, and shows a button to enter
+        ///     Update the page to display entry into a new Round
+        ///     Hides the UI, updates the location background, and shows a button to enter
         /// </summary>
-        public void EnterNewRound()
+        void EnterNewRound()
         {
             // Set new round location
             //var GameRound = (RoundEngine)BattleEngineViewModel.Instance.Engine.Round;
             //GameRound.ChooseRoundLocation();
 
             // Hide battle UI
-            HideBattleUIElements();
+            HideBattleUiElements();
 
             // Set the background image
-            BattleLocationEnum roundLocation = BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation;
-            string imageUri = roundLocation.ToImageURI();
-            ContentPageElement.BackgroundImageSource = imageUri;
+            var roundLocation = BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation;
+            PageBackground = roundLocation.ToImageURI();
 
-            Debug.WriteLine(imageUri);
+            Debug.WriteLine(PageBackground);
 
             // Update the Start Round button
             StartBattleButton.IsVisible = true;
-            StartBattleButton.Text = "Explore " + BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation.ToMessageWithArticle();
+            StartBattleButton.Text = $"Explore {BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation.ToMessageWithArticle()}";
         }
 
         /// <summary>
-        /// Hides the Monster, Character, and message boxes
+        ///     Hides the Monster, Character, and message boxes
         /// </summary>
-        public void HideBattleUIElements()
+        void HideBattleUiElements()
         {
             BattleBottomBox.IsVisible = false;
             TopMonstersDisplay.IsVisible = false;
         }
 
         /// <summary>
-        /// Shows the Monster, Character, and message boxes
+        ///     Shows the Monster, Character, and message boxes
         /// </summary>
-        public void ShowBattleUIElements()
+        void ShowBattleUiElements()
         {
             BattleBottomBox.IsVisible = true;
             TopMonstersDisplay.IsVisible = true;
         }
 
         /// <summary>
-        /// Draws the Player figures
+        ///     Draws the Player figures
         /// </summary>
-        public void DrawPlayerFigures()
+        void DrawPlayerFigures()
         {
-            PlayerFigures.Clear();
+            _playerFigures.Clear();
 
             // Clear the Character figure area
-            var CharacterFigures = CharacterFigureArea.Children.ToList();
-            foreach (var Figure in CharacterFigures)
-            {
-                CharacterFigureArea.Children.Remove(Figure);
-            }
+            var characterFigures = CharacterFigureArea.Children.ToList();
+            foreach (var figure in characterFigures) CharacterFigureArea.Children.Remove(figure);
 
             // Clear the Monster figure area
-            var MonsterFigures = MonsterFigureArea.Children.ToList();
-            foreach (var Figure in MonsterFigures)
-            {
-                MonsterFigureArea.Children.Remove(Figure);
-            }
+            var monsterFigures = MonsterFigureArea.Children.ToList();
+            foreach (var figure in monsterFigures) MonsterFigureArea.Children.Remove(figure);
 
             // Draw the Character figures
-            foreach (var Player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
-                .Where(m => m.PlayerType == PlayerTypeEnum.Character).ToList())
+            foreach (var player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
+                                                        .Where(m => m.PlayerType == PlayerTypeEnum.Character)
+                                                        .ToList())
             {
-                var PlayerFigure = CreatePlayerFigure(Player);
-                PlayerFigures.Add(Player.Guid, PlayerFigure);
-                CharacterFigureArea.Children.Add(PlayerFigure);
+                var playerFigure = CreatePlayerFigure(player);
+                _playerFigures.Add(player.Guid, playerFigure);
+                CharacterFigureArea.Children.Add(playerFigure);
             }
 
             // Draw the Monster figures
-            foreach (var Player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
-                .Where(m => m.PlayerType == PlayerTypeEnum.Monster).ToList())
+            foreach (var player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
+                                                        .Where(m => m.PlayerType == PlayerTypeEnum.Monster)
+                                                        .ToList())
             {
-                var PlayerFigure = CreatePlayerFigure(Player);
-                PlayerFigures.Add(Player.Guid, PlayerFigure);
-                MonsterFigureArea.Children.Add(PlayerFigure);
+                var playerFigure = CreatePlayerFigure(player);
+                _playerFigures.Add(player.Guid, playerFigure);
+                MonsterFigureArea.Children.Add(playerFigure);
             }
 
             // Add one blank Figure to hold space in case the Character list is empty
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Count() == 0)
-            {
+            if (!BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Any())
                 CharacterFigureArea.Children.Add(CreatePlayerFigure(null));
-            }
 
             // Add one blank Figure to hold space in case the Monster list is empty
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Count() == 0)
-            {
+            if (!BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Any())
                 MonsterFigureArea.Children.Add(CreatePlayerFigure(null));
-            }
         }
 
         /// <summary>
-        /// Creates a Player figure
+        ///     Creates a Player figure
         /// </summary>
-        /// <param name="Player">The Player to make the figure for</param>
+        /// <param name="player">The Player to make the figure for</param>
         /// <returns></returns>
-        public StackLayout CreatePlayerFigure(PlayerInfoModel Player)
+        StackLayout CreatePlayerFigure(PlayerInfoModel player)
         {
-            Player ??= new PlayerInfoModel {
+            player ??= new PlayerInfoModel
+            {
                 Name = "",
                 ImageURI = ""
             };
 
-            var PlayerFigureImageButton = new ImageButton
+            var playerFigureImageButton = new ImageButton
             {
-                Source = Player.ImageURI,
+                Source = player.ImageURI,
                 WidthRequest = 100,
                 HeightRequest = 100,
                 Aspect = Aspect.AspectFit,
-                BindingContext = Player.Guid
+                BindingContext = player.Guid
             };
-            PlayerFigureImageButton.Clicked += FigureButton_Clicked;
+            playerFigureImageButton.Clicked += FigureButton_Clicked;
 
-            var PlayerFigureLabel = new Label
+            var playerFigureLabel = new Label
             {
-                Text = Player.Name,
+                Text = player.Name,
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
-            var PlayerFigureStackLayout = new StackLayout
+            var playerFigureStackLayout = new StackLayout
             {
                 Children =
                 {
-                    PlayerFigureImageButton,
-                    PlayerFigureLabel
+                    playerFigureImageButton,
+                    playerFigureLabel
                 }
             };
 
-            return PlayerFigureStackLayout;
+            return playerFigureStackLayout;
         }
 
-        public void ClearUi()
+        void ClearUI()
         {
             // Clear Player details boxes
             ClearPlayerDetailsBoxes();
@@ -206,19 +194,19 @@ namespace Game.Views
             NextButton.IsVisible = false;
         }
 
-        /// <summary>
-        /// Behavior just before the page appears
-        /// </summary>
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-        }
+        // /// <summary>
+        // ///     Behavior just before the page appears
+        // /// </summary>
+        // protected override void OnAppearing()
+        // {
+        //     base.OnAppearing();
+        // }
 
         /// <summary>
         ///     Hide the different button states
         ///     Hide the message display box
         /// </summary>
-        public void HideUiElements()
+        void HideUIElements()
         {
             StartBattleButton.IsVisible = false;
             AttackButton.IsVisible = false;
@@ -226,22 +214,26 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Shows the proper Battle Mode
+        ///     Shows the proper Battle Mode
         /// </summary>
         public void ShowBattleMode()
         {
             // If running in UT mode,
             if (_unitTestSetting) return;
 
-            HideUiElements();
+            HideUIElements();
 
             ClearMessages();
 
             DrawPlayerFigures();
 
             // Update the Mode
-            BattleModeValue.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleSettingsModel
-                .BattleModeEnum.ToMessage();
+            PageTitle = BattleEngineViewModel.Instance
+                                             .Engine
+                                             .EngineSettings
+                                             .BattleSettingsModel
+                                             .BattleModeEnum
+                                             .ToMessage();
 
             ShowBattleModeUiElements();
         }
@@ -289,38 +281,41 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Updates the information displayed in a given Player's details box.
+        ///     Updates the information displayed in a given Player's details box.
         /// </summary>
-        /// <param name="Player"></param>
-        public void UpdatePlayerDetailsBox(PlayerInfoModel Player)
+        /// <param name="player"></param>
+        void UpdatePlayerDetailsBox(PlayerInfoModel player)
         {
             // Update either the Character details box or the Monster details box
-            switch (Player.PlayerType)
+            switch (player.PlayerType)
             {
                 case PlayerTypeEnum.Character:
-                    SelectedCharacterIconImage.Source = Player.IconImageURI;
-                    SelectedCharacterNameLabel.Text = Player.Name;
-                    SelectedCharacterLevelLabel.Text = "Level: " + Player.Level;
-                    SelectedCharacterHealthLabel.Text = "HP: " + Player.CurrentHealth;
-                    SelectedCharacterAttackLabel.Text = "ATK: " + Player.Attack;
-                    SelectedCharacterDefenseLabel.Text = "DEF: " + Player.Defense;
-                    SelectedCharacterSpeedLabel.Text = "SPD: " + Player.Speed;
+                    SelectedCharacterIconImage.Source = player.IconImageURI;
+                    SelectedCharacterNameLabel.Text = player.Name;
+                    SelectedCharacterLevelLabel.Text = "Level: " + player.Level;
+                    SelectedCharacterHealthLabel.Text = "HP: " + player.CurrentHealth;
+                    SelectedCharacterAttackLabel.Text = "ATK: " + player.Attack;
+                    SelectedCharacterDefenseLabel.Text = "DEF: " + player.Defense;
+                    SelectedCharacterSpeedLabel.Text = "SPD: " + player.Speed;
                     break;
 
                 case PlayerTypeEnum.Monster:
                 default:
-                    SelectedMonsterIconImage.Source = Player.IconImageURI;
-                    SelectedMonsterNameLabel.Text = Player.Name;
-                    SelectedMonsterLevelLabel.Text = "Level: " + Player.Level;
-                    SelectedMonsterHealthLabel.Text = "HP: " + Player.CurrentHealth;
-                    SelectedMonsterAttackLabel.Text = "ATK: " + Player.Attack;
-                    SelectedMonsterDefenseLabel.Text = "DEF: " + Player.Defense;
-                    SelectedMonsterSpeedLabel.Text = "SPD: " + Player.Speed;
+                    SelectedMonsterIconImage.Source = player.IconImageURI;
+                    SelectedMonsterNameLabel.Text = player.Name;
+                    SelectedMonsterLevelLabel.Text = "Level: " + player.Level;
+                    SelectedMonsterHealthLabel.Text = "HP: " + player.CurrentHealth;
+                    SelectedMonsterAttackLabel.Text = "ATK: " + player.Attack;
+                    SelectedMonsterDefenseLabel.Text = "DEF: " + player.Defense;
+                    SelectedMonsterSpeedLabel.Text = "SPD: " + player.Speed;
                     break;
             }
         }
 
-        public void ClearPlayerDetailsBoxes()
+        /// <summary>
+        ///
+        /// </summary>
+        void ClearPlayerDetailsBoxes()
         {
             SelectedCharacterIconImage.Source = "";
             SelectedCharacterNameLabel.Text = "";
@@ -342,15 +337,15 @@ namespace Game.Views
         #region BasicBattleMode
 
         /// <summary>
-        /// Set Character attack action
+        ///     Set Character attack action
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void AttackButton_Clicked(object sender, EventArgs e)
         {
-            PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
-            BattleMessages.Text = "Who should " + CurrentPlayer.Name + " try to attack?";
+            BattleMessages.Text = "Who should " + currentPlayer.Name + " try to attack?";
 
             // Update battle state and current action
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
@@ -362,15 +357,15 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Set Character block action
+        ///     Set Character block action
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void BlockButton_Clicked(object sender, EventArgs e)
+        void BlockButton_Clicked(object sender, EventArgs e)
         {
-            PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
-            BattleMessages.Text = "Who should " + CurrentPlayer.Name + " try to block?";
+            BattleMessages.Text = "Who should " + currentPlayer.Name + " try to block?";
 
             // Update battle state and current action
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
@@ -382,39 +377,43 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Settings Page
+        ///     Settings Page
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Settings_Clicked(object sender, EventArgs e) => await ShowBattleSettingsPage();
+        public async void Settings_Clicked(object sender, EventArgs e) =>
+            await ShowBattleSettingsPage();
 
-        public void FigureButton_Clicked(object sender, EventArgs e)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void FigureButton_Clicked(object sender, EventArgs e)
         {
             // Ignore selection if it's not time to choose
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingMonsterTarget)
-            {
                 return;
-            }
 
             // Set the selected Monster as the target
-            string TargetPlayerGuid = ((ImageButton)sender).BindingContext as string;
-            PlayerInfoModel TargetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Find(m => m.Guid == TargetPlayerGuid);
+            var targetPlayerGuid = ((ImageButton)sender).BindingContext as string;
+            var targetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Find(m => m.Guid == targetPlayerGuid);
 
             // Don't allow the user to select a Character target
-            if (TargetMonster.PlayerType == PlayerTypeEnum.Character)
+            if (targetMonster.PlayerType == PlayerTypeEnum.Character)
             {
-                BattleMessages.Text = "Hey, " + TargetMonster.Name + " is on your side! Pick a monster!";
+                BattleMessages.Text = $"Hey, {targetMonster.Name} is on your side! Pick a monster!";
                 return;
             }
 
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender = TargetMonster;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender = targetMonster;
 
             // Update the Monster details box
-            UpdatePlayerDetailsBox(TargetMonster);
+            UpdatePlayerDetailsBox(targetMonster);
 
             // Highlight their figure
-            StackLayout TargetPlayerFigure = PlayerFigures[TargetPlayerGuid];
-            TargetPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
+            var targetPlayerFigure = _playerFigures[targetPlayerGuid];
+            targetPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
 
             DoCharacterTurn();
 
@@ -433,8 +432,8 @@ namespace Game.Views
         public void GameOver()
         {
             // Save the Score to the Score View Model, by sending a message to it.
-            var Score = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore;
-            MessagingCenter.Send(this, "AddData", Score);
+            var score = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore;
+            MessagingCenter.Send(this, "AddData", score);
 
             ShowBattleMode();
         }
@@ -446,7 +445,7 @@ namespace Game.Views
         /// <summary>
         ///     Builds up the output message
         /// </summary>
-        public void GameMessage()
+        internal static void GameMessage()
         {
             // Output The Message that happened.
             //BattleMessages.Text =
@@ -477,7 +476,7 @@ namespace Game.Views
         }
 
         #endregion MessageHandelers
-        #region PageHandelers
+        #region Page EventHandlers
 
         /// <summary>
         ///     Battle Over, so Exit Button
@@ -486,13 +485,11 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ExitButton_Clicked(object sender, EventArgs e)
-        {
+        public async void ExitButton_Clicked(object sender, EventArgs e) =>
             await Navigation.PopModalAsync();
-        }
 
         /// <summary>
-        /// The Start Button
+        ///     The Start Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -506,13 +503,18 @@ namespace Game.Views
 
             // Show UI
             ShowBattleMode();
-            ShowBattleUIElements();
+            ShowBattleUiElements();
 
             // Start the first turn
             StartTurn();
         }
 
-        public void NextButton_Clicked(object sender, EventArgs e)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void NextButton_Clicked(object sender, EventArgs e)
         {
             switch (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum)
             {
@@ -523,134 +525,131 @@ namespace Game.Views
                 case BattleStateEnum.EndingMonsterTurn:
                     EndTurn();
                     break;
-                default:
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        void DoCharacterTurn()
+        {
+            var activePlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(activePlayer);
+
+            var targetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
+
+            // Highlight the targeted Character's figure
+            UpdatePlayerDetailsBox(targetCharacter);
+
+            // Update battle messages
+            BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
+
+            // Set battle state
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        void DoMonsterTurn()
+        {
+            var activeMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(activeMonster);
+
+            // Choose which Character to target
+            var targetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
+
+            // Highlight the targeted Character's figure
+            UpdatePlayerDetailsBox(targetCharacter);
+
+            // Highlight their figure
+            var currentPlayerFigure = _playerFigures[targetCharacter.Guid];
+            currentPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
+
+            // Update battle messages
+            BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
+
+            // Set battle state
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
+        }
+
+        /// <summary>
+        ///     Ends turn.
+        /// </summary>
+        void EndTurn()
+        {
+            // TODO: Should use this instead of manually calling TakeTurn
+            var roundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
+
+            switch (roundCondition)
+            {
+                case RoundEnum.NewRound:
+                    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
+
+                    // Show the Round Over, after that is cleared, it will show the New Round Dialog
+                    ShowModalRoundOverPage();
+
+                    // Reset to a new Round
+                    BattleEngineViewModel.Instance.Engine.Round.NewRound();
+
+                    EnterNewRound();
+
+                    return;
+                // Check for Game Over
+                case RoundEnum.GameOver:
+                    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.GameOver;
+
+                    // Wrap up
+                    BattleEngineViewModel.Instance.Engine.EndBattle();
+
+                    // Pause
+                    Task.Delay(WaitTime);
+
+                    Debug.WriteLine("Game Over");
+
+                    GameOver();
+                    return;
+                case RoundEnum.NextTurn:
+                    StartTurn();
                     break;
             }
         }
 
-        public void DoCharacterTurn()
-        {
-             PlayerInfoModel ActivePlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(ActivePlayer);
-
-            PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
-
-            // Highlight the targeted Character's figure
-            UpdatePlayerDetailsBox(TargetCharacter);
-
-            // Update battle messages
-            BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
-
-            // Set battle state
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
-        }
-
-        public void DoMonsterTurn()
-        {
-            PlayerInfoModel ActiveMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(ActiveMonster);
-
-            // Choose which Character to target
-            PlayerInfoModel TargetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
-
-            // Highlight the targeted Character's figure
-            UpdatePlayerDetailsBox(TargetCharacter);
-
-            // Highlight their figure
-            StackLayout CurrentPlayerFigure = PlayerFigures[TargetCharacter.Guid];
-            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
-
-            // Update battle messages
-            BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
-
-            // Set battle state
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
-        }
-
         /// <summary>
-        /// Ends turn.
+        ///     Determines the next Player and lets them act.
         /// </summary>
-        public void EndTurn()
+        void StartTurn()
         {
-            // TODO: Should use this instead of manually calling TakeTurn
-            var RoundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
-
-            if (RoundCondition == RoundEnum.NewRound)
-            {
-                BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
-
-                // Show the Round Over, after that is cleared, it will show the New Round Dialog
-                ShowModalRoundOverPage();
-
-                // Reset to a new Round
-                BattleEngineViewModel.Instance.Engine.Round.NewRound();
-
-                EnterNewRound();
-
-                return;
-            }
-
-            // Check for Game Over
-            if (RoundCondition == RoundEnum.GameOver)
-            {
-                BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.GameOver;
-
-                // Wrap up
-                BattleEngineViewModel.Instance.Engine.EndBattle();
-
-                // Pause
-                Task.Delay(WaitTime);
-
-                Debug.WriteLine("Game Over");
-
-                GameOver();
-                return;
-            }
-
-            if (RoundCondition == RoundEnum.NextTurn)
-            {
-                StartTurn();
-            }
-        }
-
-        /// <summary>
-        /// Determines the next Player and lets them act.
-        /// </summary>
-        public void StartTurn()
-        {
-            ClearUi();
+            ClearUI();
 
             // Determine the current Player
-            PlayerInfoModel CurrentPlayer = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
-            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CurrentPlayer);
+            var currentPlayer = BattleEngineViewModel.Instance.Engine.Round.GetNextPlayerTurn();
+            BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(currentPlayer);
 
             // Show their details in the corresponding details box
-            UpdatePlayerDetailsBox(CurrentPlayer);
+            UpdatePlayerDetailsBox(currentPlayer);
 
             // Highlight their figure
-            StackLayout CurrentPlayerFigure = PlayerFigures[CurrentPlayer.Guid];
-            CurrentPlayerFigure.BackgroundColor = Color.FromHex("#88a6cc7e");
+            var currentPlayerFigure = _playerFigures[currentPlayer.Guid];
+            currentPlayerFigure.BackgroundColor = Color.FromHex("#88a6cc7e");
 
             // A Character's turn action is chosen by the game player. A Monster's action is chosen automatically
-            if (CurrentPlayer.PlayerType == PlayerTypeEnum.Character)
-            {
+            if (currentPlayer.PlayerType == PlayerTypeEnum.Character)
                 StartCharacterTurn();
-            } else
-            {
+            else
                 StartMonsterTurn();
-            }
         }
 
         /// <summary>
-        /// Start's a Character's turn.
+        ///     Start's a Character's turn.
         /// </summary>
-        public void StartCharacterTurn()
+        void StartCharacterTurn()
         {
-            PlayerInfoModel ActiveCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            var activeCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
             // Show battle message stating whose turn it is
-            string BattleMessage = "It's " + ActiveCharacter.Name + "'s turn! What should they do?";
-            BattleMessages.Text = BattleMessage;
+            var battleMessage = "It's " + activeCharacter.Name + "'s turn! What should they do?";
+            BattleMessages.Text = battleMessage;
 
             // Show/Enable action buttons
             AttackButton.IsVisible = true;
@@ -661,17 +660,17 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Starts a Monster's turn.
+        ///     Starts a Monster's turn.
         /// </summary>
-        public void StartMonsterTurn()
+        void StartMonsterTurn()
         {
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.StartingMonsterTurn;
 
-            PlayerInfoModel ActiveMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            var activeMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
             // Show battle message stating whose turn it is
-            string BattleMessage = "It's " + ActiveMonster.Name + "'s turn! Watch out!";
-            BattleMessages.Text = BattleMessage;
+            var battleMessage = "It's " + activeMonster.Name + "'s turn! Watch out!";
+            BattleMessages.Text = battleMessage;
 
             NextButton.IsVisible = true;
             NextButton.IsEnabled = true;
@@ -707,6 +706,6 @@ namespace Game.Views
             await Navigation.PushModalAsync(new BattleSettingsPage());
         }
 
-        #endregion PageHandelers
+        #endregion Page EventHandlers
     }
 }
