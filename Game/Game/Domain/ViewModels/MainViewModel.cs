@@ -8,49 +8,19 @@ namespace Game.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        ICommand _rebelBaseCommand;
-        ICommand _dungeonCommand;
-        ICommand _autoBattleCommand;
-        ICommand _settingsCommand;
-        ICommand _aboutCommand;
+        public ICommand RebelBaseCommand =>
+            new AsyncCommand(() => NavigationService.NavigateAsync(nameof(RebelBasePage)));
 
-        public MainViewModel()
-        {
-            RebelBaseCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(RebelBasePage)));
-            DungeonCommand = new AsyncCommand(() => NavigationService.NavigateAsync("DungeonPage"));
-            AutoBattleCommand = new AsyncCommand(() => NavigationService.NavigateAsync(nameof(AutoBattlePage)));
-            SettingsCommand = new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(SettingsPage), false));
-            AboutCommand = new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(AboutPage)));
-        }
+        public ICommand BattleCommand =>
+            new AsyncCommand(() => NavigationService.NavigateAsync("Battle"));
 
-        public ICommand RebelBaseCommand
-        {
-            get => _rebelBaseCommand;
-            set => SetProperty(ref _rebelBaseCommand, value);
-        }
+        public ICommand AutoBattleCommand =>
+            new AsyncCommand(() => NavigationService.NavigateAsync(nameof(AutoBattlePage)));
 
-        public ICommand DungeonCommand
-        {
-            get => _dungeonCommand;
-            set => SetProperty(ref _dungeonCommand, value);
-        }
+        public ICommand SettingsCommand =>
+            new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(SettingsPage)));
 
-        public ICommand AutoBattleCommand
-        {
-            get => _autoBattleCommand;
-            set => SetProperty(ref _autoBattleCommand, value);
-        }
-
-        public ICommand SettingsCommand
-        {
-            get => _settingsCommand;
-            set => SetProperty(ref _settingsCommand, value);
-        }
-
-        public ICommand AboutCommand
-        {
-            get => _aboutCommand;
-            set => SetProperty(ref _aboutCommand, value);
-        }
+        public ICommand AboutCommand =>
+            new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(AboutPage)));
     }
 }
