@@ -40,8 +40,6 @@
         <StackLayout Grid.Row="1">
             <Button Text="Pick characters"
                     Command="{Binding PickCharactersCommand}" />
-            <Button Text="Pick Items"
-                    Command="{Binding PickItemsCommand}" />
             <Button Text="Score Page"
                     Command="{Binding ScoresCommand}" />
         </StackLayout>
