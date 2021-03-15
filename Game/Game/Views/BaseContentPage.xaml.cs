@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using Xamarin.Forms;
 
@@ -9,12 +10,13 @@ namespace Game.Views
     ///     BaseContentPage adds a background image and close button that pops the
     ///     top page from the navigation stack.
     /// </summary>
+    [ExcludeFromCodeCoverage] // This class crashes R# code coverage
     [ContentProperty(nameof(ViewContent))]
     public partial class BaseContentPage : ContentPage
     {
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public IList<View> ToolbarButtons => Buttons.Children;
-        public new IList<View> ViewContent => MainContent.Children;
+        public IList<View> ViewContent => MainContent.Children;
 
         #region Constructors
 
@@ -24,10 +26,11 @@ namespace Game.Views
         #endregion Constructors
         #region PageBackground
 
-        static readonly BindableProperty PageBackgroundProperty = BindableProperty.Create(propertyName: nameof(PageBackground),
-                                                                                          returnType: typeof(ImageSource),
-                                                                                          declaringType: typeof(BaseContentPage),
-                                                                                          defaultValue: (ImageSource)"page_background.png");
+        static readonly BindableProperty PageBackgroundProperty =
+            BindableProperty.Create(propertyName: nameof(PageBackground),
+                                    returnType: typeof(ImageSource),
+                                    declaringType: typeof(BaseContentPage),
+                                    defaultValue: (ImageSource)"page_background.png");
 
         public ImageSource PageBackground
         {
@@ -40,10 +43,11 @@ namespace Game.Views
 
         async void CloseButton_OnClick(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
-        static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(propertyName: nameof(IsBackButtonVisible),
-                                                                                               returnType: typeof(bool),
-                                                                                               declaringType: typeof(BaseContentPage),
-                                                                                               defaultValue: true);
+        static readonly BindableProperty IsBackButtonVisibleProperty =
+            BindableProperty.Create(propertyName: nameof(IsBackButtonVisible),
+                                    returnType: typeof(bool),
+                                    declaringType: typeof(BaseContentPage),
+                                    defaultValue: true);
 
         public bool IsBackButtonVisible
         {
@@ -54,11 +58,12 @@ namespace Game.Views
         #endregion BackButton
         #region Title
 
-        public static readonly BindableProperty PageTitleProperty = BindableProperty.Create(propertyName: nameof(PageTitle),
-                                                                                            returnType: typeof(string),
-                                                                                            declaringType: typeof(BaseContentPage),
-                                                                                            defaultValue: null,
-                                                                                            defaultBindingMode: BindingMode.OneWay);
+        public static readonly BindableProperty PageTitleProperty =
+            BindableProperty.Create(propertyName: nameof(PageTitle),
+                                    returnType: typeof(string),
+                                    declaringType: typeof(BaseContentPage),
+                                    defaultValue: null,
+                                    defaultBindingMode: BindingMode.OneWay);
 
         public string PageTitle
         {
