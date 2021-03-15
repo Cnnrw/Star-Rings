@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-using Game.Models;
 using Game.Engine.EngineInterfaces;
+using Game.Models;
 
 namespace Game.ViewModels
 {
@@ -77,10 +78,7 @@ namespace Game.ViewModels
         /// <summary>
         /// Constructor
         /// </summary>
-        public BattleEngineViewModel()
-        {
-            SetBattleEngineToGame();
-        }
+        public BattleEngineViewModel() => SetBattleEngineToGame();
 
         /// <summary>
         /// Set the Battle Engine to the Game Version for actual use
@@ -105,5 +103,8 @@ namespace Game.ViewModels
         }
 
         #endregion Constructor
+
+        public IEnumerable<ItemModel> ItemsDroppedList =>
+            Instance.Engine.EngineSettings.BattleScore.ItemModelDropList;
     }
 }
