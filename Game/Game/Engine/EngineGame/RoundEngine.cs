@@ -158,6 +158,8 @@ namespace Game.Engine.EngineGame
                 // Enter Battle at full health
                 chosenMonster.CurrentHealth = chosenMonster.MaxHealth;
 
+                chosenMonster.Head = RandomPlayerHelper.GetMonsterUniqueItem();
+
                 EngineSettings.MonsterList.Add(new PlayerInfoModel(chosenMonster));
 
                 // Remove the chosen monster from the pool of valid monsters
