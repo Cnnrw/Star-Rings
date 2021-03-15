@@ -4,23 +4,19 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:m="clr-namespace:Game.Models;assembly=Game"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
-                      xmlns:conv="clr-namespace:Game.Converters;assembly=Game"
                       xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
-                      xmlns:helpers="clr-namespace:Game.Helpers;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterCreatePage"
-                      PageTitle="{Binding Title}">
+                      PageTitle="{Binding Title}"
+                      IsBackButtonVisible="False">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
     </ContentPage.BindingContext>
-
-    <ContentPage.Resources>
-        <conv:StringEnumConverter x:Key="StringToEnum" />
-    </ContentPage.Resources>
 
     <page:BaseContentPage.ToolbarButtons>
         <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png" />
@@ -28,90 +24,145 @@
         <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
-    <FlexLayout JustifyContent="Center"
-                Padding="40">
-        <ScrollView>
-            <StackLayout Style="{StaticResource OuterBoxStack}"
-                         Spacing="10">
+    <AbsoluteLayout Margin="13,0,16,20">
+        <Grid RowDefinitions="*, Auto, Auto">
 
-                <StackLayout Orientation="Horizontal">
+            <Image x:Name="MonsterImage"
+                   Source="{Binding Data.ImageURI}"
+                   Aspect="AspectFit"/>
 
-                    <StackLayout>
-                        <Image x:Name="Image"
-                               Source="{Binding Data.ImageURI}"
-                               Style="{StaticResource ImageLargeStyle}"
-                               HorizontalOptions="Center" />
+            <StackLayout Grid.Row="1">
+                <c:FormEntry Title="Name"
+                             Text="{Binding Data.Name}"
+                             Placeholder="{Binding Data.Name}"
+                             PlaceholderTextColor="{StaticResource ColorSecondaryText}"
+                             IsSpellCheckEnabled="False" />
 
-                        <Label Text="Image"
-                               Style="{StaticResource LabelStyle}" />
-
-                        <Picker x:Name="ImagePicker"
-                                ItemsSource="{x:Static helpers:RandomPlayerHelper.MonsterImageURIs}"
-                                SelectedItem="{Binding Data.ImageURI, Mode=TwoWay}"
-                                SelectedIndexChanged="OnImagePickerChanged" />
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Label Text="Name" Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.Name}" Style="{StaticResource EntryStyle}" />
-
-                        <Label Text="Description" Style="{StaticResource LabelStyle}" />
-                        <Entry Text="{Binding Data.Description}" Style="{StaticResource EntryStyle}" />
-
-                        <Label Text="Battle location"
-                               Style="{StaticResource LabelStyle}" />
-                        <Picker x:Name="BattleLocationPicker"
-                                ItemsSource="{x:Static enum:BattleLocationEnumHelper.GetListBattleLocations}"
-                                SelectedItem="{Binding Data.BattleLocation, Converter={StaticResource StringToEnum}, Mode=TwoWay}" />
-                    </StackLayout>
+                <StackLayout Style="{StaticResource HorizontalStack}"
+                             HorizontalOptions="FillAndExpand">
+                    <Label Text="Battle Location"
+                           Style="{StaticResource LabelStyle}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start" />
+                    <c:EnumPicker x:Name="BattleLocationPicker"
+                                  x:TypeArguments="enum:BattleLocationEnum"
+                                  HorizontalOptions="FillAndExpand"
+                                  FontFamily="8bit"
+                                  TextColor="{StaticResource ColorSecondaryText}"
+                                  HorizontalTextAlignment="Center" />
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout>
-                        <Label Text="Attack"
-                               Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="AttackValueLabel"
-                                   Text="{Binding Data.Attack}" />
-                            <Stepper x:Name="AttackStepper"
-                                     Value="{Binding Data.Attack, Mode=TwoWay}"
-                                     ValueChanged="OnAttackStepperValueChanged"
-                                     Minimum="1"
-                                     Maximum="10"
-                                     Increment="1" />
-                        </StackLayout>
-                    </StackLayout>
+                <c:FormEntry Title="Description"
+                             Text="{Binding Data.Description}"
+                             Placeholder="{Binding Data.Description}"
+                             PlaceholderTextColor="{StaticResource ColorSecondaryText}" />
 
-                    <StackLayout>
-                        <Label Text="Defense" Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="DefenseValueLabel"
-                                   Text="{Binding Data.Defense}" />
-                            <Stepper x:Name="DefenseStepper"
-                                     Value="{Binding Data.Defense, Mode=TwoWay}"
-                                     ValueChanged="OnDefenseStepperValueChanged"
-                                     Minimum="1"
-                                     Maximum="10"
-                                     Increment="1" />
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Label Text="Speed" Style="{StaticResource LabelStyle}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="SpeedValueLabel"
-                                   Text="{Binding Data.Speed}" />
-                            <Stepper x:Name="SpeedStepper"
-                                     Value="{Binding Data.Speed, Mode=TwoWay}"
-                                     ValueChanged="OnSpeedStepperValueChanged"
-                                     Minimum="1"
-                                     Maximum="10"
-                                     Increment="1" />
-                        </StackLayout>
-                    </StackLayout>
-
-                </StackLayout>
             </StackLayout>
-        </ScrollView>
-    </FlexLayout>
+
+
+            <Grid Grid.Row="2"
+                  RowDefinitions="*,*,*,*,*"
+                  ColumnDefinitions="*,*,Auto"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="EndAndExpand"
+                  RowSpacing="5"
+                  Margin="10">
+
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Style" Value="{StaticResource LabelStyle}" />
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+                </Grid.Resources>
+
+                <Label Text="Image"
+                       HorizontalOptions="End" />
+                <Image Grid.Column="1"
+                       x:Name="MonsterIconImage"
+                       Source="{Binding Data.IconImageURI}"
+                       Style="{StaticResource ImageSmallStyle}"
+                       Aspect="AspectFit" />
+                <c:EnumPicker Grid.Column="2"
+                              x:Name="ImagePicker"
+                              x:TypeArguments="enum:MonsterImageEnum"
+                              SelectedIndexChanged="OnImagePickerChanged"
+                              FontFamily="8bit"
+                              TextColor="{StaticResource ColorSecondaryText}"
+                              VerticalOptions="Fill"
+                              HorizontalTextAlignment="Center"
+                              HorizontalOptions="FillAndExpand" />
+
+                <Label Grid.Row="1"
+                       Text="Level"
+                       HorizontalOptions="End" />
+                <Label Grid.Row="1" Grid.Column="1"
+                       x:Name="MonsterLevel"
+                       Text="{Binding Data.Level}"
+                       Style="{StaticResource ValueStyle}"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="1" Grid.Column="2"
+                         Value="{Binding Data.Level, Mode=TwoWay}"
+                         ValueChanged="OnLevelStepperChanged"
+                         Minimum="1" Maximum="10" Increment="1"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="2"
+                       Text="Max Health"
+                       HorizontalOptions="End" />
+                <Label Grid.Row="2" Grid.Column="1"
+                       x:Name="MonsterHealth"
+                       Text="{Binding Data.MaxHealth}"
+                       Style="{StaticResource ValueStyle}"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="2" Grid.Column="2"
+                         Value="{Binding Data.MaxHealth, Mode=TwoWay}"
+                         ValueChanged="OnMaxHealthStepperChanged"
+                         Minimum="1" Maximum="100"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="3"
+                       Text="Attack"
+                       HorizontalOptions="End" />
+                <Label Grid.Row="3" Grid.Column="1"
+                       x:Name="MonsterAttack"
+                       Text="{Binding Data.Attack}"
+                       Style="{StaticResource ValueStyle}"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="3" Grid.Column="2"
+                         Value="{Binding Data.Attack, Mode=TwoWay}"
+                         ValueChanged="OnAttackStepperChanged"
+                         Minimum="1" Maximum="10" Increment="1"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="4"
+                       Text="Defense"
+                       HorizontalOptions="End" />
+                <Label Grid.Row="4" Grid.Column="1"
+                       x:Name="MonsterDefense"
+                       Text="{Binding Data.Defense}"
+                       Style="{StaticResource ValueStyle}"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="4" Grid.Column="2"
+                         Value="{Binding Data.Defense, Mode=TwoWay}"
+                         ValueChanged="OnDefenseStepperChanged"
+                         Minimum="1" Maximum="10" Increment="1"
+                         HorizontalOptions="End" />
+
+                <Label Grid.Row="5"
+                       Text="Speed"
+                       HorizontalOptions="End" />
+                <Label Grid.Row="5" Grid.Column="1"
+                       x:Name="MonsterSpeed"
+                       Text="{Binding Data.Speed}"
+                       Style="{StaticResource ValueStyle}"
+                       HorizontalOptions="Center" />
+                <Stepper Grid.Row="5" Grid.Column="2"
+                         Value="{Binding Data.Speed, Mode=TwoWay}"
+                         ValueChanged="OnSpeedStepperChanged"
+                         Minimum="1" Maximum="10" Increment="1"
+                         HorizontalOptions="End" />
+
+            </Grid>
+        </Grid>
+    </AbsoluteLayout>
 </page:BaseContentPage>

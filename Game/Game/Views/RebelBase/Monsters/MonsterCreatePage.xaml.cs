@@ -1,5 +1,6 @@
 using System;
 
+using Game.Enums;
 using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
@@ -33,31 +34,44 @@ namespace Game.Views
 
             _viewModel = viewModel ?? new GenericViewModel<MonsterModel>
             {
-                Title = "Create a Monster",
-                Data = RandomPlayerHelper.GetRandomMonster(1)
+                Data = RandomPlayerHelper.GetRandomMonster(10)
             };
+
+            UpdatePageBindingContext();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal void UpdatePageBindingContext()
+        {
+            var data = _viewModel.Data;
+
+            // Clear the Binding and reset
+            BindingContext = null;
+
+            _viewModel.Data = data;
+            _viewModel.Title = "New Monster";
 
             BindingContext = _viewModel;
 
             // Set pickers' initially selected items
-            ImagePicker.SelectedItem = RandomPlayerHelper.GetMonsterImage();
-            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
+            ImagePicker.SelectedItem = MonsterImageEnumExtensions.FromImageURI(data.ImageURI);
+            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation;
         }
 
         /// <summary>
-        /// Update the page's image source according to the Monster's ImageURI
-        ///
-        /// TODO: this throws an index out of range exception
+        /// Updates the monster image based on the selected value
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnImagePickerChanged(object sender, EventArgs e)
+        internal void OnImagePickerChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
-            var selectedIndex = picker.SelectedIndex;
+            var selectedImage = (MonsterImageEnum)picker.SelectedIndex;
 
-            if (selectedIndex >= 0)
-                Image.Source = RandomPlayerHelper.MonsterImageURIs[selectedIndex]; //MonsterModel.ImagesURIs[selectedIndex];
+            MonsterImage.Source = selectedImage.ToImageURI();
+            MonsterIconImage.Source = selectedImage.ToIconImageURI();
         }
 
         /// <summary>
@@ -65,24 +79,40 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            AttackValueLabel.Text = $"{e.NewValue}";
+        internal void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MonsterLevel.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Attack attribute of a Monster
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MonsterHealth.Text = $"{e.NewValue}";
+
+        /// <summary>
+        ///     Changes Attack attribute of a Monster
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MonsterAttack.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes defense attribute of a Monster
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            DefenseValueLabel.Text = $"{e.NewValue}";
+        internal void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MonsterDefense.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Changes Speed attribute of a Monster
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) =>
-            SpeedValueLabel.Text = $"{e.NewValue}";
+        internal void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) =>
+            MonsterSpeed.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Save by calling for Create
@@ -92,7 +122,11 @@ namespace Game.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
-                _viewModel.Data.ImageURI = RandomPlayerHelper.GetMonsterImage();
+            {
+                var monsterImg = RandomPlayerHelper.GetMonsterImage();
+                _viewModel.Data.ImageURI = monsterImg.ToImageURI();
+                _viewModel.Data.IconImageURI = monsterImg.ToIconImageURI();
+            }
 
             if (_viewModel.Data.Name.Length == 0)
             {
@@ -112,21 +146,6 @@ namespace Game.Views
         public async void Cancel_Clicked(object sender, EventArgs e) =>
             await Navigation.PopModalAsync();
 
-        private void UpdatePageBindingContext()
-        {
-            var data = _viewModel.Data;
-
-            // Clear the Binding and reset
-            BindingContext = null;
-            _viewModel.Data = data;
-            _viewModel.Title = "Create a Monster";
-
-            BindingContext = _viewModel;
-
-            ImagePicker.SelectedItem = data.ImageURI;
-            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
-        }
-
         /// <summary>
         ///     Randomize Character Values and Items
         /// </summary>
@@ -134,7 +153,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public void RandomButton_Clicked(object sender, EventArgs e)
         {
-            _viewModel.Data = RandomPlayerHelper.GetRandomMonster(1);
+            _viewModel.Data = RandomPlayerHelper.GetRandomMonster(20);
             UpdatePageBindingContext();
         }
     }
