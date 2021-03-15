@@ -7,9 +7,7 @@ namespace Game.Views
     /// </summary>
     public partial class MainPage : ContentPage
     {
-        public MainPage()
-        {
+        public MainPage() =>
             InitializeComponent();
-        }
     }
 }
