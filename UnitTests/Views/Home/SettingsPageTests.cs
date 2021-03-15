@@ -43,9 +43,6 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            ((StackLayout)page.FindByName("DatabaseSettingsFrame")).IsVisible = true;
-            ((StackLayout)page.FindByName("DebugSettingsFrame")).IsVisible = true;
-
             ((Switch)page.FindByName("DataSourceValue")).IsVisible = true;
             ((Switch)page.FindByName("DataSourceValue")).IsToggled = true;
             ((Switch)page.FindByName("DataSourceValue")).IsToggled = false;
@@ -55,14 +52,9 @@ namespace UnitTests.Views
             // Reset
 
             // Assert
-            Assert.IsNotNull((StackLayout)page.FindByName("DebugSettingsFrame"));
-            Assert.IsNotNull((StackLayout)page.FindByName("DatabaseSettingsFrame"));
-
             Assert.IsNotNull((Switch)page.FindByName("DataSourceValue"));
             Assert.IsNotNull((Entry)page.FindByName("ServerItemValue"));
         }
-
-        // TODO: Comment
 
         // [Test]
         // public void SettingsPage_DatabaseSettingsSwitch_OnToggled_Default_Should_Pass()
