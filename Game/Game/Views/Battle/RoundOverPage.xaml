@@ -29,7 +29,7 @@
 
                         <Label Text="Characters" Style="{StaticResource TextSubTitle}"/>
                         <FlexLayout x:Name="CharacterListFrame"
-                                    JustifyContent="Start"
+                                    JustifyContent="Center"
                                     AlignContent="Start"
                                     Wrap="Wrap"/>
 
@@ -39,7 +39,7 @@
                             <Label Text="0" x:Name="TotalFound" Style="{StaticResource ValueStyle}"/>
                         </StackLayout>
                         <FlexLayout x:Name="ItemListFoundFrame"
-                                    JustifyContent="Start"
+                                    JustifyContent="Center"
                                     AlignContent="Start"
                                     Wrap="Wrap"/>
 

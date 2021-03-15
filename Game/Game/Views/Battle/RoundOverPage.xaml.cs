@@ -132,33 +132,21 @@ namespace Game.Views
                 return new StackLayout();
             }
 
-            // Defualt Image is the Plus
-            var ClickableButton = true;
-
             var data = ItemIndexViewModel.Instance.GetItem(item.Id);
             if (data == null)
             {
                 // Show the Default Icon for the Location
                 data = new ItemModel {Name = "Unknown", ImageURI = "icon_cancel.png"};
-
-                // Turn off click action
-                ClickableButton = false;
             }
 
             // Hookup the Image Button to show the Item picture
-            var ItemButton = new ImageButton
+            var ItemButton = new Image
             {
                 Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
                             ? (Style)imageStyle
                             : null,
-                //Style = (Style)Application.Current.Resources["ImageMediumStyle"], Source = data.ImageURI
+                Source = data.ImageURI
             };
-
-            if (ClickableButton)
-            {
-                // Add a event to the user can click the item and see more
-                ItemButton.Clicked += (sender, args) => ShowPopup(data);
-            }
 
             // Put the Image Button and Text inside a layout
             var ItemStack = new StackLayout
@@ -167,9 +155,8 @@ namespace Game.Views
                 Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object boxStyle)
                             ? (Style)imageStyle
                             : null,
-                //Style = (Style)Application.Current.Resources["ItemImageBox"],
                 HorizontalOptions = LayoutOptions.Center,
-                Children = {ItemButton,},
+                Children = {ItemButton}
             };
 
             return ItemStack;
