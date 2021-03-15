@@ -192,7 +192,7 @@ namespace UnitTests.Helpers
             DiceHelper.DisableForcedRolls();
 
             // Assert
-            Assert.AreEqual("dead_king.png", result);
+            Assert.AreEqual(MonsterImageEnum.DarkElf, result);
         }
 
         [Test]
