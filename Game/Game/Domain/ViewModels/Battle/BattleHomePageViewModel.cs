@@ -11,9 +11,6 @@ namespace Game.ViewModels
         public ICommand PickCharactersCommand =>
             new AsyncCommand(() => NavigationService.NavigateAsync(nameof(PickCharactersPage)));
 
-        public ICommand PickItemsCommand =>
-            new AsyncCommand(() => NavigationService.NavigateAsync(nameof(PickItemsPage)));
-
         public ICommand ScoresCommand =>
             new AsyncCommand(() => NavigationService.NavigateAsync(nameof(ScorePage)));
 
@@ -28,9 +25,6 @@ namespace Game.ViewModels
 
             NavigationService.Configure(nameof(NewRoundPage), typeof(NewRoundPage));
             NavigationService.Configure(nameof(RoundOverPage), typeof(RoundOverPage));
-
-            NavigationService.Configure(nameof(PickItemsPage), typeof(PickItemsPage));
-
             NavigationService.Configure(nameof(ScorePage), typeof(ScorePage));
         }
     }
