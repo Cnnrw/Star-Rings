@@ -20,7 +20,7 @@
 
                     <StackLayout Style="{StaticResource VerticalStack}">
 
-                        <Label Text="Round Cleared" Style="{StaticResource CenterMessageLargeStyle}"/>
+                        <Label Text="Round Cleared!" Style="{StaticResource CenterMessageLargeStyle}" FontSize="30"/>
 
                         <StackLayout Style="{StaticResource HorizontalStack}">
                             <Label Text="Round : " Style="{StaticResource CenterMessageLargeStyle}"/>
