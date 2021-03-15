@@ -40,7 +40,7 @@
                 shit the bed, so I've hard coded the styles for now - CW
             -->
                 <Label Grid.Column="1"
-                       Text="{TemplateBinding PageTitle}"
+                       Text="{Binding Source={x:Reference ContentPage}, Path=PageTitle}"
                        HorizontalOptions="Center" VerticalOptions="Center"
                        FontFamily="8bit_bold"
                        FontSize="24"
