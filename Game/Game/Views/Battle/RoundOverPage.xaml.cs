@@ -31,8 +31,8 @@ namespace Game.Views
                                                    .ToString();
 
             // Update the Selected Number, this gets updated later when selected refresh happens
-            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
-                                                      .Count().ToString();
+            //TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
+            //                                          .Count().ToString();
 
             DrawCharacterList();
 
@@ -72,8 +72,8 @@ namespace Game.Views
             DrawSelectedItems();
 
             // Only need to update the selected, the Dropped is set in the constructor
-            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
-                                                      .Count().ToString();
+            //TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
+            //                                          .Count().ToString();
         }
 
         /// <summary>
@@ -100,6 +100,7 @@ namespace Game.Views
         /// </summary>
         public void DrawSelectedItems()
         {
+            /*
             // Clear and Populate the Dropped Items
             var FlexList = ItemListSelectedFrame.Children.ToList();
             foreach (var data in FlexList)
@@ -111,6 +112,7 @@ namespace Game.Views
             {
                 ItemListSelectedFrame.Children.Add(GetItemToDisplay(data));
             }
+            */
         }
 
         /// <summary>
@@ -146,6 +148,9 @@ namespace Game.Views
             // Hookup the Image Button to show the Item picture
             var ItemButton = new ImageButton
             {
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
+                            ? (Style)imageStyle
+                            : null,
                 //Style = (Style)Application.Current.Resources["ImageMediumStyle"], Source = data.ImageURI
             };
 
@@ -159,6 +164,9 @@ namespace Game.Views
             var ItemStack = new StackLayout
             {
                 Padding = 3,
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object boxStyle)
+                            ? (Style)imageStyle
+                            : null,
                 //Style = (Style)Application.Current.Resources["ItemImageBox"],
                 HorizontalOptions = LayoutOptions.Center,
                 Children = {ItemButton,},
@@ -182,14 +190,21 @@ namespace Game.Views
             // Hookup the image
             var PlayerImage = new Image
             {
-                //Style = (Style)Application.Current.Resources["ImageBattleLargeStyle"], Source = data.ImageURI
+                Style = Application.Current.Resources.TryGetValue("ImageBattleLargeStyle", out object imageStyle)
+                            ? (Style)imageStyle
+                            : null,
+                Source = data.ImageURI
             };
+
+            var ValueStyleMicro = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle1)
+                ? (Style)valueStyle1
+                : null;
 
             // Add the Level
             var PlayerLevelLabel = new Label
             {
                 Text = "Level : " + data.Level,
-                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                Style = ValueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -203,7 +218,7 @@ namespace Game.Views
             var PlayerHPLabel = new Label
             {
                 Text = "HP : " + data.GetCurrentHealthTotal,
-                //Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                Style = ValueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -216,7 +231,7 @@ namespace Game.Views
             var PlayerNameLabel = new Label()
             {
                 Text = data.Name,
-                //Style = (Style)Application.Current.Resources["ValueStyle"],
+                Style = ValueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -229,7 +244,9 @@ namespace Game.Views
             // Put the Image Button and Text inside a layout
             var PlayerStack = new StackLayout
             {
-                //Style = (Style)Application.Current.Resources["PlayerInfoBox"],
+                Style = Application.Current.Resources.TryGetValue("PlayerInfoBox", out object boxStyle)
+                            ? (Style)boxStyle
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
