@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using Game;
 using Game.Enums;
@@ -97,7 +97,7 @@ namespace UnitTests.Views
         {
             // Arrange
             // Act
-            page.ShowPopup(new ItemModel());
+            page.ShowItemDetailsPopup(new ItemModel());
 
             // Reset
 
