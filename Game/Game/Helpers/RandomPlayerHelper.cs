@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,40 +43,27 @@ namespace Game.Helpers
         /// <returns></returns>
         public static DifficultyEnum GetMonsterDifficultyValue()
         {
-            var DifficultyList = DifficultyEnumHelper.GetListMonster;
+            var difficultyList = DifficultyEnumHelper.GetListMonster;
 
-            var RandomDifficulty = DifficultyList.ElementAt(DiceHelper.RollDice(1, DifficultyList.Count()) - 1);
+            var randomDifficulty = difficultyList.ElementAt(DiceHelper.RollDice(1, difficultyList.Count()) - 1);
 
-            var result = DifficultyEnumHelper.ConvertStringToEnum(RandomDifficulty);
+            var result = DifficultyEnumHelper.ConvertStringToEnum(randomDifficulty);
 
             return result;
         }
-
-        public static readonly List<string> MonsterImageURIs = new List<string>
-        {
-            "dark_elf.png",
-            "dead_king.png",
-            "nazgul.png",
-            "oliphant.png",
-            "orc.png",
-            "smeagol.png",
-            "spider.png",
-            "troll.png",
-            "warg_rider.png"
-        };
 
         /// <summary>
         /// Get Random Image
         /// </summary>
         /// <returns></returns>
-        public static string GetMonsterImage()
+        public static MonsterImageEnum GetMonsterImage()
         {
-            var imageCount = MonsterImageURIs.Count();
+            var imageCount = Enum.GetNames(typeof(MonsterImageEnum)).Length;
             var index = DiceHelper.RollDice(1, imageCount) - 1;
 
             return index < imageCount
-                       ? MonsterImageURIs.ElementAt(index)
-                       : MonsterImageURIs.First();
+                       ? (MonsterImageEnum)index
+                       : (MonsterImageEnum)1;
         }
 
         /// <summary>
@@ -84,7 +72,7 @@ namespace Game.Helpers
         /// <returns></returns>
         public static string GetCharacterImage()
         {
-            List<string> StringList = new List<string>
+            var stringList = new List<string>
             {
                 "item.png",
                 "item.png",
@@ -95,13 +83,13 @@ namespace Game.Helpers
                 "item.png"
             };
 
-            var index = DiceHelper.RollDice(1, StringList.Count()) - 1;
+            var index = DiceHelper.RollDice(1, stringList.Count()) - 1;
 
-            var result = StringList.First();
+            var result = stringList.First();
 
-            if (index < StringList.Count)
+            if (index < stringList.Count)
             {
-                result = StringList.ElementAt(index);
+                result = stringList.ElementAt(index);
             }
 
             return result;
@@ -130,7 +118,7 @@ namespace Game.Helpers
                 "Aurzur"
             };
 
-            return firstNameList.ElementAt(DiceHelper.RollDice(1, firstNameList.Count()) - 1);
+            return firstNameList.ElementAt(DiceHelper.RollDice(1, firstNameList.Count) - 1);
         }
 
         /// <summary>
@@ -149,7 +137,7 @@ namespace Game.Helpers
                 "One evil monster"
             };
 
-            return stringList.ElementAt(DiceHelper.RollDice(1, stringList.Count()) - 1);
+            return stringList.ElementAt(DiceHelper.RollDice(1, stringList.Count) - 1);
         }
 
         /// <summary>
@@ -327,9 +315,12 @@ namespace Game.Helpers
                 Attack = GetAbilityValue(),
                 Speed = GetAbilityValue(),
                 Defense = GetAbilityValue(),
-                ImageURI = GetMonsterImage(),
                 Difficulty = GetMonsterDifficultyValue()
             };
+
+            var monsterImg = GetMonsterImage();
+            result.ImageURI = monsterImg.ToImageURI();
+            result.IconImageURI = monsterImg.ToIconImageURI();
 
             // Adjust values based on Difficulty
             result.Attack = result.Difficulty.ToModifier(result.Attack);
@@ -349,7 +340,8 @@ namespace Game.Helpers
             result.LevelUpToValue(result.Level);
 
             // Set ExperienceRemaining so Monsters can both use this method
-            result.ExperienceRemaining = LevelTableHelper.LevelDetailsList[result.Level + 1].Experience;
+            result.ExperienceRemaining = LevelTableHelper.LevelDetailsList[result.Level >= 20 ? 20 : result.Level + 1]
+                                                         .Experience;
 
             // Enter Battle at full health
             result.CurrentHealth = result.MaxHealth;
