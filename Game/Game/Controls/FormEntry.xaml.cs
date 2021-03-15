@@ -15,12 +15,13 @@ namespace Game.Controls
 
         #region Title
 
-        public static readonly BindableProperty TitleProperty = BindableProperty.Create(propertyName: nameof(Title),
-                                                                                        returnType: typeof(string),
-                                                                                        declaringType: typeof(FormEntry),
-                                                                                        defaultValue: default(string),
-                                                                                        defaultBindingMode: BindingMode.OneWay,
-                                                                                        propertyChanged: TitlePropertyChanged);
+        public static readonly BindableProperty TitleProperty =
+            BindableProperty.Create(propertyName: nameof(Title),
+                                    returnType: typeof(string),
+                                    declaringType: typeof(FormEntry),
+                                    defaultValue: default(string),
+                                    defaultBindingMode: BindingMode.OneWay,
+                                    propertyChanged: TitlePropertyChanged);
         public string Title
         {
             get => (string)GetValue(TitleProperty);
@@ -36,11 +37,12 @@ namespace Game.Controls
         #endregion Title
         #region Text
 
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(propertyName: nameof(Text),
-                                                                                       returnType: typeof(string),
-                                                                                       declaringType: typeof(FormEntry),
-                                                                                       defaultValue: default(string),
-                                                                                       defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty TextProperty =
+            BindableProperty.Create(propertyName: nameof(Text),
+                                    returnType: typeof(string),
+                                    declaringType: typeof(FormEntry),
+                                    defaultValue: default(string),
+                                    defaultBindingMode: BindingMode.TwoWay);
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -50,24 +52,65 @@ namespace Game.Controls
         void OnTextChanged(object sender, TextChangedEventArgs e) =>
             Text = e.NewTextValue;
 
+        public static readonly BindableProperty IsSpellCheckEnabledProperty =
+            BindableProperty.Create(propertyName: nameof(IsSpellCheckEnabled),
+                                    returnType: typeof(bool),
+                                    declaringType: typeof(FormEntry),
+                                    defaultValue: true,
+                                    propertyChanged: (bo, o, n) =>
+                                    {
+                                        if (!(bo is FormEntry control))
+                                            return;
+
+                                        control.ControlEntry.IsTextPredictionEnabled = (bool)n;
+                                    });
+
+        public bool IsSpellCheckEnabled
+        {
+            get => (bool)GetValue(IsSpellCheckEnabledProperty);
+            set => SetValue(IsSpellCheckEnabledProperty, value);
+        }
+
         #endregion Text
         #region Placeholder
 
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(propertyName: nameof(Placeholder),
-                                                                                              returnType: typeof(string),
-                                                                                              declaringType: typeof(FormEntry),
-                                                                                              defaultValue: default(string),
-                                                                                              propertyChanged: PlaceholderPropertyChanged);
+        public static readonly BindableProperty PlaceholderProperty =
+            BindableProperty.Create(propertyName: nameof(Placeholder),
+                                    returnType: typeof(string),
+                                    declaringType: typeof(FormEntry),
+                                    defaultValue: default(string),
+                                    defaultBindingMode: BindingMode.TwoWay,
+                                    propertyChanged: (bo, o, n) =>
+                                    {
+                                        if (!(bo is FormEntry control))
+                                            return;
+
+                                        if (n != null)
+                                            control.ControlEntry.Placeholder = n.ToString();
+                                    });
         public string Placeholder
         {
             get => (string)GetValue(PlaceholderProperty);
             set => SetValue(PlaceholderProperty, value);
         }
 
-        static void PlaceholderPropertyChanged(BindableObject bo, object o, object n)
+        public static readonly BindableProperty PlaceholderTextColorProperty =
+            BindableProperty.Create(propertyName: nameof(PlaceholderTextColor),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(FormEntry),
+                                    defaultValue: default(Color),
+                                    propertyChanged: (bo, o, n) =>
+                                    {
+                                        if (!(bo is FormEntry control))
+                                            return;
+
+                                        control.ControlEntry.PlaceholderColor = (Color)n;
+                                    });
+
+        public Color PlaceholderTextColor
         {
-            var control = (FormEntry)bo;
-            control.ControlEntry.Placeholder = n.ToString();
+            get => (Color)GetValue(PlaceholderTextColorProperty);
+            set => SetValue(PlaceholderTextColorProperty, value);
         }
 
         #endregion

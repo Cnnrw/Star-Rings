@@ -9,6 +9,7 @@
     <Label x:Name="ControlTitle"
            Style="{StaticResource LabelStyle}" />
     <Entry Grid.Column="1"
-           x:Name="ControlEntry" />
-
+           x:Name="ControlEntry"
+           FontFamily="8bit"
+           TextColor="Yellow"/>
 </Grid>
