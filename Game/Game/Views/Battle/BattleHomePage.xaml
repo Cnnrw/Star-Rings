@@ -3,8 +3,12 @@
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       x:Class="Game.Views.BattleHomePage"
                       PageBackground="page_background_1.png">
+    <page:BaseContentPage.BindingContext>
+        <vm:BattleHomePageViewModel/>
+    </page:BaseContentPage.BindingContext>
 
     <ContentPage.Resources>
         <Style TargetType="StackLayout">
@@ -34,9 +38,12 @@
         </StackLayout>
 
         <StackLayout Grid.Row="1">
-            <Button Text="Pick characters" Clicked="PickCharacters_Clicked" />
-            <Button Text="Pick Items" Clicked="PickItems_Clicked" />
-            <Button Text="Score Page" Clicked="ScorePage_Clicked" />
+            <Button Text="Pick characters"
+                    Command="{Binding PickCharactersCommand}" />
+            <Button Text="Pick Items"
+                    Command="{Binding PickItemsCommand}" />
+            <Button Text="Score Page"
+                    Command="{Binding ScoresCommand}" />
         </StackLayout>
 
     </Grid>
