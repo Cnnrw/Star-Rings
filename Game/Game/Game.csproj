@@ -149,9 +149,6 @@
 		<Compile Update="Views\Battle\BattleHomePage.xaml.cs">
 		  <DependentUpon>BattleHomePage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Views\Battle\PickItemsPage.xaml.cs">
-			<DependentUpon>PickItemsPage.xaml</DependentUpon>
-		</Compile>
 		<Compile Update="Views\Battle\BattleSettingsPage.xaml.cs">
 			<DependentUpon>BattleSettingsPage.xaml</DependentUpon>
 		</Compile>
