@@ -11,7 +11,6 @@ using Game.Models;
 using Game.Services;
 
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace Game.ViewModels
 {
@@ -20,18 +19,12 @@ namespace Game.ViewModels
     /// </summary>
     public class BaseViewModel : BaseViewModel<DefaultModel>
     {
-        ICommand                    _goBackCommand;
 
-        protected BaseViewModel() : this(App.NavigationService) { }
-
-        BaseViewModel(INavigationService navigationService)
+        public BaseViewModel(INavigationService navigation = null)
         {
-            NavigationService = navigationService;
+            NavigationService = navigation ?? App.NavigationService;
+            GoBackCommand = new AsyncCommand(() => NavigationService.GoBack());
         }
-
-        internal INavigationService NavigationService { get; }
-
-        public ICommand GoBackCommand => _goBackCommand ??= new AsyncCommand(() => NavigationService.GoBack());
     }
 
     /// <summary>
@@ -51,7 +44,10 @@ namespace Game.ViewModels
         protected async void Initialize()
         {
             Dataset = new ObservableCollection<T>();
-            LoadDatasetCommand = new Command(async () => await ExecuteLoadDataCommand());
+            NavigationService = App.NavigationService;
+
+            LoadDatasetCommand = new AsyncCommand(ExecuteLoadDataCommand);
+            GoBackCommand = new AsyncCommand(() => NavigationService.GoBack());
 
             await SetDataSource(CurrentDataSource); // Set to Mock to start with
         }
@@ -62,15 +58,17 @@ namespace Game.ViewModels
         // The Mock DataStore
         private static IDataStore<T> DataSourceMock => MockDataStore<T>.Instance;
 
+        internal INavigationService NavigationService;
+
         // The SQL DataStore
         private static IDataStore<T> DataSourceSQL => DatabaseService<T>.Instance;
 
         #endregion
         #region Instance Variables
 
+
         // Which DataStore to use
         private IDataStore<T> _dataStore;
-
 
         // Tack the current data source, SQL, Mock
         public int CurrentDataSource { get; set; }
@@ -82,7 +80,12 @@ namespace Game.ViewModels
         #region Properties
 
         // Command to force a Load of data
-        public Command LoadDatasetCommand { get; set; }
+        public ICommand LoadDatasetCommand { get; set; }
+
+        /// <summary>
+        /// Command to go back a page in the navigation stack
+        /// </summary>
+        public ICommand GoBackCommand { get; set; }
 
         // The Data set of records
         public ObservableCollection<T> Dataset { get; set; }
