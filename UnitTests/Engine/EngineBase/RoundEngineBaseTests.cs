@@ -64,21 +64,21 @@ namespace UnitTests.Engine.EngineBase
             Assert.IsNotNull(result.Turn);
         }
 
-        [Test]
-        public void RoundEngine_Valid_RoundLocation_Set_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            var result = new RoundEngineBase();
-            result.RoundLocation = BattleLocationEnum.Dungeons;
-
-            // Reset
-
-            // Assert
-            Assert.IsNotNull(result.RoundLocation);
-        }
-
+        // [Test]
+        // public void RoundEngine_Valid_RoundLocation_Set_Should_Pass()
+        // {
+        //     // Arrange
+        //
+        //     // Act
+        //     var result = new RoundEngineBase();
+        //     result.RoundLocation = BattleLocationEnum.Dungeons;
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.IsNotNull(result.RoundLocation);
+        // }
+        //
         [Test]
         public void RoundEngine_OrderPlayerListByTurnOrder_Valid_Speed_Higher_Should_Be_Z()
         {
