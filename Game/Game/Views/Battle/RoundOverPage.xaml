@@ -27,13 +27,13 @@
                             <Label Text="0" x:Name="TotalRound" Style="{StaticResource CenterMessageLargeStyle}"/>
                         </StackLayout>
 
-                        <Label Text="Characters" Style="{StaticResource CenterMessageLargeStyle}"/>
+                        <Label Text="Characters" Style="{StaticResource TextSubTitle}"/>
                         <FlexLayout x:Name="CharacterListFrame"
                                     JustifyContent="Start"
                                     AlignContent="Start"
                                     Wrap="Wrap"/>
 
-                        <Label Text="Items Found" Style="{StaticResource CenterMessageStyle}"/>
+                        <Label Text="Items Found" Style="{StaticResource TextSubTitle}"/>
                         <StackLayout Style="{StaticResource HorizontalStack}">
                             <Label Text="Found : " Style="{StaticResource LabelStyle}"/>
                             <Label Text="0" x:Name="TotalFound" Style="{StaticResource ValueStyle}"/>
@@ -45,7 +45,7 @@
 
                         <Button Clicked="AutoAssignButton_Clicked" Text="Assign Items"/>
 
-                        <Label Text="Items Selected" Style="{StaticResource CenterMessageStyle}"/>
+                        <Label Text="Items Selected" Style="{StaticResource TextSubTitle}"/>
                         <StackLayout Style="{StaticResource HorizontalStack}">
                             <Label Text="Selected : " Style="{StaticResource LabelStyle}"/>
                             <Label Text="0" x:Name="TotalSelected" Style="{StaticResource ValueStyle}"/>
