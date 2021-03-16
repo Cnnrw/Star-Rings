@@ -339,9 +339,10 @@ namespace Game.Helpers
             // Level up to the new level
             result.LevelUpToValue(result.Level);
 
+            int LevelDetailsListIndex = Math.Min(result.Level + 1, 20);
+
             // Set ExperienceRemaining so Monsters can both use this method
-            result.ExperienceRemaining = LevelTableHelper.LevelDetailsList[result.Level >= 20 ? 20 : result.Level + 1]
-                                                         .Experience;
+            result.ExperienceRemaining = LevelTableHelper.LevelDetailsList[LevelDetailsListIndex].Experience;
 
             // Enter Battle at full health
             result.CurrentHealth = result.MaxHealth;
