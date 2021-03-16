@@ -12,17 +12,20 @@ namespace UnitTests.Engine.EngineGame
         [SetUp]
         public void Setup()
         {
-            Engine = new BattleEngine();
-            Engine.Round = new RoundEngine();
-            Engine.Round.Turn = new TurnEngine();
+            _engine = new BattleEngine
+            {
+                Round = new RoundEngine
+                {
+                    Turn = new TurnEngine()
+                }
+            };
         }
 
         [TearDown]
         public void TearDown()
-        {
-        }
+        { }
 
-        private BattleEngine Engine;
+        private BattleEngine _engine;
 
         [Test]
         public void BattleEngine_Constructor_Valid_Default_Should_Pass()
@@ -30,7 +33,7 @@ namespace UnitTests.Engine.EngineGame
             // Arrange
 
             // Act
-            var result = Engine;
+            var result = _engine;
 
             // Reset
 
@@ -44,7 +47,7 @@ namespace UnitTests.Engine.EngineGame
             // Arrange
 
             // Act
-            var result = Engine.EndBattle();
+            var result = _engine.EndBattle();
 
             // Reset
 
@@ -59,26 +62,12 @@ namespace UnitTests.Engine.EngineGame
             var character = new CharacterModel();
 
             // Act
-            var result = Engine.PopulateCharacterList(character);
+            var result = _engine.PopulateCharacterList(character);
 
             // Reset
 
             // Assert
             Assert.AreEqual(true, result);
         }
-        //[Test]
-        //public void BattleEngine_StartBattle_Valid_AutoModel_True_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    // Act
-        //    var result = Engine.StartBattle(true);
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.AreEqual(true, result);
-        //    Assert.AreEqual(true, Engine.EngineSettings.BattleScore.AutoBattle);
-        //}
     }
 }
