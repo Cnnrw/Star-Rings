@@ -1,11 +1,9 @@
 using Xamarin.Forms;
 
-namespace Game.Views.Templates.Data
+namespace Game.Views
 {
     public partial class MonsterCell : Grid
     {
-        public MonsterCell() =>
-            InitializeComponent();
+        public MonsterCell() => InitializeComponent();
     }
 }
-

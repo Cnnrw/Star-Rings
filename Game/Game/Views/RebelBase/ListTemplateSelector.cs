@@ -1,10 +1,8 @@
 using Game.Models;
-using Game.Templates.Data;
-using Game.Views.Templates.Data;
 
 using Xamarin.Forms;
 
-namespace Game.Templates
+namespace Game.Views
 {
     public class ListTemplateSelector : DataTemplateSelector
     {

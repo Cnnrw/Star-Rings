@@ -3,7 +3,7 @@
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       xmlns:m="clr-namespace:Game.Models;assembly=Game"
-      x:Class="Game.Views.Templates.Data.MonsterCell"
+      x:Class="Game.Views.MonsterCell"
       ColumnDefinitions="*, 3*"
       RowDefinitions="4, *, *"
       x:DataType="m:MonsterModel">

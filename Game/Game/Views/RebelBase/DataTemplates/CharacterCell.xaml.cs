@@ -1,13 +1,11 @@
 using Xamarin.Forms;
 
-namespace Game.Views.Templates.Data
+namespace Game.Views
 {
     public partial class CharacterCell : Grid
     {
-        public CharacterCell()
-        {
+        public CharacterCell() =>
             InitializeComponent();
-        }
     }
 }
 

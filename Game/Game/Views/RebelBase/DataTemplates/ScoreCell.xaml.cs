@@ -1,11 +1,9 @@
 using Xamarin.Forms;
 
-namespace Game.Views.Templates.Data
+namespace Game.Views
 {
     public partial class ScoreCell : Grid
     {
-        public ScoreCell() =>
-            InitializeComponent();
+        public ScoreCell() => InitializeComponent();
     }
 }
-
