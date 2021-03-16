@@ -123,6 +123,8 @@ namespace Scenario
                                                           {
                                                               Speed = -1, // Will go last...
                                                               Level = 1,
+                                                              Attack = 0,
+                                                              Defense = 0,
                                                               CurrentHealth = 1,
                                                               ExperienceTotal = 1,
                                                               ExperienceRemaining = 1,
