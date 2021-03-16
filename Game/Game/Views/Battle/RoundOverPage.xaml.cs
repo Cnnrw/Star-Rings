@@ -6,15 +6,13 @@ using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     /// The Main Game Page
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RoundOverPage : ContentPage
+    public partial class RoundOverPage : BaseContentPage
     {
         /// <summary>
         /// Constructor
@@ -45,17 +43,13 @@ namespace Game.Views
         public void DrawCharacterList()
         {
             // Clear and Populate the Characters Remaining
-            var FlexList = CharacterListFrame.Children.ToList();
-            foreach (var data in FlexList)
-            {
+            var flexList = CharacterListFrame.Children.ToList();
+            foreach (var data in flexList)
                 CharacterListFrame.Children.Remove(data);
-            }
 
             // Draw the Characters
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList)
-            {
                 CharacterListFrame.Children.Add(CreatePlayerDisplayBox(data));
-            }
         }
 
         /// <summary>
@@ -73,7 +67,8 @@ namespace Game.Views
 
             // Only need to update the selected, the Dropped is set in the constructor
             TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
-                                                      .Count().ToString();
+                                                      .Count()
+                                                      .ToString();
         }
 
         /// <summary>
@@ -82,17 +77,13 @@ namespace Game.Views
         public void DrawDroppedItems()
         {
             // Clear and Populate the Dropped Items
-            var FlexList = ItemListFoundFrame.Children.ToList();
-            foreach (var data in FlexList)
-            {
+            var flexList = ItemListFoundFrame.Children.ToList();
+            foreach (var data in flexList)
                 ItemListFoundFrame.Children.Remove(data);
-            }
 
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList
                                                       .Distinct())
-            {
                 ItemListFoundFrame.Children.Add(GetItemToDisplay(data));
-            }
         }
 
         /// <summary>
@@ -101,71 +92,55 @@ namespace Game.Views
         public void DrawSelectedItems()
         {
             // Clear and Populate the Dropped Items
-            var FlexList = ItemListSelectedFrame.Children.ToList();
-            foreach (var data in FlexList)
-            {
+            var flexList = ItemListSelectedFrame.Children.ToList();
+            foreach (var data in flexList)
                 ItemListSelectedFrame.Children.Remove(data);
-            }
 
             foreach (var data in BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList)
-            {
                 ItemListSelectedFrame.Children.Add(GetItemToDisplay(data));
-            }
         }
 
         /// <summary>
         /// Look up the Item to Display
         /// </summary>
-        /// <param name="location"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         public StackLayout GetItemToDisplay(ItemModel item)
         {
             if (item == null)
-            {
                 return new StackLayout();
-            }
 
             if (string.IsNullOrEmpty(item.Id))
-            {
                 return new StackLayout();
-            }
 
-            // Defualt Image is the Plus
-            var ClickableButton = true;
+            // Default Image is the Plus
 
-            var data = ItemIndexViewModel.Instance.GetItem(item.Id);
-            if (data == null)
-            {
-                // Show the Default Icon for the Location
-                data = new ItemModel { Name = "Unknown", ImageURI = "icon_cancel.png" };
-
-                // Turn off click action
-                ClickableButton = false;
-            }
+            var data = ItemIndexViewModel.Instance.GetItem(item.Id)
+                       ?? new ItemModel {Name = "Unknown", ImageURI = "icon_cancel.png"};
 
             // Hookup the Image Button to show the Item picture
-            var ItemImageButton = new ImageButton
+            var itemImageButton = new ImageButton
             {
-                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out object imageStyle)
+                Style = Application.Current.Resources.TryGetValue("ImageMediumStyle", out var imageStyle)
                             ? (Style)imageStyle
                             : null,
                 Source = data.ImageURI
             };
 
-            ItemImageButton.Clicked += (sender, args) => ShowItemDetailsPopup(data);
+            itemImageButton.Clicked += (sender, args) => ShowItemDetailsPopup(data);
 
             // Put the Image Button and Text inside a layout
-            var ItemStack = new StackLayout
+            var itemStack = new StackLayout
             {
                 Padding = 3,
-                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out object boxStyle)
-                            ? (Style)imageStyle
+                Style = Application.Current.Resources.TryGetValue("ItemImageBox", out var boxStyle)
+                            ? (Style)boxStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = { ItemImageButton }
+                Children = {itemImageButton}
             };
 
-            return ItemStack;
+            return itemStack;
         }
 
         /// <summary>
@@ -173,31 +148,28 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public StackLayout CreatePlayerDisplayBox(PlayerInfoModel data)
+        public static StackLayout CreatePlayerDisplayBox(PlayerInfoModel data)
         {
-            if (data == null)
-            {
-                data = new PlayerInfoModel();
-            }
+            data ??= new PlayerInfoModel();
 
             // Hookup the image
-            var PlayerImage = new Image
+            var playerImage = new Image
             {
-                Style = Application.Current.Resources.TryGetValue("ImageBattleLargeStyle", out object imageStyle)
+                Style = Application.Current.Resources.TryGetValue("ImageBattleLargeStyle", out var imageStyle)
                             ? (Style)imageStyle
                             : null,
                 Source = data.ImageURI
             };
 
-            var ValueStyleMicro = Application.Current.Resources.TryGetValue("ValueStyleMicro", out object valueStyle1)
-                ? (Style)valueStyle1
-                : null;
+            var valueStyleMicro = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var valueStyle)
+                                      ? (Style)valueStyle
+                                      : null;
 
             // Add the Level
-            var PlayerLevelLabel = new Label
+            var playerLevelLabel = new Label
             {
                 Text = "Level : " + data.Level,
-                Style = ValueStyleMicro,
+                Style = valueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -208,10 +180,10 @@ namespace Game.Views
             };
 
             // Add the HP
-            var PlayerHPLabel = new Label
+            var playerHpLabel = new Label
             {
                 Text = "HP : " + data.GetCurrentHealthTotal,
-                Style = ValueStyleMicro,
+                Style = valueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -221,10 +193,10 @@ namespace Game.Views
                 MaxLines = 1,
             };
 
-            var PlayerNameLabel = new Label()
+            var playerNameLabel = new Label()
             {
                 Text = data.Name,
-                Style = ValueStyleMicro,
+                Style = valueStyleMicro,
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Padding = 0,
@@ -235,9 +207,9 @@ namespace Game.Views
             };
 
             // Put the Image Button and Text inside a layout
-            var PlayerStack = new StackLayout
+            var playerStack = new StackLayout
             {
-                Style = Application.Current.Resources.TryGetValue("PlayerInfoBox", out object boxStyle)
+                Style = Application.Current.Resources.TryGetValue("PlayerInfoBox", out var boxStyle)
                             ? (Style)boxStyle
                             : null,
                 HorizontalOptions = LayoutOptions.Center,
@@ -245,14 +217,14 @@ namespace Game.Views
                 Spacing = 0,
                 Children =
                 {
-                    PlayerImage,
-                    PlayerNameLabel,
-                    PlayerLevelLabel,
-                    PlayerHPLabel,
+                    playerImage,
+                    playerNameLabel,
+                    playerLevelLabel,
+                    playerHpLabel,
                 },
             };
 
-            return PlayerStack;
+            return playerStack;
         }
 
         /// <summary>
@@ -269,7 +241,7 @@ namespace Game.Views
             PopupItemDescription.Text = data.Description;
             PopupItemLocation.Text = data.Location.ToMessage();
             PopupItemAttribute.Text = data.Attribute.ToMessage();
-            PopupItemValue.Text = " + " + data.Value.ToString();
+            PopupItemValue.Text = " + " + data.Value;
             return true;
         }
 
@@ -278,10 +250,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ClosePopup_Clicked(object sender, EventArgs e)
-        {
-            PopupLoadingView.IsVisible = false;
-        }
+        public void ClosePopup_Clicked(object sender, EventArgs e) => PopupLoadingView.IsVisible = false;
 
         /// <summary>
         /// Closes the Round Over Popup
@@ -293,10 +262,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void CloseButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        public async void CloseButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         /// Start next Round, returning to the battle screen

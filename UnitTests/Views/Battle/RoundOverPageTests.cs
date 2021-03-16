@@ -110,7 +110,7 @@ namespace UnitTests.Views
         {
             // Arrange
             // Act
-            page.CreatePlayerDisplayBox(null);
+            RoundOverPage.CreatePlayerDisplayBox(null);
 
             // Reset
 
