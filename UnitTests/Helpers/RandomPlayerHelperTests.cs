@@ -311,22 +311,22 @@ namespace UnitTests.Helpers
         //    Assert.AreEqual(result.MaxHealth, result.CurrentHealth);
         //}
 
-        //[Test]
-        //public void RandomPlayerHelper_GetRandomMonster_InValid_Empty_List_Should_Return_New_Monster()
-        //{
-        //    // Arrange
-        //    var save = MonsterIndexViewModel.Instance.Dataset;
-        //    MonsterIndexViewModel.Instance.Dataset.Clear();
+        [Test]
+        public void RandomPlayerHelper_GetRandomMonster_InValid_Empty_List_Should_Return_New_Monster()
+        {
+            // Arrange
+            var save = MonsterIndexViewModel.Instance.Dataset;
+            MonsterIndexViewModel.Instance.Dataset.Clear();
 
-        //    // Act
-        //    var result = RandomPlayerHelper.GetRandomMonster(1);
+            // Act
+            var result = RandomPlayerHelper.GetRandomMonster(1);
 
-        //    // Reset
-        //    MonsterIndexViewModel.Instance.Dataset = save;
+            // Reset
+            MonsterIndexViewModel.Instance.Dataset = save;
 
-        //    // Assert
-        //    Assert.AreEqual(PlayerTypeEnum.Monster, result.PlayerType);
-        //}
+            // Assert
+            Assert.AreEqual(PlayerTypeEnum.Monster, result.PlayerType);
+        }
 
         [Test]
         public void RandomPlayerHelper_GetRandomMonster_Valid_Should_Return_New_Monster()
