@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 using Game.Engine.EngineInterfaces;
 using Game.Models;
+
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Game.ViewModels
 {
@@ -11,36 +11,37 @@ namespace Game.ViewModels
     /// Index View Model
     /// Manages the list of data records
     /// </summary>
-    public class BattleEngineViewModel
+    public class BattleEngineViewModel : ObservableObject
     {
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
-        private static volatile BattleEngineViewModel instance;
-        private static readonly object syncRoot = new Object();
+        private static volatile BattleEngineViewModel _instance;
+        private static readonly object                SyncRoot = new object();
 
         public static BattleEngineViewModel Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (SyncRoot)
                     {
-                        if (instance == null)
+                        if (_instance == null)
                         {
-                            instance = new BattleEngineViewModel();
+                            _instance = new BattleEngineViewModel();
                         }
                     }
                 }
 
-                return instance;
+                return _instance;
             }
         }
 
         #endregion Singleton
 
         #region BattleEngineSelection
+
         // The Battle Engine
         public IBattleEngineInterface EngineKoenig = new Engine.EngineKoenig.BattleEngine();
 
@@ -60,18 +61,6 @@ namespace Game.ViewModels
         public IAutoBattleInterface AutoBattleEngine;
 
         #endregion BattleEngineSelection
-
-        // Hold the list of Characters available to be put in a party
-        public ObservableCollection<CharacterModel> PoolCharacterList { get; set; } = new ObservableCollection<CharacterModel>();
-
-        // Hold the Proposed List of Characters for the Battle to Use
-        public ObservableCollection<CharacterModel> PartyCharacterList { get; set; } = new ObservableCollection<CharacterModel>();
-
-        //// Hold the View Model to the CharacterIndexViewModel
-        public CharacterIndexViewModel DatabaseCharacterViewModel = CharacterIndexViewModel.Instance;
-
-        //// Have the Database Character List point to the Character View Model List
-        public ObservableCollection<CharacterModel> DatabaseCharacterList { get; set; } = CharacterIndexViewModel.Instance.Dataset;
 
         #region Constructor
 
@@ -104,7 +93,7 @@ namespace Game.ViewModels
 
         #endregion Constructor
 
-        public IEnumerable<ItemModel> ItemsDroppedList =>
-            Instance.Engine.EngineSettings.BattleScore.ItemModelDropList;
+        // todo move into RoundPage view model
+        public IEnumerable<ItemModel> ItemsDroppedList => Instance.Engine.EngineSettings.BattleScore.ItemModelDropList;
     }
 }
