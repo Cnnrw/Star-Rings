@@ -69,9 +69,13 @@ namespace Game.Views
 
             Debug.WriteLine(PageBackground);
 
-            // Update the Start Round button
-            StartBattleButton.IsVisible = true;
-            StartBattleButton.Text = $"Explore {BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation.ToMessageWithArticle()}";
+            // Show the Start Round button
+            StartRoundButton.IsVisible = true;
+            StartRoundButton.Text = $"Explore {BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation.ToMessageWithArticle()}";
+
+            // Hide the End Round button
+            EndRoundButton.IsVisible = false;
+            EndRoundButton.Text = $"Leave {BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation.ToMessageWithArticle()}";
         }
 
         /// <summary>
@@ -208,7 +212,7 @@ namespace Game.Views
         /// </summary>
         void HideUIElements()
         {
-            StartBattleButton.IsVisible = false;
+            StartRoundButton.IsVisible = false;
             AttackButton.IsVisible = false;
             //MessageDisplayBox.IsVisible = false;
         }
@@ -239,7 +243,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Control the UI Elements to display
+        /// Control the UI Elements to display
         /// </summary>
         public void ShowBattleModeUiElements()
         {
@@ -248,14 +252,14 @@ namespace Game.Views
                 case BattleStateEnum.Starting:
                     //GameUIDisplay.IsVisible = false;
                     //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
-                    StartBattleButton.IsVisible = true;
+                    StartRoundButton.IsVisible = true;
                     break;
 
                 case BattleStateEnum.NewRound:
                     //UpdateMapGrid();
                     //AttackerAttack.Source = ActionEnum.Unknown.ToImageURI();
                     //NextRoundButton.IsVisible = true;
-                    StartBattleButton.IsVisible = true;
+                    StartRoundButton.IsVisible = true;
                     break;
 
                 case BattleStateEnum.GameOver:
@@ -281,7 +285,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Updates the information displayed in a given Player's details box.
+        /// Updates the information displayed in a given Player's details box.
         /// </summary>
         /// <param name="player"></param>
         void UpdatePlayerDetailsBox(PlayerInfoModel player)
@@ -313,7 +317,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///
+        /// Clears the values from the player details boxes
         /// </summary>
         void ClearPlayerDetailsBoxes()
         {
@@ -336,91 +340,7 @@ namespace Game.Views
 
         #region BasicBattleMode
 
-        /// <summary>
-        ///     Set Character attack action
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void AttackButton_Clicked(object sender, EventArgs e)
-        {
-            var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-
-            BattleMessages.Text = "Who should " + currentPlayer.Name + " try to attack?";
-
-            // Update battle state and current action
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Attack;
-
-            // Hide action buttons
-            AttackButton.IsVisible = false;
-            BlockButton.IsVisible = false;
-        }
-
-        /// <summary>
-        ///     Set Character block action
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void BlockButton_Clicked(object sender, EventArgs e)
-        {
-            var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-
-            BattleMessages.Text = "Who should " + currentPlayer.Name + " try to block?";
-
-            // Update battle state and current action
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Block;
-
-            // Hide action buttons
-            AttackButton.IsVisible = false;
-            BlockButton.IsVisible = false;
-        }
-
-        /// <summary>
-        ///     Settings Page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Settings_Clicked(object sender, EventArgs e) =>
-            await ShowBattleSettingsPage();
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void FigureButton_Clicked(object sender, EventArgs e)
-        {
-            // Ignore selection if it's not time to choose
-            if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingMonsterTarget)
-                return;
-
-            // Set the selected Monster as the target
-            var targetPlayerGuid = ((ImageButton)sender).BindingContext as string;
-            var targetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Find(m => m.Guid == targetPlayerGuid);
-
-            // Don't allow the user to select a Character target
-            if (targetMonster.PlayerType == PlayerTypeEnum.Character)
-            {
-                BattleMessages.Text = $"Hey, {targetMonster.Name} is on your side! Pick a monster!";
-                return;
-            }
-
-            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender = targetMonster;
-
-            // Update the Monster details box
-            UpdatePlayerDetailsBox(targetMonster);
-
-            // Highlight their figure
-            var targetPlayerFigure = _playerFigures[targetPlayerGuid];
-            targetPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
-
-            DoCharacterTurn();
-
-            // Show next button
-            NextButton.IsVisible = true;
-            NextButton.IsEnabled = true;
-        }
+        
 
         /// <summary>
         ///     Game is over
@@ -476,12 +396,97 @@ namespace Game.Views
         }
 
         #endregion MessageHandelers
+
         #region Page EventHandlers
 
         /// <summary>
-        ///     Battle Over, so Exit Button
-        ///     Need to show this for the user to click on.
-        ///     The Quit does a prompt, exit just exits
+        ///     Set Character attack action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void AttackButton_Clicked(object sender, EventArgs e)
+        {
+            var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+
+            BattleMessages.Text = "Who should " + currentPlayer.Name + " try to attack?";
+
+            // Update battle state and current action
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Attack;
+
+            // Hide action buttons
+            AttackButton.IsVisible = false;
+            BlockButton.IsVisible = false;
+        }
+
+        /// <summary>
+        ///     Set Character block action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void BlockButton_Clicked(object sender, EventArgs e)
+        {
+            var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+
+            BattleMessages.Text = "Who should " + currentPlayer.Name + " try to block?";
+
+            // Update battle state and current action
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAction = ActionEnum.Block;
+
+            // Hide action buttons
+            AttackButton.IsVisible = false;
+            BlockButton.IsVisible = false;
+        }
+
+        /// <summary>
+        /// Settings Page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public async void Settings_Clicked(object sender, EventArgs e) =>
+            await ShowBattleSettingsPage();
+
+        /// <summary>
+        /// When a figure is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void FigureButton_Clicked(object sender, EventArgs e)
+        {
+            // Ignore selection if it's not time to choose
+            if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingMonsterTarget)
+                return;
+
+            // Set the selected Monster as the target
+            var targetPlayerGuid = ((ImageButton)sender).BindingContext as string;
+            var targetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Find(m => m.Guid == targetPlayerGuid);
+
+            // Don't allow the user to select a Character target
+            if (targetMonster.PlayerType == PlayerTypeEnum.Character)
+            {
+                BattleMessages.Text = $"Hey, {targetMonster.Name} is on your side! Pick a monster!";
+                return;
+            }
+
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender = targetMonster;
+
+            // Update the Monster details box
+            UpdatePlayerDetailsBox(targetMonster);
+
+            // Highlight their figure
+            var targetPlayerFigure = _playerFigures[targetPlayerGuid];
+            targetPlayerFigure.BackgroundColor = Color.FromHex("#88ff6666");
+
+            DoCharacterTurn();
+
+            // Show next button
+            NextButton.IsVisible = true;
+            NextButton.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// When the Exit button is clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -489,11 +494,11 @@ namespace Game.Views
             await Navigation.PopModalAsync();
 
         /// <summary>
-        ///     The Start Button
+        /// When the Start button is clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void StartButton_Clicked(object sender, EventArgs e)
+        public async void StartRoundButton_Clicked(object sender, EventArgs e)
         {
             // Open a new round page
             await Navigation.PushModalAsync(new NewRoundPage());
@@ -510,7 +515,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///
+        /// When the Next button is clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -529,17 +534,29 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///
+        /// When the End Round button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void EndRoundButton_Clicked(object sender, EventArgs e)
+        {
+            // Start a new Round
+            BattleEngineViewModel.Instance.Engine.Round.NewRound();
+            EnterNewRound();
+        }
+
+        /// <summary>
+        /// Perform a Character's turn
         /// </summary>
         void DoCharacterTurn()
         {
-            var activePlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
-            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(activePlayer);
+            var activeCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
+            BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(activeCharacter);
 
-            var targetCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
+            var targetMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentDefender;
 
-            // Highlight the targeted Character's figure
-            UpdatePlayerDetailsBox(targetCharacter);
+            // Highlight the targeted Monster's figure
+            UpdatePlayerDetailsBox(targetMonster);
 
             // Update battle messages
             BattleMessages.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleMessagesModel.TurnMessage;
@@ -549,7 +566,7 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///
+        /// Perform a Monster's turn.
         /// </summary>
         void DoMonsterTurn()
         {
@@ -574,11 +591,10 @@ namespace Game.Views
         }
 
         /// <summary>
-        ///     Ends turn.
+        /// Ends current turn.
         /// </summary>
         void EndTurn()
         {
-            // TODO: Should use this instead of manually calling TakeTurn
             var roundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
 
             switch (roundCondition)
@@ -586,15 +602,17 @@ namespace Game.Views
                 case RoundEnum.NewRound:
                     BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;
 
-                    // Show the Round Over, after that is cleared, it will show the New Round Dialog
+                    // Show the Round Over page
                     ShowModalRoundOverPage();
 
-                    // Reset to a new Round
-                    BattleEngineViewModel.Instance.Engine.Round.NewRound();
+                    // Hide battle UI
+                    HideBattleUiElements();
 
-                    EnterNewRound();
+                    StartRoundButton.IsVisible = false;
+                    EndRoundButton.IsVisible = true;
 
                     return;
+
                 // Check for Game Over
                 case RoundEnum.GameOver:
                     BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.GameOver;
@@ -609,6 +627,7 @@ namespace Game.Views
 
                     GameOver();
                     return;
+
                 case RoundEnum.NextTurn:
                     StartTurn();
                     break;

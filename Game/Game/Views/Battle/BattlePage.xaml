@@ -82,9 +82,18 @@
             <StackLayout Style="{StaticResource HorizontalStack}"
                          HorizontalOptions="CenterAndExpand"
                          VerticalOptions="CenterAndExpand">
-                <Button x:Name="StartBattleButton"
+                <Button x:Name="StartRoundButton"
                         Text="Explore"
-                        Clicked="StartButton_Clicked"
+                        Clicked="StartRoundButton_Clicked"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="80"
+                        Padding="20"
+                        BackgroundColor="#ddaaaaaa"
+                        FontSize="Large"
+                        FontFamily="8bit_bold" />
+
+                <Button x:Name="EndRoundButton"
+                        Clicked="EndRoundButton_Clicked"
                         VerticalOptions="CenterAndExpand"
                         HeightRequest="80"
                         Padding="20"
