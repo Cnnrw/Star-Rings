@@ -22,33 +22,6 @@ namespace Game.Views
         public ScorePage()
         {
             InitializeComponent();
-
-            var deadCharacters = new List<PlayerInfoModel>
-            {
-                new PlayerInfoModel(CharacterIndexViewModel.Instance.Dataset[0]),
-                new PlayerInfoModel(CharacterIndexViewModel.Instance.Dataset[1]),
-            };
-
-            var deadMonsters = new List<PlayerInfoModel>
-            {
-                new PlayerInfoModel(MonsterIndexViewModel.Instance.Dataset[0]),
-                new PlayerInfoModel(MonsterIndexViewModel.Instance.Dataset[2])
-            };
-
-            // mock data
-            var battleScore = new ScoreModel
-            {
-                AutoBattle = false,
-                BattleNumber = 15,
-                ScoreTotal = 100,
-                CharacterAtDeathList = null,
-                CharacterModelDeathList = deadCharacters,
-                MonsterModelDeathList = deadMonsters,
-                MonsterSlainNumber = deadMonsters.Count(),
-                // ItemsDroppedList = newData.ItemsDroppedList,
-            };
-
-            _engineViewModel.Engine.EngineSettings.BattleScore = battleScore;
             DrawOutput();
         }
 
@@ -69,12 +42,13 @@ namespace Game.Views
                 MonsterListFrame.Children.Add(CreateMonsterDisplayBox(data));
 
             // // Draw the Items
-            // foreach (var data in _engineViewModel.Engine.EngineSettings.BattleScore.ItemModelDropList.Distinct())
-            //     ItemListFrame.Children.Add(CreateItemDisplayBox(data));
-            //
+            foreach (var data in _engineViewModel.Engine.EngineSettings.BattleScore.ItemModelDropList.Distinct())
+                ItemListFrame.Children.Add(CreateItemDisplayBox(data));
+            
             // Update Values in the UI
             TotalKilled.Text = _engineViewModel.Engine.EngineSettings.BattleScore.MonsterModelDeathList.Count().ToString();
-            // TotalCollected.Text = _engineViewModel.Engine.EngineSettings.BattleScore.ItemModelDropList.Count().ToString();
+
+            TotalCollected.Text = _engineViewModel.Engine.EngineSettings.BattleScore.ItemModelDropList.Count().ToString();
             TotalScore.Text = _engineViewModel.Engine.EngineSettings.BattleScore.ScoreTotal.ToString();
         }
 
@@ -93,13 +67,30 @@ namespace Game.Views
                 Source = data.IconImageURI,
                 Style = Application.Current.Resources.TryGetValue("ImageBattleMediumStyle", out var playerImgStyle)
                             ? (Style)playerImgStyle
-                            : null
+                            : null,
+                Aspect = Aspect.AspectFit
+            };
+
+            // Add the Name
+            var playerNameLabel = new Label
+            {
+                Text = data.Name,
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var playerNameStyle)
+                            ? (Style)playerNameStyle
+                            : null,
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                Padding = 0,
+                LineBreakMode = LineBreakMode.NoWrap,
+                CharacterSpacing = 1,
+                LineHeight = 1,
+                MaxLines = 1
             };
 
             // Add the Level
             var playerLevelLabel = new Label
             {
-                Text = "Level : " + data.Level,
+                Text = "Level: " + data.Level,
                 Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var playerLvlStyle)
                             ? (Style)playerLvlStyle
                             : null,
@@ -124,6 +115,7 @@ namespace Game.Views
                 Children =
                 {
                     playerImage,
+                    playerNameLabel,
                     playerLevelLabel
                 }
             };
@@ -146,13 +138,30 @@ namespace Game.Views
                 Source = data.IconImageURI,
                 Style = Application.Current.Resources.TryGetValue("ImageBattleMediumStyle", out var playerImgStyle)
                             ? (Style)playerImgStyle
-                            : null
+                            : null,
+                Aspect = Aspect.AspectFit
+            };
+
+            // Add the Name
+            var playerNameLabel = new Label
+            {
+                Text = data.Name,
+                Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var playerNameStyle)
+                            ? (Style)playerNameStyle
+                            : null,
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                Padding = 0,
+                LineBreakMode = LineBreakMode.NoWrap,
+                CharacterSpacing = 1,
+                LineHeight = 1,
+                MaxLines = 1
             };
 
             // Add the Level
             var playerLevelLabel = new Label
             {
-                Text = "Level : " + data.Level,
+                Text = "Level: " + data.Level,
                 Style = Application.Current.Resources.TryGetValue("ValueStyleMicro", out var playerLvlStyle)
                             ? (Style)playerLvlStyle
                             : null,
@@ -177,6 +186,7 @@ namespace Game.Views
                 Children =
                 {
                     playerImage,
+                    playerNameLabel,
                     playerLevelLabel
                 }
             };
@@ -194,26 +204,31 @@ namespace Game.Views
             data ??= new ItemModel();
 
             // Hookup the image
-            var playerImage = new Image
+            var itemImage = new Image
             {
-                //Style = (Style)Application.Current.Resources["ImageBattleSmallStyle"],
+                Style = Application.Current.Resources.TryGetValue("ImageBattleSmallStyle", out var itemImgStyle)
+                            ? (Style)itemImgStyle
+                            : null,
+                Aspect = Aspect.AspectFit,
                 Source = data.ImageURI
             };
 
             // Put the Image Button and Text inside a layout
-            var playerStack = new StackLayout
+            var itemStack = new StackLayout
             {
-                //Style = (Style)Application.Current.Resources["ScoreItemInfoBox"],
+                Style = Application.Current.Resources.TryGetValue("ScoreItemInfoBox", out var itemStackStyle)
+                            ? (Style)itemStackStyle
+                            : null,
                 HorizontalOptions = LayoutOptions.Center,
                 Padding = 0,
                 Spacing = 0,
                 Children =
                 {
-                    playerImage
+                    itemImage
                 }
             };
 
-            return playerStack;
+            return itemStack;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -16,7 +16,7 @@
                    Style="{StaticResource CenterMessageLargeStyle}" />
 
             <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label Text="Score : "
+                <Label Text="Score: "
                        Style="{StaticResource MessageStyle}"
                        TextColor="{StaticResource PrimaryTextColor}" />
                 <Label Text="0"
@@ -48,7 +48,6 @@
                         JustifyContent="Start"
                         AlignContent="Start"
                         Wrap="Wrap" />
-
 
             <!-- Items -->
             <Label Text="Items"
