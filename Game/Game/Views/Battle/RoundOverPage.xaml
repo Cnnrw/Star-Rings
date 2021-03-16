@@ -2,9 +2,11 @@
 
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       x:Class="Game.Views.RoundOverPage"
-                      IsBackButtonVisible="False">
+                      IsBackButtonVisible="False"
+                      PageTitle="Round Cleared!">
 
     <AbsoluteLayout HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand">
@@ -17,15 +19,10 @@
 
                 <StackLayout Style="{StaticResource VerticalStack}">
 
-                    <Label Text="Round Cleared!"
-                           Style="{StaticResource CenterMessageLargeStyle}"
-                           FontSize="30" />
-
                     <StackLayout Style="{StaticResource HorizontalStack}">
                         <Label Text="Round: "
                                Style="{StaticResource CenterMessageLargeStyle}" />
                         <Label x:Name="TotalRound"
-                               Text="0"
                                Style="{StaticResource CenterMessageLargeStyle}" />
                     </StackLayout>
 
@@ -62,10 +59,12 @@
                                 AlignContent="Start"
                                 Wrap="Wrap" />
 
-                    <Button Clicked="AutoAssignButton_Clicked"
-                            Text="Equip Items" />
-                    <Button Clicked="CloseButton_Clicked"
-                            Text="Close" />
+                    <c:TextButton Text="Equip Items"
+                                  Source="button.png"
+                                  Clicked="AutoAssignButton_Clicked" />
+                    <c:TextButton Text="Close"
+                                  Source="button.png"
+                                  Clicked="CloseButton_Clicked" />
 
                 </StackLayout>
             </ScrollView>
@@ -115,8 +114,8 @@
                                    Style="{StaticResource ValueStyle}" />
                         </StackLayout>
 
-                        <Button Clicked="ClosePopup_Clicked"
-                                Text="Close" />
+                        <c:TextButton Text="Close"
+                                      Clicked="ClosePopup_Clicked" />
                     </StackLayout>
                 </Frame>
             </StackLayout>
