@@ -72,8 +72,8 @@ namespace Game.Views
             DrawSelectedItems();
 
             // Only need to update the selected, the Dropped is set in the constructor
-            //TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
-            //                                          .Count().ToString();
+            TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
+                                                      .Count().ToString();
         }
 
         /// <summary>
@@ -100,7 +100,6 @@ namespace Game.Views
         /// </summary>
         public void DrawSelectedItems()
         {
-            /*
             // Clear and Populate the Dropped Items
             var FlexList = ItemListSelectedFrame.Children.ToList();
             foreach (var data in FlexList)
@@ -112,7 +111,6 @@ namespace Game.Views
             {
                 ItemListSelectedFrame.Children.Add(GetItemToDisplay(data));
             }
-            */
         }
 
         /// <summary>
