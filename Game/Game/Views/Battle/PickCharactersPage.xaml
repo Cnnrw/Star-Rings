@@ -12,7 +12,7 @@
                       PageTitle="Choose Your Party">
 
     <ContentPage.BindingContext>
-        <vm:BattleEngineViewModel />
+        <vm:PickCharacterViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -28,6 +28,15 @@
                                     Value="{StaticResource ListStyle}" />
                         </Style>
                     </Grid.Resources>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding
+                                Source={RelativeSource
+                                AncestorType={x:Type vm:PickCharacterViewModel}},
+                                    Path=SelectCharacterCommand}"
+                            CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
 
                     <Image Grid.RowSpan="3"
                            Source="{Binding IconImageURI}"
@@ -61,13 +70,11 @@
                Style="{StaticResource CenterMessageLargeStyle}" />
 
         <CollectionView Grid.Row="1"
-                        x:Name="CharacterList"
-                        ItemsSource="{Binding PoolCharacterList}"
+                        ItemsSource="{Binding CharacterList}"
+                        ItemTemplate="{StaticResource CharacterTemplate}"
                         SelectionMode="Single"
-                        SelectionChanged="OnCharacterSelected"
                         ItemSizingStrategy="MeasureFirstItem"
-                        VerticalOptions="FillAndExpand"
-                        ItemTemplate="{StaticResource CharacterTemplate}" />
+                        VerticalOptions="FillAndExpand" />
 
         <!-- Selected Characters -->
         <Label Grid.Column="1"
@@ -75,28 +82,21 @@
                Style="{StaticResource CenterMessageStyle}" />
 
         <CollectionView Grid.Column="1" Grid.Row="1"
-                        x:Name="PartyList"
-                        ItemsSource="{Binding PartyCharacterList}"
+                        ItemsSource="{Binding SelectedCharacterList}"
+                        ItemTemplate="{StaticResource CharacterTemplate}"
                         SelectionMode="Single"
-                        SelectionChanged="OnPartyCharacterSelected"
                         ItemSizingStrategy="MeasureFirstItem"
-                        VerticalOptions="FillAndExpand"
-                        ItemTemplate="{StaticResource CharacterTemplate}" />
+                        VerticalOptions="FillAndExpand" />
 
         <!-- Selected Character count -->
         <StackLayout Grid.ColumnSpan="2" Grid.Row="2"
                      HorizontalOptions="CenterAndExpand">
-
             <Label Text="Count"
                    Style="{StaticResource CenterMessageStyle}" />
-
-            <Label x:Name="PartyCountLabel"
+            <Label Text="{Binding PartyCount}"
                    Style="{StaticResource CenterMessageStyle}" />
-
-            <Button x:Name="BeginBattleButton"
-                    Text="Begin"
-                    Clicked="BattleButton_Clicked"
-                    IsEnabled="False" />
+            <Button Text="Begin"
+                    Command="{Binding BeginBattleCommand}" />
         </StackLayout>
     </Grid>
 </page:BaseContentPage>
