@@ -80,6 +80,19 @@ namespace UnitTests.Components.Controls
         }
 
         [Test]
+        public void ImgButton_ImageWidthRequest_Get_Set_Should_Pass()
+        {
+            // Arrange
+            var imgBttn = new ImgButton();
+
+            // Act
+            imgBttn.ImageWidthRequest = 20;
+
+            // Assert
+            Assert.AreEqual(20, imgBttn.ImageWidthRequest);
+        }
+
+        [Test]
         public void ImgButton_ImageHeightRequest_Get_Set_Should_Pass()
         {
             // Arrange
