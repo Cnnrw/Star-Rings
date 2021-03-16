@@ -19953,34 +19953,37 @@ namespace Game.Droid
 			public const int test_custom_background = 2131165625;
 			
 			// aapt resource value: 0x7F0701BA
-			public const int tooltip_frame_dark = 2131165626;
+			public const int text_button = 2131165626;
 			
 			// aapt resource value: 0x7F0701BB
-			public const int tooltip_frame_light = 2131165627;
+			public const int tooltip_frame_dark = 2131165627;
 			
 			// aapt resource value: 0x7F0701BC
-			public const int troll = 2131165628;
+			public const int tooltip_frame_light = 2131165628;
 			
 			// aapt resource value: 0x7F0701BD
-			public const int troll_icon = 2131165629;
+			public const int troll = 2131165629;
 			
 			// aapt resource value: 0x7F0701BE
-			public const int warg_rider = 2131165630;
+			public const int troll_icon = 2131165630;
 			
 			// aapt resource value: 0x7F0701BF
-			public const int warg_rider_icon = 2131165631;
+			public const int warg_rider = 2131165631;
 			
 			// aapt resource value: 0x7F0701C0
-			public const int warrior = 2131165632;
+			public const int warg_rider_icon = 2131165632;
 			
 			// aapt resource value: 0x7F0701C1
-			public const int weapon_icon = 2131165633;
+			public const int warrior = 2131165633;
 			
 			// aapt resource value: 0x7F0701C2
-			public const int wookie = 2131165634;
+			public const int weapon_icon = 2131165634;
 			
 			// aapt resource value: 0x7F0701C3
-			public const int wookie_icon = 2131165635;
+			public const int wookie = 2131165635;
+			
+			// aapt resource value: 0x7F0701C4
+			public const int wookie_icon = 2131165636;
 			
 			static Drawable()
 			{
