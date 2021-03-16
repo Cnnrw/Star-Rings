@@ -359,23 +359,19 @@ namespace UnitTests.Helpers
             Assert.AreEqual(PlayerTypeEnum.Monster, result.PlayerType);
         }
 
-        //[Test]
-        //public async Task RandomPlayerHelper_GetRandomMonster_Valid_Items_True_Should_Return_New_Monster()
-        //{
-        //    // Arrange
-        //    MonsterIndexViewModel.Instance.Dataset.Clear();
-        //    await MonsterIndexViewModel.Instance.CreateAsync(new MonsterModel { UniqueItem = "1" });
-        //    await MonsterIndexViewModel.Instance.CreateAsync(new MonsterModel { UniqueItem = "2" });
-        //    await MonsterIndexViewModel.Instance.CreateAsync(new MonsterModel { UniqueItem = "3" });
+        [Test]
+        public void RandomPlayerHelper_GetRandomMonster_Valid_Items_True_Should_Return_New_Monster()
+        {
+            // Arrange
 
-        //    // Act
-        //    var result = RandomPlayerHelper.GetRandomMonster(1,true);
+            // Act
+            var result = RandomPlayerHelper.GetRandomMonster(1, true);
 
-        //    // Reset
+            // Reset
 
-        //    // Assert
-        //    Assert.AreEqual(PlayerTypeEnum.Monster, result.PlayerType);
-        //}
+            // Assert
+            Assert.AreEqual(PlayerTypeEnum.Monster, result.PlayerType);
+        }
 
         [Test]
         public void RandomPlayerHelper_GetRandomMonster_Valid_Items_False_Should_Return_New_Monster()
