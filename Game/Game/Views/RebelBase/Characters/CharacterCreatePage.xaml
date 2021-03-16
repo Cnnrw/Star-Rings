@@ -12,7 +12,8 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterCreatePage"
-                      PageTitle="{Binding Title}">
+                      PageTitle="{Binding Title}"
+                      IsBackButtonVisible="False">
 
     <ContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
@@ -25,14 +26,12 @@
     </ContentPage.Resources>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="RandomButton_Clicked" />
-        <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
+        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png"/>
+        <ImageButton Clicked="Save_Clicked" Source="save_button.png"/>
     </page:BaseContentPage.ToolbarButtons>
-
 
     <FlexLayout JustifyContent="Center"
                 Padding="40">
-
             <StackLayout Style="{StaticResource OuterBoxStack}"
                          Spacing="10">
 
@@ -113,6 +112,7 @@
                     <StackLayout>
                         <Label Text="Defense"
                                Style="{StaticResource LabelStyle}" />
+
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="DefenseValueLabel"
                                    Text="{Binding Data.Defense}"
@@ -124,6 +124,7 @@
                                      Maximum="10"
                                      Increment="1" />
                         </StackLayout>
+
                     </StackLayout>
 
                     <StackLayout>
@@ -141,6 +142,7 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
+
             </StackLayout>
     </FlexLayout>
 </page:BaseContentPage>
