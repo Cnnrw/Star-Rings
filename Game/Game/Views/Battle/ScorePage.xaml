@@ -24,6 +24,15 @@
                        Style="{StaticResource LabelStyle}" />
             </StackLayout>
 
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Experience earned: "
+                       Style="{StaticResource MessageStyle}"
+                       TextColor="{StaticResource PrimaryTextColor}" />
+                <Label Text="0"
+                       x:Name="ExperienceEarned"
+                       Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+
             <!-- Characters -->
             <Label Text="Characters"
                    Style="{StaticResource MessageStyle}"

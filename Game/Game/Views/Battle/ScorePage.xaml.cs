@@ -50,6 +50,7 @@ namespace Game.Views
 
             TotalCollected.Text = _engineViewModel.Engine.EngineSettings.BattleScore.ItemModelDropList.Count().ToString();
             TotalScore.Text = _engineViewModel.Engine.EngineSettings.BattleScore.ScoreTotal.ToString();
+            ExperienceEarned.Text = _engineViewModel.Engine.EngineSettings.BattleScore.ExperienceGainedTotal.ToString();
         }
 
         /// <summary>
