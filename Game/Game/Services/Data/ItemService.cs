@@ -109,15 +109,18 @@ namespace Game.Services
             // Then update the database
 
             // Use a foreach on myList
-            if (!updateDataBase) 
-                return myList;
-            
-            foreach (var itemModel in myList)
-                // Call to the View Model (that is where the datasource is set, and have it then save
-                await ItemIndexViewModel.Instance.CreateUpdateAsync(itemModel);
+            if (updateDataBase)
+            {
 
-            // When foreach is done, call to the items view model to set needs refresh to true, so it can refetch the list...
-            ItemIndexViewModel.Instance.SetNeedsRefresh(true);
+                foreach (var itemModel in myList)
+                {
+                    // Call to the View Model (that is where the datasource is set, and have it then save
+                    await ItemIndexViewModel.Instance.CreateUpdateAsync(itemModel);
+                }
+
+                // When foreach is done, call to the items view model to set needs refresh to true, so it can refetch the list...
+                ItemIndexViewModel.Instance.SetNeedsRefresh(true);
+            }
 
             return myList;
         }
