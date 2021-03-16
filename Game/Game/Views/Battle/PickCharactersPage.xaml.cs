@@ -7,7 +7,6 @@ namespace Game.Views
     {
         /// <summary>
         /// Constructor for Index Page
-        ///
         /// Get the CharacterIndexView Model
         /// </summary>
         public PickCharactersPage() => InitializeComponent();

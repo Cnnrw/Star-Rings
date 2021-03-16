@@ -19,9 +19,9 @@
         <ResourceDictionary>
             <DataTemplate x:Key="CharacterTemplate"
                           x:DataType="m:CharacterModel">
+
                 <Grid ColumnDefinitions="*, 3*"
                       RowDefinitions="4, *, 1">
-
                     <Grid.Resources>
                         <Style TargetType="Label">
                             <Setter Property="Style" Value="{StaticResource ListStyle}" />
@@ -44,7 +44,6 @@
                            Aspect="AspectFit" />
 
                     <StackLayout Grid.Column="1" Grid.Row="1">
-
                         <Label Text="{Binding Name}"
                                FontFamily="8bit_bold"
                                TextColor="{StaticResource PrimaryTextColor}"
@@ -53,9 +52,9 @@
                         <Label Text="{Binding Level, StringFormat='Level: {0:G}'}" />
 
                         <Label Text="{Binding Path=MaxHealth, StringFormat= 'HP: {0:G}'}" />
-
                     </StackLayout>
                 </Grid>
+
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -97,5 +96,6 @@
             <Button Text="Begin"
                     Command="{Binding BeginBattleCommand}" />
         </StackLayout>
+
     </Grid>
 </page:BaseContentPage>
