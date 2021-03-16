@@ -20,5 +20,19 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual(8, result.Count);
         }
+
+        [Test]
+        public void MonsterImageEnumTests_ConvertStringToEnum_Orc_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumHelper.ConvertStringToEnum("Orc");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Orc, result);
+        }
     }
 }
