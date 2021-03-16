@@ -4,12 +4,9 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       x:Class="Game.Views.AutoBattlePage"
-                      Padding="30">
+                      PageTitle="Auto Battle!">
 
     <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="CenterAndExpand">
-        <Label Text="Auto Battle!"
-               Style="{StaticResource CenterMessageLargeStyle}"
-               Margin="0,0,0,30" />
 
         <Image Source="auto_battle.png"
                Style="{StaticResource ImageLargeStyle}" />
