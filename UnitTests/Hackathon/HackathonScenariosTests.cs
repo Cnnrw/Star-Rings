@@ -118,20 +118,20 @@ namespace Scenario
 
             EngineViewModel.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
 
-            var CharacterPlayerMike = new PlayerInfoModel(
-                                                          new CharacterModel
-                                                          {
-                                                              Speed = -1, // Will go last...
-                                                              Level = 1,
-                                                              Attack = 0,
-                                                              Defense = 0,
-                                                              CurrentHealth = 1,
-                                                              ExperienceTotal = 1,
-                                                              ExperienceRemaining = 1,
-                                                              Name = "Mike"
-                                                          });
+            var CharacterPlayerMike = new CharacterModel
+            {
+                Speed = -1, // Will go last...
+                Level = 1,
+                Attack = 0,
+                Defense = 0,
+                CurrentHealth = 1,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Mike"
+            };
 
-            EngineViewModel.Engine.EngineSettings.CharacterList.Add(CharacterPlayerMike);
+            //EngineViewModel.Engine.EngineSettings.CharacterList.Add(CharacterPlayerMike);
+            CharacterIndexViewModel.Instance.Dataset.Insert(0, CharacterPlayerMike);
 
             // Set Monster Conditions
 
