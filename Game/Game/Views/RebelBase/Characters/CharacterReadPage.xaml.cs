@@ -143,10 +143,5 @@ namespace Game.Views
         }
 
         #endregion EquippedItems
-
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
     }
 }
