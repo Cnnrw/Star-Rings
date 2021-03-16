@@ -62,7 +62,6 @@ namespace Game.Enums
             value switch
             {
                 ItemLocationEnum.Head        => "Head",
-                ItemLocationEnum.Unknown     => "Unknown",
                 ItemLocationEnum.Necklace    => "Necklace",
                 ItemLocationEnum.PrimaryHand => "Primary Hand",
                 ItemLocationEnum.OffHand     => "Off Hand",
