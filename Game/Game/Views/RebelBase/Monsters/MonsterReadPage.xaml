@@ -11,9 +11,14 @@
              x:Class="Game.Views.MonsterReadPage"
              PageTitle="{Binding Title}">
 
-    <ContentPage.BindingContext>
+    <page:BaseContentPage.BindingContext>
         <vm:GenericViewModel x:TypeArguments="m:MonsterModel"/>
-    </ContentPage.BindingContext>
+    </page:BaseContentPage.BindingContext>
+
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="Update_Clicked" Source="player_update_button.png" />
+        <ImageButton Clicked="Delete_Clicked" Source="delete_button.png" />
+    </page:BaseContentPage.ToolbarButtons>
 
         <FlexLayout JustifyContent="Center"
                     Padding="40">
@@ -67,12 +72,7 @@
                             JustifyContent="SpaceAround"
                             AlignContent="SpaceAround" />
 
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Delete" Clicked="Delete_Clicked" />
-                        <Button Text="Update" Clicked="Update_Clicked" />
-                    </StackLayout>
                 </StackLayout>
             </ScrollView>
-
         </FlexLayout>
 </page:BaseContentPage>
