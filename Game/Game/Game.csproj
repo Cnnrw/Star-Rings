@@ -69,6 +69,7 @@
 		<None Remove="Assets\Images\Buttons\start_button_normal.png" />
 		<None Remove="Assets\Images\Buttons\start_button_pressed.png" />
 		<None Remove="Assets\Images\Buttons\stats.png" />
+    <None Remove="Assets\Images\Buttons\text_button.png" />
 		<None Remove="Assets\Images\Buttons\warrior.png" />
 	</ItemGroup>
   
@@ -290,15 +291,14 @@
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\start_button_pressed.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\auto_battle.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\about_1.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\about_2.png" />
     <SharedImage BaseSize="14,14" Include="Assets\Images\Buttons\delete_button.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\dungeon.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\eye.png" />
     <SharedImage BaseSize="27,27" Include="Assets\Images\Buttons\player_update_button.png" />
-		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\rebel_base_1.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\rebel_base_2.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\ring.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\settings.png" />
+    <SharedImage BaseSize="83,20" Include="Assets\Images\Buttons\text_button.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\stats.png" />
 		<SharedImage BaseSize="36,36" Include="Assets\Images\Buttons\warrior.png" />
 	</ItemGroup>
