@@ -103,7 +103,7 @@
                             ItemsLayout="HorizontalList"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
-                            Margin="5, 0" />
+                            Margin="5, 0, 15, 0" />
         </StackLayout>
 
         <!-- Monsters -->
@@ -128,7 +128,7 @@
                             ItemTemplate="{StaticResource PlayerInfoModelView}"
                             ItemsLayout="HorizontalList"
                             VerticalOptions="FillAndExpand"
-                            Margin="5, 0" />
+                            Margin="5, 0, 15, 0" />
         </StackLayout>
 
         <!-- Items -->
@@ -153,7 +153,7 @@
                             ItemTemplate="{StaticResource ItemView}"
                             ItemsLayout="HorizontalList"
                             VerticalOptions="FillAndExpand"
-                            Margin="5, 0" />
+                            Margin="5, 0, 15, 0" />
         </StackLayout>
     </Grid>
 </page:BaseContentPage>
