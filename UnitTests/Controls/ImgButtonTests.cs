@@ -117,5 +117,31 @@ namespace UnitTests.Components.Controls
             // Assert
             Assert.AreEqual(Device.Styles.BodyStyle, imgBttn.TextStyle);
         }
+
+        [Test]
+        public void ImgButton_ImageStyle_Get_Set_Should_Pass()
+        {
+            // Arrange
+            var imgBttn = new ImgButton();
+
+            // Act
+            imgBttn.ImageStyle = Device.Styles.BodyStyle;
+
+            // Assert
+            Assert.AreEqual(Device.Styles.BodyStyle, imgBttn.ImageStyle);
+        }
+
+        [Test]
+        public void ImgButton_StackStyle_Get_Set_Should_Pass()
+        {
+            // Arrange
+            var imgBttn = new ImgButton();
+
+            // Act
+            imgBttn.StackStyle = Device.Styles.BodyStyle;
+
+            // Assert
+            Assert.AreEqual(Device.Styles.BodyStyle, imgBttn.StackStyle);
+        }
     }
 }
