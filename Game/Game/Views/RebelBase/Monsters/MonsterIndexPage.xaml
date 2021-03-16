@@ -6,7 +6,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
-                      xmlns:template="clr-namespace:Game.Templates;assembly=Game"
+                      xmlns:local="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterIndexPage"
                       PageTitle="{Binding Title}">
@@ -16,7 +16,7 @@
     </ContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="AddItem_Clicked" Source="icon_add.png"/>
+        <ImageButton Clicked="AddItem_Clicked" Source="icon_add.png" />
     </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
@@ -35,7 +35,7 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <template:ListTemplateSelector />
+                <local:ListTemplateSelector />
             </CollectionView.ItemTemplate>
 
         </CollectionView>
