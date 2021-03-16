@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -107,6 +107,7 @@ namespace UnitTests.Models
             result.MonsterModelDeathList = new List<PlayerInfoModel> {new PlayerInfoModel(new MonsterModel())};
             result.CharacterModelDeathList = new List<PlayerInfoModel> {new PlayerInfoModel(new CharacterModel())};
             result.ItemModelSelectList = new List<ItemModel> {new ItemModel {Name = "Item"}};
+            result.RoundsOrderedPlayerLists = new List<List<PlayerInfoModel>>();
 
             // Reset
 
@@ -127,6 +128,7 @@ namespace UnitTests.Models
             Assert.AreEqual("Item", result.ItemModelSelectList.ElementAt(0).Name);
             Assert.AreEqual(PlayerTypeEnum.Monster, result.MonsterModelDeathList.ElementAt(0).PlayerType);
             Assert.AreEqual(PlayerTypeEnum.Character, result.CharacterModelDeathList.ElementAt(0).PlayerType);
+            Assert.AreEqual(0, result.RoundsOrderedPlayerLists.Count());
         }
 
         [Test]
