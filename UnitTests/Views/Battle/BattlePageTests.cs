@@ -124,12 +124,12 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void BattlePage_StartButton_Clicked_Default_Should_Pass()
+        public void BattlePage_StartRoundButton_Clicked_Default_Should_Pass()
         {
             // Arrange
 
             // Act
-            page.StartButton_Clicked(null, null);
+            page.StartRoundButton_Clicked(null, null);
 
             // Reset
 
