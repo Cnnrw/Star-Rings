@@ -196,6 +196,23 @@ namespace UnitTests.Helpers
         }
 
         [Test]
+        public void RandomPlayerHelper_GetMonsterImage_99_Should_Return_DarkElf()
+        {
+            // Arrange
+            DiceHelper.EnableForcedRolls();
+            DiceHelper.SetForcedRollValue(99);
+
+            // Act
+            var result = RandomPlayerHelper.GetMonsterImage();
+
+            // Reset
+            DiceHelper.DisableForcedRolls();
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.DarkElf, result);
+        }
+
+        [Test]
         public void RandomPlayerHelper_GetCharacterImage_2_Should_Return_2()
         {
             // Arrange
