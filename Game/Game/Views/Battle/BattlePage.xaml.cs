@@ -230,8 +230,7 @@ namespace Game.Views
             PageTitle = BattleEngineViewModel.Instance
                                              .Engine
                                              .EngineSettings
-                                             .BattleSettingsModel
-                                             .BattleModeEnum
+                                             .RoundLocation
                                              .ToMessage();
 
             ShowBattleModeUiElements();
@@ -269,7 +268,7 @@ namespace Game.Views
                 case BattleStateEnum.RoundOver:
                 case BattleStateEnum.Battling:
                     GameUIDisplay.IsVisible = true;
-                    //BattlePlayerInfomationBox.IsVisible = true;
+                    //BattlePlayerInformationBox.IsVisible = true;
                     //MessageDisplayBox.IsVisible = true;
                     AttackButton.IsVisible = true;
                     BlockButton.IsVisible = true;
