@@ -25,7 +25,7 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
-            // For now, set the engine to the Koenig Engine, change when ready 
+            // For now, set the engine to the Koenig Engine, change when ready
             BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
 
             page = new AutoBattlePage();
@@ -72,7 +72,7 @@ namespace UnitTests.Views
             page.AutoBattle.Battle.EngineSettings.CharacterList.Add(new PlayerInfoModel(data));
 
             // Act
-            page.AutobattleButton_Clicked(null, null);
+            page.AutoBattleButton_Clicked(null, null);
 
             // Reset
             DiceHelper.DisableForcedRolls();

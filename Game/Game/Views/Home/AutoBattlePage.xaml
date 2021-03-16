@@ -1,42 +1,33 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.AutoBattlePage"
-             BackgroundImageSource="page_background.png"
-             Padding="30">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="CenterAndExpand">
-            <Label Text="Auto Battle!"
-                   Style="{StaticResource CenterMessageLargeStyle}"
-                   Margin="0,0,0,30"/>
-            
-            <Image Source="auto_battle.png"
-                   Style="{StaticResource ImageLargeStyle}"/>
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      x:Class="Game.Views.AutoBattlePage"
+                      Padding="30">
 
-            <Button Text="Start"
-                    Clicked="AutobattleButton_Clicked"
-                    HorizontalOptions="Center"/>
+    <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="CenterAndExpand">
+        <Label Text="Auto Battle!"
+               Style="{StaticResource CenterMessageLargeStyle}"
+               Margin="0,0,0,30" />
 
-            <StackLayout Style="{StaticResource CardImageTextBox}">
-                <Label 
-                    x:Name="BattleMessageValue"
-                    Text=""
-                    LineBreakMode="WordWrap"
-                    MaxLines="10"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalTextAlignment="Center"
-                    HorizontalTextAlignment="Center"
-                    Style="{StaticResource ListStyle}"
-                    />
+        <Image Source="auto_battle.png"
+               Style="{StaticResource ImageLargeStyle}" />
 
-                <Image
-                        x:Name="AutobattleImage"
-                        Source="elf1_a.gif"
-                        IsAnimationPlaying="True"
-                        Style="{StaticResource ImageLargeStyle}"></Image>
-            </StackLayout>
+        <Button Text="Start"
+                Clicked="AutoBattleButton_Clicked"
+                HorizontalOptions="Center" />
+
+        <StackLayout Style="{StaticResource CardImageTextBox}">
+            <Label x:Name="BattleMessageValue"
+                   Text=""
+                   LineBreakMode="WordWrap"
+                   MaxLines="10"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource ListStyle}" />
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </StackLayout>
+</page:BaseContentPage>

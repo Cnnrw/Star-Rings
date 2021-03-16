@@ -1,41 +1,31 @@
 using System;
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using Game.Engine.EngineKoenig;
-using Game.Models;
-using Game.ViewModels;
 using Game.Engine.EngineInterfaces;
+using Game.ViewModels;
 
 namespace Game.Views
 {
 	/// <summary>
 	/// The Main Game Page
 	/// </summary>
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AutoBattlePage : ContentPage
+	public partial class AutoBattlePage : BaseContentPage
 	{
 		// Hold the Engine, so it can be swapped out for unit testing
-		public IAutoBattleInterface AutoBattle = BattleEngineViewModel.Instance.AutoBattleEngine;
+		public readonly IAutoBattleInterface AutoBattle = BattleEngineViewModel.Instance.AutoBattleEngine;
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public AutoBattlePage ()
-		{
+		public AutoBattlePage () =>
 			InitializeComponent ();
-		}
 
-		public async void AutobattleButton_Clicked(object sender, EventArgs e)
+		public async void AutoBattleButton_Clicked(object sender, EventArgs e)
 		{
 			await AutoBattle.RunAutoBattle();
-			
-			var BattleMessage = string.Format("Done {0} Rounds", AutoBattle.Battle.EngineSettings.BattleScore.RoundCount);
 
-			BattleMessageValue.Text = BattleMessage;
+			var battleMessage = $"Done {AutoBattle.Battle.EngineSettings.BattleScore.RoundCount} Rounds";
 
-			AutobattleImage.Source = "troll6_d.gif";
+			BattleMessageValue.Text = battleMessage;
 		}
 	}
 }
