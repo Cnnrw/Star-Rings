@@ -2,78 +2,162 @@
 
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
-                      x:Class="Game.Views.ScorePage">
+                      x:Class="Game.Views.ScorePage"
+                      PageTitle="Final Battle Score"
+                      IsBackButtonVisible="False">
 
-    <ScrollView HorizontalScrollBarVisibility="Never"
-                VerticalScrollBarVisibility="Never">
+    <page:BaseContentPage.BindingContext>
+        <vm:ScoreViewModel />
+    </page:BaseContentPage.BindingContext>
 
-        <StackLayout Style="{StaticResource VerticalStack}"
-                     Margin="25,0, 25, 15">
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Command="{Binding CloseCommand}"
+                     Source="close_button.png" />
+    </page:BaseContentPage.ToolbarButtons>
 
-            <Label Text="Score Page"
-                   FontSize="48"
-                   Style="{StaticResource CenterMessageLargeStyle}" />
+    <page:BaseContentPage.Resources>
 
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label Text="Score: "
-                       Style="{StaticResource MessageStyle}"
-                       TextColor="{StaticResource PrimaryTextColor}" />
-                <Label Text="0"
-                       x:Name="TotalScore"
-                       Style="{StaticResource LabelStyle}" />
+        <DataTemplate x:Key="PlayerInfoModelView"
+                      x:DataType="m:PlayerInfoModel">
+            <StackLayout Style="{StaticResource ScoreCharacterInfoBox}"
+                         HorizontalOptions="Center">
+                <StackLayout.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Style" Value="{StaticResource ValueStyleMicro}" />
+                        <Setter Property="HorizontalOptions" Value="Center" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                    </Style>
+                </StackLayout.Resources>
+
+                <Image Source="{Binding IconImageURI}"
+                       Style="{StaticResource ImageBattleMediumStyle}"
+                       Aspect="AspectFit" />
+
+                <Label Text="{Binding Name}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       LineBreakMode="NoWrap" />
+
+                <Label Text="{Binding Level, StringFormat='Level: {0}'}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center" />
+
             </StackLayout>
+        </DataTemplate>
 
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label Text="Experience earned: "
-                       Style="{StaticResource MessageStyle}"
-                       TextColor="{StaticResource PrimaryTextColor}" />
-                <Label Text="0"
-                       x:Name="ExperienceEarned"
-                       Style="{StaticResource LabelStyle}" />
+        <DataTemplate x:Key="ItemView"
+                      x:DataType="m:ItemModel">
+            <StackLayout Style="{StaticResource ScoreItemInfoBox}"
+                         HorizontalOptions="Center"
+                         Padding="0"
+                         Spacing="0">
+                <Image Source="{Binding ImageURI}"
+                       Style="{StaticResource ImageBattleMediumStyle}"
+                       Aspect="AspectFit" />
             </StackLayout>
+        </DataTemplate>
 
-            <!-- Characters -->
+    </page:BaseContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,20,Auto,Auto,Auto"
+          ColumnDefinitions="*,*"
+          Margin="15, 0">
+
+        <!-- Total score -->
+        <Label Text="Score: "
+               Style="{StaticResource MessageStyle}"
+               TextColor="{StaticResource PrimaryTextColor}" />
+        <Label Grid.Column="1"
+               Text="{Binding TotalScore}"
+               HorizontalOptions="CenterAndExpand"
+               Style="{StaticResource LabelStyle}" />
+
+        <!-- Experience earned -->
+        <Label Grid.Row="1"
+               Text="Experience earned: "
+               Style="{StaticResource MessageStyle}"
+               TextColor="{StaticResource PrimaryTextColor}" />
+        <Label Grid.Row="1" Grid.Column="1"
+               Text="{Binding TotalExperience}"
+               HorizontalOptions="CenterAndExpand"
+               Style="{StaticResource LabelStyle}" />
+
+        <!-- Characters -->
+        <StackLayout Grid.Row="3"
+                     Grid.ColumnSpan="2"
+                     HorizontalOptions="FillAndExpand">
+
             <Label Text="Characters"
                    Style="{StaticResource MessageStyle}"
                    TextColor="{StaticResource PrimaryTextColor}" />
-            <FlexLayout x:Name="CharacterListFrame"
-                        JustifyContent="Start"
-                        AlignContent="Start"
-                        Wrap="Wrap" />
 
-            <!-- Monsters -->
+            <BoxView Color="{StaticResource PrimaryBackgroundColor}"
+                     HeightRequest="1"
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0,0,15,0" />
+
+            <Label Text="{Binding CharactersKilled, StringFormat='Killed: {0}'}"
+                   Style="{StaticResource LabelStyle}" />
+
+            <CollectionView ItemsSource="{Binding DeadCharacters}"
+                            ItemTemplate="{StaticResource PlayerInfoModelView}"
+                            ItemsLayout="HorizontalList"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Margin="5, 0" />
+        </StackLayout>
+
+        <!-- Monsters -->
+        <StackLayout Grid.Row="4"
+                     Grid.ColumnSpan="2"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+
             <Label Text="Monsters"
                    Style="{StaticResource MessageStyle}"
                    TextColor="{StaticResource PrimaryTextColor}" />
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label Text="Killed : "
-                       Style="{StaticResource LabelStyle}" />
-                <Label Text="0"
-                       x:Name="TotalKilled"
-                       Style="{StaticResource ValueStyle}" />
-            </StackLayout>
-            <FlexLayout x:Name="MonsterListFrame"
-                        JustifyContent="Start"
-                        AlignContent="Start"
-                        Wrap="Wrap" />
 
-            <!-- Items -->
+            <BoxView Color="{StaticResource PrimaryBackgroundColor}"
+                     HeightRequest="1"
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0,0,15,0" />
+
+            <Label Text="{Binding MonstersKilled, StringFormat='Killed: {0}'}"
+                   Style="{StaticResource LabelStyle}" />
+
+            <CollectionView ItemsSource="{Binding DeadMonsters}"
+                            ItemTemplate="{StaticResource PlayerInfoModelView}"
+                            ItemsLayout="HorizontalList"
+                            VerticalOptions="FillAndExpand"
+                            Margin="5, 0" />
+        </StackLayout>
+
+        <!-- Items -->
+        <StackLayout Grid.Row="5"
+                     Grid.ColumnSpan="2"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+
             <Label Text="Items"
                    Style="{StaticResource MessageStyle}"
                    TextColor="{StaticResource PrimaryTextColor}" />
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label Text="Collected : "
-                       Style="{StaticResource LabelStyle}" />
-                <Label Text="0"
-                       x:Name="TotalCollected"
-                       Style="{StaticResource ValueStyle}" />
-            </StackLayout>
-            <FlexLayout x:Name="ItemListFrame"
-                        JustifyContent="Start"
-                        AlignContent="Start"
-                        Wrap="Wrap" />
 
+            <BoxView Color="{StaticResource PrimaryBackgroundColor}"
+                     HeightRequest="1"
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0,0,15,0" />
+
+            <Label Text="{Binding TotalItemsCollected, StringFormat='Collected: {0}'}"
+                   Style="{StaticResource LabelStyle}" />
+
+            <CollectionView ItemsSource="{Binding Items}"
+                            ItemTemplate="{StaticResource ItemView}"
+                            ItemsLayout="HorizontalList"
+                            VerticalOptions="FillAndExpand"
+                            Margin="5, 0" />
         </StackLayout>
-    </ScrollView>
+    </Grid>
 </page:BaseContentPage>
