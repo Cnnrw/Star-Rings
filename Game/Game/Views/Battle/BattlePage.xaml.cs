@@ -103,13 +103,8 @@ namespace Game.Views
         {
             _playerFigures.Clear();
 
-            // Clear the Character figure area
-            var characterFigures = CharacterFigureArea.Children.ToList();
-            foreach (var figure in characterFigures) CharacterFigureArea.Children.Remove(figure);
-
-            // Clear the Monster figure area
-            var monsterFigures = MonsterFigureArea.Children.ToList();
-            foreach (var figure in monsterFigures) MonsterFigureArea.Children.Remove(figure);
+            CharacterFigureArea.Children.Clear();
+            MonsterFigureArea.Children.Clear();
 
             // Draw the Character figures
             foreach (var player in BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList
@@ -340,7 +335,7 @@ namespace Game.Views
 
         #region BasicBattleMode
 
-        
+
 
         /// <summary>
         ///     Game is over
