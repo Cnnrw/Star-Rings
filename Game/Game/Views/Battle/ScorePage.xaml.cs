@@ -12,11 +12,5 @@ namespace Game.Views
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// Back Button override
-        /// </summary>
-        /// <returns></returns>
-        protected override bool OnBackButtonPressed() => true;
     }
 }
