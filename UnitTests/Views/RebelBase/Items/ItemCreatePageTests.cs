@@ -75,11 +75,26 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
+        // [Test]
+        // public void ItemCreatePage_Save_Clicked_Null_Image_Should_Pass()
+        // {
+        //     // Arrange
+        //     page._viewModel.Data.ImageURI = null;
+        //
+        //     // Act
+        //     page.Save_Clicked(null, null);
+        //
+        //     // Reset
+        //
+        //     // Assert
+        //     Assert.Is(true); // Got to here, so it happened...
+        // }
+
         [Test]
-        public void ItemCreatePage_Save_Clicked_Null_Image_Should_Pass()
+        public void ItemCreatePage_Save_Clicked_No_Name_Should_Fail()
         {
             // Arrange
-            page._viewModel.Data.ImageURI = null;
+            page._viewModel.Data.Name = string.Empty;
 
             // Act
             page.Save_Clicked(null, null);
