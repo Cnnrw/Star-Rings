@@ -1,34 +1,31 @@
 ﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-using Game.ViewModels;
 using Game.Models;
+using Game.ViewModels;
+
+using Xamarin.Forms;
 
 namespace Game.Views
 {
     /// <summary>
     /// The Read Page
     /// </summary>
-    [DesignTimeVisible(false)] 
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemDeletePage : ContentPage
+    public partial class ItemDeletePage : BaseContentPage
     {
         // View Model for Item
-        readonly GenericViewModel<ItemModel> viewModel;
+        readonly GenericViewModel<ItemModel> _viewModel;
 
         // Empty Constructor for UTs
-        public ItemDeletePage(bool UnitTest) { }
+        internal ItemDeletePage(bool unitTest) { }
 
         // Constructor for Delete takes a view model of what to delete
         public ItemDeletePage(GenericViewModel<ItemModel> data)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = data;
+            BindingContext = _viewModel = data;
 
-            this.viewModel.Title = "Delete " + data.Title;
+            _viewModel.Title = $"Delete {data.Title}";
         }
 
         /// <summary>
@@ -38,7 +35,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Delete_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "Delete", viewModel.Data);
+            MessagingCenter.Send(this, "Delete", _viewModel.Data);
             await Navigation.PopModalAsync();
         }
 
@@ -47,19 +44,13 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e)
-        {
+        public async void Cancel_Clicked(object sender, EventArgs e) =>
             await Navigation.PopModalAsync();
-        }
 
         /// <summary>
         /// Trap the Back Button on the Phone
         /// </summary>
         /// <returns></returns>
-        protected override bool OnBackButtonPressed()
-        {
-            // Add your code here...
-            return true;
-        }
+        protected override bool OnBackButtonPressed() => true;
     }
 }

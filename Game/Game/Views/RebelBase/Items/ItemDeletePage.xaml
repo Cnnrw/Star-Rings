@@ -1,37 +1,48 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Game.Views.ItemDeletePage"
-             Title="{Binding Title}"
-             BackgroundImageSource="page_background.png">
+<?xml version="1.0" encoding="utf-8"?>
+
+<page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      mc:Ignorable="d"
+                      x:Class="Game.Views.ItemDeletePage"
+                      Title="{Binding Title}"
+                      IsBackButtonVisible="False">
+
+    <page:BaseContentPage.BindingContext>
+        <vm:GenericViewModel x:TypeArguments="m:ItemModel"/>
+    </page:BaseContentPage.BindingContext>
 
     <FlexLayout JustifyContent="Center"
                 Padding="40">
         <ScrollView>
             <StackLayout Style="{StaticResource OuterBoxStack}"
-                     Spacing="10">
-                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+                         Spacing="10">
+
+                <Image Source="{Binding Data.ImageURI}"
+                       Style="{StaticResource ImageLargeStyle}" />
 
                 <StackLayout HorizontalOptions="Center"
-                         Padding="20">
+                             Padding="20">
                     <Label Text="{Binding Data.Name, StringFormat='Really delete {0}?'}"
-                       Style="{StaticResource MessageStyle}"/>
+                           Style="{StaticResource MessageStyle}" />
 
                     <StackLayout Orientation="Horizontal">
                         <Button Text="Yes"
-                        Clicked="Delete_Clicked"
-                        HorizontalOptions="Center"/>
+                                Clicked="Delete_Clicked"
+                                HorizontalOptions="Center" />
 
                         <Button Text="No"
-                        Clicked="Cancel_Clicked"
-                        HorizontalOptions="Center"/>
+                                Clicked="Cancel_Clicked"
+                                HorizontalOptions="Center" />
                     </StackLayout>
                 </StackLayout>
+
             </StackLayout>
         </ScrollView>
     </FlexLayout>
-    
-</ContentPage>
+
+</page:BaseContentPage>
