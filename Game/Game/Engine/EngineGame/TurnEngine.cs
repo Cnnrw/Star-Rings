@@ -235,11 +235,13 @@ namespace Game.Engine.EngineGame
                     break;
             }
 
-            EngineSettings.BattleMessagesModel.TurnMessage = Attacker.Name +
-                                                              EngineSettings.BattleMessagesModel.AttackStatus +
-                                                              Target.Name +
-                                                              EngineSettings.BattleMessagesModel.TurnMessageSpecial +
-                                                              EngineSettings.BattleMessagesModel.ExperienceEarned;
+            EngineSettings.BattleMessagesModel.TurnMessage =
+                Attacker.Name +
+                EngineSettings.BattleMessagesModel.AttackStatus +
+                Target.Name +
+                EngineSettings.BattleMessagesModel.TurnMessageSpecial +
+                EngineSettings.BattleMessagesModel.ExperienceEarned;
+
             Debug.WriteLine(EngineSettings.BattleMessagesModel.TurnMessage);
 
             return true;
@@ -463,6 +465,14 @@ namespace Game.Engine.EngineGame
                     EngineSettings.BattleScore.MonstersKilledList += Target.FormatOutput() + "\n";
 
                     EngineSettings.BattleScore.MonsterModelDeathList.Add(Target);
+
+                    // Update the battle total score
+                    EngineSettings.BattleScore.ScoreTotal +=
+                        Target.Level * 10 +
+                        Target.MaxHealth * 10 +
+                        Target.Attack * 10 +
+                        Target.Defense * 10 +
+                        Target.Speed * 10;
 
                     DropItems(Target);
 
