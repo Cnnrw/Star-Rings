@@ -94,12 +94,10 @@ namespace UnitTests.Components.Controls
         public void FormEntry_SetText_ShouldPass()
         {
             // Arrange
-            var formEntry = new FormEntry
-            {
-                Text = "test text"
-            };
+            var formEntry = new FormEntry();
 
             // Act
+            formEntry.Text = "test text";
 
             // Assert
             Assert.AreEqual("test text", formEntry.Text);
@@ -115,6 +113,38 @@ namespace UnitTests.Components.Controls
 
             // Assert
             Assert.IsNull(formEntry.Text);
+        }
+
+        [Test]
+        public void FormEntry_SetPlaceHolderTextColor_ShouldPass()
+        {
+            // Arrange
+            var formEntry = new FormEntry
+            {
+                Title = "title"
+            };
+
+            // Act
+            formEntry.PlaceholderTextColor = Color.Black;
+
+            // Assert
+            Assert.AreEqual(Color.Black, formEntry.PlaceholderTextColor);
+        }
+
+        [Test]
+        public void FormEntry_SetIsSpellCheckEnabled_ShouldPass()
+        {
+            // Arrange
+            var formEntry = new FormEntry
+            {
+                Title = "title"
+            };
+
+            // Act
+            formEntry.IsSpellCheckEnabled = true;
+
+            // Assert
+            Assert.AreEqual(true, formEntry.IsSpellCheckEnabled);
         }
     }
 }
