@@ -71,8 +71,8 @@ namespace Game.Models
         // The total experience points all the characters received during the battle
         public int ExperienceGainedTotal { get; set; }
 
-        // A list of each Round's ordered PlayerList 
-        public List<List<PlayerInfoModel>> RoundsOrderedPlayerLists { get; set; } = new List<List<PlayerInfoModel>>();
+        // A list of each Round's ordered PlayerList
+        public List<List<PlayerInfoModel>> RoundsOrderedPlayerLists { get; } = new List<List<PlayerInfoModel>>();
 
         // A list of all the characters at the time of death and their stats.
         // Only use Get only, set will be done by the Add feature.
