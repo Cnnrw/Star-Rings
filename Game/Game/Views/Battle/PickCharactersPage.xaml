@@ -24,8 +24,7 @@
 
                     <Grid.Resources>
                         <Style TargetType="Label">
-                            <Setter Property="Style"
-                                    Value="{StaticResource ListStyle}" />
+                            <Setter Property="Style" Value="{StaticResource ListStyle}" />
                         </Style>
                     </Grid.Resources>
 
