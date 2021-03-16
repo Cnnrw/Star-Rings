@@ -104,5 +104,18 @@ namespace UnitTests.Components.Controls
             // Assert
             Assert.AreEqual(20, imgBttn.ImageHeightRequest);
         }
+
+        [Test]
+        public void ImgButton_TextStyle_Get_Set_Should_Pass()
+        {
+            // Arrange
+            var imgBttn = new ImgButton();
+
+            // Act
+            imgBttn.TextStyle = Device.Styles.BodyStyle;
+
+            // Assert
+            Assert.AreEqual(Device.Styles.BodyStyle, imgBttn.TextStyle);
+        }
     }
 }
