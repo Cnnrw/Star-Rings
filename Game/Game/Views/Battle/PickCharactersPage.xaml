@@ -4,6 +4,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:m="clr-namespace:Game.Models;assembly=Game"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
@@ -20,8 +21,9 @@
             <DataTemplate x:Key="CharacterTemplate"
                           x:DataType="m:CharacterModel">
 
-                <Grid ColumnDefinitions="*, 3*"
-                      RowDefinitions="4, *, 1">
+                <Grid ColumnDefinitions="*, 2*"
+                      RowDefinitions="*, *"
+                      ColumnSpacing="10">
                     <Grid.Resources>
                         <Style TargetType="Label">
                             <Setter Property="Style" Value="{StaticResource ListStyle}" />
@@ -37,20 +39,23 @@
                             CommandParameter="{Binding .}" />
                     </Grid.GestureRecognizers>
 
-                    <Image Grid.RowSpan="3"
+                    <Image Grid.RowSpan="4"
                            Source="{Binding IconImageURI}"
                            Style="{StaticResource ImageMediumStyle}"
                            VerticalOptions="Center"
                            Aspect="AspectFit" />
 
-                    <StackLayout Grid.Column="1" Grid.Row="1">
-                        <Label Text="{Binding Name}"
-                               FontFamily="8bit_bold"
-                               TextColor="{StaticResource PrimaryTextColor}"
-                               LineBreakMode="TailTruncation" />
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Name}"
+                           FontFamily="8bit_bold"
+                           TextColor="{StaticResource PrimaryTextColor}"
+                           VerticalOptions="Center"
+                           LineBreakMode="TailTruncation" />
 
+                    <StackLayout Grid.Row="2" Grid.Column="1"
+                                 Orientation="Horizontal">
                         <Label Text="{Binding Level, StringFormat='Level: {0:G}'}" />
-
                         <Label Text="{Binding Path=MaxHealth, StringFormat= 'HP: {0:G}'}" />
                     </StackLayout>
                 </Grid>
@@ -61,7 +66,7 @@
 
     <Grid ColumnDefinitions="*, *"
           RowDefinitions="25,4*,*"
-          Padding="15, 0">
+          Margin="15, 0,0,0">
 
         <!-- Character list -->
         <Label Text="Characters"
@@ -72,7 +77,13 @@
                         ItemTemplate="{StaticResource CharacterTemplate}"
                         SelectionMode="Single"
                         ItemSizingStrategy="MeasureFirstItem"
-                        VerticalOptions="FillAndExpand" />
+                        VerticalOptions="FillAndExpand"
+                        Margin="10,0,0,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
 
         <!-- Selected Characters -->
         <Label Grid.Column="1"
@@ -93,9 +104,9 @@
                    Style="{StaticResource CenterMessageStyle}" />
             <Label Text="{Binding PartyCount}"
                    Style="{StaticResource CenterMessageStyle}" />
-            <Button Text="Begin"
-                    Command="{Binding BeginBattleCommand}" />
-        </StackLayout>
 
+            <c:TextButton Text="Begin"
+                          Command="{Binding BeginBattleCommand}"/>
+        </StackLayout>
     </Grid>
 </page:BaseContentPage>
