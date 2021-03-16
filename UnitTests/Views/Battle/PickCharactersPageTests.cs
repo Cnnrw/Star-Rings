@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 using Game;
 using Game.Models;
@@ -39,8 +38,6 @@ namespace UnitTests.Views
         private App                app;
         private PickCharactersPage page;
 
-        public PickCharactersPageTests() : base(true) { }
-
         [Test]
         public void PickCharactersPage_Constructor_Default_Should_Pass()
         {
@@ -61,12 +58,10 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = new PickCharactersPage(false);
 
             // Reset
 
             // Assert
-            Assert.IsNotNull(result);
         }
 
         [Test]
@@ -75,7 +70,6 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.BattleButton_Clicked(null, null);
 
             // Reset
 
@@ -95,11 +89,6 @@ namespace UnitTests.Views
             BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList
                                  .Add(new PlayerInfoModel(new MonsterModel()));
 
-            BattleEngineViewModel.Instance.PartyCharacterList = new ObservableCollection<CharacterModel>();
-            BattleEngineViewModel.Instance.PartyCharacterList.Add(new CharacterModel());
-
-            // Act
-            page.CreateEngineCharacterList();
 
             // Reset
 
@@ -139,7 +128,6 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.UpdateNextButtonState();
 
             // Reset
 
