@@ -17,8 +17,8 @@
     </page:BaseContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Update_Clicked" Source="icon_edit.png" />
-        <ImageButton Clicked="Delete_Clicked" Source="icon_delete.png" />
+        <ImageButton Clicked="Update_Clicked" Source="settings_toolbar_button.png" />
+        <ImageButton Clicked="Delete_Clicked" Source="delete_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
     <FlexLayout JustifyContent="Center"
