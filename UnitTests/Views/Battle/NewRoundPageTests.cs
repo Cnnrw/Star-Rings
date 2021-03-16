@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Game;
 using Game.Models;
@@ -26,8 +26,7 @@ namespace UnitTests.Views
             app = new App();
             Application.Current = app;
 
-            // For now, set the engine to the Koenig Engine, change when ready 
-            BattleEngineViewModel.Instance.SetBattleEngineToKoenig();
+            BattleEngineViewModel.Instance.SetBattleEngineToGame();
 
             page = new NewRoundPage();
         }
