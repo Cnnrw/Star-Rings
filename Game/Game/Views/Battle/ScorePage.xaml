@@ -95,7 +95,7 @@
                      HorizontalOptions="FillAndExpand"
                      Margin="0,0,15,0" />
 
-            <Label Text="{Binding CharactersKilled, StringFormat='Killed: {0}'}"
+            <Label Text="{Binding DeadCharacters.Count, StringFormat='Killed: {0}'}"
                    Style="{StaticResource LabelStyle}" />
 
             <CollectionView ItemsSource="{Binding DeadCharacters}"
@@ -121,7 +121,7 @@
                      HorizontalOptions="FillAndExpand"
                      Margin="0,0,15,0" />
 
-            <Label Text="{Binding MonstersKilled, StringFormat='Killed: {0}'}"
+            <Label Text="{Binding DeadMonsters.Count, StringFormat='Killed: {0}'}"
                    Style="{StaticResource LabelStyle}" />
 
             <CollectionView ItemsSource="{Binding DeadMonsters}"
@@ -146,7 +146,7 @@
                      HorizontalOptions="FillAndExpand"
                      Margin="0,0,15,0" />
 
-            <Label Text="{Binding TotalItemsCollected, StringFormat='Collected: {0}'}"
+            <Label Text="{Binding Items.Count, StringFormat='Collected: {0}'}"
                    Style="{StaticResource LabelStyle}" />
 
             <CollectionView ItemsSource="{Binding Items}"
