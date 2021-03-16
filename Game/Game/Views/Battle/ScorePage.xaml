@@ -27,8 +27,6 @@
                 <StackLayout.Resources>
                     <Style TargetType="Label">
                         <Setter Property="Style" Value="{StaticResource ValueStyleMicro}" />
-                        <Setter Property="HorizontalOptions" Value="Center" />
-                        <Setter Property="HorizontalTextAlignment" Value="Center" />
                     </Style>
                 </StackLayout.Resources>
 
@@ -51,9 +49,7 @@
         <DataTemplate x:Key="ItemView"
                       x:DataType="m:ItemModel">
             <StackLayout Style="{StaticResource ScoreItemInfoBox}"
-                         HorizontalOptions="Center"
-                         Padding="0"
-                         Spacing="0">
+                         HorizontalOptions="Center">
                 <Image Source="{Binding ImageURI}"
                        Style="{StaticResource ImageBattleMediumStyle}"
                        Aspect="AspectFit" />
