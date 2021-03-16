@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="Game.Controls.TextButton"
+      VerticalOptions="Fill"
+      HorizontalOptions="FillAndExpand"
+      IsClippedToBounds="True">
+
+    <Image x:Name="ButtonImage"
+           Source="text_button.png"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand" />
+
+    <Button x:Name="ButtonText"
+            Clicked="ButtonText_OnClicked"
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="CenterAndExpand"
+            FontSize="Large"
+            FontFamily="8bit"
+            BackgroundColor="{StaticResource TransparentColor}" />
+</Grid>
