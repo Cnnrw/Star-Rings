@@ -3,6 +3,7 @@
 <page:BaseContentPage x:Name="ContentPageElement"
                       xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       x:Class="Game.Views.BattlePage"
@@ -80,26 +81,12 @@
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}"
-                         HorizontalOptions="CenterAndExpand"
+                         HorizontalOptions="FillAndExpand"
                          VerticalOptions="CenterAndExpand">
-                <Button x:Name="StartRoundButton"
-                        Text="Explore"
-                        Clicked="StartRoundButton_Clicked"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="80"
-                        Padding="20"
-                        BackgroundColor="#ddaaaaaa"
-                        FontSize="Large"
-                        FontFamily="8bit_bold" />
-
-                <Button x:Name="EndRoundButton"
-                        Clicked="EndRoundButton_Clicked"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="80"
-                        Padding="20"
-                        BackgroundColor="#ddaaaaaa"
-                        FontSize="Large"
-                        FontFamily="8bit_bold" />
+                <c:TextButton x:Name="StartRoundButton"
+                              Clicked="StartRoundButton_Clicked"/>
+                <c:TextButton x:Name="EndRoundButton"
+                              Clicked="EndRoundButton_Clicked"/>
             </StackLayout>
 
             <!--The Bottom of the Battle UI  Holds the Player to Player boxes, Buttons, and the Messages-->
@@ -154,45 +141,44 @@
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="End">
-                            <Button x:Name="AttackButton"
-                                    Text="Attack"
-                                    Clicked="AttackButton_Clicked"
-                                    IsEnabled="False"
-                                    IsVisible="False" />
-
-                            <Button x:Name="BlockButton"
-                                    Text="Block"
-                                    Clicked="BlockButton_Clicked"
-                                    IsEnabled="False"
-                                    IsVisible="False" />
+                            <c:TextButton x:Name="AttackButton"
+                                          Text="Attack"
+                                          Source="button.png"
+                                          Clicked="AttackButton_Clicked"
+                                          IsEnabled="False"
+                                          IsVisible="False" />
+                            <c:TextButton x:Name="BlockButton"
+                                          Text="Block"
+                                          Source="button.png"
+                                          Clicked="BlockButton_Clicked"
+                                          IsEnabled="False"
+                                          IsVisible="False" />
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal"
-                             Padding="20,15,20,15"
-                             HeightRequest="100"
-                             BackgroundColor="Tan">
-                    <StackLayout x:Name="MessageDisplayBox"
-                                 HorizontalOptions="FillAndExpand">
-                        <Label x:Name="BattleMessages"
-                               Text=""
-                               Style="{StaticResource LabelStyle}"
-                               LineBreakMode="WordWrap"
-                               MaxLines="3"
-                               LineHeight="1"
-                               CharacterSpacing="1"
-                               TextColor="Black" />
-                    </StackLayout>
+                <Grid ColumnDefinitions="3*, *"
+                      HeightRequest="100"
+                      BackgroundColor="Tan">
 
+                    <Label x:Name="BattleMessages"
+                           Text=""
+                           Style="{StaticResource LabelStyle}"
+                           TextColor="Black"
+                           LineBreakMode="WordWrap"
+                           MaxLines="3"
+                           LineHeight="1"
+                           CharacterSpacing="1"
+                           Margin="20,15, 0, 15" />
 
-                    <Button x:Name="NextButton"
-                            Text="Next"
-                            Clicked="NextButton_Clicked"
-                            IsEnabled="False"
-                            IsVisible="False"
-                            HorizontalOptions="End" />
-                </StackLayout>
+                    <c:TextButton Grid.Column="1"
+                                  x:Name="NextButton"
+                                  Text="Next"
+                                  Clicked="NextButton_Clicked"
+                                  IsEnabled="False"
+                                  IsVisible="False"
+                                  Margin="0,0,20,0"/>
+                </Grid>
             </StackLayout>
         </StackLayout>
 
@@ -217,15 +203,15 @@
                        HorizontalTextAlignment="Center"
                        Padding="20" />
 
-                <Button Clicked="ShowScoreButton_Clicked"
-                        Text="Score"
-                        WidthRequest="50" />
+                <c:TextButton Text="Score"
+                              Clicked="ShowScoreButton_Clicked"
+                              WidthRequest="50" />
 
-                <Button Text="Exit"
-                        Clicked="ExitButton_Clicked"
-                        WidthRequest="50" />
-
+                <c:TextButton Text="Exit"
+                              Clicked="ExitButton_Clicked"
+                              WidthRequest="50" />
             </StackLayout>
+
         </StackLayout>
     </AbsoluteLayout>
 </page:BaseContentPage>
