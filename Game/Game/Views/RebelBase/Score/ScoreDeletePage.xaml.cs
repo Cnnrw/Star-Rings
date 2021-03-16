@@ -1,25 +1,22 @@
 ﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-using Game.ViewModels;
 using Game.Models;
+using Game.ViewModels;
+
+using Xamarin.Forms;
 
 namespace Game.Views
 {
     /// <summary>
     /// The Read Page
     /// </summary>
-    [DesignTimeVisible(false)] 
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ScoreDeletePage : ContentPage
+    public partial class ScoreDeletePage : BaseContentPage
     {
         // View Model for Item
-        public readonly GenericViewModel<ScoreModel> viewModel;
+        readonly GenericViewModel<ScoreModel> _viewModel;
 
         // Constructor for Unit Testing
-        public ScoreDeletePage(bool UnitTest) { }
+        internal ScoreDeletePage(bool unitTest) { }
 
 
         // Constructor for Delete takes a view model of what to delete
@@ -27,9 +24,9 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = data;
+            BindingContext = _viewModel = data;
 
-            this.viewModel.Title = "Delete " + data.Title;
+            _viewModel.Title = "Delete " + data.Title;
         }
 
         /// <summary>
@@ -39,7 +36,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Delete_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "Delete", viewModel.Data);
+            MessagingCenter.Send(this, "Delete", _viewModel.Data);
             await Navigation.PopModalAsync();
         }
 
