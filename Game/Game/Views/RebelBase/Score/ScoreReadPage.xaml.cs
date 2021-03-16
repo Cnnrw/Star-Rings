@@ -1,36 +1,33 @@
 ﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-using Game.ViewModels;
 using Game.Models;
+using Game.ViewModels;
+
+using Xamarin.Forms;
 
 namespace Game.Views
 {
     /// <summary>
     /// The Read Page
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ScoreReadPage : ContentPage
+    public partial class ScoreReadPage : BaseContentPage
     {
         // View Model for Score
-        public readonly GenericViewModel<ScoreModel> ViewModel;
+        readonly GenericViewModel<ScoreModel> _viewModel;
 
-        public ScoreReadPage(bool UnitTest) { }
+        internal ScoreReadPage(bool unitTest) { }
 
         /// <summary>
         /// Constructor called with a view model
         /// This is the primary way to open the page
         /// The viewModel is the data that should be displayed
         /// </summary>
-        /// <param name="viewModel"></param>
-        public ScoreReadPage(GenericViewModel<ScoreModel> data)
+        /// <param name="score"></param>
+        public ScoreReadPage(GenericViewModel<ScoreModel> score)
         {
             InitializeComponent();
 
-            BindingContext = this.ViewModel = data;
+            BindingContext = _viewModel = score;
         }
 
         /// <summary>
@@ -40,7 +37,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Update_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ScoreUpdatePage(ViewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new ScoreUpdatePage(_viewModel)));
             await Navigation.PopAsync();
         }
 
@@ -51,7 +48,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Delete_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ScoreDeletePage(ViewModel)));
+            await Navigation.PushModalAsync(new NavigationPage(new ScoreDeletePage(_viewModel)));
             await Navigation.PopAsync();
         }
     }
