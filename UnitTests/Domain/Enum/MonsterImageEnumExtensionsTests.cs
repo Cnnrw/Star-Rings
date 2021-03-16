@@ -258,5 +258,131 @@ namespace UnitTests.Models
             // Assert
             Assert.AreEqual("warg_rider.png", result);
         }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_Unknown_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Unknown, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_DarkElf_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("dark_elf.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.DarkElf, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_DeadKing_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("dead_king.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.DeadKing, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_Nazgul_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("nazgul.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Nazgul, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_Oliphant_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("oliphant.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Oliphant, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_Orc_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("orc.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Orc, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_Spider_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("spider.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Spider, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_Troll_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("troll.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.Troll, result);
+        }
+
+        [Test]
+        public void MonsterImageEnumExtensionsTests_FromImageURI_WargRider_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            var result = MonsterImageEnumExtensions.FromImageURI("warg_rider.png");
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(MonsterImageEnum.WargRider, result);
+        }
     }
 }
