@@ -81,12 +81,12 @@ namespace Game.Controls
         #endregion
         #region LabelText
 
-        public static readonly BindableProperty LabelTextProperty = BindableProperty.Create(propertyName: "Text",
-                                                                                            returnType: typeof(string),
-                                                                                            declaringType: typeof(ImgButton),
-                                                                                            defaultValue: string.Empty,
-                                                                                            defaultBindingMode: BindingMode.TwoWay,
-                                                                                            propertyChanged: LabelTextPropertyChanged);
+        public static readonly BindableProperty LabelTextProperty =
+            BindableProperty.Create(propertyName: nameof(Text),
+                                    returnType: typeof(string),
+                                    declaringType: typeof(ImgButton),
+                                    defaultValue: default(string),
+                                    propertyChanged: LabelTextPropertyChanged);
 
         public string Text
         {
@@ -103,12 +103,12 @@ namespace Game.Controls
         #endregion LabelText
         #region LabelText Style
 
-        public static readonly BindableProperty LabelTextStyleProperty = BindableProperty.Create(propertyName: "TextStyle",
-                                                                                                 returnType: typeof(Style),
-                                                                                                 declaringType: typeof(ImgButton),
-                                                                                                 defaultValue: null,
-                                                                                                 defaultBindingMode: BindingMode.TwoWay,
-                                                                                                 propertyChanged: LabelTextStylePropertyChanged);
+        static readonly BindableProperty LabelTextStyleProperty =
+            BindableProperty.Create(propertyName: nameof(TextStyle),
+                                    returnType: typeof(Style),
+                                    declaringType: typeof(ImgButton),
+                                    defaultValue: null,
+                                    propertyChanged: LabelTextStylePropertyChanged);
 
         public Style TextStyle
         {
