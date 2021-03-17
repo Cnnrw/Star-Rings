@@ -54,34 +54,6 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void CharacterReadPage_Update_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            page.Update_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void CharacterReadPage_Delete_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            page.Delete_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
         public void CharacterReadPage_OnBackButtonPressed_Valid_Should_Pass()
         {
             // Arrange
