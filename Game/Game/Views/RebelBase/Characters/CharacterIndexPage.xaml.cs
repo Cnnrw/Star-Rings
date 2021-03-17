@@ -1,10 +1,4 @@
-using System;
-using System.Linq;
-
-using Game.Models;
 using Game.ViewModels;
-
-using Xamarin.Forms;
 
 namespace Game.Views
 {
@@ -28,31 +22,6 @@ namespace Game.Views
 
             BindingContext = _viewModel;
         }
-
-        /// <summary>
-        ///     The row selected from the list
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        internal async void OnCharacterSelected(object sender, SelectionChangedEventArgs args)
-        {
-            if (!(args.CurrentSelection.FirstOrDefault() is CharacterModel data))
-                return;
-
-            // Open the Read Page
-            await Navigation.PushAsync(new CharacterReadPage(new GenericViewModel<CharacterModel>(data)));
-
-            // Manually deselect item.
-            CharacterList.SelectedItem = null;
-        }
-
-        /// <summary>
-        ///     Call to Add a new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void AddCharacter_Clicked(object sender, EventArgs e) =>
-            await Navigation.PushModalAsync(new NavigationPage(new CharacterCreatePage()));
 
         /// <summary>
         ///     Refresh the list on page appearing
