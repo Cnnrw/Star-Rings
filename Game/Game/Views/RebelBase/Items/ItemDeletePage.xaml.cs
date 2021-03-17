@@ -36,7 +36,7 @@ namespace Game.Views
         public async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "Delete", _viewModel.Data);
-            await App.NavigationService.NavigateAsync(nameof(ItemIndexPage));
+            await App.NavigationService.GoBack();
         }
 
         /// <summary>
