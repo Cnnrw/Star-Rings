@@ -49,11 +49,26 @@ namespace Game
             navigationService.Configure(nameof(CharacterCreatePage), typeof(CharacterCreatePage));
 
             navigationService.Configure(nameof(MonsterIndexPage), typeof(MonsterIndexPage));
+            navigationService.Configure(nameof(MonsterReadPage),   typeof(MonsterReadPage));
+            navigationService.Configure(nameof(MonsterUpdatePage), typeof(MonsterUpdatePage));
+            navigationService.Configure(nameof(MonsterDeletePage), typeof(MonsterDeletePage));
+            navigationService.Configure(nameof(MonsterCreatePage), typeof(MonsterCreatePage));
+
             navigationService.Configure(nameof(ItemIndexPage), typeof(ItemIndexPage));
+            navigationService.Configure(nameof(ItemReadPage),   typeof(ItemReadPage));
+            navigationService.Configure(nameof(ItemUpdatePage), typeof(ItemUpdatePage));
+            navigationService.Configure(nameof(ItemDeletePage), typeof(ItemDeletePage));
+            navigationService.Configure(nameof(ItemCreatePage), typeof(ItemCreatePage));
+
             navigationService.Configure(nameof(ScoreIndexPage), typeof(ScoreIndexPage));
+            navigationService.Configure(nameof(ScoreReadPage),   typeof(ScoreReadPage));
+            navigationService.Configure(nameof(ScoreUpdatePage), typeof(ScoreUpdatePage));
+            navigationService.Configure(nameof(ScoreDeletePage), typeof(ScoreDeletePage));
+            navigationService.Configure(nameof(ScoreCreatePage), typeof(ScoreCreatePage));
 
             // Dungeon Pages
             navigationService.Configure("Battle", typeof(PickCharactersPage));
+            navigationService.Configure("Score", typeof(ScorePage));
 
             // AutoBattle
             navigationService.Configure(nameof(AutoBattlePage), typeof(AutoBattlePage));
