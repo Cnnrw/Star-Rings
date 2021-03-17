@@ -424,8 +424,11 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Settings_Clicked(object sender, EventArgs e) =>
-            await ShowBattleSettingsPage();
+        public async void Settings_Clicked(object sender, EventArgs e)
+        {
+            await App.NavigationService.NavigateModalAsync(nameof(BattleSettingsPage));
+            ShowBattleMode();
+        }
 
         /// <summary>
         /// When a figure is clicked
@@ -470,8 +473,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ExitButton_Clicked(object sender, EventArgs e) =>
-            await Navigation.PopModalAsync();
+        public async void ExitButton_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         /// <summary>
         /// When the Start button is clicked.
@@ -481,7 +483,7 @@ namespace Game.Views
         public async void StartRoundButton_Clicked(object sender, EventArgs e)
         {
             // Open a new round page
-            await Navigation.PushModalAsync(new NewRoundPage());
+            await App.NavigationService.NavigateModalAsync(nameof(NewRoundPage));
 
             // Set battle state to battling
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Battling;
@@ -683,7 +685,7 @@ namespace Game.Views
         public async void ShowScoreButton_Clicked(object sender, EventArgs args)
         {
             ShowBattleMode();
-            await Navigation.PushModalAsync(new ScorePage());
+            await App.NavigationService.NavigateModalAsync(nameof(ScorePage));
         }
 
         /// <summary>
@@ -693,16 +695,7 @@ namespace Game.Views
         public async void ShowModalRoundOverPage()
         {
             ShowBattleMode();
-            await Navigation.PushModalAsync(new RoundOverPage());
-        }
-
-        /// <summary>
-        ///     Show Settings
-        /// </summary>
-        public async Task ShowBattleSettingsPage()
-        {
-            ShowBattleMode();
-            await Navigation.PushModalAsync(new BattleSettingsPage());
+            await App.NavigationService.NavigateModalAsync(nameof(RoundOverPage));
         }
 
         #endregion Page EventHandlers
