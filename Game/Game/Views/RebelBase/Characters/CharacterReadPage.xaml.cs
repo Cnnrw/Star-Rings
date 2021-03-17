@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 
 using Game.Enums;
@@ -35,30 +34,6 @@ namespace Game.Views
 
             AddItemsToDisplay();
         }
-
-        /// <summary>
-        /// Save calls to Update
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal async void Update_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new CharacterUpdatePage(_viewModel)));
-            await Navigation.PopAsync();
-        }
-
-        /// <summary>
-        ///     Calls for Delete
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal async void Delete_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new CharacterDeletePage(_viewModel)), false);
-            await Navigation.PopAsync();
-        }
-
-        #region EquippedItems
 
         /// <summary>
         /// Show the Items the Character has
@@ -141,7 +116,5 @@ namespace Game.Views
 
             return itemStack;
         }
-
-        #endregion EquippedItems
     }
 }
