@@ -152,6 +152,67 @@ namespace UnitTests.Views
         }
 
         [Test]
+        public void BattlePage_EndRoundButton_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            page.EndRoundButton_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void BattlePage_FigureButton_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            page.FigureButton_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        //[Test]
+        //public void BattlePage_NextButton_Clicked_StartingMonsterTurn_Should_Pass()
+        //{
+        //    // Arrange
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.StartingMonsterTurn;
+
+        //    // Act
+        //    page.NextButton_Clicked(null, null);
+
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Unknown;
+
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
+
+        [Test]
+        public void BattlePage_NextButton_Clicked_EndingMonsterTurn_Should_Pass()
+        {
+            // Arrange
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.EndingMonsterTurn;
+
+            // Act
+            page.NextButton_Clicked(null, null);
+
+            // Reset
+            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Unknown;
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+
+        [Test]
         public void BattlePage_ShowModalRoundOverPage_Default_Should_Pass()
         {
             // Arrange
