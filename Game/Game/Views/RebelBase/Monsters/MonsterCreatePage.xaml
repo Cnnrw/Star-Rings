@@ -31,7 +31,8 @@
                    Source="{Binding Data.ImageURI}"
                    Aspect="AspectFit"/>
 
-            <StackLayout Grid.Row="1">
+            <StackLayout Grid.Row="1"
+                         Margin="5,0">
                 <c:FormEntry Title="Name"
                              Text="{Binding Data.Name}"
                              Placeholder="{Binding Data.Name}"
@@ -62,9 +63,9 @@
 
             <Grid Grid.Row="2"
                   RowDefinitions="*,*,*,*,*"
-                  ColumnDefinitions="*,*,Auto"
-                  HorizontalOptions="FillAndExpand"
+                  ColumnDefinitions="*,*,*"
                   VerticalOptions="EndAndExpand"
+                  HorizontalOptions="FillAndExpand"
                   RowSpacing="5"
                   Margin="10">
 
@@ -104,7 +105,7 @@
                          Value="{Binding Data.Level, Mode=TwoWay}"
                          ValueChanged="OnLevelStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
-                         HorizontalOptions="End" />
+                         HorizontalOptions="EndAndExpand" />
 
                 <Label Grid.Row="2"
                        Text="Max Health"
@@ -118,7 +119,7 @@
                          Value="{Binding Data.MaxHealth, Mode=TwoWay}"
                          ValueChanged="OnMaxHealthStepperChanged"
                          Minimum="1" Maximum="100"
-                         HorizontalOptions="End" />
+                         HorizontalOptions="EndAndExpand" />
 
                 <Label Grid.Row="3"
                        Text="Attack"
@@ -132,7 +133,7 @@
                          Value="{Binding Data.Attack, Mode=TwoWay}"
                          ValueChanged="OnAttackStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
-                         HorizontalOptions="End" />
+                         HorizontalOptions="EndAndExpand" />
 
                 <Label Grid.Row="4"
                        Text="Defense"
@@ -146,7 +147,7 @@
                          Value="{Binding Data.Defense, Mode=TwoWay}"
                          ValueChanged="OnDefenseStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
-                         HorizontalOptions="End" />
+                         HorizontalOptions="EndAndExpand" />
 
                 <Label Grid.Row="5"
                        Text="Speed"
@@ -160,7 +161,7 @@
                          Value="{Binding Data.Speed, Mode=TwoWay}"
                          ValueChanged="OnSpeedStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
-                         HorizontalOptions="End" />
+                         HorizontalOptions="EndAndExpand" />
 
             </Grid>
         </Grid>
