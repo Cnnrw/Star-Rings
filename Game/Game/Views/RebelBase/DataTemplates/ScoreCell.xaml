@@ -3,6 +3,7 @@
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       xmlns:m="clr-namespace:Game.Models;assembly=Game"
+      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
       x:Class="Game.Views.ScoreCell"
       RowDefinitions="4, *, 1"
       x:DataType="m:ScoreModel">
@@ -13,6 +14,15 @@
                     Value="{StaticResource ListStyle}" />
         </Style>
     </Grid.Resources>
+
+    <Grid.GestureRecognizers>
+        <TapGestureRecognizer
+            Command="{Binding
+                Source={RelativeSource
+                AncestorType={x:Type vm:ScoreIndexViewModel}},
+                    Path=SelectScoreCommand}"
+            CommandParameter="{Binding .}" />
+    </Grid.GestureRecognizers>
 
     <StackLayout Grid.Row="1">
 
