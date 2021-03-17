@@ -4,6 +4,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:m="clr-namespace:Game.Models;assembly=Game"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
@@ -34,16 +35,14 @@
         <StackLayout Style="{StaticResource HorizontalStack}"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="End">
-            <Button Clicked="Delete_Clicked"
-                    Text="Yes"
-                    FontSize="Large"
-                    Margin="5,0"
-                    HorizontalOptions="FillAndExpand"/>
-            <Button Clicked="Cancel_Clicked"
-                    Text="No"
-                    FontSize="Large"
-                    Margin="5,0"
-                    HorizontalOptions="FillAndExpand" />
+            <c:TextButton Clicked="Delete_Clicked"
+                          Text="Yes"
+                          Margin="5,0"
+                          HorizontalOptions="FillAndExpand" />
+            <c:TextButton Clicked="Cancel_Clicked"
+                          Text="No"
+                          Margin="5,0"
+                          HorizontalOptions="FillAndExpand" />
         </StackLayout>
 
     </StackLayout>
