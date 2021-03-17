@@ -4,6 +4,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:m="clr-namespace:Game.Models;assembly=Game"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
@@ -13,7 +14,7 @@
                       IsBackButtonVisible="False">
 
     <page:BaseContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:ItemModel"/>
+        <vm:GenericViewModel x:TypeArguments="m:ItemModel" />
     </page:BaseContentPage.BindingContext>
 
     <FlexLayout JustifyContent="Center"
@@ -31,13 +32,13 @@
                            Style="{StaticResource MessageStyle}" />
 
                     <StackLayout Orientation="Horizontal">
-                        <Button Text="Yes"
-                                Clicked="Delete_Clicked"
-                                HorizontalOptions="Center" />
+                        <c:TextButton Text="Yes"
+                                      Clicked="Delete_Clicked"
+                                      HorizontalOptions="Center" />
 
-                        <Button Text="No"
-                                Clicked="Cancel_Clicked"
-                                HorizontalOptions="Center" />
+                        <c:TextButton Text="No"
+                                      Clicked="Cancel_Clicked"
+                                      HorizontalOptions="Center" />
                     </StackLayout>
                 </StackLayout>
 
