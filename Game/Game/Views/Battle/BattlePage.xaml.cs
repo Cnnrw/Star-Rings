@@ -575,9 +575,9 @@ namespace Game.Views
         /// </summary>
         public void EndTurn()
         {
-            var roundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
+            BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
 
-            switch (roundCondition)
+            switch (BattleEngineViewModel.Instance.Engine.EngineSettings.RoundStateEnum)
             {
                 case RoundEnum.NewRound:
                     BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.NewRound;

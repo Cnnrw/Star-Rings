@@ -301,12 +301,6 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        
-
-        
-    
-
-
         //[Test]
         //public void BattlePage_NextAttackExample_GameOver_Should_Pass()
         //{
@@ -331,6 +325,51 @@ namespace UnitTests.Views
         //    // Assert
         //    Assert.IsTrue(true); // Got to here, so it happened...
         //}
+
+        [Test]
+        public void BattlePage_EndTurn_NewRound_Should_Pass()
+        {
+            // Arrange
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel
+            {
+                Speed = 10,
+                Level = 1,
+                Attack = 5,
+                Defense = 5,
+                CurrentHealth = 5,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Mike"
+            });
+
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
+            BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
+
+            // Act
+            page.EndTurn();
+
+            // Reset
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void BattlePage_EndTurn_GameOver_Should_Pass()
+        {
+            // Arrange
+
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
+
+            // Act
+            page.EndTurn();
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
 
         [Test]
         public void BattlePage_DoCharacterTurn_Should_Pass()
