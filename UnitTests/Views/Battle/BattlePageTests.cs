@@ -137,19 +137,19 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        // [Test]
-        // public void BattlePage_NextRoundButton_Clicked_Default_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     // Act
-        //     page.NextRoundButton_Clicked(null, null);
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
+        [Test]
+        public void BattlePage_BlockButton_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            page.BlockButton_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
 
         [Test]
         public void BattlePage_ShowModalRoundOverPage_Default_Should_Pass()
