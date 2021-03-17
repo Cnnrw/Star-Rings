@@ -16,8 +16,12 @@
     </ContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Update_Clicked" Source="player_update_button.png" />
-        <ImageButton Clicked="Delete_Clicked" Source="delete_button.png" />
+        <ImageButton Command="{Binding UpdateCommand}"
+                     CommandParameter="{Binding .}"
+                     Source="player_update_button.png" />
+        <ImageButton Command="{Binding DeleteCommand}"
+                     CommandParameter="{Binding .}"
+                     Source="delete_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
     <Grid RowDefinitions="*,*,*"
