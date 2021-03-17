@@ -288,128 +288,11 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        //[Test]
-        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_Null_CurrentDefender_Null_Should_Pass()
-        //{
-        //    // Arrange
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(null);
+        
 
-        //    // Act
-        //    page.DrawGameAttackerDefenderBoard();
+        
+    
 
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentAttacker_InValid_Null_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    var PlayerInfo = new PlayerInfoModel(new CharacterModel());
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(PlayerInfo);
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(null);
-
-        //    // Act
-        //    page.DrawGameAttackerDefenderBoard();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentDefender_InValid_Null_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    var PlayerInfo = new PlayerInfoModel(new CharacterModel());
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(PlayerInfo);
-
-        //    // Act
-        //    page.DrawGameAttackerDefenderBoard();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_DrawGameBoardAttackerDefender_CurrentDefender_Valid_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
-        //    {
-        //        Alive = false
-        //    }));
-
-        //    // Act
-        //    page.DrawGameAttackerDefenderBoard();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_DrawGameBoardAttackerDefender_Invalid_AttackerSource_Null_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(new PlayerInfoModel(new CharacterModel()));
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentDefender(new PlayerInfoModel(new CharacterModel
-        //    {
-        //        Alive = false
-        //    }));
-
-        //    var oldItem = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand;
-
-        //    var item = ItemIndexViewModel.Instance.GetDefaultItem(ItemLocationEnum.PrimaryHand);
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand = item.Id;
-
-        //    // Act
-        //    page.DrawGameAttackerDefenderBoard();
-
-        //    // Reset
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker.PrimaryHand = oldItem;
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_NextAttackExample_NextRound_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList
-        //                         .Add(new PlayerInfoModel(new CharacterModel()));
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-
-        //    BattleEngineViewModel.Instance.Engine.Round.MakePlayerList();
-
-        //    // Has no monster, so should show next round.
-
-        //    // Act
-        //    page.NextAttackExample();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
 
         //[Test]
         //public void BattlePage_NextAttackExample_GameOver_Should_Pass()
@@ -436,178 +319,45 @@ namespace UnitTests.Views
         //    Assert.IsTrue(true); // Got to here, so it happened...
         //}
 
-        //[Test]
-        //public void BattlePage_SetAttackerAndDefender_Character_vs_Monster_Should_Pass()
-        //{
-        //    // Arrange
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
+        [Test]
+        public void BattlePage_DoCharacterTurn_Should_Pass()
+        {
+            // Arrange
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel
+            {
+                Speed = 10,
+                Level = 1,
+                Attack = 5,
+                Defense = 5,
+                CurrentHealth = 5,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Mike"
+            });
 
-        //    // Make Character
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
+            var MonsterPlayer = new PlayerInfoModel(new MonsterModel
+            {
+                Speed = 10,
+                Level = 1,
+                Attack = 5,
+                Defense = 5,
+                CurrentHealth = 5,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Grog"
+            }); ;
 
-        //    var CharacterPlayer = new PlayerInfoModel(
-        //                                              new CharacterModel
-        //                                              {
-        //                                                  Speed = 100,
-        //                                                  Level = 10,
-        //                                                  CurrentHealth = 11,
-        //                                                  ExperienceTotal = 1,
-        //                                                  ExperienceRemaining = 1,
-        //                                                  Name = "Mike",
-        //                                                  ListOrder = 1
-        //                                              });
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker = CharacterPlayer;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker = MonsterPlayer;
 
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
+            // Act
+            page.DoCharacterTurn();
 
-        //    // Make Monster
+            // Reset
 
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
-
-        //    var MonsterPlayer = new PlayerInfoModel(
-        //                                            new MonsterModel
-        //                                            {
-        //                                                Speed = -1,
-        //                                                Level = 10,
-        //                                                CurrentHealth = 11,
-        //                                                ExperienceTotal = 1,
-        //                                                ExperienceRemaining = 1,
-        //                                                Name = "Mike",
-        //                                                ListOrder = 1
-        //                                            });
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(MonsterPlayer);
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(null);
-
-        //    // Act
-        //    page.SetAttackerAndDefender();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_SetAttackerAndDefender_Monster_vs_Character_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
-
-        //    // Make Character
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
-
-        //    var CharacterPlayer = new PlayerInfoModel(
-        //                                              new CharacterModel
-        //                                              {
-        //                                                  Speed = -1,
-        //                                                  Level = 10,
-        //                                                  CurrentHealth = 11,
-        //                                                  ExperienceTotal = 1,
-        //                                                  ExperienceRemaining = 1,
-        //                                                  Name = "Mike",
-        //                                                  ListOrder = 1
-        //                                              });
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
-
-        //    // Make Monster
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
-
-        //    var MonsterPlayer = new PlayerInfoModel(
-        //                                            new MonsterModel
-        //                                            {
-        //                                                Speed = 100,
-        //                                                Level = 10,
-        //                                                CurrentHealth = 11,
-        //                                                ExperienceTotal = 1,
-        //                                                ExperienceRemaining = 1,
-        //                                                Name = "Mike",
-        //                                                ListOrder = 1
-        //                                            });
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
-
-        //    // Act
-        //    page.SetAttackerAndDefender();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
-        //[Test]
-        //public void BattlePage_SetAttackerAndDefender_Character_vs_Unknown_Should_Pass()
-        //{
-        //    // Arrange
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Clear();
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Clear();
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Clear();
-
-        //    // Make Character
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyCharacters = 1;
-
-        //    var CharacterPlayer = new PlayerInfoModel(
-        //                                              new CharacterModel
-        //                                              {
-        //                                                  Speed = -1,
-        //                                                  Level = 10,
-        //                                                  CurrentHealth = 11,
-        //                                                  ExperienceTotal = 1,
-        //                                                  ExperienceRemaining = 1,
-        //                                                  Name = "Mike",
-        //                                                  ListOrder = 1
-        //                                              });
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Add(CharacterPlayer);
-
-        //    // Make Monster
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MaxNumberPartyMonsters = 1;
-
-        //    var MonsterPlayer = new PlayerInfoModel(
-        //                                            new MonsterModel
-        //                                            {
-        //                                                Speed = 100,
-        //                                                Level = 10,
-        //                                                CurrentHealth = 11,
-        //                                                ExperienceTotal = 1,
-        //                                                ExperienceRemaining = 1,
-        //                                                Name = "Mike",
-        //                                                ListOrder = 1,
-        //                                                PlayerType = PlayerTypeEnum.Unknown
-        //                                            });
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Add(MonsterPlayer);
-
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(CharacterPlayer);
-        //    BattleEngineViewModel.Instance.Engine.EngineSettings.PlayerList.Add(MonsterPlayer);
-
-        //    BattleEngineViewModel.Instance.Engine.Round.SetCurrentAttacker(CharacterPlayer);
-
-        //    // Act
-        //    page.SetAttackerAndDefender();
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
 
         [Test]
         public void BattlePage_GameOver_Default_Should_Pass()
