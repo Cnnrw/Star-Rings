@@ -19,22 +19,6 @@ namespace Game.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="pageKey"></param>
-        /// <param name="pageType"></param>
-        public void Configure(string pageKey, Type pageType)
-        {
-            lock (_sync)
-            {
-                if (_pagesByKey.ContainsKey(pageKey))
-                    _pagesByKey[pageKey] = pageType;
-                else
-                    _pagesByKey.Add(pageKey, pageType);
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="rootPageKey"></param>
         /// <returns></returns>
         public Page SetRootPage(string rootPageKey)
@@ -49,7 +33,7 @@ namespace Game.Services
         }
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.CurrentPageKey"/>
         /// </summary>
         public string CurrentPageKey
         {
@@ -70,9 +54,22 @@ namespace Game.Services
         }
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.Configure"/>
         /// </summary>
-        /// <returns></returns>
+        public void Configure(string pageKey, Type pageType)
+        {
+            lock (_sync)
+            {
+                if (_pagesByKey.ContainsKey(pageKey))
+                    _pagesByKey[pageKey] = pageType;
+                else
+                    _pagesByKey.Add(pageKey, pageType);
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="INavigationService.GoBack"/>
+        /// </summary>
         public async Task GoBack()
         {
             var navigationStack = CurrentNavigationPage.Navigation;
@@ -93,20 +90,13 @@ namespace Game.Services
         }
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.NavigateModalAsync(string,bool)"/>
         /// </summary>
-        /// <param name="pageKey"></param>
-        /// <param name="animated"></param>
-        /// <returns></returns>
         public async Task NavigateModalAsync(string pageKey, bool animated = true) => await NavigateModalAsync(pageKey, null, animated);
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.NavigateModalAsync(string,object,bool)"/>
         /// </summary>
-        /// <param name="pageKey"></param>
-        /// <param name="parameter"></param>
-        /// <param name="animated"></param>
-        /// <returns></returns>
         public async Task NavigateModalAsync(string pageKey, object parameter, bool animated = true)
         {
             var page = GetPage(pageKey, parameter);
@@ -119,20 +109,13 @@ namespace Game.Services
         }
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.NavigateAsync(string,bool)"/>
         /// </summary>
-        /// <param name="pageKey"></param>
-        /// <param name="animated"></param>
-        /// <returns></returns>
         public async Task NavigateAsync(string pageKey, bool animated = true) => await NavigateAsync(pageKey, null, animated);
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.NavigateAsync(string,object,bool)"/>
         /// </summary>
-        /// <param name="pageKey"></param>
-        /// <param name="parameter"></param>
-        /// <param name="animated"></param>
-        /// <returns></returns>
         public async Task NavigateAsync(string pageKey, object parameter, bool animated = true)
         {
             var page = GetPage(pageKey, parameter);
