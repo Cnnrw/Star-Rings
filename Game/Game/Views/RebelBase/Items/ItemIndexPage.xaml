@@ -16,7 +16,7 @@
     </ContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="AddItem_Clicked"
+        <ImageButton Command="{Binding AddItemCommand}"
                      Source="icon_add.png" />
     </page:BaseContentPage.ToolbarButtons>
 
@@ -27,7 +27,6 @@
                         ItemsSource="{Binding Dataset}"
                         ItemSizingStrategy="MeasureFirstItem"
                         SelectionMode="Single"
-                        SelectionChanged="OnItemSelected"
                         VerticalOptions="FillAndExpand"
                         Margin="10, 35">
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Linq;
-
-using Game.Models;
-using Game.ViewModels;
-
-using Xamarin.Forms;
+﻿using Game.ViewModels;
 
 namespace Game.Views
 {
@@ -30,31 +24,6 @@ namespace Game.Views
 
             BindingContext = _viewModel;
         }
-
-        /// <summary>
-        /// The row selected from the list
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        public async void OnItemSelected(object sender, SelectionChangedEventArgs args)
-        {
-            if (!(args.CurrentSelection.FirstOrDefault() is ItemModel data))
-                return;
-
-            // Open the Read Page
-            await Navigation.PushAsync(new ItemReadPage(new GenericViewModel<ItemModel>(data)));
-
-            // Manually deselect item.
-            ItemList.SelectedItem = null;
-        }
-
-        /// <summary>
-        /// Call to Add a new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void AddItem_Clicked(object sender, EventArgs e) =>
-            await Navigation.PushModalAsync(new NavigationPage(new ItemCreatePage()));
 
         /// <summary>
         /// Refresh the list on page appearing
