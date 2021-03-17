@@ -17,20 +17,42 @@ namespace Game.ViewModels
     /// <summary>
     ///     Non-generic BaseViewModel
     /// </summary>
-    public class BaseViewModel : BaseViewModel<DefaultModel>
+    public class BaseViewModel : ObservableObject
     {
+        protected INavigationService NavigationService { get; set; }
 
-        public BaseViewModel(INavigationService navigation = null)
+        protected BaseViewModel(INavigationService navigationService = null)
         {
-            NavigationService = navigation ?? App.NavigationService;
-            GoBackCommand = new AsyncCommand(() => NavigationService.GoBack());
+            NavigationService = navigationService;
+        }
+
+        /// <summary>
+        /// The String to show on the page
+        /// </summary>
+        private string _title = string.Empty;
+
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
+
+        /// <summary>
+        /// Mark if the view model is busy loading or done loading
+        /// </summary>
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
     }
 
     /// <summary>
     /// Base View Model for Data
     /// </summary>
-    public class BaseViewModel<T> : ObservableObject
+    public class BaseViewModel<T> : BaseViewModel
         where T : new()
     {
         #region Constructor
@@ -41,13 +63,12 @@ namespace Game.ViewModels
         /// Sets the Load command
         /// Sets the default data source
         /// </summary>
-        protected async void Initialize()
+        protected async void Initialize(INavigationService navigationService = null)
         {
+            NavigationService = navigationService;
             Dataset = new ObservableCollection<T>();
-            NavigationService = App.NavigationService;
 
             LoadDatasetCommand = new AsyncCommand(ExecuteLoadDataCommand);
-            GoBackCommand = new AsyncCommand(() => NavigationService.GoBack());
 
             await SetDataSource(CurrentDataSource); // Set to Mock to start with
         }
@@ -57,8 +78,6 @@ namespace Game.ViewModels
 
         // The Mock DataStore
         private static IDataStore<T> DataSourceMock => MockDataStore<T>.Instance;
-
-        internal INavigationService NavigationService;
 
         // The SQL DataStore
         private static IDataStore<T> DataSourceSQL => DatabaseService<T>.Instance;
@@ -82,35 +101,8 @@ namespace Game.ViewModels
         // Command to force a Load of data
         public ICommand LoadDatasetCommand { get; set; }
 
-        /// <summary>
-        /// Command to go back a page in the navigation stack
-        /// </summary>
-        public ICommand GoBackCommand { get; set; }
-
         // The Data set of records
         public ObservableCollection<T> Dataset { get; set; }
-
-        /// <summary>
-        /// Mark if the view model is busy loading or done loading
-        /// </summary>
-        private bool _isBusy;
-
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
-        }
-
-        /// <summary>
-        /// The String to show on the page
-        /// </summary>
-        private string _title = string.Empty;
-
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
 
         #endregion Attributes
         #region DataSourceManagement
@@ -193,7 +185,7 @@ namespace Game.ViewModels
         /// Command that Loads the Data
         /// </summary>
         /// <returns></returns>
-        private async Task ExecuteLoadDataCommand()
+        async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
                 return;
@@ -209,7 +201,7 @@ namespace Game.ViewModels
         /// Load the Data from the Index Call into the Data List
         /// </summary>
         /// <returns></returns>
-        private async Task LoadDataFromIndexAsync()
+        async Task LoadDataFromIndexAsync()
         {
             Dataset.Clear();
             var dataset = await _dataStore.IndexAsync();
@@ -231,7 +223,8 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
-        public virtual List<T> SortDataset(IEnumerable<T> dataset) => dataset.ToList();
+        public virtual List<T> SortDataset(IEnumerable<T> dataset) =>
+            dataset.ToList();
 
         /// <summary>
         /// Return True if a refresh is needed
