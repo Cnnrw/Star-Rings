@@ -19,7 +19,7 @@ namespace Game.ViewModels
     /// </summary>
     public class BaseViewModel : ObservableObject
     {
-        protected INavigationService NavigationService { get; set; }
+        protected static INavigationService NavigationService { get; set; }
 
         protected BaseViewModel(INavigationService navigationService = null)
         {
