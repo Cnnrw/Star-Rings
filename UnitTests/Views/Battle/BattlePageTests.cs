@@ -360,6 +360,46 @@ namespace UnitTests.Views
         }
 
         [Test]
+        public void BattlePage_DoMonsterTurn_Should_Pass()
+        {
+            // Arrange
+            var CharacterPlayer = new PlayerInfoModel(new CharacterModel
+            {
+                Speed = 10,
+                Level = 1,
+                Attack = 5,
+                Defense = 5,
+                CurrentHealth = 5,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Mike"
+            });
+
+            var MonsterPlayer = new PlayerInfoModel(new MonsterModel
+            {
+                Speed = 10,
+                Level = 1,
+                Attack = 5,
+                Defense = 5,
+                CurrentHealth = 5,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Grog"
+            }); ;
+
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker = MonsterPlayer;
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker = CharacterPlayer;
+
+            // Act
+            page.DoMonsterTurn();
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
         public void BattlePage_GameOver_Default_Should_Pass()
         {
             // Arrange
