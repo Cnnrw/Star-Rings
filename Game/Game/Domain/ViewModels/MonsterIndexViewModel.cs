@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Models;
+using Game.Services;
 using Game.Views;
 
 using Xamarin.Forms;
@@ -16,9 +17,13 @@ namespace Game.ViewModels
     {
         #region Constructor
 
-        public MonsterIndexViewModel()
+        public MonsterIndexViewModel() : this(App.NavigationService)
+        { }
+
+        public MonsterIndexViewModel(INavigationService navigationService = null)
         {
             Title = "Monsters";
+            NavigationService = navigationService;
 
             // Register the Create Message
             MessagingCenter.Subscribe<MonsterCreatePage, MonsterModel>(this, "Create", async (obj, data) =>

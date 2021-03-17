@@ -1,4 +1,5 @@
 ﻿using Game.Models;
+using Game.Services;
 
 namespace Game.ViewModels
 {
@@ -10,14 +11,18 @@ namespace Game.ViewModels
         /// <summary>
         ///     Empty GenericViewModel constructor
         /// </summary>
-        public GenericViewModel() { }
+        public GenericViewModel() : this(null, App.NavigationService)
+        { }
 
         /// <summary>
         ///     Constructor takes an existing item and sets
         ///     the Title for the page to match the text of data
         /// </summary>
         /// <param name="data"></param>
-        public GenericViewModel(T data)
+        public GenericViewModel(T data) : this(data, App.NavigationService)
+        { }
+
+        GenericViewModel(T data, INavigationService navigationService) : base(navigationService)
         {
             if (data != null)
             {
