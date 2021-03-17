@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Game.Models;
@@ -23,14 +22,20 @@ namespace Game.ViewModels
             viewModel switch
             {
                 GenericViewModel<CharacterModel> _ => NavigationService.NavigateModalAsync(nameof(CharacterUpdatePage), viewModel),
-                _ => throw new ArgumentOutOfRangeException(nameof(viewModel), viewModel, null)
+                GenericViewModel<MonsterModel> _   => NavigationService.NavigateModalAsync(nameof(MonsterUpdatePage), viewModel),
+                GenericViewModel<ItemModel> _      => NavigationService.NavigateModalAsync(nameof(ItemUpdatePage), viewModel),
+                GenericViewModel<ScoreModel> _     => NavigationService.NavigateModalAsync(nameof(ScoreUpdatePage), viewModel),
+                _                                  => null
             };
 
         static Task OnDeleteClicked(GenericViewModel<T> viewModel) =>
             viewModel switch
             {
                 GenericViewModel<CharacterModel> _ => NavigationService.NavigateModalAsync(nameof(CharacterDeletePage), viewModel),
-                _ => throw new ArgumentOutOfRangeException(nameof(viewModel), viewModel, null)
+                GenericViewModel<MonsterModel> _   => NavigationService.NavigateModalAsync(nameof(MonsterDeletePage), viewModel),
+                GenericViewModel<ItemModel> _      => NavigationService.NavigateModalAsync(nameof(ItemDeletePage), viewModel),
+                GenericViewModel<ScoreModel> _     => NavigationService.NavigateModalAsync(nameof(ScoreDeletePage), viewModel),
+                _                                  => null
             };
 
         #region Ctors
@@ -39,7 +44,8 @@ namespace Game.ViewModels
         ///     Empty GenericViewModel constructor
         /// </summary>
         public GenericViewModel() : this(null, App.NavigationService)
-        { }
+        {
+        }
 
         /// <summary>
         ///     Constructor takes an existing item and sets
@@ -47,7 +53,8 @@ namespace Game.ViewModels
         /// </summary>
         /// <param name="data"></param>
         public GenericViewModel(T data) : this(data, App.NavigationService)
-        { }
+        {
+        }
 
         GenericViewModel(T data, INavigationService navigationService) : base(navigationService)
         {
