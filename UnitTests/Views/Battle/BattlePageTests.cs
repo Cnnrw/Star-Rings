@@ -372,6 +372,33 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
+        [Test]
+        public void BattlePage_StartMonsterTurn_Should_Pass()
+        {
+            // Arrange
+            var MonsterPlayer = new PlayerInfoModel(new MonsterModel
+            {
+                Speed = 10,
+                Level = 1,
+                Attack = 5,
+                Defense = 5,
+                CurrentHealth = 5,
+                ExperienceTotal = 1,
+                ExperienceRemaining = 1,
+                Name = "Grog"
+            });
+
+            BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker = MonsterPlayer;
+
+            // Act
+            page.StartMonsterTurn();
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
         //[Test]
         //public void BattlePage_DoMonsterTurn_Should_Pass()
         //{
