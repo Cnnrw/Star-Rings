@@ -8,6 +8,8 @@ namespace Game.Views
     /// </summary>
     public partial class ItemReadPage : BaseContentPage
     {
+        internal readonly GenericViewModel<ItemModel> _viewModel;
+
         // Empty Constructor for UTs
         internal ItemReadPage(bool unitTest) { }
 
@@ -16,10 +18,12 @@ namespace Game.Views
         /// This is the primary way to open the page
         /// The viewModel is the data that should be displayed
         /// </summary>
-        /// <param name="data"></param>
-        public ItemReadPage(GenericViewModel<ItemModel> data)
+        /// <param name="itemModel"></param>
+        public ItemReadPage(GenericViewModel<ItemModel> itemModel)
         {
             InitializeComponent();
+
+            BindingContext = _viewModel = itemModel;
         }
     }
 }
