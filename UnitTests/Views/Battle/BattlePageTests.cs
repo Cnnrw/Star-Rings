@@ -181,21 +181,21 @@ namespace UnitTests.Views
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        [Test]
-        public void BattlePage_FigureButton_Clicked_ChoosingMonsterTarget_Should_Pass()
-        {
-            // Arrange
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
+        //[Test]
+        //public void BattlePage_FigureButton_Clicked_ChoosingMonsterTarget_Should_Pass()
+        //{
+        //    // Arrange
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.ChoosingMonsterTarget;
 
-            // Act
-            page.FigureButton_Clicked(null, null);
+        //    // Act
+        //    page.FigureButton_Clicked(null, null);
 
-            // Reset
-            BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Unknown;
+        //    // Reset
+        //    BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.Unknown;
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
         //[Test]
         //public void BattlePage_NextButton_Clicked_StartingMonsterTurn_Should_Pass()
