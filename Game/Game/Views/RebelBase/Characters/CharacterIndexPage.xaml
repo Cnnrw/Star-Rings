@@ -9,15 +9,14 @@
                       xmlns:local="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterIndexPage"
-                      Title="{Binding Title}">
+                      PageTitle="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:CharacterIndexViewModel />
     </ContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Source="icon_add.png"
-                     Clicked="AddCharacter_Clicked" />
+        <ImageButton Source="icon_add.png" Command="{Binding AddCharacterCommand}" />
     </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
@@ -27,9 +26,9 @@
                         ItemsSource="{Binding Dataset}"
                         ItemSizingStrategy="MeasureFirstItem"
                         SelectionMode="Single"
-                        SelectionChanged="OnCharacterSelected"
                         VerticalOptions="FillAndExpand"
                         Margin="10,35">
+                        <!-- SelectionChanged="OnCharacterSelected" -->
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
