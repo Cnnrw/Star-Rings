@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 using Game.Enums;
 using Game.Models;
 using Game.Services;
 using Game.Views;
 
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Game.ViewModels
@@ -16,6 +18,12 @@ namespace Game.ViewModels
     /// </summary>
     public class ItemIndexViewModel : BaseViewModel<ItemModel>
     {
+        public ICommand SelectItemCommand { get; } =
+            new AsyncCommand<ItemModel>(model => NavigationService.NavigateModalAsync(nameof(ItemReadPage), new GenericViewModel<ItemModel>(model)));
+
+        public ICommand AddItemCommand { get; } =
+            new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(ItemCreatePage)));
+
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 using Game.Models;
 using Game.Services;
 using Game.Views;
 
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Game.ViewModels
@@ -15,6 +17,12 @@ namespace Game.ViewModels
     /// </summary>
     public class ScoreIndexViewModel : BaseViewModel<ScoreModel>
     {
+        public ICommand SelectScoreCommand { get; } =
+            new AsyncCommand<ScoreModel>(model => NavigationService.NavigateModalAsync(nameof(ScoreReadPage), new GenericViewModel<ScoreModel>(model)));
+
+        public ICommand AddScoreCommand { get; } =
+            new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(ScoreCreatePage)));
+
         #region Constructor
 
         public ScoreIndexViewModel() : this(App.NavigationService)

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 using Game.Models;
 using Game.Services;
 using Game.Views;
 
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Game.ViewModels
@@ -15,6 +17,12 @@ namespace Game.ViewModels
     /// </summary>
     public class MonsterIndexViewModel : BaseViewModel<MonsterModel>
     {
+        public ICommand SelectMonsterCommand { get; } =
+            new AsyncCommand<MonsterModel>(model => NavigationService.NavigateModalAsync(nameof(MonsterReadPage), new GenericViewModel<MonsterModel>(model)));
+
+        public ICommand AddMonsterCommand { get; } =
+            new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(MonsterCreatePage)));
+
         #region Constructor
 
         public MonsterIndexViewModel() : this(App.NavigationService)
