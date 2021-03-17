@@ -1,5 +1,6 @@
 using System.Windows.Input;
 
+using Game.Services;
 using Game.Views;
 
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -8,6 +9,12 @@ namespace Game.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        public MainViewModel() : this(App.NavigationService)
+        { }
+
+        internal MainViewModel(INavigationService navigationService) : base(navigationService)
+        { }
+
         public ICommand RebelBaseCommand =>
             new AsyncCommand(() => NavigationService.NavigateAsync(nameof(RebelBasePage)));
 
@@ -22,5 +29,8 @@ namespace Game.ViewModels
 
         public ICommand AboutCommand =>
             new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(AboutPage)));
+
+        public ICommand ScoreCommand =>
+            new AsyncCommand(() => NavigationService.NavigateModalAsync("Score"));
     }
 }
