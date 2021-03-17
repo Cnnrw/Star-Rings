@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Models;
+using Game.Services;
 using Game.Views;
 
 using Xamarin.Forms;
@@ -16,14 +17,18 @@ namespace Game.ViewModels
     {
         #region Constructor
 
+        public ScoreIndexViewModel() : this(App.NavigationService)
+        { }
+
         /// <summary>
         /// Constructor
         ///
         /// The constructor subscribes message listeners for crudi operations
         /// </summary>
-        public ScoreIndexViewModel()
+        ScoreIndexViewModel(INavigationService navigationService = null)
         {
             Title = "Scores";
+            NavigationService = navigationService;
 
             #region Messages
 
@@ -67,26 +72,26 @@ namespace Game.ViewModels
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
-        private static volatile ScoreIndexViewModel instance;
-        private static readonly object              syncRoot = new object();
+        private static volatile ScoreIndexViewModel _instance;
+        private static readonly object              SyncRoot = new object();
 
         public static ScoreIndexViewModel Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (SyncRoot)
                     {
-                        if (instance == null)
+                        if (_instance == null)
                         {
-                            instance = new ScoreIndexViewModel();
-                            instance.Initialize();
+                            _instance = new ScoreIndexViewModel();
+                            _instance.Initialize();
                         }
                     }
                 }
 
-                return instance;
+                return _instance;
             }
         }
 

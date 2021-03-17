@@ -3,6 +3,7 @@ using System.Linq;
 
 using Game.Enums;
 using Game.Models;
+using Game.Services;
 using Game.Views;
 
 using Xamarin.Forms;
@@ -45,13 +46,17 @@ namespace Game.ViewModels
         #endregion Singleton
         #region Constructor
 
+        public ItemIndexViewModel() : this(App.NavigationService)
+        { }
+
         /// <summary>
         ///     Constructor
         ///     The constructor subscribes message listeners for crudi operations
         /// </summary>
-        public ItemIndexViewModel()
+        public ItemIndexViewModel(INavigationService navigationService = null)
         {
             Title = "Items";
+            NavigationService = navigationService;
 
             #region Messages
 
