@@ -22,12 +22,11 @@ namespace Game.Views
         ///     Constructor for ItemCreatePage
         ///     Lets a user create a new Item.
         /// </summary>
-        /// <param name="viewModel"></param>
-        public ItemCreatePage(GenericViewModel<ItemModel> viewModel = null)
+        public ItemCreatePage()
         {
             InitializeComponent();
 
-            _viewModel = viewModel ?? new GenericViewModel<ItemModel>
+            _viewModel = new GenericViewModel<ItemModel>
             {
                 Title = "Create",
                 Data = new ItemModel()
@@ -56,7 +55,7 @@ namespace Game.Views
             else
             {
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
-                await Navigation.PopModalAsync();
+                await App.NavigationService.GoBack();
             }
         }
 
@@ -65,8 +64,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) =>
-            await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         /// <summary>
         /// Catch the change to the Stepper for Range
