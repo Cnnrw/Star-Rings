@@ -41,7 +41,13 @@ namespace Game
 
             // Rebel Base Pages
             navigationService.Configure(nameof(RebelBasePage), typeof(RebelBasePage));
+
             navigationService.Configure(nameof(CharacterIndexPage), typeof(CharacterIndexPage));
+            navigationService.Configure(nameof(CharacterReadPage), typeof(CharacterReadPage));
+            navigationService.Configure(nameof(CharacterUpdatePage), typeof(CharacterUpdatePage));
+            navigationService.Configure(nameof(CharacterDeletePage), typeof(CharacterDeletePage));
+            navigationService.Configure(nameof(CharacterCreatePage), typeof(CharacterCreatePage));
+
             navigationService.Configure(nameof(MonsterIndexPage), typeof(MonsterIndexPage));
             navigationService.Configure(nameof(ItemIndexPage), typeof(ItemIndexPage));
             navigationService.Configure(nameof(ScoreIndexPage), typeof(ScoreIndexPage));
