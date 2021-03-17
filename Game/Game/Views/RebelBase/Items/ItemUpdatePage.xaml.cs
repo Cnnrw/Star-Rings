@@ -70,7 +70,7 @@ namespace Game.Views
             }
 
             MessagingCenter.Send(this, "Update", _viewModel.Data);
-            await Navigation.PopModalAsync();
+            await App.NavigationService.GoBack();
         }
 
         /// <summary>
@@ -78,8 +78,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) =>
-            await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         /// <summary>
         /// Catch the change to the Stepper for Range
