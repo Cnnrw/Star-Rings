@@ -23,11 +23,11 @@ namespace Game.Views
         /// <summary>
         /// Constructor makes a new model
         /// </summary>
-        public CharacterCreatePage(GenericViewModel<CharacterModel> viewModel = null)
+        public CharacterCreatePage()
         {
             InitializeComponent();
 
-            _viewModel = viewModel ?? new GenericViewModel<CharacterModel>
+            _viewModel = new GenericViewModel<CharacterModel>
             {
                 Title = "Create a Character",
                 Data = new CharacterModel()
@@ -117,7 +117,7 @@ namespace Game.Views
             if (_viewModel.Data.Name.Length > 0)
             {
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
-                await Navigation.PopModalAsync();
+                await App.NavigationService.GoBack();
             }
         }
 
@@ -126,7 +126,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        internal async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         /// <summary>
         ///     Randomize Character Values and Items
