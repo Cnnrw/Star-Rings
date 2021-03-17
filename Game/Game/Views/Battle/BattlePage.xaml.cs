@@ -54,7 +54,7 @@ namespace Game.Views
         ///     Update the page to display entry into a new Round
         ///     Hides the UI, updates the location background, and shows a button to enter
         /// </summary>
-        void EnterNewRound()
+        public void EnterNewRound()
         {
             // Set new round location
             //var GameRound = (RoundEngine)BattleEngineViewModel.Instance.Engine.Round;
@@ -81,7 +81,7 @@ namespace Game.Views
         /// <summary>
         ///     Hides the Monster, Character, and message boxes
         /// </summary>
-        void HideBattleUiElements()
+        public void HideBattleUiElements()
         {
             BattleBottomBox.IsVisible = false;
             TopMonstersDisplay.IsVisible = false;
@@ -90,7 +90,7 @@ namespace Game.Views
         /// <summary>
         ///     Shows the Monster, Character, and message boxes
         /// </summary>
-        void ShowBattleUiElements()
+        public void ShowBattleUiElements()
         {
             BattleBottomBox.IsVisible = true;
             TopMonstersDisplay.IsVisible = true;
@@ -99,7 +99,7 @@ namespace Game.Views
         /// <summary>
         ///     Draws the Player figures
         /// </summary>
-        void DrawPlayerFigures()
+        public void DrawPlayerFigures()
         {
             _playerFigures.Clear();
 
@@ -140,7 +140,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="player">The Player to make the figure for</param>
         /// <returns></returns>
-        StackLayout CreatePlayerFigure(PlayerInfoModel player)
+        public StackLayout CreatePlayerFigure(PlayerInfoModel player)
         {
             player ??= new PlayerInfoModel
             {
@@ -176,7 +176,7 @@ namespace Game.Views
             return playerFigureStackLayout;
         }
 
-        void ClearUI()
+        public void ClearUI()
         {
             // Clear Player details boxes
             ClearPlayerDetailsBoxes();
@@ -205,7 +205,7 @@ namespace Game.Views
         ///     Hide the different button states
         ///     Hide the message display box
         /// </summary>
-        void HideUIElements()
+        public void HideUIElements()
         {
             StartRoundButton.IsVisible = false;
             AttackButton.IsVisible = false;
@@ -282,7 +282,7 @@ namespace Game.Views
         /// Updates the information displayed in a given Player's details box.
         /// </summary>
         /// <param name="player"></param>
-        void UpdatePlayerDetailsBox(PlayerInfoModel player)
+        public void UpdatePlayerDetailsBox(PlayerInfoModel player)
         {
             // Update either the Character details box or the Monster details box
             switch (player.PlayerType)
@@ -313,7 +313,7 @@ namespace Game.Views
         /// <summary>
         /// Clears the values from the player details boxes
         /// </summary>
-        void ClearPlayerDetailsBoxes()
+        public void ClearPlayerDetailsBoxes()
         {
             SelectedCharacterIconImage.Source = "";
             SelectedCharacterNameLabel.Text = "";
@@ -332,10 +332,6 @@ namespace Game.Views
             SelectedMonsterSpeedLabel.Text = "";
         }
 
-        #region BasicBattleMode
-
-
-
         /// <summary>
         ///     Game is over
         ///     Show Buttons
@@ -351,8 +347,6 @@ namespace Game.Views
 
             ShowBattleMode();
         }
-
-        #endregion BasicBattleMode
 
         #region MessageHandelers
 
@@ -418,7 +412,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void BlockButton_Clicked(object sender, EventArgs e)
+        public void BlockButton_Clicked(object sender, EventArgs e)
         {
             var currentPlayer = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
@@ -446,7 +440,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void FigureButton_Clicked(object sender, EventArgs e)
+        public void FigureButton_Clicked(object sender, EventArgs e)
         {
             // Ignore selection if it's not time to choose
             if (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum != BattleStateEnum.ChoosingMonsterTarget)
@@ -513,7 +507,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void NextButton_Clicked(object sender, EventArgs e)
+        public void NextButton_Clicked(object sender, EventArgs e)
         {
             switch (BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum)
             {
@@ -532,7 +526,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void EndRoundButton_Clicked(object sender, EventArgs e)
+        public void EndRoundButton_Clicked(object sender, EventArgs e)
         {
             // Start a new Round
             BattleEngineViewModel.Instance.Engine.Round.NewRound();
@@ -542,7 +536,7 @@ namespace Game.Views
         /// <summary>
         /// Perform a Character's turn
         /// </summary>
-        void DoCharacterTurn()
+        public void DoCharacterTurn()
         {
             var activeCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
             BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(activeCharacter);
@@ -562,7 +556,7 @@ namespace Game.Views
         /// <summary>
         /// Perform a Monster's turn.
         /// </summary>
-        void DoMonsterTurn()
+        public void DoMonsterTurn()
         {
             var activeMonster = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
             BattleEngineViewModel.Instance.Engine.Round.Turn.TakeTurn(activeMonster);
@@ -587,7 +581,7 @@ namespace Game.Views
         /// <summary>
         /// Ends current turn.
         /// </summary>
-        void EndTurn()
+        public void EndTurn()
         {
             var roundCondition = BattleEngineViewModel.Instance.Engine.Round.RoundNextTurn();
 
@@ -631,7 +625,7 @@ namespace Game.Views
         /// <summary>
         ///     Determines the next Player and lets them act.
         /// </summary>
-        void StartTurn()
+        public void StartTurn()
         {
             ClearUI();
 
@@ -656,7 +650,7 @@ namespace Game.Views
         /// <summary>
         ///     Start's a Character's turn.
         /// </summary>
-        void StartCharacterTurn()
+        public void StartCharacterTurn()
         {
             var activeCharacter = BattleEngineViewModel.Instance.Engine.EngineSettings.CurrentAttacker;
 
@@ -675,7 +669,7 @@ namespace Game.Views
         /// <summary>
         ///     Starts a Monster's turn.
         /// </summary>
-        void StartMonsterTurn()
+        public void StartMonsterTurn()
         {
             BattleEngineViewModel.Instance.Engine.EngineSettings.BattleStateEnum = BattleStateEnum.StartingMonsterTurn;
 
