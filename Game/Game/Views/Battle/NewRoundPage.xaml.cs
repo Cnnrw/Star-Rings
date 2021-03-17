@@ -24,7 +24,7 @@ namespace Game.Views
         {
             InitializeComponent();
 
-            string roundLocationName = BattleLocationEnumExtensions.ToMessageWithArticle(BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation);
+            var roundLocationName = BattleLocationEnumExtensions.ToMessageWithArticle(BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation);
             RoundDetailsLabel.Text = "Your party is ambushed while traveling through " + roundLocationName + "!";
             Debug.WriteLine(BattleEngineViewModel.Instance.Engine.EngineSettings.RoundLocation);
             // Draw the Monsters
@@ -41,7 +41,7 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void BeginButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            await App.NavigationService.GoBack();
         }
 
         /// <summary>
