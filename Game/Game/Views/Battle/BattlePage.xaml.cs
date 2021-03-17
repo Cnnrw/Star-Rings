@@ -125,14 +125,6 @@ namespace Game.Views
                 _playerFigures.Add(player.Guid, playerFigure);
                 MonsterFigureArea.Children.Add(playerFigure);
             }
-
-            // Add one blank Figure to hold space in case the Character list is empty
-            if (!BattleEngineViewModel.Instance.Engine.EngineSettings.CharacterList.Any())
-                CharacterFigureArea.Children.Add(CreatePlayerFigure(null));
-
-            // Add one blank Figure to hold space in case the Monster list is empty
-            if (!BattleEngineViewModel.Instance.Engine.EngineSettings.MonsterList.Any())
-                MonsterFigureArea.Children.Add(CreatePlayerFigure(null));
         }
 
         /// <summary>
