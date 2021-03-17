@@ -18,6 +18,7 @@
                    Style="{StaticResource TextTitle}"
                    VerticalOptions="End"
                    HorizontalTextAlignment="Center"
+                   Margin="10,0"
                    Text="The Millennium Falcon has been sucked into a wormhole and teleported to Middle Earth!&#10;&#10;Help the Rebel crew battle their way across the land in search of a magical portal to take them home!"/>
 
             <ImageButton Grid.Row="2"
