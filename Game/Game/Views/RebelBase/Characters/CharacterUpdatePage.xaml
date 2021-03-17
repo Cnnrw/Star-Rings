@@ -35,7 +35,6 @@
 
                 <!-- Character Image Picker -->
                 <Image Grid.RowSpan="3"
-                       x:Name="CharacterImage"
                        Source="{Binding Data.ImageURI}"
                        Style="{StaticResource ImageLargeStyle}"
                        Aspect="AspectFit" />
