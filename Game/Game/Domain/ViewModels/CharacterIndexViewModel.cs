@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 using Game.Models;
 using Game.Services;
 using Game.Views;
 
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Game.ViewModels
@@ -15,6 +17,12 @@ namespace Game.ViewModels
     /// </summary>
     public class CharacterIndexViewModel : BaseViewModel<CharacterModel>
     {
+        public ICommand SelectCharacterCommand { get; } =
+            new AsyncCommand<CharacterModel>(model => NavigationService.NavigateModalAsync(nameof(CharacterReadPage), new GenericViewModel<CharacterModel>(model)));
+
+        public ICommand AddCharacterCommand { get; } =
+            new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(CharacterCreatePage)));
+
         #region Singleton
 
         // Make this a singleton so it only exist one time because it holds all
@@ -52,7 +60,7 @@ namespace Game.ViewModels
         ///     Constructor
         ///     The constructor subscribes message listeners for crudi operations
         /// </summary>
-        public CharacterIndexViewModel(INavigationService navigationService = null)
+        internal CharacterIndexViewModel(INavigationService navigationService = null)
         {
             Title = "Characters";
             NavigationService = navigationService;
