@@ -68,7 +68,11 @@ namespace Game
 
             // Dungeon Pages
             navigationService.Configure("Battle", typeof(PickCharactersPage));
-            navigationService.Configure("Score", typeof(ScorePage));
+            navigationService.Configure(nameof(ScorePage), typeof(ScorePage));
+            navigationService.Configure(nameof(RoundOverPage), typeof(RoundOverPage));
+            navigationService.Configure(nameof(BattleSettingsPage), typeof(BattleSettingsPage));
+            navigationService.Configure(nameof(NewRoundPage), typeof(NewRoundPage));
+            navigationService.Configure(nameof(BattlePage), typeof(BattlePage));
 
             // AutoBattle
             navigationService.Configure(nameof(AutoBattlePage), typeof(AutoBattlePage));
