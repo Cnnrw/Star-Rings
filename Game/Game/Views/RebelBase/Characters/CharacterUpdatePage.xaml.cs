@@ -63,8 +63,6 @@ namespace Game.Views
             AddItemsToDisplay();
         }
 
-        #region DataCRUDi
-
         /// <summary>
         ///     Save by calling for Update
         /// </summary>
@@ -79,7 +77,7 @@ namespace Game.Views
             }
 
             MessagingCenter.Send(this, "Update", _viewModel.Data);
-            await Navigation.PopModalAsync();
+            await App.NavigationService.GoBack();
         }
 
         /// <summary>
@@ -87,7 +85,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        internal async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         // /// <summary>
         // ///     Randomizes the Character values and items
@@ -100,22 +98,7 @@ namespace Game.Views
             UpdatePageBindingContext();
         }
 
-        #endregion
-
         #region Pickers
-
-        // /// <summary>
-        // /// Updates the Character's ImageURI and the page's image source
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        // private void OnJobPickerChanged(object sender, EventArgs e)
-        // {
-        //     var iconImageURI = _viewModel.Data.Job.ToIconImageURI();
-        //
-        //     _viewModel.Data.ImageURI = iconImageURI;
-        //     JobImage.Source = iconImageURI;
-        // }
 
         /// <summary>
         ///     Propagates the values for the character level picker
@@ -153,7 +136,6 @@ namespace Game.Views
         }
 
         #endregion
-
         #region Steppers
 
         /// <summary>
@@ -185,7 +167,6 @@ namespace Game.Views
         void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) => SpeedValueLabel.Text = $"{e.NewValue}";
 
         #endregion
-
         #region EquippedItems
 
         /// <summary>
