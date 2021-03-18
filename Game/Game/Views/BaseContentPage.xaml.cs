@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -14,56 +15,46 @@ namespace Game.Views
     [ContentProperty(nameof(ViewContent))]
     public partial class BaseContentPage : ContentPage
     {
-        // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public IList<View> ToolbarButtons => Buttons.Children;
-        public IList<View> ViewContent => MainContent.Children;
+        public static readonly BindableProperty PageTitleProperty =
+            BindableProperty.Create(propertyName: nameof(PageTitle),
+                                    returnType: typeof(string),
+                                    declaringType: typeof(BaseContentPage),
+                                    defaultValue: default(string));
 
-        #region Constructors
-
-        public BaseContentPage() =>
-            InitializeComponent();
-
-        #endregion Constructors
-        #region PageBackground
-
-        static readonly BindableProperty PageBackgroundProperty =
+        public static readonly BindableProperty PageBackgroundProperty =
             BindableProperty.Create(propertyName: nameof(PageBackground),
                                     returnType: typeof(ImageSource),
                                     declaringType: typeof(BaseContentPage),
                                     defaultValue: (ImageSource)"page_background.png");
 
-        public ImageSource PageBackground
-        {
-            get => (ImageSource)GetValue(PageBackgroundProperty);
-            set => SetValue(PageBackgroundProperty, value);
-        }
+        public static readonly BindableProperty BackButtonCommandProperty =
+            BindableProperty.Create(propertyName: nameof(Command),
+                                    returnType: typeof(ICommand),
+                                    declaringType: typeof(BaseContentPage),
+                                    propertyChanged: BackButtonCommandPropertyChanged);
 
-        #endregion PageBackground
-        #region BackButton
+        public static readonly BindableProperty BackButtonCommandParameterProperty =
+            BindableProperty.Create(propertyName: nameof(BackButtonCommandParameter),
+                                    returnType: typeof(ICommand),
+                                    declaringType: typeof(BaseContentPage),
+                                    defaultValue: null);
 
-        async void CloseButton_OnClick(object sender, EventArgs e) => await App.NavigationService.GoBack();
-
-        static readonly BindableProperty IsBackButtonVisibleProperty =
+        public static readonly BindableProperty IsBackButtonVisibleProperty =
             BindableProperty.Create(propertyName: nameof(IsBackButtonVisible),
                                     returnType: typeof(bool),
                                     declaringType: typeof(BaseContentPage),
                                     defaultValue: true);
 
-        public bool IsBackButtonVisible
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        public IList<View> ToolbarButtons => Buttons.Children;
+        public IList<View> ViewContent => MainContent.Children;
+
+        public event EventHandler BackButtonClicked;
+
+        public BaseContentPage()
         {
-            get => (bool)GetValue(IsBackButtonVisibleProperty);
-            set => SetValue(IsBackButtonVisibleProperty, value);
+            InitializeComponent();
         }
-
-        #endregion BackButton
-        #region Title
-
-        public static readonly BindableProperty PageTitleProperty =
-            BindableProperty.Create(propertyName: nameof(PageTitle),
-                                    returnType: typeof(string),
-                                    declaringType: typeof(BaseContentPage),
-                                    defaultValue: null,
-                                    defaultBindingMode: BindingMode.OneWay);
 
         public string PageTitle
         {
@@ -71,6 +62,47 @@ namespace Game.Views
             set => SetValue(PageTitleProperty, value);
         }
 
-        #endregion
+        public ImageSource PageBackground
+        {
+            get => (ImageSource)GetValue(PageBackgroundProperty);
+            set => SetValue(PageBackgroundProperty, value);
+        }
+
+        public ICommand BackButtonCommand
+        {
+            get => (ICommand)GetValue(BackButtonCommandProperty);
+            set => SetValue(BackButtonCommandProperty, value);
+        }
+
+        public object BackButtonCommandParameter
+        {
+            get => GetValue(BackButtonCommandParameterProperty);
+            set => SetValue(BackButtonCommandParameterProperty, value);
+        }
+
+        static void BackButtonCommandPropertyChanged(BindableObject bo, object o, object n)
+        {
+            var control = (BaseContentPage)bo;
+
+            // this gesture recognizer will invoke the command event wherever it is used
+            control.BackButton.Command = (ICommand)n;
+        }
+
+        public bool IsBackButtonVisible
+        {
+            get => (bool)GetValue(IsBackButtonVisibleProperty);
+            set => SetValue(IsBackButtonVisibleProperty, value);
+        }
+
+        void BackButton_OnClicked(object sender, EventArgs e)
+        {
+            if (BackButtonCommand != null)
+            {
+                BackButtonCommand.Execute(BackButtonCommandParameter);
+                return;
+            }
+
+            BackButtonClicked?.Invoke(sender, e);
+        }
     }
 }

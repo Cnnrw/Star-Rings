@@ -27,9 +27,9 @@
                   VerticalOptions="FillAndExpand">
 
                 <!-- Back Button -->
-                <ImageButton Source="close_button.png"
+                <ImageButton x:Name="BackButton"
+                             Source="close_button.png"
                              IsVisible="{Binding Source={x:Reference ContentPage}, Path=IsBackButtonVisible}"
-                             Clicked="CloseButton_OnClick"
                              HeightRequest="35" WidthRequest="35"
                              HorizontalOptions="Start" VerticalOptions="Center"
                              Aspect="AspectFit" />
