@@ -239,7 +239,7 @@ namespace Game.ViewModels
         /// <returns></returns>
         public bool NeedsRefresh()
         {
-            if (!_needsRefresh)
+            if (_needsRefresh)
             {
                 _needsRefresh = false;
                 return true;
