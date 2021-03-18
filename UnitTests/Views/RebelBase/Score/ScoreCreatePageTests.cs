@@ -1,6 +1,4 @@
 ﻿using Game;
-using Game.Models;
-using Game.ViewModels;
 using Game.Views;
 
 using NUnit.Framework;
@@ -21,17 +19,17 @@ namespace UnitTests.Views
             MockForms.Init();
 
             //This is your App.xaml and App.xaml.cs, which can have resources, etc.
-            app = new App();
-            Application.Current = app;
+            _app = new App();
+            Application.Current = _app;
 
-            page = new ScoreCreatePage(new GenericViewModel<ScoreModel>(new ScoreModel()));
+            _page = new ScoreCreatePage();
         }
 
         [TearDown]
         public void TearDown() => Application.Current = null;
 
-        private App             app;
-        private ScoreCreatePage page;
+        private App             _app;
+        private ScoreCreatePage _page;
 
         public ScoreCreatePageTests() : base(true) { }
 
@@ -41,7 +39,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            var result = page;
+            var result = _page;
 
             // Reset
 
@@ -55,7 +53,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.Cancel_Clicked(null, null);
+            _page.Cancel_Clicked(null, null);
 
             // Reset
 
@@ -69,7 +67,7 @@ namespace UnitTests.Views
             // Arrange
 
             // Act
-            page.Save_Clicked(null, null);
+            _page.Save_Clicked(null, null);
 
             // Reset
 
@@ -81,10 +79,10 @@ namespace UnitTests.Views
         public void ScoreCreatePage_Save_Clicked_Null_Image_Should_Pass()
         {
             // Arrange
-            page._viewModel.Data.ImageURI = null;
+            _page._viewModel.Data.ImageURI = null;
 
             // Act
-            page.Save_Clicked(null, null);
+            _page.Save_Clicked(null, null);
 
             // Reset
 

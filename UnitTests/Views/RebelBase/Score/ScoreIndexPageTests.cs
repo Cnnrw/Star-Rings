@@ -1,5 +1,4 @@
 ﻿using Game;
-using Game.Models;
 using Game.ViewModels;
 using Game.Views;
 
@@ -50,20 +49,6 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void ScoreIndexPage_AddScore_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            page.AddScore_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
         public void ScoreIndexPage_OnBackButtonPressed_Valid_Should_Pass()
         {
             // Arrange
@@ -76,40 +61,6 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-
-        // [Test]
-        // public void ScoreIndexPage_OnItemSelected_Clicked_Default_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     var selectedScore = new ScoreModel();
-        //
-        //     var SelectedItemChangedEventArgs = new SelectedItemChangedEventArgs(selectedScore, 0);
-        //
-        //     // Act
-        //     page.OnItemSelected(null, SelectedItemChangedEventArgs);
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
-        //
-        // [Test]
-        // public void ScoreIndexPage_OnItemSelected_Clicked_Invalid_Null_Should_Fail()
-        // {
-        //     // Arrange
-        //
-        //     var SelectedItemChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
-        //
-        //     // Act
-        //     page.OnItemSelected(null, SelectedItemChangedEventArgs);
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
 
         [Test]
         public void ScoreIndexPage_OnAppearing_Valid_Should_Pass()

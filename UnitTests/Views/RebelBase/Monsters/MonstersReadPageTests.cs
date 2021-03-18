@@ -54,34 +54,6 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void MonsterReadPage_Update_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            _page.Update_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void MonsterReadPage_Delete_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            _page.Delete_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
         public void MonsterReadPage_OnBackButtonPressed_Valid_Should_Pass()
         {
             // Arrange
@@ -147,57 +119,6 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-
-
-        // TODO: Comment These
-
-        // [Test]
-        // public void MonsterReadPage_ShowPopup_Valid_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     // Act
-        //     page.ShowPopup(new ItemModel());
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
-        //
-        // [Test]
-        // public void MonsterReadPage_ClosePopup_Clicked_Default_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     // Act
-        //     page.ClosePopup_Clicked(null, null);
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
-
-        // [Test]
-        // public void MonsterReadPage_AddItemsToDisplay_With_Data_Should_Remove_And_Pass()
-        // {
-        //     // Arrange
-        //
-        //     // Put some data into the box so it can be removed
-        //     var itemBox = (FlexLayout)_page.Content.FindByName("ItemBox");
-        //
-        //     itemBox.Children.Add(new Label());
-        //     itemBox.Children.Add(new Label());
-        //
-        //     // Act
-        //     _page.AddItemsToDisplay();
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.AreEqual(1, itemBox.Children.Count()); // Got to here, so it happened...
-        // }
 
         [Test]
         public async Task MonsterReadPage_GetItemToDisplay_With_Item_Should_Pass()

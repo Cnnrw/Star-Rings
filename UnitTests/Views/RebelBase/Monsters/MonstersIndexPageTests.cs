@@ -1,5 +1,4 @@
 ﻿using Game;
-using Game.Models;
 using Game.ViewModels;
 using Game.Views;
 
@@ -49,20 +48,6 @@ namespace UnitTests.Views
             Assert.IsNotNull(result);
         }
 
-        //[Test]
-        //public void MonsterIndexPage_AddMonster_Clicked_Default_Should_Pass()
-        //{
-        //    // Arrange
-
-        //    // Act
-        //    page.Add_Clicked(null, null);
-
-        //    // Reset
-
-        //    // Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
-
         [Test]
         public void MonsterIndexPage_OnBackButtonPressed_Valid_Should_Pass()
         {
@@ -76,40 +61,6 @@ namespace UnitTests.Views
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-
-        // [Test]
-        // public void MonsterIndexPage_OnMonsterSelected_Clicked_Default_Should_Pass()
-        // {
-        //     // Arrange
-        //
-        //     var selectedMonster = new MonsterModel();
-        //
-        //     var selectedMonsterChangedEventArgs = new SelectedItemChangedEventArgs(selectedMonster, 0);
-        //
-        //     // Act
-        //     page.OnItemSelected(null, selectedMonsterChangedEventArgs);
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
-        //
-        // [Test]
-        // public void MonsterIndexPage_OnMonsterSelected_Clicked_Invalid_Null_Should_Fail()
-        // {
-        //     // Arrange
-        //
-        //     var selectedMonsterChangedEventArgs = new SelectedItemChangedEventArgs(null, 0);
-        //
-        //     // Act
-        //     page.OnItemSelected(null, selectedMonsterChangedEventArgs);
-        //
-        //     // Reset
-        //
-        //     // Assert
-        //     Assert.IsTrue(true); // Got to here, so it happened...
-        // }
 
         [Test]
         public void MonsterIndexPage_OnAppearing_Valid_Should_Pass()
@@ -137,19 +88,6 @@ namespace UnitTests.Views
 
             // Act
             OnAppearing();
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
-        public void MonsterIndexPage_AddItemClicked_Valid_Should_Pass()
-        {
-            // Arrange
-            // Act
-            page.AddItem_Clicked(null, null);
 
             // Reset
 

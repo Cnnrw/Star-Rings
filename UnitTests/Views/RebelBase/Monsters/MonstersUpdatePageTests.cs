@@ -52,20 +52,6 @@ namespace UnitTests.Views
         }
 
         [Test]
-        public void MonsterUpdatePage_Cancel_Clicked_Default_Should_Pass()
-        {
-            // Arrange
-
-            // Act
-            _page.Cancel_Clicked(null, null);
-
-            // Reset
-
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
-
-        [Test]
         public void MonsterUpdatePage_Save_Clicked_Default_Should_Pass()
         {
             // Arrange
