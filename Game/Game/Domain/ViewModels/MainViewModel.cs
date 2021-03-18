@@ -29,8 +29,5 @@ namespace Game.ViewModels
 
         public ICommand AboutCommand =>
             new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(AboutPage)));
-
-        public ICommand ScoreCommand =>
-            new AsyncCommand(() => NavigationService.NavigateModalAsync("Score"));
     }
 }
