@@ -1,5 +1,7 @@
 ﻿using SQLite;
 
+using Xamarin.CommunityToolkit.ObjectModel;
+
 namespace Game.Models
 {
     /// <summary>
@@ -8,7 +10,7 @@ namespace Game.Models
     /// It servers as the base for all models
     /// The ViewModels that do not go to the DB use this
     /// </summary>
-    public class DefaultModel
+    public class DefaultModel : ObservableObject
     {
         // The ID for the item
         [PrimaryKey]
@@ -20,9 +22,19 @@ namespace Game.Models
         public string Guid { get; set; } = "";
 
         // The Name of the Item
-        public string Name { get; set; }
+        string _name;
+        public string Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
 
+        string _description;
         // The Description of the Item
-        public string Description { get; set; }
+        public string Description
+        {
+            get => _description;
+            set => SetProperty(ref _description, value);
+        }
     }
 }
