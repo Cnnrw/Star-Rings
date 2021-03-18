@@ -5,7 +5,8 @@
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
-                      x:Class="Game.Views.RebelBasePage">
+                      x:Class="Game.Views.RebelBasePage"
+                      BackButtonCommand="{Binding ClosePageCommand}">
 
     <ContentPage.BindingContext>
         <vm:RebelBaseViewModel/>
@@ -14,7 +15,7 @@
     <FlexLayout Wrap="Wrap"
                 JustifyContent="SpaceAround"
                 AlignContent="SpaceAround"
-                Padding="40">
+                Margin="40, 20, 40, 40">
         <c:ImgButton Text="Characters"
                      Source="warrior.png"
                      Command="{Binding CharacterPageCommand}"
