@@ -7,7 +7,13 @@
              x:Class="Game.Views.SettingsPage"
              x:DataType="vm:ItemIndexViewModel"
              PageTitle="Settings"
-             PageBackground="page_background_1.png">
+             PageBackground="page_background_1.png"
+             IsBackButtonVisible="False">
+
+    <page:BaseContentPage.ToolbarButtons>
+        <ImageButton Clicked="CloseButton_OnClicked"
+                     Source="close_button.png"/>
+    </page:BaseContentPage.ToolbarButtons>
 
     <StackLayout Style="{StaticResource VerticalStack}">
 
@@ -33,7 +39,8 @@
                      Padding="50,0,0,0">
             <Label Text="Wipe Data List"
                    Style="{DynamicResource LabelStyle}" />
-            <Button Text="Wipe" Clicked="WipeDataList_Clicked" />
+            <Button Text="Wipe"
+                    Clicked="WipeDataList_Clicked" />
         </StackLayout>
 
 

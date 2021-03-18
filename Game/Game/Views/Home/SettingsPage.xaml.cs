@@ -55,7 +55,10 @@ namespace Game.Views
         /// <summary>
         ///
         /// </summary>
-        public void RunWipeData() => Task.Run(async () => await DataSetsHelper.WipeDataInSequence());
+        public void RunWipeData()
+        {
+            Task.Run(async () => await DataSetsHelper.WipeDataInSequence());
+        }
 
         #endregion
 
@@ -168,5 +171,10 @@ namespace Game.Views
         /// <param name="e"></param>
         void OnToggledTimeWarpedRounds(object sender, ToggledEventArgs e) =>
             BattleEngineViewModel.Instance.Engine.EngineSettings.EnableTimeWarpedRounds = e.Value;
+
+        async void CloseButton_OnClicked(object sender, EventArgs e)
+        {
+            await App.NavigationService.GoBack();
+        }
     }
 }

@@ -43,7 +43,7 @@
                              Source="settings.png"
                              Command="{Binding SettingsCommand}" />
                 <c:ImgButton Text="About"
-                             Source="about_2.png"
+                             Source="about_1.png"
                              Command="{Binding AboutCommand}" />
 
             </FlexLayout>

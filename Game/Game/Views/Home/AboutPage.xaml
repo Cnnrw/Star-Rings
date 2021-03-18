@@ -4,11 +4,17 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.AboutPage"
                       PageBackground="page_background_2.png"
-                      PageTitle="About Us" >
+                      PageTitle="About Us"
+                      BackButtonCommand="{Binding ClosePageCommand}">
+
+    <page:BaseContentPage.BindingContext>
+        <vm:BaseViewModel />
+    </page:BaseContentPage.BindingContext>
 
     <ContentPage.Resources>
         <Style TargetType="Label">
