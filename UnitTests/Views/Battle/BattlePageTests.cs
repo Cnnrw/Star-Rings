@@ -631,19 +631,19 @@ namespace UnitTests.Views
         //    Assert.AreEqual(true, result); // Got to here, so it happened...
         //}
 
-        [Test]
-        public async Task BattlePage_ShowBattleSettingsPage_Default_Should_Pass()
-        {
-            // Get the current valute
+        //[Test]
+        //public async Task BattlePage_ShowBattleSettingsPage_Default_Should_Pass()
+        //{
+        //    // Get the current valute
 
-            // Act
-            await page.ShowBattleSettingsPage();
+        //    // Act
+        //    await page.ShowBattleSettingsPage();
 
-            // Reset
+        //    // Reset
 
-            // Assert
-            Assert.IsTrue(true); // Got to here, so it happened...
-        }
+        //    // Assert
+        //    Assert.IsTrue(true); // Got to here, so it happened...
+        //}
 
         [Test]
         public void BattlePage_Settings_Clicked_Default_Should_Pass()
