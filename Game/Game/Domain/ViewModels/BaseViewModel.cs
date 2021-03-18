@@ -258,7 +258,10 @@ namespace Game.ViewModels
         /// Sets the need to refresh
         /// </summary>
         /// <param name="value"></param>
-        public void SetNeedsRefresh(bool value) => _needsRefresh = value;
+        public void SetNeedsRefresh(bool value)
+        {
+            _needsRefresh = value;
+        }
 
         /// <summary>
         /// Force data to refresh
