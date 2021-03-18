@@ -18,7 +18,7 @@ namespace Game.ViewModels
     public class CharacterIndexViewModel : BaseViewModel<CharacterModel>
     {
         public ICommand SelectCharacterCommand { get; } =
-            new AsyncCommand<CharacterModel>(model => NavigationService.NavigateModalAsync(nameof(CharacterReadPage), new GenericViewModel<CharacterModel>(model)));
+            new AsyncCommand<CharacterModel>(model => NavigationService.NavigateAsync(nameof(CharacterReadPage), new GenericViewModel<CharacterModel>(model)));
 
         public ICommand AddCharacterCommand { get; } =
             new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(CharacterCreatePage)));

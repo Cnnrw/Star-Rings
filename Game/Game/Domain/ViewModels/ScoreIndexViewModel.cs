@@ -18,7 +18,7 @@ namespace Game.ViewModels
     public class ScoreIndexViewModel : BaseViewModel<ScoreModel>
     {
         public ICommand SelectScoreCommand { get; } =
-            new AsyncCommand<ScoreModel>(model => NavigationService.NavigateModalAsync(nameof(ScoreReadPage), new GenericViewModel<ScoreModel>(model)));
+            new AsyncCommand<ScoreModel>(model => NavigationService.NavigateAsync(nameof(ScoreReadPage), new GenericViewModel<ScoreModel>(model)));
 
         public ICommand AddScoreCommand { get; } =
             new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(ScoreCreatePage)));

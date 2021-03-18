@@ -19,7 +19,7 @@ namespace Game.ViewModels
     public class ItemIndexViewModel : BaseViewModel<ItemModel>
     {
         public ICommand SelectItemCommand { get; } =
-            new AsyncCommand<ItemModel>(model => NavigationService.NavigateModalAsync(nameof(ItemReadPage), new GenericViewModel<ItemModel>(model)));
+            new AsyncCommand<ItemModel>(model => NavigationService.NavigateAsync(nameof(ItemReadPage), new GenericViewModel<ItemModel>(model)));
 
         public ICommand AddItemCommand { get; } =
             new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(ItemCreatePage)));

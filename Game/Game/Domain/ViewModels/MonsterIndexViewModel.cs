@@ -18,7 +18,7 @@ namespace Game.ViewModels
     public class MonsterIndexViewModel : BaseViewModel<MonsterModel>
     {
         public ICommand SelectMonsterCommand { get; } =
-            new AsyncCommand<MonsterModel>(model => NavigationService.NavigateModalAsync(nameof(MonsterReadPage), new GenericViewModel<MonsterModel>(model)));
+            new AsyncCommand<MonsterModel>(model => NavigationService.NavigateAsync(nameof(MonsterReadPage), new GenericViewModel<MonsterModel>(model)));
 
         public ICommand AddMonsterCommand { get; } =
             new AsyncCommand(() => NavigationService.NavigateModalAsync(nameof(MonsterCreatePage)));
@@ -61,26 +61,26 @@ namespace Game.ViewModels
         #region Singleton
 
         // Must be singleton, holds all data records in memory
-        private static volatile MonsterIndexViewModel instance;
-        private static readonly object                syncRoot = new object();
+        private static volatile MonsterIndexViewModel _instance;
+        private static readonly object                SyncRoot = new object();
 
         public static MonsterIndexViewModel Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (SyncRoot)
                     {
-                        if (instance == null)
+                        if (_instance == null)
                         {
-                            instance = new MonsterIndexViewModel();
-                            instance.Initialize();
+                            _instance = new MonsterIndexViewModel();
+                            _instance.Initialize();
                         }
                     }
                 }
 
-                return instance;
+                return _instance;
             }
         }
 
