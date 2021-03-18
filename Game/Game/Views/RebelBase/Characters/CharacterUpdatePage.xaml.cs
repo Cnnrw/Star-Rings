@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Enums;
-using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 
@@ -34,8 +33,6 @@ namespace Game.Views
 
             _viewModel = data;
 
-            LoadLevelPickerValues();
-
             UpdatePageBindingContext();
         }
 
@@ -54,11 +51,23 @@ namespace Game.Views
             PageTitle = $"Update {data.Name}";
 
             BindingContext = _viewModel;
-
-            // this resets the Picker to the Character's level
-            LevelPicker.SelectedIndex = _viewModel.Data.Level - 1;
+            ImagePicker.SelectedItem = CharacterImageEnumExtensions.FromImageURI(data.ImageURI);
 
             AddItemsToDisplay();
+        }
+
+        /// <summary>
+        /// Updates the monster image based on the selected value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnImagePickerChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            var selectedImage = (CharacterImageEnum)picker.SelectedIndex;
+
+            CharacterImage.Source = selectedImage.ToImageURI();
+            CharacterIconImage.Source = selectedImage.ToIconImageURI();
         }
 
         /// <summary>
@@ -74,79 +83,14 @@ namespace Game.Views
                 return;
             }
 
+            var img = ImagePicker.SelectedItem;
+            _viewModel.Data.ImageURI = img.ToImageURI();
+            _viewModel.Data.IconImageURI = img.ToIconImageURI();
+
             MessagingCenter.Send(this, "Update", _viewModel.Data);
             await App.NavigationService.GoBack();
         }
 
-        #region Pickers
-
-        /// <summary>
-        ///     Propagates the values for the character level picker
-        /// </summary>
-        void LoadLevelPickerValues()
-        {
-            for (var i = 1; i <= LevelTableHelper.MaxLevel; i++)
-                LevelPicker.Items.Add(i.ToString());
-
-            LevelPicker.SelectedIndex = -1;
-        }
-
-        /// <summary>
-        ///     Updates character level based on value selected from picker
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        void LevelPicker_Changed(object sender, EventArgs args)
-        {
-            // If the Picker is not set, then set it
-            if (LevelPicker.SelectedIndex == -1)
-            {
-                LevelPicker.SelectedIndex = _viewModel.Data.Level - 1;
-                return;
-            }
-
-            var result = LevelPicker.SelectedIndex + 1;
-
-            // If the level hasn't changed, don't roll for health
-            if (result == _viewModel.Data.Level)
-                return;
-
-            // Change character level
-            _viewModel.Data.Level = result;
-        }
-
-        #endregion
-        #region Steppers
-
-        /// <summary>
-        ///     Changes Max Health attribute of a Character
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) => MaxHealthValueLabel.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes Attack attribute of a Character
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) => AttackValueLabel.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes Defense attribute of a Character
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) => DefenseValueLabel.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes Speed attribute of a Character
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) => SpeedValueLabel.Text = $"{e.NewValue}";
-
-        #endregion
         #region EquippedItems
 
         /// <summary>
@@ -172,7 +116,7 @@ namespace Game.Views
         /// Look up the Item to Display
         /// </summary>
         /// <returns></returns>
-        StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
+        internal StackLayout GetItemToDisplay(ItemLocationEnum itemLocation)
         {
             // Get the current Item in this ItemLocation
             var data = itemLocation switch
@@ -241,7 +185,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
+        internal void OnPopupItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (!(args.SelectedItem is ItemModel data))
                 return;
@@ -274,7 +218,7 @@ namespace Game.Views
 
             AddItemsToDisplay();
 
-            ClosePopup();
+            PopupItemSelector.IsVisible = false;
         }
 
 
@@ -283,7 +227,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        bool ShowPopup(ItemModel data)
+        internal bool ShowPopup(ItemModel data)
         {
             PopupItemSelector.IsVisible = true;
 
@@ -314,12 +258,10 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ClosePopup_Clicked(object sender, EventArgs e) => ClosePopup();
-
-        /// <summary>
-        /// Close the popup
-        /// </summary>
-        void ClosePopup() => PopupItemSelector.IsVisible = false;
+        internal void ClosePopup_Clicked(object sender, EventArgs e)
+        {
+            PopupItemSelector.IsVisible = false;
+        }
 
         #endregion EquippedItems
     }
