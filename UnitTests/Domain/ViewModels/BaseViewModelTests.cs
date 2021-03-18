@@ -202,7 +202,7 @@ namespace UnitTests.ViewModels
         }
 
         [Test]
-        public void BaseViewModel_NeedsRefresh_Valid_False_Should_Pass()
+        public void BaseViewModel_NeedsRefresh_Valid_True_Should_Pass()
         {
             // Arrange
             var originalState = ViewModel.GetNeedsRefresh();
@@ -218,11 +218,11 @@ namespace UnitTests.ViewModels
             ViewModel.SetNeedsRefresh(originalState);
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(true, result);
         }
 
         [Test]
-        public void BaseViewModel_NeedsRefresh_Valid_True_Should_Pass()
+        public void BaseViewModel_NeedsRefresh_Valid_False_Should_Pass()
         {
             // Arrange
             var originalState = ViewModel.GetNeedsRefresh();
@@ -238,7 +238,7 @@ namespace UnitTests.ViewModels
             ViewModel.SetNeedsRefresh(originalState);
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.AreEqual(false, result);
         }
 
         [Test]
