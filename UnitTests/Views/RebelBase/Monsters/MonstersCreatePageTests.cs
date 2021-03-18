@@ -280,7 +280,7 @@ namespace UnitTests.Views
         //}
 
         [Test]
-        public void MonsterCreatePage_RandomButton_Clicked_Vaid_Should_Pass()
+        public void MonsterCreatePage_RandomButton_Clicked_Valid_Should_Pass()
         {
             // Arrange
             page._viewModel.Data.ImageURI = null;
