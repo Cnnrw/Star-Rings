@@ -5,35 +5,6 @@ using System.Linq;
 
 namespace Game.Enums
 {
-    /// <summary>
-    ///     <para>
-    ///         The locations Monsters may appear and Battles take place. BattleLocationEnum
-    ///         has been marked with the flag attribute, meaning bitwise operations can be
-    ///         used to specify enumerated battle location values.
-    ///     </para>
-    ///     <para/>
-    ///     Possible combinations of values with FlagsAttribute:
-    ///     <list type="number">
-    ///         <item><term>- Shire</term></item>
-    ///         <item><term>- ElvenCity</term></item>
-    ///         <item><term>- Shire, ElvenCity</term></item>
-    ///         <item><term>- Forest</term></item>
-    ///         <item><term>- Shire, Forest</term></item>
-    ///         <item><term>- ElvenCity, Forest</term></item>
-    ///         <item><term>- Shire, ElvenCity, Forest</term></item>
-    ///         <item><term>- Dungeons</term></item>
-    ///         <item><term>- Shire, Dungeons</term></item>
-    ///         <item><term>- ElvenCity, Dungeons</term></item>
-    ///         <item><term>- Shire, ElvenCity, Dungeons</term></item>
-    ///         <item><term>- Forest, Dungeons</term></item>
-    ///         <item><term>- Shire, Forest, Dungeons</term></item>
-    ///         <item><term>- ElvenCity, Forest, Dungeons</term></item>
-    ///         <item><term>- Shire, ElvenCity, Forest, Dungeons</term></item>
-    ///         <item><term>- Mordor</term></item>
-    ///     </list>
-    ///     etc.
-    /// </summary>
-    [Flags]
     public enum BattleLocationEnum
     {
         Unknown = 0,
@@ -42,11 +13,11 @@ namespace Game.Enums
         [Display(Description = "Elven City")]
         ElvenCity = 2,
         [Display(Description = "Forest")]
-        Forest = 4,
+        Forest = 3,
         [Display(Description = "Dungeons")]
-        Dungeons = 8,
+        Dungeons = 4,
         [Display(Description = "Mordor")]
-        Mordor = 16,
+        Mordor = 5,
     }
 
     /// <summary>
