@@ -51,10 +51,7 @@ namespace Game.Views
         /// <returns></returns>
         public StackLayout CreatePlayerDisplayBox(PlayerInfoModel data)
         {
-            if (data == null)
-            {
-                data = new PlayerInfoModel();
-            }
+            data ??= new PlayerInfoModel();
 
             // Hookup the image
             var PlayerImage = new Image

@@ -3,15 +3,10 @@
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       x:Class="Game.Views.NewRoundPage"
                       PageTitle="Enemy Encounter!"
                       IsBackButtonVisible="False">
-
-    <page:BaseContentPage.BindingContext>
-        <vm:BattleEngineViewModel/>
-    </page:BaseContentPage.BindingContext>
 
     <ScrollView VerticalScrollBarVisibility="Never"
                 HorizontalScrollBarVisibility="Never">

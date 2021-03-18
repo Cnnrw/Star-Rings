@@ -10,7 +10,8 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.PickCharactersPage"
-                      PageTitle="Choose Your Party">
+                      PageTitle="Choose Your Party"
+                      BackButtonCommand="{Binding ClosePageCommand}">
 
     <ContentPage.BindingContext>
         <vm:PickCharacterViewModel/>

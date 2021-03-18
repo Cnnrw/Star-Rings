@@ -41,10 +41,8 @@ namespace Game.ViewModels
                                              async () =>
                                              {
                                                  CreateEngineCharacterList();
-
                                                  await App.NavigationService.NavigateModalAsync(nameof(BattlePage));
-                                                 // await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new BattlePage()));
-                                                 // await Application.Current.MainPage.Navigation.PopAsync();
+                                                 await Application.Current.MainPage.Navigation.PopAsync();
                                              }, () => SelectedCharacterList.Any());
         }
 

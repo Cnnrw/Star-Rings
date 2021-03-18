@@ -28,10 +28,6 @@ namespace Game.Views
             TotalFound.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelDropList.Count()
                                                    .ToString();
 
-            // Update the Selected Number, this gets updated later when selected refresh happens
-            //TotalSelected.Text = BattleEngineViewModel.Instance.Engine.EngineSettings.BattleScore.ItemModelSelectList
-            //                                          .Count().ToString();
-
             DrawCharacterList();
 
             DrawItemLists();
@@ -262,7 +258,10 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void CloseButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void CloseButton_Clicked(object sender, EventArgs e)
+        {
+            await App.NavigationService.GoBack();
+        }
 
         /// <summary>
         /// Start next Round, returning to the battle screen
