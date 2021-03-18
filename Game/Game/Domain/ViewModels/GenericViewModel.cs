@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Game.Models;
@@ -6,6 +7,7 @@ using Game.Services;
 using Game.Views;
 
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace Game.ViewModels
 {
@@ -18,25 +20,31 @@ namespace Game.ViewModels
         public ICommand DeleteCommand { get; } =
             new AsyncCommand<GenericViewModel<T>>(OnDeleteClicked);
 
-        static Task OnUpdateClicked(GenericViewModel<T> viewModel) =>
-            viewModel switch
-            {
-                GenericViewModel<CharacterModel> _ => NavigationService.NavigateModalAsync(nameof(CharacterUpdatePage), viewModel),
-                GenericViewModel<MonsterModel> _   => NavigationService.NavigateModalAsync(nameof(MonsterUpdatePage), viewModel),
-                GenericViewModel<ItemModel> _      => NavigationService.NavigateModalAsync(nameof(ItemUpdatePage), viewModel),
-                GenericViewModel<ScoreModel> _     => NavigationService.NavigateModalAsync(nameof(ScoreUpdatePage), viewModel),
-                _                                  => null
-            };
+        static async Task OnUpdateClicked(GenericViewModel<T> viewModel)
+        {
+            await (viewModel switch
+                   {
+                       GenericViewModel<CharacterModel> model => NavigationService.NavigateModalAsync(nameof(CharacterUpdatePage), model),
+                       GenericViewModel<MonsterModel> model   => NavigationService.NavigateModalAsync(nameof(MonsterUpdatePage), model),
+                       GenericViewModel<ItemModel> model      => NavigationService.NavigateModalAsync(nameof(ItemUpdatePage), model),
+                       GenericViewModel<ScoreModel> model     => NavigationService.NavigateModalAsync(nameof(ScoreUpdatePage), model),
+                       _                                      => throw new ArgumentOutOfRangeException(nameof(viewModel))
+                   });
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
 
-        static Task OnDeleteClicked(GenericViewModel<T> viewModel) =>
-            viewModel switch
-            {
-                GenericViewModel<CharacterModel> _ => NavigationService.NavigateModalAsync(nameof(CharacterDeletePage), viewModel),
-                GenericViewModel<MonsterModel> _   => NavigationService.NavigateModalAsync(nameof(MonsterDeletePage), viewModel),
-                GenericViewModel<ItemModel> _      => NavigationService.NavigateModalAsync(nameof(ItemDeletePage), viewModel),
-                GenericViewModel<ScoreModel> _     => NavigationService.NavigateModalAsync(nameof(ScoreDeletePage), viewModel),
-                _                                  => null
-            };
+        static async Task OnDeleteClicked(GenericViewModel<T> viewModel)
+        {
+            await (viewModel switch
+                   {
+                       GenericViewModel<CharacterModel> m => NavigationService.NavigateModalAsync(nameof(CharacterDeletePage), m),
+                       GenericViewModel<MonsterModel> m   => NavigationService.NavigateModalAsync(nameof(MonsterDeletePage), m),
+                       GenericViewModel<ItemModel> m      => NavigationService.NavigateModalAsync(nameof(ItemDeletePage), m),
+                       GenericViewModel<ScoreModel> m     => NavigationService.NavigateModalAsync(nameof(ScoreDeletePage), m),
+                       _                                  => throw new ArgumentOutOfRangeException(nameof(viewModel))
+                   });
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
 
         #region Ctors
 
@@ -44,8 +52,7 @@ namespace Game.ViewModels
         ///     Empty GenericViewModel constructor
         /// </summary>
         public GenericViewModel() : this(null, App.NavigationService)
-        {
-        }
+        { }
 
         /// <summary>
         ///     Constructor takes an existing item and sets
