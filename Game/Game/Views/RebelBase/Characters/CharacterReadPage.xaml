@@ -22,47 +22,43 @@
     <Grid RowDefinitions="*,*,*"
           Padding="40">
 
-        <Grid RowDefinitions="*,*,*,Auto" ColumnDefinitions="Auto,*"
+        <Grid RowDefinitions="25,25,25,Auto"
+              ColumnDefinitions="Auto,*,*"
               RowSpacing="5" ColumnSpacing="1">
-            <Grid.Resources>
-                <Style TargetType="StackLayout">
-                    <Setter Property="Style" Value="{StaticResource HorizontalStack}" />
-                </Style>
-            </Grid.Resources>
 
-            <!-- Character Image Picker -->
-            <Image Grid.RowSpan="3"
-                   x:Name="CharacterImage"
+            <Image Grid.RowSpan="4"
                    Source="{Binding Data.ImageURI}"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
                    Style="{StaticResource ImageLargeStyle}"
                    Aspect="AspectFit" />
 
-            <StackLayout Grid.Column="1">
-                <Label Text="Name: "
-                       Style="{StaticResource LabelStyle}" />
-                <Label Text="{Binding Data.Name}"
-                       Style="{StaticResource ValueStyle}" />
-            </StackLayout>
+            <Label Grid.Column="1"
+                   Text="Name: "
+                   Style="{StaticResource LabelStyle}" />
+            <Label Grid.Column="2"
+                   Text="{Binding Data.Name}"
+                   Style="{StaticResource ValueStyle}"
+                   HorizontalOptions="Center"/>
 
-            <StackLayout Grid.Row="1"
-                         Grid.Column="1">
-                <Label Text="Level"
-                       Style="{StaticResource LabelStyle}" />
-                <Label Text="{Binding Data.Level}"
-                       HorizontalOptions="Fill"
-                       Style="{StaticResource ValueStyle}" />
-            </StackLayout>
+            <Label Grid.Row="1" Grid.Column="1"
+                   Text="Level: "
+                   Style="{StaticResource LabelStyle}" />
+            <Label Grid.Row="1" Grid.Column="2"
+                   Text="{Binding Data.Level}"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource ValueStyle}" />
 
             <Label Grid.Row="2" Grid.Column="1"
                    Text="Description"
+                   HorizontalOptions="FillAndExpand"
                    Style="{StaticResource LabelStyle}" />
-            <Frame Grid.Row="3" Grid.Column="1"
-                   BackgroundColor="{StaticResource TransparentColor}"
-                   BorderColor="{StaticResource PageBackgroundColor}"
-                   VerticalOptions="Fill" HorizontalOptions="Fill">
-                <Label Text="{Binding Data.Description}"
-                       Style="{StaticResource ValueStyle}" />
-            </Frame>
+            <Label Grid.Row="3" Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Text="{Binding Data.Description}"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Style="{StaticResource ValueStyle}" />
         </Grid>
 
         <Grid Grid.Row="1"
