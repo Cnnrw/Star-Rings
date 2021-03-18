@@ -58,41 +58,36 @@ namespace Game.Helpers
         /// <returns></returns>
         public static MonsterImageEnum GetMonsterImage()
         {
-            var imageCount = Enum.GetNames(typeof(MonsterImageEnum)).Length;
-            var index = DiceHelper.RollDice(1, imageCount) - 1;
+            var imageCount = MonsterImageEnumHelper.GetListMonsterImages.Count;
+            var index = DiceHelper.RollDice(1, imageCount);
 
             return index < imageCount
                        ? (MonsterImageEnum)index
                        : (MonsterImageEnum)1;
         }
 
+        public static BattleLocationEnum GetMonsterLocation()
+        {
+            var locationCount = BattleLocationEnumHelper.GetListBattleLocations.Count;
+            var index = DiceHelper.RollDice(1, locationCount) -  1;
+
+            return index < locationCount
+                       ? (BattleLocationEnum)index
+                       : (BattleLocationEnum)1;
+        }
+
         /// <summary>
         /// Get Random Image
         /// </summary>
         /// <returns></returns>
-        public static string GetCharacterImage()
+        public static CharacterImageEnum GetCharacterImage()
         {
-            var stringList = new List<string>
-            {
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png",
-                "item.png"
-            };
+            var imageCount = CharacterImageEnumHelper.GetListCharacterImages.Count;
+            var index = DiceHelper.RollDice(1, imageCount);
 
-            var index = DiceHelper.RollDice(1, stringList.Count()) - 1;
-
-            var result = stringList.First();
-
-            if (index < stringList.Count)
-            {
-                result = stringList.ElementAt(index);
-            }
-
-            return result;
+            return index < imageCount
+                       ? (CharacterImageEnum)index
+                       : (CharacterImageEnum)1;
         }
 
         /// <summary>
@@ -172,7 +167,7 @@ namespace Game.Helpers
                 "Isamu"
             };
 
-            var index = DiceHelper.RollDice(1, stringList.Count()) - 1;
+            var index = DiceHelper.RollDice(1, stringList.Count) - 1;
 
             var result = stringList.First();
 
@@ -262,29 +257,37 @@ namespace Game.Helpers
         /// <summary>
         /// Create Random Character for the battle
         /// </summary>
-        /// <param name="MaxLevel"></param>
+        /// <param name="maxLevel"></param>
         /// <returns></returns>
-        public static CharacterModel GetRandomCharacter(int MaxLevel)
+        public static CharacterModel GetRandomCharacter(int maxLevel)
         {
             var result = new CharacterModel
             {
-                Level = DiceHelper.RollDice(1, MaxLevel),
+                Level = DiceHelper.RollDice(1, maxLevel),
 
                 // Randomize Name
-                Name = GetCharacterName(), Description = GetCharacterDescription(),
+                Name = GetCharacterName(),
+                Description = GetCharacterDescription(),
 
                 // Randomize the Attributes
-                Attack = GetAbilityValue(), Speed = GetAbilityValue(),
+                Attack = GetAbilityValue(),
+                Speed = GetAbilityValue(),
                 Defense = GetAbilityValue(),
 
                 // Randomize an Item for Location
-                Head = GetItem(ItemLocationEnum.Head), Necklace = GetItem(ItemLocationEnum.Necklace),
-                PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand), OffHand = GetItem(ItemLocationEnum.OffHand),
-                RightFinger = GetItem(ItemLocationEnum.Finger), LeftFinger = GetItem(ItemLocationEnum.Finger),
-                Feet = GetItem(ItemLocationEnum.Feet), ImageURI = GetCharacterImage(),
-                MaxHealth = DiceHelper.RollDice(MaxLevel, 10)
+                Head = GetItem(ItemLocationEnum.Head),
+                Necklace = GetItem(ItemLocationEnum.Necklace),
+                PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand),
+                OffHand = GetItem(ItemLocationEnum.OffHand),
+                RightFinger = GetItem(ItemLocationEnum.Finger),
+                LeftFinger = GetItem(ItemLocationEnum.Finger),
+                Feet = GetItem(ItemLocationEnum.Feet),
+                MaxHealth = DiceHelper.RollDice(maxLevel, 10)
             };
 
+            var image = GetCharacterImage();
+            result.ImageURI = image.ToImageURI();
+            result.IconImageURI = image.ToIconImageURI();
 
             // Level up to the new level
             result.LevelUpToValue(result.Level);
@@ -315,7 +318,8 @@ namespace Game.Helpers
                 Attack = GetAbilityValue(),
                 Speed = GetAbilityValue(),
                 Defense = GetAbilityValue(),
-                Difficulty = GetMonsterDifficultyValue()
+                Difficulty = GetMonsterDifficultyValue(),
+                BattleLocation = GetMonsterLocation()
             };
 
             var monsterImg = GetMonsterImage();
@@ -339,10 +343,10 @@ namespace Game.Helpers
             // Level up to the new level
             result.LevelUpToValue(result.Level);
 
-            int LevelDetailsListIndex = Math.Min(result.Level + 1, 20);
+            var levelDetailsListIndex = Math.Min(result.Level + 1, 20);
 
             // Set ExperienceRemaining so Monsters can both use this method
-            result.ExperienceRemaining = LevelTableHelper.LevelDetailsList[LevelDetailsListIndex].Experience;
+            result.ExperienceRemaining = LevelTableHelper.LevelDetailsList[levelDetailsListIndex].Experience;
 
             // Enter Battle at full health
             result.CurrentHealth = result.MaxHealth;
