@@ -60,17 +60,7 @@ namespace Game.Views
             }
 
             MessagingCenter.Send(this, "Update", _viewModel.Data);
-            await App.NavigationService.GoBackTwice();
+            await App.NavigationService.GoBack();
         }
-
-        // /// <summary>
-        // /// Cancel and close this page
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        // public async void Cancel_Clicked(object sender, EventArgs e)
-        // {
-        //     await Navigation.PopModalAsync();
-        // }
     }
 }
