@@ -473,7 +473,11 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ExitButton_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
+        public async void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            await App.NavigationService.GoBackTwice();
+            await App.NavigationService.GoBack();
+        }
 
         /// <summary>
         /// When the Start button is clicked.
