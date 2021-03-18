@@ -1,9 +1,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Game.Models;
 using Game.Views;
 
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Game.ViewModels
@@ -20,7 +22,7 @@ namespace Game.ViewModels
         /// </summary>
         public ObservableCollection<CharacterModel> SelectedCharacterList { get; set; }
 
-        public Command BeginBattleCommand { get; protected set; }
+        public AsyncCommand BeginBattleCommand { get; protected set; }
         public Command SelectCharacterCommand { get; protected set; }
 
         int _partyCount;
@@ -37,13 +39,15 @@ namespace Game.ViewModels
             InitializeCharacterList();
 
             SelectCharacterCommand = new Command<CharacterModel>(AddCharacterToParty);
-            BeginBattleCommand = new Command(
-                                             async () =>
-                                             {
-                                                 CreateEngineCharacterList();
-                                                 await App.NavigationService.NavigateModalAsync(nameof(BattlePage));
-                                                 await Application.Current.MainPage.Navigation.PopAsync();
-                                             }, () => SelectedCharacterList.Any());
+            BeginBattleCommand = new AsyncCommand(execute: BeginBattle,
+                                                  () => SelectedCharacterList.Any());
+        }
+
+        async Task BeginBattle()
+        {
+            CreateEngineCharacterList();
+            await App.NavigationService.NavigateModalAsync(nameof(BattlePage));
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace Game.ViewModels
             }
 
             PartyCount = SelectedCharacterList.Count;
-            BeginBattleCommand.ChangeCanExecute();
+            BeginBattleCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
