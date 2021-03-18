@@ -42,7 +42,7 @@ namespace Game.Views
             // Clear the Binding and reset it
             BindingContext = null;
             _viewModel.Data = data;
-            _viewModel.Title = $"Update {data.Name}";
+            PageTitle = $"Update {data.Name}";
 
             BindingContext = _viewModel;
 
@@ -50,7 +50,6 @@ namespace Game.Views
             LocationPicker.SelectedItem = data.Location.ToString();
             AttributePicker.SelectedItem = data.Attribute.ToString();
         }
-
 
         /// <summary>
         /// Save calls to Update
@@ -72,13 +71,6 @@ namespace Game.Views
             MessagingCenter.Send(this, "Update", _viewModel.Data);
             await App.NavigationService.GoBack();
         }
-
-        /// <summary>
-        /// Cancel and close this page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
 
         /// <summary>
         /// Catch the change to the Stepper for Range

@@ -25,7 +25,7 @@ namespace Game.Views
 
             BindingContext = _viewModel = data;
 
-            _viewModel.Title = $"Delete {data.Title}";
+            PageTitle = $"Delete {data.Title}";
         }
 
         /// <summary>
@@ -40,16 +40,12 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Cancel and close this page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
-
-        /// <summary>
         /// Trap the Back Button on the Phone
         /// </summary>
         /// <returns></returns>
-        protected override bool OnBackButtonPressed() => true;
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

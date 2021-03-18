@@ -8,7 +8,7 @@ namespace Game.Views
     /// </summary>
     public partial class ItemReadPage : BaseContentPage
     {
-        internal readonly GenericViewModel<ItemModel> _viewModel;
+        readonly GenericViewModel<ItemModel> _viewModel;
 
         // Empty Constructor for UTs
         internal ItemReadPage(bool unitTest) { }

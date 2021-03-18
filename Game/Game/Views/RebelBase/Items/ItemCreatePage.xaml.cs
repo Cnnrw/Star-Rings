@@ -46,17 +46,20 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Save_Clicked(object sender, EventArgs e)
         {
+            if (_viewModel.Data.Name.Length <= 0)
+            {
+                await DisplayAlert("Hold up!", "Please give your item a name", "OK");
+                return;
+            }
+
             // If the image in the data box is empty, use the default one..
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
-                _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
-
-            if (_viewModel.Data.Name.Length == 0)
-                await DisplayAlert("Hold up!", "Please give your item a name", "OK");
-            else
             {
-                MessagingCenter.Send(this, "Create", _viewModel.Data);
-                await App.NavigationService.GoBack();
+                _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
             }
+
+            MessagingCenter.Send(this, "Create", _viewModel.Data);
+            await App.NavigationService.GoBack();
         }
 
         /// <summary>

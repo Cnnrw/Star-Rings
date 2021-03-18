@@ -9,11 +9,9 @@
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.ItemIndexPage"
-                      Title="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <vm:ItemIndexViewModel />
-    </ContentPage.BindingContext>
+                      x:DataType="vm:ItemIndexViewModel"
+                      PageTitle="{Binding Title}"
+                      BackButtonCommand="{Binding ClosePageCommand}">
 
     <page:BaseContentPage.ToolbarButtons>
         <ImageButton Command="{Binding AddItemCommand}"
@@ -23,9 +21,7 @@
     <RefreshView Command="{Binding LoadDatasetCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                  Padding="20, 0">
-        <CollectionView x:Name="ItemList"
-                        ItemsSource="{Binding Dataset}"
-                        ItemSizingStrategy="MeasureFirstItem"
+        <CollectionView ItemsSource="{Binding Dataset}"
                         SelectionMode="Single"
                         VerticalOptions="FillAndExpand"
                         Margin="10, 35">
