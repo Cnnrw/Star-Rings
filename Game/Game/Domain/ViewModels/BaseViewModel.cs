@@ -24,7 +24,10 @@ namespace Game.ViewModels
         public ICommand ClosePageCommand { get; } =
             new AsyncCommand(() => NavigationService.GoBack());
 
-        protected BaseViewModel(INavigationService navigationService = null)
+        public BaseViewModel() : this(App.NavigationService)
+        { }
+
+        public BaseViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService ?? App.NavigationService;
         }
