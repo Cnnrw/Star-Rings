@@ -1,7 +1,6 @@
 using System;
 
 using Game.Enums;
-using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 
@@ -119,24 +118,6 @@ namespace Game.Views
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
                 await App.NavigationService.GoBack();
             }
-        }
-
-        /// <summary>
-        /// Cancel creation
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
-
-        /// <summary>
-        ///     Randomize Character Values and Items
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void RandomButton_Clicked(object sender, EventArgs e)
-        {
-            _viewModel.Data = RandomPlayerHelper.GetRandomCharacter(20);
-            UpdatePageBindingContext();
         }
     }
 }
