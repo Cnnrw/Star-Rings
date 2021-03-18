@@ -1,41 +1,39 @@
 using System;
-using System.ComponentModel;
 
 using Game.Models;
 using Game.ViewModels;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Game.Views
 {
     /// <summary>
     /// Create Item
     /// </summary>
-    [DesignTimeVisible(false)]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ScoreCreatePage : ContentPage
+    public partial class ScoreCreatePage : BaseContentPage
     {
+        // The item to create
+        internal readonly GenericViewModel<ScoreModel> _viewModel;
 
         // Constructor for Unit Testing
-        public ScoreCreatePage(bool UnitTest) { }
+        internal ScoreCreatePage(bool unitTest) { }
 
         /// <summary>
         /// Constructor for Create makes a new model
         /// </summary>
-        public ScoreCreatePage(GenericViewModel<ScoreModel> data)
+        public ScoreCreatePage()
         {
             InitializeComponent();
 
-            data.Data = new ScoreModel();
+            _viewModel = new GenericViewModel<ScoreModel>
+            {
+                Data = new ScoreModel()
+            };
 
-            BindingContext = _viewModel = data;
+            BindingContext = _viewModel;
 
-            _viewModel.Title = "Create";
+            PageTitle = "Add a score";
         }
-
-        // The item to create
-        public GenericViewModel<ScoreModel> _viewModel { get; }
 
         /// <summary>
         /// Save by calling for Create
@@ -44,23 +42,18 @@ namespace Game.Views
         /// <param name="e"></param>
         public async void Save_Clicked(object sender, EventArgs e)
         {
-            // If the image in the data box is empty, use the default one..
-            if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
+            if (!string.IsNullOrEmpty(_viewModel.Data.Name))
             {
-                _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
-            }
+                if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
+                {
+                    _viewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
+                }
 
-            //TODO: Create entry validator to attach to xaml control
-            // Don't allow users to unput an empty name
-            if (_viewModel.Data.Name.Length == 0)
-            {
-                await DisplayAlert("Hold up!", "Please give your score a name", "OK");
-            }
-            else
-            {
                 MessagingCenter.Send(this, "Create", _viewModel.Data);
                 await Navigation.PopModalAsync();
             }
+
+            await DisplayAlert("Hold up!", "Please give your score a name", "OK");
         }
 
         /// <summary>
@@ -68,6 +61,9 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        public async void Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
     }
 }

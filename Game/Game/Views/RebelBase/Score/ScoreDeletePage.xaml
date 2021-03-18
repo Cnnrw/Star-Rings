@@ -4,86 +4,65 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.ScoreDeletePage"
-                      Title="{Binding Title}"
                       IsBackButtonVisible="False">
-
-    <page:BaseContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:ScoreModel" />
-    </page:BaseContentPage.BindingContext>
-
-    <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Cancel_Clicked" Source="icon_cancel.png" />
-        <ImageButton Clicked="Delete_Clicked" Source="icon_delete.png" />
-    </page:BaseContentPage.ToolbarButtons>
 
     <FlexLayout JustifyContent="Center"
                 Padding="40">
-        <ScrollView>
-            <StackLayout Style="{StaticResource OuterBoxStack}"
-                         Spacing="10">
+        <StackLayout Style="{StaticResource OuterBoxStack}"
+                     Spacing="10">
 
-                <StackLayout>
-                    <StackLayout.Resources>
-                        <Style TargetType="StackLayout">
-                            <Setter Property="Style" Value="{StaticResource HorizontalStack}"/>
-                        </Style>
-                    </StackLayout.Resources>
-
-                    <StackLayout>
-                        <Label Text="Name: "
-                               Style="{StaticResource LabelStyle}" />
-                        <Label Text="{Binding Data.Name}"
-                               Style="{StaticResource ValueStyle}" />
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Label Text="Game Date:"
-                               Style="{StaticResource LabelStyle}" />
-                        <Label Text="{Binding Data.GameDate}"
-                               Style="{StaticResource ValueStyle}" />
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Label Text="AutoBattle:"
-                               Style="{StaticResource LabelStyle}" />
-                        <Label Text="{Binding Data.AutoBattle}"
-                               Style="{StaticResource ValueStyle}" />
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Label Text="Score:"
-                               Style="{StaticResource LabelStyle}" />
-                        <Label Text="{Binding Data.ScoreTotal}"
-                               Style="{StaticResource ValueStyle}" />
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Label Text="Number of Rounds:"
-                               Style="{StaticResource LabelStyle}" />
-                        <Label Text="{Binding Data.RoundCount}"
-                               Style="{StaticResource ValueStyle}" />
-                    </StackLayout>
-
-                </StackLayout>
-
-                <StackLayout HorizontalOptions="Center"
-                             Padding="20">
-                    <Label Text="Really delete this?"
-                           Style="{StaticResource MessageStyle}" />
-                    <Button Text="Yes"
-                            Clicked="Delete_Clicked"
-                            HorizontalOptions="Center"
-                            FontSize="Medium"
-                            BorderWidth="1"
-                            BorderColor="black" />
-                </StackLayout>
-
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Name: "
+                       Style="{StaticResource MessageStyle}" />
+                <Label Text="{Binding Data.Name}"
+                       Style="{StaticResource LabelStyle}" />
             </StackLayout>
-        </ScrollView>
+
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Game Date:"
+                       Style="{StaticResource MessageStyle}" />
+                <Label Text="{Binding Data.GameDate}"
+                       Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="AutoBattle:"
+                       Style="{StaticResource MessageStyle}" />
+                <Label Text="{Binding Data.AutoBattle}"
+                       Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Score:"
+                       Style="{StaticResource MessageStyle}" />
+                <Label Text="{Binding Data.ScoreTotal}"
+                       Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource HorizontalStack}">
+                <Label Text="Number of Rounds:"
+                       Style="{StaticResource MessageStyle}" />
+                <Label Text="{Binding Data.RoundCount}"
+                       Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource HorizontalStack}"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="End">
+                <c:TextButton Text="Yes"
+                              Clicked="Delete_Clicked"
+                              Margin="5,0"
+                              HorizontalOptions="FillAndExpand" />
+                <c:TextButton Text="No"
+                              Command="{Binding ClosePageCommand}"
+                              Margin="5,0"
+                              HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+        </StackLayout>
     </FlexLayout>
 </page:BaseContentPage>

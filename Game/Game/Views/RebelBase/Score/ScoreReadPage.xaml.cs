@@ -1,9 +1,5 @@
-﻿using System;
-
-using Game.Models;
+﻿using Game.Models;
 using Game.ViewModels;
-
-using Xamarin.Forms;
 
 namespace Game.Views
 {
@@ -28,28 +24,6 @@ namespace Game.Views
             InitializeComponent();
 
             BindingContext = _viewModel = score;
-        }
-
-        /// <summary>
-        /// Save calls to Update
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Update_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new ScoreUpdatePage(_viewModel)));
-            await Navigation.PopAsync();
-        }
-
-        /// <summary>
-        /// Calls for Delete
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Delete_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new ScoreDeletePage(_viewModel)));
-            await Navigation.PopAsync();
         }
     }
 }

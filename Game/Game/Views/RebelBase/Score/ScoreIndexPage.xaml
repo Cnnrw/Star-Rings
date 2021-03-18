@@ -9,23 +9,20 @@
                       xmlns:local="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.ScoreIndexPage"
-                      PageTitle="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <vm:ScoreIndexViewModel />
-    </ContentPage.BindingContext>
+                      x:DataType="vm:ScoreIndexViewModel"
+                      PageTitle="{Binding Title}"
+                      BackButtonCommand="{Binding ClosePageCommand}">
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="AddScore_Clicked" Source="icon_add.png" />
+        <ImageButton Command="{Binding AddScoreCommand}"
+                     Source="icon_add.png" />
     </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                  Padding="20, 0">
-        <CollectionView x:Name="ScoreList"
-                        ItemsSource="{Binding Dataset}"
+        <CollectionView ItemsSource="{Binding Dataset}"
                         SelectionMode="Single"
-                        SelectionChanged="OnScoreSelected"
                         VerticalOptions="FillAndExpand"
                         Margin="10, 35">
 

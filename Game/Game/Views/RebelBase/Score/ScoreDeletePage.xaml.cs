@@ -20,13 +20,13 @@ namespace Game.Views
 
 
         // Constructor for Delete takes a view model of what to delete
-        public ScoreDeletePage(GenericViewModel<ScoreModel> data)
+        public ScoreDeletePage(GenericViewModel<ScoreModel> score)
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = data;
+            BindingContext = _viewModel = score;
 
-            _viewModel.Title = "Delete " + data.Title;
+            PageTitle = $"Delete {score.Title}?";
         }
 
         /// <summary>
@@ -37,17 +37,7 @@ namespace Game.Views
         public async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "Delete", _viewModel.Data);
-            await Navigation.PopModalAsync();
-        }
-
-        /// <summary>
-        /// Cancel and close this page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
+            await App.NavigationService.GoBack();
         }
 
         /// <summary>
@@ -56,7 +46,6 @@ namespace Game.Views
         /// <returns></returns>
         protected override bool OnBackButtonPressed()
         {
-            // Add your code here...
             return true;
         }
     }
