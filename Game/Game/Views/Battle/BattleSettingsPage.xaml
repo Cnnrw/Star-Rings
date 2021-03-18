@@ -54,7 +54,7 @@
             <Label Text="Monster Hit Control"
                    Style="{DynamicResource LabelStyle}" />
 
-            <Picker Grid.Column="1"
+            <Picker Grid.Row="0" Grid.Column="1"
                     HorizontalOptions="Start"
                     VerticalOptions="Center"
                     FontSize="Micro"
