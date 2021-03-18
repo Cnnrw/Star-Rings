@@ -19,11 +19,14 @@ namespace Game.ViewModels
     /// </summary>
     public class BaseViewModel : ObservableObject
     {
-        protected static INavigationService NavigationService { get; set; }
+        public static INavigationService NavigationService { get; protected set; }
+
+        public ICommand ClosePageCommand { get; } =
+            new AsyncCommand(() => NavigationService.GoBack());
 
         protected BaseViewModel(INavigationService navigationService = null)
         {
-            NavigationService = navigationService;
+            NavigationService = navigationService ?? App.NavigationService;
         }
 
         /// <summary>
@@ -234,17 +237,22 @@ namespace Game.ViewModels
         public bool NeedsRefresh()
         {
             if (!_needsRefresh)
-                return false;
+            {
+                _needsRefresh = false;
+                return true;
+            }
 
-            _needsRefresh = false;
-            return true;
+            return false;
         }
 
         /// <summary>
         /// Returns the needs refresh value
         /// </summary>
         /// <returns></returns>
-        public bool GetNeedsRefresh() => _needsRefresh;
+        public bool GetNeedsRefresh()
+        {
+            return _needsRefresh;
+        }
 
         /// <summary>
         /// Sets the need to refresh
@@ -278,23 +286,32 @@ namespace Game.ViewModels
         /// Then the helper will call to the BaseView to wipe just its data
         /// </summary>
         /// <returns></returns>
-        protected async Task WipeDataListAsync() => await DataSetsHelper.WipeDataInSequence();
+        protected async Task<bool> WipeDataListAsync()
+        {
+            var result = await DataSetsHelper.WipeDataInSequence();
+            return result;
+        }
 
         /// <summary>
         /// Wipes the current Data from the Data Store
         /// </summary>
-        public async Task DataStoreWipeDataListAsync()
+        public async Task<bool> DataStoreWipeDataListAsync()
         {
             Dataset.Clear();
 
             await _dataStore.WipeDataListAsync();
-            await LoadDefaultDataAsync(); // Load the Sample Data
+
+           var result =  await LoadDefaultDataAsync(); // Load the Sample Data
+           return result;
         }
 
         /// <summary>
         /// Returns the current data source
         /// </summary>
-        public int GetCurrentDataSource() => CurrentDataSource;
+        public int GetCurrentDataSource()
+        {
+            return CurrentDataSource;
+        }
 
         #endregion DataSourceManagement
         #region DataOperations_CRUDi
@@ -423,7 +440,7 @@ namespace Game.ViewModels
 
             // Compare it, if different update in the DB
             // ReSharper disable once UnusedVariable
-            var UpdateResult = await UpdateAsync(data);
+            var updateResult = await UpdateAsync(data);
 
             // Return True, not adding
             return true;
@@ -441,7 +458,9 @@ namespace Game.ViewModels
         public bool Create_Sync(T data)
         {
             if (data == null)
+            {
                 return false;
+            }
 
             Dataset.Add(data);
             SetNeedsRefresh(true);
