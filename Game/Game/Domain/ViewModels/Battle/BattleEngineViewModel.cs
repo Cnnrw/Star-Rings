@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Windows.Input;
 
 using Game.Engine.EngineInterfaces;
 using Game.Models;
+using Game.Services;
 
 using Xamarin.CommunityToolkit.ObjectModel;
 
@@ -64,10 +66,20 @@ namespace Game.ViewModels
 
         #region Constructor
 
+        public static INavigationService NavigationService { get; protected set; }
+
+        public ICommand ClosePageCommand { get; } =
+            new AsyncCommand(() => NavigationService.GoBack());
+
         /// <summary>
         /// Constructor
         /// </summary>
-        public BattleEngineViewModel() => SetBattleEngineToGame();
+        public BattleEngineViewModel(INavigationService navigationService = null)
+        {
+            SetBattleEngineToGame();
+
+            NavigationService = navigationService ?? App.NavigationService;
+        }
 
         /// <summary>
         /// Set the Battle Engine to the Game Version for actual use
