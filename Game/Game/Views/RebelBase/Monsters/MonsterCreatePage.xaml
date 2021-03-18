@@ -5,8 +5,6 @@
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
-                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
@@ -14,14 +12,13 @@
                       PageTitle="{Binding Title}"
                       IsBackButtonVisible="False">
 
-    <ContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
-    </ContentPage.BindingContext>
-
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png" />
-        <ImageButton Clicked="RandomButton_Clicked" Source="" />
-        <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
+        <ImageButton Command="{Binding ClosePageCommand}"
+                     Source="cancel_button.png" />
+        <ImageButton Clicked="RandomButton_Clicked"
+                     Source="" />
+        <ImageButton Clicked="Save_Clicked"
+                     Source="save_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
     <AbsoluteLayout Margin="13,0,16,20">

@@ -28,11 +28,11 @@ namespace Game.Views
         /// <summary>
         ///     Constructor for Create makes a new model
         /// </summary>
-        public MonsterCreatePage(GenericViewModel<MonsterModel> viewModel = null)
+        public MonsterCreatePage()
         {
             InitializeComponent();
 
-            _viewModel = viewModel ?? new GenericViewModel<MonsterModel>
+            _viewModel = new GenericViewModel<MonsterModel>
             {
                 Data = RandomPlayerHelper.GetRandomMonster(10)
             };
@@ -51,7 +51,7 @@ namespace Game.Views
             BindingContext = null;
 
             _viewModel.Data = data;
-            _viewModel.Title = "New Monster";
+            PageTitle = "New Monster";
 
             BindingContext = _viewModel;
 
@@ -135,16 +135,8 @@ namespace Game.Views
             }
 
             MessagingCenter.Send(this, "Create", _viewModel.Data);
-            await Navigation.PopModalAsync();
+            await App.NavigationService.GoBack();
         }
-
-        /// <summary>
-        ///     Cancel the Create
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Cancel_Clicked(object sender, EventArgs e) =>
-            await Navigation.PopModalAsync();
 
         /// <summary>
         ///     Randomize Character Values and Items

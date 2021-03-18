@@ -1,10 +1,4 @@
-using System;
-using System.Linq;
-
-using Game.Models;
 using Game.ViewModels;
-
-using Xamarin.Forms;
 
 namespace Game.Views
 {
@@ -29,31 +23,6 @@ namespace Game.Views
             InitializeComponent();
 
             BindingContext = _viewModel;
-        }
-
-        /// <summary>
-        ///     Call to add a new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void AddItem_Clicked(object sender, EventArgs e) =>
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterCreatePage()));
-
-        /// <summary>
-        ///     The row selected from the list
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        public async void OnMonsterSelected(object sender, SelectionChangedEventArgs args)
-        {
-            if (!(args.CurrentSelection.FirstOrDefault() is MonsterModel data))
-                return;
-
-            // Open the Read Page
-            await Navigation.PushAsync(new MonsterReadPage(new GenericViewModel<MonsterModel>(data)));
-
-            // Manually deselect item
-            MonsterList.SelectedItem = null;
         }
 
         /// <summary>

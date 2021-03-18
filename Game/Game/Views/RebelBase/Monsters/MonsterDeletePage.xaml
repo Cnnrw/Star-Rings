@@ -4,17 +4,11 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
+                      xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterDeletePage"
-                      PageTitle="{Binding Title}"
                       IsBackButtonVisible="False">
-
-    <ContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
-    </ContentPage.BindingContext>
 
     <StackLayout VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
@@ -34,16 +28,14 @@
         <StackLayout Style="{StaticResource HorizontalStack}"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="End">
-            <Button Clicked="Delete_Clicked"
-                    Text="Yes"
-                    FontSize="Large"
-                    Margin="5,0"
-                    HorizontalOptions="FillAndExpand" />
-            <Button Clicked="Cancel_Clicked"
-                    Text="No"
-                    FontSize="Large"
-                    Margin="5,0"
-                    HorizontalOptions="FillAndExpand" />
+            <c:TextButton Text="Yes"
+                          Clicked="Delete_Clicked"
+                          Margin="5,0"
+                          HorizontalOptions="FillAndExpand" />
+            <c:TextButton Text="No"
+                          Command="{Binding ClosePageCommand}"
+                          Margin="5,0"
+                          HorizontalOptions="FillAndExpand" />
         </StackLayout>
     </StackLayout>
 </page:BaseContentPage>

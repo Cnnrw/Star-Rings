@@ -44,7 +44,7 @@ namespace Game.Views
             // Clear the Binding and reset
             BindingContext = null;
             _viewModel.Data = data;
-            _viewModel.Title = $"Update {data.Name}";
+            PageTitle= $"Update {data.Name}";
 
             BindingContext = _viewModel;
 
@@ -88,22 +88,15 @@ namespace Game.Views
             }
 
             MessagingCenter.Send(this, "Update", _viewModel.Data);
-            await Navigation.PopModalAsync();
+            await App.NavigationService.GoBackTwice();
         }
-
-        /// <summary>
-        ///     Cancel the Update
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal async void Cancel_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         /// <summary>
         ///     Randomize Monster Values and Items
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void RandomButton_Clicked(object sender, EventArgs e)
+        void RandomButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Data.Update(RandomPlayerHelper.GetRandomMonster(1));
             UpdatePageBindingContext();

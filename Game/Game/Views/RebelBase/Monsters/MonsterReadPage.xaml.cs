@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 
 using Game.Enums;
@@ -33,28 +32,6 @@ namespace Game.Views
 
             // Show the Monsters Items
             AddItemsToDisplay();
-        }
-
-        /// <summary>
-        ///     Save calls to Update
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Update_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterUpdatePage(_viewModel)));
-            await Navigation.PopAsync();
-        }
-
-        /// <summary>
-        ///     Calls MonsterDeletePage
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public async void Delete_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new MonsterDeletePage(_viewModel)), false);
-            await Navigation.PopAsync();
         }
 
         /// <summary>

@@ -9,14 +9,13 @@
                       xmlns:local="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.MonsterIndexPage"
-                      PageTitle="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <vm:MonsterIndexViewModel />
-    </ContentPage.BindingContext>
+                      x:DataType="vm:MonsterIndexViewModel"
+                      PageTitle="{Binding Title}"
+                      BackButtonCommand="{Binding ClosePageCommand}">
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="AddItem_Clicked" Source="icon_add.png" />
+        <ImageButton Command="{Binding AddMonsterCommand}"
+                     Source="icon_add.png" />
     </page:BaseContentPage.ToolbarButtons>
 
     <RefreshView Command="{Binding LoadDatasetCommand}"
@@ -25,7 +24,6 @@
         <CollectionView x:Name="MonsterList"
                         ItemsSource="{Binding Dataset}"
                         SelectionMode="Single"
-                        SelectionChanged="OnMonsterSelected"
                         VerticalOptions="FillAndExpand"
                         Margin="10,35">
 

@@ -6,17 +6,11 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:m="clr-namespace:Game.Models;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:conv="clr-namespace:Game.Converters;assembly=Game"
                       xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
-                      x:Class="Game.Views.MonsterUpdatePage"
-                      PageTitle="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:MonsterModel" />
-    </ContentPage.BindingContext>
+                      x:Class="Game.Views.MonsterUpdatePage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -25,11 +19,11 @@
     </ContentPage.Resources>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png" />
-        <ImageButton Clicked="RandomButton_Clicked" />
-        <ImageButton Clicked="Save_Clicked" Source="save_button.png" />
+        <ImageButton Command="{Binding CloseButtonCommand}"
+                     Source="cancel_button.png" />
+        <ImageButton Clicked="Save_Clicked"
+                     Source="save_button.png" />
     </page:BaseContentPage.ToolbarButtons>
-
 
     <AbsoluteLayout HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
@@ -116,8 +110,7 @@
                             JustifyContent="SpaceAround"
                             AlignContent="SpaceAround" />
 
-                    <Button x:Name="Randomize"
-                            Text="Random"
+                    <Button Text="Random"
                             Clicked="RandomButton_Clicked" />
                 </StackLayout>
         </ScrollView>
@@ -141,8 +134,10 @@
                                  HorizontalOptions="CenterAndExpand"
                                  Padding="2">
 
-                        <Label x:Name="PopupLocationLabel" Style="{StaticResource PopupItemTextStyle}" />
-                        <Label x:Name="PopupLocationValue" Style="{StaticResource PopupItemTextStyle}" />
+                        <Label x:Name="PopupLocationLabel"
+                               Style="{StaticResource PopupItemTextStyle}" />
+                        <Label x:Name="PopupLocationValue"
+                               Style="{StaticResource PopupItemTextStyle}" />
 
                         <ListView x:Name="PopupLocationItemListView"
                                   CachingStrategy="RecycleElement"
@@ -181,8 +176,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <Button x:Name="PopupCloseButton"
-                                Clicked="ClosePopup_Clicked"
+                        <Button Clicked="ClosePopup_Clicked"
                                 Text="Close" />
 
                     </StackLayout>

@@ -1,78 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <page:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:m="clr-namespace:Game.Models;assembly=Game"
-             xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
-             xmlns:page="clr-namespace:Game.Views;assembly=Game"
-             mc:Ignorable="d"
-             x:Class="Game.Views.MonsterReadPage"
-             PageTitle="{Binding Title}">
-
-    <page:BaseContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:MonsterModel"/>
-    </page:BaseContentPage.BindingContext>
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:page="clr-namespace:Game.Views;assembly=Game"
+                      mc:Ignorable="d"
+                      x:Class="Game.Views.MonsterReadPage"
+                      PageTitle="{Binding Title}"
+                      BackButtonCommand="{Binding ClosePageCommand}">
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Update_Clicked" Source="player_update_button.png" />
-        <ImageButton Clicked="Delete_Clicked" Source="delete_button.png" />
+        <ImageButton Command="{Binding UpdateCommand}"
+                     CommandParameter="{Binding .}"
+                     Source="player_update_button.png" />
+        <ImageButton Command="{Binding DeleteCommand}"
+                     CommandParameter="{Binding .}"
+                     Source="delete_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
-        <FlexLayout JustifyContent="Center"
-                    Padding="40">
-            <ScrollView>
-                <StackLayout Orientation="Vertical"
-                             Spacing="10">
+    <FlexLayout JustifyContent="Center"
+                Padding="40">
+        <ScrollView>
+            <StackLayout Orientation="Vertical"
+                         Spacing="10">
 
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="{Binding Data.ImageURI}"
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="{Binding Data.ImageURI}"
                            Style="{StaticResource ImageLargeStyle}"
                            HorizontalOptions="CenterAndExpand" />
-                        <StackLayout>
-                            <Label Text="Name"
-                                   Style="{StaticResource LabelStyle}" />
-                            <Label Text="{Binding Data.Name}"
-                                   Style="{StaticResource ValueStyle}" />
+                    <StackLayout>
+                        <Label Text="Name"
+                               Style="{StaticResource LabelStyle}" />
+                        <Label Text="{Binding Data.Name}"
+                               Style="{StaticResource ValueStyle}" />
 
-                            <Label Text="Description"
-                                   Style="{StaticResource LabelStyle}" />
-                            <Label Text="{Binding Data.Description}"
-                                   Style="{StaticResource ValueStyle}" />
-                        </StackLayout>
+                        <Label Text="Description"
+                               Style="{StaticResource LabelStyle}" />
+                        <Label Text="{Binding Data.Description}"
+                               Style="{StaticResource ValueStyle}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Label Text="Attack:"
+                               Style="{StaticResource LabelStyle}" />
+                        <Label Text="{Binding Data.Attack}"
+                               Style="{StaticResource ValueStyle}" />
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout>
-                            <Label Text="Attack:"
+                    <StackLayout>
+                        <Label Text="Defense:"
                                Style="{StaticResource LabelStyle}" />
-                            <Label Text="{Binding Data.Attack}"
+                        <Label Text="{Binding Data.Defense}"
                                Style="{StaticResource ValueStyle}" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Text="Defense:"
-                               Style="{StaticResource LabelStyle}" />
-                            <Label Text="{Binding Data.Defense}"
-                               Style="{StaticResource ValueStyle}" />
-                        </StackLayout>
-
-                        <StackLayout>
-                            <Label Text="Speed:"
-                               Style="{StaticResource LabelStyle}" />
-                            <Label Text="{Binding Data.Speed}"
-                               Style="{StaticResource ValueStyle}" />
-                        </StackLayout>
                     </StackLayout>
 
-                    <FlexLayout x:Name="ItemBox"
+                    <StackLayout>
+                        <Label Text="Speed:"
+                               Style="{StaticResource LabelStyle}" />
+                        <Label Text="{Binding Data.Speed}"
+                               Style="{StaticResource ValueStyle}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <FlexLayout x:Name="ItemBox"
                             Padding="5"
                             Wrap="Wrap"
                             JustifyContent="SpaceAround"
                             AlignContent="SpaceAround" />
 
-                </StackLayout>
-            </ScrollView>
-        </FlexLayout>
+            </StackLayout>
+        </ScrollView>
+    </FlexLayout>
 </page:BaseContentPage>
