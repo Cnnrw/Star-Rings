@@ -82,14 +82,31 @@ namespace Game.Models
 
         #region PlayerAttributes
 
-        // Level of character or monster
-        public int Level { get; set; } = 1;
+        int _level = 1;
+        /// <summary>
+        /// Level of character or monster
+        /// </summary>
+        public int Level
+        {
+            get => _level;
+            set => SetProperty(ref _level, value);
+        }
 
         // Current Health
-        public int CurrentHealth { get; set; }
+        int _currentHealth;
+        public int CurrentHealth
+        {
+            get => _currentHealth;
+            set => SetProperty(ref _currentHealth, value);
+        }
 
         // Max Health
-        public int MaxHealth { get; set; }
+        int _maxHealth;
+        public int MaxHealth
+        {
+            get => _maxHealth;
+            set => SetProperty(ref _maxHealth, value);
+        }
 
         // Total Experience Earned
         public int ExperienceTotal { get; set; }
@@ -98,25 +115,55 @@ namespace Game.Models
         public int ExperienceRemaining { get; set; }
 
         // Total speed, including level and items
-        public int Speed { get; set; }
+        int _speed;
+        public int Speed
+        {
+            get => _speed;
+            set => SetProperty(ref _speed, value);
+        }
 
         // The defense score, to be used for defending against attacks
-        public int Defense { get; set; }
+        int _defense;
+        public int Defense
+        {
+            get => _defense;
+            set => SetProperty(ref _defense, value);
+        }
 
         // The Attack score to be used when attacking
-        public int Attack { get; set; }
+        int _attack;
+        public int Attack
+        {
+            get => _attack;
+            set => SetProperty(ref _attack, value);
+        }
 
         // The natural range for this Player, 1 is normal
-        public int Range { get; set; } = 1;
+        int _range = 1;
+        public int Range
+        {
+            get => _range;
+            set => SetProperty(ref _range, value);
+        }
 
         // The Difficulty scale to use when creating examples
-        public DifficultyEnum Difficulty { get; set; } = DifficultyEnum.Unknown;
+        DifficultyEnum _difficulty = DifficultyEnum.Unknown;
+        public DifficultyEnum Difficulty
+        {
+            get => _difficulty;
+            set => SetProperty(ref _difficulty, value);
+        }
 
         // The Job for the Player
-        public CharacterJobEnum Job { get; set; } = CharacterJobEnum.Unknown;
+        CharacterJobEnum _job = CharacterJobEnum.Unknown;
+        public CharacterJobEnum Job
+        {
+            get => _job;
+            set => SetProperty(ref _job, value);
+        }
 
         // How many attacks this Player has landed
-        public int LandedAttacksCount { get; set; } = 0;
+        public int LandedAttacksCount { get; set; }
 
         #endregion PlayerAttributes
 
