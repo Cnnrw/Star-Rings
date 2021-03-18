@@ -51,14 +51,12 @@ namespace Game.Views
             // Clear the Binding and reset it
             BindingContext = null;
             _viewModel.Data = data;
-            _viewModel.Title = $"Update {data.Name}";
+            PageTitle = $"Update {data.Name}";
 
             BindingContext = _viewModel;
 
             // this resets the Picker to the Character's level
             LevelPicker.SelectedIndex = _viewModel.Data.Level - 1;
-
-            // JobPicker.SelectedItem = _viewModel.Data.Job.ToString();
 
             AddItemsToDisplay();
         }
@@ -78,24 +76,6 @@ namespace Game.Views
 
             MessagingCenter.Send(this, "Update", _viewModel.Data);
             await App.NavigationService.GoBack();
-        }
-
-        /// <summary>
-        ///     Cancel the Update
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal async void Cancel_Clicked(object sender, EventArgs e) => await App.NavigationService.GoBack();
-
-        // /// <summary>
-        // ///     Randomizes the Character values and items
-        // /// </summary>
-        // /// <param name="sender"></param>
-        // /// <param name="e"></param>
-        void RandomButton_Clicked(object sender, EventArgs e)
-        {
-            _viewModel.Data.Update(RandomPlayerHelper.GetRandomCharacter(20));
-            UpdatePageBindingContext();
         }
 
         #region Pickers

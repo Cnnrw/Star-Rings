@@ -7,17 +7,11 @@
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
                       xmlns:conv="clr-namespace:Game.Converters;assembly=Game"
                       xmlns:enum="clr-namespace:Game.Enums;assembly=Game"
-                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterCreatePage"
                       PageTitle="{Binding Title}"
                       IsBackButtonVisible="False">
-
-    <ContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
-    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,8 +20,10 @@
     </ContentPage.Resources>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Clicked="Cancel_Clicked" Source="cancel_button.png"/>
-        <ImageButton Clicked="Save_Clicked" Source="save_button.png"/>
+        <ImageButton Command="{Binding ClosePageCommand}"
+                     Source="cancel_button.png"/>
+        <ImageButton Clicked="Save_Clicked"
+                     Source="save_button.png"/>
     </page:BaseContentPage.ToolbarButtons>
 
     <FlexLayout JustifyContent="Center"
@@ -54,6 +50,8 @@
 
                     <StackLayout>
                         <c:FormEntry Title="Name"
+                                     Placeholder="{Binding Data.Name}"
+                                     IsSpellCheckEnabled="False"
                                      Text="{Binding Data.Name}" />
                         <c:FormEntry Title="Description"
                                      Text="{Binding Data.Description}" />

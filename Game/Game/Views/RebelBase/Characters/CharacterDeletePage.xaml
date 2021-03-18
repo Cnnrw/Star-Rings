@@ -5,23 +5,16 @@
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:c="clr-namespace:Game.Controls;assembly=Game"
-                      xmlns:m="clr-namespace:Game.Models;assembly=Game"
-                      xmlns:vm="clr-namespace:Game.ViewModels;assembly=Game"
                       xmlns:page="clr-namespace:Game.Views;assembly=Game"
                       mc:Ignorable="d"
                       x:Class="Game.Views.CharacterDeletePage"
-                      PageTitle="{Binding Title}"
                       IsBackButtonVisible="False">
-
-    <ContentPage.BindingContext>
-        <vm:GenericViewModel x:TypeArguments="m:CharacterModel" />
-    </ContentPage.BindingContext>
 
     <StackLayout VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
                  Margin="40,0,40,40">
 
-        <Image Source="{Binding Data.ImageURI}"
+        <Image Source="{Binding Data.ImageURI }"
                Style="{StaticResource ImageLargeStyle}"
                VerticalOptions="FillAndExpand"
                HorizontalOptions="FillAndExpand"
@@ -39,7 +32,7 @@
                           Text="Yes"
                           Margin="5,0"
                           HorizontalOptions="FillAndExpand" />
-            <c:TextButton Clicked="Cancel_Clicked"
+            <c:TextButton Command="{Binding ClosePageCommand}"
                           Text="No"
                           Margin="5,0"
                           HorizontalOptions="FillAndExpand" />
