@@ -14,7 +14,7 @@
     </page:BaseContentPage.BindingContext>
 
     <page:BaseContentPage.ToolbarButtons>
-        <ImageButton Command="{Binding CloseCommand}"
+        <ImageButton Command="{Binding ClosePageCommand}"
                      Source="close_button.png" />
     </page:BaseContentPage.ToolbarButtons>
 
