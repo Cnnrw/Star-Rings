@@ -14,10 +14,27 @@ namespace Game.Services
         readonly Dictionary<string, Type> _pagesByKey          = new Dictionary<string, Type>();
         readonly Stack<NavigationPage>    _navigationPageStack = new Stack<NavigationPage>();
 
-        NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
+        private NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
         /// <summary>
-        ///
+        /// <inheritdoc cref="INavigationService.Configure"/>
+        /// </summary>
+        public void Configure(string pageKey, Type pageType)
+        {
+            lock (_sync)
+            {
+                if (_pagesByKey.ContainsKey(pageKey))
+                {
+                    _pagesByKey[pageKey] = pageType;
+                }
+                else
+                {
+                    _pagesByKey.Add(pageKey, pageType);
+                }
+            }
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="rootPageKey"></param>
         /// <returns></returns>
@@ -25,10 +42,8 @@ namespace Game.Services
         {
             var rootPage = GetPage(rootPageKey);
             _navigationPageStack.Clear();
-
             var mainPage = new NavigationPage(rootPage);
             _navigationPageStack.Push(mainPage);
-
             return mainPage;
         }
 
@@ -42,7 +57,9 @@ namespace Game.Services
                 lock (_sync)
                 {
                     if (CurrentNavigationPage?.CurrentPage == null)
+                    {
                         return null;
+                    }
 
                     var pageType = CurrentNavigationPage.CurrentPage.GetType();
 
@@ -53,19 +70,6 @@ namespace Game.Services
             }
         }
 
-        /// <summary>
-        /// <inheritdoc cref="INavigationService.Configure"/>
-        /// </summary>
-        public void Configure(string pageKey, Type pageType)
-        {
-            lock (_sync)
-            {
-                if (_pagesByKey.ContainsKey(pageKey))
-                    _pagesByKey[pageKey] = pageType;
-                else
-                    _pagesByKey.Add(pageKey, pageType);
-            }
-        }
 
         /// <summary>
         /// <inheritdoc cref="INavigationService.GoBack"/>
@@ -89,29 +93,19 @@ namespace Game.Services
             await CurrentNavigationPage.PopAsync();
         }
 
-        /// <summary>
-        /// <inheritdoc cref="INavigationService.NavigateModalAsync(string,bool)"/>
-        /// </summary>
-        public async Task NavigateModalAsync(string pageKey, bool animated = true) => await NavigateModalAsync(pageKey, null, animated);
-
-        /// <summary>
-        /// <inheritdoc cref="INavigationService.NavigateModalAsync(string,object,bool)"/>
-        /// </summary>
-        public async Task NavigateModalAsync(string pageKey, object parameter, bool animated = true)
+        public async Task GoBackTwice()
         {
-            var page = GetPage(pageKey, parameter);
-            NavigationPage.SetHasNavigationBar(page, false);
-
-            var modalNavigationPage = new NavigationPage(page);
-            await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated);
-
-            _navigationPageStack.Push(modalNavigationPage);
+            await GoBack();
+            await GoBack();
         }
 
         /// <summary>
         /// <inheritdoc cref="INavigationService.NavigateAsync(string,bool)"/>
         /// </summary>
-        public async Task NavigateAsync(string pageKey, bool animated = true) => await NavigateAsync(pageKey, null, animated);
+        public async Task NavigateAsync(string pageKey, bool animated = true)
+        {
+            await NavigateAsync(pageKey, null, animated);
+        }
 
         /// <summary>
         /// <inheritdoc cref="INavigationService.NavigateAsync(string,object,bool)"/>
@@ -121,6 +115,27 @@ namespace Game.Services
             var page = GetPage(pageKey, parameter);
             await CurrentNavigationPage.Navigation.PushAsync(page, animated);
         }
+
+        /// <summary>
+        /// <inheritdoc cref="INavigationService.NavigateModalAsync(string,bool)"/>
+        /// </summary>
+        public async Task NavigateModalAsync(string pageKey, bool animated = true)
+        {
+            await NavigateModalAsync(pageKey, null, animated);
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="INavigationService.NavigateModalAsync(string,object,bool)"/>
+        /// </summary>
+        public async Task NavigateModalAsync(string pageKey, object parameter, bool animated = true)
+        {
+            var page = GetPage(pageKey, parameter);
+            NavigationPage.SetHasNavigationBar(page, false);
+            var modalNavigationPage = new NavigationPage(page);
+            await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated);
+            _navigationPageStack.Push(modalNavigationPage);
+        }
+
 
         Page GetPage(string pageKey, object parameter = null)
         {
