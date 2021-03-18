@@ -13,7 +13,12 @@ namespace Game.Models
         /// <summary>
         /// The locations where the monster can appear
         /// </summary>
-        public BattleLocationEnum BattleLocation { get; set; }
+        BattleLocationEnum _battleLocation;
+        public BattleLocationEnum BattleLocation
+        {
+            get => _battleLocation;
+            set => SetProperty(ref _battleLocation, value);
+        }
 
         #endregion
         #region Constructors
@@ -59,6 +64,7 @@ namespace Game.Models
 
             ImageURI = newData.ImageURI;
             IconImageURI = newData.IconImageURI;
+
             UniqueItem = newData.UniqueItem;
 
             Difficulty = newData.Difficulty;
