@@ -57,7 +57,6 @@ namespace Game.Views
 
             // Set pickers' initially selected items
             ImagePicker.SelectedItem = MonsterImageEnumExtensions.FromImageURI(data.ImageURI);
-            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation;
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void OnImagePickerChanged(object sender, EventArgs e)
+        void OnImagePickerChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
             var selectedImage = (MonsterImageEnum)picker.SelectedIndex;
@@ -73,46 +72,6 @@ namespace Game.Views
             MonsterImage.Source = selectedImage.ToImageURI();
             MonsterIconImage.Source = selectedImage.ToIconImageURI();
         }
-
-        /// <summary>
-        ///     Changes Attack attribute of a Monster
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void OnLevelStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MonsterLevel.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes Attack attribute of a Monster
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void OnMaxHealthStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MonsterHealth.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes Attack attribute of a Monster
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void OnAttackStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MonsterAttack.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes defense attribute of a Monster
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void OnDefenseStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MonsterDefense.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///     Changes Speed attribute of a Monster
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void OnSpeedStepperChanged(object sender, ValueChangedEventArgs e) =>
-            MonsterSpeed.Text = $"{e.NewValue}";
 
         /// <summary>
         ///     Save by calling for Create
@@ -130,6 +89,12 @@ namespace Game.Views
             if (string.IsNullOrEmpty(_viewModel.Data.ImageURI))
             {
                 var monsterImg = RandomPlayerHelper.GetMonsterImage();
+                _viewModel.Data.ImageURI = monsterImg.ToImageURI();
+                _viewModel.Data.IconImageURI = monsterImg.ToIconImageURI();
+            }
+            else
+            {
+                var monsterImg = ImagePicker.SelectedItem;
                 _viewModel.Data.ImageURI = monsterImg.ToImageURI();
                 _viewModel.Data.IconImageURI = monsterImg.ToIconImageURI();
             }

@@ -42,8 +42,8 @@
                            Style="{StaticResource LabelStyle}"
                            VerticalOptions="Center"
                            HorizontalOptions="Start" />
-                    <c:EnumPicker x:Name="BattleLocationPicker"
-                                  x:TypeArguments="enum:BattleLocationEnum"
+                    <c:EnumPicker x:TypeArguments="enum:BattleLocationEnum"
+                                  SelectedItem="{Binding Data.BattleLocation}"
                                   HorizontalOptions="FillAndExpand"
                                   FontFamily="8bit"
                                   TextColor="{StaticResource ColorSecondaryText}"
@@ -94,27 +94,23 @@
                        Text="Level"
                        HorizontalOptions="End" />
                 <Label Grid.Row="1" Grid.Column="1"
-                       x:Name="MonsterLevel"
                        Text="{Binding Data.Level}"
                        Style="{StaticResource ValueStyle}"
                        HorizontalOptions="Center" />
                 <Stepper Grid.Row="1" Grid.Column="2"
                          Value="{Binding Data.Level, Mode=TwoWay}"
-                         ValueChanged="OnLevelStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
-                         HorizontalOptions="EndAndExpand" />
+                         HorizontalOptions="FillAndExpand" />
 
                 <Label Grid.Row="2"
                        Text="Max Health"
                        HorizontalOptions="End" />
                 <Label Grid.Row="2" Grid.Column="1"
-                       x:Name="MonsterHealth"
                        Text="{Binding Data.MaxHealth}"
                        Style="{StaticResource ValueStyle}"
                        HorizontalOptions="Center" />
                 <Stepper Grid.Row="2" Grid.Column="2"
                          Value="{Binding Data.MaxHealth, Mode=TwoWay}"
-                         ValueChanged="OnMaxHealthStepperChanged"
                          Minimum="1" Maximum="100"
                          HorizontalOptions="EndAndExpand" />
 
@@ -122,13 +118,11 @@
                        Text="Attack"
                        HorizontalOptions="End" />
                 <Label Grid.Row="3" Grid.Column="1"
-                       x:Name="MonsterAttack"
                        Text="{Binding Data.Attack}"
                        Style="{StaticResource ValueStyle}"
                        HorizontalOptions="Center" />
                 <Stepper Grid.Row="3" Grid.Column="2"
                          Value="{Binding Data.Attack, Mode=TwoWay}"
-                         ValueChanged="OnAttackStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
                          HorizontalOptions="EndAndExpand" />
 
@@ -136,13 +130,11 @@
                        Text="Defense"
                        HorizontalOptions="End" />
                 <Label Grid.Row="4" Grid.Column="1"
-                       x:Name="MonsterDefense"
                        Text="{Binding Data.Defense}"
                        Style="{StaticResource ValueStyle}"
                        HorizontalOptions="Center" />
                 <Stepper Grid.Row="4" Grid.Column="2"
                          Value="{Binding Data.Defense, Mode=TwoWay}"
-                         ValueChanged="OnDefenseStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
                          HorizontalOptions="EndAndExpand" />
 
@@ -150,13 +142,11 @@
                        Text="Speed"
                        HorizontalOptions="End" />
                 <Label Grid.Row="5" Grid.Column="1"
-                       x:Name="MonsterSpeed"
                        Text="{Binding Data.Speed}"
                        Style="{StaticResource ValueStyle}"
                        HorizontalOptions="Center" />
                 <Stepper Grid.Row="5" Grid.Column="2"
                          Value="{Binding Data.Speed, Mode=TwoWay}"
-                         ValueChanged="OnSpeedStepperChanged"
                          Minimum="1" Maximum="10" Increment="1"
                          HorizontalOptions="EndAndExpand" />
 
