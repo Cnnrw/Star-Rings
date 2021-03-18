@@ -33,8 +33,6 @@ namespace Game.Services
         /// <returns></returns>
         Task GoBack();
 
-        Task GoBackTwice();
-
         /// <summary>
         ///     Modal navigation leaves the current navigation stack and displays
         ///     a page on its own. If you want to navigate from a modal root page

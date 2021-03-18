@@ -70,7 +70,6 @@ namespace Game.Services
             }
         }
 
-
         /// <summary>
         /// <inheritdoc cref="INavigationService.GoBack"/>
         /// </summary>
@@ -91,12 +90,6 @@ namespace Game.Services
             }
 
             await CurrentNavigationPage.PopAsync();
-        }
-
-        public async Task GoBackTwice()
-        {
-            await GoBack();
-            await GoBack();
         }
 
         /// <summary>
