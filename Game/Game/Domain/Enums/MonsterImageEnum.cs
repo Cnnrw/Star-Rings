@@ -118,7 +118,7 @@ namespace Game.Enums
         /// Gets the list of default Monsters
         /// Does not include the Unknown Job.
         /// </summary>
-        public static List<string> GetListMonsters
+        public static List<string> GetListMonsterImages
         {
             get
             {
