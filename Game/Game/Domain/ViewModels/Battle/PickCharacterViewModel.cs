@@ -58,6 +58,10 @@ namespace Game.ViewModels
         {
             if (CharacterList.Contains(character))
             {
+                // Don't let them add more than 6 characters to party
+                if (SelectedCharacterList.Count > 5)
+                    return;
+
                 // the character is being added to the party
                 SelectedCharacterList.Add(character);
                 CharacterList.Remove(character);
