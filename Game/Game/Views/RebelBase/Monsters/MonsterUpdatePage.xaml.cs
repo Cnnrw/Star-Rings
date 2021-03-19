@@ -48,31 +48,11 @@ namespace Game.Views
 
             BindingContext = _viewModel;
 
-            BattleLocationPicker.SelectedItem = _viewModel.Data.BattleLocation.ToString();
-
+            ImagePicker.SelectedItem = MonsterImageEnumExtensions.FromImageURI(data.ImageURI);
             AddItemsToDisplay();
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnSpeedStepperValueChanged(object sender, ValueChangedEventArgs e) => SpeedValueLabel.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnDefenseStepperValueChanged(object sender, ValueChangedEventArgs e) => DefenseValueLabel.Text = $"{e.NewValue}";
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnAttackStepperValueChanged(object sender, ValueChangedEventArgs e) => AttackValueLabel.Text = $"{e.NewValue}";
+        #region ToolbarButtons
 
         /// <summary>
         ///     Save by calling for Update
@@ -87,9 +67,15 @@ namespace Game.Views
                 return;
             }
 
+            var img = ImagePicker.SelectedItem;
+
+            _viewModel.Data.ImageURI = img.ToImageURI();
+            _viewModel.Data.IconImageURI = img.ToIconImageURI();
+
             MessagingCenter.Send(this, "Update", _viewModel.Data);
-            await App.NavigationService.GoBackTwice();
+            await App.NavigationService.GoBack();
         }
+
 
         /// <summary>
         ///     Randomize Monster Values and Items
@@ -102,6 +88,24 @@ namespace Game.Views
             UpdatePageBindingContext();
         }
 
+        #endregion ToolbarButtons
+        #region Picker
+
+        /// <summary>
+        /// Updates the monster image based on the selected value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnImagePickerChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            var selectedImage = (MonsterImageEnum)picker.SelectedIndex;
+
+            MonsterImage.Source = selectedImage.ToImageURI();
+            MonsterIconImage.Source = selectedImage.ToIconImageURI();
+        }
+
+        #endregion Picker
         #region Items Popup
 
         /// <summary>
