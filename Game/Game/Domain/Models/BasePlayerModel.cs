@@ -101,7 +101,7 @@ namespace Game.Models
         }
 
         // Max Health
-        int _maxHealth;
+        int _maxHealth = 1;
         public int MaxHealth
         {
             get => _maxHealth;
@@ -115,7 +115,7 @@ namespace Game.Models
         public int ExperienceRemaining { get; set; }
 
         // Total speed, including level and items
-        int _speed;
+        int _speed = 1;
         public int Speed
         {
             get => _speed;
@@ -123,7 +123,7 @@ namespace Game.Models
         }
 
         // The defense score, to be used for defending against attacks
-        int _defense;
+        int _defense = 1;
         public int Defense
         {
             get => _defense;
@@ -131,7 +131,7 @@ namespace Game.Models
         }
 
         // The Attack score to be used when attacking
-        int _attack;
+        int _attack = 1;
         public int Attack
         {
             get => _attack;
