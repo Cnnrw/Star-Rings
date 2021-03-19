@@ -13,7 +13,7 @@ namespace UnitTests.Models
             // Arrange
 
             // Act
-            var result = MonsterImageEnumHelper.GetListMonsters;
+            var result = MonsterImageEnumHelper.GetListMonsterImages;
 
             // Reset
 
