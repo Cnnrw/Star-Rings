@@ -61,11 +61,7 @@
 
                 <Grid Grid.Row="2"
                       RowDefinitions="*,*,*,*,*,*"
-                      ColumnDefinitions="*,*,*"
-                      VerticalOptions="EndAndExpand"
-                      HorizontalOptions="FillAndExpand"
-                      RowSpacing="5"
-                      Margin="10">
+                      ColumnDefinitions="Auto,*,Auto">
 
                     <Grid.Resources>
                         <Style TargetType="Label">
